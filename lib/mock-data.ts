@@ -146,7 +146,7 @@ export const MOCK_TEXT_CONTENTS: Content[] = [
     title: "Contes de Minuit",
     description: "Une collection de nouvelles mystérieuses à lire quand la nuit tombe.",
     contentType: "text",
-    coverUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop",
+    coverUrl: "/images/woman-author-portrait.jpg",
     creatorName: "Nora Mystère",
     creatorId: "c7",
     createdAt: "2026-02-03",
