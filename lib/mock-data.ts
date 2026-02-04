@@ -92,8 +92,8 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
   {
     id: "v4",
     title: "Pages d'Amour",
-    description: "Un court-metrage poetique sur la magie des rencontres litteraires.",
-    contentType: "video",
+    description: "Un recueil poetique sur la magie des rencontres litteraires.",
+    contentType: "text",
     coverUrl: "/images/woman-reading-books.jpg",
     creatorName: "Claire Lettres",
     creatorId: "c4",
@@ -102,8 +102,8 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
     currentInvestment: 1500,
     investorCount: 34,
     isFree: false,
-    category: "Musique",
-    duration: "4:20",
+    category: "Poésie",
+    wordCount: 12000,
   },
 ]
 
