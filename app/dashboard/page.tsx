@@ -6,6 +6,7 @@ import {
   Heart,
   Film,
   FileText,
+  Mic,
   Wallet,
   TrendingUp,
   Upload,
@@ -268,11 +269,15 @@ export default function DashboardPage() {
                     className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                       inv.contentType === "video"
                         ? "bg-red-500/20"
-                        : "bg-amber-500/20"
+                        : inv.contentType === "podcast"
+                          ? "bg-purple-500/20"
+                          : "bg-amber-500/20"
                     }`}
                   >
                     {inv.contentType === "video" ? (
                       <Film className="h-5 w-5 text-red-400" />
+                    ) : inv.contentType === "podcast" ? (
+                      <Mic className="h-5 w-5 text-purple-400" />
                     ) : (
                       <FileText className="h-5 w-5 text-amber-400" />
                     )}

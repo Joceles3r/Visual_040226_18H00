@@ -8,6 +8,8 @@ import {
   ArrowLeft,
   Film,
   FileText,
+  Mic,
+  Headphones,
   Clock,
   BookOpen,
   Users,
@@ -39,7 +41,9 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
     (content.currentInvestment / content.investmentGoal) * 100,
     100
   )
-  const isVideo = content.contentType === "video"
+  const cType = content.contentType
+  const isVideo = cType === "video"
+  const isPodcast = cType === "podcast"
   const canInvest =
     isAuthed &&
     (roles.includes("investor") || roles.includes("investireader"))
@@ -71,11 +75,12 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  {isVideo ? (
+                  {isVideo && (
                     <button className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group">
                       <Play className="h-10 w-10 text-white ml-1 group-hover:scale-110 transition-transform" />
                     </button>
-                  ) : (
+                  )}
+                  {cType === "text" && (
                     <Button
                       size="lg"
                       className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
@@ -84,6 +89,11 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                       Commencer la lecture
                     </Button>
                   )}
+                  {isPodcast && (
+                    <button className="w-20 h-20 rounded-full bg-purple-500/30 backdrop-blur-sm flex items-center justify-center hover:bg-purple-500/40 transition-colors group">
+                      <Headphones className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Badge type */}
@@ -91,18 +101,27 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   className={`absolute top-4 left-4 ${
                     isVideo
                       ? "bg-red-600/90 hover:bg-red-600"
-                      : "bg-amber-600/90 hover:bg-amber-600"
+                      : isPodcast
+                        ? "bg-purple-600/90 hover:bg-purple-600"
+                        : "bg-amber-600/90 hover:bg-amber-600"
                   } text-white border-0`}
                 >
-                  {isVideo ? (
+                  {isVideo && (
                     <>
                       <Film className="h-3 w-3 mr-1" />
-                      Vidéo
+                      Video
                     </>
-                  ) : (
+                  )}
+                  {cType === "text" && (
                     <>
                       <FileText className="h-3 w-3 mr-1" />
-                      Écrit
+                      Ecrit
+                    </>
+                  )}
+                  {isPodcast && (
+                    <>
+                      <Mic className="h-3 w-3 mr-1" />
+                      Podcast
                     </>
                   )}
                 </Badge>
@@ -125,15 +144,22 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     {content.creatorName}
                   </span>
                   <span className="flex items-center gap-1">
-                    {isVideo ? (
+                    {isVideo && (
                       <>
                         <Clock className="h-4 w-4" />
                         {content.duration}
                       </>
-                    ) : (
+                    )}
+                    {cType === "text" && (
                       <>
                         <BookOpen className="h-4 w-4" />
                         {content.wordCount?.toLocaleString()} mots
+                      </>
+                    )}
+                    {isPodcast && (
+                      <>
+                        <Headphones className="h-4 w-4" />
+                        {content.episodeCount} episodes - {content.duration}
                       </>
                     )}
                   </span>

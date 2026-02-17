@@ -7,7 +7,7 @@ import {
 } from "@/lib/payout/constants"
 
 // Types de contenu
-export type ContentType = "video" | "text"
+export type ContentType = "video" | "text" | "podcast"
 
 export interface Content {
   id: string
@@ -24,8 +24,9 @@ export interface Content {
   totalVotes: number
   isFree: boolean
   category: string
-  duration?: string // Pour les videos
+  duration?: string // Pour les videos et podcasts
   wordCount?: number // Pour les ecrits
+  episodeCount?: number // Pour les podcasts
 }
 
 export interface Investment {
@@ -92,9 +93,9 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
   {
     id: "v3",
     title: "Le Dernier Café",
-    description: "Une comédie dramatique touchante sur les rencontres improbables.",
-    contentType: "video",
-    coverUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=450&fit=crop",
+    description: "Un podcast captivant sur les rencontres improbables autour d'un café, ou chaque episode explore une histoire humaine unique.",
+    contentType: "podcast",
+    coverUrl: "/images/podcast-studio.jpg",
     creatorName: "Sophie Drama",
     creatorId: "c3",
     createdAt: "2026-02-01",
@@ -102,8 +103,9 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
     currentInvestment: 500,
     investorCount: 12,
     isFree: true,
-    category: "Comédie",
-    duration: "12:30",
+    category: "Societe",
+    duration: "45:00",
+    episodeCount: 8,
   },
   {
     id: "v4",
@@ -311,6 +313,17 @@ export const TEXT_CATEGORIES = [
   "Fantastique",
   "Science-Fiction",
   "Thriller",
+]
+
+export const PODCAST_CATEGORIES = [
+  "Tous",
+  "Societe",
+  "Culture",
+  "Technologie",
+  "Histoire",
+  "Humour",
+  "Investigation",
+  "Voix de l'Info",
 ]
 
 // FAQ data

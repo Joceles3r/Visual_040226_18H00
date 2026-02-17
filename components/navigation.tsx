@@ -9,6 +9,7 @@ import {
   Compass,
   Film,
   FileText,
+  Mic,
   LayoutDashboard,
   User,
   Settings,
@@ -55,8 +56,9 @@ export const DISCOVER_MENU: NavMenu = {
 export const EXPLORE_MENU: NavMenu = {
   label: "Explorer",
   items: [
-    { label: "Explorer (Vidéo)", href: "/explore?type=video", icon: Film },
-    { label: "Explorer (Écrit)", href: "/explore?type=text", icon: FileText },
+    { label: "Explorer (Video)", href: "/explore?type=video", icon: Film },
+    { label: "Explorer (Ecrit)", href: "/explore?type=text", icon: FileText },
+    { label: "Explorer (Podcast)", href: "/explore?type=podcast", icon: Mic },
     { label: "Tout voir", href: "/explore", icon: Compass },
   ],
 }

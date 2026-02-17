@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Film, FileText, Users, TrendingUp, Shield, Star } from "lucide-react"
+import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
@@ -15,27 +15,34 @@ const FEATURES = [
   {
     icon: Film,
     title: "Audiovisuel",
-    description: "Courts-métrages, documentaires, clips musicaux et animations",
+    description: "Courts-metrages, documentaires, clips musicaux et animations",
     color: "text-red-400",
     bgColor: "bg-red-500/10",
   },
   {
     icon: FileText,
-    title: "Littéraire",
-    description: "Romans, nouvelles, essais, poésies et articles",
+    title: "Litteraire",
+    description: "Romans, nouvelles, essais, poesies et articles",
     color: "text-amber-400",
     bgColor: "bg-amber-500/10",
   },
   {
+    icon: Mic,
+    title: "Podcast",
+    description: "Podcasts, voix de l'info, emissions audio et documentaires sonores",
+    color: "text-purple-400",
+    bgColor: "bg-purple-500/10",
+  },
+  {
     icon: TrendingUp,
     title: "Investissement",
-    description: "De 1€ à 20€ par projet, recevez des retours sur vos investissements",
+    description: "De 1EUR a 20EUR par projet, recevez des retours sur vos investissements",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
   {
     icon: Shield,
-    title: "Sécurisé",
+    title: "Securise",
     description: "Caution remboursable, paiements via Stripe Connect",
     color: "text-sky-400",
     bgColor: "bg-sky-500/10",
@@ -71,8 +78,8 @@ export default function HomePage() {
               </h1>
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
                 VISUAL est la plateforme d'investissement participatif pour les
-                projets audiovisuels et littéraires. Soutenez les créateurs,
-                investissez dans leurs oeuvres, partagez leurs succès.
+                projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
+                investissez dans leurs oeuvres, partagez leurs succes.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -120,11 +127,11 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Deux univers, une plateforme
+                Trois univers, une plateforme
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
-                Explorez et investissez dans des projets audiovisuels et
-                littéraires uniques
+                Explorez et investissez dans des projets audiovisuels,
+                litteraires et podcasts uniques
               </p>
             </div>
 
@@ -226,7 +233,7 @@ export default function HomePage() {
                     2. Explorez les projets
                   </h3>
                   <p className="text-white/60">
-                    Découvrez des créations uniques en vidéo et en écrit
+                    Decouvrez des creations uniques en video, ecrit et podcast
                   </p>
                 </div>
                 <div className="flex flex-col items-center">

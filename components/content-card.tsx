@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Film, FileText, Users, Clock, BookOpen } from "lucide-react"
+import { Film, FileText, Mic, Users, Clock, BookOpen, Headphones } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -17,7 +17,13 @@ export function ContentCard({ content }: ContentCardProps) {
     (content.currentInvestment / content.investmentGoal) * 100,
     100
   )
-  const isVideo = content.contentType === "video"
+  const cType = content.contentType
+
+  const badgeConfig = {
+    video: { bg: "bg-red-600/90 hover:bg-red-600", icon: Film, label: "Video" },
+    text: { bg: "bg-amber-600/90 hover:bg-amber-600", icon: FileText, label: "Ecrit" },
+    podcast: { bg: "bg-purple-600/90 hover:bg-purple-600", icon: Mic, label: "Podcast" },
+  }[cType]
 
   return (
     <Link href={`/video/${content.id}`}>
@@ -33,23 +39,10 @@ export function ContentCard({ content }: ContentCardProps) {
           
           {/* Badge type */}
           <Badge
-            className={`absolute top-3 left-3 ${
-              isVideo
-                ? "bg-red-600/90 hover:bg-red-600"
-                : "bg-amber-600/90 hover:bg-amber-600"
-            } text-white border-0`}
+            className={`absolute top-3 left-3 ${badgeConfig.bg} text-white border-0`}
           >
-            {isVideo ? (
-              <>
-                <Film className="h-3 w-3 mr-1" />
-                Vidéo
-              </>
-            ) : (
-              <>
-                <FileText className="h-3 w-3 mr-1" />
-                Écrit
-              </>
-            )}
+            <badgeConfig.icon className="h-3 w-3 mr-1" />
+            {badgeConfig.label}
           </Badge>
 
           {/* Free badge */}
@@ -59,17 +52,24 @@ export function ContentCard({ content }: ContentCardProps) {
             </Badge>
           )}
 
-          {/* Duration/Word count */}
+          {/* Duration/Word count/Episodes */}
           <div className="absolute bottom-3 right-3 flex items-center gap-1 text-white/90 text-sm bg-black/60 px-2 py-1 rounded">
-            {isVideo ? (
+            {cType === "video" && (
               <>
                 <Clock className="h-3 w-3" />
                 {content.duration}
               </>
-            ) : (
+            )}
+            {cType === "text" && (
               <>
                 <BookOpen className="h-3 w-3" />
                 {content.wordCount?.toLocaleString()} mots
+              </>
+            )}
+            {cType === "podcast" && (
+              <>
+                <Headphones className="h-3 w-3" />
+                {content.episodeCount} ep. - {content.duration}
               </>
             )}
           </div>

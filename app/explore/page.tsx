@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation"
 import { useState, useMemo, Suspense } from "react"
-import { Search, Film, FileText, Compass, SlidersHorizontal } from "lucide-react"
+import { Search, Film, FileText, Mic, Compass, SlidersHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -19,6 +19,7 @@ import {
   ALL_CONTENTS,
   VIDEO_CATEGORIES,
   TEXT_CATEGORIES,
+  PODCAST_CATEGORIES,
   type ContentType,
 } from "@/lib/mock-data"
 
@@ -38,7 +39,9 @@ function ExploreContent() {
       ? VIDEO_CATEGORIES
       : activeFilter === "text"
         ? TEXT_CATEGORIES
-        : ["Tous"]
+        : activeFilter === "podcast"
+          ? PODCAST_CATEGORIES
+          : ["Tous"]
 
   const filteredContents = useMemo(() => {
     let contents = ALL_CONTENTS
@@ -152,6 +155,21 @@ function ExploreContent() {
             >
               <FileText className="h-4 w-4 mr-2" />
               Écrit
+            </Button>
+            <Button
+              variant={activeFilter === "podcast" ? "default" : "ghost"}
+              onClick={() => {
+                setActiveFilter("podcast")
+                setSelectedCategory("Tous")
+              }}
+              className={
+                activeFilter === "podcast"
+                  ? "bg-purple-600 text-white"
+                  : "text-white/70 hover:text-white hover:bg-white/10"
+              }
+            >
+              <Mic className="h-4 w-4 mr-2" />
+              Podcast
             </Button>
           </div>
 
