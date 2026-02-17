@@ -18,8 +18,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-white/60 max-w-md">
-              La plateforme d'investissement participatif pour les projets audiovisuels et littéraires. 
-              Soutenez les créateurs, investissez dans l'art.
+              La plateforme d'investissement participatif pour les projets audiovisuels, 
+              litteraires et podcasts. Soutenez les createurs, investissez dans l'art.
             </p>
           </div>
 

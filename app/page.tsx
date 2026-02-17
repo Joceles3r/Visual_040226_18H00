@@ -36,7 +36,7 @@ const FEATURES = [
   {
     icon: TrendingUp,
     title: "Investissement",
-    description: "De 1EUR a 20EUR par projet, recevez des retours sur vos investissements",
+    description: "De 2EUR a 20EUR par projet, recevez des retours sur vos investissements",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
@@ -135,7 +135,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {FEATURES.map((feature) => (
                 <Card
                   key={feature.title}
@@ -209,8 +209,8 @@ export default function HomePage() {
                 Comment ça fonctionne ?
               </h2>
               <p className="text-white/60 mb-12 max-w-2xl mx-auto">
-                En quelques étapes simples, devenez acteur de la création
-                audiovisuelle et littéraire
+                En quelques etapes simples, devenez acteur de la creation
+                audiovisuelle, litteraire et podcast
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

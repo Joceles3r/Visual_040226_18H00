@@ -14,6 +14,8 @@ export interface User {
     investor20: boolean
     infoporter10: boolean
     investireader20: boolean
+    podcaster10: boolean
+    listener20: boolean
   }
   stripeConnect?: {
     accountId?: string
@@ -50,6 +52,8 @@ const MOCK_USER: User = {
     investor20: false,
     infoporter10: false,
     investireader20: false,
+    podcaster10: false,
+    listener20: false,
   },
   stripeConnect: {
     status: "not_started",

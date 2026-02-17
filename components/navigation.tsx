@@ -28,6 +28,8 @@ export type VisualRole =
   | "investor"
   | "infoporter"
   | "investireader"
+  | "podcaster"
+  | "listener"
   | "admin"
 
 export type NavItem = {
@@ -72,25 +74,25 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Tableau de bord",
       href: "/dashboard",
       icon: LayoutDashboard,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
     },
     {
       label: "Mon profil",
       href: "/profile/me",
       icon: User,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
     },
     {
       label: "Paramètres",
       href: "/dashboard/settings",
       icon: Settings,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
     },
     {
       label: "Support (Boîte interne)",
       href: "/support/mailbox",
       icon: Mail,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
     },
 
     // VISITEUR
@@ -107,62 +109,84 @@ export const MY_SPACE_MENU: NavMenu = {
       roles: ["visitor"],
     },
 
-    // PORTEUR (vidéo)
+    // PORTEUR (video)
     {
-      label: "Déposer une vidéo",
+      label: "Deposer une video",
       href: "/upload",
       icon: Upload,
       roles: ["porter"],
     },
     {
-      label: "Mes projets (vidéo)",
+      label: "Mes projets (video)",
       href: "/dashboard/projects?type=video",
       icon: Film,
       roles: ["porter"],
     },
 
-    // INFOPORTEUR (écrit)
+    // INFOPORTEUR (ecrit)
     {
-      label: "Déposer un écrit",
+      label: "Deposer un ecrit",
       href: "/upload/text",
       icon: Upload,
       roles: ["infoporter"],
     },
     {
-      label: "Mes écrits",
+      label: "Mes ecrits",
       href: "/dashboard/projects?type=text",
       icon: FileText,
       roles: ["infoporter"],
     },
 
-    // INVESTISSEUR (vidéo)
+    // PODCASTEUR (podcast)
     {
-      label: "Mes investissements (vidéo)",
+      label: "Deposer un podcast",
+      href: "/upload/podcast",
+      icon: Upload,
+      roles: ["podcaster"],
+    },
+    {
+      label: "Mes podcasts",
+      href: "/dashboard/projects?type=podcast",
+      icon: Mic,
+      roles: ["podcaster"],
+    },
+
+    // INVESTISSEUR (video)
+    {
+      label: "Mes investissements (video)",
       href: "/dashboard/investments?type=video",
       icon: Film,
       roles: ["investor"],
     },
 
-    // INVESTI-LECTEUR (écrit)
+    // INVESTI-LECTEUR (ecrit)
     {
-      label: "Mes investissements (écrit)",
+      label: "Mes investissements (ecrit)",
       href: "/dashboard/investments?type=text",
       icon: FileText,
       roles: ["investireader"],
     },
 
-    // WALLET (investisseurs)
+    // AUDITEUR (podcast)
+    {
+      label: "Mes investissements (podcast)",
+      href: "/dashboard/investments?type=podcast",
+      icon: Mic,
+      roles: ["listener"],
+    },
+
+    // WALLET (investisseurs + createurs)
     {
       label: "Mon wallet / gains",
       href: "/dashboard/wallet",
       icon: Wallet,
-      roles: ["investor", "investireader", "porter", "infoporter"],
+      roles: ["investor", "investireader", "listener", "porter", "infoporter", "podcaster"],
     },
     {
       label: "Historique",
       href: "/dashboard/history",
       icon: History,
-      roles: ["investor", "investireader", "porter", "infoporter"],
+      roles: ["investor", "investireader", "listener", "porter", "infoporter", "podcaster"],
     },
   ],
 }

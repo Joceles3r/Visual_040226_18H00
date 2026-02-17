@@ -19,12 +19,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que VISUAL ?",
         answer:
-          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
+          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
       },
       {
         question: "Comment fonctionne l'investissement ?",
         answer:
-          "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 1€ et 20€, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
+          "Vous choisissez un projet qui vous interesse, selectionnez un montant entre 2 EUR et 20 EUR, et devenez investisseur. Si le projet genere des revenus, vous recevez une part proportionnelle a votre investissement.",
       },
       {
         question: "VISUAL est-il un jeu de hasard ?",
@@ -49,7 +49,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Quels sont les différents profils ?",
         answer:
-          "VISUAL propose plusieurs profils : Visiteur (gratuit), Porteur (créateur vidéo), Infoporteur (créateur écrit), Investisseur (investisseur vidéo) et Investi-lecteur (investisseur écrit).",
+          "VISUAL propose 7 profils : Visiteur (gratuit), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
       },
     ],
   },
@@ -59,7 +59,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que la caution ?",
         answer:
-          "La caution est un dépôt unique (10€ pour les créateurs, 20€ pour les investisseurs) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
+          "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de resiliation de votre compte.",
       },
       {
         question: "Comment retirer mes gains ?",
@@ -84,12 +84,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment déposer un projet ?",
         answer:
-          "Après avoir payé votre caution de créateur (10€), accédez à 'Mon Espace' puis 'Déposer' pour soumettre votre projet vidéo ou écrit.",
+          "Apres avoir paye votre caution de createur (10 EUR), accedez a 'Mon Espace' puis 'Deposer' pour soumettre votre projet video, ecrit ou podcast.",
       },
       {
         question: "Quels types de contenus puis-je déposer ?",
         answer:
-          "Pour l'audiovisuel : courts-métrages, documentaires, clips musicaux, animations. Pour le littéraire : romans, nouvelles, essais, articles, poésie.",
+          "Pour l'audiovisuel : courts-metrages, documentaires, clips musicaux, animations. Pour le litteraire : romans, nouvelles, essais, articles, poesie. Pour les podcasts : emissions audio, documentaires sonores, voix de l'info.",
       },
       {
         question: "Comment sont calculés mes gains en tant que créateur ?",
@@ -104,7 +104,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Combien puis-je investir ?",
         answer:
-          "Vous pouvez investir entre 1€ et 20€ par projet. Vous pouvez investir dans autant de projets que vous le souhaitez.",
+          "Vous pouvez investir entre 2 EUR et 20 EUR par projet (tranches : 2, 3, 4, 5, 6, 8, 10, 12, 15, 20 EUR). Vous pouvez investir dans autant de projets que vous le souhaitez.",
       },
       {
         question: "Quand recevrai-je mes retours ?",

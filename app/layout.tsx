@@ -8,15 +8,16 @@ import { AuthProvider } from "@/lib/auth-context"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VISUAL - Investissement Audiovisuel & Littéraire",
+  title: "VISUAL - Investissement Audiovisuel, Litteraire & Podcast",
   description:
-    "Plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Soutenez les créateurs, investissez dans l'art.",
+    "Plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, investissez dans l'art.",
   generator: "v0.app",
   keywords: [
     "investissement",
     "audiovisuel",
-    "littéraire",
-    "créateurs",
+    "litteraire",
+    "podcast",
+    "createurs",
     "financement participatif",
   ],
 }

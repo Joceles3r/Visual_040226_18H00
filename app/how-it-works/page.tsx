@@ -8,6 +8,8 @@ import {
   TrendingUp,
   Film,
   FileText,
+  Mic,
+  Headphones,
   Wallet,
   ArrowRight,
   Check,
@@ -31,7 +33,7 @@ const STEPS = [
     step: 2,
     title: "Choisissez votre rôle",
     description:
-      "Devenez Porteur pour créer du contenu audiovisuel, Infoporteur pour publier des écrits, ou Investisseur pour soutenir des projets.",
+      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -40,7 +42,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "10€ pour les créateurs, 20€ pour les investisseurs. Cette caution unique est remboursable si vous résiliez votre compte.",
+      "10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable a la resiliation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -82,21 +84,21 @@ const ROLES = [
       "Gestion des projets",
       "Retrait des gains",
     ],
-    caution: "10€",
+    caution: "10 EUR",
     icon: Film,
     color: "border-red-500/50",
   },
   {
     title: "Investisseur",
     subtitle: "Audiovisuel",
-    description: "Investissez sur des projets vidéo et recevez des retours",
+    description: "Investissez sur des projets video et recevez des retours",
     features: [
-      "Investissement 1-20€",
+      "Investissement 2-20 EUR",
       "Portefeuille de projets",
       "Historique des gains",
       "Retrait via Stripe",
     ],
-    caution: "20€",
+    caution: "20 EUR",
     icon: TrendingUp,
     color: "border-emerald-500/50",
   },
@@ -111,23 +113,51 @@ const ROLES = [
       "Gestion des publications",
       "Retrait des gains",
     ],
-    caution: "10€",
+    caution: "10 EUR",
     icon: FileText,
     color: "border-amber-500/50",
   },
   {
     title: "Investi-lecteur",
-    subtitle: "Investisseur littéraire",
-    description: "Investissez sur des contenus écrits et soutenez les auteurs",
+    subtitle: "Investisseur litteraire",
+    description: "Investissez sur des contenus ecrits et soutenez les auteurs",
     features: [
-      "Investissement 1-20€",
-      "Portefeuille littéraire",
+      "Investissement 2-20 EUR",
+      "Portefeuille litteraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],
-    caution: "20€",
+    caution: "20 EUR",
     icon: Wallet,
     color: "border-amber-500/50",
+  },
+  {
+    title: "Podcasteur",
+    subtitle: "Createur podcast",
+    description: "Deposez vos podcasts, emissions audio et documentaires sonores",
+    features: [
+      "Depot de contenu podcast",
+      "Statistiques d'ecoute",
+      "Gestion des episodes",
+      "Retrait des gains",
+    ],
+    caution: "10 EUR",
+    icon: Mic,
+    color: "border-purple-500/50",
+  },
+  {
+    title: "Auditeur",
+    subtitle: "Investisseur podcast",
+    description: "Investissez sur des podcasts et soutenez les podcasteurs",
+    features: [
+      "Investissement 2-20 EUR",
+      "Portefeuille podcasts",
+      "Historique des gains",
+      "Retrait via Stripe",
+    ],
+    caution: "20 EUR",
+    icon: Headphones,
+    color: "border-purple-500/50",
   },
 ]
 
@@ -145,8 +175,8 @@ export default function HowItWorksPage() {
             </h1>
             <p className="text-xl text-white/70">
               VISUAL simplifie l'investissement participatif dans les projets
-              audiovisuels et littéraires. Découvrez comment devenir acteur de la
-              création.
+              audiovisuels, litteraires et podcasts. Decouvrez comment devenir acteur de la
+              creation.
             </p>
           </div>
         </section>
@@ -198,7 +228,7 @@ export default function HowItWorksPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {ROLES.map((role) => (
                 <Card
                   key={role.title}
@@ -262,13 +292,13 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>10€ pour les créateurs (Porteur, Infoporteur)</span>
+                        <span>10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
                         <span>
-                          20€ pour les investisseurs (Investisseur,
-                          Investi-lecteur)
+                          20 EUR pour les investisseurs (Investisseur,
+                          Investi-lecteur, Auditeur)
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -294,7 +324,7 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Investissez de 1€ à 20€ par projet</span>
+                        <span>Investissez de 2 EUR a 20 EUR par projet</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>

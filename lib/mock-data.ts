@@ -330,15 +330,15 @@ export const PODCAST_CATEGORIES = [
 export const FAQ_ITEMS = [
   {
     question: "Qu'est-ce que VISUAL ?",
-    answer: "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
+    answer: "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
   },
   {
     question: "Comment fonctionne l'investissement ?",
-    answer: "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 1€ et 20€, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
+    answer: "Vous choisissez un projet qui vous interesse, selectionnez un montant entre 2 EUR et 20 EUR (tranches : 2, 3, 4, 5, 6, 8, 10, 12, 15, 20 EUR), et devenez investisseur. Si le projet genere des revenus, vous recevez une part proportionnelle a votre investissement.",
   },
   {
     question: "Qu'est-ce que la caution ?",
-    answer: "La caution est un dépôt unique (10€ pour les créateurs, 20€ pour les investisseurs) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
+    answer: "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement. Elle est remboursable en cas de resiliation.",
   },
   {
     question: "Comment retirer mes gains ?",
