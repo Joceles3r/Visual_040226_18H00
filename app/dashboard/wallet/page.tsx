@@ -1,5 +1,7 @@
 "use client"
 
+import { useState, useCallback } from "react"
+import useSWR from "swr"
 import {
   Wallet,
   ArrowUpRight,
@@ -9,31 +11,158 @@ import {
   Clock,
   Check,
   AlertCircle,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
+import { CAUTION_EUR, STRIPE_CONFIG } from "@/lib/payout/constants"
 
-const MOCK_WALLET = {
-  available: 127.5,
-  pending: 45.0,
-  caution: {
-    porter: { paid: false, amount: 10 },
-    investor: { paid: true, amount: 20 },
-  },
-  stripeStatus: "not_started" as "not_started" | "pending" | "verified",
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
+
+function formatCents(cents: number): string {
+  return (cents / 100).toFixed(2)
+}
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  })
+}
+
+const TX_TYPE_LABELS: Record<string, string> = {
+  investment: "Investissement",
+  return: "Retour de gain",
+  caution: "Caution",
+  caution_refund: "Remboursement caution",
+  withdrawal: "Retrait bancaire",
+  visupoints_conversion: "Conversion VISUpoints",
+  article_sale: "Vente d'article",
 }
 
 export default function WalletPage() {
   const { user } = useAuth()
+  const [connectLoading, setConnectLoading] = useState(false)
+  const [cautionLoading, setCautionLoading] = useState<string | null>(null)
+  const [withdrawLoading, setWithdrawLoading] = useState(false)
+
+  const { data, error, mutate } = useSWR(
+    user ? `/api/wallet?userId=${user.id}` : null,
+    fetcher,
+    { refreshInterval: 30000 }
+  )
+
+  const handleConnectStripe = useCallback(async () => {
+    if (!user) return
+    setConnectLoading(true)
+    try {
+      const res = await fetch("/api/stripe/connect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id }),
+      })
+      const result = await res.json()
+      if (result.url) {
+        window.open(result.url, "_blank")
+      }
+      mutate()
+    } catch (err) {
+      console.error("Connect error:", err)
+    } finally {
+      setConnectLoading(false)
+    }
+  }, [user, mutate])
+
+  const handlePayCaution = useCallback(
+    async (cautionType: "creator" | "investor") => {
+      if (!user) return
+      setCautionLoading(cautionType)
+      try {
+        const res = await fetch("/api/stripe/caution", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user.id, cautionType }),
+        })
+        const result = await res.json()
+        if (result.error) {
+          alert(result.error)
+        } else {
+          alert(
+            `Caution ${cautionType === "creator" ? "Createur" : "Investisseur"} : Payment Intent cree. En production, le formulaire de paiement Stripe s'affichera ici.`
+          )
+          mutate()
+        }
+      } catch (err) {
+        console.error("Caution error:", err)
+      } finally {
+        setCautionLoading(null)
+      }
+    },
+    [user, mutate]
+  )
+
+  const handleWithdraw = useCallback(async () => {
+    if (!user || !data?.wallet) return
+    const available = data.wallet.availableCents as number
+    if (available < STRIPE_CONFIG.minWithdrawCents) {
+      alert(`Solde insuffisant. Minimum de retrait : ${STRIPE_CONFIG.minWithdrawCents / 100} EUR`)
+      return
+    }
+    setWithdrawLoading(true)
+    try {
+      const res = await fetch("/api/stripe/withdraw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id, amountCents: available }),
+      })
+      const result = await res.json()
+      if (result.error) {
+        alert(result.error)
+      } else {
+        alert(`Retrait de ${formatCents(available)} EUR effectue avec succes.`)
+        mutate()
+      }
+    } catch (err) {
+      console.error("Withdraw error:", err)
+    } finally {
+      setWithdrawLoading(false)
+    }
+  }, [user, data, mutate])
+
+  const wallet = data?.wallet || {
+    availableCents: 0,
+    pendingCents: 0,
+    totalEarnedCents: 0,
+    totalWithdrawnCents: 0,
+  }
+  const transactions = data?.transactions || []
+  const stripeConnect = data?.stripeConnect || {
+    status: "not_started",
+    chargesEnabled: false,
+    payoutsEnabled: false,
+    hasAccount: false,
+  }
+
+  const isLoading = !data && !error
 
   return (
     <div className="space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-white mb-2">Mon Wallet</h1>
-        <p className="text-white/60">Gérez vos gains et retirez votre argent</p>
+        <p className="text-white/60">
+          Gerez vos gains et retirez votre argent
+        </p>
       </div>
+
+      {isLoading && (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-emerald-400" />
+          <span className="ml-3 text-white/60">Chargement du wallet...</span>
+        </div>
+      )}
 
       {/* Balance Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -46,7 +175,7 @@ export default function WalletPage() {
               <div>
                 <p className="text-white/60 text-sm">Solde disponible</p>
                 <p className="text-3xl font-bold text-white">
-                  {MOCK_WALLET.available.toFixed(2)}€
+                  {formatCents(wallet.availableCents)}{"€"}
                 </p>
               </div>
             </div>
@@ -62,7 +191,7 @@ export default function WalletPage() {
               <div>
                 <p className="text-white/60 text-sm">En attente</p>
                 <p className="text-2xl font-bold text-white">
-                  {MOCK_WALLET.pending.toFixed(2)}€
+                  {formatCents(wallet.pendingCents)}{"€"}
                 </p>
               </div>
             </div>
@@ -78,7 +207,7 @@ export default function WalletPage() {
               <div>
                 <p className="text-white/60 text-sm">Total gains</p>
                 <p className="text-2xl font-bold text-emerald-400">
-                  +{(MOCK_WALLET.available + MOCK_WALLET.pending).toFixed(2)}€
+                  +{formatCents(wallet.totalEarnedCents)}{"€"}
                 </p>
               </div>
             </div>
@@ -96,25 +225,27 @@ export default function WalletPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {MOCK_WALLET.stripeStatus === "verified" ? (
+            {stripeConnect.status === "verified" ? (
               <div className="flex items-center gap-3 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
                 <Check className="h-6 w-6 text-emerald-400" />
                 <div>
-                  <p className="font-medium text-emerald-400">Compte vérifié</p>
+                  <p className="font-medium text-emerald-400">
+                    Compte verifie
+                  </p>
                   <p className="text-sm text-white/60">
                     Vous pouvez retirer vos gains
                   </p>
                 </div>
               </div>
-            ) : MOCK_WALLET.stripeStatus === "pending" ? (
+            ) : stripeConnect.status === "pending" ? (
               <div className="flex items-center gap-3 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
                 <Clock className="h-6 w-6 text-amber-400" />
                 <div>
                   <p className="font-medium text-amber-400">
-                    Vérification en cours
+                    Verification en cours
                   </p>
                   <p className="text-sm text-white/60">
-                    Votre compte est en cours de vérification
+                    Votre compte est en cours de verification
                   </p>
                 </div>
               </div>
@@ -122,7 +253,9 @@ export default function WalletPage() {
               <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
                 <AlertCircle className="h-6 w-6 text-white/40" />
                 <div>
-                  <p className="font-medium text-white">Compte non connecté</p>
+                  <p className="font-medium text-white">
+                    Compte non connecte
+                  </p>
                   <p className="text-sm text-white/60">
                     Connectez Stripe pour retirer vos gains
                   </p>
@@ -130,23 +263,41 @@ export default function WalletPage() {
               </div>
             )}
 
-            {MOCK_WALLET.stripeStatus !== "verified" && (
-              <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
-                {MOCK_WALLET.stripeStatus === "pending"
-                  ? "Reprendre la vérification"
+            {stripeConnect.status !== "verified" && (
+              <Button
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
+                onClick={handleConnectStripe}
+                disabled={connectLoading}
+              >
+                {connectLoading && (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                )}
+                {stripeConnect.status === "pending"
+                  ? "Reprendre la verification"
                   : "Connecter Stripe"}
               </Button>
             )}
 
-            {MOCK_WALLET.stripeStatus === "verified" && (
-              <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+            {stripeConnect.status === "verified" && (
+              <Button
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
+                onClick={handleWithdraw}
+                disabled={
+                  withdrawLoading ||
+                  wallet.availableCents < STRIPE_CONFIG.minWithdrawCents
+                }
+              >
+                {withdrawLoading && (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                )}
                 Demander un retrait
               </Button>
             )}
 
             <p className="text-xs text-white/40 text-center">
-              Vérification d'identité requise pour recevoir un paiement. Retraits
-              traités chaque semaine.
+              {"Verification d'identite requise pour recevoir un paiement. Retraits traites sous "}
+              {STRIPE_CONFIG.withdrawProcessingDays}
+              {" jours."}
             </p>
           </CardContent>
         </Card>
@@ -161,61 +312,60 @@ export default function WalletPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-white/60 text-sm">
-              La caution garantit votre engagement sur VISUAL. Elle est
-              remboursable en cas de résiliation.
+              {
+                "La caution garantit votre engagement sur VISUAL. Elle est remboursable en cas de resiliation."
+              }
             </p>
 
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-3">
-                  {MOCK_WALLET.caution.investor.paid ? (
-                    <Check className="h-5 w-5 text-emerald-400" />
-                  ) : (
-                    <AlertCircle className="h-5 w-5 text-white/40" />
-                  )}
+                  <AlertCircle className="h-5 w-5 text-white/40" />
                   <div>
-                    <p className="text-white font-medium">Caution Investisseur</p>
+                    <p className="text-white font-medium">
+                      Caution Investisseur
+                    </p>
                     <p className="text-xs text-white/40">
-                      {MOCK_WALLET.caution.investor.amount}€
+                      {CAUTION_EUR.investor}{"€"}
                     </p>
                   </div>
                 </div>
-                {MOCK_WALLET.caution.investor.paid ? (
-                  <span className="text-emerald-400 text-sm">Payée</span>
-                ) : (
-                  <Button
-                    size="sm"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white"
-                  >
-                    Payer
-                  </Button>
-                )}
+                <Button
+                  size="sm"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white"
+                  onClick={() => handlePayCaution("investor")}
+                  disabled={cautionLoading === "investor"}
+                >
+                  {cautionLoading === "investor" && (
+                    <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                  )}
+                  Payer
+                </Button>
               </div>
 
               <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-3">
-                  {MOCK_WALLET.caution.porter.paid ? (
-                    <Check className="h-5 w-5 text-emerald-400" />
-                  ) : (
-                    <AlertCircle className="h-5 w-5 text-white/40" />
-                  )}
+                  <AlertCircle className="h-5 w-5 text-white/40" />
                   <div>
-                    <p className="text-white font-medium">Caution Créateur</p>
+                    <p className="text-white font-medium">
+                      Caution Createur
+                    </p>
                     <p className="text-xs text-white/40">
-                      {MOCK_WALLET.caution.porter.amount}€
+                      {CAUTION_EUR.creator}{"€"}
                     </p>
                   </div>
                 </div>
-                {MOCK_WALLET.caution.porter.paid ? (
-                  <span className="text-emerald-400 text-sm">Payée</span>
-                ) : (
-                  <Button
-                    size="sm"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white"
-                  >
-                    Payer
-                  </Button>
-                )}
+                <Button
+                  size="sm"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white"
+                  onClick={() => handlePayCaution("creator")}
+                  disabled={cautionLoading === "creator"}
+                >
+                  {cautionLoading === "creator" && (
+                    <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                  )}
+                  Payer
+                </Button>
               </div>
             </div>
           </CardContent>
@@ -225,68 +375,68 @@ export default function WalletPage() {
       {/* Recent Transactions */}
       <Card className="bg-slate-900/50 border-white/10">
         <CardHeader>
-          <CardTitle className="text-white">Dernières transactions</CardTitle>
+          <CardTitle className="text-white">Dernieres transactions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {[
-              {
-                type: "return",
-                description: "Retour - L'Odyssée des Étoiles",
-                amount: 2.5,
-                date: "01/02/2026",
-              },
-              {
-                type: "investment",
-                description: "Investissement - Contes de Minuit",
-                amount: -10,
-                date: "28/01/2026",
-              },
-              {
-                type: "return",
-                description: "Retour - Murmures de la Forêt",
-                amount: 4.8,
-                date: "25/01/2026",
-              },
-              {
-                type: "withdrawal",
-                description: "Retrait bancaire",
-                amount: -50,
-                date: "20/01/2026",
-              },
-            ].map((tx, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg"
-              >
-                <div className="flex items-center gap-3">
+          {transactions.length === 0 ? (
+            <p className="text-center text-white/40 py-8">
+              Aucune transaction pour le moment
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {transactions.map(
+                (tx: {
+                  id: string
+                  type: string
+                  amountCents: number
+                  description: string
+                  status: string
+                  createdAt: string
+                }) => (
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      tx.amount >= 0 ? "bg-emerald-500/20" : "bg-slate-700"
-                    }`}
+                    key={tx.id}
+                    className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg"
                   >
-                    {tx.amount >= 0 ? (
-                      <ArrowDownRight className="h-5 w-5 text-emerald-400" />
-                    ) : (
-                      <ArrowUpRight className="h-5 w-5 text-white/60" />
-                    )}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                          tx.amountCents >= 0
+                            ? "bg-emerald-500/20"
+                            : "bg-slate-700"
+                        }`}
+                      >
+                        {tx.amountCents >= 0 ? (
+                          <ArrowDownRight className="h-5 w-5 text-emerald-400" />
+                        ) : (
+                          <ArrowUpRight className="h-5 w-5 text-white/60" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-white font-medium">
+                          {tx.description ||
+                            TX_TYPE_LABELS[tx.type] ||
+                            tx.type}
+                        </p>
+                        <p className="text-xs text-white/40">
+                          {formatDate(tx.createdAt)}
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className={`font-semibold ${
+                        tx.amountCents >= 0
+                          ? "text-emerald-400"
+                          : "text-white"
+                      }`}
+                    >
+                      {tx.amountCents >= 0 ? "+" : ""}
+                      {formatCents(tx.amountCents)}{"€"}
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-white font-medium">{tx.description}</p>
-                    <p className="text-xs text-white/40">{tx.date}</p>
-                  </div>
-                </div>
-                <span
-                  className={`font-semibold ${
-                    tx.amount >= 0 ? "text-emerald-400" : "text-white"
-                  }`}
-                >
-                  {tx.amount >= 0 ? "+" : ""}
-                  {tx.amount.toFixed(2)}€
-                </span>
-              </div>
-            ))}
-          </div>
+                )
+              )}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
