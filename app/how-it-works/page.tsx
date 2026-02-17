@@ -3,6 +3,7 @@
 import Link from "next/link"
 import {
   User,
+  Eye,
   Layers,
   Shield,
   TrendingUp,
@@ -13,6 +14,7 @@ import {
   Wallet,
   ArrowRight,
   Check,
+  X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,9 +24,9 @@ import { Footer } from "@/components/footer"
 const STEPS = [
   {
     step: 1,
-    title: "Créez votre compte",
+    title: "Explorez en tant qu'invite ou creez votre compte",
     description:
-      "Inscrivez-vous gratuitement et devenez Visiteur. Explorez la plateforme, gagnez des VISUpoints et découvrez des projets uniques.",
+      "Commencez a naviguer immediatement sur VISUAL en tant qu'invite : decouvrez les contenus gratuits et les extraits sans inscription. Pour debloquer toutes les fonctionnalites, inscrivez-vous gratuitement et devenez Visiteur.",
     icon: User,
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/20",
@@ -60,30 +62,51 @@ const STEPS = [
 
 const ROLES = [
   {
+    title: "Invite",
+    subtitle: "Sans inscription",
+    description:
+      "Naviguez librement sur VISUAL sans creer de compte. Acces limite aux contenus gratuits et extraits uniquement.",
+    features: [
+      "Acces aux contenus gratuits et extraits",
+      "Navigation libre sur la plateforme",
+    ],
+    restrictions: [
+      "Aucun VISUpoint",
+      "Aucun gain ni investissement",
+      "Pas de participation a la communaute",
+      "Pas de favoris ni de commentaires",
+    ],
+    caution: null,
+    icon: Eye,
+    color: "border-slate-500/30",
+  },
+  {
     title: "Visiteur",
-    subtitle: "Gratuit",
+    subtitle: "Gratuit (inscription requise)",
     description:
       "Parcourez la plateforme, gagnez des VISUpoints, promouvez VISUAL",
     features: [
-      "Accès aux contenus gratuits",
+      "Acces aux contenus gratuits",
       "VISUpoints et badges",
       "Favoris et suivis",
       "Commentaires et partages",
     ],
+    restrictions: [],
     caution: null,
     icon: User,
     color: "border-white/20",
   },
   {
     title: "Porteur",
-    subtitle: "Créateur audiovisuel",
-    description: "Déposez vos vidéos et visuels, recevez des investissements",
+    subtitle: "Createur audiovisuel",
+    description: "Deposez vos videos et visuels, recevez des investissements",
     features: [
-      "Dépôt de contenu vidéo",
-      "Statistiques détaillées",
+      "Depot de contenu video",
+      "Statistiques detaillees",
       "Gestion des projets",
       "Retrait des gains",
     ],
+    restrictions: [],
     caution: "10 EUR",
     icon: Film,
     color: "border-red-500/50",
@@ -98,21 +121,23 @@ const ROLES = [
       "Historique des gains",
       "Retrait via Stripe",
     ],
+    restrictions: [],
     caution: "20 EUR",
     icon: TrendingUp,
     color: "border-emerald-500/50",
   },
   {
     title: "Infoporteur",
-    subtitle: "Créateur littéraire",
+    subtitle: "Createur litteraire",
     description:
-      "Publiez vos écrits : articles, histoires, livres, et plus encore",
+      "Publiez vos ecrits : articles, histoires, livres, et plus encore",
     features: [
-      "Dépôt de contenu écrit",
+      "Depot de contenu ecrit",
       "Statistiques de lecture",
       "Gestion des publications",
       "Retrait des gains",
     ],
+    restrictions: [],
     caution: "10 EUR",
     icon: FileText,
     color: "border-amber-500/50",
@@ -127,6 +152,7 @@ const ROLES = [
       "Historique des gains",
       "Retrait via Stripe",
     ],
+    restrictions: [],
     caution: "20 EUR",
     icon: Wallet,
     color: "border-amber-500/50",
@@ -141,6 +167,7 @@ const ROLES = [
       "Gestion des episodes",
       "Retrait des gains",
     ],
+    restrictions: [],
     caution: "10 EUR",
     icon: Mic,
     color: "border-purple-500/50",
@@ -155,6 +182,7 @@ const ROLES = [
       "Historique des gains",
       "Retrait via Stripe",
     ],
+    restrictions: [],
     caution: "20 EUR",
     icon: Headphones,
     color: "border-purple-500/50",
@@ -258,6 +286,15 @@ export default function HowItWorksPage() {
                         >
                           <Check className="h-4 w-4 text-emerald-400 shrink-0" />
                           {feature}
+                        </li>
+                      ))}
+                      {role.restrictions?.map((restriction) => (
+                        <li
+                          key={restriction}
+                          className="flex items-center gap-2 text-sm text-red-400/80"
+                        >
+                          <X className="h-4 w-4 text-red-400 shrink-0" />
+                          {restriction}
                         </li>
                       ))}
                     </ul>

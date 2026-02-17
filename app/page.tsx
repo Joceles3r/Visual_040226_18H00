@@ -102,6 +102,13 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </div>
+              <p className="text-white/40 text-sm mt-4">
+                Pas encore pret ?{" "}
+                <Link href="/explore" className="text-white/60 underline underline-offset-4 hover:text-white/80 transition-colors">
+                  Continuez en tant qu'invite
+                </Link>
+                {" "}- acces aux contenus gratuits, sans inscription
+              </p>
             </div>
           </div>
         </section>

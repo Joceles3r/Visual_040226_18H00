@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   ChevronDown,
+  Eye,
   LogIn,
   UserPlus,
   Shield,
@@ -169,6 +170,10 @@ function MobileMenu({
               </Button>
             ) : (
               <>
+                <div className="flex items-center gap-2 text-slate-400 text-sm mb-2 justify-center">
+                  <Eye className="h-4 w-4" />
+                  <span>Vous naviguez en tant qu'invite</span>
+                </div>
                 <Link href="/login" onClick={onClose} className="block">
                   <Button
                     variant="outline"
@@ -269,7 +274,7 @@ export function VisualHeader() {
               <>
                 {/* User info desktop */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-white/70 text-sm">
+                  <span className="text-white/70 text-sm truncate max-w-[120px]">
                     {user?.name}
                   </span>
                   <Button
@@ -284,6 +289,10 @@ export function VisualHeader() {
               </>
             ) : (
               <>
+                <div className="hidden md:flex items-center gap-1.5 text-slate-400 text-xs mr-1">
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>Invite</span>
+                </div>
                 <Link href="/login" className="shrink-0 hidden md:block">
                   <Button
                     variant="ghost"

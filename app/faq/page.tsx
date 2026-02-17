@@ -47,9 +47,14 @@ const FAQ_CATEGORIES = [
           "Absolument ! Vous pouvez cumuler plusieurs rôles sur VISUAL. Chaque rôle nécessite sa propre caution.",
       },
       {
-        question: "Quels sont les différents profils ?",
+        question: "Quels sont les differents profils ?",
         answer:
-          "VISUAL propose 7 profils : Visiteur (gratuit), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
+          "VISUAL propose 8 profils : Invite (sans inscription, acces limite aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
+      },
+      {
+        question: "Puis-je naviguer sans m'inscrire ?",
+        answer:
+          "Oui, en tant qu'Invite vous pouvez naviguer librement sur toute la plateforme et acceder aux contenus gratuits ou aux extraits. Cependant, vous ne pouvez ni investir, ni gagner de VISUpoints, ni participer a la communaute. Pour debloquer toutes les fonctionnalites, il vous suffit de creer un compte gratuitement.",
       },
     ],
   },
@@ -115,6 +120,26 @@ const FAQ_CATEGORIES = [
         question: "Puis-je perdre mon investissement ?",
         answer:
           "L'investissement comporte des risques. Si un projet ne génère pas de revenus, vous pourriez ne pas récupérer votre investissement. Investissez de manière responsable.",
+      },
+    ],
+  },
+  {
+    title: "Invite (sans inscription)",
+    items: [
+      {
+        question: "Que puis-je faire en tant qu'invite ?",
+        answer:
+          "En tant qu'invite, vous pouvez naviguer sur toute la plateforme et consulter les contenus gratuits ainsi que les extraits de contenus payants. Vous ne pouvez pas interagir avec la communaute, investir, ou gagner des recompenses.",
+      },
+      {
+        question: "Quelles sont les limites du statut d'invite ?",
+        answer:
+          "L'invite ne peut pas : gagner de VISUpoints, ajouter des favoris, commenter, partager, investir, deposer du contenu, ou acceder aux contenus payants en entier. Pour debloquer ces fonctionnalites, creez un compte gratuit.",
+      },
+      {
+        question: "L'inscription est-elle obligatoire ?",
+        answer:
+          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invite. Cependant, pour profiter de l'experience complete de VISUAL (investissements, VISUpoints, communaute), vous devez creer un compte.",
       },
     ],
   },

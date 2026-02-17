@@ -2,10 +2,11 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Film, FileText, Mic, Users, Clock, BookOpen, Headphones } from "lucide-react"
+import { Film, FileText, Mic, Users, Clock, BookOpen, Headphones, Lock } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { useAuth } from "@/lib/auth-context"
 import type { Content } from "@/lib/mock-data"
 
 interface ContentCardProps {
@@ -13,6 +14,8 @@ interface ContentCardProps {
 }
 
 export function ContentCard({ content }: ContentCardProps) {
+  const { isAuthed } = useAuth()
+  const isGuestLocked = !isAuthed && !content.isFree
   const progressPercent = Math.min(
     (content.currentInvestment / content.investmentGoal) * 100,
     100
@@ -45,12 +48,17 @@ export function ContentCard({ content }: ContentCardProps) {
             {badgeConfig.label}
           </Badge>
 
-          {/* Free badge */}
-          {content.isFree && (
+          {/* Free badge or Lock badge */}
+          {content.isFree ? (
             <Badge className="absolute top-3 right-3 bg-emerald-600/90 hover:bg-emerald-600 text-white border-0">
               Gratuit
             </Badge>
-          )}
+          ) : isGuestLocked ? (
+            <Badge className="absolute top-3 right-3 bg-slate-700/90 hover:bg-slate-700 text-white/70 border-0">
+              <Lock className="h-3 w-3 mr-1" />
+              Extrait
+            </Badge>
+          ) : null}
 
           {/* Duration/Word count/Episodes */}
           <div className="absolute bottom-3 right-3 flex items-center gap-1 text-white/90 text-sm bg-black/60 px-2 py-1 rounded">

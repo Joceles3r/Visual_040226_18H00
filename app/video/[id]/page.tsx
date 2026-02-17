@@ -17,6 +17,8 @@ import {
   Share2,
   TrendingUp,
   Play,
+  Lock,
+  UserPlus,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -44,9 +46,11 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
   const cType = content.contentType
   const isVideo = cType === "video"
   const isPodcast = cType === "podcast"
+  const isGuest = !isAuthed
+  const isContentLocked = isGuest && !content.isFree
   const canInvest =
     isAuthed &&
-    (roles.includes("investor") || roles.includes("investireader"))
+    (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener"))
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -75,24 +79,51 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  {isVideo && (
-                    <button className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group">
-                      <Play className="h-10 w-10 text-white ml-1 group-hover:scale-110 transition-transform" />
-                    </button>
-                  )}
-                  {cType === "text" && (
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
-                    >
-                      <BookOpen className="mr-2 h-5 w-5" />
-                      Commencer la lecture
-                    </Button>
-                  )}
-                  {isPodcast && (
-                    <button className="w-20 h-20 rounded-full bg-purple-500/30 backdrop-blur-sm flex items-center justify-center hover:bg-purple-500/40 transition-colors group">
-                      <Headphones className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
-                    </button>
+                  {isContentLocked ? (
+                    <div className="flex flex-col items-center gap-4 text-center px-6">
+                      <div className="w-20 h-20 rounded-full bg-slate-800/80 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Lock className="h-10 w-10 text-white/70" />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-lg mb-1">Contenu reserve aux membres</p>
+                        <p className="text-white/60 text-sm mb-4">Inscrivez-vous gratuitement pour acceder a ce contenu</p>
+                      </div>
+                      <div className="flex gap-3">
+                        <Link href="/signup">
+                          <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+                            <UserPlus className="mr-2 h-4 w-4" />
+                            Creer un compte
+                          </Button>
+                        </Link>
+                        <Link href="/login">
+                          <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10">
+                            Se connecter
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {isVideo && (
+                        <button className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group">
+                          <Play className="h-10 w-10 text-white ml-1 group-hover:scale-110 transition-transform" />
+                        </button>
+                      )}
+                      {cType === "text" && (
+                        <Button
+                          size="lg"
+                          className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
+                        >
+                          <BookOpen className="mr-2 h-5 w-5" />
+                          Commencer la lecture
+                        </Button>
+                      )}
+                      {isPodcast && (
+                        <button className="w-20 h-20 rounded-full bg-purple-500/30 backdrop-blur-sm flex items-center justify-center hover:bg-purple-500/40 transition-colors group">
+                          <Headphones className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -169,20 +200,34 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
 
               {/* Actions */}
               <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
-                >
-                  <Heart className="h-4 w-4 mr-2" />
-                  Ajouter aux favoris
-                </Button>
-                <Button
-                  variant="outline"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
-                >
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Partager
-                </Button>
+                {isGuest ? (
+                  <Link href="/signup">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white/50 hover:bg-white/10"
+                    >
+                      <Lock className="h-4 w-4 mr-2" />
+                      Inscrivez-vous pour interagir
+                    </Button>
+                  </Link>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                    >
+                      <Heart className="h-4 w-4 mr-2" />
+                      Ajouter aux favoris
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                    >
+                      <Share2 className="h-4 w-4 mr-2" />
+                      Partager
+                    </Button>
+                  </>
+                )}
               </div>
 
               {/* Description */}
@@ -266,7 +311,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   ) : isAuthed ? (
                     <div className="text-center space-y-3">
                       <p className="text-white/60 text-sm">
-                        Pour investir, devenez Investisseur ou Investi-lecteur
+                        Pour investir, devenez Investisseur, Investi-lecteur ou Auditeur
                       </p>
                       <Link href="/dashboard/settings">
                         <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">

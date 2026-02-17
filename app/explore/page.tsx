@@ -1,8 +1,9 @@
 "use client"
 
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useState, useMemo, Suspense } from "react"
-import { Search, Film, FileText, Mic, Compass, SlidersHorizontal } from "lucide-react"
+import { Search, Film, FileText, Mic, Compass, SlidersHorizontal, Eye, UserPlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -22,8 +23,10 @@ import {
   PODCAST_CATEGORIES,
   type ContentType,
 } from "@/lib/mock-data"
+import { useAuth } from "@/lib/auth-context"
 
 function ExploreContent() {
+  const { isAuthed } = useAuth()
   const searchParams = useSearchParams()
   const initialType = searchParams.get("type") as ContentType | null
 
@@ -108,6 +111,27 @@ function ExploreContent() {
               littéraires uniques
             </p>
           </div>
+
+          {/* Guest Banner */}
+          {!isAuthed && (
+            <div className="mb-6 p-4 bg-slate-900/80 border border-slate-700/50 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center shrink-0">
+                  <Eye className="h-5 w-5 text-slate-400" />
+                </div>
+                <div>
+                  <p className="text-white font-medium text-sm">Vous naviguez en tant qu'invite</p>
+                  <p className="text-white/50 text-xs">Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour debloquer toute la plateforme.</p>
+                </div>
+              </div>
+              <Link href="/signup" className="shrink-0">
+                <Button size="sm" className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  S'inscrire
+                </Button>
+              </Link>
+            </div>
+          )}
 
           {/* Type Filter Tabs */}
           <div className="flex gap-2 mb-6 p-1 bg-slate-900/50 rounded-lg w-fit">
