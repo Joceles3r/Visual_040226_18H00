@@ -1,3 +1,11 @@
+import type { InvestmentTierEur } from "@/lib/payout/constants"
+import {
+  INVESTMENT_TIERS_EUR,
+  getVotesForInvestment,
+  getVisupointsForInvestment,
+  CAUTION_EUR,
+} from "@/lib/payout/constants"
+
 // Types de contenu
 export type ContentType = "video" | "text"
 
@@ -13,10 +21,11 @@ export interface Content {
   investmentGoal: number
   currentInvestment: number
   investorCount: number
+  totalVotes: number
   isFree: boolean
   category: string
-  duration?: string // Pour les vidéos
-  wordCount?: number // Pour les écrits
+  duration?: string // Pour les videos
+  wordCount?: number // Pour les ecrits
 }
 
 export interface Investment {
@@ -24,7 +33,12 @@ export interface Investment {
   contentId: string
   contentTitle: string
   contentType: ContentType
-  amount: number
+  /** Montant en euros (doit etre dans INVESTMENT_TIERS_EUR) */
+  amount: InvestmentTierEur
+  /** Votes gagnes pour cet investissement */
+  votes: number
+  /** VISUpoints gagnes pour cet investissement */
+  visupointsEarned: number
   date: string
   status: "active" | "completed" | "refunded"
   returns: number
@@ -32,8 +46,9 @@ export interface Investment {
 
 export interface Transaction {
   id: string
-  type: "investment" | "deposit" | "withdrawal" | "return" | "visupoints"
+  type: "investment" | "deposit" | "withdrawal" | "return" | "visupoints" | "caution"
   description: string
+  /** Montant en euros (positif = credit, negatif = debit) */
   amount: number
   date: string
   status: "completed" | "pending" | "failed"
@@ -53,6 +68,7 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
     investmentGoal: 5000,
     currentInvestment: 3200,
     investorCount: 47,
+    totalVotes: 312,
     isFree: false,
     category: "Science-Fiction",
     duration: "18:45",
@@ -162,14 +178,16 @@ export const MOCK_TEXT_CONTENTS: Content[] = [
 // Tous les contenus combinés
 export const ALL_CONTENTS: Content[] = [...MOCK_VIDEO_CONTENTS, ...MOCK_TEXT_CONTENTS]
 
-// Mock investissements
+// Mock investissements (montants alignes sur INVESTMENT_TIERS_EUR)
 export const MOCK_INVESTMENTS: Investment[] = [
   {
     id: "inv1",
     contentId: "v1",
-    contentTitle: "L'Odyssée des Étoiles",
+    contentTitle: "L'Odyssee des Etoiles",
     contentType: "video",
     amount: 15,
+    votes: getVotesForInvestment(15),         // 9 votes
+    visupointsEarned: getVisupointsForInvestment(15), // 80 pts
     date: "2026-01-20",
     status: "active",
     returns: 2.5,
@@ -180,36 +198,94 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentTitle: "Les Chroniques du Temps Perdu",
     contentType: "text",
     amount: 10,
+    votes: getVotesForInvestment(10),         // 7 votes
+    visupointsEarned: getVisupointsForInvestment(10), // 50 pts
     date: "2026-01-22",
     status: "active",
     returns: 1.8,
   },
+  {
+    id: "inv3",
+    contentId: "v2",
+    contentTitle: "Murmures de la Foret",
+    contentType: "video",
+    amount: 5,
+    votes: getVotesForInvestment(5),          // 4 votes
+    visupointsEarned: getVisupointsForInvestment(5),  // 25 pts
+    date: "2026-02-05",
+    status: "active",
+    returns: 0.6,
+  },
+  {
+    id: "inv4",
+    contentId: "v4",
+    contentTitle: "Pages d'Amour",
+    contentType: "text",
+    amount: 20,
+    votes: getVotesForInvestment(20),         // 10 votes
+    visupointsEarned: getVisupointsForInvestment(20), // 110 pts
+    date: "2026-02-10",
+    status: "completed",
+    returns: 5.2,
+  },
 ]
 
-// Mock transactions
+// Mock transactions (alignees avec les formules V1)
 export const MOCK_TRANSACTIONS: Transaction[] = [
+  {
+    id: "tr0",
+    type: "caution",
+    description: `Caution Investisseur (${CAUTION_EUR.investor}EUR)`,
+    amount: -CAUTION_EUR.investor,
+    date: "2026-01-15",
+    status: "completed",
+  },
   {
     id: "tr1",
     type: "investment",
-    description: "Investissement - L'Odyssée des Étoiles",
+    description: "Investissement 15EUR - L'Odyssee des Etoiles (9 votes, +80 pts)",
     amount: -15,
     date: "2026-01-20",
     status: "completed",
   },
   {
     id: "tr2",
+    type: "investment",
+    description: "Investissement 10EUR - Chroniques du Temps Perdu (7 votes, +50 pts)",
+    amount: -10,
+    date: "2026-01-22",
+    status: "completed",
+  },
+  {
+    id: "tr3",
     type: "return",
-    description: "Retour sur investissement - L'Odyssée des Étoiles",
+    description: "Retour sur investissement - L'Odyssee des Etoiles",
     amount: 2.5,
     date: "2026-02-01",
     status: "completed",
   },
   {
-    id: "tr3",
-    type: "visupoints",
-    description: "Bonus VISUpoints - Parrainage",
-    amount: 50,
-    date: "2026-01-25",
+    id: "tr4",
+    type: "investment",
+    description: "Investissement 5EUR - Murmures de la Foret (4 votes, +25 pts)",
+    amount: -5,
+    date: "2026-02-05",
+    status: "completed",
+  },
+  {
+    id: "tr5",
+    type: "investment",
+    description: "Investissement 20EUR - Pages d'Amour (10 votes, +110 pts)",
+    amount: -20,
+    date: "2026-02-10",
+    status: "completed",
+  },
+  {
+    id: "tr6",
+    type: "return",
+    description: "Retour sur investissement - Pages d'Amour (rang 4, 3.41% de G)",
+    amount: 5.2,
+    date: "2026-02-15",
     status: "completed",
   },
 ]
