@@ -312,70 +312,134 @@ export default function WalletPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-white/60 text-sm">
-              {
-                "La caution garantit votre engagement sur VISUAL. Elle est remboursable en cas de resiliation."
-              }
+              {"La caution garantit votre engagement sur VISUAL. Elle est remboursable en cas de résiliation. Demandez le remboursement dans les Paramètres."}
             </p>
 
             <div className="space-y-3">
+              {/* Caution Createur (Porteur/Infoporteur/Podcasteur) */}
               <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-3">
-                  <AlertCircle className="h-5 w-5 text-white/40" />
-                  <div>
-                    <p className="text-white font-medium">
-                      Caution Investisseur
-                    </p>
-                    <p className="text-xs text-white/40">
-                      {CAUTION_EUR.investor}{"€"}
-                    </p>
-                  </div>
-                </div>
-                <Button
-                  size="sm"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white"
-                  onClick={() => handlePayCaution("investor")}
-                  disabled={cautionLoading === "investor"}
-                >
-                  {cautionLoading === "investor" && (
-                    <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                  {data?.cautions?.creatorPaid ? (
+                    <Check className="h-5 w-5 text-emerald-400" />
+                  ) : (
+                    <AlertCircle className="h-5 w-5 text-amber-400" />
                   )}
-                  Payer
-                </Button>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <AlertCircle className="h-5 w-5 text-white/40" />
                   <div>
                     <p className="text-white font-medium">
-                      Caution Createur
+                      {"Caution Créateur"}
                     </p>
                     <p className="text-xs text-white/40">
+                      {"Porteur / Infoporteur / Podcasteur — "}
                       {CAUTION_EUR.creator}{"€"}
                     </p>
                   </div>
                 </div>
-                <Button
-                  size="sm"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white"
-                  onClick={() => handlePayCaution("creator")}
-                  disabled={cautionLoading === "creator"}
-                >
-                  {cautionLoading === "creator" && (
-                    <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                {data?.cautions?.creatorPaid ? (
+                  <span className="text-xs text-emerald-400 font-medium px-3 py-1 bg-emerald-500/10 rounded-full">
+                    {"Payée"}
+                  </span>
+                ) : (
+                  <Button
+                    size="sm"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white"
+                    onClick={() => handlePayCaution("creator")}
+                    disabled={cautionLoading === "creator"}
+                  >
+                    {cautionLoading === "creator" && (
+                      <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                    )}
+                    {"Payer "}
+                    {CAUTION_EUR.creator}
+                    {"€"}
+                  </Button>
+                )}
+              </div>
+
+              {/* Caution Investisseur (Investisseur/Investi-lecteur/Auditeur) */}
+              <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-3">
+                  {data?.cautions?.investorPaid ? (
+                    <Check className="h-5 w-5 text-emerald-400" />
+                  ) : (
+                    <AlertCircle className="h-5 w-5 text-amber-400" />
                   )}
-                  Payer
-                </Button>
+                  <div>
+                    <p className="text-white font-medium">
+                      {"Caution Investisseur"}
+                    </p>
+                    <p className="text-xs text-white/40">
+                      {"Investisseur / Investi-lecteur / Auditeur — "}
+                      {CAUTION_EUR.investor}{"€"}
+                    </p>
+                  </div>
+                </div>
+                {data?.cautions?.investorPaid ? (
+                  <span className="text-xs text-emerald-400 font-medium px-3 py-1 bg-emerald-500/10 rounded-full">
+                    {"Payée"}
+                  </span>
+                ) : (
+                  <Button
+                    size="sm"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white"
+                    onClick={() => handlePayCaution("investor")}
+                    disabled={cautionLoading === "investor"}
+                  >
+                    {cautionLoading === "investor" && (
+                      <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                    )}
+                    {"Payer "}
+                    {CAUTION_EUR.investor}
+                    {"€"}
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
+      {/* Legal Disclaimers */}
+      <Card className="bg-slate-800/30 border-white/5">
+        <CardContent className="p-4">
+          <div className="space-y-2">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
+              <p className="text-xs text-white/40">
+                {"Gains non garantis. Les retours sur investissement dépendent de la performance des projets soutenus. VISUAL n'est pas un jeu de hasard."}
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <Clock className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
+              <p className="text-xs text-white/40">
+                {"Retraits traités chaque semaine (batch hebdomadaire). Les virements bancaires sont effectués via Stripe Connect sous "}
+                {STRIPE_CONFIG.withdrawProcessingDays}
+                {" jours ouvrés après validation."}
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <Shield className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
+              <p className="text-xs text-white/40">
+                {"Vérification d'identité (KYC) requise pour recevoir un paiement. Vos données sont sécurisées par Stripe et ne sont jamais stockées sur les serveurs VISUAL."}
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <CreditCard className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
+              <p className="text-xs text-white/40">
+                {"La caution est remboursable uniquement en cas de résiliation de votre compte via les Paramètres. Créateurs : "}
+                {CAUTION_EUR.creator}
+                {"€ | Investisseurs : "}
+                {CAUTION_EUR.investor}
+                {"€."}
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Recent Transactions */}
       <Card className="bg-slate-900/50 border-white/10">
         <CardHeader>
-          <CardTitle className="text-white">Dernieres transactions</CardTitle>
+          <CardTitle className="text-white">{"Dernières transactions"}</CardTitle>
         </CardHeader>
         <CardContent>
           {transactions.length === 0 ? (

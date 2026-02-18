@@ -36,11 +36,16 @@ import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
 import { TEXT_CATEGORIES } from "@/lib/mock-data"
+import { CAUTION_EUR } from "@/lib/payout/constants"
+import { AlertCircle, Shield, CreditCard, Loader2 } from "lucide-react"
 
 export default function UploadTextPage() {
   const router = useRouter()
   const { user } = useAuth()
   const [isUploading, setIsUploading] = useState(false)
+  const [cautionLoading, setCautionLoading] = useState(false)
+
+  const hasPaidCaution = user?.depositStatus?.infoporter10 ?? false
   const [uploadProgress, setUploadProgress] = useState(0)
   const [formData, setFormData] = useState({
     title: "",
@@ -127,6 +132,61 @@ export default function UploadTextPage() {
                 Partagez votre création littéraire avec la communauté VISUAL
               </p>
             </div>
+
+            {/* Caution Gate */}
+            {!hasPaidCaution && (
+              <Card className="bg-amber-500/10 border-amber-500/30">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-amber-500/20 flex items-center justify-center shrink-0">
+                      <Shield className="h-6 w-6 text-amber-400" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-white font-semibold mb-1">{"Caution requise"}</h3>
+                      <p className="text-white/60 text-sm mb-4">
+                        {"Pour publier du contenu sur VISUAL, vous devez d'abord payer la caution créateur de "}
+                        {CAUTION_EUR.creator}
+                        {"€. Cette caution est remboursable en cas de résiliation de votre compte."}
+                      </p>
+                      <Button
+                        onClick={async () => {
+                          if (!user) return
+                          setCautionLoading(true)
+                          try {
+                            const res = await fetch("/api/stripe/caution", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({ userId: user.id, cautionType: "creator" }),
+                            })
+                            const result = await res.json()
+                            if (result.error) {
+                              alert(result.error)
+                            } else {
+                              alert("Caution payee avec succes (mock). En production, Stripe Checkout s'ouvrira.")
+                            }
+                          } catch {
+                            alert("Erreur de paiement")
+                          } finally {
+                            setCautionLoading(false)
+                          }
+                        }}
+                        disabled={cautionLoading}
+                        className="bg-amber-600 hover:bg-amber-500 text-white"
+                      >
+                        {cautionLoading ? (
+                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        ) : (
+                          <CreditCard className="h-4 w-4 mr-2" />
+                        )}
+                        {"Payer la caution ("}
+                        {CAUTION_EUR.creator}
+                        {"€)"}
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Cover image */}
@@ -406,9 +466,9 @@ Vous pouvez copier-coller votre contenu depuis un document Word ou Google Docs. 
                 <Button
                   type="submit"
                   className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
-                  disabled={isUploading || !content || !coverFile}
+                  disabled={isUploading || !content || !coverFile || !hasPaidCaution}
                 >
-                  {isUploading ? "Publication..." : "Publier l'écrit"}
+                  {!hasPaidCaution ? "Caution requise" : isUploading ? "Publication..." : "Publier l'écrit"}
                 </Button>
               </div>
             </form>

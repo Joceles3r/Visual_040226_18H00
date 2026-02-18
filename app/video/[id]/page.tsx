@@ -19,6 +19,10 @@ import {
   Play,
   Lock,
   UserPlus,
+  AlertCircle,
+  Sparkles,
+  CreditCard,
+  Star,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -51,6 +55,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
   const canInvest =
     isAuthed &&
     (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener"))
+  const isVisitor = isAuthed && !canInvest && !roles.includes("porter") && !roles.includes("infoporter") && !roles.includes("podcaster")
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -309,13 +314,33 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                       </Button>
                     </div>
                   ) : isAuthed ? (
-                    <div className="text-center space-y-3">
-                      <p className="text-white/60 text-sm">
-                        Pour investir, devenez Investisseur, Investi-lecteur ou Auditeur
-                      </p>
-                      <Link href="/dashboard/settings">
-                        <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
-                          Devenir investisseur
+                    <div className="space-y-4">
+                      <div className="p-4 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-lg border border-emerald-500/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Sparkles className="h-5 w-5 text-emerald-400" />
+                          <h4 className="text-white font-semibold text-sm">{"Soutenez ce projet"}</h4>
+                        </div>
+                        <p className="text-white/60 text-sm mb-3">
+                          {"Investissez dans ce "}
+                          {isVideo ? "projet audiovisuel" : isPodcast ? "podcast" : "contenu littéraire"}
+                          {" et recevez des retours sur vos gains. Choisissez un montant entre 2€ et 20€."}
+                        </p>
+                        <Link href="/dashboard/settings">
+                          <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+                            <CreditCard className="h-4 w-4 mr-2" />
+                            {"Devenir "}
+                            {isVideo ? "Investisseur" : isPodcast ? "Auditeur" : "Investi-lecteur"}
+                            {" (caution 20€)"}
+                          </Button>
+                        </Link>
+                        <p className="text-xs text-white/40 text-center mt-2">
+                          {"Caution remboursable en cas de résiliation"}
+                        </p>
+                      </div>
+                      <Link href="/dashboard/visupoints">
+                        <Button variant="outline" className="w-full bg-transparent border-amber-500/30 text-amber-400 hover:bg-amber-600/10">
+                          <Star className="h-4 w-4 mr-2" />
+                          {"Gagner des VISUpoints en partageant"}
                         </Button>
                       </Link>
                     </div>
@@ -340,11 +365,15 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     </div>
                   )}
 
-                  {/* Warning */}
-                  <p className="text-xs text-white/40 text-center">
-                    Investir comporte des risques. Les gains ne sont pas
-                    garantis.
-                  </p>
+                  {/* Legal Warning */}
+                  <div className="space-y-1 pt-2 border-t border-white/5">
+                    <p className="text-xs text-white/40 text-center">
+                      {"Investir comporte des risques. Les gains ne sont pas garantis. VISUAL n'est pas un jeu de hasard."}
+                    </p>
+                    <p className="text-xs text-white/30 text-center">
+                      {"Retraits traités chaque semaine via Stripe Connect."}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 
