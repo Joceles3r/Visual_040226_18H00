@@ -86,12 +86,14 @@ function MobileMenu({
   onClose,
   roles,
   isAuthed,
+  isAdmin,
   onLogout,
 }: {
   isOpen: boolean
   onClose: () => void
   roles: VisualRole[]
   isAuthed: boolean
+  isAdmin: boolean
   onLogout: () => void
 }) {
   if (!isOpen) return null
@@ -142,7 +144,7 @@ function MobileMenu({
             )
           })}
 
-          {roles.includes("admin") && (
+          {isAdmin && (
             <div>
               <h3 className="text-amber-400 font-bold mb-3">Administration</h3>
               <Link
@@ -199,7 +201,7 @@ function MobileMenu({
 }
 
 export function VisualHeader() {
-  const { user, isAuthed, roles, logout } = useAuth()
+  const { user, isAuthed, isAdmin, roles, logout } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const effectiveRoles = useMemo<VisualRole[]>(() => {
@@ -208,7 +210,7 @@ export function VisualHeader() {
     return r.includes("guest") ? r.filter((x) => x !== "guest") : r
   }, [isAuthed, roles])
 
-  const isAdmin = effectiveRoles.includes("admin")
+  // isAdmin vient du auth context, pas des roles de profil
 
   return (
     <>
@@ -330,6 +332,7 @@ export function VisualHeader() {
         onClose={() => setMobileMenuOpen(false)}
         roles={effectiveRoles}
         isAuthed={isAuthed}
+        isAdmin={isAdmin}
         onLogout={logout}
       />
     </>

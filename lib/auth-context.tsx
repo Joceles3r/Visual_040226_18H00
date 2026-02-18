@@ -31,6 +31,7 @@ export interface User {
 interface AuthContextType {
   user: User | null
   isAuthed: boolean
+  isAdmin: boolean
   roles: VisualRole[]
   login: (email: string, password: string) => Promise<void>
   logout: () => void
@@ -69,6 +70,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const isAuthed = user !== null
   const roles: VisualRole[] = user?.roles ?? ["guest"]
+  // Admin est un flag prive, pas un role de profil
+  const isAdmin = user?.id === "admin" || false
 
   const login = async (email: string, password: string) => {
     // Simulation d'authentification
@@ -101,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         isAuthed,
+        isAdmin,
         roles,
         login,
         logout,

@@ -30,7 +30,6 @@ export type VisualRole =
   | "investireader"
   | "podcaster"
   | "listener"
-  | "admin"
 
 export type NavItem = {
   label: string
@@ -74,39 +73,39 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Tableau de bord",
       href: "/dashboard",
       icon: LayoutDashboard,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
     {
       label: "Mon profil",
-      href: "/profile/me",
+      href: "/dashboard/profile",
       icon: User,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
     {
       label: "Paramètres",
       href: "/dashboard/settings",
       icon: Settings,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
     {
       label: "Support (Boîte interne)",
       href: "/support/mailbox",
       icon: Mail,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener", "admin"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
 
-    // VISITEUR
+    // VISITEUR (+ tous les inscrits)
     {
       label: "Mes VISUpoints",
       href: "/dashboard/visupoints",
       icon: Star,
-      roles: ["visitor"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
     {
       label: "Mes favoris / suivis",
       href: "/dashboard/favorites",
       icon: Heart,
-      roles: ["visitor"],
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
 
     // PORTEUR (video)
@@ -169,6 +168,12 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // AUDITEUR (podcast)
     {
+      label: "Explorer les podcasts",
+      href: "/explore?type=podcast",
+      icon: Compass,
+      roles: ["listener"],
+    },
+    {
       label: "Mes investissements (podcast)",
       href: "/dashboard/investments?type=podcast",
       icon: Mic,
@@ -191,13 +196,12 @@ export const MY_SPACE_MENU: NavMenu = {
   ],
 }
 
-// Admin (hors profils)
-export const ADMIN_ITEM: NavItem = {
+// Admin (hors profils — visibilite geree par isAdmin, pas par roles)
+export const ADMIN_ITEM = {
   label: "Administration",
   href: "/admin",
   icon: Settings,
-  roles: ["admin"],
-}
+} as const
 
 // Helper pour vérifier les rôles
 export function hasAnyRole(userRoles: VisualRole[], itemRoles?: VisualRole[]) {
