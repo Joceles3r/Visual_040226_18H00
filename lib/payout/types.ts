@@ -3,16 +3,29 @@ export type Currency = "eur";
 export type Role =
   | "investor"
   | "investireader"
+  | "listener"
   | "porter"
   | "infoporter"
+  | "podcaster"
   | "visual_platform";
+
+/** Category determines which formula set applies */
+export type PayoutCategory = "films" | "voix_info" | "livres" | "podcasts";
 
 export type Bucket =
   | "INV_TOP10"
   | "PORTEUR_TOP10"
   | "INV_11_100"
   | "VISUAL_FEE"
-  | "VISUAL_RESIDUAL";
+  | "VISUAL_RESIDUAL"
+  // Podcasts-specific buckets
+  | "PODCAST_CREATORS"
+  | "PODCAST_INVESTORS"
+  | "PODCAST_VISUAL"
+  | "PODCAST_BONUS"
+  // Voix Info / Livres buckets
+  | "AUTHORS_TOP10"
+  | "READERS_GAGNANTS";
 
 export type PayoutAllocation = {
   userId: string;
@@ -51,23 +64,39 @@ export type LedgerEntry = {
 export type PayoutEngineInput = {
   cycleId: string;
 
+  /** Category determines which formula set to apply */
+  category: PayoutCategory;
+
   /** Gross eligible amount for the cycle, AFTER refunds/chargebacks, in cents. */
   grossEligibleCents: number;
 
   /**
    * TOP10 winners in rank order. Length must be 10.
-   * For audiovisual: role = investor / porter.
+   * For films: role = investor / porter.
    * For literary: role = investireader / infoporter.
+   * For podcasts: role = listener / podcaster.
    */
-  top10Investors: { userId: string; role: "investor" | "investireader" }[];
-  top10Creators: { userId: string; role: "porter" | "infoporter" }[];
+  top10Investors: { userId: string; role: "investor" | "investireader" | "listener" }[];
+  top10Creators: { userId: string; role: "porter" | "infoporter" | "podcaster" }[];
 
   /**
    * Eligible investors in ranks 11–100 (unique users).
-   * In the consolidated formulas, ONLY investors have a 23% pool for ranks 11–100.
-   * Creators ranks 11–100 receive 0 in V1.
+   * Films: 7% pool for ranks 11–100.
+   * Podcasts: included in the 30% investor pool (pro-rata).
+   * Voix Info / Livres: readers/investi-lecteurs gagnants.
    */
-  investors11to100: { userId: string; role: "investor" | "investireader" }[];
+  investors11to100: { userId: string; role: "investor" | "investireader" | "listener" }[];
+
+  /**
+   * Podcast-specific: listen_score per investor for weighting.
+   * Key = userId, value = listen_score (0-1).
+   */
+  listenScores?: Record<string, number>;
+
+  /**
+   * Podcast-specific: total global votes this month (for anti-capture cap).
+   */
+  totalGlobalVotes?: number;
 
   /**
    * Business date (ISO) when this cycle is considered closed, used for ledger timestamps.

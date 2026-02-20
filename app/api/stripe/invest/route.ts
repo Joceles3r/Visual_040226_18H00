@@ -35,9 +35,10 @@ export async function POST(req: NextRequest) {
     }
     const user = users[0];
     const roles = user.roles as string[];
-    if (!roles.includes("investor") && !roles.includes("investireader")) {
+    const investorRoles = ["investor", "investireader", "listener"];
+    if (!investorRoles.some(r => roles.includes(r))) {
       return NextResponse.json(
-        { error: "User must have investor or investireader role" },
+        { error: "User must have investor, investireader, or listener (auditeur) role" },
         { status: 403 }
       );
     }

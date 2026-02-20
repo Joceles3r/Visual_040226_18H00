@@ -323,7 +323,7 @@ export default function HowItWorksPage() {
                   </CardHeader>
                   <CardContent className="text-white/70 space-y-3">
                     <p>
-                      La caution est un dépôt unique qui garantit votre
+                      La caution est un depot unique qui garantit votre
                       engagement sur la plateforme.
                     </p>
                     <ul className="space-y-2">
@@ -340,7 +340,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Remboursable en cas de résiliation du compte</span>
+                        <span>Remboursable en cas de resiliation du compte</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -369,7 +369,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Retraits traités chaque semaine</span>
+                        <span>Retraits traites chaque semaine</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -381,6 +381,101 @@ export default function HowItWorksPage() {
                   Attention : Investir comporte des risques. Les gains ne sont
                   pas garantis. VISUAL n'est pas un jeu de hasard.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Distribution par categorie */}
+        <section className="py-20 bg-slate-900/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+                Repartition des gains par categorie
+              </h2>
+              <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
+                Chaque categorie de contenu a ses propres regles de repartition et frequences de cloture.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Films */}
+                <Card className="bg-slate-900/50 border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <Film className="h-5 w-5 text-red-400" />
+                      Films / Videos / Documentaires
+                    </CardTitle>
+                    <p className="text-sm text-white/50">Cloture configurable (admin)</p>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Investisseurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-teal-400">Porteurs TOP 10</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Investisseurs rangs 11-100</span><span className="text-white font-semibold">7%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">23%</span></div>
+                  </CardContent>
+                </Card>
+
+                {/* Voix de l'Info */}
+                <Card className="bg-slate-900/50 border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <FileText className="h-5 w-5 text-amber-400" />
+                      Voix de l'Info (articles)
+                    </CardTitle>
+                    <p className="text-sm text-white/50">Vente 70/30 + Pot quotidien</p>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <p className="text-xs text-white/40 mb-1">Vente unitaire :</p>
+                    <div className="flex justify-between text-sm"><span className="text-amber-400">Auteur</span><span className="text-white font-semibold">70%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="border-t border-white/10 my-2" />
+                    <p className="text-xs text-white/40 mb-1">Pot du jour :</p>
+                    <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
+                  </CardContent>
+                </Card>
+
+                {/* Livres */}
+                <Card className="bg-slate-900/50 border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <FileText className="h-5 w-5 text-amber-400" />
+                      Livres
+                    </CardTitle>
+                    <p className="text-sm text-white/50">Vente 70/30 + Pot mensuel</p>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <p className="text-xs text-white/40 mb-1">Vente unitaire :</p>
+                    <div className="flex justify-between text-sm"><span className="text-amber-400">Auteur</span><span className="text-white font-semibold">70%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="border-t border-white/10 my-2" />
+                    <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
+                    <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Investi-lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
+                  </CardContent>
+                </Card>
+
+                {/* Podcasts */}
+                <Card className="bg-slate-900/50 border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <Mic className="h-5 w-5 text-purple-400" />
+                      Podcasts
+                    </CardTitle>
+                    <p className="text-sm text-white/50">Vente 70/30 + Pot mensuel</p>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <p className="text-xs text-white/40 mb-1">Vente episode :</p>
+                    <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteur</span><span className="text-white font-semibold">70%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="border-t border-white/10 my-2" />
+                    <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
+                    <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteurs</span><span className="text-white font-semibold">40%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Auditeurs (investisseurs)</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">20%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>

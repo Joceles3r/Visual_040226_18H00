@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@/lib/db";
 import { computePayoutAllocations } from "@/lib/payout/payout-engine";
-import type { PayoutEngineInput } from "@/lib/payout/types";
+import type { PayoutEngineInput, PayoutCategory } from "@/lib/payout/types";
 
 /**
  * POST /api/payout/execute
@@ -58,7 +58,26 @@ export async function POST(req: NextRequest) {
     // Get the content creator(s) - for now, single creator
     const creatorId = content.creator_id as string;
     const creators = await sql`SELECT id, roles FROM users WHERE id = ${creatorId}`;
-    const creatorRole = (content.content_type === "text") ? "infoporter" : "porter";
+
+    // Determine payout category from content_type
+    // video -> films, text -> livres, podcast -> podcasts
+    // For Voix de l'Info articles, content_type is "text" with category "voix_info"
+    let payoutCategory: PayoutCategory = "films";
+    const contentCategory = content.category as string | undefined;
+    if (content.content_type === "text") {
+      payoutCategory = contentCategory === "voix_info" ? "voix_info" : "livres";
+    } else if (content.content_type === "podcast") {
+      payoutCategory = "podcasts";
+    }
+
+    // Determine roles based on category
+    const roleMap: Record<PayoutCategory, { investor: "investor" | "investireader" | "listener"; creator: "porter" | "infoporter" | "podcaster" }> = {
+      films: { investor: "investor", creator: "porter" },
+      voix_info: { investor: "investireader", creator: "infoporter" },
+      livres: { investor: "investireader", creator: "infoporter" },
+      podcasts: { investor: "listener", creator: "podcaster" },
+    };
+    const roles = roleMap[payoutCategory];
 
     // Build the payout engine input
     const cycleId = `cycle_${contentId}_${Date.now()}`;
@@ -66,37 +85,38 @@ export async function POST(req: NextRequest) {
     // TOP10 investors (first 10 ranked by total investment)
     const top10Investors = investments.slice(0, 10).map((inv: Record<string, unknown>) => ({
       userId: inv.user_id as string,
-      role: (content.content_type === "text" ? "investireader" : "investor") as "investor" | "investireader",
+      role: roles.investor,
     }));
 
-    // Pad to 10 if needed (engine expects exactly 10)
+    // Pad to 10 if needed (engine expects exactly 10 for films)
     while (top10Investors.length < 10) {
       top10Investors.push({
         userId: `placeholder_inv_${top10Investors.length}`,
-        role: (content.content_type === "text" ? "investireader" : "investor") as "investor" | "investireader",
+        role: roles.investor,
       });
     }
 
     // TOP10 creators - for V1, we have 1 creator, pad the rest
     const top10Creators = [{
       userId: creatorId,
-      role: creatorRole as "porter" | "infoporter",
+      role: roles.creator,
     }];
     while (top10Creators.length < 10) {
       top10Creators.push({
         userId: `placeholder_creator_${top10Creators.length}`,
-        role: creatorRole as "porter" | "infoporter",
+        role: roles.creator,
       });
     }
 
     // Investors ranks 11-100
     const investors11to100 = investments.slice(10, 100).map((inv: Record<string, unknown>) => ({
       userId: inv.user_id as string,
-      role: (content.content_type === "text" ? "investireader" : "investor") as "investor" | "investireader",
+      role: roles.investor,
     }));
 
     const engineInput: PayoutEngineInput = {
       cycleId,
+      category: payoutCategory,
       grossEligibleCents,
       top10Investors,
       top10Creators,

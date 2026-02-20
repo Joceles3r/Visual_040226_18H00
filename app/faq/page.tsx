@@ -99,7 +99,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment sont calculés mes gains en tant que créateur ?",
         answer:
-          "Vos gains dépendent des investissements reçus et des performances de votre projet. Une commission VISUAL est prélevée sur les revenus générés.",
+          "La repartition depend de la categorie. Films/Videos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VISUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VISUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VISUAL.",
       },
     ],
   },
@@ -114,7 +114,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Quand recevrai-je mes retours ?",
         answer:
-          "Les retours sont versés lorsque le projet génère des revenus. Ils apparaissent dans votre Wallet et peuvent être retirés lors des sessions de retrait hebdomadaires.",
+          "Cela depend de la categorie. Films/Videos/Documentaires : a la cloture du cycle (configurable par l'admin). Voix de l'Info : pot quotidien distribue chaque jour a 00h15. Livres : pot mensuel distribue le dernier jour du mois. Podcasts : pot mensuel distribue le dernier jour du mois. Les retours apparaissent dans votre Wallet et peuvent etre retires via Stripe Connect.",
       },
       {
         question: "Puis-je perdre mon investissement ?",
