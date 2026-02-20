@@ -52,27 +52,55 @@ describe("computePayoutAllocations — FILMS 40/30/7/23", () => {
   });
 });
 
-describe("computePayoutAllocations — PODCASTS 40/30/20/10", () => {
+describe("computePayoutAllocations — PODCASTS 40/30/20/10 (bonus 6/2/2)", () => {
+  const podInput = {
+    cycleId: "cycle_pod_001",
+    category: "podcasts" as const,
+    grossEligibleCents: 50_000_00, // 50,000 EUR
+    top10Investors: Array.from({ length: 10 }, (_, i) => ({ userId: `aud_${i+1}`, role: "listener" as const })),
+    top10Creators: Array.from({ length: 10 }, (_, i) => ({ userId: `pod_${i+1}`, role: "podcaster" as const })),
+    investors11to100: Array.from({ length: 20 }, (_, i) => ({ userId: `aud11_${i+11}`, role: "listener" as const })),
+    closedAtIso: "2026-02-17T12:00:00.000Z",
+  };
+
   it("keeps totals consistent for podcasts", () => {
-    const out = computePayoutAllocations({
-      cycleId: "cycle_pod_001",
-      category: "podcasts",
-      grossEligibleCents: 50_000_00, // 50,000 EUR
-      top10Investors: Array.from({ length: 10 }, (_, i) => ({ userId: `aud_${i+1}`, role: "listener" as const })),
-      top10Creators: Array.from({ length: 10 }, (_, i) => ({ userId: `pod_${i+1}`, role: "podcaster" as const })),
-      investors11to100: Array.from({ length: 20 }, (_, i) => ({ userId: `aud11_${i+11}`, role: "listener" as const })),
-      closedAtIso: "2026-02-17T12:00:00.000Z",
-    });
+    const out = computePayoutAllocations(podInput);
 
     expect(out.platformTakeCents + out.totalUserPayoutCents).toBe(out.grossEligibleCents);
     // VISUAL gets 20% = 10,000 EUR base
     expect(out.platformFeeCents).toBe(1000000);
-    // Podcast creators bucket
+    // Podcast creators bucket (base 40%)
     const creators = out.allocations.filter(a => a.bucket === "PODCAST_CREATORS");
     expect(creators.length).toBe(10);
     // Podcast investors bucket
     const investors = out.allocations.filter(a => a.bucket === "PODCAST_INVESTORS");
     expect(investors.length).toBe(30); // 10 + 20
+  });
+
+  it("distributes bonus 6% as performance primes to TOP10 podcasters", () => {
+    const out = computePayoutAllocations(podInput);
+
+    const bonusAllocations = out.allocations.filter(a => a.bucket === "PODCAST_BONUS");
+    // 6% primes are distributed to 10 podcasters
+    expect(bonusAllocations.length).toBe(10);
+    // Total bonus primes should be close to 6% of G = 3000 EUR (before rounding)
+    const totalBonusGross = bonusAllocations.reduce((s, a) => s + a.grossCents, 0);
+    const sixPercent = Math.floor((50_000_00 * 6) / 100);
+    expect(totalBonusGross).toBeLessThanOrEqual(sixPercent);
+    // Rank 1 gets more than rank 10
+    expect(bonusAllocations[0].grossCents).toBeGreaterThan(bonusAllocations[9].grossCents);
+  });
+
+  it("supports model alias 'podcast' -> category 'podcasts'", () => {
+    const out = computePayoutAllocations({
+      ...podInput,
+      category: undefined as unknown as "podcasts",
+      model: "podcast",
+    });
+
+    expect(out.platformTakeCents + out.totalUserPayoutCents).toBe(out.grossEligibleCents);
+    const creators = out.allocations.filter(a => a.bucket === "PODCAST_CREATORS");
+    expect(creators.length).toBe(10);
   });
 });
 

@@ -522,13 +522,17 @@
 <text:p text:style-name="Standard">P_VISUAL = 0,20 x P</text:p>
 <text:p text:style-name="Standard"/>
 
-<text:h text:style-name="Heading_20_3" text:outline-level="3">D) 10% -&gt; Bonus Pool</text:h>
-<text:p text:style-name="Standard">P_Bonus = 0,10 x P</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">D) 10% -&gt; Bonus Pool (ventilation 6/2/2)</text:h>
+<text:p text:style-name="Standard">P_Bonus = 0,10 x P, ventile comme suit :</text:p>
 <text:list text:style-name="List_20_1">
-<text:list-item><text:p text:style-name="List_20_Bullet">TOP 10 podcasts : Primes de performance</text:p></text:list-item>
-<text:list-item><text:p text:style-name="List_20_Bullet">Challenges speciaux : Evenements promotionnels</text:p></text:list-item>
-<text:list-item><text:p text:style-name="List_20_Bullet">Reserve technique : Ajustements et arrondis</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">6% : Primes de performance TOP 10 podcasters (distribue pro-rata rang, poids 10..1)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">2% : Reserve technique (arrondis, residus de division) — comptabilisee cote plateforme</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">2% : Reserve evenementielle (challenges, events promo) — comptabilisee cote plateforme</text:p></text:list-item>
 </text:list>
+<text:p text:style-name="Standard"/>
+<text:p text:style-name="Standard">Formule primes performance :</text:p>
+<text:p text:style-name="Standard">Prime(rang_k) = floor(P_primes x poids_k / 55)</text:p>
+<text:p text:style-name="Standard">avec poids_k = 11 - k (k de 1 a 10), somme = 55</text:p>
 <text:p text:style-name="Standard"/>
 
 <text:h text:style-name="Heading_20_3" text:outline-level="3">Verification : 40 + 30 + 20 + 10 = 100%</text:h>

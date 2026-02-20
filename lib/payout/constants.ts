@@ -185,6 +185,19 @@ export const PODCASTS_POT_CREATORS_PERCENT = 40;
 export const PODCASTS_POT_INVESTORS_PERCENT = 30;
 export const PODCASTS_POT_VISUAL_PERCENT = 20;
 export const PODCASTS_POT_BONUS_PERCENT = 10;
+
+/**
+ * Detail du bonus 10% Podcasts (source: README payout-engine V2)
+ *   6% : primes performance TOP 10 podcasters
+ *   2% : reserve technique (arrondis) — comptabilisee cote plateforme
+ *   2% : reserve evenementielle — comptabilisee cote plateforme
+ */
+export const PODCASTS_BONUS_BREAKDOWN = {
+  performancePrimesPercent: 6,
+  technicalReservePercent: 2,
+  eventReservePercent: 2,
+} as const;
+
 /** CAP anti-capture: un investisseur ne peut representer plus de 20% des votes globaux mensuels */
 export const PODCASTS_ANTI_CAPTURE_MAX_VOTE_SHARE = 0.20;
 /**
@@ -257,10 +270,12 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
     label: "Podcasts",
     frequency: "Mensuel (dernier jour du mois)",
     splits: [
-      { label: "Podcasteurs", percent: PODCASTS_POT_CREATORS_PERCENT, color: "purple" },
-      { label: "Auditeurs (investisseurs)", percent: PODCASTS_POT_INVESTORS_PERCENT, color: "emerald" },
+      { label: "Podcasteurs TOP 10 (base)", percent: PODCASTS_POT_CREATORS_PERCENT, color: "purple" },
+      { label: "Auditeurs TOP 10 (investisseurs)", percent: PODCASTS_POT_INVESTORS_PERCENT, color: "emerald" },
       { label: "VISUAL (plateforme)", percent: PODCASTS_POT_VISUAL_PERCENT, color: "slate" },
-      { label: "Bonus Pool", percent: PODCASTS_POT_BONUS_PERCENT, color: "amber" },
+      { label: "Bonus : primes perf. TOP 10", percent: PODCASTS_BONUS_BREAKDOWN.performancePrimesPercent, color: "amber" },
+      { label: "Bonus : reserve technique", percent: PODCASTS_BONUS_BREAKDOWN.technicalReservePercent, color: "zinc" },
+      { label: "Bonus : reserve evenementielle", percent: PODCASTS_BONUS_BREAKDOWN.eventReservePercent, color: "zinc" },
     ],
   },
 };

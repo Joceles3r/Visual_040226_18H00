@@ -67,6 +67,13 @@ export type PayoutEngineInput = {
   /** Category determines which formula set to apply */
   category: PayoutCategory;
 
+  /**
+   * Alias for category (backward compat with README payout-engine V2).
+   * "podcast" maps to category "podcasts", "film" maps to "films".
+   * If both `model` and `category` are set, `category` takes precedence.
+   */
+  model?: "film" | "podcast" | "voix_info" | "livres";
+
   /** Gross eligible amount for the cycle, AFTER refunds/chargebacks, in cents. */
   grossEligibleCents: number;
 

@@ -14,13 +14,14 @@ import {
   PODCASTS_POT_CREATORS_PERCENT,
   PODCASTS_POT_INVESTORS_PERCENT,
   PODCASTS_POT_VISUAL_PERCENT,
-  PODCASTS_POT_BONUS_PERCENT,
+  PODCASTS_BONUS_BREAKDOWN,
   PODCASTS_ANTI_CAPTURE_MAX_VOTE_SHARE,
   VOIXINFO_POT_AUTHORS_TOP10_PERCENT,
   VOIXINFO_POT_READERS_PERCENT,
   LIVRES_POT_AUTHORS_TOP10_PERCENT,
   LIVRES_POT_INVESTIREADERS_PERCENT,
 } from "./constants";
+import type { PayoutCategory } from "./types";
 
 /**
  * VISUAL Payout Engine V2 — Multi-category support
@@ -89,7 +90,12 @@ export function computePayoutAllocations(input: PayoutEngineInput): PayoutEngine
   const warnings: string[] = [];
   const currency: Currency = "eur";
   const closedAtIso = input.closedAtIso ?? nowIso();
-  const category = input.category ?? "films";
+
+  // Resolve model alias -> category (backward compat with README payout-engine)
+  const MODEL_TO_CATEGORY: Record<string, PayoutCategory> = {
+    film: "films", podcast: "podcasts", voix_info: "voix_info", livres: "livres",
+  };
+  const category: PayoutCategory = input.category ?? (input.model ? MODEL_TO_CATEGORY[input.model] ?? "films" : "films");
 
   if (!Number.isInteger(input.grossEligibleCents) || input.grossEligibleCents < 0) {
     throw new Error("grossEligibleCents must be a non-negative integer (cents).");
@@ -218,8 +224,36 @@ export function computePayoutAllocations(input: PayoutEngineInput): PayoutEngine
       }
     }
 
-    // 10% Bonus pool — allocated to platform for redistribution
-    residualTotal += bonusPool;
+    // 10% Bonus pool — ventilé en 6/2/2 (source: README payout-engine V2)
+    // 6% primes performance -> distribue aux TOP10 podcasters (pro-rata rank)
+    const primesPool = Math.floor((G * PODCASTS_BONUS_BREAKDOWN.performancePrimesPercent) / 100);
+    const techReserve = Math.floor((G * PODCASTS_BONUS_BREAKDOWN.technicalReservePercent) / 100);
+    const eventReserve = Math.floor((G * PODCASTS_BONUS_BREAKDOWN.eventReservePercent) / 100);
+
+    // Distribute 6% primes to TOP10 podcasters (same rank weighting)
+    for (let r = 0; r < Math.min(10, input.top10Creators.length); r++) {
+      const creator = input.top10Creators[r];
+      const weight = 10 - r;
+      const totalWeight = 55;
+      const gross = Math.floor((primesPool * weight) / totalWeight);
+      const { floored, residual } = euroFloor(gross);
+      residualTotal += residual;
+      allocations.push({
+        userId: creator.userId, role: creator.role, bucket: "PODCAST_BONUS",
+        amountCents: floored, grossCents: gross, roundingResidualCents: residual,
+        currency, meta: { cycleId: input.cycleId, rank: r + 1, weight, category, bonusType: "performance_prime" },
+      });
+    }
+    // Division remainder of primes pool
+    const primesDistributed = allocations.filter(a => a.meta.bonusType === "performance_prime").reduce((s, a) => s + a.grossCents, 0);
+    if (primesPool - primesDistributed > 0) residualTotal += primesPool - primesDistributed;
+
+    // 2% reserve technique + 2% reserve evenementielle -> plateforme
+    residualTotal += techReserve + eventReserve;
+
+    // Any remainder from integer rounding of bonus sub-pools
+    const bonusSubTotal = primesPool + techReserve + eventReserve;
+    if (bonusPool - bonusSubTotal > 0) residualTotal += bonusPool - bonusSubTotal;
   }
 
   // ── VOIX DE L'INFO: pot quotidien 60/40 ──

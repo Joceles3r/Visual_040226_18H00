@@ -474,6 +474,11 @@ export default function HowItWorksPage() {
                     <div className="flex justify-between text-sm"><span className="text-emerald-400">Auditeurs (investisseurs)</span><span className="text-white font-semibold">30%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">20%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
+                    <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">
+                      <div className="flex justify-between text-xs"><span className="text-amber-300/70">Primes perf. TOP 10</span><span className="text-white/70">6%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve technique</span><span className="text-white/70">2%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve evenementielle</span><span className="text-white/70">2%</span></div>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
