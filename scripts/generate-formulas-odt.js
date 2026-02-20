@@ -9,7 +9,9 @@
  * Excludes: VSLS and Petites Annonces (not in VISUAL V1).
  */
 
-import { writeFileSync } from "fs";
+import { writeFileSync, mkdirSync } from "fs";
+import { dirname } from "path";
+
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -670,5 +672,6 @@ ${body.join("\n")}
 </office:document>`;
 
 const outPath = "public/VISUAL_Formules_Repartitions_V2.fodt";
+mkdirSync(dirname(outPath), { recursive: true });
 writeFileSync(outPath, fodt, "utf-8");
 console.log(`[v0] FODT generated: ${outPath} (${(fodt.length / 1024).toFixed(1)} KB)`);
