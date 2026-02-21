@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#050108",
+  themeColor: "#050507",
   width: "device-width",
   initialScale: 1,
 }
@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="dark">
-      <body className={`${inter.className} antialiased bg-black text-white`}>
+      <body className={`${inter.className} antialiased`} style={{ background: "#050507", color: "#e8e4e0" }}>
         <AuthProvider>
           <NeonFrame>
             {children}
