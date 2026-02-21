@@ -15,34 +15,34 @@ const FEATURES = [
   {
     icon: Film,
     title: "Audiovisuel",
-    description: "Courts-metrages, documentaires, clips musicaux et animations",
+    description: "Courts-métrages, documentaires, clips musicaux et animations",
     color: "text-red-400",
     bgColor: "bg-red-500/10",
   },
   {
     icon: FileText,
-    title: "Litteraire",
-    description: "Romans, nouvelles, essais, poesies et articles",
+    title: "Littéraire",
+    description: "Romans, nouvelles, essais, poésies et articles",
     color: "text-amber-400",
     bgColor: "bg-amber-500/10",
   },
   {
     icon: Mic,
     title: "Podcast",
-    description: "Podcasts, voix de l'info, emissions audio et documentaires sonores",
+    description: "Podcasts, voix de l'info, émissions audio et documentaires sonores",
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
   },
   {
     icon: TrendingUp,
     title: "Investissement",
-    description: "De 2EUR a 20EUR par projet, recevez des retours sur vos investissements",
+    description: "De 2 EUR à 20 EUR par projet, recevez des retours sur vos investissements",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
   {
     icon: Shield,
-    title: "Securise",
+    title: "Sécurisé",
     description: "Caution remboursable, paiements via Stripe Connect",
     color: "text-sky-400",
     bgColor: "bg-sky-500/10",
@@ -78,8 +78,8 @@ export default function HomePage() {
               </h1>
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
                 VISUAL est la plateforme d'investissement participatif pour les
-                projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
-                investissez dans leurs oeuvres, partagez leurs succes.
+                projets audiovisuels, littéraires et podcasts. Soutenez les créateurs,
+                investissez dans leurs oeuvres, partagez leurs succès.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -142,7 +142,7 @@ export default function HomePage() {
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
                 Explorez et investissez dans des projets audiovisuels,
-                litteraires et podcasts uniques
+                littéraires et podcasts uniques
               </p>
             </div>
 
@@ -224,8 +224,8 @@ export default function HomePage() {
                 Comment ça fonctionne ?
               </h2>
               <p className="text-white/60 mb-12 max-w-2xl mx-auto">
-                En quelques etapes simples, devenez acteur de la creation
-                audiovisuelle, litteraire et podcast
+                En quelques étapes simples, devenez acteur de la création
+                audiovisuelle, littéraire et podcast
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -248,7 +248,7 @@ export default function HomePage() {
                     2. Explorez les projets
                   </h3>
                   <p className="text-white/60">
-                    Decouvrez des creations uniques en video, ecrit et podcast
+                    Découvrez des créations uniques en vidéo, écrit et podcast
                   </p>
                 </div>
                 <div className="flex flex-col items-center">

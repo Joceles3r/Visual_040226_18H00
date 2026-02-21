@@ -110,7 +110,7 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
   {
     id: "v4",
     title: "Pages d'Amour",
-    description: "Un recueil poetique sur la magie des rencontres litteraires.",
+    description: "Un recueil poétique sur la magie des rencontres littéraires.",
     contentType: "text",
     coverUrl: "/images/woman-reading-books.jpg",
     creatorName: "Claire Lettres",
@@ -261,7 +261,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: "tr3",
     type: "return",
-    description: "Retour sur investissement - L'Odyssee des Etoiles",
+    description: "Retour sur investissement - L'Odyssée des Étoiles",
     amount: 2.5,
     date: "2026-02-01",
     status: "completed",
@@ -269,7 +269,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: "tr4",
     type: "investment",
-    description: "Investissement 5EUR - Murmures de la Foret (4 votes, +25 pts)",
+    description: "Investissement 5 EUR - Murmures de la Forêt (4 votes, +25 pts)",
     amount: -5,
     date: "2026-02-05",
     status: "completed",

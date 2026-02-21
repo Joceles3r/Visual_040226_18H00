@@ -24,9 +24,9 @@ import { Footer } from "@/components/footer"
 const STEPS = [
   {
     step: 1,
-    title: "Explorez en tant qu'invite ou creez votre compte",
+    title: "Explorez en tant qu'invité ou créez votre compte",
     description:
-      "Commencez a naviguer immediatement sur VISUAL en tant qu'invite : decouvrez les contenus gratuits et les extraits sans inscription. Pour debloquer toutes les fonctionnalites, inscrivez-vous gratuitement et devenez Visiteur.",
+      "Commencez à naviguer immédiatement sur VISUAL en tant qu'invité : découvrez les contenus gratuits et les extraits sans inscription. Pour débloquer toutes les fonctionnalités, inscrivez-vous gratuitement et devenez Visiteur.",
     icon: User,
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/20",
@@ -35,7 +35,7 @@ const STEPS = [
     step: 2,
     title: "Choisissez votre rôle",
     description:
-      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
+      "Devenez Porteur (vidéo), Infoporteur (écrit), Podcasteur (podcast) pour créer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -44,7 +44,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable a la resiliation.",
+      "10 EUR pour les créateurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable à la résiliation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -62,18 +62,18 @@ const STEPS = [
 
 const ROLES = [
   {
-    title: "Invite",
+    title: "Invité",
     subtitle: "Sans inscription",
     description:
-      "Naviguez librement sur VISUAL sans creer de compte. Acces limite aux contenus gratuits et extraits uniquement.",
+      "Naviguez librement sur VISUAL sans créer de compte. Accès limité aux contenus gratuits et extraits uniquement.",
     features: [
-      "Acces aux contenus gratuits et extraits",
+      "Accès aux contenus gratuits et extraits",
       "Navigation libre sur la plateforme",
     ],
     restrictions: [
       "Aucun VISUpoint",
       "Aucun gain ni investissement",
-      "Pas de participation a la communaute",
+      "Pas de participation à la communauté",
       "Pas de favoris ni de commentaires",
     ],
     caution: null,
@@ -86,7 +86,7 @@ const ROLES = [
     description:
       "Parcourez la plateforme, gagnez des VISUpoints, promouvez VISUAL",
     features: [
-      "Acces aux contenus gratuits",
+      "Accès aux contenus gratuits",
       "VISUpoints et badges",
       "Favoris et suivis",
       "Commentaires et partages",
@@ -98,11 +98,11 @@ const ROLES = [
   },
   {
     title: "Porteur",
-    subtitle: "Createur audiovisuel",
-    description: "Deposez vos videos et visuels, recevez des investissements",
+    subtitle: "Créateur audiovisuel",
+    description: "Déposez vos vidéos et visuels, recevez des investissements",
     features: [
-      "Depot de contenu video",
-      "Statistiques detaillees",
+      "Dépôt de contenu vidéo",
+      "Statistiques détaillées",
       "Gestion des projets",
       "Retrait des gains",
     ],
@@ -128,11 +128,11 @@ const ROLES = [
   },
   {
     title: "Infoporteur",
-    subtitle: "Createur litteraire",
+    subtitle: "Créateur littéraire",
     description:
-      "Publiez vos ecrits : articles, histoires, livres, et plus encore",
+      "Publiez vos écrits : articles, histoires, livres, et plus encore",
     features: [
-      "Depot de contenu ecrit",
+      "Dépôt de contenu écrit",
       "Statistiques de lecture",
       "Gestion des publications",
       "Retrait des gains",
@@ -144,11 +144,11 @@ const ROLES = [
   },
   {
     title: "Investi-lecteur",
-    subtitle: "Investisseur litteraire",
-    description: "Investissez sur des contenus ecrits et soutenez les auteurs",
+    subtitle: "Investisseur littéraire",
+    description: "Investissez sur des contenus écrits et soutenez les auteurs",
     features: [
       "Investissement 2-20 EUR",
-      "Portefeuille litteraire",
+      "Portefeuille littéraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],
@@ -159,12 +159,12 @@ const ROLES = [
   },
   {
     title: "Podcasteur",
-    subtitle: "Createur podcast",
-    description: "Deposez vos podcasts, emissions audio et documentaires sonores",
+    subtitle: "Créateur podcast",
+    description: "Déposez vos podcasts, émissions audio et documentaires sonores",
     features: [
-      "Depot de contenu podcast",
-      "Statistiques d'ecoute",
-      "Gestion des episodes",
+      "Dépôt de contenu podcast",
+      "Statistiques d'écoute",
+      "Gestion des épisodes",
       "Retrait des gains",
     ],
     restrictions: [],
@@ -386,15 +386,14 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* Distribution par categorie */}
+        {/* Distribution par catégorie */}
         <section className="py-20 bg-slate-900/15 cinema-section">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
-                Repartition des gains par categorie
-              </h2>
-              <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
-                Chaque categorie de contenu a ses propres regles de repartition et frequences de cloture.
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+              Répartition des gains par catégorie
+            </h2>
+            <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
+              Chaque catégorie de contenu a ses propres règles de répartition et fréquences de clôture.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -477,7 +476,7 @@ export default function HowItWorksPage() {
                     <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">
                       <div className="flex justify-between text-xs"><span className="text-amber-300/70">Primes perf. TOP 10</span><span className="text-white/70">6%</span></div>
                       <div className="flex justify-between text-xs"><span className="text-white/40">Reserve technique</span><span className="text-white/70">2%</span></div>
-                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve evenementielle</span><span className="text-white/70">2%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Réserve événementielle</span><span className="text-white/70">2%</span></div>
                     </div>
                   </CardContent>
                 </Card>

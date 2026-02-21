@@ -81,7 +81,7 @@ const SIDEBAR_ITEMS = [
     roles: ["porter"],
   },
   {
-    label: "Deposer un ecrit",
+    label: "Déposer un écrit",
     href: "/upload/text",
     icon: Upload,
     roles: ["infoporter"],

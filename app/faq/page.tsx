@@ -19,12 +19,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que VISUAL ?",
         answer:
-          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
+          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
       },
       {
         question: "Comment fonctionne l'investissement ?",
         answer:
-          "Vous choisissez un projet qui vous interesse, selectionnez un montant entre 2 EUR et 20 EUR, et devenez investisseur. Si le projet genere des revenus, vous recevez une part proportionnelle a votre investissement.",
+          "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 2 EUR et 20 EUR, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
       },
       {
         question: "VISUAL est-il un jeu de hasard ?",
@@ -47,14 +47,14 @@ const FAQ_CATEGORIES = [
           "Absolument ! Vous pouvez cumuler plusieurs rôles sur VISUAL. Chaque rôle nécessite sa propre caution.",
       },
       {
-        question: "Quels sont les differents profils ?",
+        question: "Quels sont les différents profils ?",
         answer:
-          "VISUAL propose 8 profils : Invite (sans inscription, acces limite aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
+          "VISUAL propose 8 profils : Invité (sans inscription, accès limité aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (créateur vidéo), Infoporteur (créateur écrit), Podcasteur (créateur podcast), Investisseur (investisseur vidéo), Investi-lecteur (investisseur écrit) et Auditeur (investisseur podcast).",
       },
       {
         question: "Puis-je naviguer sans m'inscrire ?",
         answer:
-          "Oui, en tant qu'Invite vous pouvez naviguer librement sur toute la plateforme et acceder aux contenus gratuits ou aux extraits. Cependant, vous ne pouvez ni investir, ni gagner de VISUpoints, ni participer a la communaute. Pour debloquer toutes les fonctionnalites, il vous suffit de creer un compte gratuitement.",
+          "Oui, en tant qu'Invité vous pouvez naviguer librement sur toute la plateforme et accéder aux contenus gratuits ou aux extraits. Cependant, vous ne pouvez ni investir, ni gagner de VISUpoints, ni participer à la communauté. Pour débloquer toutes les fonctionnalités, il vous suffit de créer un compte gratuitement.",
       },
     ],
   },
@@ -64,7 +64,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que la caution ?",
         answer:
-          "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de resiliation de votre compte.",
+          "La caution est un dépôt unique (10 EUR pour les créateurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
       },
       {
         question: "Comment retirer mes gains ?",
@@ -89,17 +89,17 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment déposer un projet ?",
         answer:
-          "Apres avoir paye votre caution de createur (10 EUR), accedez a 'Mon Espace' puis 'Deposer' pour soumettre votre projet video, ecrit ou podcast.",
+          "Après avoir payé votre caution de créateur (10 EUR), accédez à 'Mon Espace' puis 'Déposer' pour soumettre votre projet vidéo, écrit ou podcast.",
       },
       {
         question: "Quels types de contenus puis-je déposer ?",
         answer:
-          "Pour l'audiovisuel : courts-metrages, documentaires, clips musicaux, animations. Pour le litteraire : romans, nouvelles, essais, articles, poesie. Pour les podcasts : emissions audio, documentaires sonores, voix de l'info.",
+          "Pour l'audiovisuel : courts-métrages, documentaires, clips musicaux, animations. Pour le littéraire : romans, nouvelles, essais, articles, poésie. Pour les podcasts : émissions audio, documentaires sonores, voix de l'info.",
       },
       {
         question: "Comment sont calculés mes gains en tant que créateur ?",
         answer:
-          "La repartition depend de la categorie. Films/Videos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VISUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VISUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VISUAL.",
+          "La répartition dépend de la catégorie. Films/Vidéos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VISUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VISUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VISUAL.",
       },
     ],
   },
@@ -114,7 +114,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Quand recevrai-je mes retours ?",
         answer:
-          "Cela depend de la categorie. Films/Videos/Documentaires : a la cloture du cycle (configurable par l'admin). Voix de l'Info : pot quotidien distribue chaque jour a 00h15. Livres : pot mensuel distribue le dernier jour du mois. Podcasts : pot mensuel distribue le dernier jour du mois. Les retours apparaissent dans votre Wallet et peuvent etre retires via Stripe Connect.",
+          "Cela dépend de la catégorie. Films/Vidéos/Documentaires : à la clôture du cycle (configurable par l'admin). Voix de l'Info : pot quotidien distribué chaque jour à 00h15. Livres : pot mensuel distribué le dernier jour du mois. Podcasts : pot mensuel distribué le dernier jour du mois. Les retours apparaissent dans votre Wallet et peuvent être retirés via Stripe Connect.",
       },
       {
         question: "Puis-je perdre mon investissement ?",
@@ -124,22 +124,22 @@ const FAQ_CATEGORIES = [
     ],
   },
   {
-    title: "Invite (sans inscription)",
+    title: "Invité (sans inscription)",
     items: [
       {
-        question: "Que puis-je faire en tant qu'invite ?",
+        question: "Que puis-je faire en tant qu'invité ?",
         answer:
-          "En tant qu'invite, vous pouvez naviguer sur toute la plateforme et consulter les contenus gratuits ainsi que les extraits de contenus payants. Vous ne pouvez pas interagir avec la communaute, investir, ou gagner des recompenses.",
+          "En tant qu'invité, vous pouvez naviguer sur toute la plateforme et consulter les contenus gratuits ainsi que les extraits de contenus payants. Vous ne pouvez pas interagir avec la communauté, investir, ou gagner des récompenses.",
       },
       {
-        question: "Quelles sont les limites du statut d'invite ?",
+        question: "Quelles sont les limites du statut d'invité ?",
         answer:
-          "L'invite ne peut pas : gagner de VISUpoints, ajouter des favoris, commenter, partager, investir, deposer du contenu, ou acceder aux contenus payants en entier. Pour debloquer ces fonctionnalites, creez un compte gratuit.",
+          "L'invité ne peut pas : gagner de VISUpoints, ajouter des favoris, commenter, partager, investir, déposer du contenu, ou accéder aux contenus payants en entier. Pour débloquer ces fonctionnalités, créez un compte gratuit.",
       },
       {
         question: "L'inscription est-elle obligatoire ?",
         answer:
-          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invite. Cependant, pour profiter de l'experience complete de VISUAL (investissements, VISUpoints, communaute), vous devez creer un compte.",
+          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invité. Cependant, pour profiter de l'expérience complète de VISUAL (investissements, VISUpoints, communauté), vous devez créer un compte.",
       },
     ],
   },
@@ -219,10 +219,10 @@ export default function FAQPage() {
         <section className="py-16 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Vous n'avez pas trouvé votre réponse ?
+              {"Vous n'avez pas trouvé votre réponse ?"}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Notre équipe de support est là pour vous aider
+              {"Notre équipe de support est là pour vous aider"}
             </p>
             <Link href="/support/contact">
               <Button

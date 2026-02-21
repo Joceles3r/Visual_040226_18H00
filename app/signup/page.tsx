@@ -14,10 +14,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
 
 const BENEFITS = [
-  "Acces aux contenus gratuits",
+  "Accès aux contenus gratuits",
   "Gagnez des VISUpoints",
-  "Suivez vos createurs preferes",
-  "Devenez Investisseur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
+  "Suivez vos créateurs préférés",
+  "Devenez Investisseur, Auditeur ou Créateur (Porteur, Infoporteur, Podcasteur)",
 ]
 
 export default function SignupPage() {

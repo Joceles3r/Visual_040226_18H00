@@ -341,7 +341,7 @@ export default function UploadPodcastPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="category" className="text-white">
-                        Categorie
+                        Catégorie
                       </Label>
                       <Select
                         value={formData.category}

@@ -120,8 +120,8 @@ function ExploreContent() {
                   <Eye className="h-5 w-5 text-slate-400" />
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm">Vous naviguez en tant qu'invite</p>
-                  <p className="text-white/50 text-xs">Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour debloquer toute la plateforme.</p>
+                  <p className="text-white font-medium text-sm">{"Vous naviguez en tant qu'invité"}</p>
+                  <p className="text-white/50 text-xs">{"Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour débloquer toute la plateforme."}</p>
                 </div>
               </div>
               <Link href="/signup" className="shrink-0">

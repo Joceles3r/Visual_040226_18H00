@@ -122,15 +122,15 @@ export const MY_SPACE_MENU: NavMenu = {
       roles: ["porter"],
     },
 
-    // INFOPORTEUR (ecrit)
+    // INFOPORTEUR (écrit)
     {
-      label: "Deposer un ecrit",
+      label: "Déposer un écrit",
       href: "/upload/text",
       icon: Upload,
       roles: ["infoporter"],
     },
     {
-      label: "Mes ecrits",
+      label: "Mes écrits",
       href: "/dashboard/projects?type=text",
       icon: FileText,
       roles: ["infoporter"],
@@ -138,7 +138,7 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // PODCASTEUR (podcast)
     {
-      label: "Deposer un podcast",
+      label: "Déposer un podcast",
       href: "/upload/podcast",
       icon: Upload,
       roles: ["podcaster"],
@@ -152,15 +152,15 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // INVESTISSEUR (video)
     {
-      label: "Mes investissements (video)",
+      label: "Mes investissements (vidéo)",
       href: "/dashboard/investments?type=video",
       icon: Film,
       roles: ["investor"],
     },
 
-    // INVESTI-LECTEUR (ecrit)
+    // INVESTI-LECTEUR (écrit)
     {
-      label: "Mes investissements (ecrit)",
+      label: "Mes investissements (écrit)",
       href: "/dashboard/investments?type=text",
       icon: FileText,
       roles: ["investireader"],

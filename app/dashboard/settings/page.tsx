@@ -88,7 +88,7 @@ const ROLE_UPGRADES = [
   {
     role: "investireader" as const,
     label: "Investi-lecteur",
-    description: "Investissez dans des contenus litteraires",
+    description: "Investissez dans des contenus littéraires",
     icon: BookOpen,
     color: "sky",
     caution: CAUTION_EUR.investor,
