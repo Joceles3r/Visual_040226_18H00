@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import type { Content } from "@/lib/mock-data"
+import { formatNumber } from "@/lib/utils"
 
 interface ContentCardProps {
   content: Content
@@ -69,7 +70,7 @@ export function ContentCard({ content }: ContentCardProps) {
             ) : (
               <>
                 <BookOpen className="h-3 w-3" />
-                {content.wordCount?.toLocaleString()} mots
+                {content.wordCount ? formatNumber(content.wordCount) : 0} mots
               </>
             )}
           </div>
@@ -92,9 +93,9 @@ export function ContentCard({ content }: ContentCardProps) {
             <Progress value={progressPercent} className="h-2 bg-slate-800" />
             <div className="flex justify-between text-xs text-white/60">
               <span className="text-emerald-400 font-medium">
-                {content.currentInvestment.toLocaleString()}€
+                {formatNumber(content.currentInvestment)}€
               </span>
-              <span>sur {content.investmentGoal.toLocaleString()}€</span>
+              <span>sur {formatNumber(content.investmentGoal)}€</span>
             </div>
           </div>
 

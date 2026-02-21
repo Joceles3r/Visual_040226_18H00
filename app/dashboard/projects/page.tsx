@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { formatNumber } from "@/lib/utils"
 
 const MOCK_PROJECTS = [
   {
@@ -138,10 +139,7 @@ function ProjectsContent() {
               <div>
                 <p className="text-white/60 text-sm">Total collecté</p>
                 <p className="text-2xl font-bold text-emerald-400">
-                  {filteredProjects
-                    .reduce((sum, p) => sum + p.investment, 0)
-                    .toLocaleString()}
-                  €
+                  {formatNumber(filteredProjects.reduce((sum, p) => sum + p.investment, 0))}€
                 </p>
               </div>
             </div>
@@ -237,10 +235,10 @@ function ProjectsContent() {
                     />
                     <div className="flex justify-between text-sm">
                       <span className="text-emerald-400 font-medium">
-                        {project.investment.toLocaleString()}€
+                        {formatNumber(project.investment)}€
                       </span>
                       <span className="text-white/60">
-                        sur {project.goal.toLocaleString()}€
+                        sur {formatNumber(project.goal)}€
                       </span>
                     </div>
                   </div>

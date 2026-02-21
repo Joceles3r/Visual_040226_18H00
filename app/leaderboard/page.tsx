@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { LEADERBOARD_DATA } from "@/lib/mock-data"
+import { formatNumber } from "@/lib/utils"
 
 type LeaderboardTab = "investors" | "creators" | "visupoints"
 
@@ -116,7 +117,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div className="text-right">
                         <div className="text-emerald-400 font-bold">
-                          {user.amount.toLocaleString()}€
+                          {formatNumber(user.amount)}€
                         </div>
                         <div className="text-xs text-white/60">investis</div>
                       </div>
@@ -167,7 +168,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div className="text-right">
                         <div className="text-emerald-400 font-bold">
-                          {user.totalRaised.toLocaleString()}€
+                          {formatNumber(user.totalRaised)}€
                         </div>
                         <div className="text-xs text-white/60">collectés</div>
                       </div>
@@ -215,7 +216,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div className="text-right">
                         <div className="text-amber-400 font-bold">
-                          {user.points.toLocaleString()}
+                          {formatNumber(user.points)}
                         </div>
                         <div className="text-xs text-white/60">points</div>
                       </div>

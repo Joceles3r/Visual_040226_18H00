@@ -24,6 +24,7 @@ import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
+import { formatNumber } from "@/lib/utils"
 
 export default function VideoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -133,7 +134,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     ) : (
                       <>
                         <BookOpen className="h-4 w-4" />
-                        {content.wordCount?.toLocaleString()} mots
+                        {content.wordCount ? formatNumber(content.wordCount) : 0} mots
                       </>
                     )}
                   </span>
@@ -197,10 +198,10 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     />
                     <div className="flex justify-between text-sm">
                       <span className="text-emerald-400 font-bold text-lg">
-                        {content.currentInvestment.toLocaleString()}€
+                        {formatNumber(content.currentInvestment)}€
                       </span>
                       <span className="text-white/60">
-                        sur {content.investmentGoal.toLocaleString()}€
+                        sur {formatNumber(content.investmentGoal)}€
                       </span>
                     </div>
                     <div className="text-center text-white/60 text-sm">
