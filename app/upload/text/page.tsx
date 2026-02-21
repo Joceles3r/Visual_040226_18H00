@@ -78,7 +78,7 @@ export default function UploadTextPage() {
 
   if (!user || !user.roles.includes("infoporter")) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-slate-950">
         <VisualHeader />
         <main className="pt-24 pb-12 cinema-section">
           <div className="container mx-auto px-4">
@@ -109,7 +109,7 @@ export default function UploadTextPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-24 pb-12 cinema-section">

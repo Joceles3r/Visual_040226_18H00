@@ -90,7 +90,7 @@ export default function WalletPage() {
           alert(result.error)
         } else {
           alert(
-            `Caution ${cautionType === "creator" ? "Créateur" : "Investisseur"} : Payment Intent créé. En production, le formulaire de paiement Stripe s'affichera ici.`
+            `Caution ${cautionType === "creator" ? "Createur" : "Investisseur"} : Payment Intent cree. En production, le formulaire de paiement Stripe s'affichera ici.`
           )
           mutate()
         }
@@ -230,7 +230,7 @@ export default function WalletPage() {
                 <Check className="h-6 w-6 text-emerald-400" />
                 <div>
                   <p className="font-medium text-emerald-400">
-                    Compte vérifié
+                    Compte verifie
                   </p>
                   <p className="text-sm text-white/60">
                     Vous pouvez retirer vos gains

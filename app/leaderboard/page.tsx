@@ -14,7 +14,7 @@ export default function LeaderboardPage() {
   const [activeTab, setActiveTab] = useState<LeaderboardTab>("investors")
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-28 pb-20 cinema-section">
@@ -24,12 +24,18 @@ export default function LeaderboardPage() {
             <div className="w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-6">
               <Trophy className="h-8 w-8 text-amber-400" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
               Classement
             </h1>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/25" />
+              <p className="text-xs font-semibold tracking-widest uppercase text-white/45">
+                {"Regarde \u2013 Investis \u2013 Gagne"}
+              </p>
+              <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/25" />
+            </div>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Découvrez les meilleurs investisseurs, créateurs et utilisateurs
-              les plus actifs de VISUAL
+              {"Découvrez les meilleurs investisseurs, créateurs et utilisateurs les plus actifs de VISUAL"}
             </p>
           </div>
 

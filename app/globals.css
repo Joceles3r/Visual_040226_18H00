@@ -3,26 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Natural off-white and warm charcoal tones instead of pure white/black */
 :root {
-  --background: #0d0d0f;
-  --foreground: #e8e4e0;
-  --card: #141416;
-  --card-foreground: #e8e4e0;
-  --popover: #111113;
-  --popover-foreground: #e8e4e0;
+  --background: oklch(0.07 0.015 260);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.12 0.02 260);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.1 0.02 260);
+  --popover-foreground: oklch(0.98 0 0);
   --primary: oklch(0.65 0.19 160);
-  --primary-foreground: #faf8f6;
-  --secondary: #1c1c20;
-  --secondary-foreground: #e8e4e0;
-  --muted: #1c1c20;
-  --muted-foreground: #9b9590;
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.2 0.02 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.2 0.02 260);
+  --muted-foreground: oklch(0.65 0 0);
   --accent: oklch(0.55 0.2 175);
-  --accent-foreground: #faf8f6;
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: #faf8f6;
-  --border: #2a2a30;
-  --input: #1c1c20;
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.02 260);
+  --input: oklch(0.2 0.02 260);
   --ring: oklch(0.65 0.19 160);
   --chart-1: oklch(0.65 0.19 160);
   --chart-2: oklch(0.55 0.2 175);
@@ -30,48 +29,48 @@
   --chart-4: oklch(0.75 0.18 85);
   --chart-5: oklch(0.6 0.22 280);
   --radius: 0.625rem;
-  --sidebar: #101012;
-  --sidebar-foreground: #e8e4e0;
+  --sidebar: oklch(0.1 0.02 260);
+  --sidebar-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.65 0.19 160);
-  --sidebar-primary-foreground: #faf8f6;
-  --sidebar-accent: #1c1c20;
-  --sidebar-accent-foreground: #e8e4e0;
-  --sidebar-border: #2a2a30;
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.2 0.02 260);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0.02 260);
   --sidebar-ring: oklch(0.65 0.19 160);
 }
 
 .dark {
-  --background: #0d0d0f;
-  --foreground: #e8e4e0;
-  --card: #141416;
-  --card-foreground: #e8e4e0;
-  --popover: #111113;
-  --popover-foreground: #e8e4e0;
+  --background: oklch(0.07 0.015 260);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.12 0.02 260);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.1 0.02 260);
+  --popover-foreground: oklch(0.98 0 0);
   --primary: oklch(0.65 0.19 160);
-  --primary-foreground: #faf8f6;
-  --secondary: #1c1c20;
-  --secondary-foreground: #e8e4e0;
-  --muted: #1c1c20;
-  --muted-foreground: #9b9590;
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.2 0.02 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.2 0.02 260);
+  --muted-foreground: oklch(0.65 0 0);
   --accent: oklch(0.55 0.2 175);
-  --accent-foreground: #faf8f6;
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: #faf8f6;
-  --border: #2a2a30;
-  --input: #1c1c20;
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.02 260);
+  --input: oklch(0.2 0.02 260);
   --ring: oklch(0.65 0.19 160);
   --chart-1: oklch(0.65 0.19 160);
   --chart-2: oklch(0.55 0.2 175);
   --chart-3: oklch(0.6 0.22 25);
   --chart-4: oklch(0.75 0.18 85);
   --chart-5: oklch(0.6 0.22 280);
-  --sidebar: #101012;
-  --sidebar-foreground: #e8e4e0;
+  --sidebar: oklch(0.1 0.02 260);
+  --sidebar-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.65 0.19 160);
-  --sidebar-primary-foreground: #faf8f6;
-  --sidebar-accent: #1c1c20;
-  --sidebar-accent-foreground: #e8e4e0;
-  --sidebar-border: #2a2a30;
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.2 0.02 260);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0.02 260);
   --sidebar-ring: oklch(0.65 0.19 160);
 }
 
@@ -114,23 +113,6 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
-  /* Natural white/black overrides — warm off-white, warm charcoal */
-  --color-white: #ede9e5;
-  --color-black: #0a0a0c;
-
-  /* Neutralize slate palette — remove blue cast, pure warm grays */
-  --color-slate-50:  #f7f5f3;
-  --color-slate-100: #edebe8;
-  --color-slate-200: #dbd8d4;
-  --color-slate-300: #b8b4b0;
-  --color-slate-400: #8e8a86;
-  --color-slate-500: #6b6763;
-  --color-slate-600: #4b4845;
-  --color-slate-700: #353230;
-  --color-slate-800: #222020;
-  --color-slate-900: #151414;
-  --color-slate-950: #0c0b0b;
 }
 
 @layer base {
@@ -142,149 +124,76 @@
   }
 }
 
-/* =============================================
-   CINEMA NEON GLOW SYSTEM
-   Fluorescent hot-pink frame, natural tones
-   ============================================= */
+/* ─── Cinema Glow System ─── */
+/* Fluorescent purple border for the "streaming pro" look */
 
 :root {
-  --neon: #ff1a6c;
-  --neon-bright: #ff4d94;
-  --neon-sat: #ff0066;
+  --glow-purple: oklch(0.65 0.28 295);
+  --glow-purple-soft: oklch(0.55 0.22 295);
+  --glow-purple-dim: oklch(0.40 0.18 295);
 }
 
-/* ─── MAIN FRAME ─── */
-.neon-frame {
-  position: relative;
-  border: 3px solid var(--neon);
-  border-radius: 1.25rem;
-  box-shadow:
-    inset 0 0 40px -10px var(--neon),
-    inset 0 0 100px -30px rgba(255, 26, 108, 0.06),
-    0 0 8px 1px var(--neon),
-    0 0 20px 2px rgba(255, 26, 108, 0.55),
-    0 0 40px 4px rgba(255, 26, 108, 0.30),
-    0 0 80px 8px rgba(255, 26, 108, 0.15),
-    0 0 120px 12px rgba(255, 0, 102, 0.08);
-  background: #0d0d0f;
-  overflow: hidden;
-}
-
-.neon-frame::before,
-.neon-frame::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  border-radius: inherit;
-  z-index: 0;
-}
-.neon-frame::before {
-  inset: -2px;
-  background: linear-gradient(135deg, var(--neon) 0%, transparent 18%, transparent 82%, var(--neon-bright) 100%);
-  opacity: 0.25;
-  filter: blur(2px);
-}
-.neon-frame::after {
-  inset: 0;
-  background:
-    radial-gradient(ellipse at top, rgba(255, 26, 108, 0.035) 0%, transparent 55%),
-    radial-gradient(ellipse at bottom, rgba(255, 77, 148, 0.025) 0%, transparent 55%);
-}
-.neon-frame > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Neon breathing */
-@keyframes neon-breathe {
-  0%, 100% {
-    box-shadow:
-      inset 0 0 40px -10px var(--neon),
-      inset 0 0 100px -30px rgba(255, 26, 108, 0.06),
-      0 0 8px 1px var(--neon),
-      0 0 20px 2px rgba(255, 26, 108, 0.55),
-      0 0 40px 4px rgba(255, 26, 108, 0.30),
-      0 0 80px 8px rgba(255, 26, 108, 0.15),
-      0 0 120px 12px rgba(255, 0, 102, 0.08);
-  }
-  50% {
-    box-shadow:
-      inset 0 0 50px -10px var(--neon),
-      inset 0 0 110px -30px rgba(255, 26, 108, 0.08),
-      0 0 10px 2px var(--neon),
-      0 0 28px 4px rgba(255, 26, 108, 0.60),
-      0 0 55px 6px rgba(255, 26, 108, 0.35),
-      0 0 100px 10px rgba(255, 26, 108, 0.18),
-      0 0 150px 16px rgba(255, 0, 102, 0.10);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .neon-frame { animation: neon-breathe 4s ease-in-out infinite; }
-}
-
-/* ─── CARDS ─── */
-.cinema-card {
-  border: 1px solid rgba(255, 26, 108, 0.10) !important;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.02);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.cinema-card:hover {
-  border-color: rgba(255, 26, 108, 0.28) !important;
-  box-shadow:
-    0 0 10px -3px rgba(255, 26, 108, 0.18),
-    0 0 24px -6px rgba(255, 26, 108, 0.08),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
-}
-
-/* ─── KEY PANELS ─── */
+/* Panel glow: thin luminous purple border + subtle outer glow */
 .cinema-panel {
-  border: 1px solid rgba(255, 26, 108, 0.22) !important;
+  border: 1px solid var(--glow-purple-dim);
   box-shadow:
-    0 0 14px -4px rgba(255, 26, 108, 0.20),
-    0 0 35px -8px rgba(255, 26, 108, 0.08);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    0 0 0 0.5px var(--glow-purple-dim),
+    0 0 8px -2px var(--glow-purple-soft),
+    0 0 20px -4px oklch(0.50 0.20 295 / 0.15);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 .cinema-panel:hover {
-  border-color: rgba(255, 26, 108, 0.38) !important;
+  border-color: var(--glow-purple-soft);
   box-shadow:
-    0 0 18px -4px rgba(255, 26, 108, 0.28),
-    0 0 45px -8px rgba(255, 26, 108, 0.12);
+    0 0 0 0.5px var(--glow-purple-soft),
+    0 0 12px -2px var(--glow-purple),
+    0 0 30px -4px oklch(0.55 0.24 295 / 0.20);
 }
 
-/* ─── SECTIONS ─── */
-.cinema-section { }
+/* Section-level glow: very subtle side accents */
+.cinema-section {
+  position: relative;
+}
+.cinema-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid oklch(0.35 0.15 295 / 0.35);
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+}
 
-/* ─── HEADER ─── */
+/* Card glow variant — slightly brighter than section */
+.cinema-card {
+  border: 1px solid oklch(0.30 0.14 295 / 0.50) !important;
+  box-shadow:
+    0 0 6px -2px oklch(0.50 0.20 295 / 0.20),
+    inset 0 0 12px -6px oklch(0.45 0.18 295 / 0.06);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.cinema-card:hover {
+  border-color: oklch(0.50 0.22 295 / 0.60) !important;
+  box-shadow:
+    0 0 10px -2px oklch(0.55 0.24 295 / 0.30),
+    0 0 24px -6px oklch(0.50 0.20 295 / 0.12),
+    inset 0 0 16px -8px oklch(0.45 0.18 295 / 0.08);
+}
+
+/* Header bar glow — bottom edge only */
 .cinema-header-glow {
-  border-bottom: 1px solid rgba(255, 26, 108, 0.28) !important;
-  box-shadow: 0 1px 0 0 rgba(255, 26, 108, 0.12), 0 4px 20px -6px rgba(255, 26, 108, 0.10) !important;
+  box-shadow: 0 1px 0 0 var(--glow-purple-dim), 0 2px 12px -4px oklch(0.50 0.20 295 / 0.20);
 }
 
-/* ─── SIDEBAR ─── */
+/* Sidebar glow — right edge accent */
 .cinema-sidebar {
-  border-right: 1px solid rgba(255, 26, 108, 0.18) !important;
-  box-shadow: 1px 0 18px -6px rgba(255, 26, 108, 0.08);
+  border-right: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
+  box-shadow: 1px 0 12px -4px oklch(0.50 0.20 295 / 0.15);
 }
 
-/* ─── FOOTER ─── */
+/* Footer top-edge glow */
 .cinema-footer {
-  border-top: 1px solid rgba(255, 26, 108, 0.18) !important;
-  box-shadow: 0 -1px 18px -6px rgba(255, 26, 108, 0.08);
-}
-
-/* ─── TEXT GLOW ─── */
-.neon-text {
-  text-shadow:
-    0 0 8px rgba(255, 26, 108, 0.55),
-    0 0 24px rgba(255, 26, 108, 0.25),
-    0 0 48px rgba(255, 0, 102, 0.12);
-}
-
-/* ─── DIVIDERS ─── */
-.neon-divider {
-  height: 1px;
-  border: none;
-  background: linear-gradient(90deg, transparent 0%, var(--neon) 12%, var(--neon-bright) 50%, var(--neon) 88%, transparent 100%);
-  box-shadow: 0 0 10px 0 rgba(255, 26, 108, 0.45), 0 0 24px 0 rgba(255, 26, 108, 0.15);
-  opacity: 0.55;
+  border-top: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
+  box-shadow: 0 -1px 12px -4px oklch(0.50 0.20 295 / 0.15);
 }

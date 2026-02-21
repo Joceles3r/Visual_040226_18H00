@@ -14,10 +14,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
 
 const BENEFITS = [
-  "Accès aux contenus gratuits",
+  "Acces aux contenus gratuits",
   "Gagnez des VISUpoints",
-  "Suivez vos créateurs préférés",
-  "Devenez Investisseur, Auditeur ou Créateur (Porteur, Infoporteur, Podcasteur)",
+  "Suivez vos createurs preferes",
+  "Devenez Investisseur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
 ]
 
 export default function SignupPage() {
@@ -70,28 +70,33 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 py-12">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 py-12">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-slate-950 to-slate-950" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-md">
-        {/* Logo */}
-        <Link href="/" className="flex justify-center mb-8">
-          <span className="text-3xl font-black tracking-tight">
-            <span className="text-red-500">V</span>
-            <span className="text-amber-400">I</span>
-            <span className="text-emerald-400">S</span>
-            <span className="text-teal-400">U</span>
-            <span className="text-sky-400">A</span>
-            <span className="text-indigo-400">L</span>
-          </span>
-        </Link>
+        {/* Logo + Slogan */}
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-flex justify-center">
+            <span className="text-3xl font-black tracking-tight">
+              <span className="text-red-500">V</span>
+              <span className="text-amber-400">I</span>
+              <span className="text-emerald-400">S</span>
+              <span className="text-teal-400">U</span>
+              <span className="text-sky-400">A</span>
+              <span className="text-indigo-400">L</span>
+            </span>
+          </Link>
+          <p className="text-xs font-medium tracking-widest uppercase text-white/40 mt-2">
+            {"Regarde \u2013 Investis \u2013 Gagne"}
+          </p>
+        </div>
 
         <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">
-              Créer un compte
+              {"Créer un compte"}
             </CardTitle>
             <p className="text-white/60 mt-2">
               Rejoignez VISUAL et devenez Visiteur gratuitement

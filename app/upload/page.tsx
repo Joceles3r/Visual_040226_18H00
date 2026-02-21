@@ -69,7 +69,7 @@ export default function UploadVideoPage() {
 
   if (!user || !user.roles.includes("porter")) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-slate-950">
         <VisualHeader />
         <main className="pt-24 pb-12 cinema-section">
           <div className="container mx-auto px-4">
@@ -100,7 +100,7 @@ export default function UploadVideoPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-24 pb-12 cinema-section">

@@ -106,12 +106,21 @@ function MobileMenu({
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="absolute right-0 top-0 bottom-0 w-80 bg-black border-l border-pink-500/20 overflow-y-auto">
-        <div className="p-4 flex justify-between items-center border-b border-white/10">
-          <span className="text-xl font-bold text-white">Menu</span>
-          <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
-            <X className="h-6 w-6" />
-          </Button>
+      <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-b from-slate-900 to-slate-950 border-l border-emerald-500/20 overflow-y-auto">
+        <div className="p-4 border-b border-white/10">
+          <div className="flex justify-between items-center">
+            <span className="text-xl font-bold text-white">Menu</span>
+            <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
+              <X className="h-6 w-6" />
+            </Button>
+          </div>
+          <p className="text-xs font-medium tracking-wider text-white/40 mt-2 text-center">
+            <span className="text-white/55">Regarde</span>
+            <span className="text-emerald-400/50 mx-1.5">{"\u2013"}</span>
+            <span className="text-white/55">Investis</span>
+            <span className="text-emerald-400/50 mx-1.5">{"\u2013"}</span>
+            <span className="text-white/55">Gagne</span>
+          </p>
         </div>
 
         <div className="p-4 space-y-6">
@@ -215,23 +224,37 @@ export function VisualHeader() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl h-20 cinema-header-glow" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-950/98 to-slate-900/98 backdrop-blur-2xl border-b border-white/10 h-20 shadow-xl cinema-header-glow" />
 
         <div className="container mx-auto px-4 md:px-6 h-20 relative flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 z-10 group shrink-0">
-            <div className="relative">
-              <span className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-lg">
-                <span className="text-red-500">V</span>
-                <span className="text-amber-400">I</span>
-                <span className="text-emerald-400">S</span>
-                <span className="text-teal-400">U</span>
-                <span className="text-sky-400">A</span>
-                <span className="text-indigo-400">L</span>
-              </span>
-              <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-emerald-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Logo + Slogan */}
+          <div className="flex items-center gap-3 md:gap-4 z-10 shrink-0">
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <div className="relative">
+                <span className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-lg">
+                  <span className="text-red-500">V</span>
+                  <span className="text-amber-400">I</span>
+                  <span className="text-emerald-400">S</span>
+                  <span className="text-teal-400">U</span>
+                  <span className="text-sky-400">A</span>
+                  <span className="text-indigo-400">L</span>
+                </span>
+                <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-emerald-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </Link>
+
+            {/* Slogan */}
+            <div className="hidden sm:flex items-center">
+              <div className="w-px h-6 bg-white/15 mr-3 md:mr-4" />
+              <p className="text-xs md:text-sm font-medium tracking-wide text-white/50 whitespace-nowrap">
+                <span className="text-white/70">Regarde</span>
+                <span className="text-emerald-400/70 mx-1">{"\u2013"}</span>
+                <span className="text-white/70">Investis</span>
+                <span className="text-emerald-400/70 mx-1">{"\u2013"}</span>
+                <span className="text-white/70">Gagne</span>
+              </p>
             </div>
-          </Link>
+          </div>
 
           {/* Menus principaux (desktop) */}
           <div className="hidden md:flex items-center gap-2 z-10">

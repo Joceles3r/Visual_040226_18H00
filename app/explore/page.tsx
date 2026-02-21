@@ -96,19 +96,24 @@ function ExploreContent() {
   }, [activeFilter, searchQuery, selectedCategory, sortBy])
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-28 pb-20 cinema-section">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Explorer
-            </h1>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-white">
+                Explorer
+              </h1>
+              <span className="hidden sm:block text-white/15">|</span>
+              <p className="text-xs font-semibold tracking-widest uppercase text-white/35">
+                {"Regarde \u2013 Investis \u2013 Gagne"}
+              </p>
+            </div>
             <p className="text-white/60">
-              Découvrez et investissez dans des projets audiovisuels et
-              littéraires uniques
+              {"Découvrez et investissez dans des projets audiovisuels et littéraires uniques"}
             </p>
           </div>
 
@@ -120,8 +125,8 @@ function ExploreContent() {
                   <Eye className="h-5 w-5 text-slate-400" />
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm">{"Vous naviguez en tant qu'invité"}</p>
-                  <p className="text-white/50 text-xs">{"Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour débloquer toute la plateforme."}</p>
+                  <p className="text-white font-medium text-sm">Vous naviguez en tant qu'invite</p>
+                  <p className="text-white/50 text-xs">Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour debloquer toute la plateforme.</p>
                 </div>
               </div>
               <Link href="/signup" className="shrink-0">
@@ -298,7 +303,7 @@ function ExploreContent() {
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen" />}>
+    <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
       <ExploreContent />
     </Suspense>
   )

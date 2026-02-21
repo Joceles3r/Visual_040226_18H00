@@ -81,7 +81,7 @@ const SIDEBAR_ITEMS = [
     roles: ["porter"],
   },
   {
-    label: "Déposer un écrit",
+    label: "Deposer un ecrit",
     href: "/upload/text",
     icon: Upload,
     roles: ["infoporter"],
@@ -109,12 +109,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   )
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <div className="flex pt-20">
         {/* Sidebar */}
-        <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-black/30 min-h-[calc(100vh-5rem)] sticky top-20 cinema-sidebar">
+        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20 cinema-sidebar">
           <nav className="flex-1 p-4 space-y-1">
             {visibleItems.map((item) => {
               const isActive =

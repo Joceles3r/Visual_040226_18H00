@@ -71,11 +71,17 @@ export default function DashboardPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">
-          Bienvenue, {user?.name || "Utilisateur"}
-        </h1>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
+          <h1 className="text-3xl font-bold text-white">
+            Bienvenue, {user?.name || "Utilisateur"}
+          </h1>
+          <span className="hidden sm:block text-white/15">|</span>
+          <p className="text-xs font-semibold tracking-widest uppercase text-white/30">
+            {"Regarde \u2013 Investis \u2013 Gagne"}
+          </p>
+        </div>
         <p className="text-white/60">
-          Voici un aperçu de votre activité sur VISUAL
+          {"Voici un aperçu de votre activité sur VISUAL"}
         </p>
       </div>
 

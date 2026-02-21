@@ -58,7 +58,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
   const isVisitor = isAuthed && !canInvest && !roles.includes("porter") && !roles.includes("infoporter") && !roles.includes("podcaster")
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-24 pb-20 cinema-section">

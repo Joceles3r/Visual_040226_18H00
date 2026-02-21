@@ -15,34 +15,34 @@ const FEATURES = [
   {
     icon: Film,
     title: "Audiovisuel",
-    description: "Courts-métrages, documentaires, clips musicaux et animations",
+    description: "Courts-metrages, documentaires, clips musicaux et animations",
     color: "text-red-400",
     bgColor: "bg-red-500/10",
   },
   {
     icon: FileText,
-    title: "Littéraire",
-    description: "Romans, nouvelles, essais, poésies et articles",
+    title: "Litteraire",
+    description: "Romans, nouvelles, essais, poesies et articles",
     color: "text-amber-400",
     bgColor: "bg-amber-500/10",
   },
   {
     icon: Mic,
     title: "Podcast",
-    description: "Podcasts, voix de l'info, émissions audio et documentaires sonores",
+    description: "Podcasts, voix de l'info, emissions audio et documentaires sonores",
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
   },
   {
     icon: TrendingUp,
     title: "Investissement",
-    description: "De 2 EUR à 20 EUR par projet, recevez des retours sur vos investissements",
+    description: "De 2EUR a 20EUR par projet, recevez des retours sur vos investissements",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
   {
     icon: Shield,
-    title: "Sécurisé",
+    title: "Securise",
     description: "Caution remboursable, paiements via Stripe Connect",
     color: "text-sky-400",
     bgColor: "bg-sky-500/10",
@@ -58,28 +58,38 @@ const STATS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/15 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-slate-950 to-slate-950" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl" />
 
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance">
                 Investissez dans{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 neon-text">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
                   {"l'art de demain"}
                 </span>
               </h1>
+
+              {/* Slogan signature */}
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/30" />
+                <p className="text-sm md:text-base font-semibold tracking-widest uppercase text-white/60">
+                  {"Regarde \u2013 Investis \u2013 Gagne"}
+                </p>
+                <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/30" />
+              </div>
+
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
                 VISUAL est la plateforme d'investissement participatif pour les
-                projets audiovisuels, littéraires et podcasts. Soutenez les créateurs,
-                investissez dans leurs oeuvres, partagez leurs succès.
+                projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
+                investissez dans leurs oeuvres, partagez leurs succes.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -113,10 +123,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <hr className="neon-divider mx-8" />
-
         {/* Stats Section */}
-        <section className="py-12 bg-slate-900/20 cinema-section">
+        <section className="py-12 border-y border-white/10 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {STATS.map((stat) => (
@@ -131,8 +139,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <hr className="neon-divider mx-8" />
-
         {/* Features Section */}
         <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
@@ -142,7 +148,7 @@ export default function HomePage() {
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
                 Explorez et investissez dans des projets audiovisuels,
-                littéraires et podcasts uniques
+                litteraires et podcasts uniques
               </p>
             </div>
 
@@ -169,10 +175,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <hr className="neon-divider mx-8" />
-
         {/* Featured Projects */}
-        <section className="py-20 bg-slate-900/20 cinema-section">
+        <section className="py-20 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center mb-12">
               <div>
@@ -214,8 +218,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <hr className="neon-divider mx-8" />
-
         {/* How It Works Preview */}
         <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
@@ -224,8 +226,8 @@ export default function HomePage() {
                 Comment ça fonctionne ?
               </h2>
               <p className="text-white/60 mb-12 max-w-2xl mx-auto">
-                En quelques étapes simples, devenez acteur de la création
-                audiovisuelle, littéraire et podcast
+                En quelques etapes simples, devenez acteur de la creation
+                audiovisuelle, litteraire et podcast
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -248,7 +250,7 @@ export default function HomePage() {
                     2. Explorez les projets
                   </h3>
                   <p className="text-white/60">
-                    Découvrez des créations uniques en vidéo, écrit et podcast
+                    Decouvrez des creations uniques en video, ecrit et podcast
                   </p>
                 </div>
                 <div className="flex flex-col items-center">
@@ -277,10 +279,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <hr className="neon-divider mx-8" />
-
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 cinema-section">
+        <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Prêt à rejoindre VISUAL ?

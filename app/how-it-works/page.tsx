@@ -24,9 +24,9 @@ import { Footer } from "@/components/footer"
 const STEPS = [
   {
     step: 1,
-    title: "Explorez en tant qu'invité ou créez votre compte",
+    title: "Explorez en tant qu'invite ou creez votre compte",
     description:
-      "Commencez à naviguer immédiatement sur VISUAL en tant qu'invité : découvrez les contenus gratuits et les extraits sans inscription. Pour débloquer toutes les fonctionnalités, inscrivez-vous gratuitement et devenez Visiteur.",
+      "Commencez a naviguer immediatement sur VISUAL en tant qu'invite : decouvrez les contenus gratuits et les extraits sans inscription. Pour debloquer toutes les fonctionnalites, inscrivez-vous gratuitement et devenez Visiteur.",
     icon: User,
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/20",
@@ -35,7 +35,7 @@ const STEPS = [
     step: 2,
     title: "Choisissez votre rôle",
     description:
-      "Devenez Porteur (vidéo), Infoporteur (écrit), Podcasteur (podcast) pour créer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
+      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -44,7 +44,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "10 EUR pour les créateurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable à la résiliation.",
+      "10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable a la resiliation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -62,18 +62,18 @@ const STEPS = [
 
 const ROLES = [
   {
-    title: "Invité",
+    title: "Invite",
     subtitle: "Sans inscription",
     description:
-      "Naviguez librement sur VISUAL sans créer de compte. Accès limité aux contenus gratuits et extraits uniquement.",
+      "Naviguez librement sur VISUAL sans creer de compte. Acces limite aux contenus gratuits et extraits uniquement.",
     features: [
-      "Accès aux contenus gratuits et extraits",
+      "Acces aux contenus gratuits et extraits",
       "Navigation libre sur la plateforme",
     ],
     restrictions: [
       "Aucun VISUpoint",
       "Aucun gain ni investissement",
-      "Pas de participation à la communauté",
+      "Pas de participation a la communaute",
       "Pas de favoris ni de commentaires",
     ],
     caution: null,
@@ -86,7 +86,7 @@ const ROLES = [
     description:
       "Parcourez la plateforme, gagnez des VISUpoints, promouvez VISUAL",
     features: [
-      "Accès aux contenus gratuits",
+      "Acces aux contenus gratuits",
       "VISUpoints et badges",
       "Favoris et suivis",
       "Commentaires et partages",
@@ -98,11 +98,11 @@ const ROLES = [
   },
   {
     title: "Porteur",
-    subtitle: "Créateur audiovisuel",
-    description: "Déposez vos vidéos et visuels, recevez des investissements",
+    subtitle: "Createur audiovisuel",
+    description: "Deposez vos videos et visuels, recevez des investissements",
     features: [
-      "Dépôt de contenu vidéo",
-      "Statistiques détaillées",
+      "Depot de contenu video",
+      "Statistiques detaillees",
       "Gestion des projets",
       "Retrait des gains",
     ],
@@ -128,11 +128,11 @@ const ROLES = [
   },
   {
     title: "Infoporteur",
-    subtitle: "Créateur littéraire",
+    subtitle: "Createur litteraire",
     description:
-      "Publiez vos écrits : articles, histoires, livres, et plus encore",
+      "Publiez vos ecrits : articles, histoires, livres, et plus encore",
     features: [
-      "Dépôt de contenu écrit",
+      "Depot de contenu ecrit",
       "Statistiques de lecture",
       "Gestion des publications",
       "Retrait des gains",
@@ -144,11 +144,11 @@ const ROLES = [
   },
   {
     title: "Investi-lecteur",
-    subtitle: "Investisseur littéraire",
-    description: "Investissez sur des contenus écrits et soutenez les auteurs",
+    subtitle: "Investisseur litteraire",
+    description: "Investissez sur des contenus ecrits et soutenez les auteurs",
     features: [
       "Investissement 2-20 EUR",
-      "Portefeuille littéraire",
+      "Portefeuille litteraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],
@@ -159,12 +159,12 @@ const ROLES = [
   },
   {
     title: "Podcasteur",
-    subtitle: "Créateur podcast",
-    description: "Déposez vos podcasts, émissions audio et documentaires sonores",
+    subtitle: "Createur podcast",
+    description: "Deposez vos podcasts, emissions audio et documentaires sonores",
     features: [
-      "Dépôt de contenu podcast",
-      "Statistiques d'écoute",
-      "Gestion des épisodes",
+      "Depot de contenu podcast",
+      "Statistiques d'ecoute",
+      "Gestion des episodes",
       "Retrait des gains",
     ],
     restrictions: [],
@@ -191,20 +191,25 @@ const ROLES = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
         <section className="container mx-auto px-4 mb-20 cinema-section">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Comment ça marche ?
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+              {"Comment ça marche ?"}
             </h1>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/25" />
+              <p className="text-xs font-semibold tracking-widest uppercase text-white/45">
+                {"Regarde \u2013 Investis \u2013 Gagne"}
+              </p>
+              <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/25" />
+            </div>
             <p className="text-xl text-white/70">
-              VISUAL simplifie l'investissement participatif dans les projets
-              audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la
-              création.
+              {"VISUAL simplifie l'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}
             </p>
           </div>
         </section>
@@ -244,7 +249,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Roles Section */}
-        <section className="py-20 bg-slate-900/15 cinema-section">
+        <section className="py-20 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -323,13 +328,13 @@ export default function HowItWorksPage() {
                   </CardHeader>
                   <CardContent className="text-white/70 space-y-3">
                     <p>
-                      La caution est un dépôt unique qui garantit votre
+                      La caution est un depot unique qui garantit votre
                       engagement sur la plateforme.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>10 EUR pour les créateurs (Porteur, Infoporteur, Podcasteur)</span>
+                        <span>10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -340,7 +345,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Remboursable en cas de résiliation du compte</span>
+                        <span>Remboursable en cas de resiliation du compte</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -361,7 +366,7 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Investissez de 2 EUR à 20 EUR par projet</span>
+                        <span>Investissez de 2 EUR a 20 EUR par projet</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -369,7 +374,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Retraits traités chaque semaine</span>
+                        <span>Retraits traites chaque semaine</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -386,25 +391,26 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* Distribution par catégorie */}
-        <section className="py-20 bg-slate-900/15 cinema-section">
+        {/* Distribution par categorie */}
+        <section className="py-20 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-              Répartition des gains par catégorie
-            </h2>
-            <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
-              {"Chaque catégorie de contenu a ses propres règles de répartition et fréquences de clôture."}
-            </p>
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+                Repartition des gains par categorie
+              </h2>
+              <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
+                Chaque categorie de contenu a ses propres regles de repartition et frequences de cloture.
+              </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Films */}
                 <Card className="bg-slate-900/50 border-white/10">
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
                       <Film className="h-5 w-5 text-red-400" />
-                      Films / Vidéos / Documentaires
+                      Films / Videos / Documentaires
                     </CardTitle>
-                    <p className="text-sm text-white/50">Clôture configurable (admin)</p>
+                    <p className="text-sm text-white/50">Cloture configurable (admin)</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="flex justify-between text-sm"><span className="text-emerald-400">Investisseurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
@@ -464,7 +470,7 @@ export default function HowItWorksPage() {
                     <p className="text-sm text-white/50">Vente 70/30 + Pot mensuel</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <p className="text-xs text-white/40 mb-1">Vente épisode :</p>
+                    <p className="text-xs text-white/40 mb-1">Vente episode :</p>
                     <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteur</span><span className="text-white font-semibold">70%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
@@ -475,11 +481,12 @@ export default function HowItWorksPage() {
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
                     <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">
                       <div className="flex justify-between text-xs"><span className="text-amber-300/70">Primes perf. TOP 10</span><span className="text-white/70">6%</span></div>
-                      <div className="flex justify-between text-xs"><span className="text-white/40">Réserve technique</span><span className="text-white/70">2%</span></div>
-                      <div className="flex justify-between text-xs"><span className="text-white/40">Réserve événementielle</span><span className="text-white/70">2%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve technique</span><span className="text-white/70">2%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve evenementielle</span><span className="text-white/70">2%</span></div>
                     </div>
                   </CardContent>
                 </Card>
+              </div>
             </div>
           </div>
         </section>

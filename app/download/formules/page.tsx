@@ -8,19 +8,19 @@ export default function DownloadFormulesPage() {
   const fileUrl = `/${fileName}`
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
+    <main className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
       <div className="w-full max-w-lg">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
-          Retour a l'accueil
+          {"Retour à l'accueil"}
         </Link>
 
         <div className="bg-slate-900/70 border border-white/10 rounded-2xl p-8 cinema-panel">
-          {/* Icon */}
-          <div className="flex justify-center mb-6">
+          {/* Icon + Slogan */}
+          <div className="flex justify-center mb-4">
             <div className="h-16 w-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
               <FileText className="h-8 w-8 text-emerald-400" />
             </div>
@@ -30,8 +30,11 @@ export default function DownloadFormulesPage() {
           <h1 className="text-2xl font-bold text-white text-center mb-2">
             Document des Formules
           </h1>
+          <p className="text-xs font-semibold tracking-widest uppercase text-white/30 text-center mb-2">
+            {"Regarde \u2013 Investis \u2013 Gagne"}
+          </p>
           <p className="text-white/50 text-center text-sm mb-8">
-            Repartitions completes des gains VISUAL V2
+            {"Répartitions complètes des gains VISUAL V2"}
           </p>
 
           {/* File info */}
@@ -56,12 +59,12 @@ export default function DownloadFormulesPage() {
               Contenu du document
             </p>
             {[
-              "6 profils : Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur, Auditeur",
+              "6 profils : Porteur, Infoporteur, Podcaster, Investisseur, Investi-lecteur, Auditeur",
               "Films/Videos/Docs : 40 / 30 / 7 / 23",
               "Voix de l'Info : vente 70/30 + pot quotidien 60/40",
               "Livres : vente 70/30 + pot mensuel 60/40",
               "Podcasts : vente 70/30 + pot mensuel 40/30/20/10",
-              "Barèmes votes, VISUpoints, cautions, quotas créateurs",
+              "Baremes votes, VISUpoints, cautions, quotas createurs",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />

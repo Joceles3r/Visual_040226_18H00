@@ -70,7 +70,7 @@ export default function UploadPodcastPage() {
 
   if (!user || !user.roles.includes("podcaster")) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-slate-950">
         <VisualHeader />
         <main className="pt-24 pb-12 cinema-section">
           <div className="container mx-auto px-4">
@@ -101,7 +101,7 @@ export default function UploadPodcastPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
       <main className="pt-24 pb-12 cinema-section">
@@ -341,7 +341,7 @@ export default function UploadPodcastPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="category" className="text-white">
-                        Catégorie
+                        Categorie
                       </Label>
                       <Select
                         value={formData.category}
