@@ -394,9 +394,9 @@ export default function HowItWorksPage() {
             </h2>
             <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
               Chaque catégorie de contenu a ses propres règles de répartition et fréquences de clôture.
-              </p>
+            </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Films */}
                 <Card className="bg-slate-900/50 border-white/10">
                   <CardHeader>
@@ -480,7 +480,6 @@ export default function HowItWorksPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
             </div>
           </div>
         </section>
