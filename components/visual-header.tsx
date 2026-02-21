@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { VisualSlogan } from "@/components/visual-slogan"
 import {
   ChevronDown,
   Eye,
@@ -114,13 +115,9 @@ function MobileMenu({
               <X className="h-6 w-6" />
             </Button>
           </div>
-          <p className="text-xs font-medium tracking-wider text-white/40 mt-2 text-center">
-            <span className="text-white/55">Regarde</span>
-            <span className="text-emerald-400/50 mx-1.5">{"\u2013"}</span>
-            <span className="text-white/55">Investis</span>
-            <span className="text-emerald-400/50 mx-1.5">{"\u2013"}</span>
-            <span className="text-white/55">Gagne</span>
-          </p>
+          <div className="mt-2 text-center">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
         </div>
 
         <div className="p-4 space-y-6">
@@ -246,13 +243,7 @@ export function VisualHeader() {
             {/* Slogan */}
             <div className="hidden sm:flex items-center">
               <div className="w-px h-6 bg-white/15 mr-3 md:mr-4" />
-              <p className="text-xs md:text-sm font-medium tracking-wide text-white/50 whitespace-nowrap">
-                <span className="text-white/70">Regarde</span>
-                <span className="text-emerald-400/70 mx-1">{"\u2013"}</span>
-                <span className="text-white/70">Investis</span>
-                <span className="text-emerald-400/70 mx-1">{"\u2013"}</span>
-                <span className="text-white/70">Gagne</span>
-              </p>
+              <VisualSlogan size="sm" opacity="high" />
             </div>
           </div>
 

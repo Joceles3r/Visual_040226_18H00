@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { VisualSlogan } from "@/components/visual-slogan"
 import {
   User,
   Eye,
@@ -201,12 +202,8 @@ export default function HowItWorksPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
               {"Comment ça marche ?"}
             </h1>
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/25" />
-              <p className="text-xs font-semibold tracking-widest uppercase text-white/45">
-                {"Regarde \u2013 Investis \u2013 Gagne"}
-              </p>
-              <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/25" />
+            <div className="mb-6">
+              <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70">
               {"VISUAL simplifie l'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}

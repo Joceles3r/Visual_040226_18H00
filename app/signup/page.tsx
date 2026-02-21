@@ -6,6 +6,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff, Check } from "lucide-react"
+import { VisualSlogan } from "@/components/visual-slogan"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -88,9 +89,9 @@ export default function SignupPage() {
               <span className="text-indigo-400">L</span>
             </span>
           </Link>
-          <p className="text-xs font-medium tracking-widest uppercase text-white/40 mt-2">
-            {"Regarde \u2013 Investis \u2013 Gagne"}
-          </p>
+          <div className="mt-2">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
         </div>
 
         <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">

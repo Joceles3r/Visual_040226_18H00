@@ -2,6 +2,7 @@
 
 import { FileDown, FileText, CheckCircle2, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { VisualSlogan } from "@/components/visual-slogan"
 
 export default function DownloadFormulesPage() {
   const fileName = "VISUAL_Formules_Repartitions_V2.fodt"
@@ -30,9 +31,9 @@ export default function DownloadFormulesPage() {
           <h1 className="text-2xl font-bold text-white text-center mb-2">
             Document des Formules
           </h1>
-          <p className="text-xs font-semibold tracking-widest uppercase text-white/30 text-center mb-2">
-            {"Regarde \u2013 Investis \u2013 Gagne"}
-          </p>
+          <div className="text-center mb-2">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
           <p className="text-white/50 text-center text-sm mb-8">
             {"Répartitions complètes des gains VISUAL V2"}
           </p>

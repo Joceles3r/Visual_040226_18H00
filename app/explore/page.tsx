@@ -6,6 +6,7 @@ import { useState, useMemo, Suspense } from "react"
 import { Search, Film, FileText, Mic, Compass, SlidersHorizontal, Eye, UserPlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { VisualSlogan } from "@/components/visual-slogan"
 import {
   Select,
   SelectContent,
@@ -108,9 +109,7 @@ function ExploreContent() {
                 Explorer
               </h1>
               <span className="hidden sm:block text-white/15">|</span>
-              <p className="text-xs font-semibold tracking-widest uppercase text-white/35">
-                {"Regarde \u2013 Investis \u2013 Gagne"}
-              </p>
+              <VisualSlogan size="xs" opacity="medium" />
             </div>
             <p className="text-white/60">
               {"Découvrez et investissez dans des projets audiovisuels et littéraires uniques"}

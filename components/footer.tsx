@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { VisualSlogan } from "@/components/visual-slogan"
 
 export function Footer() {
   return (
@@ -17,9 +18,9 @@ export function Footer() {
                 <span className="text-indigo-400">L</span>
               </span>
             </Link>
-            <p className="text-xs font-medium tracking-widest uppercase text-white/35 mb-3">
-              {"Regarde \u2013 Investis \u2013 Gagne"}
-            </p>
+            <div className="mb-3">
+              <VisualSlogan size="xs" opacity="medium" />
+            </div>
             <p className="text-white/60 max-w-md">
               {"La plateforme d'investissement participatif pour les projets audiovisuels, littéraires et podcasts. Soutenez les créateurs, investissez dans l'art."}
             </p>

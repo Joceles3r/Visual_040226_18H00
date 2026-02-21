@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
+import { VisualSlogan } from "@/components/visual-slogan"
 import { ContentCard } from "@/components/content-card"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 
@@ -78,12 +79,8 @@ export default function HomePage() {
               </h1>
 
               {/* Slogan signature */}
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/30" />
-                <p className="text-sm md:text-base font-semibold tracking-widest uppercase text-white/60">
-                  {"Regarde \u2013 Investis \u2013 Gagne"}
-                </p>
-                <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/30" />
+              <div className="mb-8">
+                <VisualSlogan size="base" opacity="high" withLines />
               </div>
 
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">

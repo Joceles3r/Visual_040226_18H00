@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
+import { VisualSlogan } from "@/components/visual-slogan"
 import { LEADERBOARD_DATA } from "@/lib/mock-data"
 
 type LeaderboardTab = "investors" | "creators" | "visupoints"
@@ -27,12 +28,8 @@ export default function LeaderboardPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
               Classement
             </h1>
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-white/25" />
-              <p className="text-xs font-semibold tracking-widest uppercase text-white/45">
-                {"Regarde \u2013 Investis \u2013 Gagne"}
-              </p>
-              <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-white/25" />
+            <div className="mb-5">
+              <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               {"Découvrez les meilleurs investisseurs, créateurs et utilisateurs les plus actifs de VISUAL"}
