@@ -191,7 +191,7 @@ const ROLES = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <main className="pt-28 pb-20">
@@ -244,7 +244,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Roles Section */}
-        <section className="py-20 bg-slate-900/30 cinema-section">
+        <section className="py-20 bg-slate-900/15 cinema-section">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -387,7 +387,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Distribution par categorie */}
-        <section className="py-20 bg-slate-900/30 cinema-section">
+        <section className="py-20 bg-slate-900/15 cinema-section">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">

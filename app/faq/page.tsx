@@ -167,7 +167,7 @@ const FAQ_CATEGORIES = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <main className="pt-28 pb-20 cinema-section">

@@ -31,7 +31,7 @@ export default function SupportMailboxPage() {
 
   if (!isAuthed) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-24 px-4 md:px-6">
+      <main className="min-h-screen pt-24 px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center py-20">
           <Inbox className="h-16 w-16 text-white/20 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-white mb-2">{"Boîte interne VISUAL"}</h1>
@@ -47,7 +47,7 @@ export default function SupportMailboxPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-24 px-4 md:px-6 pb-16 cinema-section">
+    <main className="min-h-screen pt-24 px-4 md:px-6 pb-16 cinema-section">
       <div className="max-w-3xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">

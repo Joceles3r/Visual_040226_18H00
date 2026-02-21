@@ -58,22 +58,22 @@ const STATS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-slate-950 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/15 via-transparent to-transparent" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl" />
 
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
                 Investissez dans{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  l'art de demain
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 neon-text">
+                  {"l'art de demain"}
                 </span>
               </h1>
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
@@ -113,8 +113,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* Stats Section */}
-        <section className="py-12 border-y border-white/10 bg-slate-900/30 cinema-section">
+        <section className="py-12 bg-slate-900/20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {STATS.map((stat) => (
@@ -128,6 +130,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <hr className="neon-divider mx-8" />
 
         {/* Features Section */}
         <section className="py-20 cinema-section">
@@ -165,8 +169,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* Featured Projects */}
-        <section className="py-20 bg-slate-900/30 cinema-section">
+        <section className="py-20 bg-slate-900/20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center mb-12">
               <div>
@@ -207,6 +213,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <hr className="neon-divider mx-8" />
 
         {/* How It Works Preview */}
         <section className="py-20 cinema-section">
@@ -269,8 +277,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30 cinema-section">
+        <section className="py-20 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Prêt à rejoindre VISUAL ?

@@ -106,7 +106,7 @@ function MobileMenu({
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-b from-slate-900 to-slate-950 border-l border-emerald-500/20 overflow-y-auto">
+      <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-b from-slate-900 to-black border-l border-pink-500/20 overflow-y-auto">
         <div className="p-4 flex justify-between items-center border-b border-white/10">
           <span className="text-xl font-bold text-white">Menu</span>
           <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
@@ -215,7 +215,7 @@ export function VisualHeader() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-950/98 to-slate-900/98 backdrop-blur-2xl border-b border-white/10 h-20 shadow-xl cinema-header-glow" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-slate-950/95 to-black/95 backdrop-blur-2xl h-20 cinema-header-glow" />
 
         <div className="container mx-auto px-4 md:px-6 h-20 relative flex items-center justify-between gap-4">
           {/* Logo */}

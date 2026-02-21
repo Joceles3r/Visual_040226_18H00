@@ -96,7 +96,7 @@ function ExploreContent() {
   }, [activeFilter, searchQuery, selectedCategory, sortBy])
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <main className="pt-28 pb-20 cinema-section">
@@ -298,7 +298,7 @@ function ExploreContent() {
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <ExploreContent />
     </Suspense>
   )

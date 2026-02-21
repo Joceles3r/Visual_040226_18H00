@@ -8,7 +8,7 @@ export default function DownloadFormulesPage() {
   const fileUrl = `/${fileName}`
 
   return (
-    <main className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+    <main className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-lg">
         <Link
           href="/"

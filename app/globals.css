@@ -124,76 +124,184 @@
   }
 }
 
-/* ─── Cinema Glow System ─── */
-/* Fluorescent purple border for the "streaming pro" look */
+/* =============================================
+   CINEMA NEON GLOW SYSTEM — Hot Pink / Magenta
+   Based on streaming-pro mockup reference
+   ============================================= */
 
 :root {
-  --glow-purple: oklch(0.65 0.28 295);
-  --glow-purple-soft: oklch(0.55 0.22 295);
-  --glow-purple-dim: oklch(0.40 0.18 295);
+  /* Primary neon pink — the hero glow */
+  --neon-pink: #ff2d78;
+  --neon-pink-bright: #ff5da0;
+  --neon-magenta: #e040a0;
+  --neon-dim: #a02060;
+  --neon-deep: #601040;
+  /* Secondary purple undertone for depth */
+  --neon-purple: #8020c0;
+  --neon-purple-dim: #4a1070;
 }
 
-/* Panel glow: thin luminous purple border + subtle outer glow */
-.cinema-panel {
-  border: 1px solid var(--glow-purple-dim);
-  box-shadow:
-    0 0 0 0.5px var(--glow-purple-dim),
-    0 0 8px -2px var(--glow-purple-soft),
-    0 0 20px -4px oklch(0.50 0.20 295 / 0.15);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
-}
-.cinema-panel:hover {
-  border-color: var(--glow-purple-soft);
-  box-shadow:
-    0 0 0 0.5px var(--glow-purple-soft),
-    0 0 12px -2px var(--glow-purple),
-    0 0 30px -4px oklch(0.55 0.24 295 / 0.20);
-}
+/* ─── MAIN FRAME GLOW ───
+   The signature effect: a luminous neon border around the entire viewport
+   Creates the "cinema screen" / "streaming window" look from the mockup */
 
-/* Section-level glow: very subtle side accents */
-.cinema-section {
+.neon-frame {
   position: relative;
+  border: 2px solid var(--neon-pink);
+  border-radius: 1.25rem;
+  box-shadow:
+    /* Inner glow */
+    inset 0 0 30px -8px var(--neon-pink),
+    inset 0 0 80px -20px rgba(255, 45, 120, 0.08),
+    /* Border glow layers — creates the fluorescent tube effect */
+    0 0 6px 0 var(--neon-pink),
+    0 0 15px 1px rgba(255, 45, 120, 0.50),
+    0 0 30px 2px rgba(255, 45, 120, 0.25),
+    0 0 60px 4px rgba(224, 64, 160, 0.15),
+    0 0 100px 8px rgba(128, 32, 192, 0.08);
+  background: linear-gradient(180deg, rgba(10, 2, 15, 0.98) 0%, rgba(5, 1, 10, 0.99) 100%);
+  overflow: hidden;
 }
-.cinema-section::before {
+
+/* Animated corner accents — subtle pulsing glow */
+.neon-frame::before,
+.neon-frame::after {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid oklch(0.35 0.15 295 / 0.35);
   pointer-events: none;
-  mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  border-radius: inherit;
+  z-index: 0;
+}
+.neon-frame::before {
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    var(--neon-pink) 0%,
+    transparent 20%,
+    transparent 80%,
+    var(--neon-magenta) 100%
+  );
+  opacity: 0.3;
+  filter: blur(1px);
+}
+.neon-frame::after {
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(255, 45, 120, 0.04) 0%, transparent 60%),
+              radial-gradient(ellipse at bottom, rgba(224, 64, 160, 0.03) 0%, transparent 60%);
+}
+.neon-frame > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* Card glow variant — slightly brighter than section */
+/* Subtle breathing animation — like a real neon tube */
+@keyframes neon-breathe {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 30px -8px var(--neon-pink),
+      inset 0 0 80px -20px rgba(255, 45, 120, 0.08),
+      0 0 6px 0 var(--neon-pink),
+      0 0 15px 1px rgba(255, 45, 120, 0.50),
+      0 0 30px 2px rgba(255, 45, 120, 0.25),
+      0 0 60px 4px rgba(224, 64, 160, 0.15),
+      0 0 100px 8px rgba(128, 32, 192, 0.08);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 35px -8px var(--neon-pink),
+      inset 0 0 90px -20px rgba(255, 45, 120, 0.10),
+      0 0 8px 0 var(--neon-pink),
+      0 0 20px 2px rgba(255, 45, 120, 0.55),
+      0 0 40px 4px rgba(255, 45, 120, 0.30),
+      0 0 70px 6px rgba(224, 64, 160, 0.18),
+      0 0 120px 10px rgba(128, 32, 192, 0.10);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .neon-frame {
+    animation: neon-breathe 4s ease-in-out infinite;
+  }
+}
+
+/* ─── CARD GLOW — Subtle inner glow for cards ─── */
 .cinema-card {
-  border: 1px solid oklch(0.30 0.14 295 / 0.50) !important;
+  border: 1px solid rgba(255, 45, 120, 0.12) !important;
   box-shadow:
-    0 0 6px -2px oklch(0.50 0.20 295 / 0.20),
-    inset 0 0 12px -6px oklch(0.45 0.18 295 / 0.06);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    0 0 0 0.5px rgba(255, 45, 120, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .cinema-card:hover {
-  border-color: oklch(0.50 0.22 295 / 0.60) !important;
+  border-color: rgba(255, 45, 120, 0.30) !important;
   box-shadow:
-    0 0 10px -2px oklch(0.55 0.24 295 / 0.30),
-    0 0 24px -6px oklch(0.50 0.20 295 / 0.12),
-    inset 0 0 16px -8px oklch(0.45 0.18 295 / 0.08);
+    0 0 8px -2px rgba(255, 45, 120, 0.18),
+    0 0 20px -4px rgba(255, 45, 120, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Header bar glow — bottom edge only */
+/* ─── PANEL GLOW — Stronger glow for key panels (video player, auth forms) ─── */
+.cinema-panel {
+  border: 1px solid rgba(255, 45, 120, 0.25) !important;
+  box-shadow:
+    0 0 12px -3px rgba(255, 45, 120, 0.20),
+    0 0 30px -6px rgba(255, 45, 120, 0.10),
+    inset 0 0 20px -10px rgba(255, 45, 120, 0.05);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.cinema-panel:hover {
+  border-color: rgba(255, 45, 120, 0.40) !important;
+  box-shadow:
+    0 0 16px -3px rgba(255, 45, 120, 0.30),
+    0 0 40px -8px rgba(255, 45, 120, 0.15),
+    inset 0 0 24px -10px rgba(255, 45, 120, 0.08);
+}
+
+/* ─── SECTION — Minimal, no pseudo-elements that break layout ─── */
+.cinema-section {
+  /* Just a marker class; the frame handles the main glow */
+}
+
+/* ─── HEADER GLOW — Hot pink bottom edge ─── */
 .cinema-header-glow {
-  box-shadow: 0 1px 0 0 var(--glow-purple-dim), 0 2px 12px -4px oklch(0.50 0.20 295 / 0.20);
+  border-bottom: 1px solid rgba(255, 45, 120, 0.30) !important;
+  box-shadow:
+    0 1px 0 0 rgba(255, 45, 120, 0.15),
+    0 4px 16px -4px rgba(255, 45, 120, 0.12) !important;
 }
 
-/* Sidebar glow — right edge accent */
+/* ─── SIDEBAR GLOW — Right edge neon accent ─── */
 .cinema-sidebar {
-  border-right: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
-  box-shadow: 1px 0 12px -4px oklch(0.50 0.20 295 / 0.15);
+  border-right: 1px solid rgba(255, 45, 120, 0.20) !important;
+  box-shadow: 1px 0 16px -4px rgba(255, 45, 120, 0.10);
 }
 
-/* Footer top-edge glow */
+/* ─── FOOTER GLOW — Top edge neon accent ─── */
 .cinema-footer {
-  border-top: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
-  box-shadow: 0 -1px 12px -4px oklch(0.50 0.20 295 / 0.15);
+  border-top: 1px solid rgba(255, 45, 120, 0.20) !important;
+  box-shadow: 0 -1px 16px -4px rgba(255, 45, 120, 0.10);
+}
+
+/* ─── NEON TEXT GLOW — For special headings ─── */
+.neon-text {
+  text-shadow:
+    0 0 7px rgba(255, 45, 120, 0.60),
+    0 0 20px rgba(255, 45, 120, 0.30),
+    0 0 40px rgba(224, 64, 160, 0.15);
+}
+
+/* ─── NEON DIVIDER — Horizontal rule with glow ─── */
+.neon-divider {
+  height: 1px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-pink) 15%,
+    var(--neon-pink-bright) 50%,
+    var(--neon-pink) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px 0 rgba(255, 45, 120, 0.40), 0 0 20px 0 rgba(255, 45, 120, 0.15);
+  opacity: 0.6;
 }

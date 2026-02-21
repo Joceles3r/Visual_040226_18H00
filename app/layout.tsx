@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
+import { NeonFrame } from "@/components/neon-frame"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0f172a",
+  themeColor: "#050108",
   width: "device-width",
   initialScale: 1,
 }
@@ -35,8 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="dark">
-      <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${inter.className} antialiased bg-black text-white`}>
+        <AuthProvider>
+          <NeonFrame>
+            {children}
+          </NeonFrame>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
