@@ -114,7 +114,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
       <div className="flex pt-20">
         {/* Sidebar */}
-        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20">
+        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20 cinema-sidebar">
           <nav className="flex-1 p-4 space-y-1">
             {visibleItems.map((item) => {
               const isActive =
@@ -140,7 +140,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-6 lg:p-8 cinema-section">{children}</main>
       </div>
     </div>
   )

@@ -196,7 +196,7 @@ export default function HowItWorksPage() {
 
       <main className="pt-28 pb-20">
         {/* Hero */}
-        <section className="container mx-auto px-4 mb-20">
+        <section className="container mx-auto px-4 mb-20 cinema-section">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Comment ça marche ?
@@ -244,7 +244,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Roles Section */}
-        <section className="py-20 bg-slate-900/30">
+        <section className="py-20 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -306,7 +306,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Investment Info */}
-        <section className="py-20">
+        <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
@@ -387,7 +387,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Distribution par categorie */}
-        <section className="py-20 bg-slate-900/30">
+        <section className="py-20 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
@@ -487,7 +487,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30">
+        <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Prêt à commencer ?

@@ -18,7 +18,7 @@ export default function DownloadFormulesPage() {
           Retour a l'accueil
         </Link>
 
-        <div className="bg-slate-900/70 border border-white/10 rounded-2xl p-8">
+        <div className="bg-slate-900/70 border border-white/10 rounded-2xl p-8 cinema-panel">
           {/* Icon */}
           <div className="flex justify-center mb-6">
             <div className="h-16 w-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">

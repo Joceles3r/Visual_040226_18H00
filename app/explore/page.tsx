@@ -99,7 +99,7 @@ function ExploreContent() {
     <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
-      <main className="pt-28 pb-20">
+      <main className="pt-28 pb-20 cinema-section">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">

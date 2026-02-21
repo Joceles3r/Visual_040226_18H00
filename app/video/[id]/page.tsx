@@ -61,7 +61,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
     <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
-      <main className="pt-24 pb-20">
+      <main className="pt-24 pb-20 cinema-section">
         <div className="container mx-auto px-4">
           {/* Back button */}
           <Link
@@ -76,7 +76,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
             {/* Main content */}
             <div className="lg:col-span-2 space-y-6">
               {/* Video/Image player */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 cinema-panel">
                 <Image
                   src={content.coverUrl || "/placeholder.svg"}
                   alt={content.title}

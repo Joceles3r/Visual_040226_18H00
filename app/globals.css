@@ -123,3 +123,77 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ─── Cinema Glow System ─── */
+/* Fluorescent purple border for the "streaming pro" look */
+
+:root {
+  --glow-purple: oklch(0.65 0.28 295);
+  --glow-purple-soft: oklch(0.55 0.22 295);
+  --glow-purple-dim: oklch(0.40 0.18 295);
+}
+
+/* Panel glow: thin luminous purple border + subtle outer glow */
+.cinema-panel {
+  border: 1px solid var(--glow-purple-dim);
+  box-shadow:
+    0 0 0 0.5px var(--glow-purple-dim),
+    0 0 8px -2px var(--glow-purple-soft),
+    0 0 20px -4px oklch(0.50 0.20 295 / 0.15);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.cinema-panel:hover {
+  border-color: var(--glow-purple-soft);
+  box-shadow:
+    0 0 0 0.5px var(--glow-purple-soft),
+    0 0 12px -2px var(--glow-purple),
+    0 0 30px -4px oklch(0.55 0.24 295 / 0.20);
+}
+
+/* Section-level glow: very subtle side accents */
+.cinema-section {
+  position: relative;
+}
+.cinema-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid oklch(0.35 0.15 295 / 0.35);
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* Card glow variant — slightly brighter than section */
+.cinema-card {
+  border: 1px solid oklch(0.30 0.14 295 / 0.50) !important;
+  box-shadow:
+    0 0 6px -2px oklch(0.50 0.20 295 / 0.20),
+    inset 0 0 12px -6px oklch(0.45 0.18 295 / 0.06);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.cinema-card:hover {
+  border-color: oklch(0.50 0.22 295 / 0.60) !important;
+  box-shadow:
+    0 0 10px -2px oklch(0.55 0.24 295 / 0.30),
+    0 0 24px -6px oklch(0.50 0.20 295 / 0.12),
+    inset 0 0 16px -8px oklch(0.45 0.18 295 / 0.08);
+}
+
+/* Header bar glow — bottom edge only */
+.cinema-header-glow {
+  box-shadow: 0 1px 0 0 var(--glow-purple-dim), 0 2px 12px -4px oklch(0.50 0.20 295 / 0.20);
+}
+
+/* Sidebar glow — right edge accent */
+.cinema-sidebar {
+  border-right: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
+  box-shadow: 1px 0 12px -4px oklch(0.50 0.20 295 / 0.15);
+}
+
+/* Footer top-edge glow */
+.cinema-footer {
+  border-top: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
+  box-shadow: 0 -1px 12px -4px oklch(0.50 0.20 295 / 0.15);
+}

@@ -170,7 +170,7 @@ export default function FAQPage() {
     <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
-      <main className="pt-28 pb-20">
+      <main className="pt-28 pb-20 cinema-section">
         {/* Hero */}
         <section className="container mx-auto px-4 mb-16">
           <div className="max-w-3xl mx-auto text-center">
@@ -216,7 +216,7 @@ export default function FAQPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 bg-slate-900/30">
+        <section className="py-16 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Vous n'avez pas trouvé votre réponse ?

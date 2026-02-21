@@ -80,7 +80,7 @@ export default function UploadTextPage() {
     return (
       <div className="min-h-screen bg-slate-950">
         <VisualHeader />
-        <main className="pt-24 pb-12">
+        <main className="pt-24 pb-12 cinema-section">
           <div className="container mx-auto px-4">
             <Card className="max-w-lg mx-auto bg-slate-900/50 border-white/10">
               <CardContent className="p-8 text-center">
@@ -112,7 +112,7 @@ export default function UploadTextPage() {
     <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
-      <main className="pt-24 pb-12">
+      <main className="pt-24 pb-12 cinema-section">
         <div className="container mx-auto px-4">
           {/* Back button */}
           <Link

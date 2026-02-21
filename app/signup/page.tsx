@@ -88,7 +88,7 @@ export default function SignupPage() {
           </span>
         </Link>
 
-        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl">
+        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">
               Créer un compte

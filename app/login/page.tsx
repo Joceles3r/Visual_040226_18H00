@@ -57,7 +57,7 @@ export default function LoginPage() {
           </span>
         </Link>
 
-        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl">
+        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">Connexion</CardTitle>
             <p className="text-white/60 mt-2">

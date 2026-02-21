@@ -30,7 +30,7 @@ export function ContentCard({ content }: ContentCardProps) {
 
   return (
     <Link href={`/video/${content.id}`}>
-      <Card className="group overflow-hidden bg-slate-900/50 border-white/10 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-900/20 h-full">
+      <Card className="group overflow-hidden bg-slate-900/50 border-white/10 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-900/20 h-full cinema-card">
         <div className="relative aspect-video overflow-hidden">
           <Image
             src={content.coverUrl || "/placeholder.svg"}
