@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   ChevronDown,
+  Eye,
   LogIn,
   UserPlus,
   Shield,
@@ -85,12 +86,14 @@ function MobileMenu({
   onClose,
   roles,
   isAuthed,
+  isAdmin,
   onLogout,
 }: {
   isOpen: boolean
   onClose: () => void
   roles: VisualRole[]
   isAuthed: boolean
+  isAdmin: boolean
   onLogout: () => void
 }) {
   if (!isOpen) return null
@@ -103,7 +106,7 @@ function MobileMenu({
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-b from-slate-900 to-slate-950 border-l border-emerald-500/20 overflow-y-auto">
+      <div className="absolute right-0 top-0 bottom-0 w-80 bg-black border-l border-pink-500/20 overflow-y-auto">
         <div className="p-4 flex justify-between items-center border-b border-white/10">
           <span className="text-xl font-bold text-white">Menu</span>
           <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
@@ -141,7 +144,7 @@ function MobileMenu({
             )
           })}
 
-          {roles.includes("admin") && (
+          {isAdmin && (
             <div>
               <h3 className="text-amber-400 font-bold mb-3">Administration</h3>
               <Link
@@ -169,6 +172,10 @@ function MobileMenu({
               </Button>
             ) : (
               <>
+                <div className="flex items-center gap-2 text-slate-400 text-sm mb-2 justify-center">
+                  <Eye className="h-4 w-4" />
+                  <span>Vous naviguez en tant qu'invite</span>
+                </div>
                 <Link href="/login" onClick={onClose} className="block">
                   <Button
                     variant="outline"
@@ -194,7 +201,7 @@ function MobileMenu({
 }
 
 export function VisualHeader() {
-  const { user, isAuthed, roles, logout } = useAuth()
+  const { user, isAuthed, isAdmin, roles, logout } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const effectiveRoles = useMemo<VisualRole[]>(() => {
@@ -203,12 +210,12 @@ export function VisualHeader() {
     return r.includes("guest") ? r.filter((x) => x !== "guest") : r
   }, [isAuthed, roles])
 
-  const isAdmin = effectiveRoles.includes("admin")
+  // isAdmin vient du auth context, pas des roles de profil
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-950/98 to-slate-900/98 backdrop-blur-2xl border-b border-white/10 h-20 shadow-xl" />
+        <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl h-20 cinema-header-glow" />
 
         <div className="container mx-auto px-4 md:px-6 h-20 relative flex items-center justify-between gap-4">
           {/* Logo */}
@@ -269,7 +276,7 @@ export function VisualHeader() {
               <>
                 {/* User info desktop */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-white/70 text-sm">
+                  <span className="text-white/70 text-sm truncate max-w-[120px]">
                     {user?.name}
                   </span>
                   <Button
@@ -284,6 +291,10 @@ export function VisualHeader() {
               </>
             ) : (
               <>
+                <div className="hidden md:flex items-center gap-1.5 text-slate-400 text-xs mr-1">
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>Invite</span>
+                </div>
                 <Link href="/login" className="shrink-0 hidden md:block">
                   <Button
                     variant="ghost"
@@ -321,6 +332,7 @@ export function VisualHeader() {
         onClose={() => setMobileMenuOpen(false)}
         roles={effectiveRoles}
         isAuthed={isAuthed}
+        isAdmin={isAdmin}
         onLogout={logout}
       />
     </>

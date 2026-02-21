@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document
+  xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+  xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+  xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+  xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
+  xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
+  xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
+  office:version="1.3"
+  office:mimetype="application/vnd.oasis.opendocument.text">
+
+  <office:automatic-styles>
+    <style:style style:name="Bold" style:family="text">
+      <style:text-properties fo:font-weight="bold" fo:font-size="11pt"/>
+    </style:style>
+    <style:style style:name="TableStyle" style:family="table">
+      <style:table-properties style:width="17cm" table:align="margins"/>
+    </style:style>
+    <style:style style:name="TableHeader" style:family="table-cell">
+      <style:table-cell-properties fo:padding="0.15cm" fo:border="0.5pt solid #000000" fo:background-color="#E8E8E8"/>
+    </style:style>
+    <style:style style:name="TableCell" style:family="table-cell">
+      <style:table-cell-properties fo:padding="0.15cm" fo:border="0.5pt solid #000000"/>
+    </style:style>
+  </office:automatic-styles>
+
+  <office:body>
+    <office:text>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TITRE -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">VISUAL - Formules Mathematiques et Repartitions des Gains</text:h>
+<text:p text:style-name="Standard">Version V2 - 2026-02-20</text:p>
+<text:p text:style-name="Standard">Plateforme : VISUAL - &quot;Regarde-Investis-Gagne&quot;</text:p>
+<text:p text:style-name="Standard">Reference interne : 100 VISUpoints = 1 EUR</text:p>
+<text:p text:style-name="Standard">Hors VSLS et Petites Annonces (non deployes en V1)</text:p>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SOMMAIRE -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">SOMMAIRE</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">1. Les 6 Profils VISUAL</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">2. Bareme Commun Investisseurs (EUR -&gt; Votes)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">3. VISUpoints - Bareme Fidelite et Conversion</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">4. Cautions</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">5. Films / Videos / Documentaires - Cloture 40/30/7/23</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">6. Voix de l'Info - Vente 70/30 + Pot quotidien 60/40</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">7. Livres - Vente 70/30 + Pot mensuel 60/40</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">8. Podcasts - Vente 70/30 + Pot mensuel 40/30/20/10</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">9. Quotas Createurs (mise en ligne Bunny.net)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">10. Coefficient d'Engagement et Classement TOP 10</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">11. Regles Transverses (Arrondis, Anti-Fraude, RGPD)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">12. API et Settlement (Reference Technique)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">13. Check-list Deploiement</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 1. LES 6 PROFILS -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">1. Les 6 Profils VISUAL</text:h>
+<text:p text:style-name="Standard">VISUAL distingue 6 profils actifs (hors Visiteur et Guest) repartis en deux familles :</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Createurs (mettent un projet en ligne)</text:h>
+<table:table table:name="ProfilsCreateurs" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Profil</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Identifiant systeme</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Categorie de contenu</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Caution</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Revenu principal</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Porteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">porter</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Films / Videos / Documentaires</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30% du pot (TOP 10) + Ventes</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Infoporteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">infoporter</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Voix de l'Info (articles) + Livres</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">70% vente unitaire + 60% du pot (TOP 10)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcaster (Podcasteur)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">podcaster</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcasts (episodes audio)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">70% vente episode + 40% du pot mensuel</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Investisseurs (investissent dans un projet)</text:h>
+<table:table table:name="ProfilsInvestisseurs" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Profil</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Identifiant systeme</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Categorie d'investissement</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Caution</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Revenu principal</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">investor</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Films / Videos / Documentaires</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">20 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40% du pot (TOP 10) + 7% (rangs 11-100)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investi-lecteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">investireader</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Voix de l'Info + Livres</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">20 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40% du pot (Lecteurs / Investi-lecteurs gagnants)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Auditeur (Listener)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">listener</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcasts</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">20 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30% du pot mensuel (pro-rata votes x listen_score)</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 2. BAREME COMMUN -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">2. Bareme Commun Investisseurs (EUR -&gt; Votes)</text:h>
+<text:p text:style-name="Standard">Application : Toutes categories (Films, Voix de l'Info, Livres, Podcasts).</text:p>
+<table:table table:name="BaremeVotes" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Montant (EUR)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">5</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">6</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">8</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">12</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">15</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">20</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Votes</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">5</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">6</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">7</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">8</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">9</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 3. VISUPOINTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">3. VISUpoints - Bareme Fidelite et Conversion</text:h>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Bareme d'acquisition</text:h>
+<table:table table:name="BaremeVisupoints" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Montant (EUR)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">5</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">6</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">8</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">12</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">15</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">20</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">VISUpoints</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">15</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">20</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">25</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">50</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">60</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">80</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">110</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Regles de conversion</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Taux de conversion : 100 VISUpoints = 1 EUR</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Seuil minimum de conversion : 2 500 VISUpoints (soit 25 EUR)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Formule : EUR_convertis = floor(VISUpoints / 100)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Points restants = VISUpoints - (EUR_convertis x 100)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 4. CAUTIONS -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">4. Cautions</text:h>
+<table:table table:name="Cautions" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Type de profil</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Montant</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Profils concernes</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Createur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Porteur, Infoporteur, Podcaster</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">20 EUR</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur, Investi-lecteur, Auditeur</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Depot unique lors de l'activation du profil</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Remboursable integralement en cas de resiliation du compte</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Non deductible des gains</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 5. FILMS / VIDEOS / DOCUMENTAIRES -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">5. Films / Videos / Documentaires - Cloture 40/30/7/23</text:h>
+<text:p text:style-name="Standard">Frequence de cloture : Configurable par l'admin (cycle variable).</text:p>
+<text:p text:style-name="Standard">Profils concernes : Porteur (createur) + Investisseur (investisseur).</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:p text:style-name="Standard"><text:span text:style-name="Bold">Soit P le pot net (apres frais Stripe) a la cloture.</text:span></text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">A) 40% -&gt; Investisseurs TOP 10</text:h>
+<text:p text:style-name="Standard">P_Inv_Top10 = 0,40 x P</text:p>
+<text:p text:style-name="Standard">part_i = P_Inv_Top10 x (V_i / Sum(V_j)) pour j dans TOP 10</text:p>
+<text:p text:style-name="Standard">Repartition ponderee par le nombre de votes (montant investi).</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Detail BPS par rang TOP 10 Investisseurs</text:h>
+<table:table table:name="InvTop10BPS" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Rang</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">1</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">5</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">6</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">7</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">8</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">9</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">BPS</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1366</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">683</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">455</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">341</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">273</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">228</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">195</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">171</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">152</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">137</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">% de G</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">13,66%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">6,83%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">4,55%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">3,41%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2,73%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2,28%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,95%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,71%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,52%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,37%</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard">Total = 4001 BPS (40,01% - le 1 BPS supplementaire est absorbe par l'arrondi VISUAL)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">B) 30% -&gt; Porteurs TOP 10</text:h>
+<text:p text:style-name="Standard">P_Porteurs_Top10 = 0,30 x P</text:p>
+<text:p text:style-name="Standard">part_c = P_Porteurs_Top10 x (score_c / Sum(score_Top10))</text:p>
+<text:p text:style-name="Standard">score_c = score final du projet c (votes x engagement x qualite)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Detail BPS par rang TOP 10 Porteurs</text:h>
+<table:table table:name="CreatorTop10BPS" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Rang</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">1</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">5</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">6</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">7</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">8</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">9</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">10</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">BPS</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1024</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">512</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">341</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">256</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">205</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">171</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">146</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">128</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">114</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">102</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">% de G</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">10,24%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">5,12%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">3,41%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2,56%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2,05%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,71%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,46%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,28%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,14%</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1,02%</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard">Total = 2999 BPS (29,99%)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">C) 7% -&gt; Investisseurs rangs 11-100</text:h>
+<text:p text:style-name="Standard">P_Inv_11_100 = 0,07 x P</text:p>
+<text:p text:style-name="Standard">Distribution : Equiparti (parts egales) OU Pro-rata votes (parametrage admin).</text:p>
+<text:p text:style-name="Standard">Si aucun investisseur eligible : le pool est capture par VISUAL.</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">D) 23% -&gt; VISUAL (Plateforme)</text:h>
+<text:p text:style-name="Standard">P_VISUAL = 0,23 x P</text:p>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Frais operationnels</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Arrondis de calcul (bouclage au centime - methode euro-floor)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Reserve technique</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Pools non distribues (si moins de 10 investisseurs eligibles)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Verification : 40 + 30 + 7 + 23 = 100%</text:h>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 6. VOIX DE L'INFO -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">6. Voix de l'Info - Vente 70/30 + Pot quotidien 60/40</text:h>
+<text:p text:style-name="Standard">Frequence : Cloture quotidienne automatique (CRON a 00:15 UTC+1).</text:p>
+<text:p text:style-name="Standard">Profils concernes : Infoporteur (createur) + Investi-lecteur (investisseur).</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux A - Vente Unitaire d'Article</text:h>
+<text:p text:style-name="Standard">Net_vente = Prix_paye - Frais_paiement</text:p>
+<text:p text:style-name="Standard">Auteur (Infoporteur) = 0,70 x Net_vente</text:p>
+<text:p text:style-name="Standard">VISUAL = 0,30 x Net_vente</text:p>
+<text:p text:style-name="Standard">Arrondi : Au centime pres (0,01 EUR)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux B - Pot du Jour (distribution J -&gt; J+1 a 00:15)</text:h>
+<text:p text:style-name="Standard"><text:span text:style-name="Bold">Soit P_day le pot net quotidien cumule.</text:span></text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">A) 60% -&gt; Auteurs TOP 10</text:h>
+<text:p text:style-name="Standard">P_Auteurs = 0,60 x P_day</text:p>
+<text:p text:style-name="Standard">part_a = P_Auteurs x (score_a / Sum(score_Top10))</text:p>
+<text:p text:style-name="Standard">Poids degressif par rang : rang 1 = 10 pts, rang 2 = 9 pts, ..., rang 10 = 1 pt</text:p>
+<text:p text:style-name="Standard">Total poids = 55 (somme de 1 a 10)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">B) 40% -&gt; Lecteurs Gagnants</text:h>
+<text:p text:style-name="Standard">Critere d'eligibilite : Avoir achete au moins 1 article d'un auteur du TOP 10.</text:p>
+<text:p text:style-name="Standard">W_i = Sum(votes_i x poids_c) pour c dans articles TOP 10</text:p>
+<text:p text:style-name="Standard">part_i = 0,40 x P_day x (W_i / Sum(W))</text:p>
+<text:p text:style-name="Standard">Distribution : Equiparti si pas de ponderation, sinon pro-rata poids.</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Regles specifiques</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Archivage : Classements quotidiens conserves 90 jours</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Delai paiement : T+2 jours ouvres</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 7. LIVRES -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">7. Livres - Vente 70/30 + Pot mensuel 60/40</text:h>
+<text:p text:style-name="Standard">Frequence : Mensuel (dernier jour du mois a 23:59).</text:p>
+<text:p text:style-name="Standard">Profils concernes : Infoporteur (createur) + Investi-lecteur (investisseur).</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux A - Vente Unitaire de Livre</text:h>
+<text:p text:style-name="Standard">Net_vente = Prix_paye - Frais_paiement</text:p>
+<text:p text:style-name="Standard">Auteur (Infoporteur) = 0,70 x Net_vente</text:p>
+<text:p text:style-name="Standard">VISUAL = 0,30 x Net_vente</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux B - Pot Mensuel</text:h>
+<text:p text:style-name="Standard"><text:span text:style-name="Bold">Soit P_mois le pot net mensuel.</text:span></text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">A) 60% -&gt; Auteurs TOP 10</text:h>
+<text:p text:style-name="Standard">P_Auteurs = 0,60 x P_mois</text:p>
+<text:p text:style-name="Standard">part_a = P_Auteurs x (score_a / Sum(score_Top10))</text:p>
+<text:p text:style-name="Standard">Poids degressif : rang 1 = 10, rang 2 = 9, ..., rang 10 = 1</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">B) 40% -&gt; Investi-lecteurs Gagnants</text:h>
+<text:p text:style-name="Standard">Critere : Avoir investi sur au moins 1 auteur du TOP 10.</text:p>
+<text:p text:style-name="Standard">W_i = Sum(votes_i x poids_c) pour c dans auteurs TOP 10</text:p>
+<text:p text:style-name="Standard">part_i = 0,40 x P_mois x (W_i / Sum(W))</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Systeme de Repechage (Optionnel)</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Cible : Auteurs classes rangs 11-100</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Cout : 25 EUR (ticket de repechage)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Fenetre : 24 heures apres cloture mensuelle</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Effet : Inscription automatique au cycle suivant (file d'attente prioritaire)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Auto-Report TOP 10 et Capacite</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Parametrable par l'admin : TOP 10 reconduits automatiquement OU retour en file d'attente</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Capacite mensuelle cible : 100 auteurs/mois (extensible jusqu'a 200)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">File d'attente visible jusqu'a 10 000 auteurs dans l'admin</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 8. PODCASTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">8. Podcasts - Vente 70/30 + Pot mensuel 40/30/20/10</text:h>
+<text:p text:style-name="Standard">Frequence : Mensuel (dernier jour du mois a 23:59).</text:p>
+<text:p text:style-name="Standard">Profils concernes : Podcaster (createur) + Auditeur/Listener (investisseur).</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux A - Vente Episode</text:h>
+<text:p text:style-name="Standard">Net_vente = Prix_paye - Frais_paiement</text:p>
+<text:p text:style-name="Standard">Podcaster = 0,70 x Net_vente</text:p>
+<text:p text:style-name="Standard">VISUAL = 0,30 x Net_vente</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Flux B - Pot Mensuel</text:h>
+<text:p text:style-name="Standard"><text:span text:style-name="Bold">Soit P le pot net mensuel.</text:span></text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">A) 40% -&gt; Podcasteurs (Porteurs de Podcasts)</text:h>
+<text:p text:style-name="Standard">P_Podcasteurs = 0,40 x P</text:p>
+<text:p text:style-name="Standard">part_p = P_Podcasteurs x (score_audio_p / Sum(score_audio))</text:p>
+<text:p text:style-name="Standard">Repartition ponderee par poids degressif : rang 1 = 10 pts, ..., rang 10 = 1 pt (total 55)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Calcul score_audio</text:h>
+<text:p text:style-name="Standard">score_audio = impressions x completion</text:p>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">impressions = nombre total d'ecoutes</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">completion = % moyen d'ecoute (0 a 1)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">B) 30% -&gt; Auditeurs Investisseurs (Listeners)</text:h>
+<text:p text:style-name="Standard">P_Auditeurs = 0,30 x P</text:p>
+<text:p text:style-name="Standard">part_i = P_Auditeurs x (weight_i / Sum(weights))</text:p>
+<text:p text:style-name="Standard">weight_i = votes_i x listen_score_i</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Formule listen_score</text:h>
+<text:p text:style-name="Standard">listen_score = 0,7 x completion + 0,3 x auditeurs_uniques_norm</text:p>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">completion = % moyen d'ecoute complete (0 a 1)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">auditeurs_uniques_norm = ratio auditeurs uniques / total ecoutes (normalise 0-1)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">CAP ANTI-CAPTURE (Obligatoire)</text:h>
+<text:p text:style-name="Standard">Limite par investisseur : max 20% des votes globaux mensuels.</text:p>
+<text:p text:style-name="Standard">SI votes_i / Sum(votes_total) &gt; 0,20 ALORS :</text:p>
+<text:p text:style-name="Standard">  weight_i_capped = 0,20 x Sum(votes_total) x listen_score_i</text:p>
+<text:p text:style-name="Standard">Objectif : Prevenir la monopolisation par gros investisseurs.</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">C) 20% -&gt; VISUAL (Plateforme)</text:h>
+<text:p text:style-name="Standard">P_VISUAL = 0,20 x P</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">D) 10% -&gt; Bonus Pool (ventilation 6/2/2)</text:h>
+<text:p text:style-name="Standard">P_Bonus = 0,10 x P, ventile comme suit :</text:p>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">6% : Primes de performance TOP 10 podcasters (distribue pro-rata rang, poids 10..1)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">2% : Reserve technique (arrondis, residus de division) — comptabilisee cote plateforme</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">2% : Reserve evenementielle (challenges, events promo) — comptabilisee cote plateforme</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+<text:p text:style-name="Standard">Formule primes performance :</text:p>
+<text:p text:style-name="Standard">Prime(rang_k) = floor(P_primes x poids_k / 55)</text:p>
+<text:p text:style-name="Standard">avec poids_k = 11 - k (k de 1 a 10), somme = 55</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Verification : 40 + 30 + 20 + 10 = 100%</text:h>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Classement et Archivage</text:h>
+<text:p text:style-name="Standard">score_final = votes x listen_score</text:p>
+<text:p text:style-name="Standard">Ordre : Decroissant (1 -&gt; N)</text:p>
+<text:p text:style-name="Standard">Archives : Classements mensuels conserves indefiniment (CSV + DB).</text:p>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 9. QUOTAS CREATEURS -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">9. Quotas Createurs (mise en ligne Bunny.net)</text:h>
+<text:p text:style-name="Standard">Concerne : Porteur uniquement (contenu audiovisuel).</text:p>
+<table:table table:name="QuotasCreateurs" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Type de contenu</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Duree max</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Quota</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Prix fixe</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Clips</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">&lt;= 5 min</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2 par mois</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2 EUR/clip</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Documentaires</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">5-30 min</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1 par mois</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">5 EUR/documentaire</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Films</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">&gt; 30 min</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1 par trimestre</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">7 EUR/film</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 10. COEFFICIENT D'ENGAGEMENT -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">10. Coefficient d'Engagement et Classement TOP 10</text:h>
+<text:p text:style-name="Standard">Formule de departage pour le classement :</text:p>
+<text:p text:style-name="Standard">coeff(p) = round(montantTotal(p) / max(1, nbInvestisseurs(p)), 2)</text:p>
+<text:p text:style-name="Standard"/>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">montantTotal(p) = somme de tous les investissements recus par le projet p (en EUR)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">nbInvestisseurs(p) = nombre d'investisseurs uniques sur le projet p</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Arrondi a 2 decimales</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">En cas d'egalite : departage par anciennete (premier investi = prioritaire)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 11. REGLES TRANSVERSES -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">11. Regles Transverses</text:h>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Arrondis</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Methode : Euro-floor (arrondi inferieur a l'euro le plus proche)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Les centimes residuels sont captures par VISUAL</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Verification : platformTake + totalUserPayout == grossEligible (bouclage exact)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Anti-Fraude</text:h>
+<table:table table:name="AntiFraude" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Protection</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Valeur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Categories</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">CAP investisseur podcasts</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">&lt;= 20% votes globaux/mois</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcasts</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Limite investissements</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">&lt;= 50 transactions/jour</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Toutes</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Scoring comportemental</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Detection bots, multi-comptes</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Toutes</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Limite parrainage</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">&lt;= 20 filleuls/mois</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Toutes</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">RGPD</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Cookies : Banniere obligatoire (opt-in analytics)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Donnees sensibles : Consentement explicite (KYC, paiements)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Marketing : Opt-in separe (newsletters)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Conservation limitee : 90 jours apres expiration (annonces)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Droit a l'oubli : Suppression sur demande (moins de 30 jours)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">KYC et Age</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Mineurs (16-17 ans)</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Plafond investissement : 200 EUR cumules</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Retraits : Differes jusqu'a 18 ans (sauf autorisation parentale)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">KYC renforce : Obligatoire a la majorite (transition automatique)</text:p></text:list-item>
+</text:list>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Majeurs</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">KYC standard : Piece d'identite + justificatif domicile</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Depot &gt; 1 000 EUR -&gt; KYC obligatoire</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Retrait &gt; 500 EUR -&gt; KYC + verification bancaire</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Sanctions Graduees</text:h>
+<table:table table:name="Sanctions" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Niveau</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Action</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Duree</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">1</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Avertissement</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">-</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">2</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Limitation actions</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">7 jours</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">3</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Suspension compte</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30 jours</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">4</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Ban definitif</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Permanent</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 12. API & SETTLEMENT -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">12. API et Settlement (Reference Technique)</text:h>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Endpoints Principaux</text:h>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">A) Investissement</text:h>
+<text:p text:style-name="Standard">POST /api/stripe/invest</text:p>
+<text:p text:style-name="Standard">Body: { category: &quot;films&quot;|&quot;livres&quot;|&quot;podcasts&quot;, targetId, amount, currency: &quot;EUR&quot; }</text:p>
+<text:p text:style-name="Standard">-&gt; Credite votes selon bareme + VISUpoints</text:p>
+<text:p text:style-name="Standard">-&gt; Roles autorises : investor, investireader, listener</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">B) Vente Unitaire</text:h>
+<text:p text:style-name="Standard">POST /api/sale</text:p>
+<text:p text:style-name="Standard">Body: { category: &quot;voix_info&quot;|&quot;livres&quot;|&quot;podcasts&quot;, targetId, price, currency, buyerId }</text:p>
+<text:p text:style-name="Standard">-&gt; Split 70/30 immediat (auteur/VISUAL)</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_3" text:outline-level="3">C) Cloture de Cycle</text:h>
+<text:p text:style-name="Standard">POST /api/payout/execute</text:p>
+<text:p text:style-name="Standard">Authorization: Bearer {ADMIN_TOKEN}</text:p>
+<text:p text:style-name="Standard">Body: { contentId, category }</text:p>
+<text:p text:style-name="Standard">-&gt; Fige pot -&gt; Calcule payouts selon formules par categorie -&gt; Webhooks Stripe Connect</text:p>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Moteur de Settlement (payout-engine.ts)</text:h>
+<text:p text:style-name="Standard">Le moteur est multi-categories. L'entree inclut un champ 'category' qui determine la formule :</text:p>
+<table:table table:name="SettlementCategories" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Categorie</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Formule</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Frequence</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">films</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40/30/7/23 (rank-weighted BPS)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Configurable (admin)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">voix_info</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">60/40 (pot quotidien)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Quotidien 00:15 UTC+1</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">livres</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">60/40 (pot mensuel)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Mensuel (dernier jour)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">podcasts</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40/30/20/10 (pot mensuel)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Mensuel (dernier jour)</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Idempotence Webhooks Stripe</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Chaque webhook est verifie par event.id dans la table webhook_events</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Si deja traite -&gt; HTTP 200 sans retraitement</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Protection contre les rejeux et doublons de paiement</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Stripe Connect - Configuration</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">Devise : EUR</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Retrait minimum : 25 EUR</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Delai de traitement des retraits : 7 jours</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">Type de compte Stripe Connect : Express</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 13. CHECK-LIST DEPLOIEMENT -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">13. Check-list Deploiement</text:h>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Configuration</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Bareme euros -&gt; votes implemente client + serveur</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Cles de repartition testees : 40/30/7/23 (Films), 70/30 (Ventes), 60/40 (Voix Info, Livres), 40/30/20/10 (Podcasts)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Arrondis euro-floor + verification platformTake + totalUserPayout == grossEligible</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] CAP anti-capture podcasts (20%) actif</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Jobs Automatises (CRON)</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Voix de l'Info : Quotidien 00:15 UTC+1</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Livres : Mensuel (dernier jour 23:59)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Podcasts : Mensuel (dernier jour 23:59)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Films/Videos/Docs : Parametrable (admin)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Webhooks Stripe Connect idempotents (rejeu safe)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Backup automatique avant chaque cloture</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Tests</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Tests unitaires payout-engine.test.ts : 4 suites (films, podcasts, voix_info, livres)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Verification : platformTake + totalUserPayout == grossEligible pour chaque categorie</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Tests E2E : Cycle films complet (invest -&gt; classement -&gt; cloture)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Tests E2E : Vente Voix de l'Info + pot quotidien</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Tests E2E : Cycle podcasts avec CAP anti-capture</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Exports et Conformite</text:h>
+<text:list text:style-name="List_20_1">
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Exports CSV/Excel operationnels (auteurs, investisseurs, audits)</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] RGPD : Consentements, conservation, droit a l'oubli</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Factures PDF conformes TVA</text:p></text:list-item>
+<text:list-item><text:p text:style-name="List_20_Bullet">[ ] Historique conserve 10 ans (obligation legale)</text:p></text:list-item>
+</text:list>
+<text:p text:style-name="Standard"/>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ANNEXE : TABLEAU RECAPITULATIF -->
+<!-- ═══════════════════════════════════════════════ -->
+<text:h text:style-name="Heading_20_1" text:outline-level="1">ANNEXE : Tableau Recapitulatif par Profil</text:h>
+<table:table table:name="RecapProfils" table:style-name="TableStyle">
+<table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/><table:table-column/>
+<table:table-header-rows><table:table-row>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Profil</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Type</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Categorie</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Vente unitaire</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Pot (frequence)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableHeader" office:value-type="string"><text:p text:style-name="Table_20_Contents">Part dans le pot</text:p></table:table-cell>
+</table:table-row></table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Porteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Createur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Films/Videos/Docs</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">-</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Configurable (admin)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30% TOP 10 (rank BPS)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Infoporteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Createur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Voix de l'Info</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">70% vente</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Quotidien</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">60% TOP 10 (rank-weighted)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Infoporteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Createur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Livres</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">70% vente</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Mensuel</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">60% TOP 10 (rank-weighted)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcaster</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Createur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcasts</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">70% vente episode</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Mensuel</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40% (score_audio)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Films/Videos/Docs</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">-</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Configurable (admin)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40% TOP 10 + 7% rangs 11-100</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investi-lecteur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Voix de l'Info + Livres</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">-</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Quotidien / Mensuel</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">40% (lecteurs / investi-lecteurs gagnants)</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Auditeur (Listener)</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Investisseur</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Podcasts</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">-</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">Mensuel</text:p></table:table-cell>
+<table:table-cell table:style-name="TableCell" office:value-type="string"><text:p text:style-name="Table_20_Contents">30% (votes x listen_score, cap 20%)</text:p></table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="Standard"/>
+
+<text:p text:style-name="Standard">--- Fin du document ---</text:p>
+<text:p text:style-name="Standard">Document genere automatiquement depuis le code VISUAL V2 le 2026-02-20.</text:p>
+
+    </office:text>
+  </office:body>
+</office:document>

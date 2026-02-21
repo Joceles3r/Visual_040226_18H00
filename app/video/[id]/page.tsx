@@ -8,6 +8,8 @@ import {
   ArrowLeft,
   Film,
   FileText,
+  Mic,
+  Headphones,
   Clock,
   BookOpen,
   Users,
@@ -15,6 +17,12 @@ import {
   Share2,
   TrendingUp,
   Play,
+  Lock,
+  UserPlus,
+  AlertCircle,
+  Sparkles,
+  CreditCard,
+  Star,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -39,16 +47,21 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
     (content.currentInvestment / content.investmentGoal) * 100,
     100
   )
-  const isVideo = content.contentType === "video"
+  const cType = content.contentType
+  const isVideo = cType === "video"
+  const isPodcast = cType === "podcast"
+  const isGuest = !isAuthed
+  const isContentLocked = isGuest && !content.isFree
   const canInvest =
     isAuthed &&
-    (roles.includes("investor") || roles.includes("investireader"))
+    (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener"))
+  const isVisitor = isAuthed && !canInvest && !roles.includes("porter") && !roles.includes("infoporter") && !roles.includes("podcaster")
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
-      <main className="pt-24 pb-20">
+      <main className="pt-24 pb-20 cinema-section">
         <div className="container mx-auto px-4">
           {/* Back button */}
           <Link
@@ -63,7 +76,7 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
             {/* Main content */}
             <div className="lg:col-span-2 space-y-6">
               {/* Video/Image player */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 cinema-panel">
                 <Image
                   src={content.coverUrl || "/placeholder.svg"}
                   alt={content.title}
@@ -71,18 +84,51 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  {isVideo ? (
-                    <button className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group">
-                      <Play className="h-10 w-10 text-white ml-1 group-hover:scale-110 transition-transform" />
-                    </button>
+                  {isContentLocked ? (
+                    <div className="flex flex-col items-center gap-4 text-center px-6">
+                      <div className="w-20 h-20 rounded-full bg-slate-800/80 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Lock className="h-10 w-10 text-white/70" />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-lg mb-1">Contenu reserve aux membres</p>
+                        <p className="text-white/60 text-sm mb-4">Inscrivez-vous gratuitement pour acceder a ce contenu</p>
+                      </div>
+                      <div className="flex gap-3">
+                        <Link href="/signup">
+                          <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+                            <UserPlus className="mr-2 h-4 w-4" />
+                            Creer un compte
+                          </Button>
+                        </Link>
+                        <Link href="/login">
+                          <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10">
+                            Se connecter
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
                   ) : (
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
-                    >
-                      <BookOpen className="mr-2 h-5 w-5" />
-                      Commencer la lecture
-                    </Button>
+                    <>
+                      {isVideo && (
+                        <button className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group">
+                          <Play className="h-10 w-10 text-white ml-1 group-hover:scale-110 transition-transform" />
+                        </button>
+                      )}
+                      {cType === "text" && (
+                        <Button
+                          size="lg"
+                          className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
+                        >
+                          <BookOpen className="mr-2 h-5 w-5" />
+                          Commencer la lecture
+                        </Button>
+                      )}
+                      {isPodcast && (
+                        <button className="w-20 h-20 rounded-full bg-purple-500/30 backdrop-blur-sm flex items-center justify-center hover:bg-purple-500/40 transition-colors group">
+                          <Headphones className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -91,18 +137,27 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                   className={`absolute top-4 left-4 ${
                     isVideo
                       ? "bg-red-600/90 hover:bg-red-600"
-                      : "bg-amber-600/90 hover:bg-amber-600"
+                      : isPodcast
+                        ? "bg-purple-600/90 hover:bg-purple-600"
+                        : "bg-amber-600/90 hover:bg-amber-600"
                   } text-white border-0`}
                 >
-                  {isVideo ? (
+                  {isVideo && (
                     <>
                       <Film className="h-3 w-3 mr-1" />
-                      Vidéo
+                      Video
                     </>
-                  ) : (
+                  )}
+                  {cType === "text" && (
                     <>
                       <FileText className="h-3 w-3 mr-1" />
-                      Écrit
+                      Ecrit
+                    </>
+                  )}
+                  {isPodcast && (
+                    <>
+                      <Mic className="h-3 w-3 mr-1" />
+                      Podcast
                     </>
                   )}
                 </Badge>
@@ -125,15 +180,22 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     {content.creatorName}
                   </span>
                   <span className="flex items-center gap-1">
-                    {isVideo ? (
+                    {isVideo && (
                       <>
                         <Clock className="h-4 w-4" />
                         {content.duration}
                       </>
-                    ) : (
+                    )}
+                    {cType === "text" && (
                       <>
                         <BookOpen className="h-4 w-4" />
                         {content.wordCount?.toLocaleString()} mots
+                      </>
+                    )}
+                    {isPodcast && (
+                      <>
+                        <Headphones className="h-4 w-4" />
+                        {content.episodeCount} episodes - {content.duration}
                       </>
                     )}
                   </span>
@@ -143,20 +205,34 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
 
               {/* Actions */}
               <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
-                >
-                  <Heart className="h-4 w-4 mr-2" />
-                  Ajouter aux favoris
-                </Button>
-                <Button
-                  variant="outline"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
-                >
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Partager
-                </Button>
+                {isGuest ? (
+                  <Link href="/signup">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white/50 hover:bg-white/10"
+                    >
+                      <Lock className="h-4 w-4 mr-2" />
+                      Inscrivez-vous pour interagir
+                    </Button>
+                  </Link>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                    >
+                      <Heart className="h-4 w-4 mr-2" />
+                      Ajouter aux favoris
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                    >
+                      <Share2 className="h-4 w-4 mr-2" />
+                      Partager
+                    </Button>
+                  </>
+                )}
               </div>
 
               {/* Description */}
@@ -238,13 +314,33 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                       </Button>
                     </div>
                   ) : isAuthed ? (
-                    <div className="text-center space-y-3">
-                      <p className="text-white/60 text-sm">
-                        Pour investir, devenez Investisseur ou Investi-lecteur
-                      </p>
-                      <Link href="/dashboard/settings">
-                        <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
-                          Devenir investisseur
+                    <div className="space-y-4">
+                      <div className="p-4 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-lg border border-emerald-500/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Sparkles className="h-5 w-5 text-emerald-400" />
+                          <h4 className="text-white font-semibold text-sm">{"Soutenez ce projet"}</h4>
+                        </div>
+                        <p className="text-white/60 text-sm mb-3">
+                          {"Investissez dans ce "}
+                          {isVideo ? "projet audiovisuel" : isPodcast ? "podcast" : "contenu littéraire"}
+                          {" et recevez des retours sur vos gains. Choisissez un montant entre 2€ et 20€."}
+                        </p>
+                        <Link href="/dashboard/settings">
+                          <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
+                            <CreditCard className="h-4 w-4 mr-2" />
+                            {"Devenir "}
+                            {isVideo ? "Investisseur" : isPodcast ? "Auditeur" : "Investi-lecteur"}
+                            {" (caution 20€)"}
+                          </Button>
+                        </Link>
+                        <p className="text-xs text-white/40 text-center mt-2">
+                          {"Caution remboursable en cas de résiliation"}
+                        </p>
+                      </div>
+                      <Link href="/dashboard/visupoints">
+                        <Button variant="outline" className="w-full bg-transparent border-amber-500/30 text-amber-400 hover:bg-amber-600/10">
+                          <Star className="h-4 w-4 mr-2" />
+                          {"Gagner des VISUpoints en partageant"}
                         </Button>
                       </Link>
                     </div>
@@ -269,11 +365,15 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     </div>
                   )}
 
-                  {/* Warning */}
-                  <p className="text-xs text-white/40 text-center">
-                    Investir comporte des risques. Les gains ne sont pas
-                    garantis.
-                  </p>
+                  {/* Legal Warning */}
+                  <div className="space-y-1 pt-2 border-t border-white/5">
+                    <p className="text-xs text-white/40 text-center">
+                      {"Investir comporte des risques. Les gains ne sont pas garantis. VISUAL n'est pas un jeu de hasard."}
+                    </p>
+                    <p className="text-xs text-white/30 text-center">
+                      {"Retraits traités chaque semaine via Stripe Connect."}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 

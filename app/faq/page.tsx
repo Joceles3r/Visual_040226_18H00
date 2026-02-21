@@ -19,12 +19,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que VISUAL ?",
         answer:
-          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
+          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
       },
       {
         question: "Comment fonctionne l'investissement ?",
         answer:
-          "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 1€ et 20€, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
+          "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 2 EUR et 20 EUR, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
       },
       {
         question: "VISUAL est-il un jeu de hasard ?",
@@ -49,7 +49,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Quels sont les différents profils ?",
         answer:
-          "VISUAL propose plusieurs profils : Visiteur (gratuit), Porteur (créateur vidéo), Infoporteur (créateur écrit), Investisseur (investisseur vidéo) et Investi-lecteur (investisseur écrit).",
+          "VISUAL propose 8 profils : Invité (sans inscription, accès limité aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (créateur vidéo), Infoporteur (créateur écrit), Podcasteur (créateur podcast), Investisseur (investisseur vidéo), Investi-lecteur (investisseur écrit) et Auditeur (investisseur podcast).",
+      },
+      {
+        question: "Puis-je naviguer sans m'inscrire ?",
+        answer:
+          "Oui, en tant qu'Invité vous pouvez naviguer librement sur toute la plateforme et accéder aux contenus gratuits ou aux extraits. Cependant, vous ne pouvez ni investir, ni gagner de VISUpoints, ni participer à la communauté. Pour débloquer toutes les fonctionnalités, il vous suffit de créer un compte gratuitement.",
       },
     ],
   },
@@ -59,7 +64,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que la caution ?",
         answer:
-          "La caution est un dépôt unique (10€ pour les créateurs, 20€ pour les investisseurs) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
+          "La caution est un dépôt unique (10 EUR pour les créateurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
       },
       {
         question: "Comment retirer mes gains ?",
@@ -84,17 +89,17 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment déposer un projet ?",
         answer:
-          "Après avoir payé votre caution de créateur (10€), accédez à 'Mon Espace' puis 'Déposer' pour soumettre votre projet vidéo ou écrit.",
+          "Après avoir payé votre caution de créateur (10 EUR), accédez à 'Mon Espace' puis 'Déposer' pour soumettre votre projet vidéo, écrit ou podcast.",
       },
       {
         question: "Quels types de contenus puis-je déposer ?",
         answer:
-          "Pour l'audiovisuel : courts-métrages, documentaires, clips musicaux, animations. Pour le littéraire : romans, nouvelles, essais, articles, poésie.",
+          "Pour l'audiovisuel : courts-métrages, documentaires, clips musicaux, animations. Pour le littéraire : romans, nouvelles, essais, articles, poésie. Pour les podcasts : émissions audio, documentaires sonores, voix de l'info.",
       },
       {
         question: "Comment sont calculés mes gains en tant que créateur ?",
         answer:
-          "Vos gains dépendent des investissements reçus et des performances de votre projet. Une commission VISUAL est prélevée sur les revenus générés.",
+          "La répartition dépend de la catégorie. Films/Vidéos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VISUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VISUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VISUAL.",
       },
     ],
   },
@@ -104,17 +109,37 @@ const FAQ_CATEGORIES = [
       {
         question: "Combien puis-je investir ?",
         answer:
-          "Vous pouvez investir entre 1€ et 20€ par projet. Vous pouvez investir dans autant de projets que vous le souhaitez.",
+          "Vous pouvez investir entre 2 EUR et 20 EUR par projet (tranches : 2, 3, 4, 5, 6, 8, 10, 12, 15, 20 EUR). Vous pouvez investir dans autant de projets que vous le souhaitez.",
       },
       {
         question: "Quand recevrai-je mes retours ?",
         answer:
-          "Les retours sont versés lorsque le projet génère des revenus. Ils apparaissent dans votre Wallet et peuvent être retirés lors des sessions de retrait hebdomadaires.",
+          "Cela dépend de la catégorie. Films/Vidéos/Documentaires : à la clôture du cycle (configurable par l'admin). Voix de l'Info : pot quotidien distribué chaque jour à 00h15. Livres : pot mensuel distribué le dernier jour du mois. Podcasts : pot mensuel distribué le dernier jour du mois. Les retours apparaissent dans votre Wallet et peuvent être retirés via Stripe Connect.",
       },
       {
         question: "Puis-je perdre mon investissement ?",
         answer:
           "L'investissement comporte des risques. Si un projet ne génère pas de revenus, vous pourriez ne pas récupérer votre investissement. Investissez de manière responsable.",
+      },
+    ],
+  },
+  {
+    title: "Invité (sans inscription)",
+    items: [
+      {
+        question: "Que puis-je faire en tant qu'invité ?",
+        answer:
+          "En tant qu'invité, vous pouvez naviguer sur toute la plateforme et consulter les contenus gratuits ainsi que les extraits de contenus payants. Vous ne pouvez pas interagir avec la communauté, investir, ou gagner des récompenses.",
+      },
+      {
+        question: "Quelles sont les limites du statut d'invité ?",
+        answer:
+          "L'invité ne peut pas : gagner de VISUpoints, ajouter des favoris, commenter, partager, investir, déposer du contenu, ou accéder aux contenus payants en entier. Pour débloquer ces fonctionnalités, créez un compte gratuit.",
+      },
+      {
+        question: "L'inscription est-elle obligatoire ?",
+        answer:
+          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invité. Cependant, pour profiter de l'expérience complète de VISUAL (investissements, VISUpoints, communauté), vous devez créer un compte.",
       },
     ],
   },
@@ -142,10 +167,10 @@ const FAQ_CATEGORIES = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
-      <main className="pt-28 pb-20">
+      <main className="pt-28 pb-20 cinema-section">
         {/* Hero */}
         <section className="container mx-auto px-4 mb-16">
           <div className="max-w-3xl mx-auto text-center">
@@ -191,13 +216,13 @@ export default function FAQPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 bg-slate-900/30">
+        <section className="py-16 bg-slate-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Vous n'avez pas trouvé votre réponse ?
+              {"Vous n'avez pas trouvé votre réponse ?"}
             </h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Notre équipe de support est là pour vous aider
+              {"Notre équipe de support est là pour vous aider"}
             </p>
             <Link href="/support/contact">
               <Button

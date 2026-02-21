@@ -1,5 +1,13 @@
+import type { InvestmentTierEur } from "@/lib/payout/constants"
+import {
+  INVESTMENT_TIERS_EUR,
+  getVotesForInvestment,
+  getVisupointsForInvestment,
+  CAUTION_EUR,
+} from "@/lib/payout/constants"
+
 // Types de contenu
-export type ContentType = "video" | "text"
+export type ContentType = "video" | "text" | "podcast"
 
 export interface Content {
   id: string
@@ -13,10 +21,12 @@ export interface Content {
   investmentGoal: number
   currentInvestment: number
   investorCount: number
+  totalVotes: number
   isFree: boolean
   category: string
-  duration?: string // Pour les vidéos
-  wordCount?: number // Pour les écrits
+  duration?: string // Pour les videos et podcasts
+  wordCount?: number // Pour les ecrits
+  episodeCount?: number // Pour les podcasts
 }
 
 export interface Investment {
@@ -24,7 +34,12 @@ export interface Investment {
   contentId: string
   contentTitle: string
   contentType: ContentType
-  amount: number
+  /** Montant en euros (doit etre dans INVESTMENT_TIERS_EUR) */
+  amount: InvestmentTierEur
+  /** Votes gagnes pour cet investissement */
+  votes: number
+  /** VISUpoints gagnes pour cet investissement */
+  visupointsEarned: number
   date: string
   status: "active" | "completed" | "refunded"
   returns: number
@@ -32,8 +47,9 @@ export interface Investment {
 
 export interface Transaction {
   id: string
-  type: "investment" | "deposit" | "withdrawal" | "return" | "visupoints"
+  type: "investment" | "deposit" | "withdrawal" | "return" | "visupoints" | "caution"
   description: string
+  /** Montant en euros (positif = credit, negatif = debit) */
   amount: number
   date: string
   status: "completed" | "pending" | "failed"
@@ -53,6 +69,7 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
     investmentGoal: 5000,
     currentInvestment: 3200,
     investorCount: 47,
+    totalVotes: 312,
     isFree: false,
     category: "Science-Fiction",
     duration: "18:45",
@@ -76,9 +93,9 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
   {
     id: "v3",
     title: "Le Dernier Café",
-    description: "Une comédie dramatique touchante sur les rencontres improbables.",
-    contentType: "video",
-    coverUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=450&fit=crop",
+    description: "Un podcast captivant sur les rencontres improbables autour d'un café, ou chaque episode explore une histoire humaine unique.",
+    contentType: "podcast",
+    coverUrl: "/images/podcast-studio.jpg",
     creatorName: "Sophie Drama",
     creatorId: "c3",
     createdAt: "2026-02-01",
@@ -86,24 +103,25 @@ export const MOCK_VIDEO_CONTENTS: Content[] = [
     currentInvestment: 500,
     investorCount: 12,
     isFree: true,
-    category: "Comédie",
-    duration: "12:30",
+    category: "Societe",
+    duration: "45:00",
+    episodeCount: 8,
   },
   {
     id: "v4",
-    title: "Rythmes Urbains",
-    description: "Un clip musical capturant l'énergie vibrante des rues de Paris.",
-    contentType: "video",
-    coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=450&fit=crop",
-    creatorName: "DJ Rhythm",
+    title: "Pages d'Amour",
+    description: "Un recueil poétique sur la magie des rencontres littéraires.",
+    contentType: "text",
+    coverUrl: "/images/woman-reading-books.jpg",
+    creatorName: "Claire Lettres",
     creatorId: "c4",
     createdAt: "2026-02-02",
     investmentGoal: 1500,
     currentInvestment: 1500,
     investorCount: 34,
     isFree: false,
-    category: "Musique",
-    duration: "4:20",
+    category: "Poésie",
+    wordCount: 12000,
   },
 ]
 
@@ -146,7 +164,7 @@ export const MOCK_TEXT_CONTENTS: Content[] = [
     title: "Contes de Minuit",
     description: "Une collection de nouvelles mystérieuses à lire quand la nuit tombe.",
     contentType: "text",
-    coverUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop",
+    coverUrl: "/images/woman-author-portrait.jpg",
     creatorName: "Nora Mystère",
     creatorId: "c7",
     createdAt: "2026-02-03",
@@ -162,14 +180,16 @@ export const MOCK_TEXT_CONTENTS: Content[] = [
 // Tous les contenus combinés
 export const ALL_CONTENTS: Content[] = [...MOCK_VIDEO_CONTENTS, ...MOCK_TEXT_CONTENTS]
 
-// Mock investissements
+// Mock investissements (montants alignes sur INVESTMENT_TIERS_EUR)
 export const MOCK_INVESTMENTS: Investment[] = [
   {
     id: "inv1",
     contentId: "v1",
-    contentTitle: "L'Odyssée des Étoiles",
+    contentTitle: "L'Odyssee des Etoiles",
     contentType: "video",
     amount: 15,
+    votes: getVotesForInvestment(15),         // 9 votes
+    visupointsEarned: getVisupointsForInvestment(15), // 80 pts
     date: "2026-01-20",
     status: "active",
     returns: 2.5,
@@ -180,24 +200,66 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentTitle: "Les Chroniques du Temps Perdu",
     contentType: "text",
     amount: 10,
+    votes: getVotesForInvestment(10),         // 7 votes
+    visupointsEarned: getVisupointsForInvestment(10), // 50 pts
     date: "2026-01-22",
     status: "active",
     returns: 1.8,
   },
+  {
+    id: "inv3",
+    contentId: "v2",
+    contentTitle: "Murmures de la Foret",
+    contentType: "video",
+    amount: 5,
+    votes: getVotesForInvestment(5),          // 4 votes
+    visupointsEarned: getVisupointsForInvestment(5),  // 25 pts
+    date: "2026-02-05",
+    status: "active",
+    returns: 0.6,
+  },
+  {
+    id: "inv4",
+    contentId: "v4",
+    contentTitle: "Pages d'Amour",
+    contentType: "text",
+    amount: 20,
+    votes: getVotesForInvestment(20),         // 10 votes
+    visupointsEarned: getVisupointsForInvestment(20), // 110 pts
+    date: "2026-02-10",
+    status: "completed",
+    returns: 5.2,
+  },
 ]
 
-// Mock transactions
+// Mock transactions (alignees avec les formules V1)
 export const MOCK_TRANSACTIONS: Transaction[] = [
+  {
+    id: "tr0",
+    type: "caution",
+    description: `Caution Investisseur (${CAUTION_EUR.investor}EUR)`,
+    amount: -CAUTION_EUR.investor,
+    date: "2026-01-15",
+    status: "completed",
+  },
   {
     id: "tr1",
     type: "investment",
-    description: "Investissement - L'Odyssée des Étoiles",
+    description: "Investissement 15EUR - L'Odyssee des Etoiles (9 votes, +80 pts)",
     amount: -15,
     date: "2026-01-20",
     status: "completed",
   },
   {
     id: "tr2",
+    type: "investment",
+    description: "Investissement 10EUR - Chroniques du Temps Perdu (7 votes, +50 pts)",
+    amount: -10,
+    date: "2026-01-22",
+    status: "completed",
+  },
+  {
+    id: "tr3",
     type: "return",
     description: "Retour sur investissement - L'Odyssée des Étoiles",
     amount: 2.5,
@@ -205,11 +267,27 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     status: "completed",
   },
   {
-    id: "tr3",
-    type: "visupoints",
-    description: "Bonus VISUpoints - Parrainage",
-    amount: 50,
-    date: "2026-01-25",
+    id: "tr4",
+    type: "investment",
+    description: "Investissement 5 EUR - Murmures de la Forêt (4 votes, +25 pts)",
+    amount: -5,
+    date: "2026-02-05",
+    status: "completed",
+  },
+  {
+    id: "tr5",
+    type: "investment",
+    description: "Investissement 20EUR - Pages d'Amour (10 votes, +110 pts)",
+    amount: -20,
+    date: "2026-02-10",
+    status: "completed",
+  },
+  {
+    id: "tr6",
+    type: "return",
+    description: "Retour sur investissement - Pages d'Amour (rang 4, 3.41% de G)",
+    amount: 5.2,
+    date: "2026-02-15",
     status: "completed",
   },
 ]
@@ -237,19 +315,30 @@ export const TEXT_CATEGORIES = [
   "Thriller",
 ]
 
+export const PODCAST_CATEGORIES = [
+  "Tous",
+  "Societe",
+  "Culture",
+  "Technologie",
+  "Histoire",
+  "Humour",
+  "Investigation",
+  "Voix de l'Info",
+]
+
 // FAQ data
 export const FAQ_ITEMS = [
   {
     question: "Qu'est-ce que VISUAL ?",
-    answer: "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Vous pouvez soutenir des créateurs et potentiellement recevoir des retours sur vos investissements.",
+    answer: "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
   },
   {
     question: "Comment fonctionne l'investissement ?",
-    answer: "Vous choisissez un projet qui vous intéresse, sélectionnez un montant entre 1€ et 20€, et devenez investisseur. Si le projet génère des revenus, vous recevez une part proportionnelle à votre investissement.",
+    answer: "Vous choisissez un projet qui vous interesse, selectionnez un montant entre 2 EUR et 20 EUR (tranches : 2, 3, 4, 5, 6, 8, 10, 12, 15, 20 EUR), et devenez investisseur. Si le projet genere des revenus, vous recevez une part proportionnelle a votre investissement.",
   },
   {
     question: "Qu'est-ce que la caution ?",
-    answer: "La caution est un dépôt unique (10€ pour les créateurs, 20€ pour les investisseurs) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de résiliation de votre compte.",
+    answer: "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement. Elle est remboursable en cas de resiliation.",
   },
   {
     question: "Comment retirer mes gains ?",

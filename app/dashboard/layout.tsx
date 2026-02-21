@@ -9,6 +9,7 @@ import {
   Heart,
   Film,
   FileText,
+  Mic,
   Wallet,
   History,
   Settings,
@@ -23,7 +24,7 @@ const SIDEBAR_ITEMS = [
     label: "Tableau de bord",
     href: "/dashboard",
     icon: LayoutDashboard,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
   {
     label: "Mes VISUpoints",
@@ -35,40 +36,46 @@ const SIDEBAR_ITEMS = [
     label: "Mes favoris",
     href: "/dashboard/favorites",
     icon: Heart,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
   {
-    label: "Mes projets (vidéo)",
+    label: "Mes projets (video)",
     href: "/dashboard/projects?type=video",
     icon: Film,
     roles: ["porter"],
   },
   {
-    label: "Mes écrits",
+    label: "Mes ecrits",
     href: "/dashboard/projects?type=text",
     icon: FileText,
     roles: ["infoporter"],
   },
   {
+    label: "Mes podcasts",
+    href: "/dashboard/projects?type=podcast",
+    icon: Mic,
+    roles: ["podcaster"],
+  },
+  {
     label: "Mes investissements",
     href: "/dashboard/investments",
     icon: Wallet,
-    roles: ["investor", "investireader"],
+    roles: ["investor", "investireader", "listener"],
   },
   {
     label: "Mon wallet",
     href: "/dashboard/wallet",
     icon: Wallet,
-    roles: ["porter", "investor", "infoporter", "investireader"],
+    roles: ["porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
   {
     label: "Historique",
     href: "/dashboard/history",
     icon: History,
-    roles: ["porter", "investor", "infoporter", "investireader"],
+    roles: ["porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
   {
-    label: "Déposer une vidéo",
+    label: "Deposer une video",
     href: "/upload",
     icon: Upload,
     roles: ["porter"],
@@ -80,10 +87,16 @@ const SIDEBAR_ITEMS = [
     roles: ["infoporter"],
   },
   {
-    label: "Paramètres",
+    label: "Deposer un podcast",
+    href: "/upload/podcast",
+    icon: Upload,
+    roles: ["podcaster"],
+  },
+  {
+    label: "Parametres",
     href: "/dashboard/settings",
     icon: Settings,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
 ]
 
@@ -96,12 +109,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   )
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <div className="flex pt-20">
         {/* Sidebar */}
-        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20">
+        <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-black/30 min-h-[calc(100vh-5rem)] sticky top-20 cinema-sidebar">
           <nav className="flex-1 p-4 space-y-1">
             {visibleItems.map((item) => {
               const isActive =
@@ -127,7 +140,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-6 lg:p-8 cinema-section">{children}</main>
       </div>
     </div>
   )

@@ -17,7 +17,7 @@ const BENEFITS = [
   "Accès aux contenus gratuits",
   "Gagnez des VISUpoints",
   "Suivez vos créateurs préférés",
-  "Passez Investisseur ou Créateur",
+  "Devenez Investisseur, Auditeur ou Créateur (Porteur, Infoporteur, Podcasteur)",
 ]
 
 export default function SignupPage() {
@@ -70,9 +70,9 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 py-12">
+    <div className="min-h-screen flex items-center justify-center p-4 py-12">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-slate-950 to-slate-950" />
+      <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-md">
@@ -88,7 +88,7 @@ export default function SignupPage() {
           </span>
         </Link>
 
-        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl">
+        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">
               Créer un compte

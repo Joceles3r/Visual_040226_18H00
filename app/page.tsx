@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Film, FileText, Users, TrendingUp, Shield, Star } from "lucide-react"
+import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
@@ -27,9 +27,16 @@ const FEATURES = [
     bgColor: "bg-amber-500/10",
   },
   {
+    icon: Mic,
+    title: "Podcast",
+    description: "Podcasts, voix de l'info, émissions audio et documentaires sonores",
+    color: "text-purple-400",
+    bgColor: "bg-purple-500/10",
+  },
+  {
     icon: TrendingUp,
     title: "Investissement",
-    description: "De 1€ à 20€ par projet, recevez des retours sur vos investissements",
+    description: "De 2 EUR à 20 EUR par projet, recevez des retours sur vos investissements",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
@@ -51,27 +58,27 @@ const STATS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
       <VisualHeader />
 
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-slate-950 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/15 via-transparent to-transparent" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl" />
 
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
                 Investissez dans{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  l'art de demain
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 neon-text">
+                  {"l'art de demain"}
                 </span>
               </h1>
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
                 VISUAL est la plateforme d'investissement participatif pour les
-                projets audiovisuels et littéraires. Soutenez les créateurs,
+                projets audiovisuels, littéraires et podcasts. Soutenez les créateurs,
                 investissez dans leurs oeuvres, partagez leurs succès.
               </p>
 
@@ -95,12 +102,21 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </div>
+              <p className="text-white/40 text-sm mt-4">
+                Pas encore pret ?{" "}
+                <Link href="/explore" className="text-white/60 underline underline-offset-4 hover:text-white/80 transition-colors">
+                  Continuez en tant qu'invite
+                </Link>
+                {" "}- acces aux contenus gratuits, sans inscription
+              </p>
             </div>
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* Stats Section */}
-        <section className="py-12 border-y border-white/10 bg-slate-900/30">
+        <section className="py-12 bg-slate-900/20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {STATS.map((stat) => (
@@ -115,20 +131,22 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* Features Section */}
-        <section className="py-20">
+        <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Deux univers, une plateforme
+                Trois univers, une plateforme
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
-                Explorez et investissez dans des projets audiovisuels et
-                littéraires uniques
+                Explorez et investissez dans des projets audiovisuels,
+                littéraires et podcasts uniques
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {FEATURES.map((feature) => (
                 <Card
                   key={feature.title}
@@ -151,8 +169,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* Featured Projects */}
-        <section className="py-20 bg-slate-900/30">
+        <section className="py-20 bg-slate-900/20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center mb-12">
               <div>
@@ -194,8 +214,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* How It Works Preview */}
-        <section className="py-20">
+        <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -203,7 +225,7 @@ export default function HomePage() {
               </h2>
               <p className="text-white/60 mb-12 max-w-2xl mx-auto">
                 En quelques étapes simples, devenez acteur de la création
-                audiovisuelle et littéraire
+                audiovisuelle, littéraire et podcast
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -226,7 +248,7 @@ export default function HomePage() {
                     2. Explorez les projets
                   </h3>
                   <p className="text-white/60">
-                    Découvrez des créations uniques en vidéo et en écrit
+                    Découvrez des créations uniques en vidéo, écrit et podcast
                   </p>
                 </div>
                 <div className="flex flex-col items-center">
@@ -255,8 +277,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <hr className="neon-divider mx-8" />
+
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30">
+        <section className="py-20 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Prêt à rejoindre VISUAL ?

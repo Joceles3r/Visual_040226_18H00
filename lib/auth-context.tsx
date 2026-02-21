@@ -14,6 +14,8 @@ export interface User {
     investor20: boolean
     infoporter10: boolean
     investireader20: boolean
+    podcaster10: boolean
+    listener20: boolean
   }
   stripeConnect?: {
     accountId?: string
@@ -29,6 +31,7 @@ export interface User {
 interface AuthContextType {
   user: User | null
   isAuthed: boolean
+  isAdmin: boolean
   roles: VisualRole[]
   login: (email: string, password: string) => Promise<void>
   logout: () => void
@@ -50,6 +53,8 @@ const MOCK_USER: User = {
     investor20: false,
     infoporter10: false,
     investireader20: false,
+    podcaster10: false,
+    listener20: false,
   },
   stripeConnect: {
     status: "not_started",
@@ -65,6 +70,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const isAuthed = user !== null
   const roles: VisualRole[] = user?.roles ?? ["guest"]
+  // Admin est un flag prive, pas un role de profil
+  const isAdmin = user?.id === "admin" || false
 
   const login = async (email: string, password: string) => {
     // Simulation d'authentification
@@ -97,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         isAuthed,
+        isAdmin,
         roles,
         login,
         logout,

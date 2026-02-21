@@ -2,7 +2,8 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-white/10">
+    <footer className="bg-black/40 cinema-footer">
+      <hr className="neon-divider mx-6" />
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
@@ -18,8 +19,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-white/60 max-w-md">
-              La plateforme d'investissement participatif pour les projets audiovisuels et littéraires. 
-              Soutenez les créateurs, investissez dans l'art.
+              La plateforme d'investissement participatif pour les projets audiovisuels, 
+              litteraires et podcasts. Soutenez les createurs, investissez dans l'art.
             </p>
           </div>
 
