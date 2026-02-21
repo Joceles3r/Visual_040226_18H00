@@ -203,8 +203,8 @@ export default function HowItWorksPage() {
             </h1>
             <p className="text-xl text-white/70">
               VISUAL simplifie l'investissement participatif dans les projets
-              audiovisuels, litteraires et podcasts. Decouvrez comment devenir acteur de la
-              creation.
+              audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la
+              création.
             </p>
           </div>
         </section>
@@ -323,13 +323,13 @@ export default function HowItWorksPage() {
                   </CardHeader>
                   <CardContent className="text-white/70 space-y-3">
                     <p>
-                      La caution est un depot unique qui garantit votre
+                      La caution est un dépôt unique qui garantit votre
                       engagement sur la plateforme.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur)</span>
+                        <span>10 EUR pour les créateurs (Porteur, Infoporteur, Podcasteur)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -340,7 +340,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Remboursable en cas de resiliation du compte</span>
+                        <span>Remboursable en cas de résiliation du compte</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -361,7 +361,7 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Investissez de 2 EUR a 20 EUR par projet</span>
+                        <span>Investissez de 2 EUR à 20 EUR par projet</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -369,7 +369,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>Retraits traites chaque semaine</span>
+                        <span>Retraits traités chaque semaine</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -393,18 +393,18 @@ export default function HowItWorksPage() {
               Répartition des gains par catégorie
             </h2>
             <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
-              Chaque catégorie de contenu a ses propres règles de répartition et fréquences de clôture.
-              </p>
+              {"Chaque catégorie de contenu a ses propres règles de répartition et fréquences de clôture."}
+            </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Films */}
                 <Card className="bg-slate-900/50 border-white/10">
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
                       <Film className="h-5 w-5 text-red-400" />
-                      Films / Videos / Documentaires
+                      Films / Vidéos / Documentaires
                     </CardTitle>
-                    <p className="text-sm text-white/50">Cloture configurable (admin)</p>
+                    <p className="text-sm text-white/50">Clôture configurable (admin)</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="flex justify-between text-sm"><span className="text-emerald-400">Investisseurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
@@ -464,7 +464,7 @@ export default function HowItWorksPage() {
                     <p className="text-sm text-white/50">Vente 70/30 + Pot mensuel</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <p className="text-xs text-white/40 mb-1">Vente episode :</p>
+                    <p className="text-xs text-white/40 mb-1">Vente épisode :</p>
                     <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteur</span><span className="text-white font-semibold">70%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
@@ -475,12 +475,11 @@ export default function HowItWorksPage() {
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
                     <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">
                       <div className="flex justify-between text-xs"><span className="text-amber-300/70">Primes perf. TOP 10</span><span className="text-white/70">6%</span></div>
-                      <div className="flex justify-between text-xs"><span className="text-white/40">Reserve technique</span><span className="text-white/70">2%</span></div>
+                      <div className="flex justify-between text-xs"><span className="text-white/40">Réserve technique</span><span className="text-white/70">2%</span></div>
                       <div className="flex justify-between text-xs"><span className="text-white/40">Réserve événementielle</span><span className="text-white/70">2%</span></div>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
             </div>
           </div>
         </section>
