@@ -16,7 +16,7 @@ const FEATURES = [
   {
     icon: Film,
     title: "Audiovisuel",
-    description: "Courts-metrages, documentaires, clips musicaux et animations",
+    description: "Courts et longs metrages, documentaires, clips musicaux et animations",
     color: "text-red-400",
     bgColor: "bg-red-500/10",
   },
