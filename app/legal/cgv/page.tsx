@@ -214,14 +214,7 @@ export default function CGVPage() {
                   </HighlightCard>
                 ))}
               </div>
-              <Card className="bg-red-500/5 border-red-500/15 mt-4">
-                <CardContent className="p-4 flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-                  <p className="text-white/60 text-sm leading-relaxed">
-                    {"L'accès ADMIN est un accès privé interne réservé à l'administration de la plateforme. Il ne constitue pas un profil public, n'apparaît dans aucun classement et n'est accessible qu'aux personnes autorisées par VISUAL."}
-                  </p>
-                </CardContent>
-              </Card>
+
             </Section>
 
             {/* Article 4 */}
