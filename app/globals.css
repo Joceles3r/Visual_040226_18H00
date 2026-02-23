@@ -197,3 +197,31 @@
   border-top: 1px solid oklch(0.30 0.14 295 / 0.40) !important;
   box-shadow: 0 -1px 12px -4px oklch(0.50 0.20 295 / 0.15);
 }
+
+/* ─── Admin Button Animations ─── */
+@keyframes admin-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 4px 0 rgba(251, 191, 36, 0.3),
+      0 0 12px -2px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 8px 2px rgba(251, 191, 36, 0.5),
+      0 0 20px -2px rgba(239, 68, 68, 0.35),
+      0 0 30px -4px rgba(251, 191, 36, 0.15);
+  }
+}
+
+@keyframes admin-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-admin-glow {
+  animation: admin-glow 2s ease-in-out infinite;
+}
+
+.animate-admin-shine {
+  animation: admin-shine 2.5s ease-in-out infinite;
+}

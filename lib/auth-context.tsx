@@ -77,7 +77,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     // Simulation d'authentification
     await new Promise((resolve) => setTimeout(resolve, 500))
-    setUser(MOCK_USER)
+    setUser({
+      ...MOCK_USER,
+      name: email.split("@")[0],
+      email: email,
+    })
   }
 
   const logout = () => {

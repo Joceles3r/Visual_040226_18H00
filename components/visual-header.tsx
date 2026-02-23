@@ -156,10 +156,11 @@ function MobileMenu({
               <Link
                 href={ADMIN_ITEM.href}
                 onClick={onClose}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-amber-600/20 text-white/90 hover:text-white transition-colors"
+                className="relative overflow-hidden flex items-center gap-3 px-3 py-2.5 rounded-lg bg-amber-900/20 border border-amber-400/30 text-white hover:bg-amber-800/30 transition-colors animate-admin-glow"
               >
-                <Shield className="h-5 w-5 text-amber-400" />
-                <span>{ADMIN_ITEM.label}</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent animate-admin-shine" />
+                <Shield className="h-5 w-5 text-red-500 animate-pulse drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+                <span className="relative z-10 bg-gradient-to-r from-amber-300 to-red-400 bg-clip-text text-transparent font-bold">{ADMIN_ITEM.label}</span>
               </Link>
             </div>
           )}
@@ -271,10 +272,11 @@ export function VisualHeader() {
               <Link href={ADMIN_ITEM.href}>
                 <Button
                   variant="ghost"
-                  className="bg-amber-900/30 hover:bg-amber-800/50 text-white rounded-lg border border-amber-400/40 h-10 px-5 text-sm font-semibold hover:border-amber-400/80"
+                  className="relative overflow-hidden bg-amber-900/30 hover:bg-amber-800/50 text-white rounded-lg border border-amber-400/40 h-10 px-5 text-sm font-semibold hover:border-amber-400/80 animate-admin-glow"
                 >
-                  <Shield className="mr-2 h-4 w-4" />
-                  Administration
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/25 to-transparent animate-admin-shine" />
+                  <Shield className="mr-2 h-4 w-4 text-red-500 animate-pulse drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+                  <span className="relative z-10 bg-gradient-to-r from-amber-300 to-red-400 bg-clip-text text-transparent font-bold">Administration</span>
                 </Button>
               </Link>
             )}
