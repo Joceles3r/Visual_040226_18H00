@@ -70,8 +70,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const isAuthed = user !== null
   const roles: VisualRole[] = user?.roles ?? ["guest"]
-  // Admin est un flag prive, pas un role de profil
-  const isAdmin = user?.id === "admin" || false
+  // Admin est un flag prive derive de l'email, pas un role de profil
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase()
+  const isAdmin = !!(user?.email && adminEmail && user.email.toLowerCase() === adminEmail)
 
   const login = async (email: string, password: string) => {
     // Simulation d'authentification
