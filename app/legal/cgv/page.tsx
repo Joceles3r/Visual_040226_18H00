@@ -6,9 +6,9 @@ import { Footer } from "@/components/footer"
 import { VisualSlogan } from "@/components/visual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
-  Shield, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
+  Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
   Ban, Vote, Gavel, Wallet, Star, Users, CheckCircle,
-  BadgeCheck, Info, TrendingUp, Award, BarChart3, Handshake,
+  BadgeCheck, Info, TrendingUp, Award, BarChart3, Handshake, UserCheck,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -439,6 +439,50 @@ export default function CGVPage() {
                   {"Consulter la Politique de Confidentialité"}
                 </Link>
               </div>
+            </Section>
+
+            {/* Article 15bis - Mineurs */}
+            <Section num={0} title={"Dispositions sp\u00e9cifiques \u2014 Utilisateurs mineurs (16\u201317 ans)"} icon={ShieldCheck}>
+              <Card className="bg-amber-500/5 border-amber-500/15">
+                <CardContent className="pt-6 space-y-4">
+                  <P>{"L'inscription sur VISUAL est autoris\u00e9e aux mineurs \u00e2g\u00e9s de 16 \u00e0 17 ans inclus, sous r\u00e9serve d'une autorisation expresse du repr\u00e9sentant l\u00e9gal et de la validation des CGU/CGV par ce dernier."}</P>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+                      <p className="text-emerald-400 font-medium text-sm mb-2">{"Ce que le mineur peut faire"}</p>
+                      <ul className="space-y-1.5 text-white/60 text-xs">
+                        <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" /><span>{"Acc\u00e9der aux contenus gratuits"}</span></li>
+                        <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" /><span>{"Cumuler des VISUpoints (max 10 000 pts = 100\u20ac)"}</span></li>
+                        <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" /><span>{"Participer aux missions et interactions"}</span></li>
+                      </ul>
+                    </div>
+                    <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+                      <p className="text-red-400 font-medium text-sm mb-2">{"Ce qui est interdit avant 18 ans"}</p>
+                      <ul className="space-y-1.5 text-white/60 text-xs">
+                        <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Investir sur la plateforme"}</span></li>
+                        <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Retirer ou convertir des VISUpoints en euros"}</span></li>
+                        <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Verser une caution ou acc\u00e9der aux r\u00f4les payants"}</span></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/40 rounded-xl p-4 border border-white/5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <UserCheck className="h-4 w-4 text-teal-400" />
+                      <p className="text-white font-medium text-sm">{"\u00c0 la majorit\u00e9 (18 ans)"}</p>
+                    </div>
+                    <p className="text-white/60 text-xs leading-relaxed">
+                      {"Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC), le mineur devenu majeur peut convertir ses VISUpoints en cr\u00e9dit interne, investir, et effectuer des retraits via Stripe Connect. Le plafond est automatiquement lev\u00e9."}
+                    </p>
+                  </div>
+
+                  <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3">
+                    <p className="text-white/40 text-xs leading-relaxed">
+                      {"Les VISUpoints accumul\u00e9s par un mineur sont un avantage promotionnel interne. Ils ne constituent pas une cr\u00e9ance financi\u00e8re exigible. VISUAL se r\u00e9serve le droit de suspendre tout compte en cas de fausse d\u00e9claration d'\u00e2ge ou d'absence de consentement parental."}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </Section>
 
             {/* Article 16 */}

@@ -359,3 +359,18 @@ export const STRIPE_CONFIG = {
   /** Type de compte Stripe Connect */
   accountType: "express" as const,
 } as const;
+
+// ──────────────────────────────────────────────
+// 10. MINEURS - CONFIGURATION
+// ──────────────────────────────────────────────
+
+/** Age minimum inscription VISUAL */
+export const MINOR_MIN_AGE = 16;
+/** Age de majorite (deblocage retrait/invest/conversion) */
+export const MAJORITY_AGE = 18;
+/** Plafond VISUpoints pour les mineurs (16-17 ans) */
+export const MINOR_VISUPOINTS_CAP = 10_000;
+/** Equivalent en euros du plafond mineur */
+export const MINOR_VISUPOINTS_CAP_EUR = MINOR_VISUPOINTS_CAP / VISUPOINTS_PER_EUR; // 100 EUR
+/** Seuil conversion majeur : 2500 VISUpoints */
+export const ADULT_VISUPOINTS_CONVERSION_THRESHOLD = VISUPOINTS_CONVERSION_THRESHOLD;

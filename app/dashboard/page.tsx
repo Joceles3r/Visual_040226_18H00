@@ -16,6 +16,8 @@ import {
   AlertCircle,
   CreditCard,
   Shield,
+  ShieldAlert,
+  Lock,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -23,6 +25,8 @@ import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
 import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGORIES } from "@/lib/mock-data"
 import { Trophy, Eye } from "lucide-react"
+import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
+import { ParentalConsentForm } from "@/components/parental-consent-form"
 
 export default function DashboardPage() {
   const { user, roles, isAuthed } = useAuth()
@@ -152,9 +156,50 @@ export default function DashboardPage() {
           </Card>
         )}
 
+      {/* Minor Account Banner */}
+      {user?.isMinor && (
+        <Card className="bg-amber-500/10 border-amber-500/30">
+          <CardContent className="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center shrink-0">
+                <ShieldAlert className="h-5 w-5 text-amber-400" />
+              </div>
+              <div>
+                <p className="text-white font-medium text-sm">
+                  {"Compte mineur (16\u201317 ans)"}
+                </p>
+                <p className="text-white/50 text-xs">
+                  {"Plafond : " + MINOR_VISUPOINTS_CAP.toLocaleString() + " VISUpoints (100\u20ac). Investissements et retraits bloqu\u00e9s jusqu'\u00e0 18 ans."}
+                </p>
+              </div>
+            </div>
+            {user.parentConsent?.status === "required" && (
+              <span className="text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-full border border-red-500/30">
+                Consentement parental requis
+              </span>
+            )}
+            {user.parentConsent?.status === "pending" && (
+              <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full border border-amber-500/30">
+                {"Consentement en attente de v\u00e9rification"}
+              </span>
+            )}
+            {user.parentConsent?.status === "verified" && (
+              <span className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30">
+                {"Consentement v\u00e9rifi\u00e9"}
+              </span>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Parental Consent Form (if required) */}
+      {user?.isMinor && user.parentConsent?.status === "required" && (
+        <ParentalConsentForm userId={user.id} />
+      )}
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* VISUpoints - for all */}
+        {/* VISUpoints - for all (with cap for minors) */}
         <Card className="bg-slate-900/50 border-white/10">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
@@ -165,7 +210,20 @@ export default function DashboardPage() {
                 <p className="text-white/60 text-sm">VISUpoints</p>
                 <p className="text-2xl font-bold text-white">
                   {user?.visupoints || 0}
+                  {user?.isMinor && (
+                    <span className="text-sm font-normal text-white/40 ml-1">
+                      {"/ " + MINOR_VISUPOINTS_CAP.toLocaleString()}
+                    </span>
+                  )}
                 </p>
+                {user?.isMinor && (
+                  <div className="mt-2">
+                    <Progress
+                      value={((user.visupoints || 0) / MINOR_VISUPOINTS_CAP) * 100}
+                      className="h-1.5 bg-white/10"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
@@ -380,7 +438,7 @@ export default function DashboardPage() {
           </Link>
         )}
 
-        {!hasCreatorRole && !hasInvestorRole && (
+        {!hasCreatorRole && !hasInvestorRole && !user?.isMinor && (
           <Link href="/dashboard/settings">
             <Card className="bg-gradient-to-r from-emerald-900/30 to-teal-900/30 border-emerald-500/30 hover:border-emerald-500/50 transition-colors cursor-pointer h-full">
               <CardContent className="p-6 flex items-center gap-4">
@@ -389,16 +447,35 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-white">
-                    Passer au niveau supérieur
+                    Passer au niveau sup\u00e9rieur
                   </h3>
                   <p className="text-sm text-white/60">
-                    Devenez créateur ou investisseur
+                    Devenez cr\u00e9ateur ou investisseur
                   </p>
                 </div>
                 <ArrowRight className="h-5 w-5 text-white/40" />
               </CardContent>
             </Card>
           </Link>
+        )}
+
+        {/* Minor restriction card */}
+        {user?.isMinor && !hasCreatorRole && !hasInvestorRole && (
+          <Card className="bg-slate-900/50 border-white/10 opacity-75">
+            <CardContent className="p-6 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center">
+                <Lock className="h-6 w-6 text-white/30" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-white/60">
+                  {"R\u00f4les bloqu\u00e9s"}
+                </h3>
+                <p className="text-sm text-white/40">
+                  {"Investissement, retrait et conversion de VISUpoints accessibles d\u00e8s 18 ans."}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         )}
       </div>
 

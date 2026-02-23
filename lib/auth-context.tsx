@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useState, ReactNode } from "react"
 import type { VisualRole } from "@/components/navigation"
+import type { ParentConsent } from "@/lib/visupoints-engine"
+import { isMinor as checkIsMinor, isEligibleForSignup, MINOR_VISUPOINTS_CAP, DEFAULT_PARENT_CONSENT, MINOR_PARENT_CONSENT, checkMajorityUnlock } from "@/lib/visupoints-engine"
 
 export interface User {
   id: string
@@ -9,6 +11,11 @@ export interface User {
   email: string
   roles: VisualRole[]
   avatarUrl?: string
+  birthDate?: string
+  isMinor: boolean
+  visupointsCap: number
+  parentConsent: ParentConsent
+  kycVerified: boolean
   depositStatus?: {
     porter10: boolean
     investor20: boolean
@@ -35,19 +42,24 @@ interface AuthContextType {
   roles: VisualRole[]
   login: (email: string, password: string) => Promise<void>
   logout: () => void
-  signup: (data: { name: string; email: string; password: string }) => Promise<void>
+  signup: (data: { name: string; email: string; password: string; birthDate?: string }) => Promise<void>
   updateRoles: (newRoles: VisualRole[]) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-// Mock user pour démonstration
+// Mock user pour demonstration
 const MOCK_USER: User = {
   id: "1",
   name: "Jean Dupont",
   email: "jean@example.com",
   roles: ["visitor"],
   visupoints: 150,
+  birthDate: undefined,
+  isMinor: false,
+  visupointsCap: Infinity,
+  parentConsent: DEFAULT_PARENT_CONSENT,
+  kycVerified: false,
   depositStatus: {
     porter10: false,
     investor20: false,
@@ -88,13 +100,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null)
   }
 
-  const signup = async (data: { name: string; email: string; password: string }) => {
+  const signup = async (data: { name: string; email: string; password: string; birthDate?: string }) => {
     // Simulation d'inscription
     await new Promise((resolve) => setTimeout(resolve, 500))
+    const minor = data.birthDate ? checkIsMinor(data.birthDate) : false
     setUser({
       ...MOCK_USER,
       name: data.name,
       email: data.email,
+      birthDate: data.birthDate,
+      isMinor: minor,
+      visupointsCap: minor ? MINOR_VISUPOINTS_CAP : Infinity,
+      parentConsent: minor ? MINOR_PARENT_CONSENT : DEFAULT_PARENT_CONSENT,
     })
   }
 

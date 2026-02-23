@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer"
 import { VisualSlogan } from "@/components/visual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
-  Shield, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
+  Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
   Ban, HelpCircle, Trash2, Award, BarChart3, Vote,
   Gavel, Handshake, BadgeCheck, Info, TrendingUp, Wallet,
   Star, Users, CheckCircle, XCircle, RefreshCw, MessageSquare,
@@ -240,6 +240,95 @@ export default function TermsOfUsePage() {
               </CardContent>
             </Card>
           </Section>
+
+          {/* 2bis. Utilisateurs mineurs */}
+          <Card className="bg-amber-500/5 border-amber-500/15">
+            <CardContent className="pt-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <ShieldCheck className="h-4 w-4 text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-amber-400">{"Article 2bis \u2014 Utilisateurs mineurs (16\u201317 ans)"}</h3>
+                  <p className="text-white/50 text-sm mt-1">{"Dispositions sp\u00e9cifiques conform\u00e9ment au RGPD (art. 8) et aux l\u00e9gislations nationales applicables"}</p>
+                </div>
+              </div>
+
+              <SubSection title={"Conditions d'inscription des mineurs"}>
+                <div className="space-y-2">
+                  {[
+                    "\u00catre \u00e2g\u00e9(e) de 16 \u00e0 17 ans inclus au moment de l'inscription",
+                    "Fournir une autorisation expresse du repr\u00e9sentant l\u00e9gal (parent ou tuteur)",
+                    "Le repr\u00e9sentant l\u00e9gal doit valider les CGU et la Politique de Confidentialit\u00e9",
+                    "Fournir les informations n\u00e9cessaires \u00e0 la v\u00e9rification d'identit\u00e9 (justificatif optionnel)",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <CheckCircle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+
+              <SubSection title={"Droits du compte mineur"}>
+                <div className="space-y-2">
+                  {[
+                    "Acc\u00e8s aux contenus gratuits disponibles sur la plateforme",
+                    "Accumulation de VISUpoints dans la limite de 10 000 points (\u00e9quivalent 100\u20ac)",
+                    "Participation aux missions et aux interactions communautaires (commentaires, partages)",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <CheckCircle className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+
+              <SubSection title={"Restrictions du compte mineur"}>
+                <div className="space-y-2">
+                  {[
+                    "Aucun investissement autoris\u00e9 avant l'\u00e2ge de 18 ans",
+                    "Aucun retrait ni conversion de VISUpoints en euros avant la majorit\u00e9",
+                    "Les VISUpoints accumul\u00e9s constituent un avantage promotionnel interne et ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible",
+                    "Les VISUpoints ne peuvent faire l'objet d'aucun transfert, cession ou vente",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <Lock className="h-4 w-4 text-red-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+
+              <SubSection title={"\u00c0 la majorit\u00e9 (18 ans)"}>
+                <div className="space-y-2">
+                  {[
+                    "Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC via Stripe Connect), l'utilisateur peut convertir ses VISUpoints en cr\u00e9dit interne",
+                    "Le cr\u00e9dit peut \u00eatre utilis\u00e9 pour investir sur la plateforme ou faire l'objet d'un retrait bancaire",
+                    "Le plafond de VISUpoints est automatiquement lev\u00e9 au passage \u00e0 la majorit\u00e9",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <CheckCircle className="h-4 w-4 text-teal-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+
+              <div className="bg-red-500/5 border border-red-500/15 rounded-lg p-3 mt-2">
+                <p className="text-red-400/80 text-xs leading-relaxed">
+                  {"VISUAL se r\u00e9serve le droit de suspendre ou supprimer tout compte mineur en cas de fausse d\u00e9claration d'\u00e2ge, d'absence de consentement parental valide, ou de non-respect des pr\u00e9sentes conditions."}
+                </p>
+              </div>
+
+              <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3 mt-1">
+                <p className="text-white/40 text-xs leading-relaxed">
+                  {"Droit applicable : l'\u00e2ge minimum d'inscription (16 ans) respecte le RGPD (art. 8) qui autorise les \u00c9tats membres \u00e0 fixer un seuil entre 13 et 16 ans. VISUAL applique le seuil le plus protecteur (16 ans) pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales. En cas de conflit avec la l\u00e9gislation locale du pays de l'utilisateur, la disposition la plus protectrice s'applique."}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* 3. Système de caution */}
           <Section num={3} title="Caution : versement, utilisation et remboursement">

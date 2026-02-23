@@ -406,8 +406,8 @@ export default function PrivacyPolicyPage() {
           </Section>
 
           {/* 10. Mineurs */}
-          <Section num={10} title="Protection des mineurs">
-            <Card className="bg-slate-900/50 border-white/10">
+          <Section num={10} title={"Donn\u00e9es des utilisateurs mineurs (16\u201317 ans)"}>
+            <Card className="bg-amber-500/5 border-amber-500/15">
               <CardContent className="pt-6 space-y-4">
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
@@ -415,15 +415,60 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <div>
                     <p className="text-white/70 leading-relaxed">
-                      {"L'inscription et l'utilisation des fonctionnalités d'investissement de VISUAL sont réservées aux personnes majeures (18 ans ou plus). VISUAL procède à une vérification de l'âge lors de l'inscription."}
-                    </p>
-                    <p className="text-white/70 leading-relaxed mt-3">
-                      {"Les mineurs de 16 à 17 ans peuvent accéder aux contenus gratuits en mode Invité (sans inscription et sans collecte de données personnelles), conformément à l'article 8 du RGPD. Aucun investissement ni création de compte n'est possible pour les mineurs."}
-                    </p>
-                    <p className="text-white/50 text-sm mt-3">
-                      {"Si vous êtes parent ou tuteur et pensez que votre enfant mineur a fourni des données personnelles à VISUAL, contactez-nous immédiatement à dpo@visual-platform.com pour que nous procédions à leur suppression."}
+                      {"L'inscription sur VISUAL est autoris\u00e9e aux mineurs \u00e2g\u00e9s de 16 \u00e0 17 ans inclus, sous r\u00e9serve d'une autorisation expresse du repr\u00e9sentant l\u00e9gal. Conform\u00e9ment \u00e0 l'article 8 du RGPD, VISUAL applique le seuil de 16 ans pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales."}
                     </p>
                   </div>
+                </div>
+
+                <div className="bg-black/30 rounded-xl p-4 border border-white/5">
+                  <p className="text-white font-medium text-sm mb-3">{"Donn\u00e9es collect\u00e9es pour un compte mineur"}</p>
+                  <div className="space-y-2">
+                    {[
+                      "Date de naissance (pour d\u00e9terminer le statut mineur et le d\u00e9blocage automatique \u00e0 18 ans)",
+                      "Preuve d'autorisation parentale : nom et email du repr\u00e9sentant l\u00e9gal, acceptation des CGU/CGV",
+                      "Justificatif d'identit\u00e9 du repr\u00e9sentant l\u00e9gal (optionnel selon juridiction, si upload)",
+                      "Solde de VISUpoints et historique d'activit\u00e9 (contenus vus, missions accomplies)",
+                    ].map((item) => (
+                      <div key={item} className="flex gap-2 items-start text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500/40 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-black/30 rounded-xl p-4 border border-white/5">
+                  <p className="text-white font-medium text-sm mb-3">Finalit\u00e9 et conservation</p>
+                  <div className="space-y-2">
+                    {[
+                      "Ces donn\u00e9es sont strictement utilis\u00e9es pour la conformit\u00e9 l\u00e9gale et la gestion du compte mineur",
+                      "Les justificatifs parentaux sont conserv\u00e9s de mani\u00e8re s\u00e9curis\u00e9e et chiffr\u00e9e",
+                      "Suppression automatique des justificatifs \u00e0 la majorit\u00e9 de l'utilisateur ou \u00e0 la suppression du compte",
+                      "Aucune donn\u00e9e financi\u00e8re n'est collect\u00e9e pour les mineurs (pas d'investissement ni retrait)",
+                    ].map((item) => (
+                      <div key={item} className="flex gap-2 items-start text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500/40 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-black/30 rounded-xl p-4 border border-white/5">
+                  <p className="text-white font-medium text-sm mb-3">{"Droits du repr\u00e9sentant l\u00e9gal"}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    {"Le repr\u00e9sentant l\u00e9gal peut exercer les droits d'acc\u00e8s, de rectification et de suppression des donn\u00e9es du mineur en contactant : "}
+                    <span className="text-teal-400">support@visual-platform.com</span>
+                    {" ou "}
+                    <span className="text-teal-400">dpo@visual-platform.com</span>
+                    {". Il peut \u00e9galement r\u00e9voquer son consentement \u00e0 tout moment, ce qui entra\u00eenera la suspension du compte mineur."}
+                  </p>
+                </div>
+
+                <div className="bg-red-500/5 border border-red-500/15 rounded-lg p-3">
+                  <p className="text-red-400/80 text-xs leading-relaxed">
+                    {"Les enfants de moins de 16 ans ne peuvent pas s'inscrire sur VISUAL. Si vous \u00eates parent ou tuteur et pensez que votre enfant de moins de 16 ans a fourni des donn\u00e9es personnelles, contactez-nous imm\u00e9diatement \u00e0 dpo@visual-platform.com pour suppression."}
+                  </p>
                 </div>
               </CardContent>
             </Card>
