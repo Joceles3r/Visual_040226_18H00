@@ -382,27 +382,57 @@ export const HOW_IT_WORKS_STEPS = [
   },
 ]
 
-// Leaderboard data
-export const LEADERBOARD_DATA = {
-  topInvestors: [
-    { rank: 1, name: "Alexandre M.", amount: 2450, projects: 34 },
-    { rank: 2, name: "Sophie L.", amount: 1890, projects: 28 },
-    { rank: 3, name: "Thomas R.", amount: 1650, projects: 45 },
-    { rank: 4, name: "Julie P.", amount: 1420, projects: 22 },
-    { rank: 5, name: "Marc D.", amount: 1180, projects: 19 },
-  ],
-  topCreators: [
-    { rank: 1, name: "Marie Stellaire", projects: 8, totalRaised: 15600 },
-    { rank: 2, name: "Lucas Nature", projects: 5, totalRaised: 12400 },
-    { rank: 3, name: "Pierre Écrivain", projects: 12, totalRaised: 9800 },
-    { rank: 4, name: "Sophie Drama", projects: 4, totalRaised: 7200 },
-    { rank: 5, name: "Nora Mystère", projects: 6, totalRaised: 5900 },
-  ],
-  topVisupoints: [
-    { rank: 1, name: "Emma V.", points: 4850 },
-    { rank: 2, name: "Hugo T.", points: 3920 },
-    { rank: 3, name: "Clara M.", points: 3410 },
-    { rank: 4, name: "Nathan S.", points: 2890 },
-    { rank: 5, name: "Léa B.", points: 2650 },
-  ],
+// ---------- LEADERBOARD DATA ----------
+
+export type LeaderboardEntry = {
+  rank: number
+  name: string
+  score: number
+  detail: string
+}
+
+function generateEntries(
+  baseName: string[],
+  baseScore: number,
+  detailFn: (score: number) => string,
+  count: number
+): LeaderboardEntry[] {
+  return Array.from({ length: count }, (_, i) => {
+    const score = Math.max(10, Math.round(baseScore * (1 - i * 0.04) + (count - i) * 2))
+    return {
+      rank: i + 1,
+      name: baseName[i % baseName.length] + (i >= baseName.length ? ` (${Math.floor(i / baseName.length) + 1})` : ""),
+      score,
+      detail: detailFn(score),
+    }
+  })
+}
+
+const VISITEUR_NAMES = ["Emma V.", "Hugo T.", "Clara M.", "Nathan S.", "Léa B.", "Théo R.", "Inès D.", "Lucas P.", "Manon G.", "Noah L.", "Jade K.", "Raphaël F.", "Camille S.", "Axel M.", "Zoé C.", "Arthur B.", "Louise N.", "Ethan J.", "Chloé W.", "Liam A.", "Alice H.", "Maxime T.", "Éva R.", "Tom D.", "Sarah P."]
+const PORTEUR_NAMES = ["Marie Stellaire", "Lucas Nature", "Sophie Drama", "Félix Cinéma", "Amina Vision", "Paul Réal", "Lina Studio", "Yann Film", "Eva Regard", "Marco Pixel", "Nadia Caméra", "Romain Scène", "Chloé Script", "Karim Prod", "Iris Lumière", "Léo Motion", "Hana Screen", "Dario Cut", "Mila Format", "Oscar Take", "Jade Shot", "Hugo Frame", "Alice Montage", "Noah Edit", "Sara Lens"]
+const INFOPORTEUR_NAMES = ["Pierre Écrivain", "Nora Mystère", "Claire Lettres", "André Plume", "Luna Pages", "Sami Texte", "Elsa Roman", "Marc Prose", "Julie Encre", "Youssef Chapitre", "Mina Verso", "Romain Ligne", "Élodie Style", "Tarik Récit", "Margot Fable", "Léon Essai", "Inès Poème", "David Mot", "Lana Conte", "Oscar Critique", "Jade Chronique", "Hugo Nouvelle", "Alice Saga", "Noah Tome", "Sara Verset"]
+const PODCASTEUR_NAMES = ["Karim Ondes", "Lina Audio", "Thomas Voix", "Mina Podcast", "Sami Micro", "Éva Studio", "Yann Écoute", "Hana Sound", "Marco Fréquence", "Nadia Canal", "Romain Épisode", "Chloé Wave", "Félix Bande", "Iris Talk", "Paul Émission", "Léo Direct", "Dario Cast", "Mila Capsule", "Oscar Pod", "Jade Stream", "Hugo Série", "Alice Show", "Noah Radio", "Sara Live", "Tom Replay"]
+
+export const LEADERBOARD_CATEGORIES = [
+  { key: "visiteur" as const, label: "TOP Visiteur", color: "text-amber-400", bgColor: "bg-amber-500/20", borderColor: "border-amber-500/30" },
+  { key: "porteur" as const, label: "TOP Porteur", color: "text-red-400", bgColor: "bg-red-500/20", borderColor: "border-red-500/30" },
+  { key: "infoporteur" as const, label: "TOP Infoporteur", color: "text-sky-400", bgColor: "bg-sky-500/20", borderColor: "border-sky-500/30" },
+  { key: "podcasteur" as const, label: "TOP Podcasteur", color: "text-purple-400", bgColor: "bg-purple-500/20", borderColor: "border-purple-500/30" },
+] as const
+
+export type LeaderboardCategoryKey = typeof LEADERBOARD_CATEGORIES[number]["key"]
+
+export const LEADERBOARD_DATA: Record<LeaderboardCategoryKey, LeaderboardEntry[]> = {
+  visiteur: generateEntries(VISITEUR_NAMES, 4850, (s) => `${s.toLocaleString()} VISUpoints`, 500),
+  porteur: generateEntries(PORTEUR_NAMES, 15600, (s) => `${s.toLocaleString()}€ collectés`, 500),
+  infoporteur: generateEntries(INFOPORTEUR_NAMES, 9800, (s) => `${s.toLocaleString()}€ collectés`, 500),
+  podcasteur: generateEntries(PODCASTEUR_NAMES, 8200, (s) => `${s.toLocaleString()}€ collectés`, 500),
+}
+
+// Current user mock rankings (for dashboard)
+export const USER_RANKINGS: Record<LeaderboardCategoryKey, number> = {
+  visiteur: 42,
+  porteur: 128,
+  infoporteur: 256,
+  podcasteur: 87,
 }

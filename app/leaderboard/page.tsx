@@ -1,18 +1,114 @@
 "use client"
 
 import { useState } from "react"
-import { Trophy, TrendingUp, Star, Film, Crown } from "lucide-react"
+import { Trophy, Crown, Star, Film, FileText, Mic, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { VisualSlogan } from "@/components/visual-slogan"
-import { LEADERBOARD_DATA } from "@/lib/mock-data"
+import {
+  LEADERBOARD_DATA,
+  LEADERBOARD_CATEGORIES,
+  type LeaderboardCategoryKey,
+  type LeaderboardEntry,
+} from "@/lib/mock-data"
 
-type LeaderboardTab = "investors" | "creators" | "visupoints"
+type Tier = 10 | 100 | 500
+
+const TIER_OPTIONS: { value: Tier; label: string }[] = [
+  { value: 10, label: "TOP 10" },
+  { value: 100, label: "TOP 100" },
+  { value: 500, label: "TOP 500" },
+]
+
+const CATEGORY_ICONS: Record<LeaderboardCategoryKey, React.ComponentType<{ className?: string }>> = {
+  visiteur: Eye,
+  porteur: Film,
+  infoporteur: FileText,
+  podcasteur: Mic,
+}
+
+function RankBadge({ rank }: { rank: number }) {
+  if (rank === 1)
+    return (
+      <div className="w-10 h-10 rounded-full bg-amber-500/30 flex items-center justify-center">
+        <Crown className="h-5 w-5 text-amber-400" />
+      </div>
+    )
+  if (rank === 2)
+    return (
+      <div className="w-10 h-10 rounded-full bg-slate-400/30 flex items-center justify-center font-bold text-slate-300">
+        2
+      </div>
+    )
+  if (rank === 3)
+    return (
+      <div className="w-10 h-10 rounded-full bg-orange-600/30 flex items-center justify-center font-bold text-orange-400">
+        3
+      </div>
+    )
+  return (
+    <div className="w-10 h-10 rounded-full bg-slate-700/60 flex items-center justify-center font-bold text-white/50 text-sm">
+      {rank}
+    </div>
+  )
+}
+
+function LeaderboardTable({
+  entries,
+  catKey,
+}: {
+  entries: LeaderboardEntry[]
+  catKey: LeaderboardCategoryKey
+}) {
+  const cat = LEADERBOARD_CATEGORIES.find((c) => c.key === catKey)!
+  const Icon = CATEGORY_ICONS[catKey]
+
+  return (
+    <Card className="bg-slate-900/50 border-white/10">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-white flex items-center gap-2 text-lg">
+          <div className={`w-8 h-8 rounded-lg ${cat.bgColor} flex items-center justify-center`}>
+            <Icon className={`h-4 w-4 ${cat.color}`} />
+          </div>
+          {cat.label}
+          <span className="text-white/40 text-sm font-normal ml-auto">
+            {entries.length} classement{entries.length > 1 ? "s" : ""}
+          </span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-1.5 max-h-[600px] overflow-y-auto pr-1">
+          {entries.map((entry) => (
+            <div
+              key={entry.rank}
+              className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
+                entry.rank <= 3
+                  ? "bg-slate-800/70 border border-white/5"
+                  : "bg-slate-800/30 hover:bg-slate-800/50"
+              }`}
+            >
+              <RankBadge rank={entry.rank} />
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-white truncate">{entry.name}</div>
+              </div>
+              <div className="text-right shrink-0">
+                <div className={`font-bold ${cat.color}`}>{entry.detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
 
 export default function LeaderboardPage() {
-  const [activeTab, setActiveTab] = useState<LeaderboardTab>("investors")
+  const [tier, setTier] = useState<Tier>(10)
+  const [activeCategory, setActiveCategory] = useState<LeaderboardCategoryKey>("visiteur")
+
+  const entries = LEADERBOARD_DATA[activeCategory].slice(0, tier)
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -21,212 +117,65 @@ export default function LeaderboardPage() {
       <main className="pt-28 pb-20 cinema-section">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <div className="w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-6">
               <Trophy className="h-8 w-8 text-amber-400" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              Classement
+              Classements
             </h1>
             <div className="mb-5">
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              {"Découvrez les meilleurs investisseurs, créateurs et utilisateurs les plus actifs de VISUAL"}
+              {"Découvrez les meilleurs visiteurs, porteurs, infoporteurs et podcasteurs de VISUAL"}
             </p>
           </div>
 
-          {/* Tabs */}
-          <div className="flex justify-center gap-2 mb-8 p-1 bg-slate-900/50 rounded-lg w-fit mx-auto">
-            <Button
-              variant={activeTab === "investors" ? "default" : "ghost"}
-              onClick={() => setActiveTab("investors")}
-              className={
-                activeTab === "investors"
-                  ? "bg-emerald-600 text-white"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }
-            >
-              <TrendingUp className="h-4 w-4 mr-2" />
-              Top Investisseurs
-            </Button>
-            <Button
-              variant={activeTab === "creators" ? "default" : "ghost"}
-              onClick={() => setActiveTab("creators")}
-              className={
-                activeTab === "creators"
-                  ? "bg-red-600 text-white"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }
-            >
-              <Film className="h-4 w-4 mr-2" />
-              Top Créateurs
-            </Button>
-            <Button
-              variant={activeTab === "visupoints" ? "default" : "ghost"}
-              onClick={() => setActiveTab("visupoints")}
-              className={
-                activeTab === "visupoints"
-                  ? "bg-amber-600 text-white"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }
-            >
-              <Star className="h-4 w-4 mr-2" />
-              Top VISUpoints
-            </Button>
+          {/* Tier selector */}
+          <div className="flex justify-center gap-2 mb-6 p-1 bg-slate-900/50 rounded-lg w-fit mx-auto">
+            {TIER_OPTIONS.map((opt) => (
+              <Button
+                key={opt.value}
+                variant={tier === opt.value ? "default" : "ghost"}
+                onClick={() => setTier(opt.value)}
+                className={
+                  tier === opt.value
+                    ? "bg-emerald-600 text-white"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                }
+              >
+                {opt.label}
+              </Button>
+            ))}
+          </div>
+
+          {/* Category tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8 p-1 bg-slate-900/40 rounded-lg w-fit mx-auto">
+            {LEADERBOARD_CATEGORIES.map((cat) => {
+              const Icon = CATEGORY_ICONS[cat.key]
+              return (
+                <Button
+                  key={cat.key}
+                  variant={activeCategory === cat.key ? "default" : "ghost"}
+                  onClick={() => setActiveCategory(cat.key)}
+                  size="sm"
+                  className={
+                    activeCategory === cat.key
+                      ? `bg-slate-800 ${cat.color} border ${cat.borderColor}`
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }
+                >
+                  <Icon className="h-4 w-4 mr-1.5" />
+                  {cat.label}
+                </Button>
+              )
+            })}
           </div>
 
           {/* Leaderboard Content */}
           <div className="max-w-3xl mx-auto">
-            {activeTab === "investors" && (
-              <Card className="bg-slate-900/50 border-white/10">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-emerald-400" />
-                    Top 5 Investisseurs
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {LEADERBOARD_DATA.topInvestors.map((user) => (
-                    <div
-                      key={user.rank}
-                      className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-lg"
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                          user.rank === 1
-                            ? "bg-amber-500/30 text-amber-400"
-                            : user.rank === 2
-                              ? "bg-slate-400/30 text-slate-300"
-                              : user.rank === 3
-                                ? "bg-orange-600/30 text-orange-400"
-                                : "bg-slate-700 text-white/60"
-                        }`}
-                      >
-                        {user.rank === 1 ? (
-                          <Crown className="h-5 w-5" />
-                        ) : (
-                          user.rank
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-white">
-                          {user.name}
-                        </div>
-                        <div className="text-sm text-white/60">
-                          {user.projects} projets soutenus
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-emerald-400 font-bold">
-                          {user.amount.toLocaleString()}€
-                        </div>
-                        <div className="text-xs text-white/60">investis</div>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
-
-            {activeTab === "creators" && (
-              <Card className="bg-slate-900/50 border-white/10">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <Film className="h-5 w-5 text-red-400" />
-                    Top 5 Créateurs
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {LEADERBOARD_DATA.topCreators.map((user) => (
-                    <div
-                      key={user.rank}
-                      className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-lg"
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                          user.rank === 1
-                            ? "bg-amber-500/30 text-amber-400"
-                            : user.rank === 2
-                              ? "bg-slate-400/30 text-slate-300"
-                              : user.rank === 3
-                                ? "bg-orange-600/30 text-orange-400"
-                                : "bg-slate-700 text-white/60"
-                        }`}
-                      >
-                        {user.rank === 1 ? (
-                          <Crown className="h-5 w-5" />
-                        ) : (
-                          user.rank
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-white">
-                          {user.name}
-                        </div>
-                        <div className="text-sm text-white/60">
-                          {user.projects} projets publiés
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-emerald-400 font-bold">
-                          {user.totalRaised.toLocaleString()}€
-                        </div>
-                        <div className="text-xs text-white/60">collectés</div>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
-
-            {activeTab === "visupoints" && (
-              <Card className="bg-slate-900/50 border-white/10">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <Star className="h-5 w-5 text-amber-400" />
-                    Top 5 VISUpoints
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {LEADERBOARD_DATA.topVisupoints.map((user) => (
-                    <div
-                      key={user.rank}
-                      className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-lg"
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                          user.rank === 1
-                            ? "bg-amber-500/30 text-amber-400"
-                            : user.rank === 2
-                              ? "bg-slate-400/30 text-slate-300"
-                              : user.rank === 3
-                                ? "bg-orange-600/30 text-orange-400"
-                                : "bg-slate-700 text-white/60"
-                        }`}
-                      >
-                        {user.rank === 1 ? (
-                          <Crown className="h-5 w-5" />
-                        ) : (
-                          user.rank
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-semibold text-white">
-                          {user.name}
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-amber-400 font-bold">
-                          {user.points.toLocaleString()}
-                        </div>
-                        <div className="text-xs text-white/60">points</div>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
+            <LeaderboardTable entries={entries} catKey={activeCategory} />
           </div>
         </div>
       </main>

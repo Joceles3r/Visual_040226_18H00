@@ -47,7 +47,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/leaderboard" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Classement
+                  Classements
                 </Link>
               </li>
             </ul>

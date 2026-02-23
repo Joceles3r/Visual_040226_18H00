@@ -21,7 +21,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
-import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS } from "@/lib/mock-data"
+import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGORIES } from "@/lib/mock-data"
+import { Trophy, Eye } from "lucide-react"
 
 export default function DashboardPage() {
   const { user, roles, isAuthed } = useAuth()
@@ -237,6 +238,52 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Personal Rankings */}
+      <Card className="bg-slate-900/50 border-white/10">
+        <CardHeader className="flex flex-row items-center justify-between pb-3">
+          <CardTitle className="text-white flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-amber-400" />
+            Mes classements
+          </CardTitle>
+          <Link href="/leaderboard">
+            <Button variant="ghost" size="sm" className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-600/20">
+              Voir les classements
+            </Button>
+          </Link>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {LEADERBOARD_CATEGORIES.map((cat) => {
+              const rank = USER_RANKINGS[cat.key]
+              const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+                visiteur: Eye,
+                porteur: Film,
+                infoporteur: FileText,
+                podcasteur: Mic,
+              }
+              const CatIcon = IconMap[cat.key] || Eye
+              return (
+                <div
+                  key={cat.key}
+                  className={`p-4 rounded-xl border ${cat.borderColor} bg-slate-800/40 flex flex-col items-center gap-2`}
+                >
+                  <div className={`w-10 h-10 rounded-lg ${cat.bgColor} flex items-center justify-center`}>
+                    <CatIcon className={`h-5 w-5 ${cat.color}`} />
+                  </div>
+                  <span className="text-xs text-white/50 text-center">{cat.label}</span>
+                  <span className={`text-2xl font-bold ${cat.color}`}>
+                    {rank <= 10 ? `#${rank}` : rank <= 100 ? `#${rank}` : `#${rank}`}
+                  </span>
+                  <span className="text-xs text-white/30">
+                    {rank <= 10 ? "TOP 10" : rank <= 100 ? "TOP 100" : rank <= 500 ? "TOP 500" : `sur ${rank + Math.floor(Math.random() * 200)}`}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
