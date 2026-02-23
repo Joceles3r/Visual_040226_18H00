@@ -61,7 +61,7 @@ export default function TermsOfUsePage() {
               {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VISUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Dernière mise à jour : 23 février 2026 \u2014 Version 2.0"}
+              {"Derni\u00e8re mise \u00e0 jour : 23 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
             </p>
           </div>
         </section>
@@ -75,7 +75,7 @@ export default function TermsOfUsePage() {
                 <Info className="h-5 w-5 text-teal-400 mt-0.5 shrink-0" />
                 <div className="space-y-2">
                   <p className="text-white/70 leading-relaxed">
-                    {"VISUAL est une plateforme numérique exploitée par VISUAL SAS, immatriculée au RCS de [ville], permettant :"}
+                    {"VISUAL est une plateforme num\u00e9rique internationale de diffusion et de participation \u00e9conomique \u00e0 des contenus audiovisuels et litt\u00e9raires, permettant :"}
                   </p>
                   <ul className="space-y-1.5 ml-2">
                     <li className="flex gap-2 items-start text-sm">
@@ -96,10 +96,41 @@ export default function TermsOfUsePage() {
                     </li>
                   </ul>
                   <p className="text-white/50 text-sm mt-3">
-                    {"Toute inscription sur VISUAL implique l'acceptation pleine et entière des présentes CGU. Si vous n'acceptez pas ces conditions, vous ne pouvez pas créer de compte."}
+                    {"Toute inscription sur VISUAL implique l'acceptation pleine et enti\u00e8re des pr\u00e9sentes CGU. Si vous n'acceptez pas ces conditions, vous ne pouvez pas cr\u00e9er de compte."}
                   </p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Informations provisoires */}
+          <Card className="bg-amber-500/5 border-amber-500/15">
+            <CardContent className="p-5">
+              <h3 className="text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                <AlertTriangle className="h-4 w-4" />
+                {"Informations l\u00e9gales \u00e0 compl\u00e9ter"}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
+                {[
+                  "Forme juridique : [\u00c0 d\u00e9finir]",
+                  "Si\u00e8ge social : [\u00c0 compl\u00e9ter]",
+                  "SIRET / N\u00b0 immatriculation : [\u00c0 compl\u00e9ter]",
+                  "RCS : [\u00c0 compl\u00e9ter]",
+                  "N\u00b0 TVA intracommunautaire : [\u00c0 compl\u00e9ter]",
+                  "Capital social : [\u00c0 compl\u00e9ter]",
+                  "Directeur de la publication : [\u00c0 compl\u00e9ter]",
+                  "T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]",
+                  "Email g\u00e9n\u00e9ral : contact@visual-platform.com",
+                  "Email support : support@visual-platform.com",
+                  "Email DPO : dpo@visual-platform.com",
+                  "H\u00e9bergeur : Vercel Inc. (USA)",
+                ].map((item, i) => (
+                  <p key={i} className="text-white/45 py-0.5">{item}</p>
+                ))}
+              </div>
+              <p className="text-amber-400/60 text-xs mt-4">
+                {"Ces informations seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
+              </p>
             </CardContent>
           </Card>
 
@@ -614,18 +645,18 @@ export default function TermsOfUsePage() {
           </Section>
 
           {/* 13. Droit applicable */}
-          <Section num={13} title="Droit applicable et juridiction compétente">
+          <Section num={13} title="Droit applicable et juridiction comp\u00e9tente">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"Les présentes CGU sont régies par le droit français. En cas de litige relatif à l'interprétation, l'exécution ou la résiliation des présentes, les parties s'engagent à rechercher une solution amiable dans un délai de 30 jours."}
+                  {"Les pr\u00e9sentes CGU seront soumises au droit applicable dans la juridiction d'\u00e9tablissement officielle de VISUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}
                 </p>
                 <p>
-                  {"Conformément au règlement européen n\u00b0524/2013, l'inscrit peut recourir à la plateforme européenne de résolution des litiges en ligne : "}
-                  <span className="text-teal-400">{"https://ec.europa.eu/consumers/odr"}</span>
+                  {"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de 30 jours. Conform\u00e9ment au r\u00e8glement europ\u00e9en n\u00b0524/2013, l'inscrit peut recourir \u00e0 la plateforme europ\u00e9enne de r\u00e9solution des litiges en ligne : "}
+                  <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">{"ec.europa.eu/consumers/odr"}</a>
                 </p>
                 <p>
-                  {"À défaut de résolution amiable, le litige sera soumis aux tribunaux compétents du ressort du siège social de VISUAL SAS, sauf disposition légale impérative contraire (notamment au bénéfice du consommateur)."}
+                  {"\u00c0 d\u00e9faut de r\u00e9solution amiable, le litige sera soumis aux tribunaux comp\u00e9tents du ressort du si\u00e8ge social de VISUAL, sauf disposition l\u00e9gale imp\u00e9rative contraire (notamment au b\u00e9n\u00e9fice du consommateur)."}
                 </p>
               </CardContent>
             </Card>
@@ -642,8 +673,11 @@ export default function TermsOfUsePage() {
                   <div className="space-y-2 text-sm text-white/60">
                     <p>{"Pour toute question relative aux présentes CGU :"}</p>
                     <div className="space-y-1">
-                      <p>{"E-mail : "}<span className="text-teal-400">support@visual-platform.com</span></p>
+                      <p>{"Email g\u00e9n\u00e9ral : "}<span className="text-teal-400">contact@visual-platform.com</span></p>
+                      <p>{"Email support : "}<span className="text-teal-400">support@visual-platform.com</span></p>
                       <p>{"DPO : "}<span className="text-teal-400">dpo@visual-platform.com</span></p>
+                      <p>{"Adresse postale : "}<span className="text-white/40">{"[\u00c0 compl\u00e9ter]"}</span></p>
+                      <p>{"T\u00e9l\u00e9phone : "}<span className="text-white/40">{"[\u00c0 compl\u00e9ter]"}</span></p>
                       <p>{"Messagerie : "}<Link href="/support/mailbox" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">Messagerie de support</Link></p>
                     </div>
                     <p className="text-white/40 text-xs mt-3">

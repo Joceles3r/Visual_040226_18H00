@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
               {"VISUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Dernière mise à jour : 23 février 2026"}
+              {"Derni\u00e8re mise \u00e0 jour : 23 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
             </p>
           </div>
         </section>
@@ -49,11 +49,27 @@ export default function PrivacyPolicyPage() {
                   {"Le responsable du traitement des données à caractère personnel collectées sur la plateforme VISUAL est :"}
                 </p>
                 <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
-                  <p className="text-white font-medium">VISUAL SAS</p>
+                  <p className="text-white font-medium">{"VISUAL \u2014 Version Provisoire Internationale"}</p>
                   <p className="text-white/50 text-sm">{"Plateforme de streaming et d'investissement participatif dans les projets audiovisuels, littéraires et podcasts"}</p>
-                  <p className="text-white/40 text-sm mt-2">{"Siège social : [Adresse à compléter]"}</p>
-                  <p className="text-white/40 text-sm">{"RCS : [Numéro à compléter]"}</p>
-                  <p className="text-white/40 text-sm">{"Contact DPO : dpo@visual-platform.com"}</p>
+                  <div className="mt-3 space-y-1.5">
+                    <p className="text-white/40 text-sm">{"Forme juridique : [\u00c0 d\u00e9finir lors de l'immatriculation]"}</p>
+                    <p className="text-white/40 text-sm">{"Si\u00e8ge social : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"SIRET / N\u00b0 d'immatriculation : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"RCS : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"N\u00b0 TVA intracommunautaire : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"Capital social : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"Email g\u00e9n\u00e9ral : contact@visual-platform.com"}</p>
+                    <p className="text-white/40 text-sm">{"Email support : support@visual-platform.com"}</p>
+                    <p className="text-white/40 text-sm">{"Contact DPO : dpo@visual-platform.com"}</p>
+                    <p className="text-white/40 text-sm">{"Directeur de la publication : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/40 text-sm">{"H\u00e9bergeur : Vercel Inc. \u2014 340 S Lemon Ave, Walnut, CA 91789, USA"}</p>
+                  </div>
+                </div>
+                <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mt-3">
+                  <p className="text-amber-400/80 text-sm">
+                    {"Ce document est une version provisoire internationale. Les informations l\u00e9gales (forme juridique, si\u00e8ge, SIRET) seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -285,7 +301,7 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <div className="space-y-3">
                   {[
-                    { who: "Stripe (paiement)", why: "Traitement des cautions, investissements, retraits. Stripe est certifié PCI-DSS niveau 1.", where: "UE / US (Data Privacy Framework)" },
+                    { who: "Stripe Connect (paiement & KYC)", why: "Traitement des cautions, investissements, retraits. V\u00e9rification d'identit\u00e9 (KYC) pour la conformit\u00e9 anti-blanchiment. Stripe est certifi\u00e9 PCI-DSS niveau 1.", where: "UE / US (Data Privacy Framework)" },
                     { who: "Hébergeur cloud (Vercel / AWS)", why: "Hébergement de la plateforme, stockage des contenus et des données.", where: "UE (région Frankfurt) / US (clauses contractuelles types)" },
                     { who: "Prestataire d'analyse (anonymisé)", why: "Statistiques d'utilisation anonymisées pour améliorer la plateforme.", where: "UE uniquement" },
                     { who: "Autorités compétentes", why: "Sur réquisition judiciaire, obligation légale (AMF, TRACFIN, autorités fiscales).", where: "France / UE" },
@@ -485,21 +501,30 @@ export default function PrivacyPolicyPage() {
                 <p className="text-white/70 leading-relaxed">
                   {"Pour toute question relative à cette politique de confidentialité, à la protection de vos données ou pour exercer vos droits :"}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-indigo-400" />
-                      <span className="text-white font-medium text-sm">{"Délégué à la Protection des Données"}</span>
+                      <span className="text-white font-medium text-sm">{"D\u00e9l\u00e9gu\u00e9 \u00e0 la Protection des Donn\u00e9es"}</span>
                     </div>
                     <p className="text-white/50 text-sm">dpo@visual-platform.com</p>
-                    <p className="text-white/35 text-xs">{"Délai de réponse : 1 mois maximum (RGPD, article 12)"}</p>
+                    <p className="text-white/35 text-xs">{"D\u00e9lai de r\u00e9ponse : 1 mois maximum (RGPD, article 12)"}</p>
+                  </div>
+                  <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-indigo-400" />
+                      <span className="text-white font-medium text-sm">Support / Contact</span>
+                    </div>
+                    <p className="text-white/50 text-sm">support@visual-platform.com</p>
+                    <p className="text-white/35 text-xs">{"Adresse postale : [\u00c0 compl\u00e9ter]"}</p>
+                    <p className="text-white/35 text-xs">{"T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]"}</p>
                   </div>
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
                     <div className="flex items-center gap-2">
                       <Scale className="h-4 w-4 text-indigo-400" />
-                      <span className="text-white font-medium text-sm">{"Autorité de contrôle"}</span>
+                      <span className="text-white font-medium text-sm">{"Autorit\u00e9 de contr\u00f4le"}</span>
                     </div>
-                    <p className="text-white/50 text-sm">CNIL</p>
+                    <p className="text-white/50 text-sm">{"CNIL (ou autorit\u00e9 comp\u00e9tente du pays d'\u00e9tablissement)"}</p>
                     <p className="text-white/35 text-xs">3 Place de Fontenoy - TSA 80715 - 75334 Paris Cedex 07</p>
                     <p className="text-white/35 text-xs">www.cnil.fr</p>
                   </div>

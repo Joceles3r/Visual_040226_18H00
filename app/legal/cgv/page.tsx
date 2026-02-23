@@ -94,7 +94,7 @@ export default function CGVPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-white/50 text-sm">
-              {"Version V1 \u2013 En vigueur au 23 février 2026"}
+              {"Version Provisoire Internationale \u2013 23 f\u00e9vrier 2026"}
             </p>
           </div>
 
@@ -130,6 +130,35 @@ export default function CGVPage() {
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Informations provisoires */}
+          <Card className="bg-amber-500/5 border-amber-500/15 mb-10">
+            <CardContent className="p-5">
+              <h3 className="text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                <AlertTriangle className="h-4 w-4" />
+                {"Informations l\u00e9gales \u00e0 compl\u00e9ter"}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
+                {[
+                  "Forme juridique : [\u00c0 d\u00e9finir]",
+                  "Si\u00e8ge social : [\u00c0 compl\u00e9ter]",
+                  "SIRET / N\u00b0 immatriculation : [\u00c0 compl\u00e9ter]",
+                  "RCS : [\u00c0 compl\u00e9ter]",
+                  "N\u00b0 TVA intracommunautaire : [\u00c0 compl\u00e9ter]",
+                  "Capital social : [\u00c0 compl\u00e9ter]",
+                  "Directeur de la publication : [\u00c0 compl\u00e9ter]",
+                  "T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]",
+                  "Email g\u00e9n\u00e9ral : contact@visual-platform.com",
+                  "Email support : support@visual-platform.com",
+                ].map((item, i) => (
+                  <p key={i} className="text-white/45 py-0.5">{item}</p>
+                ))}
+              </div>
+              <p className="text-amber-400/60 text-xs mt-4">
+                {"Ce document est une version provisoire internationale. Les informations seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VISUAL."}
+              </p>
             </CardContent>
           </Card>
 
@@ -324,8 +353,22 @@ export default function CGVPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 text-white/50 text-xs space-y-1">
-                    <p>{"Détail du bonus 10% : 6% bonus performance, 2% réserve technique, 2% réserve événementielle."}</p>
+                  <div className="mt-3 bg-slate-800/40 rounded-lg p-3">
+                    <p className="text-white/60 text-xs font-medium mb-2">{"D\u00e9tail du bonus 10% :"}</p>
+                    <div className="grid grid-cols-3 gap-2 text-xs">
+                      <div className="text-center">
+                        <span className="text-emerald-400 font-bold">6%</span>
+                        <p className="text-white/40 mt-0.5">Primes performance</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-sky-400 font-bold">2%</span>
+                        <p className="text-white/40 mt-0.5">{"R\u00e9serve technique"}</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-amber-400 font-bold">2%</span>
+                        <p className="text-white/40 mt-0.5">{"R\u00e9serve \u00e9v\u00e9nementielle"}</p>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -341,8 +384,9 @@ export default function CGVPage() {
               <P>{"Chaque utilisateur inscrit dispose d'un wallet (portefeuille interne) qui centralise ses opérations financières sur VISUAL :"}</P>
               <ul className="space-y-2 ml-1">
                 <Bullet>{"Les gains issus des classements sont automatiquement crédités dans le wallet"}</Bullet>
-                <Bullet>{"Les retraits sont effectués via Stripe Connect vers le compte bancaire de l'utilisateur"}</Bullet>
-                <Bullet>{"Les retraits sont traités chaque semaine par VISUAL"}</Bullet>
+                <Bullet>{"Les gains valid\u00e9s sont vers\u00e9s le premier jour du mois suivant la p\u00e9riode de cl\u00f4ture"}</Bullet>
+                <Bullet>{"Les retraits sont effectu\u00e9s via Stripe Connect vers le compte bancaire de l'utilisateur"}</Bullet>
+                <Bullet>{"Les retraits sont trait\u00e9s chaque semaine par VISUAL"}</Bullet>
                 <Bullet>{"VISUAL s'appuie sur les obligations de vérification d'identité (KYC) de Stripe en tant que prestataire de paiement"}</Bullet>
               </ul>
               <P>{"L'utilisateur est responsable de la validité et de l'exactitude de ses informations bancaires renseignées sur Stripe Connect."}</P>
@@ -406,9 +450,9 @@ export default function CGVPage() {
 
             {/* Article 16 */}
             <Section num={16} title="Droit applicable" icon={Scale}>
-              <P>{"Les présentes Conditions Générales de Vente sont régies par le droit français."}</P>
-              <P>{"En cas de litige relatif à l'interprétation, l'exécution ou la résiliation des présentes CGV, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire."}</P>
-              <P>{"À défaut d'accord amiable, les juridictions françaises compétentes seront saisies conformément aux règles de compétence territoriale en vigueur."}</P>
+              <P>{"Le droit applicable aux pr\u00e9sentes CGV sera celui du pays d'\u00e9tablissement officiel de VISUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}</P>
+              <P>{"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de 30 jours avant toute action judiciaire."}</P>
+              <P>{"\u00c0 d\u00e9faut d'accord amiable, les juridictions comp\u00e9tentes du ressort du si\u00e8ge social de VISUAL seront saisies, sauf disposition l\u00e9gale imp\u00e9rative contraire au b\u00e9n\u00e9fice du consommateur."}</P>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                 <HighlightCard icon={Handshake} title={"Médiation"} color="emerald">
                   <p>{"Conformément aux articles L.611-1 et suivants du Code de la consommation, l'utilisateur peut recourir gratuitement au service de médiation de la consommation."}</p>
@@ -425,7 +469,7 @@ export default function CGVPage() {
           <Card className="bg-slate-900/40 border-white/10 mt-12">
             <CardContent className="p-6 text-center">
               <p className="text-white/40 text-sm mb-2">
-                {"Version V1 \u2013 En vigueur au 23 février 2026"}
+                {"Version Provisoire Internationale \u2013 23 f\u00e9vrier 2026"}
               </p>
               <p className="text-white/30 text-xs">
                 {"VISUAL se réserve le droit de modifier les présentes CGV à tout moment. Les utilisateurs seront informés de toute modification substantielle par notification sur la plateforme. La poursuite de l'utilisation des services après modification vaut acceptation des nouvelles conditions."}
