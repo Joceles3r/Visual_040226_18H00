@@ -68,6 +68,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/legal/cgv" className="text-white/60 hover:text-emerald-400 transition-colors">
+                  {"Conditions Générales de Vente"}
+                </Link>
+              </li>
+              <li>
                 <Link href="/legal/cookies" className="text-white/60 hover:text-emerald-400 transition-colors">
                   Cookies
                 </Link>
