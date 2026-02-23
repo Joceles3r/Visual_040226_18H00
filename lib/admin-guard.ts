@@ -1,7 +1,7 @@
 /**
  * Server-side admin verification utility.
- * Uses VISUAL_ADMIN_EMAIL (server-only) as the source of truth.
- * Falls back to NEXT_PUBLIC_ADMIN_EMAIL if the server var is not set.
+ * Uses NEXT_PUBLIC_ADMIN_EMAIL as source of truth (the only admin email var configured).
+ * If you later add a server-only VISUAL_ADMIN_EMAIL in Vars, it will take priority.
  *
  * IMPORTANT: This file must ONLY run on the server (route handlers, server actions).
  */
