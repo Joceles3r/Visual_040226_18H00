@@ -1,0 +1,552 @@
+"use client"
+
+import Link from "next/link"
+import { VisualHeader } from "@/components/visual-header"
+import { Footer } from "@/components/footer"
+import { VisualSlogan } from "@/components/visual-slogan"
+import {
+  Shield, User, Database, Eye, Lock, Globe, Clock, FileText,
+  Mail, ArrowLeft, Scale, ServerCrash, AlertTriangle, Baby,
+  CreditCard, Mic, Film, BookOpen, BarChart3, Share2, Trash2,
+  Download, Edit3, Ban, HelpCircle,
+} from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+
+export default function PrivacyPolicyPage() {
+  return (
+    <div className="min-h-screen bg-black">
+      <VisualHeader />
+
+      <main className="pt-28 pb-20">
+        {/* Hero */}
+        <section className="py-12 md:py-16 cinema-section">
+          <div className="container mx-auto px-4 text-center max-w-4xl">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-500/15 border border-indigo-500/20 mb-6">
+              <Shield className="h-8 w-8 text-indigo-400" />
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
+              {"Politique de Confidentialité"}
+            </h1>
+            <div className="mb-6">
+              <VisualSlogan size="sm" opacity="high" withLines />
+            </div>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">
+              {"VISUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
+            </p>
+            <p className="text-sm text-white/35 mt-4">
+              {"Dernière mise à jour : 23 février 2026"}
+            </p>
+          </div>
+        </section>
+
+        <div className="container mx-auto px-4 max-w-4xl space-y-10">
+
+          {/* 1. Identité du responsable */}
+          <Section num={1} title="Identité du responsable de traitement">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"Le responsable du traitement des données à caractère personnel collectées sur la plateforme VISUAL est :"}
+                </p>
+                <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
+                  <p className="text-white font-medium">VISUAL SAS</p>
+                  <p className="text-white/50 text-sm">{"Plateforme de streaming et d'investissement participatif dans les projets audiovisuels, littéraires et podcasts"}</p>
+                  <p className="text-white/40 text-sm mt-2">{"Siège social : [Adresse à compléter]"}</p>
+                  <p className="text-white/40 text-sm">{"RCS : [Numéro à compléter]"}</p>
+                  <p className="text-white/40 text-sm">{"Contact DPO : dpo@visual-platform.com"}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 2. Cadre juridique */}
+          <Section num={2} title="Cadre juridique applicable">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"En tant que plateforme combinant diffusion de contenus (streaming) et investissement participatif, VISUAL est soumise à un cadre réglementaire renforcé :"}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    { icon: Globe, label: "Droit européen", items: [
+                      "RGPD (UE) 2016/679 \u2014 Protection des données personnelles",
+                      "Directive ePrivacy 2002/58/CE \u2014 Communications électroniques",
+                      "Directive (UE) 2019/770 \u2014 Fourniture de contenus numériques",
+                      "Règlement (UE) 2022/2065 (DSA) \u2014 Services numériques",
+                    ]},
+                    { icon: Scale, label: "Droit français", items: [
+                      "Loi Informatique et Libertés n\u00b078-17 du 6 janvier 1978",
+                      "Loi n\u00b02014-344 \u2014 Consommation (Loi Hamon)",
+                      "Code monétaire et financier \u2014 Financement participatif",
+                      "Recommandations AMF \u2014 Investissement participatif",
+                    ]},
+                    { icon: Globe, label: "Droit international", items: [
+                      "Convention 108+ du Conseil de l'Europe",
+                      "Privacy Shield / Data Privacy Framework (UE-US)",
+                      "Clauses contractuelles types (CCT) de la Commission européenne",
+                      "Principes directeurs de l'OCDE sur la vie privée",
+                    ]},
+                    { icon: Shield, label: "Normes sectorielles", items: [
+                      "PCI-DSS \u2014 Sécurité des données de paiement",
+                      "ISO 27001 \u2014 Management de la sécurité de l'information",
+                      "Directive MiFID II \u2014 Marchés d'instruments financiers",
+                      "Recommandations CNIL sur les plateformes de crowdfunding",
+                    ]},
+                  ].map((block) => {
+                    const IconComp = block.icon
+                    return (
+                      <div key={block.label} className="bg-black/30 rounded-xl p-4 border border-white/5">
+                        <div className="flex items-center gap-2 mb-3">
+                          <IconComp className="h-4 w-4 text-indigo-400" />
+                          <span className="text-white font-medium text-sm">{block.label}</span>
+                        </div>
+                        <ul className="space-y-1.5">
+                          {block.items.map((item) => (
+                            <li key={item} className="flex gap-2 items-start text-xs">
+                              <span className="mt-1.5 w-1 h-1 rounded-full bg-indigo-500/40 shrink-0" />
+                              <span className="text-white/55">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 3. Données collectées */}
+          <Section num={3} title="Données personnelles collectées">
+            <div className="space-y-4">
+              {[
+                {
+                  icon: User, color: "text-red-400", bg: "bg-red-500/15",
+                  title: "Données d'identification",
+                  subtitle: "Collectées lors de l'inscription",
+                  items: [
+                    "Nom, prénom et pseudonyme choisi",
+                    "Adresse e-mail et mot de passe (chiffré, jamais stocké en clair)",
+                    "Date de naissance (vérification de majorité)",
+                    "Photo de profil (facultatif)",
+                    "Rôle sélectionné : Visiteur, Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur, Auditeur",
+                  ],
+                },
+                {
+                  icon: CreditCard, color: "text-amber-400", bg: "bg-amber-500/15",
+                  title: "Données financières et transactionnelles",
+                  subtitle: "Liées à l'investissement participatif et aux paiements",
+                  items: [
+                    "Caution versée (10 EUR créateurs / 20 EUR investisseurs)",
+                    "Historique des investissements (2\u201320 EUR par projet, montants, dates, projets ciblés)",
+                    "Solde du portefeuille VISUAL et VISUpoints accumulés",
+                    "Transactions Stripe (identifiant Stripe Connect, retraits, reversements)",
+                    "IBAN/coordonnées bancaires pour les retraits (traités par Stripe, non stockés par VISUAL)",
+                  ],
+                },
+                {
+                  icon: Film, color: "text-sky-400", bg: "bg-sky-500/15",
+                  title: "Données de contenus créés",
+                  subtitle: "Liées à votre activité en tant que créateur",
+                  items: [
+                    "Vidéos déposées (Porteur) : fichiers, métadonnées, catégorie, descriptions",
+                    "Écrits publiés (Infoporteur) : textes, résumés, catégorie littéraire",
+                    "Podcasts déposés (Podcasteur) : fichiers audio, titres d'épisodes, descriptions",
+                    "Statistiques associées : vues, lectures, écoutes, votes, investissements reçus",
+                  ],
+                },
+                {
+                  icon: BarChart3, color: "text-emerald-400", bg: "bg-emerald-500/15",
+                  title: "Données de navigation et d'usage",
+                  subtitle: "Collectées automatiquement lors de l'utilisation",
+                  items: [
+                    "Adresse IP (anonymisée après 13 mois)",
+                    "Type de navigateur, système d'exploitation, résolution d'écran",
+                    "Pages consultées, contenus visionnés/lus/écoutés, durée de consultation",
+                    "Préférences d'interface (langue, thème, catégories favorites)",
+                    "Classements et positionnement (TOP Visiteur, Porteur, Infoporteur, Podcasteur)",
+                  ],
+                },
+              ].map((cat) => {
+                const IconComp = cat.icon
+                return (
+                  <Card key={cat.title} className="bg-slate-900/50 border-white/10">
+                    <CardContent className="pt-6">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className={`w-11 h-11 rounded-xl ${cat.bg} flex items-center justify-center shrink-0`}>
+                          <IconComp className={`h-5 w-5 ${cat.color}`} />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white">{cat.title}</h3>
+                          <p className="text-white/40 text-sm">{cat.subtitle}</p>
+                        </div>
+                      </div>
+                      <ul className="space-y-2 ml-15">
+                        {cat.items.map((item) => (
+                          <li key={item} className="flex gap-2 items-start text-sm">
+                            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full ${cat.bg} shrink-0`} />
+                            <span className="text-white/60">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </Section>
+
+          {/* 4. Finalités et bases légales */}
+          <Section num={4} title="Finalités et bases légales du traitement">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left text-white/50 font-medium py-3 pr-4">{"Finalité"}</th>
+                        <th className="text-left text-white/50 font-medium py-3 pr-4">Base légale</th>
+                        <th className="text-left text-white/50 font-medium py-3">{"Durée"}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {[
+                        { purpose: "Gestion du compte et authentification", basis: "Exécution du contrat", duration: "Durée du compte + 3 ans" },
+                        { purpose: "Traitement des investissements et cautions", basis: "Exécution du contrat / Obligation légale", duration: "10 ans (obligations comptables)" },
+                        { purpose: "Diffusion et hébergement des contenus créés", basis: "Exécution du contrat", duration: "Durée du compte + 1 an" },
+                        { purpose: "Calcul et versement des gains (VISUpoints, retours)", basis: "Exécution du contrat", duration: "10 ans (obligations comptables)" },
+                        { purpose: "Classements (TOP Visiteur, Porteur, Infoporteur, Podcasteur)", basis: "Intérêt légitime", duration: "Durée du compte" },
+                        { purpose: "Amélioration de la plateforme et statistiques", basis: "Intérêt légitime", duration: "13 mois (données anonymisées)" },
+                        { purpose: "Envoi de notifications et communications", basis: "Consentement", duration: "Jusqu'au retrait du consentement" },
+                        { purpose: "Conformité réglementaire (AMF, anti-blanchiment)", basis: "Obligation légale", duration: "5 ans après la clôture du compte" },
+                        { purpose: "Sécurité et prévention de la fraude", basis: "Intérêt légitime", duration: "1 an après détection" },
+                        { purpose: "Gestion des litiges et contentieux", basis: "Intérêt légitime", duration: "5 ans (prescription civile)" },
+                      ].map((row) => (
+                        <tr key={row.purpose}>
+                          <td className="py-3 pr-4 text-white/70">{row.purpose}</td>
+                          <td className="py-3 pr-4">
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/20">{row.basis}</span>
+                          </td>
+                          <td className="py-3 text-white/50 whitespace-nowrap">{row.duration}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 5. Droits des utilisateurs */}
+          <Section num={5} title="Vos droits (RGPD, articles 15 à 22)">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6">
+                <p className="text-white/70 leading-relaxed mb-6">
+                  {"En tant qu'inscrit sur VISUAL, vous disposez des droits suivants sur vos données personnelles, que vous pouvez exercer à tout moment :"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: Eye, label: "Droit d'accès", desc: "Obtenir la confirmation du traitement de vos données et en recevoir une copie complète" },
+                    { icon: Edit3, label: "Droit de rectification", desc: "Corriger toute donnée inexacte ou incomplète vous concernant" },
+                    { icon: Trash2, label: "Droit à l'effacement", desc: "Demander la suppression de vos données (sauf obligations légales de conservation)" },
+                    { icon: Lock, label: "Droit à la limitation", desc: "Restreindre temporairement le traitement de vos données dans certains cas" },
+                    { icon: Download, label: "Droit à la portabilité", desc: "Recevoir vos données dans un format structuré, lisible par machine (JSON/CSV)" },
+                    { icon: Ban, label: "Droit d'opposition", desc: "Vous opposer au traitement fondé sur l'intérêt légitime, y compris le profilage" },
+                    { icon: Share2, label: "Droit au retrait du consentement", desc: "Retirer votre consentement à tout moment, sans affecter le traitement antérieur" },
+                    { icon: HelpCircle, label: "Droit de réclamation", desc: "Introduire une réclamation auprès de la CNIL ou de toute autorité de contrôle compétente" },
+                  ].map((right) => {
+                    const IconComp = right.icon
+                    return (
+                      <div key={right.label} className="bg-black/30 rounded-xl p-4 border border-white/5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <IconComp className="h-4 w-4 text-indigo-400" />
+                          <span className="text-white font-medium text-sm">{right.label}</span>
+                        </div>
+                        <p className="text-white/50 text-xs leading-relaxed">{right.desc}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="bg-indigo-500/5 border border-indigo-500/15 rounded-xl p-4 mt-4">
+                  <p className="text-indigo-400/80 text-sm">
+                    {"Pour exercer vos droits, envoyez un e-mail à dpo@visual-platform.com en joignant une copie de votre pièce d'identité. VISUAL s'engage à répondre dans un délai d'un mois, conformément au RGPD."}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 6. Partage & sous-traitants */}
+          <Section num={6} title="Partage des données et sous-traitants">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"VISUAL ne vend, ne loue et ne cède jamais vos données personnelles à des tiers à des fins commerciales. Vos données peuvent être partagées uniquement avec :"}
+                </p>
+                <div className="space-y-3">
+                  {[
+                    { who: "Stripe (paiement)", why: "Traitement des cautions, investissements, retraits. Stripe est certifié PCI-DSS niveau 1.", where: "UE / US (Data Privacy Framework)" },
+                    { who: "Hébergeur cloud (Vercel / AWS)", why: "Hébergement de la plateforme, stockage des contenus et des données.", where: "UE (région Frankfurt) / US (clauses contractuelles types)" },
+                    { who: "Prestataire d'analyse (anonymisé)", why: "Statistiques d'utilisation anonymisées pour améliorer la plateforme.", where: "UE uniquement" },
+                    { who: "Autorités compétentes", why: "Sur réquisition judiciaire, obligation légale (AMF, TRACFIN, autorités fiscales).", where: "France / UE" },
+                  ].map((partner) => (
+                    <div key={partner.who} className="bg-black/30 rounded-xl p-4 border border-white/5">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                        <span className="text-white font-medium text-sm">{partner.who}</span>
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-white/40 border border-white/10">{partner.where}</span>
+                      </div>
+                      <p className="text-white/50 text-xs">{partner.why}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7. Transferts internationaux */}
+          <Section num={7} title="Transferts internationaux de données">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"VISUAL privilégie le stockage de vos données au sein de l'Union européenne. Lorsqu'un transfert en dehors de l'UE est nécessaire (par exemple vers les États-Unis pour Stripe), nous nous appuyons sur :"}
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Les décisions d'adéquation de la Commission européenne (ex. : Data Privacy Framework UE-US)",
+                    "Les clauses contractuelles types (CCT) adoptées par la Commission européenne",
+                    "Les règles d'entreprise contraignantes (BCR) approuvées par les autorités de contrôle",
+                    "Votre consentement explicite, en dernier recours, après information complète sur les risques",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-2 items-start text-sm">
+                      <Globe className="h-4 w-4 text-indigo-400 shrink-0 mt-0.5" />
+                      <span className="text-white/60">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 8. Sécurité */}
+          <Section num={8} title="Sécurité des données">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"VISUAL met en oeuvre des mesures techniques et organisationnelles appropriées pour garantir un niveau de sécurité adapté aux risques :"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: Lock, label: "Chiffrement", desc: "TLS 1.3 pour les communications, AES-256 pour le stockage, bcrypt pour les mots de passe" },
+                    { icon: Shield, label: "Authentification", desc: "Sessions sécurisées, tokens HTTP-only, protection CSRF sur toutes les actions" },
+                    { icon: Database, label: "Base de données", desc: "Accès restreint par rôle (Row Level Security), sauvegardes chiffrées quotidiennes" },
+                    { icon: ServerCrash, label: "Incident", desc: "Plan de réponse aux violations de données sous 72h (RGPD, article 33) et notification aux utilisateurs concernés" },
+                  ].map((measure) => {
+                    const IconComp = measure.icon
+                    return (
+                      <div key={measure.label} className="bg-black/30 rounded-xl p-4 border border-white/5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <IconComp className="h-4 w-4 text-indigo-400" />
+                          <span className="text-white font-medium text-sm">{measure.label}</span>
+                        </div>
+                        <p className="text-white/50 text-xs leading-relaxed">{measure.desc}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 9. Conservation */}
+          <Section num={9} title="Durées de conservation">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6">
+                <div className="space-y-3">
+                  {[
+                    { data: "Données du compte (profil, préférences, rôle)", duration: "Durée du compte + 3 ans après suppression", icon: User },
+                    { data: "Contenus créés (vidéos, écrits, podcasts)", duration: "Durée du compte + 1 an (ou sur demande de suppression)", icon: Film },
+                    { data: "Données financières (investissements, cautions, gains)", duration: "10 ans après la dernière transaction (obligation comptable)", icon: CreditCard },
+                    { data: "Classements et VISUpoints", duration: "Durée du compte (supprimés à la clôture)", icon: BarChart3 },
+                    { data: "Données de navigation (logs, IP)", duration: "13 mois (anonymisées ensuite)", icon: Globe },
+                    { data: "Données anti-fraude et conformité", duration: "5 ans après la clôture du compte", icon: AlertTriangle },
+                  ].map((row) => {
+                    const IconComp = row.icon
+                    return (
+                      <div key={row.data} className="flex items-center gap-4 bg-black/30 rounded-xl p-4 border border-white/5">
+                        <IconComp className="h-5 w-5 text-indigo-400 shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white/70 text-sm">{row.data}</p>
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <Clock className="h-3.5 w-3.5 text-white/30" />
+                          <span className="text-white/45 text-xs">{row.duration}</span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 10. Mineurs */}
+          <Section num={10} title="Protection des mineurs">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
+                    <Baby className="h-5 w-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-white/70 leading-relaxed">
+                      {"L'inscription et l'utilisation des fonctionnalités d'investissement de VISUAL sont réservées aux personnes majeures (18 ans ou plus). VISUAL procède à une vérification de l'âge lors de l'inscription."}
+                    </p>
+                    <p className="text-white/70 leading-relaxed mt-3">
+                      {"Les mineurs de 16 à 17 ans peuvent accéder aux contenus gratuits en mode Invité (sans inscription et sans collecte de données personnelles), conformément à l'article 8 du RGPD. Aucun investissement ni création de compte n'est possible pour les mineurs."}
+                    </p>
+                    <p className="text-white/50 text-sm mt-3">
+                      {"Si vous êtes parent ou tuteur et pensez que votre enfant mineur a fourni des données personnelles à VISUAL, contactez-nous immédiatement à dpo@visual-platform.com pour que nous procédions à leur suppression."}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 11. Spécificités streaming + participatif */}
+          <Section num={11} title="Dispositions spécifiques à VISUAL">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-5">
+                <p className="text-white/70 leading-relaxed">
+                  {"VISUAL combine deux activités soumises à des réglementations distinctes. Voici les dispositions spécifiques liées à chacune :"}
+                </p>
+
+                <div className="bg-black/30 rounded-xl p-5 border border-emerald-500/10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Film className="h-5 w-5 text-emerald-400" />
+                    <h4 className="text-white font-semibold">{"Volet Streaming (diffusion de contenus)"}</h4>
+                  </div>
+                  <ul className="space-y-2 ml-7">
+                    {[
+                      "Les contenus visionnés, lus ou écoutés sont journalisés pour calculer les VISUpoints et les classements, conformément aux conditions d'utilisation acceptées",
+                      "Les recommandations de contenus sont basées sur vos préférences déclarées (catégories, favoris) et non sur un profilage algorithmique invasif",
+                      "Vous pouvez télécharger l'historique complet de vos consultations (droit à la portabilité, article 20 RGPD)",
+                      "Les créateurs (Porteur, Infoporteur, Podcasteur) ont accès aux statistiques agrégées et anonymisées de leurs contenus, jamais aux données individuelles des visiteurs",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-2 items-start text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500/30 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-black/30 rounded-xl p-5 border border-sky-500/10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <CreditCard className="h-5 w-5 text-sky-400" />
+                    <h4 className="text-white font-semibold">{"Volet Investissement Participatif"}</h4>
+                  </div>
+                  <ul className="space-y-2 ml-7">
+                    {[
+                      "Les données financières sont traitées dans le respect du Code monétaire et financier et des recommandations de l'AMF relatives au financement participatif",
+                      "La traçabilité des transactions est assurée pendant 10 ans minimum (obligations légales comptables et fiscales)",
+                      "Les opérations de paiement sont intégralement déléguées à Stripe (prestataire de services de paiement agréé), VISUAL ne stocke aucune donnée bancaire",
+                      "En cas de fermeture de compte, les cautions remboursables sont restituées selon les modalités des conditions d'utilisation, les données financières sont conservées conformément aux obligations légales",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-2 items-start text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-500/30 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 12. Modifications */}
+          <Section num={12} title="Modifications de cette politique">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"VISUAL se réserve le droit de modifier cette politique de confidentialité pour l'adapter aux évolutions réglementaires, techniques ou fonctionnelles de la plateforme."}
+                </p>
+                <p className="text-white/70 leading-relaxed">
+                  {"En cas de modification substantielle, vous serez informé(e) par e-mail et/ou par notification sur la plateforme au moins 30 jours avant l'entrée en vigueur des changements. Vous aurez la possibilité de consulter les modifications, d'accepter les nouvelles conditions ou de supprimer votre compte."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 13. Contact */}
+          <Section num={13} title="Contact et réclamation">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 leading-relaxed">
+                  {"Pour toute question relative à cette politique de confidentialité, à la protection de vos données ou pour exercer vos droits :"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-indigo-400" />
+                      <span className="text-white font-medium text-sm">{"Délégué à la Protection des Données"}</span>
+                    </div>
+                    <p className="text-white/50 text-sm">dpo@visual-platform.com</p>
+                    <p className="text-white/35 text-xs">{"Délai de réponse : 1 mois maximum (RGPD, article 12)"}</p>
+                  </div>
+                  <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Scale className="h-4 w-4 text-indigo-400" />
+                      <span className="text-white font-medium text-sm">{"Autorité de contrôle"}</span>
+                    </div>
+                    <p className="text-white/50 text-sm">CNIL</p>
+                    <p className="text-white/35 text-xs">3 Place de Fontenoy - TSA 80715 - 75334 Paris Cedex 07</p>
+                    <p className="text-white/35 text-xs">www.cnil.fr</p>
+                  </div>
+                </div>
+                <div className="bg-indigo-500/5 border border-indigo-500/15 rounded-xl p-4">
+                  <p className="text-indigo-400/80 text-sm">
+                    {"Vous avez également le droit d'introduire une réclamation auprès de l'autorité de contrôle de votre pays de résidence si vous estimez que le traitement de vos données enfreint le RGPD (article 77)."}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* Retour */}
+          <div className="flex justify-center gap-4 pt-6">
+            <Link href="/legal/cookies">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10 transition-all text-sm">
+                <FileText className="h-4 w-4" />
+                Politique de Cookies
+              </button>
+            </Link>
+            <Link href="/">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10 transition-all text-sm">
+                <ArrowLeft className="h-4 w-4" />
+                {"Retour à l'accueil"}
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
+
+function Section({ num, title, children }: { num: number; title: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+        <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-bold text-indigo-400">
+          {num}
+        </span>
+        {title}
+      </h2>
+      {children}
+    </section>
+  )
+}
