@@ -24,7 +24,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
 import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGORIES } from "@/lib/mock-data"
-import { Trophy, Eye } from "lucide-react"
+  import { Trophy } from "lucide-react"
 import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 
@@ -311,16 +311,15 @@ export default function DashboardPage() {
           </Link>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {LEADERBOARD_CATEGORIES.map((cat) => {
               const rank = USER_RANKINGS[cat.key]
               const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-                visiteur: Eye,
                 porteur: Film,
                 infoporteur: FileText,
                 podcasteur: Mic,
               }
-              const CatIcon = IconMap[cat.key] || Eye
+              const CatIcon = IconMap[cat.key] || Trophy
               return (
                 <div
                   key={cat.key}

@@ -414,7 +414,6 @@ const INFOPORTEUR_NAMES = ["Pierre Écrivain", "Nora Mystère", "Claire Lettres"
 const PODCASTEUR_NAMES = ["Karim Ondes", "Lina Audio", "Thomas Voix", "Mina Podcast", "Sami Micro", "Éva Studio", "Yann Écoute", "Hana Sound", "Marco Fréquence", "Nadia Canal", "Romain Épisode", "Chloé Wave", "Félix Bande", "Iris Talk", "Paul Émission", "Léo Direct", "Dario Cast", "Mila Capsule", "Oscar Pod", "Jade Stream", "Hugo Série", "Alice Show", "Noah Radio", "Sara Live", "Tom Replay"]
 
 export const LEADERBOARD_CATEGORIES = [
-  { key: "visiteur" as const, label: "TOP Visiteur", color: "text-amber-400", bgColor: "bg-amber-500/20", borderColor: "border-amber-500/30" },
   { key: "porteur" as const, label: "TOP Porteur", color: "text-red-400", bgColor: "bg-red-500/20", borderColor: "border-red-500/30" },
   { key: "infoporteur" as const, label: "TOP Infoporteur", color: "text-sky-400", bgColor: "bg-sky-500/20", borderColor: "border-sky-500/30" },
   { key: "podcasteur" as const, label: "TOP Podcasteur", color: "text-purple-400", bgColor: "bg-purple-500/20", borderColor: "border-purple-500/30" },
@@ -423,15 +422,13 @@ export const LEADERBOARD_CATEGORIES = [
 export type LeaderboardCategoryKey = typeof LEADERBOARD_CATEGORIES[number]["key"]
 
 export const LEADERBOARD_DATA: Record<LeaderboardCategoryKey, LeaderboardEntry[]> = {
-  visiteur: generateEntries(VISITEUR_NAMES, 4850, (s) => `${s.toLocaleString()} VISUpoints`, 500),
-  porteur: generateEntries(PORTEUR_NAMES, 15600, (s) => `${s.toLocaleString()}€ collectés`, 500),
-  infoporteur: generateEntries(INFOPORTEUR_NAMES, 9800, (s) => `${s.toLocaleString()}€ collectés`, 500),
-  podcasteur: generateEntries(PODCASTEUR_NAMES, 8200, (s) => `${s.toLocaleString()}€ collectés`, 500),
+  porteur: generateEntries(PORTEUR_NAMES, 15600, (s) => `${s.toLocaleString()}\u20ac collect\u00e9s`, 500),
+  infoporteur: generateEntries(INFOPORTEUR_NAMES, 9800, (s) => `${s.toLocaleString()}\u20ac collect\u00e9s`, 500),
+  podcasteur: generateEntries(PODCASTEUR_NAMES, 8200, (s) => `${s.toLocaleString()}\u20ac collect\u00e9s`, 500),
 }
 
 // Current user mock rankings (for dashboard)
 export const USER_RANKINGS: Record<LeaderboardCategoryKey, number> = {
-  visiteur: 42,
   porteur: 128,
   infoporteur: 256,
   podcasteur: 87,

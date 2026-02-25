@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { Trophy, Crown, Star, Film, FileText, Mic, Eye } from "lucide-react"
+import { Trophy, Crown, Star, Film, FileText, Mic } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
@@ -16,7 +16,6 @@ import {
 } from "@/lib/mock-data"
 
 const CATEGORY_ICONS: Record<LeaderboardCategoryKey, React.ComponentType<{ className?: string }>> = {
-  visiteur: Eye,
   porteur: Film,
   infoporteur: FileText,
   podcasteur: Mic,
@@ -101,7 +100,7 @@ export default function LeaderboardPage() {
   const searchParams = useSearchParams()
   const topParam = Number(searchParams.get("top")) || 10
   const tier = ([10, 100, 500] as const).includes(topParam as 10 | 100 | 500) ? topParam : 10
-  const [activeCategory, setActiveCategory] = useState<LeaderboardCategoryKey>("visiteur")
+  const [activeCategory, setActiveCategory] = useState<LeaderboardCategoryKey>("porteur")
 
   const entries = LEADERBOARD_DATA[activeCategory].slice(0, tier)
 
@@ -123,7 +122,7 @@ export default function LeaderboardPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              {"Découvrez les meilleurs visiteurs, porteurs, infoporteurs et podcasteurs de VISUAL"}
+{"D\u00e9couvrez les meilleurs porteurs, infoporteurs et podcasteurs de VISUAL"}
             </p>
           </div>
 
