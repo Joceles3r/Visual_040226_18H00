@@ -374,3 +374,94 @@ export const MINOR_VISUPOINTS_CAP = 10_000;
 export const MINOR_VISUPOINTS_CAP_EUR = MINOR_VISUPOINTS_CAP / VISUPOINTS_PER_EUR; // 100 EUR
 /** Seuil conversion majeur : 2500 VISUpoints */
 export const ADULT_VISUPOINTS_CONVERSION_THRESHOLD = VISUPOINTS_CONVERSION_THRESHOLD;
+
+// ──────────────────────────────────────────────
+// 11. VISUPOINTS - PLAFONDS PAR PROFIL
+// ──────────────────────────────────────────────
+
+export type VisupointsProfileKey =
+  | "guest"
+  | "visitor"
+  | "visitor_minor"
+  | "auditor"
+  | "investireader"
+  | "porter"
+  | "infoporter"
+  | "podcaster"
+  | "investor";
+
+export const VISUPOINTS_PROFILE_CAPS: Record<VisupointsProfileKey, {
+  label: string;
+  cap: number | null; // null = ne gagne pas
+  capType: "total" | "monthly" | "none";
+  convertible: boolean;
+  objective: string;
+}> = {
+  guest:          { label: "Invit\u00e9",              cap: null,   capType: "none",    convertible: false, objective: "Acquisition" },
+  visitor:        { label: "Visiteur majeur",      cap: 2_500,  capType: "total",   convertible: true,  objective: "Inciter \u00e0 investir" },
+  visitor_minor:  { label: "Visiteur mineur (16\u201317)", cap: 10_000, capType: "total",   convertible: false, objective: "Fid\u00e9lisation long terme" },
+  auditor:        { label: "Auditeur",             cap: 2_500,  capType: "total",   convertible: true,  objective: "Encourager \u00e9coute" },
+  investireader:  { label: "Investi-lecteur",      cap: 2_500,  capType: "total",   convertible: true,  objective: "Lecture active" },
+  porter:         { label: "Porteur",              cap: 1_000,  capType: "monthly", convertible: false, objective: "Boost visibilit\u00e9" },
+  infoporter:     { label: "Infoporteur",          cap: 1_000,  capType: "monthly", convertible: false, objective: "Boost article" },
+  podcaster:      { label: "Podcasteur",           cap: 1_000,  capType: "monthly", convertible: false, objective: "Mise en avant" },
+  investor:       { label: "Investisseur",         cap: null,   capType: "none",    convertible: false, objective: "R\u00e9mun\u00e9r\u00e9 via gains" },
+};
+
+/** Maximum journalier recommand\u00e9 */
+export const VISUPOINTS_MAX_DAILY = 60;
+
+// ──────────────────────────────────────────────
+// 12. ENGAGEMENT REDIRECT ENGINE
+// ──────────────────────────────────────────────
+
+/** Seuils d'engagement pour visiteurs */
+export const ENGAGEMENT_THRESHOLDS = {
+  /** Suggestion douce */
+  info: 2_000,
+  /** Avertissement */
+  warning: 2_300,
+  /** Critique : proposition d'action */
+  critical: 2_450,
+} as const;
+
+export type EngagementLevel = "none" | "info" | "warning" | "critical";
+
+// ──────────────────────────────────────────────
+// 13. PAIEMENT HYBRIDE (CHEMIN A)
+// ──────────────────────────────────────────────
+
+/** Part minimum en euros (cash) */
+export const HYBRID_PAYMENT_MIN_CASH_RATIO = 0.30;
+/** Part maximum en VISUpoints */
+export const HYBRID_PAYMENT_MAX_POINTS_RATIO = 0.70;
+/** Bonus d'utilisation des VISUpoints */
+export const HYBRID_BONUS_RATIO = 0.05;
+/** Plafond mensuel du bonus en points */
+export const HYBRID_BONUS_MONTHLY_CAP = 200;
+
+/**
+ * Calcule la repartition d'un paiement hybride.
+ * @param priceCents Prix total en centimes
+ * @param pointsBalance VISUpoints disponibles
+ * @returns Repartition cash/points et bonus
+ */
+export function computeHybridPayment(priceCents: number, pointsBalance: number): {
+  cashMinCents: number;
+  pointsMaxUsable: number;
+  pointsActualUsable: number;
+  bonusPoints: number;
+} {
+  const cashMinCents = Math.ceil(priceCents * HYBRID_PAYMENT_MIN_CASH_RATIO);
+  const pointsMaxUsable = Math.floor(priceCents * HYBRID_PAYMENT_MAX_POINTS_RATIO);
+  const pointsActualUsable = Math.min(pointsMaxUsable, pointsBalance);
+  const bonusPoints = Math.floor(pointsActualUsable * HYBRID_BONUS_RATIO);
+  return { cashMinCents, pointsMaxUsable, pointsActualUsable, bonusPoints };
+}
+
+// ──────────────────────────────────────────────
+// 14. EVOLUTION DE PROFIL (CHEMIN B)
+// ──────────────────────────────────────────────
+
+/** Bonus VISUpoints au passage Investisseur */
+export const INVESTOR_EVOLUTION_BONUS = 500;

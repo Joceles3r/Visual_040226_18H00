@@ -153,6 +153,102 @@ export function canConvertVisupoints(userIsMinor: boolean): {
   return { allowed: true }
 }
 
+// ─── Engagement Redirect Engine ───
+
+export type EngagementRedirectLevel = "none" | "info" | "warning" | "critical"
+
+export interface EngagementRedirectResult {
+  level: EngagementRedirectLevel
+  title: string
+  message: string
+  showPathA: boolean // Chemin A : consommer du contenu
+  showPathB: boolean // Chemin B : evoluer vers profil avance
+}
+
+const ENGAGEMENT_INFO_THRESHOLD = 2_000
+const ENGAGEMENT_WARNING_THRESHOLD = 2_300
+const ENGAGEMENT_CRITICAL_THRESHOLD = 2_450
+
+/**
+ * Moteur d'incitation a l'engagement.
+ * Se declenche uniquement pour les Visiteurs majeurs
+ * avec 2000+ VISUpoints.
+ *
+ * Deux chemins proposes :
+ * A) Consommer du contenu (paiement hybride 30% cash min / 70% VISUpoints max)
+ * B) Evoluer vers un profil avance (Investisseur, Auditeur, etc.)
+ */
+export function engagementRedirectEngine(
+  role: string,
+  visupoints: number,
+  isUserMinor: boolean
+): EngagementRedirectResult | null {
+  // Ne s'applique qu'aux visiteurs majeurs
+  if (role !== "visitor" || isUserMinor) return null
+  if (visupoints < ENGAGEMENT_INFO_THRESHOLD) return null
+
+  if (visupoints >= ENGAGEMENT_CRITICAL_THRESHOLD) {
+    return {
+      level: "critical",
+      title: "Vous approchez du plafond de 2 500 pts !",
+      message: "Il est temps d'utiliser vos VISUpoints : consommez du contenu ou passez au niveau sup\u00e9rieur pour d\u00e9bloquer plus de fonctionnalit\u00e9s.",
+      showPathA: true,
+      showPathB: true,
+    }
+  }
+  if (visupoints >= ENGAGEMENT_WARNING_THRESHOLD) {
+    return {
+      level: "warning",
+      title: "Vos VISUpoints s'accumulent !",
+      message: "Profitez-en pour acc\u00e9der \u00e0 du contenu premium ou explorez de nouveaux r\u00f4les sur VISUAL.",
+      showPathA: true,
+      showPathB: true,
+    }
+  }
+  return {
+    level: "info",
+    title: "Vous avez d\u00e9j\u00e0 2 000 VISUpoints !",
+    message: "Saviez-vous que vous pouvez utiliser vos points pour acc\u00e9der \u00e0 du contenu ? D\u00e9couvrez les possibilit\u00e9s.",
+    showPathA: true,
+    showPathB: false,
+  }
+}
+
+/**
+ * Calcule le paiement hybride pour l'achat de contenu (Chemin A).
+ * Minimum 30% en euros, maximum 70% en VISUpoints.
+ * Bonus : 5% des points depenses sont regagnes (max 200/mois).
+ */
+export function computeHybridPurchase(
+  priceCents: number,
+  userPoints: number,
+  bonusUsedThisMonth: number = 0
+): {
+  cashCents: number
+  pointsUsed: number
+  bonusEarned: number
+  remainingPoints: number
+} {
+  const cashMinCents = Math.ceil(priceCents * 0.30)
+  const pointsPartCents = priceCents - cashMinCents
+  // 1 point = 1 centime (100 pts = 1 EUR)
+  const pointsNeeded = pointsPartCents
+  const pointsUsed = Math.min(pointsNeeded, userPoints)
+  const cashCents = priceCents - pointsUsed
+
+  // Bonus 5% plafonné à 200/mois
+  const rawBonus = Math.floor(pointsUsed * 0.05)
+  const bonusCap = Math.max(0, 200 - bonusUsedThisMonth)
+  const bonusEarned = Math.min(rawBonus, bonusCap)
+
+  return {
+    cashCents,
+    pointsUsed,
+    bonusEarned,
+    remainingPoints: userPoints - pointsUsed,
+  }
+}
+
 /** Deblocage automatique a la majorite (a appeler au login) */
 export function checkMajorityUnlock(
   profile: UserVisupointsProfile

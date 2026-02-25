@@ -233,6 +233,8 @@ export default function PrivacyPolicyPage() {
                         { purpose: "Calcul et versement des gains (VISUpoints, retours)", basis: "Exécution du contrat", duration: "10 ans (obligations comptables)" },
                         { purpose: "Classements (TOP Visiteur, Porteur, Infoporteur, Podcasteur)", basis: "Intérêt légitime", duration: "Durée du compte" },
                         { purpose: "Amélioration de la plateforme et statistiques", basis: "Intérêt légitime", duration: "13 mois (données anonymisées)" },
+                        { purpose: "Notifications d'engagement personnalis\u00e9es (VISUpoints)", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
+                        { purpose: "Paiement hybride (euros + VISUpoints)", basis: "Ex\u00e9cution du contrat", duration: "10 ans (obligations comptables)" },
                         { purpose: "Envoi de notifications et communications", basis: "Consentement", duration: "Jusqu'au retrait du consentement" },
                         { purpose: "Conformité réglementaire (AMF, anti-blanchiment)", basis: "Obligation légale", duration: "5 ans après la clôture du compte" },
                         { purpose: "Sécurité et prévention de la fraude", basis: "Intérêt légitime", duration: "1 an après détection" },
@@ -489,10 +491,12 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <ul className="space-y-2 ml-7">
                     {[
-                      "Les contenus visionnés, lus ou écoutés sont journalisés pour calculer les VISUpoints et les classements, conformément aux conditions d'utilisation acceptées",
-                      "Les recommandations de contenus sont basées sur vos préférences déclarées (catégories, favoris) et non sur un profilage algorithmique invasif",
-                      "Vous pouvez télécharger l'historique complet de vos consultations (droit à la portabilité, article 20 RGPD)",
-                      "Les créateurs (Porteur, Infoporteur, Podcasteur) ont accès aux statistiques agrégées et anonymisées de leurs contenus, jamais aux données individuelles des visiteurs",
+                      "Les contenus visionn\u00e9s, lus ou \u00e9cout\u00e9s sont journalis\u00e9s pour calculer les VISUpoints et les classements, conform\u00e9ment aux conditions d'utilisation accept\u00e9es",
+                      "Les recommandations de contenus sont bas\u00e9es sur vos pr\u00e9f\u00e9rences d\u00e9clar\u00e9es (cat\u00e9gories, favoris) et non sur un profilage algorithmique invasif",
+                      "Des notifications personnalis\u00e9es peuvent \u00eatre affich\u00e9es en fonction de votre solde de VISUpoints (moteur d'engagement). Ces notifications sont g\u00e9n\u00e9r\u00e9es en interne \u00e0 partir de votre activit\u00e9 sur la plateforme, sans partage avec des tiers",
+                      "Le paiement hybride (euros + VISUpoints) implique le traitement de votre solde de points pour calculer la r\u00e9partition du paiement. Ces donn\u00e9es restent strictement internes",
+                      "Vous pouvez t\u00e9l\u00e9charger l'historique complet de vos consultations (droit \u00e0 la portabilit\u00e9, article 20 RGPD)",
+                      "Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) ont acc\u00e8s aux statistiques agr\u00e9g\u00e9es et anonymis\u00e9es de leurs contenus, jamais aux donn\u00e9es individuelles des visiteurs",
                     ].map((item) => (
                       <li key={item} className="flex gap-2 items-start text-sm">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500/30 shrink-0" />

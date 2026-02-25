@@ -92,6 +92,25 @@ export {
   computeEngagementCoefficient,
   // Stripe
   STRIPE_CONFIG,
+  // Mineurs
+  MINOR_MIN_AGE,
+  MAJORITY_AGE,
+  MINOR_VISUPOINTS_CAP,
+  MINOR_VISUPOINTS_CAP_EUR,
+  ADULT_VISUPOINTS_CONVERSION_THRESHOLD,
+  // Profils VISUpoints
+  VISUPOINTS_PROFILE_CAPS,
+  VISUPOINTS_MAX_DAILY,
+  // Engagement Redirect Engine
+  ENGAGEMENT_THRESHOLDS,
+  // Paiement hybride
+  HYBRID_PAYMENT_MIN_CASH_RATIO,
+  HYBRID_PAYMENT_MAX_POINTS_RATIO,
+  HYBRID_BONUS_RATIO,
+  HYBRID_BONUS_MONTHLY_CAP,
+  computeHybridPayment,
+  // Evolution profil
+  INVESTOR_EVOLUTION_BONUS,
 } from "./constants";
 
-export type { VisualCategory } from "./constants";
+export type { VisualCategory, VisupointsProfileKey, EngagementLevel } from "./constants";

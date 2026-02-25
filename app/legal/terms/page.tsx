@@ -153,7 +153,7 @@ export default function TermsOfUsePage() {
                     { term: "Investisseur", def: "Inscrit qui investit de 2 à 20 EUR par projet audiovisuel" },
                     { term: "Investi-lecteur", def: "Inscrit qui investit de 2 à 20 EUR par contenu littéraire" },
                     { term: "Auditeur", def: "Inscrit qui investit de 2 à 20 EUR par podcast" },
-                    { term: "VISUpoints", def: "Points d'activité accumulés par les interactions sur la plateforme (votes, vues, écoutes)" },
+                    { term: "VISUpoints", def: "Avantage promotionnel interne (100 pts = 1\u20ac). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
                     { term: "Caution", def: "Dépôt unique remboursable (10 EUR créateurs, 20 EUR investisseurs) garantissant l'engagement" },
                     { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VISUAL" },
                     { term: "Contenu", def: "Toute œuvre déposée : vidéo, écrit, podcast, incluant métadonnées et descriptions" },
@@ -455,25 +455,107 @@ export default function TermsOfUsePage() {
           <Section num={5} title="VISUpoints, votes et classements">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
-                <SubSection title="Système de VISUpoints">
+                <SubSection title={"Nature des VISUpoints"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Les VISUpoints sont des points d'activité non monétaires, attribués automatiquement par la plateforme en fonction des interactions de l'inscrit :"}
+                    {"Les VISUpoints sont un avantage promotionnel interne \u00e0 VISUAL, attribu\u00e9s automatiquement selon les interactions de l'inscrit. Ils ne constituent ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE, ni une cr\u00e9ance financi\u00e8re exigible."}
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {[
-                      { action: "Visionnage / Lecture / Écoute", pts: "Variable selon la durée et le contenu" },
-                      { action: "Vote (favorable ou défavorable)", pts: "Points attribués au votant et au contenu" },
-                      { action: "Investissement confirmé", pts: "Bonus proportionnel au montant investi" },
-                      { action: "Contenu déposé (créateurs)", pts: "Points à la publication et aux interactions reçues" },
-                    ].map((item) => (
-                      <div key={item.action} className="bg-black/30 rounded-xl p-3 border border-white/5">
-                        <span className="text-white/70 text-sm font-medium">{item.action}</span>
-                        <p className="text-white/40 text-xs mt-1">{item.pts}</p>
+                  <div className="bg-black/30 rounded-xl p-4 border border-white/5 mb-3">
+                    <p className="text-white/70 text-sm font-medium mb-2">{"Taux et limites"}</p>
+                    <div className="grid grid-cols-3 gap-3 text-center">
+                      <div>
+                        <span className="text-amber-400 font-bold text-lg">100</span>
+                        <p className="text-white/40 text-xs">pts = 1 EUR</p>
                       </div>
-                    ))}
+                      <div>
+                        <span className="text-emerald-400 font-bold text-lg">60</span>
+                        <p className="text-white/40 text-xs">pts max / jour</p>
+                      </div>
+                      <div>
+                        <span className="text-sky-400 font-bold text-lg">2 500</span>
+                        <p className="text-white/40 text-xs">seuil conversion</p>
+                      </div>
+                    </div>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Plafonds par profil"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-3">
+                    {"Chaque profil dispose d'un plafond sp\u00e9cifique d'accumulation de VISUpoints :"}
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-white/10 text-white/50">
+                          <th className="text-left py-2 pr-3 font-medium">Profil</th>
+                          <th className="text-center py-2 px-2 font-medium">Plafond</th>
+                          <th className="text-center py-2 px-2 font-medium">Type</th>
+                          <th className="text-center py-2 px-2 font-medium">{"Convertible ?"}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {[
+                          { p: "Invit\u00e9", cap: "\u2014", type: "\u2014", conv: false },
+                          { p: "Visiteur majeur", cap: "2 500", type: "Total", conv: true },
+                          { p: "Visiteur mineur (16\u201317)", cap: "10 000", type: "Total", conv: false },
+                          { p: "Auditeur", cap: "2 500", type: "Total", conv: true },
+                          { p: "Investi-lecteur", cap: "2 500", type: "Total", conv: true },
+                          { p: "Porteur", cap: "1 000", type: "/mois", conv: false },
+                          { p: "Infoporteur", cap: "1 000", type: "/mois", conv: false },
+                          { p: "Podcasteur", cap: "1 000", type: "/mois", conv: false },
+                          { p: "Investisseur", cap: "\u2014", type: "\u2014", conv: false },
+                        ].map((row) => (
+                          <tr key={row.p}>
+                            <td className="py-1.5 pr-3 text-white/70">{row.p}</td>
+                            <td className="py-1.5 px-2 text-center text-amber-400 font-mono">{row.cap}</td>
+                            <td className="py-1.5 px-2 text-center text-white/40">{row.type}</td>
+                            <td className="py-1.5 px-2 text-center">{row.conv ? <CheckCircle className="h-3.5 w-3.5 text-emerald-400 mx-auto" /> : <Lock className="h-3.5 w-3.5 text-white/20 mx-auto" />}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                   <p className="text-white/40 text-xs mt-3">
-                    {"Les VISUpoints ne sont ni transférables, ni échangeables contre de l'argent. Ils servent uniquement au classement et à la gamification de la plateforme."}
+                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VISUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Investisseur ne gagne pas de VISUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
+                  </p>
+                </SubSection>
+
+                <SubSection title={"Paiement hybride (achat de contenu)"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-3">
+                    {"Les VISUpoints peuvent \u00eatre utilis\u00e9s pour l'achat de contenu sur la plateforme, selon un syst\u00e8me de paiement hybride :"}
+                  </p>
+                  <div className="grid grid-cols-2 gap-3 mb-3">
+                    <div className="bg-emerald-500/10 rounded-xl p-3 border border-emerald-500/15 text-center">
+                      <span className="text-emerald-400 font-bold text-xl">30%</span>
+                      <p className="text-white/50 text-xs mt-1">minimum en euros</p>
+                    </div>
+                    <div className="bg-amber-500/10 rounded-xl p-3 border border-amber-500/15 text-center">
+                      <span className="text-amber-400 font-bold text-xl">70%</span>
+                      <p className="text-white/50 text-xs mt-1">maximum en VISUpoints</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1.5 text-xs text-white/50">
+                    <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Le paiement 100% VISUpoints n'est pas autoris\u00e9 afin de garantir un mod\u00e8le \u00e9conomique durable"}</span></div>
+                    <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Bonus : 5% des points d\u00e9pens\u00e9s sont retourn\u00e9s (plafond mensuel : 200 points)"}</span></div>
+                    <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Ce m\u00e9canisme assure le maintien du flux de r\u00e9mun\u00e9ration des cr\u00e9ateurs via Stripe"}</span></div>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Moteur d'engagement (Visiteurs)"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-3">
+                    {"\u00c0 partir de 2 000 VISUpoints, VISUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                      <p className="text-emerald-400 font-medium mb-1">{"Chemin A : Consommer du contenu"}</p>
+                      <p className="text-white/50">{"Paiement hybride (30% cash / 70% VISUpoints max) + bonus 5%"}</p>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                      <p className="text-purple-400 font-medium mb-1">{"Chemin B : \u00c9voluer de profil"}</p>
+                      <p className="text-white/50">{"Devenir Investisseur (+500 VISUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
+                    </div>
+                  </div>
+                  <p className="text-white/40 text-xs mt-3">
+                    {"Ce m\u00e9canisme est purement incitatif et non contraignant. L'inscrit reste libre de conserver ses VISUpoints."}
                   </p>
                 </SubSection>
 

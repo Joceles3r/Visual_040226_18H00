@@ -399,6 +399,40 @@ export default function CGVPage() {
               </Card>
             </Section>
 
+            {/* Article 11bis - VISUpoints et paiement hybride */}
+            <Section num={0} title={"VISUpoints et paiement hybride"} icon={Star}>
+              <P>{"Les VISUpoints constituent un avantage promotionnel interne \u00e0 VISUAL. Ils ne sont pas une monnaie \u00e9lectronique au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de 100 VISUpoints = 1 EUR."}</P>
+
+              <Card className="bg-slate-800/40 border-white/5 mt-3 mb-3">
+                <CardContent className="pt-5 space-y-3">
+                  <p className="text-white font-medium text-sm">{"Paiement hybride pour l'achat de contenu"}</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-emerald-500/10 rounded-lg p-3 border border-emerald-500/15 text-center">
+                      <span className="text-emerald-400 font-bold text-lg">30%</span>
+                      <p className="text-white/40 text-xs mt-1">minimum en euros</p>
+                    </div>
+                    <div className="bg-amber-500/10 rounded-lg p-3 border border-amber-500/15 text-center">
+                      <span className="text-amber-400 font-bold text-lg">70%</span>
+                      <p className="text-white/40 text-xs mt-1">maximum en VISUpoints</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-1.5 text-xs text-white/50">
+                    <Bullet>{"Le paiement int\u00e9gralement en VISUpoints (100%) n'est pas autoris\u00e9 en version V1"}</Bullet>
+                    <Bullet>{"Bonus d'utilisation : 5% des points d\u00e9pens\u00e9s sont restitu\u00e9s (plafond : 200 pts/mois)"}</Bullet>
+                    <Bullet>{"Ce mod\u00e8le garantit la r\u00e9mun\u00e9ration effective des cr\u00e9ateurs via le flux Stripe"}</Bullet>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <P>{"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) re\u00e7oivent un plafond mensuel de 1 000 VISUpoints utilisables comme boost de visibilit\u00e9. Ces points ne sont pas convertibles en euros. L'Investisseur, r\u00e9mun\u00e9r\u00e9 via les gains classiques, ne cumule pas de VISUpoints."}</P>
+
+              <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3 mt-3">
+                <p className="text-amber-400/70 text-xs leading-relaxed">
+                  {"Les VISUpoints ne peuvent faire l'objet d'aucun transfert, cession, vente ou h\u00e9ritage. VISUAL se r\u00e9serve le droit de modifier le taux de conversion, les plafonds et les conditions d'utilisation des VISUpoints avec un pr\u00e9avis de 30 jours."}
+                </p>
+              </div>
+            </Section>
+
             {/* Article 12 */}
             <Section num={12} title="Interdictions et sanctions" icon={Ban}>
               <P>{"Sont strictement interdits sur VISUAL :"}</P>
