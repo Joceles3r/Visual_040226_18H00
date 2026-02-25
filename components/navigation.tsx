@@ -49,7 +49,7 @@ export const DISCOVER_MENU: NavMenu = {
   items: [
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
-    { label: "Classements TOP 10", href: "/leaderboard", icon: Trophy },
+    { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
   ],
 }
 

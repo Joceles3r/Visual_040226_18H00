@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Trophy, Crown, Star, Film, FileText, Mic, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,14 +14,6 @@ import {
   type LeaderboardCategoryKey,
   type LeaderboardEntry,
 } from "@/lib/mock-data"
-
-type Tier = 10 | 100 | 500
-
-const TIER_OPTIONS: { value: Tier; label: string }[] = [
-  { value: 10, label: "TOP 10" },
-  { value: 100, label: "TOP 100" },
-  { value: 500, label: "TOP 500" },
-]
 
 const CATEGORY_ICONS: Record<LeaderboardCategoryKey, React.ComponentType<{ className?: string }>> = {
   visiteur: Eye,
@@ -105,7 +98,9 @@ function LeaderboardTable({
 }
 
 export default function LeaderboardPage() {
-  const [tier, setTier] = useState<Tier>(10)
+  const searchParams = useSearchParams()
+  const topParam = Number(searchParams.get("top")) || 10
+  const tier = ([10, 100, 500] as const).includes(topParam as 10 | 100 | 500) ? topParam : 10
   const [activeCategory, setActiveCategory] = useState<LeaderboardCategoryKey>("visiteur")
 
   const entries = LEADERBOARD_DATA[activeCategory].slice(0, tier)
@@ -122,7 +117,7 @@ export default function LeaderboardPage() {
               <Trophy className="h-8 w-8 text-amber-400" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              Classements
+              {"Classements TOP "}{tier}
             </h1>
             <div className="mb-5">
               <VisualSlogan size="sm" opacity="high" withLines />
@@ -130,24 +125,6 @@ export default function LeaderboardPage() {
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               {"Découvrez les meilleurs visiteurs, porteurs, infoporteurs et podcasteurs de VISUAL"}
             </p>
-          </div>
-
-          {/* Tier selector */}
-          <div className="flex justify-center gap-2 mb-6 p-1 bg-slate-900/50 rounded-lg w-fit mx-auto">
-            {TIER_OPTIONS.map((opt) => (
-              <Button
-                key={opt.value}
-                variant={tier === opt.value ? "default" : "ghost"}
-                onClick={() => setTier(opt.value)}
-                className={
-                  tier === opt.value
-                    ? "bg-emerald-600 text-white"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
-                }
-              >
-                {opt.label}
-              </Button>
-            ))}
           </div>
 
           {/* Category tabs */}

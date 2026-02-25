@@ -47,7 +47,17 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/leaderboard" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Classements
+                  Classements TOP 10
+                </Link>
+              </li>
+              <li>
+                <Link href="/leaderboard?top=100" className="text-white/60 hover:text-emerald-400 transition-colors">
+                  Classements TOP 100
+                </Link>
+              </li>
+              <li>
+                <Link href="/leaderboard?top=500" className="text-white/60 hover:text-emerald-400 transition-colors">
+                  Classements TOP 500
                 </Link>
               </li>
             </ul>
