@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useSearchParams } from "next/navigation"
 import { Trophy, Crown, Star, Film, FileText, Mic } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,6 +13,14 @@ import {
   type LeaderboardCategoryKey,
   type LeaderboardEntry,
 } from "@/lib/mock-data"
+
+type Tier = 10 | 100 | 500
+
+const TIER_OPTIONS: { value: Tier; label: string }[] = [
+  { value: 10, label: "TOP 10" },
+  { value: 100, label: "TOP 100" },
+  { value: 500, label: "TOP 500" },
+]
 
 const CATEGORY_ICONS: Record<LeaderboardCategoryKey, React.ComponentType<{ className?: string }>> = {
   porteur: Film,
@@ -97,9 +104,7 @@ function LeaderboardTable({
 }
 
 export default function LeaderboardPage() {
-  const searchParams = useSearchParams()
-  const topParam = Number(searchParams.get("top")) || 10
-  const tier = ([10, 100, 500] as const).includes(topParam as 10 | 100 | 500) ? topParam : 10
+  const [tier, setTier] = useState<Tier>(10)
   const [activeCategory, setActiveCategory] = useState<LeaderboardCategoryKey>("porteur")
 
   const entries = LEADERBOARD_DATA[activeCategory].slice(0, tier)
@@ -124,6 +129,24 @@ export default function LeaderboardPage() {
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
 {"D\u00e9couvrez les meilleurs porteurs, infoporteurs et podcasteurs de VISUAL"}
             </p>
+          </div>
+
+          {/* Tier selector */}
+          <div className="flex justify-center gap-2 mb-6 p-1 bg-slate-900/50 rounded-lg w-fit mx-auto">
+            {TIER_OPTIONS.map((opt) => (
+              <Button
+                key={opt.value}
+                variant={tier === opt.value ? "default" : "ghost"}
+                onClick={() => setTier(opt.value)}
+                className={
+                  tier === opt.value
+                    ? "bg-emerald-600 text-white"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                }
+              >
+                {opt.label}
+              </Button>
+            ))}
           </div>
 
           {/* Category tabs */}
