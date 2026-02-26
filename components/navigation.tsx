@@ -19,6 +19,7 @@ import {
   Wallet,
   History,
   Heart,
+  MessageCircle,
 } from "lucide-react"
 
 export type VisualRole =
@@ -50,6 +51,7 @@ export const DISCOVER_MENU: NavMenu = {
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
+    { label: "Visual Social", href: "/social", icon: MessageCircle },
   ],
 }
 

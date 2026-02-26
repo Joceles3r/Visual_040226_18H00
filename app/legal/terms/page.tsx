@@ -61,7 +61,7 @@ export default function TermsOfUsePage() {
               {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VISUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Derni\u00e8re mise \u00e0 jour : 23 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
+              {"Derni\u00e8re mise \u00e0 jour : 26 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
             </p>
           </div>
         </section>
@@ -670,6 +670,94 @@ export default function TermsOfUsePage() {
                     </p>
                   </div>
                 </SubSection>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7bis. Visual Social */}
+          <Section num={0} title={"Visual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"}>
+            <Card className="bg-emerald-500/5 border-emerald-500/15">
+              <CardContent className="pt-6 space-y-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <MessageSquare className="h-4 w-4 text-emerald-400" />
+                  </div>
+                  <div>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      {"Visual Social est un espace d'\u00e9change communautaire int\u00e9gr\u00e9 \u00e0 VISUAL. Il permet aux inscrits de partager des avis courts sur les contenus, les projets et la vie de la plateforme."}
+                    </p>
+                  </div>
+                </div>
+
+                <SubSection title={"Format et r\u00e8gles de publication"}>
+                  <div className="space-y-2">
+                    {[
+                      "Chaque post est limit\u00e9 \u00e0 280 caract\u00e8res maximum, en texte brut uniquement",
+                      "Aucun lien externe, image, vid\u00e9o ou HTML n'est autoris\u00e9 dans les posts",
+                      "Maximum 3 tags officiels par post, choisis parmi la liste pr\u00e9-approuv\u00e9e par VISUAL",
+                      "Maximum 5 publications par jour et par utilisateur",
+                      "Un d\u00e9lai minimum de 1 minute est impos\u00e9 entre deux publications",
+                    ].map((item) => (
+                      <div key={item} className="flex gap-2 items-start text-sm">
+                        <CheckCircle className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Syst\u00e8me de tags"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-2">
+                    {"Les tags sont exclusivement d\u00e9finis et g\u00e9r\u00e9s par VISUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags sont regroup\u00e9s en 4 cat\u00e9gories : Genres (#Cin\u00e9maInd\u00e9, #Documentaire, #Thriller\u2026), Ambiances (#CoupDeCoeur, #P\u00e9pite\u2026), Plateforme (#VisualOriginal, #PremierProjet\u2026) et \u00c9v\u00e9nements (#VisualAwards, #Festival\u2026)."}
+                  </p>
+                </SubSection>
+
+                <SubSection title={"R\u00e9actions"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-2">
+                    {"Cinq types de r\u00e9actions sont disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque r\u00e9action est unique par utilisateur et par post (une seule r\u00e9action du m\u00eame type par post). Les r\u00e9actions g\u00e9n\u00e8rent des VISUpoints pour l'auteur du post (1 pt par r\u00e9action re\u00e7ue)."}
+                  </p>
+                </SubSection>
+
+                <SubSection title={"VISUpoints et Visual Social"}>
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                      <span className="text-emerald-400 font-bold text-lg">+5</span>
+                      <p className="text-white/40 text-xs mt-1">pts par post publi\u00e9</p>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                      <span className="text-emerald-400 font-bold text-lg">+1</span>
+                      <p className="text-white/40 text-xs mt-1">pt par r\u00e9action re\u00e7ue</p>
+                    </div>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Mod\u00e9ration communautaire"}>
+                  <div className="space-y-2">
+                    {[
+                      "Tout utilisateur peut signaler un post qu'il juge inappropri\u00e9 (un signalement par post par utilisateur)",
+                      "Un post atteignant 5 signalements est automatiquement masqu\u00e9 et soumis \u00e0 l'\u00e9quipe de mod\u00e9ration",
+                      "VISUAL se r\u00e9serve le droit de supprimer tout contenu et de suspendre les comptes en infraction",
+                      "Les comportements r\u00e9p\u00e9t\u00e9s de signalement abusif peuvent entra\u00eener une suspension temporaire du compte",
+                    ].map((item) => (
+                      <div key={item} className="flex gap-2 items-start text-sm">
+                        <Shield className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                        <span className="text-white/60">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Propri\u00e9t\u00e9 des contenus"}>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    {"L'utilisateur reste propri\u00e9taire de ses posts. En publiant sur Visual Social, il accorde \u00e0 VISUAL une licence non exclusive, gratuite et mondiale pour afficher, reproduire et distribuer le contenu sur la plateforme. VISUAL peut supprimer tout contenu sans pr\u00e9avis en cas de violation des pr\u00e9sentes CGU."}
+                  </p>
+                </SubSection>
+
+                <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3">
+                  <p className="text-white/40 text-xs leading-relaxed">
+                    {"Visual Social n'est pas un r\u00e9seau social autonome. C'est une fonctionnalit\u00e9 int\u00e9gr\u00e9e \u00e0 VISUAL, soumise aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de la plateforme. Les utilisateurs mineurs (16\u201317 ans) peuvent acc\u00e9der \u00e0 Visual Social sous r\u00e9serve du consentement parental d\u00e9j\u00e0 obtenu lors de l'inscription."}
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </Section>

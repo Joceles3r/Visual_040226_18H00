@@ -9,6 +9,7 @@ import {
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
   Ban, Vote, Gavel, Wallet, Star, Users, CheckCircle,
   BadgeCheck, Info, TrendingUp, Award, BarChart3, Handshake, UserCheck,
+  MessageSquare, Hash,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -94,7 +95,7 @@ export default function CGVPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-white/50 text-sm">
-              {"Version Provisoire Internationale \u2013 23 f\u00e9vrier 2026"}
+              {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}
             </p>
           </div>
 
@@ -118,6 +119,7 @@ export default function CGVPage() {
                   "Règle d'arrondi",
                   "Wallet et paiements",
                   "Absence de garantie",
+                  "Visual Social",
                   "Interdictions et sanctions",
                   "Propriété intellectuelle",
                   "Responsabilité de VISUAL",
@@ -433,6 +435,38 @@ export default function CGVPage() {
               </div>
             </Section>
 
+            {/* Article 11bis - Visual Social */}
+            <Section num={0} title={"Visual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
+              <P>{"Visual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VISUAL, permettant aux utilisateurs inscrits de partager des avis courts (280 caract\u00e8res max) sur les contenus, les projets et la vie de la plateforme."}</P>
+
+              <HighlightCard icon={MessageSquare} title={"R\u00e8gles de publication"} color="emerald">
+                <ul className="space-y-1.5">
+                  <Bullet>{"Posts en texte brut uniquement (280 caract\u00e8res max). Aucun lien, image, vid\u00e9o ou HTML autoris\u00e9."}</Bullet>
+                  <Bullet>{"Maximum 5 posts par jour et par utilisateur, avec un d\u00e9lai minimum d'1 minute entre chaque publication."}</Bullet>
+                  <Bullet>{"Jusqu'\u00e0 3 tags officiels par post, choisis exclusivement parmi la liste d\u00e9finie par VISUAL."}</Bullet>
+                </ul>
+              </HighlightCard>
+
+              <HighlightCard icon={Hash} title={"Syst\u00e8me de tags pr\u00e9-approuv\u00e9s"} color="sky">
+                <p>{"Les tags sont exclusivement cr\u00e9\u00e9s et g\u00e9r\u00e9s par VISUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags sont organis\u00e9s en 4 cat\u00e9gories : Genres, Ambiances, Plateforme et \u00c9v\u00e9nements."}</p>
+              </HighlightCard>
+
+              <HighlightCard icon={Star} title={"R\u00e9actions et VISUpoints"} color="amber">
+                <p>{"Cinq r\u00e9actions disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque post publi\u00e9 rapporte 5 VISUpoints \u00e0 son auteur. Chaque r\u00e9action re\u00e7ue rapporte 1 VISUpoint suppl\u00e9mentaire."}</p>
+              </HighlightCard>
+
+              <HighlightCard icon={Shield} title={"Mod\u00e9ration"} color="red">
+                <ul className="space-y-1.5">
+                  <Bullet>{"Tout utilisateur peut signaler un post (1 signalement par post par utilisateur)."}</Bullet>
+                  <Bullet>{"Un post atteignant 5 signalements est automatiquement masqu\u00e9 et soumis \u00e0 mod\u00e9ration."}</Bullet>
+                  <Bullet>{"VISUAL peut supprimer tout contenu et suspendre les comptes en infraction."}</Bullet>
+                  <Bullet>{"Les signalements abusifs r\u00e9p\u00e9t\u00e9s peuvent entra\u00eener une suspension temporaire."}</Bullet>
+                </ul>
+              </HighlightCard>
+
+              <P>{"En publiant sur Visual Social, l'utilisateur accorde \u00e0 VISUAL une licence non exclusive, gratuite et mondiale pour afficher et distribuer le contenu sur la plateforme. Visual Social est soumis aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de VISUAL."}</P>
+            </Section>
+
             {/* Article 12 */}
             <Section num={12} title="Interdictions et sanctions" icon={Ban}>
               <P>{"Sont strictement interdits sur VISUAL :"}</P>
@@ -540,7 +574,7 @@ export default function CGVPage() {
           <Card className="bg-slate-900/40 border-white/10 mt-12">
             <CardContent className="p-6 text-center">
               <p className="text-white/40 text-sm mb-2">
-                {"Version Provisoire Internationale \u2013 23 f\u00e9vrier 2026"}
+                {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}
               </p>
               <p className="text-white/30 text-xs">
                 {"VISUAL se réserve le droit de modifier les présentes CGV à tout moment. Les utilisateurs seront informés de toute modification substantielle par notification sur la plateforme. La poursuite de l'utilisation des services après modification vaut acceptation des nouvelles conditions."}

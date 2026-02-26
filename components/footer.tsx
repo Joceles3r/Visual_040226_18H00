@@ -50,6 +50,11 @@ export function Footer() {
                   Classements TOP 10/100/500
                 </Link>
               </li>
+              <li>
+                <Link href="/social" className="text-white/60 hover:text-emerald-400 transition-colors">
+                  Visual Social
+                </Link>
+              </li>
             </ul>
           </div>
 

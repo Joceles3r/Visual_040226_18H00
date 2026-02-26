@@ -8,7 +8,7 @@ import {
   Shield, User, Database, Eye, Lock, Globe, Clock, FileText,
   Mail, ArrowLeft, Scale, ServerCrash, AlertTriangle, Baby,
   CreditCard, Mic, Film, BookOpen, BarChart3, Share2, Trash2,
-  Download, Edit3, Ban, HelpCircle,
+  Download, Edit3, Ban, HelpCircle, MessageSquare, Hash,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
               {"VISUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Derni\u00e8re mise \u00e0 jour : 23 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
+              {"Derni\u00e8re mise \u00e0 jour : 26 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
             </p>
           </div>
         </section>
@@ -183,6 +183,19 @@ export default function PrivacyPolicyPage() {
                     "Classements et positionnement (TOP Visiteur, Porteur, Infoporteur, Podcasteur)",
                   ],
                 },
+                {
+                  icon: MessageSquare, color: "text-teal-400", bg: "bg-teal-500/15",
+                  title: "Donn\u00e9es Visual Social (mini-r\u00e9seau social)",
+                  subtitle: "Collect\u00e9es lors de l'utilisation de Visual Social",
+                  items: [
+                    "Contenu des posts publi\u00e9s (texte brut, 280 caract\u00e8res max)",
+                    "Tags officiels s\u00e9lectionn\u00e9s sur chaque post",
+                    "R\u00e9actions donn\u00e9es et re\u00e7ues (Bravo, Feu, Inspirant, Coup de c\u0153ur, Star)",
+                    "Signalements effectu\u00e9s et re\u00e7us",
+                    "Horodatage des publications et des interactions",
+                    "VISUpoints g\u00e9n\u00e9r\u00e9s via Visual Social (5 pts/post, 1 pt/r\u00e9action re\u00e7ue)",
+                  ],
+                },
               ].map((cat) => {
                 const IconComp = cat.icon
                 return (
@@ -235,6 +248,8 @@ export default function PrivacyPolicyPage() {
                         { purpose: "Amélioration de la plateforme et statistiques", basis: "Intérêt légitime", duration: "13 mois (données anonymisées)" },
                         { purpose: "Notifications d'engagement personnalis\u00e9es (VISUpoints)", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
                         { purpose: "Paiement hybride (euros + VISUpoints)", basis: "Ex\u00e9cution du contrat", duration: "10 ans (obligations comptables)" },
+                        { purpose: "Visual Social : publication de posts, r\u00e9actions et tags", basis: "Ex\u00e9cution du contrat", duration: "Dur\u00e9e du compte + 1 an" },
+                        { purpose: "Visual Social : mod\u00e9ration et signalements", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
                         { purpose: "Envoi de notifications et communications", basis: "Consentement", duration: "Jusqu'au retrait du consentement" },
                         { purpose: "Conformité réglementaire (AMF, anti-blanchiment)", basis: "Obligation légale", duration: "5 ans après la clôture du compte" },
                         { purpose: "Sécurité et prévention de la fraude", basis: "Intérêt légitime", duration: "1 an après détection" },
@@ -384,7 +399,8 @@ export default function PrivacyPolicyPage() {
                     { data: "Données du compte (profil, préférences, rôle)", duration: "Durée du compte + 3 ans après suppression", icon: User },
                     { data: "Contenus créés (vidéos, écrits, podcasts)", duration: "Durée du compte + 1 an (ou sur demande de suppression)", icon: Film },
                     { data: "Données financières (investissements, cautions, gains)", duration: "10 ans après la dernière transaction (obligation comptable)", icon: CreditCard },
-                    { data: "Classements et VISUpoints", duration: "Durée du compte (supprimés à la clôture)", icon: BarChart3 },
+                    { data: "Classements et VISUpoints", duration: "Dur\u00e9e du compte (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: BarChart3 },
+                    { data: "Posts et r\u00e9actions Visual Social", duration: "Dur\u00e9e du compte + 1 an (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: MessageSquare },
                     { data: "Données de navigation (logs, IP)", duration: "13 mois (anonymisées ensuite)", icon: Globe },
                     { data: "Données anti-fraude et conformité", duration: "5 ans après la clôture du compte", icon: AlertTriangle },
                   ].map((row) => {
