@@ -6,21 +6,22 @@ import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   MessageCircle, Shield, Sparkles, Clock, Hash,
-  Ban, Star, Users, Zap,
+  Ban, Star, Users, Info, ThumbsUp,
 } from "lucide-react"
 import {
-  REACTION_CONFIG, REACTION_TYPES,
-  MAX_POST_LENGTH, MAX_TAGS_PER_POST, MAX_POSTS_PER_DAY,
-  VISUPOINTS_PER_POST, VISUPOINTS_PER_REACTION_RECEIVED,
-} from "@/lib/visual-social"
+  MAX_BODY_LENGTH, MAX_TAGS_PER_POST, MAX_POSTS_PER_DAY,
+  VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1, REPORT_THRESHOLD_HIDE,
+  TAG_CATEGORIES, TAG_LABELS, TAG_COLORS,
+} from "@/lib/visual-social/hybrid"
 
 function RulesCard() {
   const rules = [
-    { icon: MessageCircle, text: `${MAX_POST_LENGTH} caract\u00e8res max par post`, color: "text-emerald-400" },
-    { icon: Hash, text: `${MAX_TAGS_PER_POST} tags officiels max par post`, color: "text-sky-400" },
+    { icon: MessageCircle, text: `${MAX_BODY_LENGTH} caract\u00e8res max par post`, color: "text-emerald-400" },
+    { icon: Hash, text: `1 \u00e0 ${MAX_TAGS_PER_POST} tags obligatoires par post`, color: "text-sky-400" },
     { icon: Clock, text: `${MAX_POSTS_PER_DAY} posts maximum par jour`, color: "text-amber-400" },
     { icon: Ban, text: "Pas de liens, images ou HTML", color: "text-red-400" },
-    { icon: Shield, text: "Mod\u00e9ration communautaire (5 signalements = masquage)", color: "text-purple-400" },
+    { icon: Shield, text: `${REPORT_THRESHOLD_HIDE} signalements = masquage automatique`, color: "text-purple-400" },
+    { icon: ThumbsUp, text: "1 r\u00e9ponse par post (profondeur 1 max)", color: "text-teal-400" },
   ]
   return (
     <Card className="bg-slate-900/40 border-white/5">
@@ -42,48 +43,45 @@ function RulesCard() {
   )
 }
 
-function PointsCard() {
+function TagsCard() {
   return (
     <Card className="bg-slate-900/40 border-white/5">
       <CardContent className="p-4">
         <h3 className="text-white/70 text-sm font-semibold mb-3 flex items-center gap-2">
-          <Zap className="h-4 w-4 text-amber-400" />
-          VISUpoints
+          <Hash className="h-4 w-4 text-sky-400" />
+          Tags officiels
         </h3>
-        <div className="space-y-2 text-xs text-white/50">
-          <div className="flex justify-between items-center">
-            <span>Par post publi\u00e9</span>
-            <span className="text-emerald-400 font-bold">+{VISUPOINTS_PER_POST} pts</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span>Par r\u00e9action re\u00e7ue</span>
-            <span className="text-emerald-400 font-bold">+{VISUPOINTS_PER_REACTION_RECEIVED} pt</span>
-          </div>
+        <div className="space-y-3">
+          {TAG_CATEGORIES.map((cat) => (
+            <div key={cat.key}>
+              <p className="text-white/30 text-[10px] font-medium uppercase tracking-wider mb-1">{cat.label}</p>
+              <div className="flex flex-wrap gap-1">
+                {cat.tags.map((tag) => (
+                  <span key={tag} className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium border ${TAG_COLORS[tag]}`}>
+                    {"#"}{TAG_LABELS[tag]}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </CardContent>
     </Card>
   )
 }
 
-function ReactionsCard() {
+function V1Notice() {
   return (
-    <Card className="bg-slate-900/40 border-white/5">
+    <Card className="bg-amber-500/5 border-amber-500/15">
       <CardContent className="p-4">
-        <h3 className="text-white/70 text-sm font-semibold mb-3 flex items-center gap-2">
-          <Star className="h-4 w-4 text-amber-400" />
-          {"R\u00e9actions disponibles"}
+        <h3 className="text-amber-400/80 text-sm font-semibold mb-2 flex items-center gap-2">
+          <Info className="h-4 w-4" />
+          Version 1
         </h3>
-        <div className="space-y-1.5">
-          {REACTION_TYPES.map((type) => {
-            const config = REACTION_CONFIG[type]
-            return (
-              <div key={type} className="flex items-center gap-2 text-xs">
-                <span className="text-base">{config.icon}</span>
-                <span className="text-white/60">{config.label}</span>
-                <span className="ml-auto text-emerald-400/60 font-mono">+{config.visupoints}pts</span>
-              </div>
-            )
-          })}
+        <div className="space-y-1.5 text-xs text-white/40">
+          <p>{"Les VISUpoints sont temporairement d\u00e9sactiv\u00e9s sur Visual Social en V1 pour garantir l'\u00e9quilibre du syst\u00e8me."}</p>
+          <p>{"Le mode fonctionne actuellement en mock (donn\u00e9es de d\u00e9monstration). La connexion \u00e0 la base de donn\u00e9es sera activ\u00e9e en V2."}</p>
+          <p>{"Deux vues disponibles : le fil global (ici) et les discussions sous chaque contenu."}</p>
         </div>
       </CardContent>
     </Card>
@@ -100,35 +98,39 @@ export default function VisualSocialPage() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 mb-4">
               <Sparkles className="h-4 w-4 text-emerald-400" />
-              <span className="text-emerald-400 text-sm font-medium">Mini-r\u00e9seau social VISUAL</span>
+              <span className="text-emerald-400 text-sm font-medium">{"Mini-r\u00e9seau social int\u00e9gr\u00e9"}</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 text-balance">
               Visual Social
             </h1>
             <p className="text-white/50 max-w-xl mx-auto text-balance">
-              {"Partagez vos coups de c\u0153ur, \u00e9changez avec la communaut\u00e9 VISUAL et gagnez des VISUpoints."}
+              {"\u00c9changez avec la communaut\u00e9 VISUAL. Discussions structur\u00e9es par tags, r\u00e9ponses directes, mod\u00e9ration communautaire."}
             </p>
           </div>
 
-          {/* Layout : Feed + Sidebar */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
-            {/* Feed */}
-            <VisualSocialFeed />
+          {/* Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+            {/* Global feed */}
+            <VisualSocialFeed mode="global" />
 
             {/* Sidebar */}
             <div className="space-y-4 lg:sticky lg:top-24">
               <RulesCard />
-              <PointsCard />
-              <ReactionsCard />
+              <TagsCard />
+              <V1Notice />
 
-              {/* Rappel comunautaire */}
               <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Users className="h-4 w-4 text-emerald-400" />
-                  <span className="text-white/70 text-sm font-medium">Esprit communautaire</span>
+                  <span className="text-white/70 text-sm font-medium">Deux vues</span>
                 </div>
+                <p className="text-white/40 text-xs leading-relaxed mb-2">
+                  <span className="text-emerald-400 font-medium">Fil global :</span>
+                  {" Tendances et discussions g\u00e9n\u00e9rales (ici)."}
+                </p>
                 <p className="text-white/40 text-xs leading-relaxed">
-                  {"Visual Social est un espace d'\u00e9change bienveillant. Respectez les autres membres, restez dans le th\u00e8me du cin\u00e9ma et de la cr\u00e9ation, et contribuez \u00e0 une communaut\u00e9 enrichissante."}
+                  <span className="text-emerald-400 font-medium">Discussion sous contenu :</span>
+                  {" Avis et questions directement sous chaque vid\u00e9o, podcast ou \u00e9crit."}
                 </p>
               </div>
             </div>

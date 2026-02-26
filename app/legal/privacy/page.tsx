@@ -188,12 +188,13 @@ export default function PrivacyPolicyPage() {
                   title: "Donn\u00e9es Visual Social (mini-r\u00e9seau social)",
                   subtitle: "Collect\u00e9es lors de l'utilisation de Visual Social",
                   items: [
-                    "Contenu des posts publi\u00e9s (texte brut, 280 caract\u00e8res max)",
-                    "Tags officiels s\u00e9lectionn\u00e9s sur chaque post",
-                    "R\u00e9actions donn\u00e9es et re\u00e7ues (Bravo, Feu, Inspirant, Coup de c\u0153ur, Star)",
-                    "Signalements effectu\u00e9s et re\u00e7us",
+                    "Contenu des posts et r\u00e9ponses publi\u00e9s (texte brut, 2\u202f000 caract\u00e8res max)",
+                    "Tags officiels s\u00e9lectionn\u00e9s sur chaque post (1 \u00e0 3 parmi la liste VISUAL)",
+                    "Likes donn\u00e9s et re\u00e7us",
+                    "Signalements effectu\u00e9s et re\u00e7us (masquage automatique \u00e0 3 signalements)",
                     "Horodatage des publications et des interactions",
-                    "VISUpoints g\u00e9n\u00e9r\u00e9s via Visual Social (5 pts/post, 1 pt/r\u00e9action re\u00e7ue)",
+                    "Rattachement \u00e0 un contenu (vid\u00e9o, podcast, \u00e9crit) ou au fil global",
+                    "VISUpoints Visual Social (d\u00e9sactiv\u00e9s en V1, r\u00e9activ\u00e9s en V2)",
                   ],
                 },
               ].map((cat) => {

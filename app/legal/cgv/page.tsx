@@ -437,28 +437,29 @@ export default function CGVPage() {
 
             {/* Article 11bis - Visual Social */}
             <Section num={0} title={"Visual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
-              <P>{"Visual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VISUAL, permettant aux utilisateurs inscrits de partager des avis courts (280 caract\u00e8res max) sur les contenus, les projets et la vie de la plateforme."}</P>
+              <P>{"Visual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VISUAL, permettant aux utilisateurs inscrits de partager des avis (2\u202f000 caract\u00e8res max) sur les contenus et la plateforme. Deux vues sont disponibles : un fil global (tendances et discussions g\u00e9n\u00e9rales) et des discussions sous chaque contenu (vid\u00e9o, podcast, \u00e9crit)."}</P>
 
               <HighlightCard icon={MessageSquare} title={"R\u00e8gles de publication"} color="emerald">
                 <ul className="space-y-1.5">
-                  <Bullet>{"Posts en texte brut uniquement (280 caract\u00e8res max). Aucun lien, image, vid\u00e9o ou HTML autoris\u00e9."}</Bullet>
-                  <Bullet>{"Maximum 5 posts par jour et par utilisateur, avec un d\u00e9lai minimum d'1 minute entre chaque publication."}</Bullet>
-                  <Bullet>{"Jusqu'\u00e0 3 tags officiels par post, choisis exclusivement parmi la liste d\u00e9finie par VISUAL."}</Bullet>
+                  <Bullet>{"Posts en texte brut uniquement (2\u202f000 caract\u00e8res max). Aucun lien, image, vid\u00e9o ou HTML autoris\u00e9."}</Bullet>
+                  <Bullet>{"Maximum 5 posts par jour et par utilisateur."}</Bullet>
+                  <Bullet>{"De 1 \u00e0 3 tags obligatoires par post, choisis exclusivement parmi la liste d\u00e9finie par VISUAL."}</Bullet>
+                  <Bullet>{"R\u00e9ponses autoris\u00e9es (profondeur 1 max) : chaque post peut recevoir des r\u00e9ponses directes."}</Bullet>
                 </ul>
               </HighlightCard>
 
               <HighlightCard icon={Hash} title={"Syst\u00e8me de tags pr\u00e9-approuv\u00e9s"} color="sky">
-                <p>{"Les tags sont exclusivement cr\u00e9\u00e9s et g\u00e9r\u00e9s par VISUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags sont organis\u00e9s en 4 cat\u00e9gories : Genres, Ambiances, Plateforme et \u00c9v\u00e9nements."}</p>
+                <p>{"Les tags sont exclusivement cr\u00e9\u00e9s et g\u00e9r\u00e9s par VISUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags V1 sont organis\u00e9s en 3 cat\u00e9gories : Retours (avis, question, am\u00e9lioration, bug, id\u00e9e), Cr\u00e9ation (casting, sc\u00e9nario, son, montage) et Autre (investissement, spoiler)."}</p>
               </HighlightCard>
 
-              <HighlightCard icon={Star} title={"R\u00e9actions et VISUpoints"} color="amber">
-                <p>{"Cinq r\u00e9actions disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque post publi\u00e9 rapporte 5 VISUpoints \u00e0 son auteur. Chaque r\u00e9action re\u00e7ue rapporte 1 VISUpoint suppl\u00e9mentaire."}</p>
+              <HighlightCard icon={Star} title={"Interactions et VISUpoints (V1)"} color="amber">
+                <p>{"Une r\u00e9action \u00ab\u202fJ'aime\u202f\u00bb (like) est disponible par post. En version V1, les VISUpoints li\u00e9s \u00e0 Visual Social sont temporairement d\u00e9sactiv\u00e9s pour garantir l'\u00e9quilibre du syst\u00e8me. Ils seront r\u00e9activ\u00e9s en V2 une fois la mod\u00e9ration et l'anti-spam stabilis\u00e9s."}</p>
               </HighlightCard>
 
               <HighlightCard icon={Shield} title={"Mod\u00e9ration"} color="red">
                 <ul className="space-y-1.5">
                   <Bullet>{"Tout utilisateur peut signaler un post (1 signalement par post par utilisateur)."}</Bullet>
-                  <Bullet>{"Un post atteignant 5 signalements est automatiquement masqu\u00e9 et soumis \u00e0 mod\u00e9ration."}</Bullet>
+                  <Bullet>{"Un post atteignant 3 signalements est automatiquement masqu\u00e9 et soumis \u00e0 mod\u00e9ration."}</Bullet>
                   <Bullet>{"VISUAL peut supprimer tout contenu et suspendre les comptes en infraction."}</Bullet>
                   <Bullet>{"Les signalements abusifs r\u00e9p\u00e9t\u00e9s peuvent entra\u00eener une suspension temporaire."}</Bullet>
                 </ul>

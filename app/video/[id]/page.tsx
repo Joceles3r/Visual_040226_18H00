@@ -30,8 +30,10 @@ import { Progress } from "@/components/ui/progress"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
+import VisualSocialFeed from "@/components/visual-social-feed"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
+import type { ContentType } from "@/lib/visual-social/hybrid"
 
 export default function VideoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -250,6 +252,17 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
+                </CardContent>
+              </Card>
+
+              {/* Visual Social Thread */}
+              <Card className="bg-slate-900/50 border-white/10">
+                <CardContent className="p-4 sm:p-6">
+                  <VisualSocialFeed
+                    mode="content"
+                    contentType={cType as ContentType}
+                    contentId={content.id}
+                  />
                 </CardContent>
               </Card>
             </div>
