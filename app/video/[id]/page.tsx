@@ -24,6 +24,7 @@ import {
   CreditCard,
   Star,
 } from "lucide-react"
+import { ReportButton } from "@/components/report-button"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -233,6 +234,13 @@ export default function VideoPage({ params }: { params: Promise<{ id: string }> 
                       <Share2 className="h-4 w-4 mr-2" />
                       Partager
                     </Button>
+                    <ReportButton
+                      targetId={content.id}
+                      targetType="content"
+                      targetName={content.title}
+                      variant="full"
+                      size="sm"
+                    />
                   </>
                 )}
               </div>

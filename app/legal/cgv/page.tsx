@@ -477,10 +477,13 @@ export default function CGVPage() {
                 <Bullet>{"La d\u00e9tention de plusieurs comptes (multi-comptes)"}</Bullet>
                 <Bullet>{"Toute manipulation, artificielle ou concert\u00e9e, des votes et classements"}</Bullet>
                 <Bullet>{"La diffusion de contenus illicites, contrefaits, diffamatoires, haineux ou portant atteinte aux droits des tiers"}</Bullet>
+                <Bullet>{"Tout propos ou contenu raciste, homophobe, transphobe, antis\u00e9mite, anti-religieux, discriminatoire, insultant ou incitant \u00e0 la haine"}</Bullet>
+                <Bullet>{"Tout harc\u00e8lement, menace, intimidation ou injure envers un autre utilisateur"}</Bullet>
                 <Bullet>{"Toute tentative de fraude, de contournement des syst\u00e8mes de s\u00e9curit\u00e9 ou d'exploitation abusive de la plateforme"}</Bullet>
                 <Bullet>{"L'auto-investissement : un utilisateur ne peut investir dans son propre projet. Sanction : annulation, recalcul des votes, suspension possible"}</Bullet>
                 <Bullet>{"Le partage, l'extraction ou le contournement des jetons d'acc\u00e8s aux m\u00e9dias prot\u00e9g\u00e9s"}</Bullet>
               </ul>
+              <P>{"Chaque utilisateur inscrit dispose d'un Bouton Rouge de Signalement (Bouton Rouge Alerte) sur chaque contenu, commentaire et profil. Les signalements sont trait\u00e9s par l'\u00e9quipe de mod\u00e9ration VISUAL sous 48h (24h pour les signalements critiques). Les d\u00e9cisions incluent : avertissement, suppression du contenu, suspension temporaire (7 \u00e0 90 jours), suspension d\u00e9finitive et suppression du compte."}</P>
               <P>{"En cas de manquement constat\u00e9, VISUAL se r\u00e9serve le droit de suspendre ou supprimer le compte de l'utilisateur, de retenir la caution, de geler les fonds, et le cas \u00e9ch\u00e9ant d'engager toute action en justice."}</P>
             </Section>
 

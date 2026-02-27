@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
+import { ReportButton } from "@/components/report-button"
 import type { Content } from "@/lib/mock-data"
 
 interface ContentCardProps {
@@ -106,10 +107,23 @@ export function ContentCard({ content }: ContentCardProps) {
             </div>
           </div>
 
-          {/* Investors */}
-          <div className="flex items-center gap-1 text-sm text-white/60">
-            <Users className="h-4 w-4" />
-            <span>{content.investorCount} investisseurs</span>
+          {/* Investors + Report */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1 text-sm text-white/60">
+              <Users className="h-4 w-4" />
+              <span>{content.investorCount} investisseurs</span>
+            </div>
+            {isAuthed && (
+              <div onClick={(e) => e.preventDefault()}>
+                <ReportButton
+                  targetId={content.id}
+                  targetType="content"
+                  targetName={content.title}
+                  variant="minimal"
+                  size="sm"
+                />
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

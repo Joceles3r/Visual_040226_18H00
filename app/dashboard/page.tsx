@@ -27,6 +27,7 @@ import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGOR
   import { Trophy } from "lucide-react"
 import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
+import { CommunityCharter } from "@/components/community-charter"
 
 export default function DashboardPage() {
   const { user, roles, isAuthed } = useAuth()
@@ -196,6 +197,9 @@ export default function DashboardPage() {
       {user?.isMinor && user.parentConsent?.status === "required" && (
         <ParentalConsentForm userId={user.id} />
       )}
+
+      {/* Community Charter Reminder */}
+      <CommunityCharter dismissible={true} />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

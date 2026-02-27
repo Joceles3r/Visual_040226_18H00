@@ -20,6 +20,12 @@ import {
   Eye,
   Shield,
   Activity,
+  AlertOctagon,
+  UserX,
+  Trash2,
+  MessageCircle,
+  ShieldAlert,
+  Mail,
 } from "lucide-react"
 
 interface AdminStats {
@@ -45,12 +51,27 @@ const MOCK_USERS = [
   { id: "u8", name: "Thomas R.", email: "thomas@example.com", role: "Investisseur", status: "active", joined: "2025-03-20", investments: 1650, raised: 0 },
 ]
 
+const REPORT_CATEGORY_LABELS: Record<string, { label: string; severity: "low" | "medium" | "high" | "critical" }> = {
+  racism: { label: "Racisme", severity: "critical" },
+  homophobia: { label: "Homophobie", severity: "critical" },
+  antisemitism: { label: "Antis\u00e9mitisme", severity: "critical" },
+  religious_hate: { label: "Haine religieuse", severity: "critical" },
+  insults: { label: "Insultes / Harc\u00e8lement", severity: "high" },
+  sexual_content: { label: "Contenu sexuel", severity: "high" },
+  violence: { label: "Violence", severity: "high" },
+  plagiarism: { label: "Plagiat / Droits d'auteur", severity: "medium" },
+  spam: { label: "Spam / Arnaque", severity: "low" },
+  other: { label: "Autre", severity: "low" },
+}
+
 const MOCK_REPORTS = [
-  { id: "r1", contentTitle: "Video signalement #1", author: "User456", reason: "Contenu inapproprie", status: "pending", date: "2025-06-01" },
-  { id: "r2", contentTitle: "Article litigieux", author: "User789", reason: "Plagiat", status: "pending", date: "2025-06-02" },
-  { id: "r3", contentTitle: "Podcast episode 12", author: "User321", reason: "Droits d'auteur", status: "reviewed", date: "2025-05-28" },
-  { id: "r4", contentTitle: "Court-metrage X", author: "User654", reason: "Spam", status: "resolved", date: "2025-05-25" },
-  { id: "r5", contentTitle: "Nouvelle litteraire", author: "User111", reason: "Contenu haineux", status: "pending", date: "2025-06-03" },
+  { id: "r1", contentTitle: "Video signalement #1", reporter: "Clara M.", author: "User456", category: "insults", reason: "Insultes dans les commentaires", status: "pending", date: "2025-06-03" },
+  { id: "r2", contentTitle: "Article litigieux", reporter: "Thomas R.", author: "User789", category: "plagiarism", reason: "Plagiat d'un article existant", status: "pending", date: "2025-06-02" },
+  { id: "r3", contentTitle: "Podcast episode 12", reporter: "Sophie L.", author: "User321", category: "plagiarism", reason: "Musique non autoris\u00e9e", status: "reviewed", date: "2025-05-28" },
+  { id: "r4", contentTitle: "Court-metrage X", reporter: "Alexandre M.", author: "User654", category: "spam", reason: "Spam promotionnel", status: "resolved", date: "2025-05-25" },
+  { id: "r5", contentTitle: "Nouvelle litteraire", reporter: "Marie S.", author: "User111", category: "racism", reason: "Propos racistes dans le texte", status: "pending", date: "2025-06-03" },
+  { id: "r6", contentTitle: "Commentaire social #42", reporter: "Lucas N.", author: "User222", category: "homophobia", reason: "Propos homophobes r\u00e9p\u00e9t\u00e9s", status: "pending", date: "2025-06-03" },
+  { id: "r7", contentTitle: "Video profil User333", reporter: "Karim O.", author: "User333", category: "violence", reason: "Menaces envers un autre utilisateur", status: "pending", date: "2025-06-04" },
 ]
 
 const MOCK_PAYOUTS = [
@@ -293,9 +314,56 @@ export default function AdminPage() {
                         </td>
                         <td className="py-3 px-3 text-white/40">{u.joined}</td>
                         <td className="py-3 px-3 text-right">
-                          <Button variant="ghost" size="sm" className="text-white/40 hover:text-white h-8">
-                            <Eye className="h-3.5 w-3.5" />
-                          </Button>
+                          <div className="flex items-center justify-end gap-1">
+                            <Button variant="ghost" size="sm" className="text-white/40 hover:text-white h-8" title="Voir le profil">
+                              <Eye className="h-3.5 w-3.5" />
+                            </Button>
+                            <Button
+                              variant="ghost" size="sm"
+                              className="text-amber-400/60 hover:text-amber-400 hover:bg-amber-500/10 h-8"
+                              title="Envoyer un avertissement"
+                              onClick={async () => {
+                                await fetch("/api/admin/secure-action", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { decision: "warn", targetUser: u.id } }),
+                                })
+                              }}
+                            >
+                              <MessageCircle className="h-3.5 w-3.5" />
+                            </Button>
+                            {u.status === "active" ? (
+                              <Button
+                                variant="ghost" size="sm"
+                                className="text-red-400/60 hover:text-red-400 hover:bg-red-500/10 h-8"
+                                title="Suspendre le compte"
+                                onClick={async () => {
+                                  await fetch("/api/admin/secure-action", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { decision: "suspend_account", targetUser: u.id } }),
+                                  })
+                                }}
+                              >
+                                <Ban className="h-3.5 w-3.5" />
+                              </Button>
+                            ) : (
+                              <Button
+                                variant="ghost" size="sm"
+                                className="text-emerald-400/60 hover:text-emerald-400 hover:bg-emerald-500/10 h-8"
+                                title="R\u00e9activer le compte"
+                                onClick={async () => {
+                                  await fetch("/api/admin/secure-action", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { decision: "reactivate", targetUser: u.id } }),
+                                  })
+                                }}
+                              >
+                                <CheckCircle className="h-3.5 w-3.5" />
+                              </Button>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -372,76 +440,202 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Reports Tab */}
+      {/* Reports Tab - Full Moderation Pipeline */}
       {activeTab === "reports" && (
         <div className="space-y-4" id="reports">
+          {/* Moderation summary */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { label: "En attente", count: MOCK_REPORTS.filter(r => r.status === "pending").length, color: "text-red-400", bg: "bg-red-500/15", dot: "bg-red-400" },
+              { label: "En cours", count: MOCK_REPORTS.filter(r => r.status === "reviewed").length, color: "text-amber-400", bg: "bg-amber-500/15", dot: "bg-amber-400" },
+              { label: "R\u00e9solus", count: MOCK_REPORTS.filter(r => r.status === "resolved").length, color: "text-emerald-400", bg: "bg-emerald-500/15", dot: "bg-emerald-400" },
+              { label: "Critiques", count: MOCK_REPORTS.filter(r => REPORT_CATEGORY_LABELS[r.category]?.severity === "critical").length, color: "text-red-500", bg: "bg-red-600/15", dot: "bg-red-500" },
+            ].map((s) => (
+              <Card key={s.label} className="bg-slate-900/60 border-white/10">
+                <CardContent className="p-4 flex items-center gap-3">
+                  <span className={`w-3 h-3 rounded-full ${s.dot}`} />
+                  <div>
+                    <p className={`text-xl font-bold ${s.color}`}>{s.count}</p>
+                    <p className="text-xs text-white/40">{s.label}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Reports list with full moderation actions */}
           <Card className="bg-slate-900/60 border-white/10">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-red-400" />
-                {"Modération des contenus"}
+                <ShieldAlert className="h-5 w-5 text-red-400" />
+                {"Signalements -- Mod\u00e9ration compl\u00e8te"}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {MOCK_REPORTS.map((r) => (
-                  <div key={r.id} className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                    <div className={`w-2 h-2 rounded-full shrink-0 ${
-                      r.status === "pending" ? "bg-red-400" :
-                      r.status === "reviewed" ? "bg-amber-400" :
-                      "bg-emerald-400"
-                    }`} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-white font-medium truncate">{r.contentTitle}</p>
-                      <p className="text-xs text-white/40">
-                        {"Par"} {r.author} {"--"} {r.reason}
-                      </p>
-                    </div>
-                    <span className="text-xs text-white/30 whitespace-nowrap">{r.date}</span>
-                    <Badge
-                      variant="outline"
-                      className={
-                        r.status === "pending" ? "border-red-500/40 text-red-400" :
-                        r.status === "reviewed" ? "border-amber-500/40 text-amber-400" :
-                        "border-emerald-500/40 text-emerald-400"
-                      }
-                    >
-                      {r.status === "pending" ? "En attente" : r.status === "reviewed" ? "En cours" : "Resolu"}
-                    </Badge>
-                    {r.status === "pending" && (
-                      <div className="flex gap-1">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 text-emerald-400 hover:bg-emerald-500/20"
-                          onClick={async () => {
-                            await fetch("/api/admin/secure-action", {
-                              method: "POST",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "approved" } }),
-                            })
-                          }}
-                        >
-                          <CheckCircle className="h-3.5 w-3.5" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 text-red-400 hover:bg-red-500/20"
-                          onClick={async () => {
-                            await fetch("/api/admin/secure-action", {
-                              method: "POST",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "removed" } }),
-                            })
-                          }}
-                        >
-                          <Ban className="h-3.5 w-3.5" />
-                        </Button>
+                {MOCK_REPORTS.map((r) => {
+                  const catInfo = REPORT_CATEGORY_LABELS[r.category] || { label: r.category, severity: "low" }
+                  const severityColors = {
+                    critical: "border-red-500/30 bg-red-500/5",
+                    high: "border-orange-500/20 bg-orange-500/5",
+                    medium: "border-amber-500/15 bg-amber-500/5",
+                    low: "border-white/5 bg-white/[0.02]",
+                  }
+                  const severityBadge = {
+                    critical: "bg-red-500/20 text-red-400 border-red-500/40",
+                    high: "bg-orange-500/20 text-orange-400 border-orange-500/40",
+                    medium: "bg-amber-500/20 text-amber-400 border-amber-500/40",
+                    low: "bg-white/10 text-white/50 border-white/20",
+                  }
+
+                  return (
+                    <div key={r.id} className={`p-4 rounded-xl border ${severityColors[catInfo.severity]}`}>
+                      {/* Report header */}
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className={`w-2.5 h-2.5 rounded-full shrink-0 mt-1.5 ${
+                          r.status === "pending" ? "bg-red-400 animate-pulse" :
+                          r.status === "reviewed" ? "bg-amber-400" :
+                          "bg-emerald-400"
+                        }`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
+                            <p className="text-sm text-white font-medium">{r.contentTitle}</p>
+                            <Badge variant="outline" className={`text-[10px] ${severityBadge[catInfo.severity]}`}>
+                              {catInfo.label}
+                            </Badge>
+                            <Badge
+                              variant="outline"
+                              className={
+                                r.status === "pending" ? "border-red-500/40 text-red-400 text-[10px]" :
+                                r.status === "reviewed" ? "border-amber-500/40 text-amber-400 text-[10px]" :
+                                "border-emerald-500/40 text-emerald-400 text-[10px]"
+                              }
+                            >
+                              {r.status === "pending" ? "En attente" : r.status === "reviewed" ? "En cours" : "R\u00e9solu"}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-white/40">
+                            {"Signal\u00e9 par "}{r.reporter}{" -- Auteur : "}{r.author}{" -- "}{r.date}
+                          </p>
+                          <p className="text-xs text-white/50 mt-1 italic">{"\u00ab\u00a0"}{r.reason}{"\u00a0\u00bb"}</p>
+                        </div>
                       </div>
-                    )}
+
+                      {/* Moderation actions -- full pipeline */}
+                      {r.status === "pending" && (
+                        <div className="flex flex-wrap items-center gap-2 ml-5.5 pt-3 border-t border-white/5">
+                          {/* Approve (false alarm) */}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 px-2.5 text-xs text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20"
+                            title="Approuver (fausse alerte)"
+                            onClick={async () => {
+                              await fetch("/api/admin/secure-action", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "approved" } }),
+                              })
+                            }}
+                          >
+                            <CheckCircle className="h-3 w-3 mr-1" />
+                            Approuver
+                          </Button>
+
+                          {/* Warn user */}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 px-2.5 text-xs text-amber-400 hover:bg-amber-500/20 border border-amber-500/20"
+                            title="Envoyer un avertissement"
+                            onClick={async () => {
+                              await fetch("/api/admin/secure-action", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "warn", targetUser: r.author } }),
+                              })
+                            }}
+                          >
+                            <Mail className="h-3 w-3 mr-1" />
+                            Avertir
+                          </Button>
+
+                          {/* Delete content */}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 px-2.5 text-xs text-orange-400 hover:bg-orange-500/20 border border-orange-500/20"
+                            title="Supprimer le contenu"
+                            onClick={async () => {
+                              await fetch("/api/admin/secure-action", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "delete_content" } }),
+                              })
+                            }}
+                          >
+                            <Trash2 className="h-3 w-3 mr-1" />
+                            Supprimer contenu
+                          </Button>
+
+                          {/* Suspend account */}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 px-2.5 text-xs text-red-400 hover:bg-red-500/20 border border-red-500/20"
+                            title="Suspendre le compte"
+                            onClick={async () => {
+                              await fetch("/api/admin/secure-action", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "suspend_account", targetUser: r.author } }),
+                              })
+                            }}
+                          >
+                            <Ban className="h-3 w-3 mr-1" />
+                            Suspendre
+                          </Button>
+
+                          {/* Ban account */}
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 px-2.5 text-xs text-red-500 hover:bg-red-600/20 border border-red-600/20"
+                            title="Supprimer le compte d\u00e9finitivement"
+                            onClick={async () => {
+                              await fetch("/api/admin/secure-action", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email: user?.email, action: "moderate_content", payload: { contentId: r.id, decision: "ban_account", targetUser: r.author } }),
+                              })
+                            }}
+                          >
+                            <UserX className="h-3 w-3 mr-1" />
+                            Supprimer compte
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Moderation guidelines reminder */}
+          <Card className="bg-emerald-500/5 border-emerald-500/15">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <AlertOctagon className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div className="space-y-2">
+                  <p className="text-emerald-400 font-medium text-sm">{"Rappel -- Charte de mod\u00e9ration VISUAL"}</p>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="text-white/50">{"Signalements critiques (racisme, homophobie, antis\u00e9mitisme) : traitement prioritaire sous 24h."}</div>
+                    <div className="text-white/50">{"Pipeline : Signalement > Examen > D\u00e9cision (approuver / avertir / supprimer contenu / suspendre / bannir)."}</div>
+                    <div className="text-white/50">{"L'avertissement rappelle les r\u00e8gles de respect et de courtoisie entre utilisateurs."}</div>
+                    <div className="text-white/50">{"La suspension temporaire bloque le compte de 7 \u00e0 90 jours. La suppression est d\u00e9finitive."}</div>
                   </div>
-                ))}
+                </div>
               </div>
             </CardContent>
           </Card>

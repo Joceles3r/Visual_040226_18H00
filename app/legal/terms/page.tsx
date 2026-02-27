@@ -222,13 +222,16 @@ export default function TermsOfUsePage() {
                 <SubSection title="Obligations de tout inscrit">
                   <div className="space-y-2">
                     {[
-                      "Utiliser la plateforme conformément à sa destination et aux lois en vigueur",
-                      "Ne pas usurper l'identité d'un tiers ni créer de faux profils",
-                      "Ne pas tenter de contourner les systèmes de sécurité ou de paiement de la plateforme",
-                      "Respecter les autres utilisateurs : aucune injure, harcèlement, discrimination ou incitation à la haine",
-                      "Ne pas publier de contenu illicite, diffamatoire, pornographique ou portant atteinte aux droits de tiers",
-                      "Ne pas utiliser de systèmes automatisés (bots, scraping) pour interagir avec la plateforme",
-                      "Maintenir la confidentialité de ses identifiants de connexion",
+                      "Utiliser la plateforme conform\u00e9ment \u00e0 sa destination et aux lois en vigueur",
+                      "Ne pas usurper l'identit\u00e9 d'un tiers ni cr\u00e9er de faux profils",
+                      "Ne pas tenter de contourner les syst\u00e8mes de s\u00e9curit\u00e9 ou de paiement de la plateforme",
+                      "Respecter la Charte communautaire VISUAL : courtoisie, bienveillance et respect mutuel entre tous les utilisateurs",
+                      "Ne publier aucun contenu ni propos raciste, homophobe, transphobe, antis\u00e9mite, anti-religieux, discriminatoire, haineux, sexuel, violent, diffamatoire ou insultant",
+                      "Ne pas harc\u00e8ler, menacer ou intimider d'autres utilisateurs",
+                      "Ne pas publier de contenu illicite, pornographique ou portant atteinte aux droits de tiers",
+                      "Ne pas utiliser de syst\u00e8mes automatis\u00e9s (bots, scraping) pour interagir avec la plateforme",
+                      "Maintenir la confidentialit\u00e9 de ses identifiants de connexion",
+                      "Signaler tout contenu ou comportement inappropri\u00e9 via le bouton rouge de signalement pr\u00e9sent sur chaque contenu et profil",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
                         <Gavel className="h-4 w-4 text-teal-400/60 mt-0.5 shrink-0" />
@@ -913,7 +916,8 @@ export default function TermsOfUsePage() {
                       { icon: Users, text: "Cr\u00e9ation de comptes multiples pour cumuler les cautions ou les gains" },
                       { icon: XCircle, text: "Investissement fictif, blanchiment d'argent ou utilisation de fonds illicites" },
                       { icon: Ban, text: "Auto-investissement : investir dans son propre projet (annulation + recalcul des votes)" },
-                      { icon: AlertTriangle, text: "Harcèlement, menaces, injures ou propos discriminatoires envers tout utilisateur" },
+                      { icon: AlertTriangle, text: "Racisme, homophobie, transphobie, antis\u00e9mitisme, haine religieuse et toute forme de discrimination" },
+                      { icon: AlertTriangle, text: "Harc\u00e8lement, menaces, intimidation, injures ou insultes envers tout utilisateur" },
                       { icon: Lock, text: "Tentative d'accès non autorisé aux systèmes, API ou données de la plateforme" },
                       { icon: Trash2, text: "Dépôt de contenu volé, plagié ou portant atteinte aux droits d'auteur de tiers" },
                     ].map((item) => {
@@ -944,6 +948,52 @@ export default function TermsOfUsePage() {
                         <span className="text-white/50 text-xs">{s.desc}</span>
                       </div>
                     ))}
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Dispositif de signalement (Bouton Rouge Alerte)"}>
+                  <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4 space-y-3">
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {"Chaque utilisateur inscrit dispose d'un bouton de signalement (Bouton Rouge Alerte) accessible sur chaque contenu (vid\u00e9o, \u00e9crit, podcast), chaque commentaire et chaque profil utilisateur."}
+                    </p>
+                    <div className="space-y-2">
+                      {[
+                        "Le signalement est anonyme vis-\u00e0-vis de l'utilisateur signal\u00e9",
+                        "L'utilisateur choisit un motif parmi : racisme, homophobie, antis\u00e9mitisme, haine religieuse, insultes/harc\u00e8lement, contenu sexuel, violence, plagiat, spam, autre",
+                        "Un champ optionnel permet de d\u00e9tailler le signalement (500 caract\u00e8res max)",
+                        "L'\u00e9quipe de mod\u00e9ration VISUAL examine chaque signalement dans un d\u00e9lai maximal de 48h (24h pour les signalements critiques)",
+                        "Les d\u00e9cisions possibles sont : approbation (fausse alerte), avertissement, suppression du contenu, suspension temporaire, suspension d\u00e9finitive, suppression du compte",
+                        "L'utilisateur signal\u00e9 est notifi\u00e9 de la d\u00e9cision et peut exercer un recours aupr\u00e8s de support@visual.music",
+                      ].map((item) => (
+                        <div key={item} className="flex gap-2 items-start text-sm">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
+                          <span className="text-white/55 text-xs">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Charte communautaire de respect et de courtoisie"}>
+                  <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4 space-y-3">
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {"VISUAL est un espace de cr\u00e9ation collaborative fond\u00e9 sur le respect mutuel. En s'inscrivant, chaque utilisateur s'engage \u00e0 respecter la Charte communautaire VISUAL :"}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {[
+                        "Respecter la dignit\u00e9 de chaque personne",
+                        "Faire preuve de courtoisie et de bienveillance",
+                        "Accepter la diversit\u00e9 des opinions et des cultures",
+                        "Contribuer de mani\u00e8re constructive aux \u00e9changes",
+                        "Prot\u00e9ger les mineurs et les personnes vuln\u00e9rables",
+                        "Utiliser le signalement de mani\u00e8re responsable",
+                      ].map((item) => (
+                        <div key={item} className="flex gap-2 items-start">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                          <span className="text-white/55 text-xs">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </SubSection>
               </CardContent>
