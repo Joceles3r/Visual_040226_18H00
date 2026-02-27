@@ -19,8 +19,19 @@ export type {
   PayoutEngineOutput,
 } from "./types";
 
-// Moteur de calcul
+// Moteur de calcul (Strategy-based V3)
 export { computePayoutAllocations } from "./payout-engine";
+export type { PayoutSimulation } from "./payout-engine";
+
+// Strategies
+export { getStrategy, euroFloor } from "./strategies";
+export type { PayoutStrategy, StrategyResult } from "./strategies";
+export {
+  FilmStrategy,
+  PodcastStrategy,
+  VoixInfoStrategy,
+  LivresStrategy,
+} from "./strategies";
 
 // Constantes VISUAL V1
 export {

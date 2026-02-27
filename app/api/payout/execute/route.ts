@@ -124,8 +124,44 @@ export async function POST(req: NextRequest) {
       closedAtIso: new Date().toISOString(),
     };
 
-    // Run the payout engine
+    // Run the payout engine (V3 with simulation logging)
     const result = computePayoutAllocations(engineInput);
+
+    // ── Step 1: Log simulation BEFORE committing real transactions ──
+    // This enables audit trails and double-verification of calculations
+    try {
+      await sql`
+        INSERT INTO payout_simulations (
+          simulation_id, cycle_id, category, gross_eligible_cents,
+          total_user_payout_cents, platform_take_cents,
+          allocations_count, integrity_check, warnings, allocation_snapshot, computed_at
+        ) VALUES (
+          ${result.simulation.simulationId},
+          ${result.simulation.cycleId},
+          ${result.simulation.category},
+          ${result.simulation.grossEligibleCents},
+          ${result.simulation.totalUserPayoutCents},
+          ${result.simulation.platformTakeCents},
+          ${result.simulation.allocationsCount},
+          ${result.simulation.integrityCheck},
+          ${JSON.stringify(result.simulation.warnings)},
+          ${JSON.stringify(result.simulation.allocationSnapshot)},
+          ${result.simulation.computedAt}
+        )
+      `;
+    } catch (simError) {
+      // Simulation log failure is non-blocking but logged
+      console.error("Failed to log payout simulation:", simError);
+    }
+
+    // ── Step 2: Integrity gate -- abort if integrity check fails ──
+    if (!result.simulation.integrityCheck) {
+      return NextResponse.json({
+        error: "Payout integrity check failed. Simulation logged for review. Distribution aborted.",
+        simulationId: result.simulation.simulationId,
+        warnings: result.warnings,
+      }, { status: 422 });
+    }
 
     // Store payout cycle
     await sql`
