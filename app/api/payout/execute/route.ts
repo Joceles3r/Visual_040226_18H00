@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@/lib/db";
 import { computePayoutAllocations } from "@/lib/payout/payout-engine";
 import type { PayoutEngineInput, PayoutCategory } from "@/lib/payout/types";
+import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
 
 /**
  * POST /api/payout/execute
@@ -15,18 +16,17 @@ import type { PayoutEngineInput, PayoutCategory } from "@/lib/payout/types";
  * This route should be called by an admin or a scheduled job (cron).
  * In production, add proper authentication/authorization.
  */
-export async function POST(req: NextRequest) {
-  try {
+export const POST = withErrorHandler(async (req: Request) => {
     const body = await req.json();
     const { contentId, adminSecret } = body;
 
     // Simple admin secret protection (replace with proper auth in production)
     if (adminSecret !== process.env.VISUAL_ADMIN_SECRET && adminSecret !== "dev-secret") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return apiError(ErrorCodes.ERR_UNAUTHORIZED, "Unauthorized", 401);
     }
 
     if (!contentId) {
-      return NextResponse.json({ error: "contentId is required" }, { status: 400 });
+      return apiError(ErrorCodes.ERR_MISSING_FIELD, "contentId is required", 400);
     }
 
     // Get the content
@@ -218,6 +218,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       cycleId: result.cycleId,
+      simulationId: result.simulation.simulationId,
       grossEligibleCents: result.grossEligibleCents,
       platformTakeCents: result.platformTakeCents,
       platformFeeCents: result.platformFeeCents,
@@ -226,10 +227,6 @@ export async function POST(req: NextRequest) {
       allocationsCount: result.allocations.length,
       ledgerEntriesCount: result.ledgerEntries.length,
       warnings: result.warnings,
+      integrityCheck: result.simulation.integrityCheck,
     });
-  } catch (error: unknown) {
-    console.error("Payout execution error:", error);
-    const message = error instanceof Error ? error.message : "Internal server error";
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
-}
+});

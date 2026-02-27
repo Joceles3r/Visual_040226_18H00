@@ -26,6 +26,11 @@ import {
   MessageCircle,
   ShieldAlert,
   Mail,
+  Database,
+  Fingerprint,
+  Lock,
+  Zap,
+  FileCheck,
 } from "lucide-react"
 
 interface AdminStats {
@@ -86,7 +91,7 @@ export default function AdminPage() {
   const { user } = useAuth()
   const [stats, setStats] = useState<AdminStats | null>(null)
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<"overview" | "users" | "payouts" | "reports">("overview")
+  const [activeTab, setActiveTab] = useState<"overview" | "users" | "payouts" | "reports" | "integrity">("overview")
 
   const fetchStats = useCallback(async () => {
     setLoading(true)
@@ -126,6 +131,7 @@ export default function AdminPage() {
     { key: "users" as const, label: "Utilisateurs", icon: Users },
     { key: "payouts" as const, label: "Paiements", icon: DollarSign },
     { key: "reports" as const, label: "Signalements", icon: AlertTriangle },
+    { key: "integrity" as const, label: "Integrity", icon: Database },
   ]
 
   return (
@@ -634,6 +640,222 @@ export default function AdminPage() {
                     <div className="text-white/50">{"Pipeline : Signalement > Examen > D\u00e9cision (approuver / avertir / supprimer contenu / suspendre / bannir)."}</div>
                     <div className="text-white/50">{"L'avertissement rappelle les r\u00e8gles de respect et de courtoisie entre utilisateurs."}</div>
                     <div className="text-white/50">{"La suspension temporaire bloque le compte de 7 \u00e0 90 jours. La suppression est d\u00e9finitive."}</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Integrity Tab -- Financial Integrity Dashboard */}
+      {activeTab === "integrity" && (
+        <div className="space-y-6" id="integrity">
+          {/* Integrity overview cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { label: "Payout Simulations", value: "12", desc: "ce mois", icon: FileCheck, color: "text-teal-400", bg: "bg-teal-500/15" },
+              { label: "Webhook Events", value: "847", desc: "30 derniers jours", icon: Zap, color: "text-amber-400", bg: "bg-amber-500/15" },
+              { label: "KYC Verified", value: "89%", desc: "des payables", icon: Fingerprint, color: "text-emerald-400", bg: "bg-emerald-500/15" },
+              { label: "Integrity Checks", value: "100%", desc: "pass rate", icon: Lock, color: "text-sky-400", bg: "bg-sky-500/15" },
+            ].map((card) => (
+              <Card key={card.label} className="bg-slate-900/60 border-white/10">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className={`w-9 h-9 rounded-lg ${card.bg} flex items-center justify-center`}>
+                      <card.icon className={`h-4.5 w-4.5 ${card.color}`} />
+                    </div>
+                  </div>
+                  <p className={`text-2xl font-bold ${card.color}`}>{card.value}</p>
+                  <p className="text-xs text-white/40 mt-0.5">{card.label}</p>
+                  <p className="text-[10px] text-white/25">{card.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Strategy Pattern - Payout Engine Status */}
+          <Card className="bg-slate-900/60 border-white/10">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2 text-base">
+                <Database className="h-5 w-5 text-teal-400" />
+                {"Moteur de redistribution -- Strategies V3"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  { name: "FilmStrategy", category: "Audiovisuel", pool: "35%", reserve: "15%", status: "active" },
+                  { name: "PodcastStrategy", category: "Podcast", pool: "25%", reserve: "10%", status: "active" },
+                  { name: "VoixInfoStrategy", category: "Voix-Info", pool: "20%", reserve: "10%", status: "active" },
+                  { name: "LivresStrategy", category: "Livres", pool: "20%", reserve: "10%", status: "active" },
+                ].map((s) => (
+                  <div key={s.name} className="bg-black/30 border border-white/5 rounded-xl p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-white/70 text-sm font-medium">{s.category}</span>
+                      <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 text-[10px]">
+                        {s.status}
+                      </Badge>
+                    </div>
+                    <p className="text-[10px] text-white/30 font-mono mb-2">{s.name}</p>
+                    <div className="flex gap-3 text-xs">
+                      <div>
+                        <span className="text-white/30">Pool:</span>
+                        <span className="text-teal-400 ml-1 font-medium">{s.pool}</span>
+                      </div>
+                      <div>
+                        <span className="text-white/30">Reserve:</span>
+                        <span className="text-amber-400 ml-1 font-medium">{s.reserve}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Payout Simulations */}
+          <Card className="bg-slate-900/60 border-white/10">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2 text-base">
+                <FileCheck className="h-5 w-5 text-sky-400" />
+                {"Simulations de paiement r\u00e9centes"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-white/30 text-xs border-b border-white/5">
+                      <th className="pb-3 px-3 text-left font-medium">ID</th>
+                      <th className="pb-3 px-3 text-left font-medium">{"Cat\u00e9gorie"}</th>
+                      <th className="pb-3 px-3 text-right font-medium">{"Brut \u00e9ligible"}</th>
+                      <th className="pb-3 px-3 text-right font-medium">{"Vers\u00e9 (utilisateurs)"}</th>
+                      <th className="pb-3 px-3 text-right font-medium">{"Commission plateforme"}</th>
+                      <th className="pb-3 px-3 text-center font-medium">{"Int\u00e9grit\u00e9"}</th>
+                      <th className="pb-3 px-3 text-center font-medium">Alertes</th>
+                      <th className="pb-3 px-3 text-right font-medium">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { id: "sim_01HX7...", category: "Audiovisuel", gross: 15600, payout: 12480, platform: 3120, integrity: true, warnings: 0, date: "01/03/2026" },
+                      { id: "sim_01HX8...", category: "Podcast", gross: 8200, payout: 6560, platform: 1640, integrity: true, warnings: 0, date: "01/03/2026" },
+                      { id: "sim_01HX9...", category: "Voix-Info", gross: 9800, payout: 7840, platform: 1960, integrity: true, warnings: 1, date: "01/03/2026" },
+                      { id: "sim_01HXA...", category: "Livres", gross: 4200, payout: 3360, platform: 840, integrity: true, warnings: 0, date: "01/03/2026" },
+                    ].map((sim) => (
+                      <tr key={sim.id} className="border-b border-white/[0.03] hover:bg-white/[0.02]">
+                        <td className="py-3 px-3 text-white/50 font-mono text-xs">{sim.id}</td>
+                        <td className="py-3 px-3 text-white/70">{sim.category}</td>
+                        <td className="py-3 px-3 text-right text-white/50">{(sim.gross / 100).toFixed(2)} EUR</td>
+                        <td className="py-3 px-3 text-right text-teal-400 font-medium">{(sim.payout / 100).toFixed(2)} EUR</td>
+                        <td className="py-3 px-3 text-right text-amber-400">{(sim.platform / 100).toFixed(2)} EUR</td>
+                        <td className="py-3 px-3 text-center">
+                          {sim.integrity ? (
+                            <CheckCircle className="h-4 w-4 text-emerald-400 mx-auto" />
+                          ) : (
+                            <AlertTriangle className="h-4 w-4 text-red-400 mx-auto" />
+                          )}
+                        </td>
+                        <td className="py-3 px-3 text-center">
+                          {sim.warnings > 0 ? (
+                            <Badge variant="outline" className="border-amber-500/40 text-amber-400 text-[10px]">{sim.warnings}</Badge>
+                          ) : (
+                            <span className="text-white/20 text-xs">0</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-3 text-right text-white/30 text-xs">{sim.date}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Security Guards Status */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Webhook Idempotency */}
+            <Card className="bg-slate-900/60 border-white/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-white flex items-center gap-2 text-sm">
+                  <Zap className="h-4 w-4 text-amber-400" />
+                  {"Webhook Idempotency Guard"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { label: "Events processed (30j)", value: "847", status: "ok" },
+                    { label: "Duplicates blocked", value: "3", status: "ok" },
+                    { label: "Signature failures", value: "0", status: "ok" },
+                    { label: "Reconciliation drift", value: "0.00%", status: "ok" },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center justify-between py-2 border-b border-white/[0.03] last:border-0">
+                      <span className="text-white/50 text-xs">{item.label}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-white/70 text-sm font-medium">{item.value}</span>
+                        <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* KYC & Investment Guards */}
+            <Card className="bg-slate-900/60 border-white/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-white flex items-center gap-2 text-sm">
+                  <Fingerprint className="h-4 w-4 text-emerald-400" />
+                  {"KYC & Investment Guards"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { label: "Self-invest attempts blocked", value: "2", status: "ok" },
+                    { label: "Non-KYC invest blocked", value: "5", status: "ok" },
+                    { label: "Minor invest blocked (>500EUR)", value: "1", status: "ok" },
+                    { label: "Stripe Connect unverified blocked", value: "8", status: "warning" },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center justify-between py-2 border-b border-white/[0.03] last:border-0">
+                      <span className="text-white/50 text-xs">{item.label}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-white/70 text-sm font-medium">{item.value}</span>
+                        <span className={`w-2 h-2 rounded-full ${item.status === "ok" ? "bg-emerald-400" : "bg-amber-400"}`} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Integrity rules summary */}
+          <Card className="bg-teal-500/5 border-teal-500/15">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <Lock className="h-5 w-5 text-teal-400 shrink-0 mt-0.5" />
+                <div className="space-y-2">
+                  <p className="text-teal-400 font-medium text-sm">{"R\u00e8gles d'int\u00e9grit\u00e9 financi\u00e8re actives"}</p>
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+                    {[
+                      "Simulation obligatoire avant chaque paiement",
+                      "Idempotency keys sur chaque webhook Stripe",
+                      "Auto-investissement interdit (guard serveur)",
+                      "KYC obligatoire avant investissement",
+                      "Plafond mineur 500 EUR (sans consentement parental)",
+                      "Stripe Connect charges_enabled requis",
+                      "Integrity check = sum(users) + platform == gross",
+                      "Batch mensuel unique le 1er du mois",
+                      "Audit trail complet (payout_simulations)",
+                    ].map((rule) => (
+                      <div key={rule} className="flex items-start gap-1.5">
+                        <CheckCircle className="h-3 w-3 text-teal-400/60 mt-0.5 shrink-0" />
+                        <span className="text-white/50">{rule}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

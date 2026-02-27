@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { adminGuard } from "@/lib/admin-guard"
+import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors"
 
 /**
  * Protected admin API endpoint.
@@ -9,8 +10,7 @@ import { adminGuard } from "@/lib/admin-guard"
  * In production this would come from a verified session/JWT,
  * but for now we validate against the server-side env var.
  */
-export async function POST(req: Request) {
-  try {
+export const POST = withErrorHandler(async (req: Request) => {
     const body = await req.json()
     const { email, action, payload } = body
 
@@ -45,6 +45,9 @@ export async function POST(req: Request) {
         return NextResponse.json({
           success: true,
           message: `Content ${payload?.contentId} has been ${payload?.decision || "reviewed"}.`,
+          action: payload?.decision,
+          targetUser: payload?.targetUser || null,
+          timestamp: new Date().toISOString(),
         })
 
       case "update_user_status":
@@ -54,15 +57,6 @@ export async function POST(req: Request) {
         })
 
       default:
-        return NextResponse.json(
-          { error: `Unknown action: ${action}` },
-          { status: 400 }
-        )
+        return apiError(ErrorCodes.ERR_INVALID_INPUT, `Unknown action: ${action}`, 400)
     }
-  } catch {
-    return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
-    )
-  }
-}
+})
