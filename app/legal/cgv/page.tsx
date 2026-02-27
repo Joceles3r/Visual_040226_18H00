@@ -376,15 +376,17 @@ export default function CGVPage() {
 
             {/* Article 10 */}
             <Section num={10} title="Wallet et paiements" icon={CreditCard}>
-              <P>{"Chaque utilisateur inscrit dispose d'un wallet (portefeuille interne) qui centralise ses opérations financières sur VISUAL :"}</P>
+              <P>{"Chaque utilisateur inscrit dispose d'un wallet (portefeuille interne) qui centralise ses op\u00e9rations financi\u00e8res sur VISUAL :"}</P>
               <ul className="space-y-2 ml-1">
-                <Bullet>{"Les gains issus des classements sont automatiquement crédités dans le wallet"}</Bullet>
-                <Bullet>{"Les gains valid\u00e9s sont vers\u00e9s le premier jour du mois suivant la p\u00e9riode de cl\u00f4ture"}</Bullet>
-                <Bullet>{"Les retraits sont effectu\u00e9s via Stripe Connect vers le compte bancaire de l'utilisateur"}</Bullet>
-                <Bullet>{"Les retraits sont trait\u00e9s chaque semaine par VISUAL"}</Bullet>
-                <Bullet>{"VISUAL s'appuie sur les obligations de vérification d'identité (KYC) de Stripe en tant que prestataire de paiement"}</Bullet>
+                <Bullet>{"Les gains issus des classements sont automatiquement cr\u00e9dit\u00e9s dans le wallet"}</Bullet>
+                <Bullet>{"Les paiements sont effectu\u00e9s mensuellement, le premier jour du mois suivant la cl\u00f4ture des op\u00e9rations, via un batch unique Stripe Connect"}</Bullet>
+                <Bullet>{"Chaque virement utilise des cl\u00e9s d'idempotence (idempotency keys) garantissant l'absence de doublons"}</Bullet>
+                <Bullet>{"Les \u00e9tats de chaque paiement sont : en attente (pending), valid\u00e9 (validated), pay\u00e9 (paid) ou bloqu\u00e9 (blocked)"}</Bullet>
+                <Bullet>{"L'activation d'un compte Stripe Connect est obligatoire pour tout profil susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur)"}</Bullet>
+                <Bullet>{"Les fonctions financi\u00e8res sont bloqu\u00e9es tant que charges_enabled et payouts_enabled ne sont pas actifs sur le compte Stripe Connect"}</Bullet>
+                <Bullet>{"VISUAL s'appuie sur les obligations de v\u00e9rification d'identit\u00e9 (KYC) de Stripe en tant que prestataire de paiement"}</Bullet>
               </ul>
-              <P>{"L'utilisateur est responsable de la validité et de l'exactitude de ses informations bancaires renseignées sur Stripe Connect."}</P>
+              <P>{"L'utilisateur est responsable de la validit\u00e9 et de l'exactitude de ses informations bancaires renseign\u00e9es sur Stripe Connect."}</P>
             </Section>
 
             {/* Article 11 */}
@@ -403,7 +405,7 @@ export default function CGVPage() {
 
             {/* Article 11bis - VISUpoints et paiement hybride */}
             <Section num={0} title={"VISUpoints et paiement hybride"} icon={Star}>
-              <P>{"Les VISUpoints constituent un avantage promotionnel interne \u00e0 VISUAL. Ils ne sont pas une monnaie \u00e9lectronique au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de 100 VISUpoints = 1 EUR."}</P>
+              <P>{"Les VISUpoints ne constituent pas une monnaie \u00e9lectronique et ne peuvent \u00eatre convertis librement en num\u00e9raire. Ils constituent un avantage promotionnel interne \u00e0 VISUAL au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de 100 VISUpoints = 1 EUR. Plafonds : mineurs (16\u201318 ans) 10\u00a0000 points (100\u20ac), majeurs 2\u00a0500 points."}</P>
 
               <Card className="bg-slate-800/40 border-white/5 mt-3 mb-3">
                 <CardContent className="pt-5 space-y-3">
@@ -472,19 +474,23 @@ export default function CGVPage() {
             <Section num={12} title="Interdictions et sanctions" icon={Ban}>
               <P>{"Sont strictement interdits sur VISUAL :"}</P>
               <ul className="space-y-2 ml-1">
-                <Bullet>{"La détention de plusieurs comptes (multi-comptes)"}</Bullet>
-                <Bullet>{"Toute manipulation, artificielle ou concertée, des votes et classements"}</Bullet>
+                <Bullet>{"La d\u00e9tention de plusieurs comptes (multi-comptes)"}</Bullet>
+                <Bullet>{"Toute manipulation, artificielle ou concert\u00e9e, des votes et classements"}</Bullet>
                 <Bullet>{"La diffusion de contenus illicites, contrefaits, diffamatoires, haineux ou portant atteinte aux droits des tiers"}</Bullet>
-                <Bullet>{"Toute tentative de fraude, de contournement des systèmes de sécurité ou d'exploitation abusive de la plateforme"}</Bullet>
+                <Bullet>{"Toute tentative de fraude, de contournement des syst\u00e8mes de s\u00e9curit\u00e9 ou d'exploitation abusive de la plateforme"}</Bullet>
+                <Bullet>{"L'auto-investissement : un utilisateur ne peut investir dans son propre projet. Sanction : annulation, recalcul des votes, suspension possible"}</Bullet>
+                <Bullet>{"Le partage, l'extraction ou le contournement des jetons d'acc\u00e8s aux m\u00e9dias prot\u00e9g\u00e9s"}</Bullet>
               </ul>
-              <P>{"En cas de manquement constaté, VISUAL se réserve le droit de suspendre ou supprimer le compte de l'utilisateur, de retenir la caution, et le cas échéant d'engager toute action en justice."}</P>
+              <P>{"En cas de manquement constat\u00e9, VISUAL se r\u00e9serve le droit de suspendre ou supprimer le compte de l'utilisateur, de retenir la caution, de geler les fonds, et le cas \u00e9ch\u00e9ant d'engager toute action en justice."}</P>
             </Section>
 
             {/* Article 13 */}
             <Section num={13} title={"Propriété intellectuelle"} icon={Award}>
-              <P>{"Les créateurs de contenus diffusés sur VISUAL conservent l'intégralité de leurs droits de propriété intellectuelle sur leurs œuvres."}</P>
-              <P>{"En publiant un contenu sur VISUAL, le créateur accorde à la plateforme une licence non exclusive, mondiale et révocable, pour les besoins de la diffusion, de la promotion et du fonctionnement du service (affichage, streaming, extraits promotionnels)."}</P>
-              <P>{"Le créateur garantit être titulaire des droits sur les contenus publiés et s'engage à ne diffuser aucun contenu portant atteinte aux droits de tiers. VISUAL ne pourra être tenu responsable en cas de contrefaçon commise par un utilisateur."}</P>
+              <P>{"Les cr\u00e9ateurs de contenus diffus\u00e9s sur VISUAL conservent l'int\u00e9gralit\u00e9 de leurs droits de propri\u00e9t\u00e9 intellectuelle sur leurs \u0153uvres."}</P>
+              <P>{"En publiant un contenu sur VISUAL, le cr\u00e9ateur accorde \u00e0 la plateforme une licence non exclusive, mondiale et r\u00e9vocable, pour les besoins de la diffusion, de la promotion et du fonctionnement du service (affichage, streaming, extraits promotionnels)."}</P>
+              <P>{"Avant toute publication, le cr\u00e9ateur doit remplir un formulaire de d\u00e9claration obligatoire : \u00ab\u00a0Je certifie \u00eatre titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e.\u00a0\u00bb En cas de fausse d\u00e9claration : blocage du compte, gel des fonds associ\u00e9s, action judiciaire possible."}</P>
+              <P>{"L'utilisateur autorise VISUAL \u00e0 diffuser des extraits promotionnels de ses contenus via les comptes officiels de VISUAL sur les r\u00e9seaux sociaux. Cette autorisation est r\u00e9vocable \u00e0 tout moment depuis les param\u00e8tres du contenu."}</P>
+              <P>{"VISUAL ne pourra \u00eatre tenu responsable en cas de contrefa\u00e7on commise par un utilisateur."}</P>
             </Section>
 
             {/* Article 14 */}
@@ -575,7 +581,7 @@ export default function CGVPage() {
           <Card className="bg-slate-900/40 border-white/10 mt-12">
             <CardContent className="p-6 text-center">
               <p className="text-white/40 text-sm mb-2">
-                {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}
+{"Version Provisoire Internationale \u2013 Consolidation V1 \u2013 27 f\u00e9vrier 2026"}
               </p>
               <p className="text-white/30 text-xs">
                 {"VISUAL se réserve le droit de modifier les présentes CGV à tout moment. Les utilisateurs seront informés de toute modification substantielle par notification sur la plateforme. La poursuite de l'utilisation des services après modification vaut acceptation des nouvelles conditions."}

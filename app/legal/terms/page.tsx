@@ -61,7 +61,7 @@ export default function TermsOfUsePage() {
               {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VISUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Derni\u00e8re mise \u00e0 jour : 26 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
+              {"Derni\u00e8re mise \u00e0 jour : 27 f\u00e9vrier 2026 \u2014 Consolidation V1 (Post 9h20)"}
             </p>
           </div>
         </section>
@@ -646,14 +646,21 @@ export default function TermsOfUsePage() {
                   </p>
                 </SubSection>
 
-                <SubSection title="Retraits des gains">
+                <SubSection title="Paiement mensuel unique">
+                  <div className="bg-teal-500/5 border border-teal-500/15 rounded-xl p-4 mb-3">
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {"Les paiements sont effectu\u00e9s mensuellement, le premier jour du mois suivant la cl\u00f4ture des op\u00e9rations. Un batch unique Stripe Connect est ex\u00e9cut\u00e9 avec des cl\u00e9s d'idempotence obligatoires. Chaque paiement passe par les \u00e9tats : en attente, valid\u00e9, pay\u00e9 ou bloqu\u00e9."}
+                    </p>
+                  </div>
+                </SubSection>
+
+                <SubSection title="Stripe Connect obligatoire">
                   <div className="space-y-2">
                     {[
+                      "L'activation d'un compte Stripe Connect est obligatoire pour tout utilisateur susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur)",
+                      "Les fonctions financi\u00e8res sont bloqu\u00e9es tant que charges_enabled et payouts_enabled ne sont pas actifs",
                       "Les gains disponibles sont consultables dans le Portefeuille de l'espace personnel",
-                      "Le retrait s'effectue via Stripe Connect sur le compte bancaire déclaré par l'inscrit",
-                      "Montant minimum de retrait : 5 EUR",
-                      "Les retraits sont traités chaque semaine (délai de virement : 2 à 5 jours ouvrés selon la banque)",
-                      "Les frais de transaction sont à la charge de VISUAL (aucun frais pour l'inscrit)",
+                      "Les frais de transaction sont \u00e0 la charge de VISUAL (aucun frais pour l'inscrit)",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
                         <CreditCard className="h-4 w-4 text-teal-400/60 mt-0.5 shrink-0" />
@@ -762,6 +769,139 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
+          {/* 7bis. Interdiction auto-investissement */}
+          <Section num={0} title={"Interdiction d'auto-investissement"}>
+            <Card className="bg-red-500/5 border-red-500/15">
+              <CardContent className="pt-6 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center shrink-0">
+                    <Ban className="h-4 w-4 text-red-400" />
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      {"Un utilisateur ne peut en aucun cas investir dans son propre projet. Cette r\u00e8gle est appliqu\u00e9e automatiquement par le syst\u00e8me."}
+                    </p>
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"En cas de tentative d'auto-investissement : annulation imm\u00e9diate de la transaction, recalcul des votes concern\u00e9s, et suspension possible du compte."}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7ter. VISUAL Trust Score */}
+          <Section num={0} title={"VISUAL Trust Score"}>
+            <Card className="bg-emerald-500/5 border-emerald-500/15">
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {"Le VISUAL Trust Score est une notation sur 5 \u00e9toiles attribu\u00e9e \u00e0 chaque utilisateur, calcul\u00e9e automatiquement selon les crit\u00e8res suivants :"}
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {[
+                    { label: "Anciennet\u00e9", desc: "Dur\u00e9e d'inscription", pct: "25%" },
+                    { label: "Signalements", desc: "Nombre de signalements re\u00e7us", pct: "25%" },
+                    { label: "Respect des r\u00e8gles", desc: "Violations confirm\u00e9es", pct: "25%" },
+                    { label: "Activit\u00e9", desc: "Interactions, contenus, investissements", pct: "25%" },
+                  ].map((c) => (
+                    <div key={c.label} className="bg-black/30 rounded-xl p-3 border border-white/5 text-center">
+                      <span className="text-emerald-400 font-bold text-sm">{c.pct}</span>
+                      <p className="text-white/70 text-xs font-medium mt-1">{c.label}</p>
+                      <p className="text-white/40 text-[10px] mt-0.5">{c.desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">
+                  {"Le Trust Score impacte la visibilit\u00e9 des contenus, le classement dans les r\u00e9sultats, et l'\u00e9ligibilit\u00e9 aux bonus. Les niveaux sont : d\u00e9butant, fiable, confirm\u00e9, expert et \u00e9lite."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7quater. Limitation stockage */}
+          <Section num={0} title={"Limitation de stockage des cr\u00e9ateurs"}>
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3">
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {"Chaque cr\u00e9ateur dispose d'un quota annuel de publication :"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="bg-teal-500/5 border border-teal-500/15 rounded-xl p-4 text-center">
+                    <span className="text-teal-400 font-bold text-2xl">10</span>
+                    <p className="text-white/60 text-xs mt-1">{"vid\u00e9os / an (Porteur)"}</p>
+                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : 1\u20ac / vid\u00e9o"}</p>
+                  </div>
+                  <div className="bg-purple-500/5 border border-purple-500/15 rounded-xl p-4 text-center">
+                    <span className="text-purple-400 font-bold text-2xl">20</span>
+                    <p className="text-white/60 text-xs mt-1">{"podcasts / an (Podcasteur)"}</p>
+                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : 0,50\u20ac / \u00e9pisode"}</p>
+                  </div>
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">
+                  {"Au-del\u00e0 du quota inclus, toute publication suppl\u00e9mentaire n\u00e9cessite un paiement pr\u00e9alable obligatoire avant mise en ligne."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7quinquies. Protection medias */}
+          <Section num={0} title={"Protection des m\u00e9dias"}>
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3">
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {"L'acc\u00e8s aux contenus m\u00e9dias (vid\u00e9os, podcasts, extraits) est prot\u00e9g\u00e9 par un syst\u00e8me de jetons (tokens) temporaires. Chaque jeton est personnel, li\u00e9 \u00e0 un contenu et \u00e0 un utilisateur, et dispose d'une dur\u00e9e de validit\u00e9 limit\u00e9e."}
+                </p>
+                <p className="text-white/50 text-xs leading-relaxed">
+                  {"Toute tentative de partage, d'extraction ou de contournement des jetons d'acc\u00e8s constitue une violation des CGU et pourra entra\u00eener la suspension imm\u00e9diate du compte."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7sexies. Promotion externe */}
+          <Section num={0} title={"Promotion externe"}>
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3">
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {"VISUAL peut diffuser des extraits promotionnels de contenus via ses comptes officiels sur les r\u00e9seaux sociaux (Twitter/X, Instagram, YouTube, TikTok). Cette promotion s'effectue exclusivement par les comptes officiels de VISUAL."}
+                </p>
+                <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+                  <p className="text-amber-400/80 text-xs leading-relaxed">
+                    {"L'utilisateur autorise VISUAL \u00e0 diffuser des extraits promotionnels de ses contenus sur les r\u00e9seaux sociaux partenaires. Cette autorisation est r\u00e9vocable \u00e0 tout moment depuis les param\u00e8tres du contenu."}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 7septies. Declaration de propriete */}
+          <Section num={0} title={"D\u00e9claration de propri\u00e9t\u00e9 intellectuelle"}>
+            <Card className="bg-amber-500/5 border-amber-500/15">
+              <CardContent className="pt-6 space-y-3">
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {"Avant toute publication, le cr\u00e9ateur doit remplir un formulaire de d\u00e9claration obligatoire attestant qu'il est titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e :"}
+                </p>
+                <div className="bg-black/30 border border-white/10 rounded-xl p-4">
+                  <p className="text-teal-400 text-sm italic leading-relaxed">
+                    {"\"Je certifie \u00eatre titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e et autorise sa diffusion sur la plateforme VISUAL.\""}
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    "En cas de fausse d\u00e9claration : blocage imm\u00e9diat du compte",
+                    "Les fonds associ\u00e9s au contenu litigieux sont gel\u00e9s",
+                    "VISUAL se r\u00e9serve le droit d'engager toute action judiciaire",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <AlertTriangle className="h-4 w-4 text-amber-400/60 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </Section>
+
           {/* 8. Comportements interdits */}
           <Section num={8} title="Comportements interdits et sanctions">
             <Card className="bg-slate-900/50 border-white/10">
@@ -770,8 +910,9 @@ export default function TermsOfUsePage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
                       { icon: Ban, text: "Manipulation des votes, des classements ou des VISUpoints par des moyens frauduleux" },
-                      { icon: Users, text: "Création de comptes multiples pour cumuler les cautions ou les gains" },
+                      { icon: Users, text: "Cr\u00e9ation de comptes multiples pour cumuler les cautions ou les gains" },
                       { icon: XCircle, text: "Investissement fictif, blanchiment d'argent ou utilisation de fonds illicites" },
+                      { icon: Ban, text: "Auto-investissement : investir dans son propre projet (annulation + recalcul des votes)" },
                       { icon: AlertTriangle, text: "Harcèlement, menaces, injures ou propos discriminatoires envers tout utilisateur" },
                       { icon: Lock, text: "Tentative d'accès non autorisé aux systèmes, API ou données de la plateforme" },
                       { icon: Trash2, text: "Dépôt de contenu volé, plagié ou portant atteinte aux droits d'auteur de tiers" },

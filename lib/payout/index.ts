@@ -114,3 +114,49 @@ export {
 } from "./constants";
 
 export type { VisualCategory, VisupointsProfileKey, EngagementLevel } from "./constants";
+
+// ── Visual Rules Engine V1 (Consolidation Post 9h20) ──
+export {
+  // R1 - Paiement mensuel
+  generateIdempotencyKey,
+  getNextBatchDate,
+  isBatchDay,
+  // R2 - Stripe Connect enforcement
+  PAYABLE_ROLES,
+  canReceivePayouts,
+  // R3 - Interdiction auto-investissement
+  checkSelfInvestment,
+  // R5 - VISUAL Trust Score
+  computeTrustScore,
+  // R6 - Limitation stockage
+  STORAGE_LIMITS,
+  checkStorageLimit,
+  // R7 - Protection medias
+  MEDIA_TOKEN_TTL_MS,
+  generateMediaToken,
+  validateMediaToken,
+  // R9 - Promotion externe
+  canPromoteExternally,
+  // R10 - Declaration propriete
+  IP_DECLARATION_TEXT,
+  checkIPDeclaration,
+  // R11 - Admin capabilities
+  ADMIN_CAPABILITIES,
+} from "../visual-rules-engine";
+
+export type {
+  BatchStatus,
+  MonthlyBatchEntry,
+  MonthlyBatchResult,
+  PayableRole,
+  StripeConnectStatus,
+  SelfInvestCheckResult,
+  TrustScoreInput,
+  TrustScoreResult,
+  StorageLimitRole,
+  StorageCheckResult,
+  MediaToken,
+  PromotionConsent,
+  IPDeclaration,
+  AdminCapability,
+} from "../visual-rules-engine";
