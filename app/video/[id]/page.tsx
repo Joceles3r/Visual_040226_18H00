@@ -1,6 +1,5 @@
 "use client"
 
-import { use } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -36,8 +35,8 @@ import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
 import type { ContentType } from "@/lib/visual-social/hybrid"
 
-export default function VideoPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
+export default function VideoPage({ params }: { params: { id: string } }) {
+  const { id } = params
   const { isAuthed, roles } = useAuth()
 
   const content = ALL_CONTENTS.find((c) => c.id === id)
