@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { ReportButton } from "@/components/report-button"
 import { VisualSlogan } from "@/components/visual-slogan"
 import {
   ChevronDown,
@@ -167,16 +168,27 @@ function MobileMenu({
 
           <div className="pt-4 border-t border-white/10 space-y-2">
             {isAuthed ? (
-              <Button
-                onClick={() => {
-                  onLogout()
-                  onClose()
-                }}
-                className="w-full bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-500/30"
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                Déconnexion
-              </Button>
+              <>
+                <div className="flex justify-center mb-2">
+                  <ReportButton
+                    targetId="general"
+                    targetType="other"
+                    targetName="Signalement g\u00e9n\u00e9ral"
+                    variant="full"
+                    size="default"
+                  />
+                </div>
+                <Button
+                  onClick={() => {
+                    onLogout()
+                    onClose()
+                  }}
+                  className="w-full bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-500/30"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {"D\u00e9connexion"}
+                </Button>
+              </>
             ) : (
               <>
                 <div className="flex items-center gap-2 text-slate-400 text-sm mb-2 justify-center">
@@ -290,6 +302,17 @@ export function VisualHeader() {
 
             {isAuthed ? (
               <>
+                {/* Report alert button (always visible when logged in) */}
+                <div className="hidden md:block">
+                  <ReportButton
+                    targetId="general"
+                    targetType="other"
+                    targetName="Signalement g\u00e9n\u00e9ral"
+                    variant="icon"
+                    size="sm"
+                  />
+                </div>
+
                 {/* User info desktop */}
                 <div className="hidden md:flex items-center gap-2">
                   <span className="text-white/70 text-sm truncate max-w-[120px]">

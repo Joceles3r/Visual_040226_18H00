@@ -5,10 +5,10 @@ import { useAuth } from "@/lib/auth-context"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
-  MessageCircle, Send, Hash, AlertTriangle,
-  Flag, X, Sparkles, Filter, ThumbsUp,
-  ChevronDown, ChevronUp, CornerDownRight,
+  Send, MessageCircle, Hash, ChevronDown, ChevronUp,
+  X, Sparkles, Filter, ThumbsUp,
 } from "lucide-react"
+import { ReportButton } from "@/components/report-button"
 import {
   type SocialPost, type SocialTag, type ListParams, type ContentType,
   VISUAL_SOCIAL_TAGS, TAG_LABELS, TAG_COLORS, TAG_CATEGORIES,
@@ -79,13 +79,15 @@ function PostCard({
             </div>
           </div>
           {!hasReported && (
-            <button
-              onClick={() => onReport(post.id)}
-              className="opacity-0 group-hover:opacity-100 p-1 rounded text-white/20 hover:text-red-400 hover:bg-red-500/10 transition-all"
-              title="Signaler"
-            >
-              <Flag className="h-3.5 w-3.5" />
-            </button>
+            <div className="opacity-0 group-hover:opacity-100 transition-all">
+              <ReportButton
+                targetId={post.id}
+                targetType="comment"
+                targetName={`Post de ${post.authorName}`}
+                variant="minimal"
+                size="sm"
+              />
+            </div>
           )}
         </div>
 

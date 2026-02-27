@@ -28,6 +28,7 @@ import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGOR
 import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { CommunityCharter } from "@/components/community-charter"
+import { ReportButton } from "@/components/report-button"
 
 export default function DashboardPage() {
   const { user, roles, isAuthed } = useAuth()
@@ -200,6 +201,28 @@ export default function DashboardPage() {
 
       {/* Community Charter Reminder */}
       <CommunityCharter dismissible={true} />
+
+      {/* Report quick-access */}
+      <Card className="bg-red-500/5 border-red-500/15">
+        <CardContent className="p-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center shrink-0">
+              <ShieldAlert className="h-5 w-5 text-red-400" />
+            </div>
+            <div>
+              <p className="text-white/80 text-sm font-medium">{"Signaler un contenu inappropri\u00e9"}</p>
+              <p className="text-white/40 text-xs">{"Racisme, homophobie, harc\u00e8lement, violence... Signalez en toute confidentialit\u00e9."}</p>
+            </div>
+          </div>
+          <ReportButton
+            targetId="general"
+            targetType="other"
+            targetName="Signalement depuis le tableau de bord"
+            variant="full"
+            size="default"
+          />
+        </CardContent>
+      </Card>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
