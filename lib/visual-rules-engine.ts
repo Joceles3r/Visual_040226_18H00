@@ -43,8 +43,13 @@ export interface MonthlyBatchResult {
  * Genere un idempotency key unique pour Stripe.
  * Format : visual_{cycleId}_{userId}_{month}
  */
-export function generateIdempotencyKey(cycleId: string, userId: string, month: string): string {
-  return `visual_${cycleId}_${userId}_${month}`
+export function generateIdempotencyKey(cycleId: string, userId: string, month: string): string;
+export function generateIdempotencyKey(month: string): string;
+export function generateIdempotencyKey(a: string, b?: string, c?: string): string {
+  if (b && c) {
+    return `visual_${a}_${b}_${c}`;
+  }
+  return `visual_batch_${a}`;
 }
 
 /**
@@ -58,8 +63,8 @@ export function getNextBatchDate(): Date {
 /**
  * Verifie si un batch peut etre lance (1er du mois).
  */
-export function isBatchDay(): boolean {
-  return new Date().getDate() === 1
+export function isBatchDay(date?: Date): boolean {
+  return (date || new Date()).getDate() === 1
 }
 
 // ──────────────────────────────────────────────
