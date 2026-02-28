@@ -1,15 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@/lib/db";
+import { apiError, ErrorCodes } from "@/lib/api-errors";
 
 // GET: Fetch wallet data for a user
 export async function GET(req: NextRequest) {
   const userId = req.nextUrl.searchParams.get("userId");
 
   if (!userId) {
-    return NextResponse.json({ error: "userId is required" }, { status: 400 });
+    return apiError(ErrorCodes.ERR_MISSING_FIELD, "userId is required", 400);
   }
 
   try {
+    // Verify user exists
+    const users = await sql`SELECT id, account_status FROM users WHERE id = ${userId}`;
+    if (users.length === 0) {
+      return apiError(ErrorCodes.ERR_USER_NOT_FOUND, "User not found", 404);
+    }
+
     // Get or create wallet
     let wallets = await sql`SELECT * FROM wallets WHERE user_id = ${userId}`;
     if (wallets.length === 0) {
@@ -50,6 +57,9 @@ export async function GET(req: NextRequest) {
       ORDER BY requested_at DESC
     `;
 
+    // Flag if account is suspended (read-only wallet access)
+    const accountStatus = users[0].account_status || "active";
+
     return NextResponse.json({
       wallet: {
         availableCents: wallet.available_cents,
@@ -72,10 +82,12 @@ export async function GET(req: NextRequest) {
         status: w.status,
         requestedAt: w.requested_at,
       })),
+      accountStatus,
+      isFinanciallyBlocked: accountStatus === "suspended" || accountStatus === "banned",
     });
   } catch (error: unknown) {
     console.error("Wallet fetch error:", error);
     const message = error instanceof Error ? error.message : "Internal server error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return apiError(ErrorCodes.ERR_INTERNAL, message, 500);
   }
 }
