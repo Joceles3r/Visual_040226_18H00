@@ -8,6 +8,7 @@ import {
 } from "@/lib/payout/constants";
 import { checkSelfInvestment } from "@/lib/visual-rules-engine";
 import { ErrorCodes, apiError } from "@/lib/api-errors";
+import { assertInvestmentsOpenForContent } from "@/lib/rules/rule-of-100";
 
 /**
  * POST /api/stripe/invest
@@ -114,6 +115,22 @@ export async function POST(req: NextRequest) {
         ErrorCodes.ERR_SELF_INVESTMENT,
         selfCheck.reason || "Auto-investissement interdit.",
         403
+      );
+    }
+
+    // ── Rule of 100: check if the content's cycle is still open for investment ──
+    const cessionCheck = await assertInvestmentsOpenForContent(contentId);
+    if (!cessionCheck.open) {
+      return apiError(
+        ErrorCodes.ERR_CESSION_CLOSED,
+        cessionCheck.reason || "La cession est fermee pour ce contenu. Les 100 oeuvres de ce cycle sont validees.",
+        403,
+        {
+          universe: cessionCheck.universe,
+          cycleNumber: cessionCheck.cycleNumber,
+          validatedCount: cessionCheck.validatedCount,
+          threshold: cessionCheck.threshold,
+        }
       );
     }
 

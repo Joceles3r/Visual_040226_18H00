@@ -832,6 +832,55 @@ export default function AdminPage() {
             </Card>
           </div>
 
+          {/* Rule of 100 -- Universe Cycles */}
+          <Card className="bg-slate-900/60 border-white/10">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2 text-base">
+                <Activity className="h-5 w-5 text-violet-400" />
+                {"R\u00e8gle des 100 -- Cycles par Univers"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { universe: "Audiovisuel", icon: Film, color: "text-sky-400", bg: "bg-sky-500/15", cycle: 1, validated: 0, threshold: 100, status: "open" as const },
+                  { universe: "Litt\u00e9raire", icon: FileText, color: "text-amber-400", bg: "bg-amber-500/15", cycle: 1, validated: 0, threshold: 100, status: "open" as const },
+                  { universe: "Podcast", icon: Mic, color: "text-emerald-400", bg: "bg-emerald-500/15", cycle: 1, validated: 0, threshold: 100, status: "open" as const },
+                ].map((u) => (
+                  <div key={u.universe} className="bg-black/30 border border-white/5 rounded-xl p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-8 h-8 rounded-lg ${u.bg} flex items-center justify-center`}>
+                          <u.icon className={`h-4 w-4 ${u.color}`} />
+                        </div>
+                        <div>
+                          <p className="text-white/80 text-sm font-medium">{u.universe}</p>
+                          <p className="text-white/30 text-[10px]">Cession #{u.cycle}</p>
+                        </div>
+                      </div>
+                      <Badge variant="outline" className={u.status === "open" ? "border-emerald-500/40 text-emerald-400 text-[10px]" : "border-red-500/40 text-red-400 text-[10px]"}>
+                        {u.status === "open" ? "Ouverte" : "Ferm\u00e9e"}
+                      </Badge>
+                    </div>
+                    <div className="mb-2">
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-white/40">{u.validated} / {u.threshold} valid\u00e9es</span>
+                        <span className={u.color}>{Math.round((u.validated / u.threshold) * 100)}%</span>
+                      </div>
+                      <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all ${u.color === "text-sky-400" ? "bg-sky-400" : u.color === "text-amber-400" ? "bg-amber-400" : "bg-emerald-400"}`}
+                          style={{ width: `${Math.min(100, (u.validated / u.threshold) * 100)}%` }}
+                        />
+                      </div>
+                    </div>
+                    <p className="text-[10px] text-white/25">{"Fermeture auto \u00e0 100 \u0153uvres valid\u00e9es"}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Integrity rules summary */}
           <Card className="bg-teal-500/5 border-teal-500/15">
             <CardContent className="p-4">
@@ -850,6 +899,7 @@ export default function AdminPage() {
                       "Integrity check = sum(users) + platform == gross",
                       "Batch mensuel unique le 1er du mois",
                       "Audit trail complet (payout_simulations)",
+                      "R\u00e8gle des 100: cession ferm\u00e9e auto \u00e0 100 \u0153uvres",
                     ].map((rule) => (
                       <div key={rule} className="flex items-start gap-1.5">
                         <CheckCircle className="h-3 w-3 text-teal-400/60 mt-0.5 shrink-0" />
