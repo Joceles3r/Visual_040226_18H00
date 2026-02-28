@@ -46,6 +46,21 @@ export const MINOR_VISUPOINTS_CAP = 10_000
 export const MINOR_MIN_AGE = 16
 export const MAJORITY_AGE = 18
 
+/** Daily cap: max 60 VISUpoints/day for any user */
+export const DAILY_VISUPOINTS_CAP = 60
+
+/** Profile-based caps (total or monthly depending on profile) */
+export const PROFILE_CAPS: Record<string, { cap: number; type: "total" | "monthly" }> = {
+  visitor: { cap: 2_500, type: "total" },
+  visitor_minor: { cap: 10_000, type: "total" },
+  auditor: { cap: 2_500, type: "total" },
+  investireader: { cap: 2_500, type: "total" },
+  porter: { cap: 1_000, type: "monthly" },
+  infoporter: { cap: 1_000, type: "monthly" },
+  podcaster: { cap: 1_000, type: "monthly" },
+  investor: { cap: Infinity, type: "total" },
+}
+
 export const DEFAULT_PARENT_CONSENT: ParentConsent = {
   status: "not_required",
   acceptedByGuardian: false,
@@ -103,6 +118,111 @@ export function creditVisupoints(
     capped: false,
     pointsLost: 0,
   }
+}
+
+/**
+ * Credits VISUpoints with daily cap, profile cap, and minor cap enforcement.
+ * Returns the actual points credited and any cap hit.
+ */
+export function creditVisupointsCapped(
+  currentBalance: number,
+  pointsToAdd: number,
+  dailyEarnedToday: number,
+  profile: string,
+  userIsMinor: boolean
+): {
+  newBalance: number;
+  actualCredited: number;
+  dailyCapHit: boolean;
+  profileCapHit: boolean;
+  minorCapHit: boolean;
+} {
+  let remaining = pointsToAdd;
+
+  // 1. Daily cap
+  const dailyRoom = Math.max(0, DAILY_VISUPOINTS_CAP - dailyEarnedToday);
+  if (remaining > dailyRoom) remaining = dailyRoom;
+  const dailyCapHit = remaining < pointsToAdd;
+
+  // 2. Profile cap
+  const profileConfig = PROFILE_CAPS[userIsMinor ? "visitor_minor" : profile] || PROFILE_CAPS.visitor;
+  let profileCapHit = false;
+  if (profileConfig.cap !== Infinity) {
+    const profileRoom = Math.max(0, profileConfig.cap - currentBalance);
+    if (remaining > profileRoom) {
+      remaining = profileRoom;
+      profileCapHit = true;
+    }
+  }
+
+  // 3. Minor absolute cap
+  let minorCapHit = false;
+  if (userIsMinor) {
+    const minorRoom = Math.max(0, MINOR_VISUPOINTS_CAP - currentBalance);
+    if (remaining > minorRoom) {
+      remaining = minorRoom;
+      minorCapHit = true;
+    }
+  }
+
+  const actualCredited = Math.max(0, remaining);
+
+  return {
+    newBalance: currentBalance + actualCredited,
+    actualCredited,
+    dailyCapHit,
+    profileCapHit,
+    minorCapHit,
+  };
+}
+
+/**
+ * Anti-abuse: detects suspicious VISUpoints accumulation patterns.
+ * Returns a risk score 0-100 and flags.
+ */
+export function detectVisupointsAbuse(
+  dailyEarnings: number[],  // last 7 days of earnings
+  totalBalance: number,
+  accountAgeDays: number
+): {
+  riskScore: number;
+  flags: string[];
+} {
+  const flags: string[] = [];
+  let riskScore = 0;
+
+  // Flag 1: Hitting daily cap every day for 7 days
+  const daysAtCap = dailyEarnings.filter(d => d >= DAILY_VISUPOINTS_CAP).length;
+  if (daysAtCap >= 7) {
+    riskScore += 30;
+    flags.push("daily_cap_consecutive_7d");
+  } else if (daysAtCap >= 5) {
+    riskScore += 15;
+    flags.push("daily_cap_frequent_5d");
+  }
+
+  // Flag 2: Abnormally high balance for account age
+  const expectedMaxPerDay = DAILY_VISUPOINTS_CAP;
+  const expectedMax = accountAgeDays * expectedMaxPerDay;
+  if (totalBalance > expectedMax * 0.9 && accountAgeDays > 7) {
+    riskScore += 25;
+    flags.push("balance_near_theoretical_max");
+  }
+
+  // Flag 3: Very new account with high balance
+  if (accountAgeDays < 3 && totalBalance > 150) {
+    riskScore += 20;
+    flags.push("new_account_high_balance");
+  }
+
+  // Flag 4: Constant earnings (bot-like pattern)
+  const uniqueValues = new Set(dailyEarnings.filter(d => d > 0)).size;
+  if (dailyEarnings.filter(d => d > 0).length >= 5 && uniqueValues <= 2) {
+    riskScore += 25;
+    flags.push("constant_earning_pattern");
+  }
+
+  return { riskScore: Math.min(100, riskScore), flags };
 }
 
 /** Verifie si un utilisateur peut retirer ses gains */

@@ -33,6 +33,10 @@ export {
   LivresStrategy,
 } from "./strategies";
 
+// Batch payout module
+export { simulateBatch, isTodayBatchDay, getCurrentMonth } from "./batch";
+export type { BatchSimulationResult, CategorySimulation, BatchStatus } from "./batch";
+
 // Constantes VISUAL V1
 export {
   // Tranches
