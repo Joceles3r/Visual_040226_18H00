@@ -425,8 +425,16 @@ export default function TermsOfUsePage() {
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le nombre de votes favorables et de VISUpoints générés"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La part attribuée à VISUAL (frais de plateforme), la réserve technique et la réserve événementielle"}</li>
                     </ul>
+                    <div className="bg-purple-500/5 border border-purple-500/15 rounded-lg p-3 mt-2">
+                      <p className="text-purple-400/90 text-sm font-medium mb-1">
+                        {"Primes de performance Podcast (6%)"}
+                      </p>
+                      <p className="text-white/50 text-xs leading-relaxed">
+                        {"6% du pot mensuel Podcast sont distribu\u00e9s en primes de performance d\u00e9gressives aux TOP 10 podcasteurs (Rang 1 : 1.2%, Rang 10 : 0.6%). Ces primes sont vers\u00e9es mensuellement en compl\u00e9ment du split standard (40% cr\u00e9ateurs / 30% auditeurs / 20% VISUAL / 10% r\u00e9serve). Le classement est \u00e9tabli selon les \u00e9coutes, l'engagement et les abonnements g\u00e9n\u00e9r\u00e9s."}
+                      </p>
+                    </div>
                     <p className="text-white/40 text-xs">
-                      {"Les clôtures sont configurées par l'administration VISUAL et varient selon la catégorie. Les détails exacts sont consultables dans l'onglet \"Comment ça marche\"."}
+                      {"Les cl\u00f4tures sont configur\u00e9es par l'administration VISUAL et varient selon la cat\u00e9gorie. Les d\u00e9tails exacts sont consultables dans l'onglet \"Comment \u00e7a marche\"."}
                     </p>
                   </div>
                 </SubSection>

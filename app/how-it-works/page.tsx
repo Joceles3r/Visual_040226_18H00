@@ -415,6 +415,11 @@ export default function HowItWorksPage() {
                     <div className="flex justify-between text-sm"><span className="text-teal-400">Porteurs TOP 10</span><span className="text-white font-semibold">30%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-sky-400">Investisseurs rangs 11-100</span><span className="text-white font-semibold">7%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">23%</span></div>
+                    <div className="border-t border-white/10 my-2" />
+                    <p className="text-white/50 text-xs">
+                      <span className="text-red-400 font-medium">{"Cl\u00f4ture : "}</span>
+                      {"Par d\u00e9cision administrative ou automatiquement lorsque 100 \u0153uvres sont valid\u00e9es dans l'univers audiovisuel (R\u00e8gle des 100)."}
+                    </p>
                   </CardContent>
                 </Card>
 
