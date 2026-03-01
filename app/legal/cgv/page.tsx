@@ -12,6 +12,7 @@ import {
   MessageSquare, Hash,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { LEGAL_INFO } from "@/lib/legal-info"
 
 /* ── Shared sub-components ──────────────────────────── */
 
@@ -144,16 +145,18 @@ export default function CGVPage() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
                 {[
-                  "Forme juridique : [\u00c0 d\u00e9finir]",
-                  "Si\u00e8ge social : [\u00c0 compl\u00e9ter]",
-                  "SIRET / N\u00b0 immatriculation : [\u00c0 compl\u00e9ter]",
-                  "RCS : [\u00c0 compl\u00e9ter]",
-                  "N\u00b0 TVA intracommunautaire : [\u00c0 compl\u00e9ter]",
-                  "Capital social : [\u00c0 compl\u00e9ter]",
-                  "Directeur de la publication : [\u00c0 compl\u00e9ter]",
-                  "T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]",
-                  "Email g\u00e9n\u00e9ral : contact@visual-platform.com",
-                  "Email support : support@visual-platform.com",
+                  `Forme juridique : ${LEGAL_INFO.formeJuridique}`,
+                  `Denomination : ${LEGAL_INFO.denomination}`,
+                  `Siege social : ${LEGAL_INFO.adresseSiege}`,
+                  `SIRET : ${LEGAL_INFO.siret}`,
+                  `RCS : ${LEGAL_INFO.rcs}`,
+                  `TVA : ${LEGAL_INFO.tva}`,
+                  `Capital social : ${LEGAL_INFO.capitalSocial}`,
+                  `Directeur de la publication : ${LEGAL_INFO.directeurPublication}`,
+                  `Telephone : ${LEGAL_INFO.telephone}`,
+                  `Email : ${LEGAL_INFO.emailContact}`,
+                  `Support : ${LEGAL_INFO.emailSupport}`,
+                  `Hebergeur : ${LEGAL_INFO.hebergeur}`,
                 ].map((item, i) => (
                   <p key={i} className="text-white/45 py-0.5">{item}</p>
                 ))}

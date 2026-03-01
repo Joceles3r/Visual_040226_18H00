@@ -11,24 +11,7 @@ import {
   Download, Edit3, Ban, HelpCircle, MessageSquare, Hash,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-
-// ── Informations legales centralisees (a completer avant ouverture) ──
-const LEGAL_INFO = {
-  formeJuridique: "SAS",
-  denomination: "VISUAL",
-  capitalSocial: "________ \u20ac",
-  siret: "________ ________ ________",
-  rcs: "RCS ________",
-  tva: "FR__ __________",
-  adresseSiege:
-    "________________________, _____ ________ ______, France",
-  telephone: "+__ _ __ __ __ __",
-  emailContact: "contact@visual-platform.com",
-  emailSupport: "support@visual-platform.com",
-  emailDPO: "dpo@visual-platform.com",
-  directeurPublication: "________ ________",
-  hebergeur: "Vercel Inc. \u2014 340 S Lemon Ave, Walnut, CA 91789, USA",
-};
+import { LEGAL_INFO } from "@/lib/legal-info"
 
 export default function PrivacyPolicyPage() {
   return (

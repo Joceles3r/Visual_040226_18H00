@@ -44,20 +44,38 @@ export function getUniverseFilter(universe: Universe): {
 }
 
 /**
- * Maps a content_type to its Universe.
+ * Maps a content_type OR category string to its Universe.
+ * Handles both content_type ("video","text","podcast") and
+ * category names ("film","documentaire","livre","radio", etc.).
  */
-export function contentTypeToUniverse(contentType: string): Universe {
-  switch (contentType) {
-    case "video":
-      return "audiovisual";
-    case "text":
-      return "literary";
-    case "podcast":
-    case "audio":
-      return "podcast";
-    default:
-      return "audiovisual";
-  }
+export function contentTypeToUniverse(contentTypeOrCategory: string): Universe {
+  const v = contentTypeOrCategory.toLowerCase().trim();
+
+  // Audiovisual universe
+  const audiovisualKeys = [
+    "video", "film", "clip", "documentaire", "reportage",
+    "theatre", "concert", "show", "serie", "court_metrage",
+    "animation", "spectacle",
+  ];
+  if (audiovisualKeys.includes(v)) return "audiovisual";
+
+  // Literary universe
+  const literaryKeys = [
+    "text", "livre", "blog", "article", "journal",
+    "roman", "nouvelle", "poesie", "essai", "bd",
+    "manga", "script", "scenario",
+  ];
+  if (literaryKeys.includes(v)) return "literary";
+
+  // Podcast universe
+  const podcastKeys = [
+    "podcast", "audio", "radio", "livre_audio",
+    "emission", "interview_audio", "chronique",
+  ];
+  if (podcastKeys.includes(v)) return "podcast";
+
+  // Default fallback
+  return "audiovisual";
 }
 
 // ── Cycle management ──
@@ -239,33 +257,50 @@ export async function enforceRuleOf100AndRollToNext(
  * - Si le cycle du contenu est closed -> interdit
  * - Si le contenu n'a pas de cycle -> tente de l'attacher au cycle open
  */
-export async function assertInvestmentsOpenForContent(contentId: string) {
+export async function assertInvestmentsOpenForContent(contentId: string): Promise<{
+  open: boolean;
+  reason?: string;
+  universe?: string;
+  cycleNumber?: number;
+  validatedCount?: number;
+  threshold?: number;
+}> {
   const rows = await sql`
-    SELECT c.id::text as id, c.cycle_id::text as cycle_id, c.content_type, c.universe,
-           uc.status as cycle_status
+    SELECT c.id::text as id, c.cycle_id::text as cycle_id, c.content_type, c.universe, c.category,
+           uc.status as cycle_status, uc.cycle_number, uc.threshold
     FROM contents c
     LEFT JOIN universe_cycles uc ON uc.id = c.cycle_id
     WHERE c.id = ${contentId}::uuid
     LIMIT 1
   `;
-  if (!rows.length) throw new Error("content_not_found");
+  if (!rows.length) return { open: false, reason: "Contenu introuvable." };
   const r = rows[0] as {
     id: string; cycle_id: string | null; content_type: string;
-    universe: string | null; cycle_status: string | null;
+    universe: string | null; category: string | null;
+    cycle_status: string | null; cycle_number: number | null;
+    threshold: number | null;
   };
 
   // If content has no cycle yet, attach it to the open cycle
   if (!r.cycle_id) {
-    const universe = contentTypeToUniverse(r.content_type);
+    const universe = contentTypeToUniverse(r.category || r.content_type);
     const cycle = await attachContentToActiveCycle(contentId, universe);
-    return { ok: true, contentId, cycleId: cycle.id, cycleStatus: cycle.status };
+    return { open: true, universe };
   }
 
   if (r.cycle_status === "closed") {
-    throw new Error("cession_closed_rule_of_100");
+    const count = r.cycle_id ? await countValidatedInCycle(r.universe as Universe, r.cycle_id) : 0;
+    return {
+      open: false,
+      reason: "La cession est fermee pour ce contenu. Les 100 oeuvres de ce cycle sont validees.",
+      universe: r.universe || undefined,
+      cycleNumber: r.cycle_number || undefined,
+      validatedCount: count,
+      threshold: r.threshold || THRESHOLD_DEFAULT,
+    };
   }
 
-  return { ok: true, contentId, cycleId: r.cycle_id, cycleStatus: r.cycle_status };
+  return { open: true, universe: r.universe || undefined };
 }
 
 // ── Status helpers ──

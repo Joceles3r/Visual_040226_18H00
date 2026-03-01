@@ -4,6 +4,11 @@ import { sql } from "@/lib/db";
 import { STRIPE_CONFIG } from "@/lib/payout/constants";
 import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
 
+/** Seuil en centimes au-dela duquel un retrait passe en revue manuelle 72h */
+const REVIEW_THRESHOLD_CENTS = 100_000; // 1000 EUR
+/** Duree du hold en heures */
+const REVIEW_HOLD_HOURS = 72;
+
 // POST: Request a withdrawal from wallet to Stripe Connect account
 export const POST = withErrorHandler(async (req: Request) => {
   const body = await req.json();
@@ -74,13 +79,53 @@ export const POST = withErrorHandler(async (req: Request) => {
 
   const stripeAccountId = stripeAccounts[0].stripe_account_id as string;
 
+  // ── 72h hold for large withdrawals (>= 1000 EUR) ──
+  const requiresReview = amountCents >= REVIEW_THRESHOLD_CENTS;
+
+  if (requiresReview) {
+    const holdUntil = new Date(Date.now() + REVIEW_HOLD_HOURS * 3600 * 1000);
+
+    // Create withdrawal request in "pending" review status
+    const withdrawals = await sql`
+      INSERT INTO withdrawal_requests (user_id, amount_cents, status, review_status, hold_until)
+      VALUES (${userId}, ${amountCents}, 'held', 'pending', ${holdUntil.toISOString()})
+      RETURNING id
+    `;
+    const withdrawalId = (withdrawals[0] as { id: string }).id;
+
+    // Debit wallet immediately (funds are locked)
+    await sql`
+      UPDATE wallets
+      SET available_cents = available_cents - ${amountCents},
+          updated_at = now()
+      WHERE user_id = ${userId}
+    `;
+
+    // Log the hold transaction
+    await sql`
+      INSERT INTO wallet_transactions (user_id, type, amount_cents, description, reference_id, status)
+      VALUES (${userId}, 'withdrawal_hold', ${-amountCents}, ${"Retrait en attente de validation (72h) -- montant >= 1000 EUR"}, ${withdrawalId}, 'pending')
+    `;
+
+    return NextResponse.json({
+      withdrawalId,
+      amountCents,
+      status: "held",
+      reviewStatus: "pending",
+      holdUntil: holdUntil.toISOString(),
+      message: `Retrait de ${amountCents / 100} EUR place en revue manuelle. Delai: ${REVIEW_HOLD_HOURS}h.`,
+    });
+  }
+
+  // ── Standard withdrawal (< 1000 EUR) -- immediate transfer ──
+
   // Create withdrawal request
   const withdrawals = await sql`
-    INSERT INTO withdrawal_requests (user_id, amount_cents, status)
-    VALUES (${userId}, ${amountCents}, 'processing')
+    INSERT INTO withdrawal_requests (user_id, amount_cents, status, review_status)
+    VALUES (${userId}, ${amountCents}, 'processing', 'approved')
     RETURNING id
   `;
-  const withdrawalId = withdrawals[0].id as string;
+  const withdrawalId = (withdrawals[0] as { id: string }).id;
 
   // Create Stripe Transfer to the connected account
   const transfer = await stripe.transfers.create({

@@ -20,6 +20,7 @@ import {
   History,
   Heart,
   MessageCircle,
+  Share2,
 } from "lucide-react"
 
 export type VisualRole =
@@ -180,6 +181,14 @@ export const MY_SPACE_MENU: NavMenu = {
       href: "/dashboard/investments?type=podcast",
       icon: Mic,
       roles: ["listener"],
+    },
+
+    // PROMOTION / PARRAINAGE (tous les inscrits)
+    {
+      label: "Promotion / Parrainage",
+      href: "/dashboard/promo",
+      icon: Share2,
+      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
     },
 
     // WALLET (investisseurs + createurs)
