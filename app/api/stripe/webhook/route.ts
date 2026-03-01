@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { ErrorCodes, apiError } from "@/lib/api-errors";
+import { enqueueWebhookEvent } from "@/lib/webhook-queue";
+import { createHash } from "crypto";
 
 /**
  * POST /api/stripe/webhook
@@ -37,7 +39,30 @@ export async function POST(req: NextRequest) {
   // ── Log incoming event for reconciliation ──
   const eventId = event.id;
   const eventType = event.type;
+  const payloadHash = createHash("sha256").update(body).digest("hex");
   console.log(`[VISUAL Webhook] Received event ${eventId} (${eventType})`);
+
+  // ── Write to stripe_webhook_logs for audit trail ──
+  try {
+    await sql`
+      INSERT INTO stripe_webhook_logs (
+        event_id, event_type, status, signature_valid, payload_hash, received_at
+      ) VALUES (
+        ${eventId}, ${eventType}, 'received', true, ${payloadHash}, now()
+      )
+      ON CONFLICT (event_id) DO NOTHING
+    `;
+  } catch (logErr) {
+    console.error("[VISUAL Webhook] Failed to write audit log:", logErr);
+  }
+
+  // ── Enqueue to Redis for async retry capability ──
+  try {
+    await enqueueWebhookEvent(eventId, eventType, body);
+  } catch (queueErr) {
+    // Queue failure is non-blocking -- we still process synchronously
+    console.error("[VISUAL Webhook] Queue enqueue failed:", queueErr);
+  }
 
   try {
     switch (eventType) {
@@ -62,6 +87,14 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     console.error(`[VISUAL Webhook] Processing error for event ${eventId}:`, error);
+    // Update audit log status to 'failed'
+    await sql`
+      UPDATE stripe_webhook_logs
+      SET status = 'failed',
+          error_message = ${error instanceof Error ? error.message : "Unknown error"},
+          processed_at = now()
+      WHERE event_id = ${eventId}
+    `.catch(() => {});
     return apiError(
       ErrorCodes.ERR_WEBHOOK_PROCESSING,
       "Webhook processing failed",
@@ -69,6 +102,13 @@ export async function POST(req: NextRequest) {
       `Event ID: ${eventId} -- use this to replay via admin reconciliation.`
     );
   }
+
+  // Update audit log status to 'processed'
+  await sql`
+    UPDATE stripe_webhook_logs
+    SET status = 'processed', retry_count = 0, processed_at = now()
+    WHERE event_id = ${eventId}
+  `.catch(() => {});
 
   return NextResponse.json({ received: true, eventId });
 }
