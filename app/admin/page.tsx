@@ -31,6 +31,7 @@ import {
   Lock,
   Zap,
   FileCheck,
+  LogOut,
 } from "lucide-react"
 
 interface AdminStats {
@@ -88,7 +89,7 @@ const MOCK_PAYOUTS = [
 ]
 
 export default function AdminPage() {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const [stats, setStats] = useState<AdminStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<"overview" | "users" | "payouts" | "reports" | "integrity">("overview")
@@ -147,15 +148,25 @@ export default function AdminPage() {
             {"Panneau d'administration -- Acces restreint"}
           </p>
         </div>
-        <Button
-          onClick={fetchStats}
-          variant="outline"
-          className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300"
-          disabled={loading}
-        >
-          <RefreshCw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
-          Actualiser
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            onClick={fetchStats}
+            variant="outline"
+            className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+            disabled={loading}
+          >
+            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
+            Actualiser
+          </Button>
+          <Button
+            onClick={logout}
+            variant="outline"
+            className="border-white/15 text-white/50 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/25 gap-2"
+          >
+            <LogOut className="h-4 w-4" />
+            {"D\u00e9connexion"}
+          </Button>
+        </div>
       </div>
 
       {/* Tabs */}

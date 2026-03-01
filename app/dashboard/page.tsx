@@ -18,6 +18,7 @@ import {
   Shield,
   ShieldAlert,
   Lock,
+  LogOut,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -31,7 +32,7 @@ import { CommunityCharter } from "@/components/community-charter"
 import { ReportButton } from "@/components/report-button"
 
 export default function DashboardPage() {
-  const { user, roles, isAuthed } = useAuth()
+  const { user, roles, isAuthed, logout } = useAuth()
 
   if (!isAuthed) {
     return (
@@ -78,17 +79,27 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
-          <h1 className="text-3xl font-bold text-white">
-            Bienvenue, {user?.name || "Utilisateur"}
-          </h1>
-          <span className="hidden sm:block text-white/15">|</span>
-          <VisualSlogan size="xs" opacity="medium" />
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
+            <h1 className="text-3xl font-bold text-white">
+              Bienvenue, {user?.name || "Utilisateur"}
+            </h1>
+            <span className="hidden sm:block text-white/15">|</span>
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
+          <p className="text-white/60">
+            {"Voici un aper\u00e7u de votre activit\u00e9 sur VISUAL"}
+          </p>
         </div>
-        <p className="text-white/60">
-          {"Voici un aperçu de votre activité sur VISUAL"}
-        </p>
+        <Button
+          onClick={logout}
+          variant="outline"
+          className="shrink-0 border-red-500/25 text-red-400 hover:bg-red-500/10 hover:text-red-300 gap-2"
+        >
+          <LogOut className="h-4 w-4" />
+          {"D\u00e9connexion"}
+        </Button>
       </div>
 
       {/* Stripe Connect Banner */}
