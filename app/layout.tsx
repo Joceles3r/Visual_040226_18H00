@@ -4,6 +4,8 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
+import { StripeModeBanner } from "@/components/stripe-mode-banner"
+import { CookieConsentBanner } from "@/components/cookie-consent"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -36,7 +38,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
+        <StripeModeBanner />
         <AuthProvider>{children}</AuthProvider>
+        <CookieConsentBanner />
         <Analytics />
       </body>
     </html>

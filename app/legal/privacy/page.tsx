@@ -12,6 +12,24 @@ import {
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
+// ── Informations legales centralisees (a completer avant ouverture) ──
+const LEGAL_INFO = {
+  formeJuridique: "SAS",
+  denomination: "VISUAL",
+  capitalSocial: "________ \u20ac",
+  siret: "________ ________ ________",
+  rcs: "RCS ________",
+  tva: "FR__ __________",
+  adresseSiege:
+    "________________________, _____ ________ ______, France",
+  telephone: "+__ _ __ __ __ __",
+  emailContact: "contact@visual-platform.com",
+  emailSupport: "support@visual-platform.com",
+  emailDPO: "dpo@visual-platform.com",
+  directeurPublication: "________ ________",
+  hebergeur: "Vercel Inc. \u2014 340 S Lemon Ave, Walnut, CA 91789, USA",
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-black">
@@ -49,26 +67,27 @@ export default function PrivacyPolicyPage() {
                   {"Le responsable du traitement des données à caractère personnel collectées sur la plateforme VISUAL est :"}
                 </p>
                 <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
-                  <p className="text-white font-medium">{"VISUAL \u2014 Version Provisoire Internationale"}</p>
-                  <p className="text-white/50 text-sm">{"Plateforme de streaming et d'investissement participatif dans les projets audiovisuels, littéraires et podcasts"}</p>
-                  <div className="mt-3 space-y-1.5">
-                    <p className="text-white/40 text-sm">{"Forme juridique : [\u00c0 d\u00e9finir lors de l'immatriculation]"}</p>
-                    <p className="text-white/40 text-sm">{"Si\u00e8ge social : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"SIRET / N\u00b0 d'immatriculation : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"RCS : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"N\u00b0 TVA intracommunautaire : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"Capital social : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"T\u00e9l\u00e9phone : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"Email g\u00e9n\u00e9ral : contact@visual-platform.com"}</p>
-                    <p className="text-white/40 text-sm">{"Email support : support@visual-platform.com"}</p>
-                    <p className="text-white/40 text-sm">{"Contact DPO : dpo@visual-platform.com"}</p>
-                    <p className="text-white/40 text-sm">{"Directeur de la publication : [\u00c0 compl\u00e9ter]"}</p>
-                    <p className="text-white/40 text-sm">{"H\u00e9bergeur : Vercel Inc. \u2014 340 S Lemon Ave, Walnut, CA 91789, USA"}</p>
+                  <p className="text-white font-medium">{LEGAL_INFO.denomination}</p>
+                  <p className="text-white/50 text-sm">{"Plateforme de streaming et d'investissement participatif dans les projets audiovisuels, litt\u00e9raires et podcasts"}</p>
+                  <div className="mt-3 space-y-1.5 text-sm">
+                    <p className="text-white/70"><span className="text-white/40">{"Forme juridique : "}</span>{LEGAL_INFO.formeJuridique}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"D\u00e9nomination : "}</span>{LEGAL_INFO.denomination}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Capital social : "}</span>{LEGAL_INFO.capitalSocial}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"SIRET : "}</span>{LEGAL_INFO.siret}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"RCS : "}</span>{LEGAL_INFO.rcs}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"N\u00b0 TVA : "}</span>{LEGAL_INFO.tva}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Si\u00e8ge social : "}</span>{LEGAL_INFO.adresseSiege}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"T\u00e9l\u00e9phone : "}</span>{LEGAL_INFO.telephone}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Email g\u00e9n\u00e9ral : "}</span>{LEGAL_INFO.emailContact}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Email support : "}</span>{LEGAL_INFO.emailSupport}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Contact DPO : "}</span>{LEGAL_INFO.emailDPO}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"Directeur de la publication : "}</span>{LEGAL_INFO.directeurPublication}</p>
+                    <p className="text-white/70"><span className="text-white/40">{"H\u00e9bergeur : "}</span>{LEGAL_INFO.hebergeur}</p>
                   </div>
                 </div>
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mt-3">
                   <p className="text-amber-400/80 text-sm">
-                    {"Ce document est une version provisoire internationale. Les informations l\u00e9gales (forme juridique, si\u00e8ge, SIRET) seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
+                    {"Les champs contenant des blancs (________) seront compl\u00e9t\u00e9s lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
                   </p>
                 </div>
               </CardContent>

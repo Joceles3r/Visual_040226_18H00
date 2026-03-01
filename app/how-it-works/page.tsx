@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
+import { InvestSimulator } from "@/components/invest-simulator"
 
 const STEPS = [
   {
@@ -521,6 +522,16 @@ export default function HowItWorksPage() {
           </div>
         </section>
       </main>
+
+      {/* Simulateur d'investissement */}
+      <section className="py-16 cinema-section">
+        <div className="container mx-auto px-4 max-w-xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8 text-balance">
+            {"Simulez votre investissement"}
+          </h2>
+          <InvestSimulator />
+        </div>
+      </section>
 
       <Footer />
     </div>

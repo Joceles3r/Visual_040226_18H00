@@ -1139,12 +1139,86 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
+          {/* 15. Force Majeure */}
+          <Section num={15} title="Force majeure">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
+                <p>
+                  {"VISUAL ne saurait \u00eatre tenue responsable des retards ou impossibilit\u00e9s d'ex\u00e9cution dues \u00e0 des cas de force majeure au sens de l'article 1218 du Code civil, notamment :"}
+                </p>
+                <ul className="space-y-1.5 text-xs text-white/50 ml-2">
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"D\u00e9faillances des prestataires de paiement (Stripe, \u00e9tablissements bancaires)"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Attaques informatiques (DDoS, intrusion, ransomware)"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Catastrophes naturelles, pand\u00e9mies, conflits arm\u00e9s"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Gr\u00e8ves des services bancaires ou postaux"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"D\u00e9cisions administratives, judiciaires ou r\u00e9glementaires"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Pannes d'h\u00e9bergement (Vercel, AWS, Bunny.net)"}</li>
+                </ul>
+                <p>
+                  {"En cas de force majeure, VISUAL s'engage \u00e0 informer les utilisateurs dans les meilleurs d\u00e9lais et \u00e0 mettre en \u0153uvre tous les moyens raisonnables pour r\u00e9tablir la situation."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 16. Mediation et reglement des litiges */}
+          <Section num={16} title={"M\u00e9diation et r\u00e8glement des litiges"}>
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
+                <p>
+                  {"En cas de litige, l'utilisateur peut recourir gratuitement au m\u00e9diateur de la consommation comp\u00e9tent :"}
+                </p>
+                <div className="bg-black/30 rounded-xl p-4 border border-white/5 space-y-1.5 text-sm">
+                  <p className="text-white font-medium">{"M\u00e9diateur du e-commerce de la FEVAD"}</p>
+                  <p className="text-white/50 text-xs">{"60 rue la Bo\u00e9tie, 75008 Paris"}</p>
+                  <p className="text-white/50 text-xs">
+                    {"Site : "}
+                    <a href="https://www.mediateurfevad.fr" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">www.mediateurfevad.fr</a>
+                  </p>
+                </div>
+                <p>
+                  {"L'utilisateur peut \u00e9galement recourir \u00e0 la plateforme europ\u00e9enne de r\u00e9solution des litiges en ligne : "}
+                  <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">ec.europa.eu/consumers/odr</a>
+                </p>
+                <p>
+                  {"\u00c0 d\u00e9faut de m\u00e9diation, tout litige rel\u00e8vera de la comp\u00e9tence exclusive des tribunaux de Paris, sauf disposition imp\u00e9rative contraire."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
+          {/* 17. Droit de retractation */}
+          <Section num={17} title="Droit de r\u00e9tractation">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
+                <p>
+                  {"Conform\u00e9ment \u00e0 l'article L221-18 du Code de la consommation, l'utilisateur non-professionnel dispose d'un d\u00e9lai de 14 jours calendaires \u00e0 compter de l'acceptation des pr\u00e9sentes conditions pour exercer son droit de r\u00e9tractation, sans avoir \u00e0 justifier de motifs ni \u00e0 payer de p\u00e9nalit\u00e9s."}
+                </p>
+                <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+                  <p className="text-amber-400/80 text-sm">
+                    {"Ce droit ne s'applique pas aux services pleinement ex\u00e9cut\u00e9s avant la fin du d\u00e9lai avec accord express de l'utilisateur (article L221-28 du Code de la consommation)."}
+                  </p>
+                </div>
+                <p>
+                  {"Pour exercer ce droit, l'utilisateur doit notifier sa d\u00e9cision par :"}
+                </p>
+                <ul className="space-y-1.5 text-xs text-white/50 ml-2">
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Email \u00e0 "}<span className="text-teal-400">dpo@visual-platform.com</span></li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Courrier recommand\u00e9 \u00e0 l'adresse du si\u00e8ge social de VISUAL"}</li>
+                </ul>
+                <p className="text-white/40 text-xs">
+                  {"Le remboursement sera effectu\u00e9 dans un d\u00e9lai de 14 jours suivant la r\u00e9ception de la demande, par le m\u00eame moyen de paiement utilis\u00e9 lors de la transaction initiale."}
+                </p>
+              </CardContent>
+            </Card>
+          </Section>
+
           {/* Retour */}
           <div className="text-center pt-6">
             <Link href="/">
               <button className="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 transition-colors text-sm font-medium">
                 <ArrowLeft className="h-4 w-4" />
-                {"Retour à l'accueil"}
+                {"Retour \u00e0 l'accueil"}
               </button>
             </Link>
           </div>
