@@ -13,14 +13,14 @@ export const GET = withErrorHandler(async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") || "pending";
 
-  const rows = await sql\`
+  const rows = await sql`
     SELECT
       wr.id::text as id,
       wr.user_id::text as user_id,
       u.name as user_name,
       u.email as user_email,
-      wr.amount,
-      wr.currency,
+      wr.amount_cents,
+      wr.status,
       wr.review_status,
       wr.hold_until,
       wr.reviewed_at,
@@ -29,10 +29,10 @@ export const GET = withErrorHandler(async (req: Request) => {
       wr.created_at
     FROM withdrawal_requests wr
     JOIN users u ON u.id = wr.user_id
-    WHERE wr.review_status = \${status}
+    WHERE wr.review_status = ${status}
     ORDER BY wr.created_at ASC
     LIMIT 100
-  \`;
+  `;
 
   return NextResponse.json({ success: true, data: rows });
 });
@@ -60,51 +60,60 @@ export const POST = withErrorHandler(async (req: Request) => {
   }
 
   // Check withdrawal exists and is pending
-  const existing = await sql\`
-    SELECT id, review_status, amount, user_id::text as user_id
+  const existing = await sql`
+    SELECT id, review_status, amount_cents, user_id::text as user_id
     FROM withdrawal_requests
-    WHERE id = \${withdrawalId}::uuid
+    WHERE id = ${withdrawalId}::uuid
     LIMIT 1
-  \`;
+  `;
 
   if (!existing.length) {
     return apiError(ErrorCodes.ERR_WITHDRAW_NOT_FOUND, "Retrait introuvable", 404);
   }
 
-  const wr = existing[0] as { id: string; review_status: string; amount: number; user_id: string };
+  const wr = existing[0] as { id: string; review_status: string; amount_cents: number; user_id: string };
   if (wr.review_status !== "pending") {
     return apiError(
       ErrorCodes.ERR_WITHDRAW_REVIEW_PENDING,
-      \`Ce retrait a deja ete traite (statut: \${wr.review_status})\`,
+      `Ce retrait a deja ete traite (statut: ${wr.review_status})`,
       409
     );
   }
 
   // Update the review
-  await sql\`
+  await sql`
     UPDATE withdrawal_requests
-    SET review_status = \${decision},
+    SET review_status = ${decision},
         reviewed_at = now(),
-        reviewed_by = \${guard.adminEmail || "admin"},
-        review_note = \${note || null}
-    WHERE id = \${withdrawalId}::uuid
-  \`;
+        reviewed_by = ${guard.adminEmail || "admin"},
+        review_note = ${note || null}
+    WHERE id = ${withdrawalId}::uuid
+  `;
 
   // If rejected, refund the hold amount back to wallet
   if (decision === "rejected") {
-    await sql\`
+    await sql`
       UPDATE wallets
-      SET balance = balance + \${wr.amount},
+      SET available_cents = available_cents + ${wr.amount_cents},
           updated_at = now()
-      WHERE user_id = \${wr.user_id}::uuid
-    \`;
+      WHERE user_id = ${wr.user_id}::uuid
+    `;
+
+    // Update the wallet transaction
+    await sql`
+      UPDATE wallet_transactions
+      SET status = 'refunded', description = 'Retrait rejete -- montant recredite'
+      WHERE reference_id = ${withdrawalId} AND type = 'withdrawal_hold'
+    `;
   }
+
+  const amountEur = wr.amount_cents / 100;
 
   return NextResponse.json({
     success: true,
     message: decision === "approved"
-      ? \`Retrait de \${wr.amount} EUR approuve. Le virement sera execute.\`
-      : \`Retrait de \${wr.amount} EUR rejete. Le montant a ete recredite.\`,
+      ? `Retrait de ${amountEur} EUR approuve. Le virement sera execute.`
+      : `Retrait de ${amountEur} EUR rejete. Le montant a ete recredite.`,
     decision,
     withdrawalId,
   });

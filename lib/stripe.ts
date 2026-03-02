@@ -26,10 +26,9 @@ export const stripe = new Stripe(secretKey, {
 // ── Exports for webhook verification ──
 export const STRIPE_WEBHOOK_SECRET = webhookSecret;
 
-// ── Publishable key (for client-side, exposed via NEXT_PUBLIC) ──
-export const STRIPE_PUBLISHABLE_KEY = isTestMode
-  ? (process.env.NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-  : (process.env.NEXT_PUBLIC_STRIPE_LIVE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+// NOTE: The publishable key (NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) is available
+// directly in client components via process.env -- do NOT export it from this
+// server-only module.
 
 // ── Helpers ──
 export function getStripeMode() {

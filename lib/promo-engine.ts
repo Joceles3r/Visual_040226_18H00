@@ -49,13 +49,13 @@ export async function canSendPromoEmail(userId: string): Promise<{
   monthlyCount?: number;
 }> {
   // Check last sent email
-  const lastEmail = await sql\`
+  const lastEmail = await sql`
     SELECT sent_at
     FROM promo_email_logs
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
     ORDER BY sent_at DESC
     LIMIT 1
-  \`;
+  `;
 
   if (lastEmail.length > 0) {
     const lastSentAt = new Date((lastEmail[0] as { sent_at: string }).sent_at);
@@ -63,24 +63,24 @@ export async function canSendPromoEmail(userId: string): Promise<{
     if (new Date() < cooldownEnd) {
       return {
         allowed: false,
-        reason: \`Cooldown actif. Prochain envoi possible apres \${PROMO_EMAIL_COOLDOWN_HOURS}h.\`,
+        reason: `Cooldown actif. Prochain envoi possible apres ${PROMO_EMAIL_COOLDOWN_HOURS}h.`,
         nextAllowedAt: cooldownEnd.toISOString(),
       };
     }
   }
 
   // Check monthly cap
-  const monthlyCount = await sql\`
+  const monthlyCount = await sql`
     SELECT COUNT(*)::int as cnt
     FROM promo_email_logs
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
       AND sent_at >= date_trunc('month', now())
-  \`;
+  `;
   const cnt = Number((monthlyCount[0] as { cnt: number })?.cnt ?? 0);
   if (cnt >= MAX_PROMO_EMAILS_PER_MONTH) {
     return {
       allowed: false,
-      reason: \`Limite mensuelle atteinte (\${MAX_PROMO_EMAILS_PER_MONTH} emails/mois).\`,
+      reason: `Limite mensuelle atteinte (${MAX_PROMO_EMAILS_PER_MONTH} emails/mois).`,
       monthlyCount: cnt,
     };
   }
@@ -97,10 +97,10 @@ export async function logPromoEmail(
   subject: string,
   metadata?: Record<string, unknown>
 ) {
-  await sql\`
+  await sql`
     INSERT INTO promo_email_logs (user_id, promo_type, subject, metadata)
-    VALUES (\${userId}::uuid, \${promoType}, \${subject}, \${JSON.stringify(metadata || {})})
-  \`;
+    VALUES (${userId}::uuid, ${promoType}, ${subject}, ${JSON.stringify(metadata || {})})
+  `;
 }
 
 // ── Share / Referral actions ──
@@ -112,13 +112,13 @@ export async function canShareToday(userId: string): Promise<{
   allowed: boolean;
   todayCount: number;
 }> {
-  const rows = await sql\`
+  const rows = await sql`
     SELECT COUNT(*)::int as cnt
     FROM promo_actions
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
       AND action_type = 'share'
       AND created_at >= date_trunc('day', now())
-  \`;
+  `;
   const cnt = Number((rows[0] as { cnt: number })?.cnt ?? 0);
   return {
     allowed: cnt < MAX_SHARE_ACTIONS_PER_DAY,
@@ -134,32 +134,32 @@ export async function logShareAction(
   channel: "email" | "link" | "social",
   metadata?: Record<string, unknown>
 ) {
-  await sql\`
+  await sql`
     INSERT INTO promo_actions (user_id, action_type, channel, metadata)
-    VALUES (\${userId}::uuid, 'share', \${channel}, \${JSON.stringify(metadata || {})})
-  \`;
+    VALUES (${userId}::uuid, 'share', ${channel}, ${JSON.stringify(metadata || {})})
+  `;
 }
 
 /**
  * Get promo stats for a user (for dashboard display).
  */
 export async function getUserPromoStats(userId: string) {
-  const emailCount = await sql\`
+  const emailCount = await sql`
     SELECT COUNT(*)::int as cnt FROM promo_email_logs
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
       AND sent_at >= date_trunc('month', now())
-  \`;
-  const shareCount = await sql\`
+  `;
+  const shareCount = await sql`
     SELECT COUNT(*)::int as cnt FROM promo_actions
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
       AND action_type = 'share'
       AND created_at >= date_trunc('month', now())
-  \`;
-  const totalShares = await sql\`
+  `;
+  const totalShares = await sql`
     SELECT COUNT(*)::int as cnt FROM promo_actions
-    WHERE user_id = \${userId}::uuid
+    WHERE user_id = ${userId}::uuid
       AND action_type = 'share'
-  \`;
+  `;
 
   return {
     monthlyEmails: Number((emailCount[0] as { cnt: number })?.cnt ?? 0),
