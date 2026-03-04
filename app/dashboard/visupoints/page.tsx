@@ -150,7 +150,7 @@ function EngagementBanner({ redirect }: { redirect: EngagementRedirectResult }) 
 // ─── Composant HybridSimulator ───
 
 function HybridSimulator({ userPoints }: { userPoints: number }) {
-  const [priceCents, setPriceCents] = useState(500) // 5 EUR par defaut
+  const [priceCents, setPriceCents] = useState(500) // cinq euros par defaut
   const purchase = computeHybridPurchase(priceCents, userPoints)
 
   return (

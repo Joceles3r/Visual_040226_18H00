@@ -83,8 +83,7 @@ export default function UploadPodcastPage() {
                   Acces restreint
                 </h2>
                 <p className="text-white/60 mb-6">
-                  Vous devez avoir le statut Podcasteur pour deposer un podcast.
-                  Payez la caution de 10 EUR pour debloquer cette fonctionnalite.
+                  {"Vous devez avoir le statut Podcasteur pour d\u00e9poser un podcast. Payez la caution de dix euros pour d\u00e9bloquer cette fonctionnalit\u00e9."}
                 </p>
                 <Link href="/dashboard">
                   <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">

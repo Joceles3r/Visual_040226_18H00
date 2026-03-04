@@ -1123,7 +1123,6 @@ export default function TermsOfUsePage() {
                       {"En cas de faute grave (usurpation d'identit\u00e9, fausse d\u00e9claration, substitution de propri\u00e9t\u00e9 m\u00e9dia, fraude, incitation \u00e0 la haine), les fonds et cautions peuvent ne pas \u00eatre restitu\u00e9s jusqu'\u00e0 d\u00e9cision judiciaire. La caution pourra \u00eatre retenue \u00e0 titre de d\u00e9dommagement."}
                     </p>
                   </div>
-                  </p>
                 </SubSection>
               </CardContent>
             </Card>
