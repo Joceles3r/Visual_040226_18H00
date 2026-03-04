@@ -46,7 +46,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      {"Dix euros pour les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable \u00e0 la r\u00e9siliation."},
+      "Dix euros pour les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable \u00e0 la r\u00e9siliation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
