@@ -49,7 +49,7 @@ interface AdminStats {
 const MOCK_USERS = [
   { id: "u1", name: "Marie Stellaire", email: "marie@example.com", role: "Porteur", status: "active", joined: "2025-01-15", investments: 0, raised: 15600 },
   { id: "u2", name: "Alexandre M.", email: "alex@example.com", role: "Investisseur", status: "active", joined: "2025-02-03", investments: 2450, raised: 0 },
-  { id: "u3", name: "Pierre Ecrivain", email: "pierre@example.com", role: "Infoporteur", status: "active", joined: "2025-03-12", investments: 0, raised: 9800 },
+  { id: "u3", name: "Pierre Michel", email: "pierre@example.com", role: "Infoporteur", status: "active", joined: "2025-03-12", investments: 0, raised: 9800 },
   { id: "u4", name: "Karim Ondes", email: "karim@example.com", role: "Podcasteur", status: "active", joined: "2025-04-01", investments: 0, raised: 8200 },
   { id: "u5", name: "Sophie L.", email: "sophie@example.com", role: "Investisseur", status: "suspended", joined: "2025-01-28", investments: 1890, raised: 0 },
   { id: "u6", name: "Lucas Nature", email: "lucas@example.com", role: "Porteur", status: "active", joined: "2025-02-18", investments: 0, raised: 12400 },
@@ -82,7 +82,7 @@ const MOCK_REPORTS = [
 
 const MOCK_PAYOUTS = [
   { id: "p1", creator: "Marie Stellaire", amount: 1240, status: "pending", type: "Audiovisuel", date: "2025-06-01" },
-  { id: "p2", creator: "Pierre Ecrivain", amount: 680, status: "pending", type: "Litteraire", date: "2025-06-01" },
+  { id: "p2", creator: "Pierre Michel", amount: 680, status: "pending", type: "Litteraire", date: "2025-06-01" },
   { id: "p3", creator: "Karim Ondes", amount: 520, status: "pending", type: "Podcast", date: "2025-06-02" },
   { id: "p4", creator: "Lucas Nature", amount: 890, status: "processed", type: "Audiovisuel", date: "2025-05-28" },
   { id: "p5", creator: "Marie Stellaire", amount: 1100, status: "processed", type: "Audiovisuel", date: "2025-05-21" },
@@ -260,7 +260,7 @@ export default function AdminPage() {
                   { text: "Nouveau Porteur inscrit : Lucas Nature", time: "Il y a deux minutes", icon: Film, color: "text-red-400" },
                   { text: "Investissement de quinze euros sur 'L'Odyssee des Etoiles'", time: "Il y a huit minutes", icon: TrendingUp, color: "text-emerald-400" },
                   { text: "Paiement de mille deux cent quarante euros trait\u00e9 pour Marie Stellaire", time: "Il y a vingt-trois minutes", icon: DollarSign, color: "text-amber-400" },
-                  { text: "Nouvel article publie par Pierre Ecrivain", time: "Il y a quarante-cinq minutes", icon: FileText, color: "text-sky-400" },
+                  { text: "Nouvel article publie par Pierre Michel", time: "Il y a quarante-cinq minutes", icon: FileText, color: "text-sky-400" },
                   { text: "Nouveau podcast de Karim Ondes", time: "Il y a une heure", icon: Mic, color: "text-purple-400" },
                   { text: "Signalement recu sur un contenu video", time: "Il y a deux heures", icon: AlertTriangle, color: "text-red-400" },
                 ].map((item, i) => (
