@@ -32,6 +32,7 @@ import {
   Zap,
   FileCheck,
   LogOut,
+  Wallet2,
 } from "lucide-react"
 
 interface AdminStats {
@@ -92,7 +93,7 @@ export default function AdminPage() {
   const { user, logout } = useAuth()
   const [stats, setStats] = useState<AdminStats | null>(null)
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<"overview" | "users" | "payouts" | "reports" | "integrity">("overview")
+  const [activeTab, setActiveTab] = useState<"overview" | "users" | "payouts" | "reports" | "integrity" | "wallet">("overview")
 
   const fetchStats = useCallback(async () => {
     setLoading(true)
@@ -133,6 +134,7 @@ export default function AdminPage() {
     { key: "payouts" as const, label: "Paiements", icon: DollarSign },
     { key: "reports" as const, label: "Signalements", icon: AlertTriangle },
     { key: "integrity" as const, label: "Integrity", icon: Database },
+    { key: "wallet" as const, label: "Wallet V3", icon: Wallet2 },
   ]
 
   return (
@@ -171,20 +173,33 @@ export default function AdminPage() {
 
       {/* Tabs */}
       <div className="flex gap-1 mb-8 bg-slate-900/50 p-1 rounded-xl border border-white/5 w-fit">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-              activeTab === tab.key
-                ? "bg-red-500/20 text-red-400 border border-red-500/30"
-                : "text-white/40 hover:text-white/70 hover:bg-white/5 border border-transparent"
-            }`}
-          >
-            <tab.icon className="h-4 w-4" />
-            <span className="hidden sm:inline">{tab.label}</span>
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const isWallet = tab.key === "wallet"
+          const isActive = activeTab === tab.key
+          return (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all border ${
+                isActive && isWallet
+                  ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.12)]"
+                  : isActive
+                    ? "bg-red-500/20 text-red-400 border-red-500/30"
+                    : isWallet
+                      ? "text-emerald-400/60 hover:text-emerald-400 hover:bg-emerald-500/10 border-emerald-500/15"
+                      : "text-white/40 hover:text-white/70 hover:bg-white/5 border-transparent"
+              }`}
+            >
+              <tab.icon className="h-4 w-4" />
+              <span className="hidden sm:inline">{tab.label}</span>
+              {isWallet && (
+                <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-1 py-0.5 rounded leading-none">
+                  V3
+                </span>
+              )}
+            </button>
+          )
+        })}
       </div>
 
       {/* Overview Tab */}
@@ -922,6 +937,162 @@ export default function AdminPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Wallet V3 Admin Tab */}
+      {activeTab === "wallet" && (
+        <div className="space-y-6">
+          {/* Wallet Overview Stats */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { label: "Volume total", value: "187 650 \u20ac", icon: Wallet2, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+              { label: "Retraits en attente", value: String(stats?.pendingPayouts ?? 23), icon: Clock, color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20" },
+              { label: "Cautions actives", value: "1 247", icon: Shield, color: "text-sky-400", bg: "bg-sky-500/10", border: "border-sky-500/20" },
+              { label: "VISUpoints en circulation", value: "342 800", icon: Zap, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" },
+            ].map((s) => (
+              <Card key={s.label} className={`${s.bg} border ${s.border}`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <s.icon className={`h-5 w-5 ${s.color}`} />
+                    <span className={`text-xl font-bold ${s.color}`}>{s.value}</span>
+                  </div>
+                  <p className="text-white/50 text-xs">{s.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Recent Wallet Transactions */}
+          <Card className="bg-slate-900/50 border-white/10">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <Activity className="h-5 w-5 text-emerald-400" />
+                {"Transactions r\u00e9centes (tous wallets)"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {[
+                  { user: "Marie Stellaire", type: "Retrait", amount: "-350,00 \u20ac", status: "valid\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a trois minutes" },
+                  { user: "Lucas Nature", type: "Gain investissement", amount: "+120,50 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a sept minutes" },
+                  { user: "F\u00e9lix Cin\u00e9ma", type: "Retrait", amount: "-1 200,00 \u20ac", status: "en revue", statusColor: "bg-amber-500/20 text-amber-400", time: "Il y a douze minutes" },
+                  { user: "Sophie Drama", type: "Conversion VISUpoints", amount: "+25,00 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a vingt minutes" },
+                  { user: "Karim Ondes", type: "Caution rembours\u00e9e", amount: "-10,00 \u20ac", status: "rembours\u00e9", statusColor: "bg-sky-500/20 text-sky-400", time: "Il y a trente-cinq minutes" },
+                  { user: "Pierre Michel", type: "Retrait", amount: "-480,00 \u20ac", status: "valid\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a une heure" },
+                  { user: "Amina Vision", type: "Gain cr\u00e9ateur", amount: "+890,00 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a deux heures" },
+                ].map((tx, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 text-xs font-bold">
+                        {tx.user.split(" ").map(n => n[0]).join("")}
+                      </div>
+                      <div>
+                        <p className="text-white text-sm font-medium">{tx.user}</p>
+                        <p className="text-white/40 text-xs">{tx.type} -- {tx.time}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className={`text-sm font-mono font-bold ${tx.amount.startsWith("+") ? "text-emerald-400" : "text-red-400"}`}>{tx.amount}</span>
+                      <Badge className={`${tx.statusColor} text-xs`}>{tx.status}</Badge>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Pending Large Withdrawals */}
+          <Card className="bg-slate-900/50 border-amber-500/20">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-amber-400" />
+                {"Retraits en revue manuelle (\u2265 mille euros)"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {[
+                  { user: "F\u00e9lix Cin\u00e9ma", amount: "1 200,00 \u20ac", requested: "Il y a douze minutes", trustScore: 82 },
+                  { user: "Romain Sc\u00e8ne", amount: "2 500,00 \u20ac", requested: "Il y a trois heures", trustScore: 91 },
+                  { user: "Nadia Cam\u00e9ra", amount: "1 050,00 \u20ac", requested: "Il y a six heures", trustScore: 75 },
+                ].map((w, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 rounded-lg bg-amber-500/5 border border-amber-500/15">
+                    <div>
+                      <p className="text-white text-sm font-medium">{w.user}</p>
+                      <p className="text-white/40 text-xs">{"Demand\u00e9 "}{w.requested} -- Trust Score : {w.trustScore}/100</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-amber-400 font-mono font-bold text-sm">{w.amount}</span>
+                      <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-7 px-3">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Approuver
+                      </Button>
+                      <Button size="sm" variant="outline" className="border-red-500/30 text-red-400 hover:bg-red-500/10 text-xs h-7 px-3">
+                        <Ban className="h-3 w-3 mr-1" />
+                        Refuser
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Wallet Health */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white text-sm flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-emerald-400" />
+                  {"Sant\u00e9 du syst\u00e8me Wallet"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  { label: "Stripe Connect", status: "Actif", ok: true },
+                  { label: "File de paiement", status: "Nominal", ok: true },
+                  { label: "Reversement mensuel", status: "Prochain : premier avril", ok: true },
+                  { label: "Anomalies d\u00e9tect\u00e9es", status: "Aucune", ok: true },
+                ].map((h) => (
+                  <div key={h.label} className="flex items-center justify-between p-2 rounded-lg bg-white/[0.02]">
+                    <span className="text-white/60 text-sm">{h.label}</span>
+                    <span className={`text-xs font-medium flex items-center gap-1 ${h.ok ? "text-emerald-400" : "text-red-400"}`}>
+                      {h.ok ? <CheckCircle className="h-3 w-3" /> : <AlertOctagon className="h-3 w-3" />}
+                      {h.status}
+                    </span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/50 border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white text-sm flex items-center gap-2">
+                  <TrendingUp className="h-4 w-4 text-sky-400" />
+                  {"R\u00e9partition des fonds"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  { label: "Wallets cr\u00e9ateurs", value: "98 200 \u20ac", pct: 52, color: "bg-red-400" },
+                  { label: "Wallets investisseurs", value: "67 450 \u20ac", pct: 36, color: "bg-emerald-400" },
+                  { label: "Cautions bloqu\u00e9es", value: "18 700 \u20ac", pct: 10, color: "bg-amber-400" },
+                  { label: "VISUpoints (valeur)", value: "3 428 \u20ac", pct: 2, color: "bg-purple-400" },
+                ].map((f) => (
+                  <div key={f.label} className="space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-white/60">{f.label}</span>
+                      <span className="text-white/80 font-mono">{f.value}</span>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className={`h-full ${f.color} rounded-full`} style={{ width: `${f.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       )}
 

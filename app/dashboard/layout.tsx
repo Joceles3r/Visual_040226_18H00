@@ -11,6 +11,7 @@ import {
   FileText,
   Mic,
   Wallet,
+  Wallet2,
   History,
   Settings,
   Upload,
@@ -19,7 +20,7 @@ import { VisualHeader } from "@/components/visual-header"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
-const SIDEBAR_ITEMS = [
+const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; accent?: boolean }[] = [
   {
     label: "Tableau de bord",
     href: "/dashboard",
@@ -63,10 +64,11 @@ const SIDEBAR_ITEMS = [
     roles: ["investor", "investireader", "listener"],
   },
   {
-    label: "Mon wallet",
+    label: "Mon Wallet V3",
     href: "/dashboard/wallet",
-    icon: Wallet,
+    icon: Wallet2,
     roles: ["porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+    accent: true,
   },
   {
     label: "Historique",
@@ -125,14 +127,20 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors",
-                    isActive
-                      ? "bg-emerald-600/20 text-emerald-400"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all",
+                    item.accent && !isActive && "border border-emerald-500/25 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/15 hover:border-emerald-500/40",
+                    item.accent && isActive && "border border-emerald-500/40 bg-emerald-600/25 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.15)]",
+                    !item.accent && isActive && "bg-emerald-600/20 text-emerald-400",
+                    !item.accent && !isActive && "text-white/70 hover:bg-white/5 hover:text-white",
                   )}
                 >
-                  <item.icon className="h-5 w-5" />
-                  <span className="text-sm font-medium">{item.label}</span>
+                  <item.icon className={cn("h-5 w-5", item.accent && "drop-shadow-[0_0_4px_rgba(16,185,129,0.4)]")} />
+                  <span className={cn("text-sm font-medium", item.accent && "font-semibold")}>{item.label}</span>
+                  {item.accent && (
+                    <span className="ml-auto text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">
+                      V3
+                    </span>
+                  )}
                 </Link>
               )
             })}
