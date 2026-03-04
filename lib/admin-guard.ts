@@ -25,6 +25,21 @@ export function isAdminEmail(email: string | undefined | null): boolean {
 }
 
 /**
+ * Check if a user ID belongs to an admin.
+ * Looks up the user's email in the database and compares it to the admin email.
+ */
+export async function isAdmin(userId: string): Promise<boolean> {
+  try {
+    const { sql } = await import("@/lib/db");
+    const rows = await sql`SELECT email FROM users WHERE id = ${userId}::uuid LIMIT 1`;
+    if (!rows.length) return false;
+    return isAdminEmail((rows[0] as { email: string }).email);
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Guard helper for API route handlers.
  * Returns a 403 Response if the caller is not admin, or null if authorized.
  *

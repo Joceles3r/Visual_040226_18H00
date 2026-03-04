@@ -808,24 +808,28 @@ export default function TermsOfUsePage() {
             <Card className="bg-emerald-500/5 border-emerald-500/15">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 text-sm leading-relaxed">
-                  {"Le VISUAL Trust Score est une notation sur 5 \u00e9toiles attribu\u00e9e \u00e0 chaque utilisateur, calcul\u00e9e automatiquement selon les crit\u00e8res suivants :"}
+                  {"Le VISUAL Trust Score est un indice de confiance sur 100 points attribu\u00e9 \u00e0 chaque utilisateur, calcul\u00e9 automatiquement en fonction de ses actions sur la plateforme. Il repose sur un syst\u00e8me d'\u00e9v\u00e9nements pond\u00e9r\u00e9s : les actions positives augmentent le score, les actions n\u00e9gatives le diminuent."}
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { label: "Anciennet\u00e9", desc: "Dur\u00e9e d'inscription", pct: "25%" },
-                    { label: "Signalements", desc: "Nombre de signalements re\u00e7us", pct: "25%" },
-                    { label: "Respect des r\u00e8gles", desc: "Violations confirm\u00e9es", pct: "25%" },
-                    { label: "Activit\u00e9", desc: "Interactions, contenus, investissements", pct: "25%" },
+                    { label: "Nouveau", range: "0-29", color: "text-white/50", desc: "Fonctionnalit\u00e9s limit\u00e9es" },
+                    { label: "Membre", range: "30-59", color: "text-amber-400", desc: "Acc\u00e8s standard" },
+                    { label: "Fiable", range: "60-79", color: "text-sky-400", desc: "Acc\u00e8s \u00e9largi" },
+                    { label: "V\u00e9rifi\u00e9", range: "80-100", color: "text-emerald-400", desc: "Acc\u00e8s premium" },
                   ].map((c) => (
                     <div key={c.label} className="bg-black/30 rounded-xl p-3 border border-white/5 text-center">
-                      <span className="text-emerald-400 font-bold text-sm">{c.pct}</span>
+                      <span className={`font-bold text-sm ${c.color}`}>{c.range}</span>
                       <p className="text-white/70 text-xs font-medium mt-1">{c.label}</p>
                       <p className="text-white/40 text-[10px] mt-0.5">{c.desc}</p>
                     </div>
                   ))}
                 </div>
+                <div className="space-y-2 text-sm text-white/60 leading-relaxed">
+                  <p>{"Exemples d'\u00e9v\u00e9nements positifs : KYC v\u00e9rifi\u00e9 (+15), premier investissement (+10), contenu valid\u00e9 (+8), email v\u00e9rifi\u00e9 (+5), connexion r\u00e9guli\u00e8re (+2 \u00e0 +5)."}</p>
+                  <p>{"Exemples d'\u00e9v\u00e9nements n\u00e9gatifs : fraude d\u00e9tect\u00e9e (-30), chargeback (-25), spam (-15), abus signal\u00e9 (-10), paiement \u00e9chou\u00e9 (-8), contenu rejet\u00e9 (-5)."}</p>
+                </div>
                 <p className="text-white/50 text-xs leading-relaxed">
-                  {"Le Trust Score impacte la visibilit\u00e9 des contenus, le classement dans les r\u00e9sultats, et l'\u00e9ligibilit\u00e9 aux bonus. Les niveaux sont : d\u00e9butant, fiable, confirm\u00e9, expert et \u00e9lite."}
+                  {"Le Trust Score impacte la visibilit\u00e9 des contenus, le classement dans les r\u00e9sultats, et l'\u00e9ligibilit\u00e9 aux bonus. L'historique complet des \u00e9v\u00e9nements est consultable dans le profil utilisateur."}
                 </p>
               </CardContent>
             </Card>
@@ -958,6 +962,24 @@ export default function TermsOfUsePage() {
                         <span className="text-white/50 text-xs">{s.desc}</span>
                       </div>
                     ))}
+                  </div>
+                  <div className="bg-yellow-500/5 border border-yellow-500/15 rounded-xl p-4 mt-3 space-y-2">
+                    <p className="text-yellow-400/80 text-sm font-medium">{"Impact sur le Trust Score"}</p>
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"Toute sanction entra\u00eene une diminution automatique du Trust Score de l'utilisateur concern\u00e9 : avertissement (-5), suspension temporaire (-20), suspension d\u00e9finitive (-30 avec gel du score). Les \u00e9v\u00e9nements sont consign\u00e9s dans l'historique de confiance."}
+                    </p>
+                  </div>
+                  <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4 mt-3 space-y-2">
+                    <p className="text-red-400/80 text-sm font-medium">{"Gel des fonds"}</p>
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"En cas de suspension, les fonds de l'utilisateur sont gel\u00e9s. Aucun retrait n'est possible pendant la dur\u00e9e de la suspension. En cas de suspension d\u00e9finitive, les fonds restants sont rembours\u00e9s selon les modalit\u00e9s pr\u00e9vues \u00e0 l'article concernant les retraits, apr\u00e8s d\u00e9duction des \u00e9ventuelles p\u00e9nalit\u00e9s."}
+                    </p>
+                  </div>
+                  <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4 mt-3 space-y-2">
+                    <p className="text-sky-400/80 text-sm font-medium">{"D\u00e9lai de revue des retraits importants (72h)"}</p>
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 1 000 EUR fait l'objet d'une revue manuelle par l'\u00e9quipe VISUAL dans un d\u00e9lai maximum de 72 heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
+                    </p>
                   </div>
                 </SubSection>
 

@@ -27,6 +27,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { useAuth } from "@/lib/auth-context"
+import { TrustBadge } from "@/components/trust-badge"
 
 const ROLE_LABELS: Record<string, { label: string; color: string; icon: React.ElementType }> = {
   visitor: { label: "Visiteur", color: "bg-slate-500", icon: User },
@@ -115,6 +116,9 @@ export default function ProfilePage() {
               <h2 className="text-xl font-bold text-white mb-1">
                 {formData.firstName} {formData.lastName}
               </h2>
+              <div className="mb-2">
+                <TrustBadge level="member" score={42} showLabel showScore size="md" />
+              </div>
               <p className="text-white/60 mb-4">{formData.email}</p>
 
               {/* Roles */}
@@ -281,51 +285,116 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
 
-        {/* Security card */}
+        {/* Security & verification card */}
         <Card className="lg:col-span-3 bg-slate-900/50 border-white/10">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Shield className="h-5 w-5 text-emerald-400" />
-              Sécurité et vérification
+              {"S\u00e9curit\u00e9, confiance et v\u00e9rification"}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardContent className="space-y-6">
+            {/* Verification statuses */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
                     <Mail className="h-5 w-5 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">Email vérifié</p>
-                    <p className="text-white/60 text-sm">Vérifié le 15/01/2026</p>
+                    <p className="text-white font-medium">{"Email v\u00e9rifi\u00e9"}</p>
+                    <p className="text-white/60 text-sm">{"V\u00e9rifi\u00e9 le 15/01/2026"}</p>
                   </div>
                 </div>
               </div>
-
               <div className="p-4 bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
                     <Phone className="h-5 w-5 text-amber-400" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">Téléphone vérifié</p>
-                    <p className="text-white/60 text-sm">Vérifié le 16/01/2026</p>
+                    <p className="text-white font-medium">{"T\u00e9l\u00e9phone v\u00e9rifi\u00e9"}</p>
+                    <p className="text-white/60 text-sm">{"V\u00e9rifi\u00e9 le 16/01/2026"}</p>
                   </div>
                 </div>
               </div>
-
               <div className="p-4 bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center shrink-0">
                     <Shield className="h-5 w-5 text-sky-400" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">Identité vérifiée</p>
-                    <p className="text-white/60 text-sm">KYC complété</p>
+                    <p className="text-white font-medium">{"Identit\u00e9 v\u00e9rifi\u00e9e"}</p>
+                    <p className="text-white/60 text-sm">{"KYC compl\u00e9t\u00e9"}</p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Trust Score section */}
+            <div className="p-4 bg-emerald-500/5 border border-emerald-500/15 rounded-xl">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <Star className="h-5 w-5 text-emerald-400" />
+                  <div>
+                    <p className="text-white font-medium">VISUAL Trust Score</p>
+                    <p className="text-white/50 text-sm">{"Votre indice de confiance sur la plateforme"}</p>
+                  </div>
+                </div>
+                <TrustBadge level="member" score={42} showLabel showScore size="lg" />
+              </div>
+              <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-amber-400 rounded-full transition-all" style={{ width: "42%" }} />
+              </div>
+              <div className="flex justify-between mt-1 text-[10px] text-white/30">
+                <span>Nouveau (0)</span>
+                <span>Membre (30)</span>
+                <span>Fiable (60)</span>
+                <span>{"V\u00e9rifi\u00e9 (80)"}</span>
+              </div>
+            </div>
+
+            {/* Stripe Connect onboarding */}
+            <div className="p-4 bg-indigo-500/5 border border-indigo-500/15 rounded-xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-indigo-500/15 flex items-center justify-center shrink-0">
+                    <TrendingUp className="h-5 w-5 text-indigo-400" />
+                  </div>
+                  <div>
+                    <p className="text-white font-medium">Stripe Connect</p>
+                    <p className="text-white/50 text-sm">{"Requis pour recevoir des paiements et effectuer des retraits"}</p>
+                  </div>
+                </div>
+                <Badge variant="outline" className="border-amber-500/40 text-amber-400 shrink-0">
+                  {"Non configur\u00e9"}
+                </Badge>
+              </div>
+              <Button className="mt-3 bg-indigo-600 hover:bg-indigo-500 text-white w-full sm:w-auto">
+                {"Configurer Stripe Connect"}
+              </Button>
+            </div>
+
+            {/* Pseudonym section */}
+            <div className="p-4 bg-slate-800/50 rounded-xl">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-white font-medium">Pseudonyme</p>
+                  <p className="text-white/50 text-sm">{"Choisissez un pseudonyme pour appara\u00eetre de mani\u00e8re anonyme"}</p>
+                </div>
+                <Badge variant="outline" className="border-white/15 text-white/40 shrink-0">
+                  {"Non d\u00e9fini"}
+                </Badge>
+              </div>
+              {isEditing && (
+                <div className="mt-3">
+                  <Input
+                    placeholder="Choisir un pseudonyme (3-30 caracteres)"
+                    className="bg-slate-800 border-white/20 text-white"
+                  />
+                  <p className="text-white/30 text-xs mt-1">{"Lettres, chiffres, tirets et underscores. 3 \u00e0 30 caract\u00e8res."}</p>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
