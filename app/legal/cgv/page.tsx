@@ -435,7 +435,7 @@ export default function CGVPage() {
 
               <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3 mt-3">
                 <p className="text-amber-400/70 text-xs leading-relaxed">
-                  {"Les VISUpoints ne peuvent faire l'objet d'aucun transfert, cession, vente ou h\u00e9ritage. VISUAL se r\u00e9serve le droit de modifier le taux de conversion, les plafonds et les conditions d'utilisation des VISUpoints avec un pr\u00e9avis de 30 jours."}
+                  {"Les VISUpoints ne peuvent faire l'objet d'aucun transfert, cession, vente ou h\u00e9ritage. VISUAL se r\u00e9serve le droit de modifier le taux de conversion, les plafonds et les conditions d'utilisation des VISUpoints avec un pr\u00e9avis de trente jours."}
                 </p>
               </div>
             </Section>
@@ -569,7 +569,7 @@ export default function CGVPage() {
             {/* Article 16 */}
             <Section num={16} title="Droit applicable" icon={Scale}>
               <P>{"Le droit applicable aux pr\u00e9sentes CGV sera celui du pays d'\u00e9tablissement officiel de VISUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}</P>
-              <P>{"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de 30 jours avant toute action judiciaire."}</P>
+              <P>{"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de trente jours avant toute action judiciaire."}</P>
               <P>{"\u00c0 d\u00e9faut d'accord amiable, les juridictions comp\u00e9tentes du ressort du si\u00e8ge social de VISUAL seront saisies, sauf disposition l\u00e9gale imp\u00e9rative contraire au b\u00e9n\u00e9fice du consommateur."}</P>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                 <HighlightCard icon={Handshake} title={"Médiation"} color="emerald">

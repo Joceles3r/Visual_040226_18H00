@@ -46,7 +46,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur), 20 EUR pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable a la resiliation.",
+      {"Dix euros pour les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable \u00e0 la r\u00e9siliation."},
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -109,7 +109,7 @@ const ROLES = [
       "Retrait des gains",
     ],
     restrictions: [],
-    caution: "10 EUR",
+    caution: "Dix euros",
     icon: Film,
     color: "border-red-500/50",
   },
@@ -118,13 +118,13 @@ const ROLES = [
     subtitle: "Audiovisuel",
     description: "Investissez sur des projets video et recevez des retours",
     features: [
-      "Investissement 2-20 EUR",
+      "Investissement de deux \u00e0 vingt euros",
       "Portefeuille de projets",
       "Historique des gains",
       "Retrait via Stripe",
     ],
     restrictions: [],
-    caution: "20 EUR",
+    caution: "Vingt euros",
     icon: TrendingUp,
     color: "border-emerald-500/50",
   },
@@ -140,7 +140,7 @@ const ROLES = [
       "Retrait des gains",
     ],
     restrictions: [],
-    caution: "10 EUR",
+    caution: "Dix euros",
     icon: FileText,
     color: "border-amber-500/50",
   },
@@ -149,13 +149,13 @@ const ROLES = [
     subtitle: "Investisseur litteraire",
     description: "Investissez sur des contenus ecrits et soutenez les auteurs",
     features: [
-      "Investissement 2-20 EUR",
+      "Investissement de deux \u00e0 vingt euros",
       "Portefeuille litteraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],
     restrictions: [],
-    caution: "20 EUR",
+    caution: "Vingt euros",
     icon: Wallet,
     color: "border-amber-500/50",
   },
@@ -170,7 +170,7 @@ const ROLES = [
       "Retrait des gains",
     ],
     restrictions: [],
-    caution: "10 EUR",
+    caution: "Dix euros",
     icon: Mic,
     color: "border-purple-500/50",
   },
@@ -179,13 +179,13 @@ const ROLES = [
     subtitle: "Investisseur podcast",
     description: "Investissez sur des podcasts et soutenez les podcasteurs",
     features: [
-      "Investissement 2-20 EUR",
+      "Investissement de deux \u00e0 vingt euros",
       "Portefeuille podcasts",
       "Historique des gains",
       "Retrait via Stripe",
     ],
     restrictions: [],
-    caution: "20 EUR",
+    caution: "Vingt euros",
     icon: Headphones,
     color: "border-purple-500/50",
   },
@@ -332,14 +332,11 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>10 EUR pour les createurs (Porteur, Infoporteur, Podcasteur)</span>
+                        <span>{"Dix euros pour les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur)"}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>
-                          20 EUR pour les investisseurs (Investisseur,
-                          Investi-lecteur, Auditeur)
-                        </span>
+                        <span>{"Vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur)"}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -358,21 +355,28 @@ export default function HowItWorksPage() {
                   </CardHeader>
                   <CardContent className="text-white/70 space-y-3">
                     <p>
-                      Vos gains sont consultables dans votre Wallet personnel et
-                      retirables via Stripe Connect.
+                      {"Vos gains sont consultables dans votre Wallet personnel et retirables via Stripe Connect."}
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
-                        <span className="text-emerald-400">•</span>
-                        <span>Investissez de 2 EUR a 20 EUR par projet</span>
+                        <span className="text-emerald-400">{"•"}</span>
+                        <span>{"Investissez de deux euros \u00e0 vingt euros par projet"}</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-emerald-400">•</span>
-                        <span>Recevez des retours proportionnels</span>
+                        <span className="text-emerald-400">{"•"}</span>
+                        <span>{"Reversement de tous les gains : le premier de chaque mois via Stripe Connect"}</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-emerald-400">•</span>
-                        <span>Retraits traites chaque semaine</span>
+                        <span className="text-emerald-400">{"•"}</span>
+                        <span>{"Retrait possible une fois par semaine (d\u00e9lai de sept jours entre deux demandes)"}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-400">{"•"}</span>
+                        <span>{"Retrait sup\u00e9rieur ou \u00e9gal \u00e0 mille euros : d\u00e9lai de v\u00e9rification de soixante-douze heures"}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-400">{"•"}</span>
+                        <span>{"Minimum : solde positif requis pour toute demande de retrait"}</span>
                       </li>
                     </ul>
                   </CardContent>

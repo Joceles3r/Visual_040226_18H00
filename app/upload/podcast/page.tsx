@@ -224,7 +224,7 @@ export default function UploadPodcastPage() {
                           Glissez votre fichier audio ici ou cliquez pour parcourir
                         </p>
                         <p className="text-white/60 text-sm">
-                          MP3, WAV, AAC - Max 500 Mo - Duree max 3h
+                          {"MP3, WAV, AAC - Maximum cinq cents m\u00e9gaoctets - Dur\u00e9e maximale trois heures"}
                         </p>
                         <input
                           type="file"

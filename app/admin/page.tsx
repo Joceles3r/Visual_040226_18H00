@@ -261,8 +261,8 @@ export default function AdminPage() {
                   { text: "Investissement de 15 EUR sur 'L'Odyssee des Etoiles'", time: "Il y a 8 min", icon: TrendingUp, color: "text-emerald-400" },
                   { text: "Paiement de 1 240 EUR traite pour Marie Stellaire", time: "Il y a 23 min", icon: DollarSign, color: "text-amber-400" },
                   { text: "Nouvel article publie par Pierre Ecrivain", time: "Il y a 45 min", icon: FileText, color: "text-sky-400" },
-                  { text: "Nouveau podcast de Karim Ondes", time: "Il y a 1h", icon: Mic, color: "text-purple-400" },
-                  { text: "Signalement recu sur un contenu video", time: "Il y a 2h", icon: AlertTriangle, color: "text-red-400" },
+                  { text: "Nouveau podcast de Karim Ondes", time: "Il y a une heure", icon: Mic, color: "text-purple-400" },
+                  { text: "Signalement recu sur un contenu video", time: "Il y a deux heures", icon: AlertTriangle, color: "text-red-400" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] border border-white/5">
                     <item.icon className={`h-4 w-4 ${item.color} shrink-0`} />

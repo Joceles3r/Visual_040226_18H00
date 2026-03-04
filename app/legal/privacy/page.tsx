@@ -461,7 +461,7 @@ export default function PrivacyPolicyPage() {
                 </div>
 
                 <div className="bg-black/30 rounded-xl p-4 border border-white/5">
-                  <p className="text-white font-medium text-sm mb-3">Finalit\u00e9 et conservation</p>
+                  <p className="text-white font-medium text-sm mb-3">{"Finalisation et conservation"}</p>
                   <div className="space-y-2">
                     {[
                       "Ces donn\u00e9es sont strictement utilis\u00e9es pour la conformit\u00e9 l\u00e9gale et la gestion du compte mineur",

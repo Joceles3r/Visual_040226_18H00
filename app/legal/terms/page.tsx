@@ -229,6 +229,7 @@ export default function TermsOfUsePage() {
                       "Ne pas tenter de contourner les syst\u00e8mes de s\u00e9curit\u00e9 ou de paiement de la plateforme",
                       "Respecter la Charte communautaire VISUAL : courtoisie, bienveillance et respect mutuel entre tous les utilisateurs",
                       "Ne publier aucun contenu ni propos raciste, homophobe, transphobe, antis\u00e9mite, anti-religieux, discriminatoire, haineux, sexuel, violent, diffamatoire ou insultant",
+                      "L'incitation \u00e0 la haine sous toutes ses formes est strictement prohib\u00e9e et passible de suspension imm\u00e9diate, de blocage des fonds et de signalement aux autorit\u00e9s comp\u00e9tentes",
                       "Ne pas harc\u00e8ler, menacer ou intimider d'autres utilisateurs",
                       "Ne pas publier de contenu illicite, pornographique ou portant atteinte aux droits de tiers",
                       "Ne pas utiliser de syst\u00e8mes automatis\u00e9s (bots, scraping) pour interagir avec la plateforme",
@@ -640,9 +641,36 @@ export default function TermsOfUsePage() {
                   </div>
                 </SubSection>
 
-                <SubSection title="Modération et retrait">
+                <SubSection title={"D\u00e9claration de propri\u00e9t\u00e9 intellectuelle (obligatoire)"}>
+                  <div className="space-y-3">
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {"Avant toute publication, le cr\u00e9ateur (Porteur, Infoporteur, Podcasteur) doit obligatoirement remplir et valider un formulaire de d\u00e9claration de propri\u00e9t\u00e9 intellectuelle attestant qu'il est bien le titulaire ou l'ayant-droit l\u00e9gitime du contenu d\u00e9pos\u00e9."}
+                    </p>
+                    <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+                      <p className="text-amber-400/80 text-sm font-medium mb-2">{"Champs obligatoires"}</p>
+                      <ul className="space-y-1.5 ml-2 text-white/50 text-xs">
+                        {[
+                          "Nom complet l\u00e9gal du d\u00e9clarant",
+                          "Date de la d\u00e9claration (horodatage automatique)",
+                          "Case \u00e0 cocher : \u00ab Je d\u00e9clare sur l'honneur \u00eatre le titulaire ou l'ayant-droit du contenu d\u00e9pos\u00e9 \u00bb",
+                          "Acceptation de la responsabilit\u00e9 juridique en cas de fausse d\u00e9claration",
+                        ].map((item) => (
+                          <li key={item} className="flex gap-2 items-start">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-400/40 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <p className="text-white/40 text-xs leading-relaxed">
+                      {"Toute publication est bloqu\u00e9e tant que cette d\u00e9claration n'a pas \u00e9t\u00e9 valid\u00e9e. En cas de fausse d\u00e9claration, VISUAL se r\u00e9serve le droit de supprimer le contenu, suspendre le compte et bloquer les fonds associ\u00e9s."}
+                    </p>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Mod\u00e9ration et retrait"}>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"VISUAL se réserve le droit de retirer, sans préavis, tout contenu signalé ou identifié comme contrevenant aux présentes CGU, aux lois en vigueur, ou aux droits de tiers. Le créateur en sera informé par notification sur la plateforme et pourra contester la décision via la messagerie de support."}
+                    {"VISUAL se r\u00e9serve le droit de retirer, sans pr\u00e9avis, tout contenu signal\u00e9 ou identifi\u00e9 comme contrevenant aux pr\u00e9sentes CGU, aux lois en vigueur, ou aux droits de tiers. Le cr\u00e9ateur en sera inform\u00e9 par notification sur la plateforme et pourra contester la d\u00e9cision via la messagerie de support."}
                   </p>
                 </SubSection>
               </CardContent>
@@ -1087,7 +1115,14 @@ export default function TermsOfUsePage() {
 
                 <SubSection title="Résiliation par VISUAL">
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"VISUAL peut suspendre ou résilier un compte en cas de violation des présentes CGU, de fraude avérée, ou sur injonction d'une autorité compétente. L'inscrit sera informé par e-mail des motifs de la résiliation et disposera d'un délai de 15 jours pour contester la décision. En cas de résiliation pour faute grave, la caution pourra être retenue à titre de dédommagement."}
+                    {"VISUAL peut suspendre ou r\u00e9silier un compte en cas de violation des pr\u00e9sentes CGU, de fraude av\u00e9r\u00e9e, ou sur injonction d'une autorit\u00e9 comp\u00e9tente. L'inscrit sera inform\u00e9 par e-mail des motifs de la r\u00e9siliation et disposera d'un d\u00e9lai de quinze jours pour contester la d\u00e9cision."}
+                  </p>
+                  <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4 mt-3">
+                    <p className="text-red-400/80 text-sm font-medium mb-2">{"Faute grave"}</p>
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"En cas de faute grave (usurpation d'identit\u00e9, fausse d\u00e9claration, substitution de propri\u00e9t\u00e9 m\u00e9dia, fraude, incitation \u00e0 la haine), les fonds et cautions peuvent ne pas \u00eatre restitu\u00e9s jusqu'\u00e0 d\u00e9cision judiciaire. La caution pourra \u00eatre retenue \u00e0 titre de d\u00e9dommagement."}
+                    </p>
+                  </div>
                   </p>
                 </SubSection>
               </CardContent>

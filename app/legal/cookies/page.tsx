@@ -57,7 +57,7 @@ const cookieTypes = [
       "Taux de rebond et d'engagement",
       "Performances de chargement du site",
     ],
-    retention: "13 mois maximum (conformément aux recommandations de la CNIL)",
+    retention: "treize mois maximum (conform\u00e9ment aux recommandations de la CNIL)",
   },
   {
     icon: Users,
