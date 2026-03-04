@@ -23,7 +23,7 @@ const cookieTypes = [
       "Préférences de consentement cookies (mémorisation de vos choix)",
       "Protection CSRF (sécurité contre les attaques)",
     ],
-    retention: "Durée de la session ou 7 jours maximum",
+    retention: "Dur\u00e9e de la session ou sept jours maximum",
   },
   {
     icon: Settings,

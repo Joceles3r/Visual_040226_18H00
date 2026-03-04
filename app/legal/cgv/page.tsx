@@ -240,13 +240,13 @@ export default function CGVPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <Card className="bg-emerald-500/5 border-emerald-500/15">
                   <CardContent className="p-5 text-center">
-                    <div className="text-3xl font-bold text-emerald-400 mb-1">10 EUR</div>
-                    <p className="text-white/50 text-sm">{"Créateurs (Porteur, Infoporteur, Podcasteur)"}</p>
+                    <div className="text-2xl font-bold text-emerald-400 mb-1">Dix euros</div>
+                    <p className="text-white/50 text-sm">{"Cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur)"}</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-sky-500/5 border-sky-500/15">
                   <CardContent className="p-5 text-center">
-                    <div className="text-3xl font-bold text-sky-400 mb-1">20 EUR</div>
+                    <div className="text-2xl font-bold text-sky-400 mb-1">Vingt euros</div>
                     <p className="text-white/50 text-sm">{"Participants financiers (Investisseur, Investi-lecteur, Auditeur)"}</p>
                   </CardContent>
                 </Card>
@@ -486,7 +486,7 @@ export default function CGVPage() {
                 <Bullet>{"L'auto-investissement : un utilisateur ne peut investir dans son propre projet. Sanction : annulation, recalcul des votes, suspension possible"}</Bullet>
                 <Bullet>{"Le partage, l'extraction ou le contournement des jetons d'acc\u00e8s aux m\u00e9dias prot\u00e9g\u00e9s"}</Bullet>
               </ul>
-              <P>{"Chaque utilisateur inscrit dispose d'un Bouton Rouge de Signalement (Bouton Rouge Alerte) sur chaque contenu, commentaire et profil. Les signalements sont trait\u00e9s par l'\u00e9quipe de mod\u00e9ration VISUAL sous 48h (24h pour les signalements critiques). Les d\u00e9cisions incluent : avertissement, suppression du contenu, suspension temporaire (7 \u00e0 90 jours), suspension d\u00e9finitive et suppression du compte."}</P>
+              <P>{"Chaque utilisateur inscrit dispose d'un Bouton Rouge de Signalement (Bouton Rouge Alerte) sur chaque contenu, commentaire et profil. Les signalements sont trait\u00e9s par l'\u00e9quipe de mod\u00e9ration VISUAL sous quarante-huit heures (vingt-quatre heures pour les signalements critiques). Les d\u00e9cisions incluent : avertissement, suppression du contenu, suspension temporaire (sept \u00e0 quatre-vingt-dix jours), suspension d\u00e9finitive et suppression du compte."}</P>
               <P>{"En cas de manquement constat\u00e9, VISUAL se r\u00e9serve le droit de suspendre ou supprimer le compte de l'utilisateur, de retenir la caution, de geler les fonds, et le cas \u00e9ch\u00e9ant d'engager toute action en justice."}</P>
             </Section>
 

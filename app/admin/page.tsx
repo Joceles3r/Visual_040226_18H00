@@ -647,10 +647,10 @@ export default function AdminPage() {
                 <div className="space-y-2">
                   <p className="text-emerald-400 font-medium text-sm">{"Rappel -- Charte de mod\u00e9ration VISUAL"}</p>
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="text-white/50">{"Signalements critiques (racisme, homophobie, antis\u00e9mitisme) : traitement prioritaire sous 24h."}</div>
+                    <div className="text-white/50">{"Signalements critiques (racisme, homophobie, antis\u00e9mitisme) : traitement prioritaire sous vingt-quatre heures."}</div>
                     <div className="text-white/50">{"Pipeline : Signalement > Examen > D\u00e9cision (approuver / avertir / supprimer contenu / suspendre / bannir)."}</div>
                     <div className="text-white/50">{"L'avertissement rappelle les r\u00e8gles de respect et de courtoisie entre utilisateurs."}</div>
-                    <div className="text-white/50">{"La suspension temporaire bloque le compte de 7 \u00e0 90 jours. La suppression est d\u00e9finitive."}</div>
+                    <div className="text-white/50">{"La suspension temporaire bloque le compte de sept \u00e0 quatre-vingt-dix jours. La suppression est d\u00e9finitive."}</div>
                   </div>
                 </div>
               </div>
@@ -905,10 +905,10 @@ export default function AdminPage() {
                       "Idempotency keys sur chaque webhook Stripe",
                       "Auto-investissement interdit (guard serveur)",
                       "KYC obligatoire avant investissement",
-                      "Plafond mineur 500 EUR (sans consentement parental)",
+                      "Plafond mineur cinq cents euros (sans consentement parental)",
                       "Stripe Connect charges_enabled requis",
                       "Integrity check = sum(users) + platform == gross",
-                      "Batch mensuel unique le 1er du mois",
+                      "Batch mensuel unique le premier du mois",
                       "Audit trail complet (payout_simulations)",
                       "R\u00e8gle des 100: cession ferm\u00e9e auto \u00e0 100 \u0153uvres",
                     ].map((rule) => (

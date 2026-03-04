@@ -200,7 +200,7 @@ export default function PromoPage() {
         {/* Info */}
         <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4">
           <p className="text-sky-400/80 text-sm leading-relaxed">
-            {"Le syst\u00e8me de promotion VISUAL est con\u00e7u pour r\u00e9compenser le bouche-\u00e0-oreille authentique. Les actions de partage sont soumises \u00e0 des limites anti-abus (10/jour, cooldown 72h entre emails). Vos statistiques sont mises \u00e0 jour en temps r\u00e9el."}
+            {"Le syst\u00e8me de promotion VISUAL est con\u00e7u pour r\u00e9compenser le bouche-\u00e0-oreille authentique. Les actions de partage sont soumises \u00e0 des limites anti-abus (dix par jour, d\u00e9lai de soixante-douze heures entre emails). Vos statistiques sont mises \u00e0 jour en temps r\u00e9el."}
           </p>
         </div>
       </div>

@@ -377,7 +377,7 @@ export default function PrivacyPolicyPage() {
                     { icon: Lock, label: "Chiffrement", desc: "TLS 1.3 pour les communications, AES-256 pour le stockage, bcrypt pour les mots de passe" },
                     { icon: Shield, label: "Authentification", desc: "Sessions sécurisées, tokens HTTP-only, protection CSRF sur toutes les actions" },
                     { icon: Database, label: "Base de données", desc: "Accès restreint par rôle (Row Level Security), sauvegardes chiffrées quotidiennes" },
-                    { icon: ServerCrash, label: "Incident", desc: "Plan de réponse aux violations de données sous 72h (RGPD, article 33) et notification aux utilisateurs concernés" },
+                    { icon: ServerCrash, label: "Incident", desc: "Plan de r\u00e9ponse aux violations de donn\u00e9es sous soixante-douze heures (RGPD, article trente-trois) et notification aux utilisateurs concern\u00e9s" },
                   ].map((measure) => {
                     const IconComp = measure.icon
                     return (

@@ -569,7 +569,7 @@ export default function SettingsPage() {
                       {"Confirmer la résiliation"}
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-white/60">
-                      {"En résiliant votre compte, vos rôles seront désactivés et votre caution sera remboursée sous 7 jours ouvrés via Stripe. Vos investissements en cours seront traités selon les règles de clôture VISUAL."}
+                      {"En r\u00e9siliant votre compte, vos r\u00f4les seront d\u00e9sactiv\u00e9s et votre caution sera rembours\u00e9e sous sept jours ouvr\u00e9s via Stripe. Vos investissements en cours seront trait\u00e9s selon les r\u00e8gles de cl\u00f4ture VISUAL."}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>

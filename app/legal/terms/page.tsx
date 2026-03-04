@@ -62,7 +62,7 @@ export default function TermsOfUsePage() {
               {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VISUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
-              {"Derni\u00e8re mise \u00e0 jour : 27 f\u00e9vrier 2026 \u2014 Consolidation V1 (Post 9h20)"}
+              {"Derni\u00e8re mise \u00e0 jour : quatre mars 2026 \u2014 Consolidation compl\u00e8te"}
             </p>
           </div>
         </section>
@@ -155,7 +155,7 @@ export default function TermsOfUsePage() {
                     { term: "Investisseur", def: "Inscrit qui investit de 2 à 20 EUR par projet audiovisuel" },
                     { term: "Investi-lecteur", def: "Inscrit qui investit de 2 à 20 EUR par contenu littéraire" },
                     { term: "Auditeur", def: "Inscrit qui investit de 2 à 20 EUR par podcast" },
-                    { term: "VISUpoints", def: "Avantage promotionnel interne (100 pts = 1\u20ac). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
+                    { term: "VISUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
                     { term: "Caution", def: "Dépôt unique remboursable (10 EUR créateurs, 20 EUR investisseurs) garantissant l'engagement" },
                     { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VISUAL" },
                     { term: "Contenu", def: "Toute œuvre déposée : vidéo, écrit, podcast, incluant métadonnées et descriptions" },
@@ -563,7 +563,7 @@ export default function TermsOfUsePage() {
                       <p className="text-white/50">{"Paiement hybride (30% cash / 70% VISUpoints max) + bonus 5%"}</p>
                     </div>
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                      <p className="text-purple-400 font-medium mb-1">{"Chemin B : \u00c9voluer de profil"}</p>
+                      <p className="text-purple-400 font-medium mb-1">{"Chemin B : Changer de profil"}</p>
                       <p className="text-white/50">{"Devenir Investisseur (+500 VISUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
                     </div>
                   </div>
@@ -734,19 +734,19 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"R\u00e9actions"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-2">
-                    {"Cinq types de r\u00e9actions sont disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque r\u00e9action est unique par utilisateur et par post (une seule r\u00e9action du m\u00eame type par post). Les r\u00e9actions g\u00e9n\u00e8rent des VISUpoints pour l'auteur du post (1 pt par r\u00e9action re\u00e7ue)."}
+                    {"Cinq types de r\u00e9actions sont disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque r\u00e9action est unique par utilisateur et par publication (une seule r\u00e9action du m\u00eame type par publication). Les r\u00e9actions g\u00e9n\u00e8rent des VISUpoints pour l'auteur de la publication (un point par r\u00e9action re\u00e7ue)."}
                   </p>
                 </SubSection>
 
                 <SubSection title={"VISUpoints et Visual Social"}>
                   <div className="grid grid-cols-2 gap-3 text-center">
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                      <span className="text-emerald-400 font-bold text-lg">+5</span>
-                      <p className="text-white/40 text-xs mt-1">pts par post publi\u00e9</p>
+                      <span className="text-emerald-400 font-bold text-base">+cinq</span>
+                      <p className="text-white/40 text-xs mt-1">{"points par publication"}</p>
                     </div>
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                      <span className="text-emerald-400 font-bold text-lg">+1</span>
-                      <p className="text-white/40 text-xs mt-1">pt par r\u00e9action re\u00e7ue</p>
+                      <span className="text-emerald-400 font-bold text-base">+un</span>
+                      <p className="text-white/40 text-xs mt-1">{"point par r\u00e9action re\u00e7ue"}</p>
                     </div>
                   </div>
                 </SubSection>
@@ -755,7 +755,7 @@ export default function TermsOfUsePage() {
                   <div className="space-y-2">
                     {[
                       "Tout utilisateur peut signaler un post qu'il juge inappropri\u00e9 (un signalement par post par utilisateur)",
-                      "Un post atteignant 5 signalements est automatiquement masqu\u00e9 et soumis \u00e0 l'\u00e9quipe de mod\u00e9ration",
+                      "Une publication atteignant cinq signalements est automatiquement masqu\u00e9e et soumise \u00e0 l'\u00e9quipe de mod\u00e9ration",
                       "VISUAL se r\u00e9serve le droit de supprimer tout contenu et de suspendre les comptes en infraction",
                       "Les comportements r\u00e9p\u00e9t\u00e9s de signalement abusif peuvent entra\u00eener une suspension temporaire du compte",
                     ].map((item) => (
@@ -844,14 +844,14 @@ export default function TermsOfUsePage() {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="bg-teal-500/5 border border-teal-500/15 rounded-xl p-4 text-center">
-                    <span className="text-teal-400 font-bold text-2xl">10</span>
-                    <p className="text-white/60 text-xs mt-1">{"vid\u00e9os / an (Porteur)"}</p>
-                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : 1\u20ac / vid\u00e9o"}</p>
+                    <span className="text-teal-400 font-bold text-lg">Dix</span>
+                    <p className="text-white/60 text-xs mt-1">{"vid\u00e9os par an (Porteur)"}</p>
+                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : un euro par vid\u00e9o"}</p>
                   </div>
                   <div className="bg-purple-500/5 border border-purple-500/15 rounded-xl p-4 text-center">
-                    <span className="text-purple-400 font-bold text-2xl">20</span>
-                    <p className="text-white/60 text-xs mt-1">{"podcasts / an (Podcasteur)"}</p>
-                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : 0,50\u20ac / \u00e9pisode"}</p>
+                    <span className="text-purple-400 font-bold text-lg">Vingt</span>
+                    <p className="text-white/60 text-xs mt-1">{"podcasts par an (Podcasteur)"}</p>
+                    <p className="text-white/40 text-[10px] mt-0.5">{"Suppl\u00e9ment : cinquante centimes par \u00e9pisode"}</p>
                   </div>
                 </div>
                 <p className="text-white/50 text-xs leading-relaxed">
@@ -976,7 +976,7 @@ export default function TermsOfUsePage() {
                     </p>
                   </div>
                   <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4 mt-3 space-y-2">
-                    <p className="text-sky-400/80 text-sm font-medium">{"D\u00e9lai de revue des retraits importants (72h)"}</p>
+                    <p className="text-sky-400/80 text-sm font-medium">{"D\u00e9lai de revue des retraits importants (soixante-douze heures)"}</p>
                     <p className="text-white/50 text-xs leading-relaxed">
                       {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 1 000 EUR fait l'objet d'une revue manuelle par l'\u00e9quipe VISUAL dans un d\u00e9lai maximum de 72 heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
                     </p>
@@ -993,7 +993,7 @@ export default function TermsOfUsePage() {
                         "Le signalement est anonyme vis-\u00e0-vis de l'utilisateur signal\u00e9",
                         "L'utilisateur choisit un motif parmi : racisme, homophobie, antis\u00e9mitisme, haine religieuse, insultes/harc\u00e8lement, contenu sexuel, violence, plagiat, spam, autre",
                         "Un champ optionnel permet de d\u00e9tailler le signalement (500 caract\u00e8res max)",
-                        "L'\u00e9quipe de mod\u00e9ration VISUAL examine chaque signalement dans un d\u00e9lai maximal de 48h (24h pour les signalements critiques)",
+                        "L'\u00e9quipe de mod\u00e9ration VISUAL examine chaque signalement dans un d\u00e9lai maximal de quarante-huit heures (vingt-quatre heures pour les signalements critiques)",
                         "Les d\u00e9cisions possibles sont : approbation (fausse alerte), avertissement, suppression du contenu, suspension temporaire, suspension d\u00e9finitive, suppression du compte",
                         "L'utilisateur signal\u00e9 est notifi\u00e9 de la d\u00e9cision et peut exercer un recours aupr\u00e8s de support@visual.music",
                       ].map((item) => (
@@ -1224,7 +1224,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"Conform\u00e9ment \u00e0 l'article L221-18 du Code de la consommation, l'utilisateur non-professionnel dispose d'un d\u00e9lai de 14 jours calendaires \u00e0 compter de l'acceptation des pr\u00e9sentes conditions pour exercer son droit de r\u00e9tractation, sans avoir \u00e0 justifier de motifs ni \u00e0 payer de p\u00e9nalit\u00e9s."}
+                  {"Conform\u00e9ment \u00e0 l'article L221-18 du Code de la consommation, l'utilisateur non-professionnel dispose d'un d\u00e9lai de quatorze jours calendaires \u00e0 compter de l'acceptation des pr\u00e9sentes conditions pour exercer son droit de r\u00e9tractation, sans avoir \u00e0 justifier de motifs ni \u00e0 payer de p\u00e9nalit\u00e9s."}
                 </p>
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                   <p className="text-amber-400/80 text-sm">
@@ -1239,7 +1239,7 @@ export default function TermsOfUsePage() {
                   <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Courrier recommand\u00e9 \u00e0 l'adresse du si\u00e8ge social de VISUAL"}</li>
                 </ul>
                 <p className="text-white/40 text-xs">
-                  {"Le remboursement sera effectu\u00e9 dans un d\u00e9lai de 14 jours suivant la r\u00e9ception de la demande, par le m\u00eame moyen de paiement utilis\u00e9 lors de la transaction initiale."}
+                  {"Le remboursement sera effectu\u00e9 dans un d\u00e9lai de quatorze jours suivant la r\u00e9ception de la demande, par le m\u00eame moyen de paiement utilis\u00e9 lors de la transaction initiale."}
                 </p>
               </CardContent>
             </Card>

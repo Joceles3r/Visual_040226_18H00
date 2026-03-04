@@ -59,7 +59,7 @@ export default function SupportMailboxPage() {
           <div>
             <h1 className="text-2xl font-bold text-white">{"Boîte interne VISUAL"}</h1>
             <p className="text-white/60 text-sm">
-              {"Contactez le responsable de la plateforme (ADMIN VISUAL). Réponse sous 24-72h."}
+              {"Contactez le responsable de la plateforme (ADMIN VISUAL). R\u00e9ponse sous vingt-quatre \u00e0 soixante-douze heures."}
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function SupportMailboxPage() {
             {sent && (
               <div className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                 <CheckCircle className="h-4 w-4 text-emerald-400" />
-                <p className="text-sm text-emerald-400">{"Message envoyé avec succès. Réponse sous 24-72h."}</p>
+                <p className="text-sm text-emerald-400">{"Message envoy\u00e9 avec succ\u00e8s. R\u00e9ponse sous vingt-quatre \u00e0 soixante-douze heures."}</p>
               </div>
             )}
           </CardContent>
