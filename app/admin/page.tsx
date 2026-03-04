@@ -257,10 +257,10 @@ export default function AdminPage() {
             <CardContent>
               <div className="space-y-3">
                 {[
-                  { text: "Nouveau Porteur inscrit : Lucas Nature", time: "Il y a 2 min", icon: Film, color: "text-red-400" },
-                  { text: "Investissement de 15 EUR sur 'L'Odyssee des Etoiles'", time: "Il y a 8 min", icon: TrendingUp, color: "text-emerald-400" },
-                  { text: "Paiement de 1 240 EUR traite pour Marie Stellaire", time: "Il y a 23 min", icon: DollarSign, color: "text-amber-400" },
-                  { text: "Nouvel article publie par Pierre Ecrivain", time: "Il y a 45 min", icon: FileText, color: "text-sky-400" },
+                  { text: "Nouveau Porteur inscrit : Lucas Nature", time: "Il y a deux minutes", icon: Film, color: "text-red-400" },
+                  { text: "Investissement de quinze euros sur 'L'Odyssee des Etoiles'", time: "Il y a huit minutes", icon: TrendingUp, color: "text-emerald-400" },
+                  { text: "Paiement de mille deux cent quarante euros trait\u00e9 pour Marie Stellaire", time: "Il y a vingt-trois minutes", icon: DollarSign, color: "text-amber-400" },
+                  { text: "Nouvel article publie par Pierre Ecrivain", time: "Il y a quarante-cinq minutes", icon: FileText, color: "text-sky-400" },
                   { text: "Nouveau podcast de Karim Ondes", time: "Il y a une heure", icon: Mic, color: "text-purple-400" },
                   { text: "Signalement recu sur un contenu video", time: "Il y a deux heures", icon: AlertTriangle, color: "text-red-400" },
                 ].map((item, i) => (

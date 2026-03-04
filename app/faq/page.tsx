@@ -25,7 +25,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment fonctionne l'investissement ?",
         answer:
-          "Vous choisissez un projet qui vous interesse, selectionnez un montant entre 2 EUR et 20 EUR, et devenez investisseur. Si le projet genere des revenus, vous recevez une part proportionnelle a votre investissement.",
+          "Vous choisissez un projet qui vous int\u00e9resse, s\u00e9lectionnez un montant entre deux euros et vingt euros, et devenez investisseur. Si le projet g\u00e9n\u00e8re des revenus, vous recevez une part proportionnelle \u00e0 votre investissement.",
       },
       {
         question: "VISUAL est-il un jeu de hasard ?",
@@ -65,7 +65,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Qu'est-ce que la caution ?",
         answer:
-          "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de resiliation de votre compte.",
+          "La caution est un d\u00e9p\u00f4t unique (dix euros pour les cr\u00e9ateurs : Porteur, Infoporteur, Podcasteur ; vingt euros pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de r\u00e9siliation de votre compte.",
       },
       {
         question: "Comment retirer mes gains ?",
@@ -90,7 +90,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment déposer un projet ?",
         answer:
-          "Apres avoir paye votre caution de createur (10 EUR), accedez a 'Mon Espace' puis 'Deposer' pour soumettre votre projet video, ecrit ou podcast.",
+          "Apr\u00e8s avoir pay\u00e9 votre caution de cr\u00e9ateur (dix euros), acc\u00e9dez \u00e0 'Mon Espace' puis 'D\u00e9poser' pour soumettre votre projet vid\u00e9o, \u00e9crit ou podcast.",
       },
       {
         question: "Quels types de contenus puis-je déposer ?",
@@ -110,7 +110,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Combien puis-je investir ?",
         answer:
-          "Vous pouvez investir entre 2 EUR et 20 EUR par projet (tranches : 2, 3, 4, 5, 6, 8, 10, 12, 15, 20 EUR). Vous pouvez investir dans autant de projets que vous le souhaitez.",
+          "Vous pouvez investir entre deux euros et vingt euros par projet (tranches : deux, trois, quatre, cinq, six, huit, dix, douze, quinze, vingt euros). Vous pouvez investir dans autant de projets que vous le souhaitez.",
       },
       {
         question: "Quand recevrai-je mes retours ?",

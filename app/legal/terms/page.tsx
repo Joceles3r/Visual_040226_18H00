@@ -152,11 +152,11 @@ export default function TermsOfUsePage() {
                     { term: "Porteur", def: "Créateur audiovisuel : dépose des vidéos et visuels sur la plateforme" },
                     { term: "Infoporteur", def: "Créateur littéraire : publie des écrits (articles, romans, essais, etc.)" },
                     { term: "Podcasteur", def: "Créateur podcast : dépose des podcasts, émissions audio, documentaires sonores" },
-                    { term: "Investisseur", def: "Inscrit qui investit de 2 à 20 EUR par projet audiovisuel" },
-                    { term: "Investi-lecteur", def: "Inscrit qui investit de 2 à 20 EUR par contenu littéraire" },
-                    { term: "Auditeur", def: "Inscrit qui investit de 2 à 20 EUR par podcast" },
+                    { term: "Investisseur", def: "Inscrit qui investit de deux \u00e0 vingt euros par projet audiovisuel" },
+                    { term: "Investi-lecteur", def: "Inscrit qui investit de deux \u00e0 vingt euros par contenu litt\u00e9raire" },
+                    { term: "Auditeur", def: "Inscrit qui investit de deux \u00e0 vingt euros par podcast" },
                     { term: "VISUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
-                    { term: "Caution", def: "Dépôt unique remboursable (10 EUR créateurs, 20 EUR investisseurs) garantissant l'engagement" },
+                    { term: "Caution", def: "D\u00e9p\u00f4t unique remboursable (dix euros cr\u00e9ateurs, vingt euros investisseurs) garantissant l'engagement" },
                     { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VISUAL" },
                     { term: "Contenu", def: "Toute œuvre déposée : vidéo, écrit, podcast, incluant métadonnées et descriptions" },
                   ].map((d) => (
@@ -195,12 +195,12 @@ export default function TermsOfUsePage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                     {[
                       { icon: Eye, color: "text-amber-400", bg: "bg-amber-500/15", border: "border-amber-500/20", role: "Visiteur", caution: "Aucune", desc: "Accède aux contenus gratuits, accumule des VISUpoints, interagit avec la communauté" },
-                      { icon: Film, color: "text-red-400", bg: "bg-red-500/15", border: "border-red-500/20", role: "Porteur", caution: "10 EUR", desc: "Dépose des contenus audiovisuels, reçoit des investissements et des gains" },
-                      { icon: BookOpen, color: "text-sky-400", bg: "bg-sky-500/15", border: "border-sky-500/20", role: "Infoporteur", caution: "10 EUR", desc: "Publie des contenus littéraires, reçoit des investissements et des gains" },
-                      { icon: Mic, color: "text-purple-400", bg: "bg-purple-500/15", border: "border-purple-500/20", role: "Podcasteur", caution: "10 EUR", desc: "Dépose des podcasts et émissions audio, reçoit des investissements et des gains" },
-                      { icon: TrendingUp, color: "text-emerald-400", bg: "bg-emerald-500/15", border: "border-emerald-500/20", role: "Investisseur", caution: "20 EUR", desc: "Investit de 2 à 20 EUR par projet audiovisuel, partage les gains à la clôture" },
-                      { icon: BookOpen, color: "text-indigo-400", bg: "bg-indigo-500/15", border: "border-indigo-500/20", role: "Investi-lecteur", caution: "20 EUR", desc: "Investit de 2 à 20 EUR par contenu littéraire, partage les gains à la clôture" },
-                      { icon: Mic, color: "text-pink-400", bg: "bg-pink-500/15", border: "border-pink-500/20", role: "Auditeur", caution: "20 EUR", desc: "Investit de 2 à 20 EUR par podcast, partage les gains à la clôture" },
+                      { icon: Film, color: "text-red-400", bg: "bg-red-500/15", border: "border-red-500/20", role: "Porteur", caution: "Dix euros", desc: "D\u00e9pose des contenus audiovisuels, re\u00e7oit des investissements et des gains" },
+                      { icon: BookOpen, color: "text-sky-400", bg: "bg-sky-500/15", border: "border-sky-500/20", role: "Infoporteur", caution: "Dix euros", desc: "Publie des contenus litt\u00e9raires, re\u00e7oit des investissements et des gains" },
+                      { icon: Mic, color: "text-purple-400", bg: "bg-purple-500/15", border: "border-purple-500/20", role: "Podcasteur", caution: "Dix euros", desc: "D\u00e9pose des podcasts et \u00e9missions audio, re\u00e7oit des investissements et des gains" },
+                      { icon: TrendingUp, color: "text-emerald-400", bg: "bg-emerald-500/15", border: "border-emerald-500/20", role: "Investisseur", caution: "Vingt euros", desc: "Investit de deux \u00e0 vingt euros par projet audiovisuel, partage les gains \u00e0 la cl\u00f4ture" },
+                      { icon: BookOpen, color: "text-indigo-400", bg: "bg-indigo-500/15", border: "border-indigo-500/20", role: "Investi-lecteur", caution: "Vingt euros", desc: "Investit de deux \u00e0 vingt euros par contenu litt\u00e9raire, partage les gains \u00e0 la cl\u00f4ture" },
+                      { icon: Mic, color: "text-pink-400", bg: "bg-pink-500/15", border: "border-pink-500/20", role: "Auditeur", caution: "Vingt euros", desc: "Investit de deux \u00e0 vingt euros par podcast, partage les gains \u00e0 la cl\u00f4ture" },
                     ].map((r) => {
                       const IconComp = r.icon
                       return (
@@ -348,7 +348,7 @@ export default function TermsOfUsePage() {
                     <div className="flex items-center gap-2 mb-3">
                       <Wallet className="h-5 w-5 text-amber-400" />
                       <span className="text-white font-medium">Caution Créateur</span>
-                      <span className="text-amber-400 font-bold ml-auto">10 EUR</span>
+                      <span className="text-amber-400 font-bold ml-auto">Dix euros</span>
                     </div>
                     <ul className="space-y-1.5 text-xs text-white/50">
                       <li>{"Applicable aux rôles : Porteur, Infoporteur, Podcasteur"}</li>
@@ -360,7 +360,7 @@ export default function TermsOfUsePage() {
                     <div className="flex items-center gap-2 mb-3">
                       <Wallet className="h-5 w-5 text-emerald-400" />
                       <span className="text-white font-medium">Caution Investisseur</span>
-                      <span className="text-emerald-400 font-bold ml-auto">20 EUR</span>
+                      <span className="text-emerald-400 font-bold ml-auto">Vingt euros</span>
                     </div>
                     <ul className="space-y-1.5 text-xs text-white/50">
                       <li>{"Applicable aux rôles : Investisseur, Investi-lecteur, Auditeur"}</li>
@@ -388,7 +388,7 @@ export default function TermsOfUsePage() {
                       ))}
                     </ul>
                     <p className="text-white/40 text-xs mt-3">
-                      {"Délai de remboursement : 30 jours ouvrés maximum après validation de la demande. Le remboursement s'effectue sur le moyen de paiement d'origine."}
+                      {"D\u00e9lai de remboursement : trente jours ouvr\u00e9s maximum apr\u00e8s validation de la demande. Le remboursement s'effectue sur le moyen de paiement d'origine."}
                     </p>
                   </div>
                 </SubSection>
@@ -403,7 +403,7 @@ export default function TermsOfUsePage() {
                 <SubSection title="Modalités d'investissement">
                   <div className="space-y-2">
                     {[
-                      "Montant : de 2 EUR à 20 EUR par projet, par transaction",
+                      "Montant : de deux euros \u00e0 vingt euros par projet, par transaction",
                       "Un même inscrit peut investir dans plusieurs projets simultanément",
                       "L'investissement est définitif une fois confirmé et ne peut être annulé",
                       "L'investissement s'accompagne d'un vote (favorable) pris en compte dans les classements et la répartition",
@@ -478,7 +478,7 @@ export default function TermsOfUsePage() {
                     <div className="grid grid-cols-3 gap-3 text-center">
                       <div>
                         <span className="text-amber-400 font-bold text-lg">100</span>
-                        <p className="text-white/40 text-xs">pts = 1 EUR</p>
+                        <p className="text-white/40 text-xs">{"points \u00e9quivalent un euro"}</p>
                       </div>
                       <div>
                         <span className="text-emerald-400 font-bold text-lg">60</span>
@@ -981,7 +981,7 @@ export default function TermsOfUsePage() {
                   <div className="space-y-2">
                     {[
                       { severity: "Avertissement", desc: "Notification par e-mail et/ou sur la plateforme rappelant les règles enfreintes", color: "text-amber-400" },
-                      { severity: "Suspension temporaire", desc: "Blocage du compte pendant une durée de 7 à 90 jours selon la gravité", color: "text-orange-400" },
+                      { severity: "Suspension temporaire", desc: "Blocage du compte pendant une dur\u00e9e de sept \u00e0 quatre-vingt-dix jours selon la gravit\u00e9", color: "text-orange-400" },
                       { severity: "Suspension définitive", desc: "Fermeture du compte, retrait de tous les contenus, remboursement de la caution sous conditions", color: "text-red-400" },
                       { severity: "Poursuites judiciaires", desc: "En cas de fraude, blanchiment ou infraction pénale, signalement aux autorités compétentes", color: "text-red-500" },
                     ].map((s) => (
@@ -1006,7 +1006,7 @@ export default function TermsOfUsePage() {
                   <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4 mt-3 space-y-2">
                     <p className="text-sky-400/80 text-sm font-medium">{"D\u00e9lai de revue des retraits importants (soixante-douze heures)"}</p>
                     <p className="text-white/50 text-xs leading-relaxed">
-                      {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 1 000 EUR fait l'objet d'une revue manuelle par l'\u00e9quipe VISUAL dans un d\u00e9lai maximum de 72 heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
+                      {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 mille euros fait l'objet d'une revue manuelle par l'\u00e9quipe VISUAL dans un d\u00e9lai maximum de soixante-douze heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
                     </p>
                   </div>
                 </SubSection>
@@ -1101,7 +1101,7 @@ export default function TermsOfUsePage() {
                     {[
                       "L'inscrit peut demander la suppression de son compte à tout moment depuis les Paramètres de son espace personnel",
                       "Avant la suppression effective, les clôtures en cours doivent être finalisées et les gains disponibles retirés",
-                      "La caution est remboursée dans un délai de 30 jours ouvrés après validation",
+                      "La caution est rembours\u00e9e dans un d\u00e9lai de trente jours ouvr\u00e9s apr\u00e8s validation",
                       "Les contenus déposés sont retirés de la plateforme sauf accord contraire avec VISUAL",
                       "Les données personnelles sont supprimées conformément à la Politique de Confidentialité (sauf obligations légales de conservation)",
                     ].map((item) => (
@@ -1152,7 +1152,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"VISUAL se réserve le droit de modifier les présentes Conditions d'Utilisation à tout moment. En cas de modification substantielle, les inscrits seront informés par e-mail et/ou par notification sur la plateforme au moins 30 jours avant l'entrée en vigueur."}
+                  {"VISUAL se r\u00e9serve le droit de modifier les pr\u00e9sentes Conditions d'Utilisation \u00e0 tout moment. En cas de modification substantielle, les inscrits seront inform\u00e9s par e-mail et/ou par notification sur la plateforme au moins trente jours avant l'entr\u00e9e en vigueur."}
                 </p>
                 <p>
                   {"La poursuite de l'utilisation de la plateforme après l'entrée en vigueur des modifications vaut acceptation des nouvelles CGU. En cas de refus, l'inscrit peut demander la suppression de son compte et le remboursement de sa caution."}
@@ -1162,14 +1162,14 @@ export default function TermsOfUsePage() {
           </Section>
 
           {/* 13. Droit applicable */}
-          <Section num={13} title="Droit applicable et juridiction comp\u00e9tente">
+          <Section num={13} title="Droit applicable et juridiction compétente">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
                   {"Les pr\u00e9sentes CGU seront soumises au droit applicable dans la juridiction d'\u00e9tablissement officielle de VISUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}
                 </p>
                 <p>
-                  {"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de 30 jours. Conform\u00e9ment au r\u00e8glement europ\u00e9en n\u00b0524/2013, l'inscrit peut recourir \u00e0 la plateforme europ\u00e9enne de r\u00e9solution des litiges en ligne : "}
+                  {"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de trente jours. Conform\u00e9ment au r\u00e8glement europ\u00e9en n\u00b0524/2013, l'inscrit peut recourir \u00e0 la plateforme europ\u00e9enne de r\u00e9solution des litiges en ligne : "}
                   <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">{"ec.europa.eu/consumers/odr"}</a>
                 </p>
                 <p>
@@ -1198,7 +1198,7 @@ export default function TermsOfUsePage() {
                       <p>{"Messagerie : "}<Link href="/support/mailbox" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">Messagerie de support</Link></p>
                     </div>
                     <p className="text-white/40 text-xs mt-3">
-                      {"VISUAL s'engage à répondre à toute demande dans un délai de 15 jours ouvrés."}
+                      {"VISUAL s'engage \u00e0 r\u00e9pondre \u00e0 toute demande dans un d\u00e9lai de quinze jours ouvr\u00e9s."}
                     </p>
                   </div>
                 </div>
@@ -1255,7 +1255,7 @@ export default function TermsOfUsePage() {
           </Section>
 
           {/* 17. Droit de retractation */}
-          <Section num={17} title="Droit de r\u00e9tractation">
+          <Section num={17} title="Droit de rétractation">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>

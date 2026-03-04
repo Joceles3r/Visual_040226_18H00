@@ -247,7 +247,7 @@ export default function CookiesPage() {
                   </ul>
                 </div>
                 <p className="text-white/50 text-sm">
-                  {"Le consentement est conservé pour une durée de 6 mois. Passé ce délai, VISUAL vous redemandera votre accord."}
+                  {"Le consentement est conserv\u00e9 pour une dur\u00e9e de six mois. Pass\u00e9 ce d\u00e9lai, VISUAL vous redemandera votre accord."}
                 </p>
               </CardContent>
             </Card>

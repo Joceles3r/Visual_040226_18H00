@@ -408,7 +408,7 @@ export default function CGVPage() {
 
             {/* Article 11bis - VISUpoints et paiement hybride */}
             <Section num={0} title={"VISUpoints et paiement hybride"} icon={Star}>
-              <P>{"Les VISUpoints ne constituent pas une monnaie \u00e9lectronique et ne peuvent \u00eatre convertis librement en num\u00e9raire. Ils constituent un avantage promotionnel interne \u00e0 VISUAL au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de 100 VISUpoints = 1 EUR. Plafonds : mineurs (16\u201318 ans) 10\u00a0000 points (100\u20ac), majeurs 2\u00a0500 points."}</P>
+              <P>{"Les VISUpoints ne constituent pas une monnaie \u00e9lectronique et ne peuvent \u00eatre convertis librement en num\u00e9raire. Ils constituent un avantage promotionnel interne \u00e0 VISUAL au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de cent VISUpoints \u00e9quivalent un euro. Plafonds : mineurs (seize \u00e0 dix-huit ans) dix mille points (cent euros), majeurs deux mille cinq cents points."}</P>
 
               <Card className="bg-slate-800/40 border-white/5 mt-3 mb-3">
                 <CardContent className="pt-5 space-y-3">

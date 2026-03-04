@@ -155,8 +155,8 @@ export default function PrivacyPolicyPage() {
                   title: "Données financières et transactionnelles",
                   subtitle: "Liées à l'investissement participatif et aux paiements",
                   items: [
-                    "Caution versée (10 EUR créateurs / 20 EUR investisseurs)",
-                    "Historique des investissements (2\u201320 EUR par projet, montants, dates, projets ciblés)",
+                    "Caution vers\u00e9e (dix euros cr\u00e9ateurs, vingt euros investisseurs)",
+                    "Historique des investissements (deux \u00e0 vingt euros par projet, montants, dates, projets cibl\u00e9s)",
                     "Solde du portefeuille VISUAL et VISUpoints accumulés",
                     "Transactions Stripe (identifiant Stripe Connect, retraits, reversements)",
                     "IBAN/coordonnées bancaires pour les retraits (traités par Stripe, non stockés par VISUAL)",
@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
                   title: "Données de navigation et d'usage",
                   subtitle: "Collectées automatiquement lors de l'utilisation",
                   items: [
-                    "Adresse IP (anonymisée après 13 mois)",
+                    "Adresse IP (anonymis\u00e9e apr\u00e8s treize mois)",
                     "Type de navigateur, système d'exploitation, résolution d'écran",
                     "Pages consultées, contenus visionnés/lus/écoutés, durée de consultation",
                     "Préférences d'interface (langue, thème, catégories favorites)",
@@ -249,7 +249,7 @@ export default function PrivacyPolicyPage() {
                         { purpose: "Diffusion et hébergement des contenus créés", basis: "Exécution du contrat", duration: "Durée du compte + 1 an" },
                         { purpose: "Calcul et versement des gains (VISUpoints, retours)", basis: "Exécution du contrat", duration: "10 ans (obligations comptables)" },
                         { purpose: "Classements (TOP Visiteur, Porteur, Infoporteur, Podcasteur)", basis: "Intérêt légitime", duration: "Durée du compte" },
-                        { purpose: "Amélioration de la plateforme et statistiques", basis: "Intérêt légitime", duration: "13 mois (données anonymisées)" },
+                        { purpose: "Am\u00e9lioration de la plateforme et statistiques", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "treize mois (donn\u00e9es anonymis\u00e9es)" },
                         { purpose: "Notifications d'engagement personnalis\u00e9es (VISUpoints)", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
                         { purpose: "Paiement hybride (euros + VISUpoints)", basis: "Ex\u00e9cution du contrat", duration: "10 ans (obligations comptables)" },
                         { purpose: "Visual Social : publication de posts, r\u00e9actions et tags", basis: "Ex\u00e9cution du contrat", duration: "Dur\u00e9e du compte + 1 an" },
@@ -406,7 +406,7 @@ export default function PrivacyPolicyPage() {
                     { data: "Données financières (investissements, cautions, gains)", duration: "10 ans après la dernière transaction (obligation comptable)", icon: CreditCard },
                     { data: "Classements et VISUpoints", duration: "Dur\u00e9e du compte (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: BarChart3 },
                     { data: "Posts et r\u00e9actions Visual Social", duration: "Dur\u00e9e du compte + 1 an (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: MessageSquare },
-                    { data: "Données de navigation (logs, IP)", duration: "13 mois (anonymisées ensuite)", icon: Globe },
+                    { data: "Donn\u00e9es de navigation (logs, IP)", duration: "treize mois (anonymis\u00e9es ensuite)", icon: Globe },
                     { data: "Données anti-fraude et conformité", duration: "5 ans après la clôture du compte", icon: AlertTriangle },
                   ].map((row) => {
                     const IconComp = row.icon
@@ -558,7 +558,7 @@ export default function PrivacyPolicyPage() {
                   {"VISUAL se réserve le droit de modifier cette politique de confidentialité pour l'adapter aux évolutions réglementaires, techniques ou fonctionnelles de la plateforme."}
                 </p>
                 <p className="text-white/70 leading-relaxed">
-                  {"En cas de modification substantielle, vous serez informé(e) par e-mail et/ou par notification sur la plateforme au moins 30 jours avant l'entrée en vigueur des changements. Vous aurez la possibilité de consulter les modifications, d'accepter les nouvelles conditions ou de supprimer votre compte."}
+                  {"En cas de modification substantielle, vous serez inform\u00e9(e) par e-mail et/ou par notification sur la plateforme au moins trente jours avant l'entr\u00e9e en vigueur des changements. Vous aurez la possibilit\u00e9 de consulter les modifications, d'accepter les nouvelles conditions ou de supprimer votre compte."}
                 </p>
               </CardContent>
             </Card>
@@ -578,7 +578,7 @@ export default function PrivacyPolicyPage() {
                       <span className="text-white font-medium text-sm">{"D\u00e9l\u00e9gu\u00e9 \u00e0 la Protection des Donn\u00e9es"}</span>
                     </div>
                     <p className="text-white/50 text-sm">dpo@visual-platform.com</p>
-                    <p className="text-white/35 text-xs">{"D\u00e9lai de r\u00e9ponse : 1 mois maximum (RGPD, article 12)"}</p>
+                    <p className="text-white/35 text-xs">{"D\u00e9lai de r\u00e9ponse : un mois maximum (RGPD, article douze)"}</p>
                   </div>
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
                     <div className="flex items-center gap-2">
