@@ -34,6 +34,7 @@ import {
   type VisualRole,
 } from "@/components/navigation"
 import { useAuth } from "@/lib/auth-context"
+import { MinorStatusBadge } from "@/components/minors/minor-status-badge"
 
 function MenuBlock({
   label,
@@ -169,6 +170,9 @@ function MobileMenu({
           <div className="pt-4 border-t border-white/10 space-y-2">
             {isAuthed ? (
               <>
+                <div className="flex justify-center mb-2">
+                  <MinorStatusBadge />
+                </div>
                 <div className="flex justify-center mb-2">
                   <ReportButton
                     targetId="general"
@@ -311,6 +315,11 @@ export function VisualHeader() {
                     variant="icon"
                     size="sm"
                   />
+                </div>
+
+                {/* Minor status badge */}
+                <div className="hidden md:block">
+                  <MinorStatusBadge />
                 </div>
 
                 {/* User info desktop */}

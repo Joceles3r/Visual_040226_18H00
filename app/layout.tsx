@@ -6,6 +6,7 @@ import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
 import { StripeModeBanner } from "@/components/stripe-mode-banner"
 import { CookieConsentBanner } from "@/components/cookie-consent"
+import { MinorClientGuard } from "@/components/minors/minor-client-guard"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -39,7 +40,10 @@ export default function RootLayout({
     <html lang="fr" className="dark">
       <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
         <StripeModeBanner />
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <MinorClientGuard />
+          {children}
+        </AuthProvider>
         <CookieConsentBanner />
         <Analytics />
       </body>
