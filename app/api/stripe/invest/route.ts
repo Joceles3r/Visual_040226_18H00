@@ -9,6 +9,7 @@ import {
 import { checkSelfInvestment } from "@/lib/visual-rules-engine";
 import { ErrorCodes, apiError } from "@/lib/api-errors";
 import { assertInvestmentsOpenForContent } from "@/lib/rules/rule-of-100";
+import { gateAction, buildSecurityDoc } from "@/lib/security/risk-gate";
 
 /**
  * POST /api/stripe/invest
@@ -78,6 +79,46 @@ export async function POST(req: NextRequest) {
         "Verification d'identite (KYC) requise avant tout investissement. Connectez Stripe Identity pour verifier votre identite.",
         403
       );
+    }
+
+    // ── Risk Gate (VPN / verification level / step-up) ──
+    {
+      let secFields: Record<string, unknown> = {};
+      try {
+        const sRows = await sql`
+          SELECT verification_level, step_up_phone_verified, step_up_totp_enabled,
+                 step_up_last_at, risk_vpn_suspected, risk_proxy_suspected,
+                 risk_tor_suspected
+          FROM users WHERE id = ${userId}
+        `;
+        if (sRows.length) secFields = sRows[0] as Record<string, unknown>;
+      } catch { /* columns may not exist yet */ }
+
+      const secDoc = buildSecurityDoc({
+        uid: userId,
+        emailVerified: true,
+        roles,
+        kycVerified: !!user.kyc_verified,
+        riskFlags: {
+          vpnSuspected: (secFields.risk_vpn_suspected as boolean) ?? false,
+          proxySuspected: (secFields.risk_proxy_suspected as boolean) ?? false,
+          torSuspected: (secFields.risk_tor_suspected as boolean) ?? false,
+        },
+        stepUp: {
+          phoneVerified: (secFields.step_up_phone_verified as boolean) ?? false,
+          totpEnabled: (secFields.step_up_totp_enabled as boolean) ?? false,
+          lastStepUpAt: (secFields.step_up_last_at as string) ?? undefined,
+        },
+      });
+
+      const gate = gateAction(secDoc, "INVEST", amountEur * 100);
+      if (!gate.allowed) {
+        return apiError(
+          ErrorCodes.ERR_VPN_STEP_UP_REQUIRED,
+          gate.message,
+          403
+        );
+      }
     }
 
     // ── Role check ──

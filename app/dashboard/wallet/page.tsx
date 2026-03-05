@@ -15,6 +15,8 @@ import {
   CAUTION_EUR, STRIPE_CONFIG, VISUPOINTS_PER_EUR,
   VISUPOINTS_CONVERSION_THRESHOLD,
 } from "@/lib/payout/constants"
+import { SecurityGate } from "@/components/security/security-gate"
+import { VerificationBadges } from "@/components/security/verification-badges"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -193,7 +195,24 @@ export default function WalletPage() {
           </h1>
           <p className="text-white/50 mt-1">{"Centre financier VISUAL \u2014 g\u00e9rez vos gains, investissements et retraits"}</p>
         </div>
+        <VerificationBadges
+          verificationLevel={user?.kycVerified ? 2 : 0}
+          vpnSuspected={false}
+          isVerifiedCreator={user?.kycVerified && user?.roles?.includes("creator")}
+          withdrawalPending72h={pendingWithdrawals.some((w: { status: string }) => w.status === "held" || w.status === "processing")}
+        />
       </div>
+
+      {/* Security Gate -- VPN / verification warnings */}
+      <SecurityGate
+        blocked={!user?.kycVerified && (wallet.availableCents >= STRIPE_CONFIG.minWithdrawCents)}
+        title="Verification requise pour les retraits"
+        message="Pour securiser vos transactions, completez la verification d'identite (KYC) via Stripe Connect avant de pouvoir retirer vos gains."
+        variant="warning"
+        ctaLabel="Verifier mon identite"
+        onCta={handleConnectStripe}
+        suggestedAction="KYC"
+      />
 
       {isLoading && (
         <div className="flex items-center justify-center py-16">

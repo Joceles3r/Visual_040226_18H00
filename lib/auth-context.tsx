@@ -33,6 +33,20 @@ export interface User {
     pending: number
   }
   visupoints?: number
+  // Security fields (Identity + VPN Risk Gate)
+  verificationLevel?: 0 | 1 | 2
+  riskFlags?: {
+    vpnSuspected?: boolean
+    proxySuspected?: boolean
+    torSuspected?: boolean
+    datacenterIp?: boolean
+    countryMismatch?: boolean
+  }
+  stepUp?: {
+    phoneVerified?: boolean
+    totpEnabled?: boolean
+    lastStepUpAt?: string
+  }
 }
 
 interface AuthContextType {
@@ -74,6 +88,19 @@ const MOCK_USER: User = {
   wallet: {
     available: 0,
     pending: 0,
+  },
+  verificationLevel: 0,
+  riskFlags: {
+    vpnSuspected: false,
+    proxySuspected: false,
+    torSuspected: false,
+    datacenterIp: false,
+    countryMismatch: false,
+  },
+  stepUp: {
+    phoneVerified: false,
+    totpEnabled: false,
+    lastStepUpAt: undefined,
   },
 }
 

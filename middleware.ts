@@ -38,9 +38,14 @@ const RATE_CONFIGS: Record<RouteClass, { max: number; window: number }> = {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Only apply to API routes
+  // ── Security headers for ALL routes (not just /api) ──
   if (!pathname.startsWith("/api")) {
-    return NextResponse.next();
+    const res = NextResponse.next();
+    res.headers.set("X-Frame-Options", "DENY");
+    res.headers.set("X-Content-Type-Options", "nosniff");
+    res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    return res;
   }
 
   const routeClass = classifyRoute(pathname);
@@ -132,5 +137,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

@@ -3,6 +3,7 @@ import { stripe } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { STRIPE_CONFIG } from "@/lib/payout/constants";
 import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
+import { gateAction, buildSecurityDoc } from "@/lib/security/risk-gate";
 
 /** Seuil en centimes au-dela duquel un retrait passe en revue manuelle 72h */
 const REVIEW_THRESHOLD_CENTS = 100_000; // 1000 EUR
@@ -42,6 +43,50 @@ export const POST = withErrorHandler(async (req: Request) => {
       "Account is suspended or banned. Withdrawals are blocked.",
       403
     );
+  }
+
+  // ── Risk Gate (VPN / verification level / step-up) ──
+  {
+    let secFields: Record<string, unknown> = {};
+    try {
+      const sRows = await sql`
+        SELECT verification_level, step_up_phone_verified, step_up_totp_enabled,
+               step_up_last_at, risk_vpn_suspected, risk_proxy_suspected,
+               risk_tor_suspected, risk_datacenter_ip, risk_country_mismatch,
+               stripe_connect_status, withdrawal_hold_hours
+        FROM users WHERE id = ${userId}
+      `;
+      if (sRows.length) secFields = sRows[0] as Record<string, unknown>;
+    } catch { /* columns may not exist yet */ }
+
+    const secDoc = buildSecurityDoc({
+      uid: userId,
+      emailVerified: true,
+      kycVerified: true, // already passed Stripe Connect check below
+      riskFlags: {
+        vpnSuspected: (secFields.risk_vpn_suspected as boolean) ?? false,
+        proxySuspected: (secFields.risk_proxy_suspected as boolean) ?? false,
+        torSuspected: (secFields.risk_tor_suspected as boolean) ?? false,
+        datacenterIp: (secFields.risk_datacenter_ip as boolean) ?? false,
+        countryMismatch: (secFields.risk_country_mismatch as boolean) ?? false,
+      },
+      stepUp: {
+        phoneVerified: (secFields.step_up_phone_verified as boolean) ?? false,
+        totpEnabled: (secFields.step_up_totp_enabled as boolean) ?? false,
+        lastStepUpAt: (secFields.step_up_last_at as string) ?? undefined,
+      },
+      stripeConnect: {
+        status: (secFields.stripe_connect_status as "verified") ?? "verified",
+      },
+      withdrawalPolicy: {
+        largeWithdrawalHoldHours: (secFields.withdrawal_hold_hours as number) ?? 72,
+      },
+    });
+
+    const gate = gateAction(secDoc, "REQUEST_WITHDRAWAL", amountCents);
+    if (!gate.allowed) {
+      return apiError(ErrorCodes.ERR_VPN_STEP_UP_REQUIRED, gate.message, 403);
+    }
   }
 
   // Check wallet balance
