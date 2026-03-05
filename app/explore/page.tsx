@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useSearchParams } from "next/navigation"
-import { useState, useMemo, Suspense } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
+import { useState, useMemo, useEffect, useCallback, Suspense } from "react"
 import {
   Search, Film, FileText, Mic, Compass, SlidersHorizontal, Eye, UserPlus,
   ChevronLeft, ChevronRight, Play, TrendingUp, Users, Clock, BookOpen, Headphones,
@@ -367,13 +367,37 @@ function Pagination({
 function ExploreContent() {
   const { isAuthed, roles } = useAuth()
   const searchParams = useSearchParams()
-  const initialType = searchParams.get("type") as ContentType | null
+  const router = useRouter()
+  const urlType = searchParams.get("type") as ContentType | null
 
-  const [activeFilter, setActiveFilter] = useState<ContentType | "all">(initialType || "all")
+  const [activeFilter, setActiveFilter] = useState<ContentType | "all">(urlType || "all")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("Tous")
   const [sortBy, setSortBy] = useState("recent")
   const [currentPage, setCurrentPage] = useState(1)
+
+  // Sync filter state whenever URL query param changes (e.g. from header nav)
+  useEffect(() => {
+    const newFilter = urlType || "all"
+    if (newFilter !== activeFilter) {
+      setActiveFilter(newFilter)
+      setSelectedCategory("Tous")
+      setCurrentPage(1)
+    }
+  }, [urlType])
+
+  // Listen for custom visual-nav events from header to force re-read of URL params
+  useEffect(() => {
+    const handleVisualNav = () => {
+      const params = new URLSearchParams(window.location.search)
+      const freshType = (params.get("type") as ContentType | null) || "all"
+      setActiveFilter(freshType)
+      setSelectedCategory("Tous")
+      setCurrentPage(1)
+    }
+    window.addEventListener("visual-nav", handleVisualNav)
+    return () => window.removeEventListener("visual-nav", handleVisualNav)
+  }, [])
 
   const categories =
     activeFilter === "video" ? VIDEO_CATEGORIES
@@ -448,11 +472,17 @@ function ExploreContent() {
     return [...pool].sort((a, b) => b.investorCount - a.investorCount).slice(0, 6)
   }, [activeFilter])
 
-  const handleFilterChange = (filter: ContentType | "all") => {
+  const handleFilterChange = useCallback((filter: ContentType | "all") => {
     setActiveFilter(filter)
     setSelectedCategory("Tous")
     setCurrentPage(1)
-  }
+    // Sync URL so header nav and browser back/forward stay in sync
+    if (filter === "all") {
+      router.push("/explore", { scroll: false })
+    } else {
+      router.push(`/explore?type=${filter}`, { scroll: false })
+    }
+  }, [router])
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)

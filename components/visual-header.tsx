@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ReportButton } from "@/components/report-button"
@@ -45,12 +46,14 @@ function MenuBlock({
   items: NavItem[]
   roles: VisualRole[]
 }) {
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
   const visibleItems = items.filter((it) => hasAnyRole(roles, it.roles))
 
   if (visibleItems.length === 0) return null
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -69,14 +72,34 @@ function MenuBlock({
         {visibleItems.map((it) => {
           const Icon = it.icon
           return (
-            <Link key={it.href + it.label} href={it.href} className="w-full">
-              <DropdownMenuItem className="focus:bg-emerald-600/30 focus:text-white cursor-pointer group py-3">
-                {Icon ? (
-                  <Icon className="mr-3 h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
-                ) : null}
-                <span className="font-medium">{it.label}</span>
-              </DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem
+              key={it.href + it.label}
+              className="focus:bg-emerald-600/30 focus:text-white cursor-pointer group py-3"
+              onSelect={(e) => {
+                e.preventDefault()
+                setOpen(false)
+                // Use window.location for query-param navigation on same path
+                // to guarantee a full re-render (router.push doesn't always
+                // trigger useSearchParams updates on same-path nav)
+                const target = new URL(it.href, window.location.origin)
+                const current = new URL(window.location.href)
+                if (target.pathname === current.pathname) {
+                  // Same path, possibly different query params -- force refresh
+                  router.replace(it.href, { scroll: false })
+                  // Dispatch a custom event so the explore page picks it up
+                  setTimeout(() => {
+                    window.dispatchEvent(new Event("visual-nav"))
+                  }, 50)
+                } else {
+                  router.push(it.href)
+                }
+              }}
+            >
+              {Icon ? (
+                <Icon className="mr-3 h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+              ) : null}
+              <span className="font-medium">{it.label}</span>
+            </DropdownMenuItem>
           )
         })}
       </DropdownMenuContent>
@@ -99,11 +122,27 @@ function MobileMenu({
   isAdmin: boolean
   onLogout: () => void
 }) {
+  const router = useRouter()
+
   if (!isOpen) return null
 
   const allMenus = [DISCOVER_MENU, EXPLORE_MENU]
   if (isAuthed) {
     allMenus.push(MY_SPACE_MENU)
+  }
+
+  const navigateTo = (href: string) => {
+    onClose()
+    const target = new URL(href, window.location.origin)
+    const current = new URL(window.location.href)
+    if (target.pathname === current.pathname) {
+      router.replace(href, { scroll: false })
+      setTimeout(() => {
+        window.dispatchEvent(new Event("visual-nav"))
+      }, 50)
+    } else {
+      router.push(href)
+    }
   }
 
   return (
@@ -136,15 +175,14 @@ function MobileMenu({
                   {visibleItems.map((item) => {
                     const Icon = item.icon
                     return (
-                      <Link
+                      <button
                         key={item.href + item.label}
-                        href={item.href}
-                        onClick={onClose}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-emerald-600/20 text-white/90 hover:text-white transition-colors"
+                        onClick={() => navigateTo(item.href)}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-emerald-600/20 text-white/90 hover:text-white transition-colors text-left"
                       >
                         {Icon && <Icon className="h-5 w-5 text-emerald-400" />}
                         <span>{item.label}</span>
-                      </Link>
+                      </button>
                     )
                   })}
                 </div>
