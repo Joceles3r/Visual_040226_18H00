@@ -6,7 +6,8 @@ import { useSearchParams } from "next/navigation"
 import { useState, useMemo, Suspense } from "react"
 import {
   Search, Film, FileText, Mic, Compass, SlidersHorizontal, Eye, UserPlus,
-  ChevronLeft, ChevronRight, Play, TrendingUp, Users, Clock, BookOpen, Headphones
+  ChevronLeft, ChevronRight, Play, TrendingUp, Users, Clock, BookOpen, Headphones,
+  Lock, Unlock, Heart, Download, Flame, Award, Star, Clapperboard, Shield
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,10 +36,56 @@ import { useAuth } from "@/lib/auth-context"
 
 const ITEMS_PER_PAGE = 16
 
+/* ---------- VISUAL Badges ---------- */
+function getVisualBadges(content: Content) {
+  const badges: { label: string; icon: typeof Flame; color: string; bg: string }[] = []
+  const daysSinceCreation = Math.floor(
+    (Date.now() - new Date(content.createdAt).getTime()) / (1000 * 60 * 60 * 24)
+  )
+  const fundingPercent = (content.currentInvestment / content.investmentGoal) * 100
+
+  if (daysSinceCreation <= 14) {
+    badges.push({ label: "Nouveau", icon: Clapperboard, color: "text-sky-300", bg: "bg-sky-500/80" })
+  }
+  if (content.investorCount >= 50) {
+    badges.push({ label: "Tendance", icon: Flame, color: "text-orange-300", bg: "bg-orange-500/80" })
+  }
+  if (content.totalVotes >= 250) {
+    badges.push({ label: "Soutenu", icon: Star, color: "text-amber-300", bg: "bg-amber-500/80" })
+  }
+  if (fundingPercent >= 90) {
+    badges.push({ label: "Top projet", icon: Award, color: "text-emerald-300", bg: "bg-emerald-500/80" })
+  }
+  return badges
+}
+
+/* ---------- Micro Messages ---------- */
+function MicroMessage({ roles }: { roles: string[] }) {
+  let message = "Chaque visionnage soutient les cr\u00e9ateurs."
+  let icon = Eye
+
+  if (roles.includes("porter") || roles.includes("infoporter") || roles.includes("podcaster")) {
+    message = "Votre projet peut trouver son public sur VISUAL."
+    icon = Clapperboard
+  } else if (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener")) {
+    message = "Soutenez les projets qui vous inspirent."
+    icon = Heart
+  }
+
+  const Icon = icon
+  return (
+    <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
+      <Icon className="h-4 w-4 text-emerald-400 shrink-0" />
+      <span className="text-emerald-400/80 text-xs font-medium">{message}</span>
+    </div>
+  )
+}
+
 /* ---------- Hero Banner ---------- */
 function HeroBanner({ content, typeLabel }: { content: Content; typeLabel: string }) {
+  const badges = getVisualBadges(content)
   return (
-    <div className="relative w-full h-[340px] sm:h-[400px] rounded-2xl overflow-hidden mb-8">
+    <div className="relative w-full h-[340px] sm:h-[420px] rounded-2xl overflow-hidden mb-8">
       <Image
         src={content.coverUrl || "/placeholder.svg"}
         alt={content.title}
@@ -49,9 +96,18 @@ function HeroBanner({ content, typeLabel }: { content: Content; typeLabel: strin
       <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
       <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10">
-        <Badge className="w-fit mb-3 bg-emerald-600/90 text-white border-0 text-xs tracking-wider uppercase">
-          {typeLabel}
-        </Badge>
+        {/* Badges */}
+        <div className="flex gap-1.5 mb-3">
+          <Badge className="bg-emerald-600/90 text-white border-0 text-xs tracking-wider uppercase">
+            {typeLabel}
+          </Badge>
+          {badges.map((b) => (
+            <Badge key={b.label} className={`${b.bg} text-white border-0 text-xs`}>
+              <b.icon className="h-3 w-3 mr-1" />
+              {b.label}
+            </Badge>
+          ))}
+        </div>
         <h2 className="text-2xl sm:text-4xl font-bold text-white mb-2 max-w-xl text-balance">
           {content.title}
         </h2>
@@ -67,20 +123,20 @@ function HeroBanner({ content, typeLabel }: { content: Content; typeLabel: strin
           </span>
           <span className="text-white/20">|</span>
           <span className="text-emerald-400 text-sm font-medium">
-            {Math.round((content.currentInvestment / content.investmentGoal) * 100)}% financ\u00e9
+            {Math.round((content.currentInvestment / content.investmentGoal) * 100)}% {"financ\u00e9"}
           </span>
         </div>
         <div className="flex gap-3">
           <Link href={`/video/${content.id}`}>
             <Button className="bg-emerald-600 hover:bg-emerald-500 text-white">
               <Play className="h-4 w-4 mr-2 fill-current" />
-              D\u00e9couvrir
+              {"Voir l'extrait"}
             </Button>
           </Link>
           <Link href={`/video/${content.id}`}>
             <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 bg-white/5">
               <TrendingUp className="h-4 w-4 mr-2" />
-              Investir
+              Soutenir
             </Button>
           </Link>
         </div>
@@ -89,11 +145,13 @@ function HeroBanner({ content, typeLabel }: { content: Content; typeLabel: strin
   )
 }
 
-/* ---------- Streaming Card ---------- */
+/* ---------- Streaming Card with Buttons ---------- */
 function StreamingCard({ content }: { content: Content }) {
-  const { isAuthed } = useAuth()
+  const { isAuthed, roles } = useAuth()
   const progressPercent = Math.min((content.currentInvestment / content.investmentGoal) * 100, 100)
   const cType = content.contentType
+  const badges = getVisualBadges(content)
+  const isLocked = !isAuthed && !content.isFree
 
   const badgeConfig = {
     video: { bg: "bg-red-600/90", icon: Film, label: "Vid\u00e9o" },
@@ -102,60 +160,105 @@ function StreamingCard({ content }: { content: Content }) {
   }[cType]
 
   return (
-    <Link href={`/video/${content.id}`} className="group block">
+    <div className="group block">
       <div className="relative rounded-xl overflow-hidden bg-slate-900/60 border border-white/5 hover:border-emerald-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-900/15 hover:-translate-y-1">
         {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <Image
-            src={content.coverUrl || "/placeholder.svg"}
-            alt={content.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        <Link href={`/video/${content.id}`}>
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image
+              src={content.coverUrl || "/placeholder.svg"}
+              alt={content.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
-          {/* Badge type */}
-          <Badge className={`absolute top-2.5 left-2.5 ${badgeConfig.bg} text-white border-0 text-[10px] px-2 py-0.5`}>
-            <badgeConfig.icon className="h-2.5 w-2.5 mr-1" />
-            {badgeConfig.label}
-          </Badge>
-
-          {/* Free / Lock */}
-          {content.isFree && (
-            <Badge className="absolute top-2.5 right-2.5 bg-emerald-600/90 text-white border-0 text-[10px] px-2 py-0.5">
-              Gratuit
+            {/* Badge type */}
+            <Badge className={`absolute top-2.5 left-2.5 ${badgeConfig.bg} text-white border-0 text-[10px] px-2 py-0.5`}>
+              <badgeConfig.icon className="h-2.5 w-2.5 mr-1" />
+              {badgeConfig.label}
             </Badge>
-          )}
 
-          {/* Duration / Meta */}
-          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 text-white/90 text-[11px] bg-black/70 px-2 py-0.5 rounded-md backdrop-blur-sm">
-            {cType === "video" && <><Clock className="h-3 w-3" />{content.duration}</>}
-            {cType === "text" && <><BookOpen className="h-3 w-3" />{content.wordCount?.toLocaleString()} mots</>}
-            {cType === "podcast" && <><Headphones className="h-3 w-3" />{content.episodeCount} ep.</>}
-          </div>
+            {/* VISUAL badges row */}
+            {badges.length > 0 && (
+              <div className="absolute top-9 left-2.5 flex gap-1">
+                {badges.slice(0, 2).map((b) => (
+                  <span key={b.label} className={`${b.bg} text-white text-[8px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5`}>
+                    <b.icon className="h-2 w-2" />
+                    {b.label}
+                  </span>
+                ))}
+              </div>
+            )}
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-            <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-              <Play className="h-5 w-5 text-white fill-white" />
+            {/* Free / Lock */}
+            {content.isFree ? (
+              <Badge className="absolute top-2.5 right-2.5 bg-emerald-600/90 text-white border-0 text-[10px] px-2 py-0.5">
+                Gratuit
+              </Badge>
+            ) : isLocked ? (
+              <Badge className="absolute top-2.5 right-2.5 bg-slate-700/90 text-white/70 border-0 text-[10px] px-2 py-0.5">
+                <Lock className="h-2.5 w-2.5 mr-1" />
+                Extrait
+              </Badge>
+            ) : null}
+
+            {/* Duration / Meta */}
+            <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 text-white/90 text-[11px] bg-black/70 px-2 py-0.5 rounded-md backdrop-blur-sm">
+              {cType === "video" && <><Clock className="h-3 w-3" />{content.duration}</>}
+              {cType === "text" && <><BookOpen className="h-3 w-3" />{content.wordCount?.toLocaleString()} mots</>}
+              {cType === "podcast" && <><Headphones className="h-3 w-3" />{content.episodeCount} {"ep."}</>}
+            </div>
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                <Play className="h-5 w-5 text-white fill-white" />
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Content info */}
         <div className="p-3.5 space-y-2">
-          <h3 className="font-semibold text-white text-sm line-clamp-1 group-hover:text-emerald-400 transition-colors">
-            {content.title}
-          </h3>
+          <Link href={`/video/${content.id}`}>
+            <h3 className="font-semibold text-white text-sm line-clamp-1 group-hover:text-emerald-400 transition-colors">
+              {content.title}
+            </h3>
+          </Link>
           <p className="text-white/50 text-xs">{content.creatorName}</p>
 
           {/* Progress bar */}
           <div className="space-y-1">
             <Progress value={progressPercent} className="h-1.5 bg-slate-800" />
             <div className="flex justify-between text-[10px] text-white/40">
-              <span className="text-emerald-400 font-medium">{content.currentInvestment.toLocaleString()}\u20ac</span>
-              <span>sur {content.investmentGoal.toLocaleString()}\u20ac</span>
+              <span className="text-emerald-400 font-medium">{content.currentInvestment.toLocaleString()}{"\u20ac"}</span>
+              <span>sur {content.investmentGoal.toLocaleString()}{"\u20ac"}</span>
             </div>
+          </div>
+
+          {/* Action buttons row */}
+          <div className="flex gap-1.5 pt-1">
+            <Link href={`/video/${content.id}`} className="flex-1">
+              <Button size="sm" variant="ghost" className="w-full h-7 text-[10px] text-white/60 hover:text-white hover:bg-white/10 px-1.5">
+                <Play className="h-3 w-3 mr-1 fill-current" />
+                Extrait
+              </Button>
+            </Link>
+            {isAuthed && !content.isFree ? (
+              <Link href={`/video/${content.id}`} className="flex-1">
+                <Button size="sm" variant="ghost" className="w-full h-7 text-[10px] text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 px-1.5">
+                  <Unlock className="h-3 w-3 mr-1" />
+                  {"D\u00e9bloquer"}
+                </Button>
+              </Link>
+            ) : null}
+            <Link href={`/video/${content.id}`} className="flex-1">
+              <Button size="sm" variant="ghost" className="w-full h-7 text-[10px] text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 px-1.5">
+                <Heart className="h-3 w-3 mr-1" />
+                Soutenir
+              </Button>
+            </Link>
           </div>
 
           {/* Investors + Report */}
@@ -178,7 +281,7 @@ function StreamingCard({ content }: { content: Content }) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 
@@ -262,7 +365,7 @@ function Pagination({
 
 /* ---------- Main Page ---------- */
 function ExploreContent() {
-  const { isAuthed } = useAuth()
+  const { isAuthed, roles } = useAuth()
   const searchParams = useSearchParams()
   const initialType = searchParams.get("type") as ContentType | null
 
@@ -337,6 +440,14 @@ function ExploreContent() {
     return [...pool].sort((a, b) => b.investorCount - a.investorCount)[0] || null
   }, [activeFilter])
 
+  // Trending row = top 6 by investorCount for current type
+  const trendingContents = useMemo(() => {
+    const pool = activeFilter !== "all"
+      ? ALL_CONTENTS.filter((c) => c.contentType === activeFilter)
+      : ALL_CONTENTS
+    return [...pool].sort((a, b) => b.investorCount - a.investorCount).slice(0, 6)
+  }, [activeFilter])
+
   const handleFilterChange = (filter: ContentType | "all") => {
     setActiveFilter(filter)
     setSelectedCategory("Tous")
@@ -354,7 +465,7 @@ function ExploreContent() {
 
       <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
-          {/* Header */}
+          {/* Header + Micro Messages */}
           <div className="mb-6">
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
               <h1 className="text-3xl md:text-4xl font-bold text-white">
@@ -363,9 +474,11 @@ function ExploreContent() {
               <span className="hidden sm:block text-white/15">|</span>
               <VisualSlogan size="xs" opacity="medium" />
             </div>
-            <p className="text-white/50 text-sm">
+            <p className="text-white/50 text-sm mb-3">
               {"D\u00e9couvrez et investissez dans des projets audiovisuels, litt\u00e9raires et podcasts uniques"}
             </p>
+            {/* Micro-message contextuel */}
+            {isAuthed && <MicroMessage roles={roles} />}
           </div>
 
           {/* Guest Banner */}
@@ -376,7 +489,7 @@ function ExploreContent() {
                   <Eye className="h-5 w-5 text-slate-400" />
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm">{"Vous naviguez en tant qu'invit\u00e9"}</p>
+                  <p className="text-white font-medium text-sm">{"Regarde \u00b7 Investis \u00b7 Gagne"}</p>
                   <p className="text-white/50 text-xs">{"Seuls les contenus gratuits et les extraits sont accessibles. Inscrivez-vous pour d\u00e9bloquer toute la plateforme."}</p>
                 </div>
               </div>
@@ -416,12 +529,45 @@ function ExploreContent() {
           {/* Hero Banner */}
           {heroContent && <HeroBanner content={heroContent} typeLabel={typeLabels[activeFilter]} />}
 
+          {/* Trending Row */}
+          {trendingContents.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+                <Flame className="h-5 w-5 text-orange-400" />
+                {"Tendances"}
+              </h3>
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+                {trendingContents.map((c) => (
+                  <Link key={c.id} href={`/video/${c.id}`} className="shrink-0 w-[180px] group/trend">
+                    <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-2">
+                      <Image
+                        src={c.coverUrl || "/placeholder.svg"}
+                        alt={c.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover/trend:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                      <div className="absolute bottom-2 left-2 right-2">
+                        <p className="text-white text-xs font-medium line-clamp-1">{c.title}</p>
+                        <p className="text-white/50 text-[10px]">{c.creatorName}</p>
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 bg-orange-500/80 text-white text-[8px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                        <Flame className="h-2 w-2" />
+                        {c.investorCount}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Search and Filters */}
           <div className="flex flex-col md:flex-row gap-3 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30" />
               <Input
-                placeholder="Rechercher un projet, un cr\u00e9ateur..."
+                placeholder={"Rechercher un projet, un cr\u00e9ateur..."}
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1) }}
                 className="pl-10 bg-slate-900/60 border-white/10 text-white placeholder:text-white/30 focus:border-emerald-500/50 h-11"
@@ -432,7 +578,7 @@ function ExploreContent() {
                 <Select value={selectedCategory} onValueChange={(v) => { setSelectedCategory(v); setCurrentPage(1) }}>
                   <SelectTrigger className="w-[180px] bg-slate-900/60 border-white/10 text-white h-11">
                     <SlidersHorizontal className="h-4 w-4 mr-2" />
-                    <SelectValue placeholder="Cat\u00e9gorie" />
+                    <SelectValue placeholder={"Cat\u00e9gorie"} />
                   </SelectTrigger>
                   <SelectContent className="bg-slate-900 border-white/10">
                     {categories.map((cat) => (
@@ -448,9 +594,9 @@ function ExploreContent() {
                   <SelectValue placeholder="Trier par" />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-900 border-white/10">
-                  <SelectItem value="recent" className="text-white focus:bg-emerald-600/30 focus:text-white">Plus r\u00e9cents</SelectItem>
+                  <SelectItem value="recent" className="text-white focus:bg-emerald-600/30 focus:text-white">{"Plus r\u00e9cents"}</SelectItem>
                   <SelectItem value="popular" className="text-white focus:bg-emerald-600/30 focus:text-white">Plus populaires</SelectItem>
-                  <SelectItem value="funded" className="text-white focus:bg-emerald-600/30 focus:text-white">Mieux financ\u00e9s</SelectItem>
+                  <SelectItem value="funded" className="text-white focus:bg-emerald-600/30 focus:text-white">{"Mieux financ\u00e9s"}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -459,7 +605,7 @@ function ExploreContent() {
           {/* Results count */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-white/40 text-sm">
-              {filteredContents.length} projet{filteredContents.length > 1 ? "s" : ""} trouv\u00e9{filteredContents.length > 1 ? "s" : ""}
+              {filteredContents.length} projet{filteredContents.length > 1 ? "s" : ""} {"trouv\u00e9"}{filteredContents.length > 1 ? "s" : ""}
             </p>
             {totalPages > 1 && (
               <p className="text-white/30 text-xs">
@@ -480,7 +626,7 @@ function ExploreContent() {
               <div className="w-16 h-16 rounded-full bg-slate-900/50 flex items-center justify-center mx-auto mb-4">
                 <Search className="h-8 w-8 text-white/30" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Aucun projet trouv\u00e9</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">{"Aucun projet trouv\u00e9"}</h3>
               <p className="text-white/50 text-sm">Essayez de modifier vos filtres ou votre recherche</p>
             </div>
           )}
@@ -491,6 +637,14 @@ function ExploreContent() {
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
+
+          {/* Anti-piracy message */}
+          <div className="mt-10 flex items-center justify-center gap-2 py-3 px-5 rounded-lg bg-slate-900/40 border border-white/5 mx-auto w-fit">
+            <Shield className="h-4 w-4 text-emerald-500 shrink-0" />
+            <p className="text-white/40 text-xs">
+              {"Sur VISUAL, chaque visionnage contribue \u00e0 soutenir les cr\u00e9ateurs."}
+            </p>
+          </div>
         </div>
       </main>
 
