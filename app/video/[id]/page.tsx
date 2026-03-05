@@ -3,13 +3,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useCallback } from "react"
 import {
   ArrowLeft, Film, FileText, Mic, Headphones, Clock, BookOpen, Users,
   Heart, Share2, TrendingUp, Play, Pause, Lock, Unlock, UserPlus,
   Sparkles, CreditCard, Star, Download, MessageSquare, Bookmark,
   Maximize2, Volume2, Settings2, Shield, Flame, Award, Clapperboard,
-  Eye, ChevronRight, CheckCircle, AlertCircle,
+  Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy,
 } from "lucide-react"
 import { ReportButton } from "@/components/report-button"
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,11 @@ import { Footer } from "@/components/footer"
 import VisualSocialFeed from "@/components/visual-social-feed"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
+import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
 import type { ContentType } from "@/lib/visual-social/hybrid"
+
+/* ---------- Gold Pass mock list ---------- */
+const GOLD_CREATORS = ["Marie Stellaire", "Karim Ondes", "Thomas Voix", "Nora Myst\u00e8re", "Hana Sound"]
 
 /* ---------- VISUAL Badges ---------- */
 function getVisualBadges(content: typeof ALL_CONTENTS[0]) {
@@ -37,6 +41,20 @@ function getVisualBadges(content: typeof ALL_CONTENTS[0]) {
   return badges
 }
 
+/* ---------- Motivational Messages ---------- */
+function getMotivationalMessages(content: typeof ALL_CONTENTS[0]) {
+  const msgs: string[] = []
+  const pct = (content.currentInvestment / content.investmentGoal) * 100
+  if (pct >= 80) msgs.push("Ce projet approche de son objectif. Votre soutien peut faire la diff\u00e9rence.")
+  if (content.investorCount >= 40 && content.investorCount < 50) msgs.push("Ce projet approche du TOP 10.")
+  if (pct < 50) msgs.push("Soutenez ce projet pour participer \u00e0 son succ\u00e8s.")
+  if (content.totalVotes >= 200) msgs.push("Votre soutien peut aider ce cr\u00e9ateur \u00e0 atteindre le classement.")
+  return msgs
+}
+
+/* ---------- Quick Investment Amounts ---------- */
+const QUICK_AMOUNTS = [3, 5, 10, 20] as const
+
 export default function VideoPage({ params }: { params: { id: string } }) {
   const { id } = params
   const { isAuthed, roles } = useAuth()
@@ -48,6 +66,9 @@ export default function VideoPage({ params }: { params: { id: string } }) {
   const [isUnlocked, setIsUnlocked] = useState(content.isFree)
   const [isFavorite, setIsFavorite] = useState(false)
   const [showUnlockConfirm, setShowUnlockConfirm] = useState(false)
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
+  const [showInvestConfirm, setShowInvestConfirm] = useState(false)
+  const [showAllTiers, setShowAllTiers] = useState(false)
 
   const progressPercent = Math.min((content.currentInvestment / content.investmentGoal) * 100, 100)
   const cType = content.contentType
@@ -56,6 +77,8 @@ export default function VideoPage({ params }: { params: { id: string } }) {
   const isGuest = !isAuthed
   const canInvest = isAuthed && (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener"))
   const badges = getVisualBadges(content)
+  const motivationalMsgs = getMotivationalMessages(content)
+  const isGold = GOLD_CREATORS.includes(content.creatorName)
 
   // Recommendations: same type, exclude current, top 8 by investors
   const recommendations = useMemo(() => {
@@ -65,16 +88,21 @@ export default function VideoPage({ params }: { params: { id: string } }) {
       .slice(0, 8)
   }, [cType, content.id])
 
-  const handleUnlock = () => {
+  const handleUnlock = useCallback(() => {
     setShowUnlockConfirm(false)
     setIsUnlocked(true)
-  }
+  }, [])
+
+  const handleInvest = useCallback(() => {
+    setShowInvestConfirm(false)
+    setSelectedAmount(null)
+  }, [])
 
   return (
     <div className="min-h-screen bg-slate-950">
       <VisualHeader />
 
-      <main className="pt-24 pb-20 cinema-section">
+      <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
           {/* Back button */}
           <Link href="/explore" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-6 transition-colors">
@@ -83,12 +111,12 @@ export default function VideoPage({ params }: { params: { id: string } }) {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main content - 2 cols */}
+            {/* ==================== MAIN CONTENT (2 cols) ==================== */}
             <div className="lg:col-span-2 space-y-6">
 
               {/* ---------- STREAM PLAYER ---------- */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 cinema-panel group/player">
-                <Image src={content.coverUrl || "/placeholder.svg"} alt={content.title} fill className="object-cover" />
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 group/player shadow-2xl shadow-black/50">
+                <Image src={content.coverUrl || "/placeholder.svg"} alt={content.title} fill className="object-cover" priority />
 
                 {/* Dark overlay */}
                 <div className={`absolute inset-0 transition-colors ${isPlaying ? "bg-black/20" : "bg-black/50"}`} />
@@ -166,7 +194,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                       onClick={() => setIsPlaying(!isPlaying)}
                       className={`absolute inset-0 flex items-center justify-center z-10 transition-opacity ${isPlaying ? "opacity-0 group-hover/player:opacity-100" : "opacity-100"}`}
                     >
-                      <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group border border-white/30">
+                      <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors border border-white/30">
                         {isPlaying ? (
                           <Pause className="h-10 w-10 text-white" />
                         ) : isVideo ? (
@@ -198,10 +226,13 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                           <span className="text-white/50 text-xs">{"05:32 / "}{content.duration || "18:45"}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <button className="text-white/60 hover:text-white transition-colors">
+                          <button className="text-white/60 hover:text-white transition-colors" title="Partager">
+                            <Share2 className="h-4 w-4" />
+                          </button>
+                          <button className="text-white/60 hover:text-white transition-colors" title={"Qualit\u00e9"}>
                             <Settings2 className="h-4 w-4" />
                           </button>
-                          <button className="text-white/60 hover:text-white transition-colors">
+                          <button className="text-white/60 hover:text-white transition-colors" title={"Plein \u00e9cran"}>
                             <Maximize2 className="h-4 w-4" />
                           </button>
                         </div>
@@ -217,17 +248,21 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   {isPodcast && <><Mic className="h-3 w-3 mr-1" />Podcast</>}
                 </Badge>
 
-                {/* VISUAL badges */}
-                {badges.length > 0 && (
-                  <div className="absolute top-12 left-4 z-30 flex gap-1">
-                    {badges.map((b) => (
-                      <Badge key={b.label} className={`${b.bg} text-white border-0 text-[10px]`}>
-                        <b.icon className="h-3 w-3 mr-1" />
-                        {b.label}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
+                {/* VISUAL + Gold badges */}
+                <div className="absolute top-12 left-4 z-30 flex flex-wrap gap-1">
+                  {isGold && (
+                    <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 text-[10px] shadow-lg shadow-amber-500/20">
+                      <Crown className="h-3 w-3 mr-1" />
+                      Gold Pass
+                    </Badge>
+                  )}
+                  {badges.map((b) => (
+                    <Badge key={b.label} className={`${b.bg} text-white border-0 text-[10px]`}>
+                      <b.icon className="h-3 w-3 mr-1" />
+                      {b.label}
+                    </Badge>
+                  ))}
+                </div>
 
                 {/* Free badge */}
                 {content.isFree && (
@@ -237,21 +272,56 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 )}
               </div>
 
-              {/* Title and info */}
-              <div>
-                <h1 className="text-3xl font-bold text-white mb-2">{content.title}</h1>
-                <div className="flex flex-wrap items-center gap-4 text-white/60">
-                  <span className="text-emerald-400 font-medium">{content.creatorName}</span>
-                  <span className="flex items-center gap-1">
-                    {isVideo && <><Clock className="h-4 w-4" />{content.duration}</>}
-                    {cType === "text" && <><BookOpen className="h-4 w-4" />{content.wordCount?.toLocaleString()} mots</>}
-                    {isPodcast && <><Headphones className="h-4 w-4" />{content.episodeCount} {"\u00e9pisodes"} - {content.duration}</>}
-                  </span>
-                  <span>{content.category}</span>
+              {/* ---------- ENCADRE PROJET (below player) ---------- */}
+              <div className="bg-slate-900/60 border border-white/10 rounded-xl p-5 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1.5 text-balance">{content.title}</h1>
+                    <div className="flex flex-wrap items-center gap-3 text-sm">
+                      <Link href="#" className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+                        {content.creatorName}
+                        {isGold && <Crown className="h-3.5 w-3.5 text-amber-400" />}
+                      </Link>
+                      <span className="text-white/30">|</span>
+                      <span className="flex items-center gap-1 text-white/50">
+                        {isVideo && <><Clock className="h-3.5 w-3.5" />{content.duration}</>}
+                        {cType === "text" && <><BookOpen className="h-3.5 w-3.5" />{content.wordCount?.toLocaleString()} mots</>}
+                        {isPodcast && <><Headphones className="h-3.5 w-3.5" />{content.episodeCount} {"\u00e9pisodes"}</>}
+                      </span>
+                      <span className="text-white/30">|</span>
+                      <Badge variant="outline" className="border-white/15 text-white/50 text-xs">{content.category}</Badge>
+                      {isGold && (
+                        <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/20 text-[10px]">
+                          <Shield className="h-3 w-3 mr-1" />
+                          Trust : Excellent
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  {/* Compact funding pill */}
+                  <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/15 rounded-lg px-3 py-2 shrink-0">
+                    <div className="text-right">
+                      <div className="text-emerald-400 font-bold text-sm">{progressPercent.toFixed(0)}%</div>
+                      <div className="text-white/40 text-[10px]">{"financ\u00e9"}</div>
+                    </div>
+                    <div className="w-16">
+                      <Progress value={progressPercent} className="h-1.5 bg-slate-800" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Investissement minimum info */}
+                <div className="flex items-center gap-2 p-2.5 bg-white/[0.02] rounded-lg border border-white/5">
+                  <CreditCard className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span className="text-white/60 text-xs">{"Investissement minimum : trois euros"}</span>
+                  <span className="text-white/30 mx-1">-</span>
+                  <span className="text-white/60 text-xs">{content.investorCount} investisseurs</span>
+                  <span className="text-white/30 mx-1">-</span>
+                  <span className="text-emerald-400 text-xs font-medium">{content.currentInvestment.toLocaleString()}{"\u20ac"} sur {content.investmentGoal.toLocaleString()}{"\u20ac"}</span>
                 </div>
               </div>
 
-              {/* Action buttons row */}
+              {/* ---------- ACTION BUTTONS ROW ---------- */}
               <div className="flex flex-wrap gap-2">
                 {isGuest ? (
                   <Link href="/signup">
@@ -262,6 +332,12 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   </Link>
                 ) : (
                   <>
+                    {!isUnlocked && !content.isFree && (
+                      <Button onClick={() => setShowUnlockConfirm(true)} className="bg-emerald-600 hover:bg-emerald-500 text-white">
+                        <Play className="h-4 w-4 mr-2 fill-current" />
+                        {"Voir l'extrait"}
+                      </Button>
+                    )}
                     <Button
                       variant="outline"
                       onClick={() => setIsFavorite(!isFavorite)}
@@ -293,7 +369,19 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 )}
               </div>
 
-              {/* Description */}
+              {/* ---------- MOTIVATIONAL MESSAGES ---------- */}
+              {motivationalMsgs.length > 0 && (
+                <div className="space-y-2">
+                  {motivationalMsgs.map((msg) => (
+                    <div key={msg} className="flex items-center gap-2.5 p-3 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-lg border border-emerald-500/10">
+                      <Sparkles className="h-4 w-4 text-emerald-400 shrink-0" />
+                      <p className="text-white/70 text-sm">{msg}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* ---------- DESCRIPTION ---------- */}
               <Card className="bg-slate-900/50 border-white/10">
                 <CardHeader>
                   <CardTitle className="text-white">Description</CardTitle>
@@ -303,14 +391,20 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 </CardContent>
               </Card>
 
-              {/* Visual Social Thread */}
+              {/* ---------- VISUAL SOCIAL THREAD ---------- */}
               <Card className="bg-slate-900/50 border-white/10">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5 text-emerald-400" />
+                    {"Communaut\u00e9 Visual Social"}
+                  </CardTitle>
+                </CardHeader>
                 <CardContent className="p-4 sm:p-6">
                   <VisualSocialFeed mode="content" contentType={cType as ContentType} contentId={content.id} />
                 </CardContent>
               </Card>
 
-              {/* ---------- Recommendations ---------- */}
+              {/* ---------- RECOMMENDATIONS ---------- */}
               {recommendations.length > 0 && (
                 <div>
                   <h3 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
@@ -318,82 +412,177 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                     Vous aimerez aussi
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {recommendations.map((rec) => (
-                      <Link key={rec.id} href={`/video/${rec.id}`} className="group/rec block">
-                        <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-2">
-                          <Image src={rec.coverUrl || "/placeholder.svg"} alt={rec.title} fill className="object-cover transition-transform duration-300 group-hover/rec:scale-105" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-2">
-                            <p className="text-white text-xs font-medium line-clamp-1">{rec.title}</p>
-                            <p className="text-white/50 text-[10px]">{rec.creatorName}</p>
-                          </div>
-                          {/* Duration pill */}
-                          <div className="absolute top-1.5 right-1.5 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded backdrop-blur-sm">
-                            {rec.duration || `${rec.wordCount?.toLocaleString()} mots`}
-                          </div>
-                          {/* Hover play */}
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/rec:opacity-100 transition-opacity bg-emerald-600/10">
-                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                              <Play className="h-4 w-4 text-white fill-white" />
+                    {recommendations.map((rec) => {
+                      const recIsGold = GOLD_CREATORS.includes(rec.creatorName)
+                      return (
+                        <Link key={rec.id} href={`/video/${rec.id}`} className="group/rec block">
+                          <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-2 border border-white/5 hover:border-emerald-500/20 transition-colors">
+                            <Image src={rec.coverUrl || "/placeholder.svg"} alt={rec.title} fill className="object-cover transition-transform duration-300 group-hover/rec:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-2.5">
+                              <p className="text-white text-xs font-medium line-clamp-1">{rec.title}</p>
+                              <div className="flex items-center gap-1">
+                                <p className="text-white/50 text-[10px]">{rec.creatorName}</p>
+                                {recIsGold && <Crown className="h-2.5 w-2.5 text-amber-400" />}
+                              </div>
+                            </div>
+                            {/* Duration pill */}
+                            <div className="absolute top-1.5 right-1.5 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded backdrop-blur-sm">
+                              {rec.duration || `${rec.wordCount?.toLocaleString()} mots`}
+                            </div>
+                            {/* Hover play */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/rec:opacity-100 transition-opacity bg-emerald-600/10">
+                              <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                                <Play className="h-4 w-4 text-white fill-white" />
+                              </div>
+                            </div>
+                            {/* Funding mini-bar */}
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5">
+                              <div className="h-full bg-emerald-500" style={{ width: `${Math.min((rec.currentInvestment / rec.investmentGoal) * 100, 100)}%` }} />
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      )
+                    })}
                   </div>
                 </div>
               )}
             </div>
 
-            {/* ---------- SIDEBAR ---------- */}
-            <div className="space-y-6">
-              {/* Support Block */}
+            {/* ==================== SIDEBAR ==================== */}
+            <div className="space-y-5">
+
+              {/* --- Soutenir ce projet --- */}
               <Card className="bg-gradient-to-br from-emerald-950/50 to-teal-950/50 border-emerald-500/20">
                 <CardContent className="p-5">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-4">
                     <Heart className="h-5 w-5 text-emerald-400" />
                     <h3 className="text-white font-semibold">Soutenez ce projet</h3>
                   </div>
-                  <p className="text-white/60 text-sm mb-4">
-                    {"Une participation m\u00eame minime peut aider un cr\u00e9ateur. Si le projet r\u00e9ussit, un partage des gains peut \u00eatre attribu\u00e9."}
+                  <p className="text-white/50 text-xs mb-4">
+                    {"Soutenez ce projet pour acc\u00e9der \u00e0 la version compl\u00e8te et participer \u00e0 son classement."}
                   </p>
-                  <div className="space-y-3">
+
+                  {/* Progress */}
+                  <div className="space-y-2 mb-4">
                     <Progress value={progressPercent} className="h-3 bg-slate-800" />
                     <div className="flex justify-between text-sm">
-                      <span className="text-emerald-400 font-bold text-lg">{content.currentInvestment.toLocaleString()}{"\u20ac"}</span>
-                      <span className="text-white/60">sur {content.investmentGoal.toLocaleString()}{"\u20ac"}</span>
+                      <span className="text-emerald-400 font-bold">{content.currentInvestment.toLocaleString()}{"\u20ac"}</span>
+                      <span className="text-white/50">sur {content.investmentGoal.toLocaleString()}{"\u20ac"}</span>
                     </div>
-                    <div className="text-center text-white/60 text-sm">{progressPercent.toFixed(0)}% {"financ\u00e9"}</div>
+                    <div className="text-center">
+                      <span className="text-white/40 text-xs">{progressPercent.toFixed(0)}% {"financ\u00e9"}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center gap-2 py-3 mt-3 bg-slate-800/50 rounded-lg">
-                    <Users className="h-5 w-5 text-emerald-400" />
-                    <span className="text-white font-medium">{content.investorCount} investisseurs</span>
+
+                  <div className="flex items-center justify-center gap-2 py-2.5 bg-slate-800/50 rounded-lg mb-4">
+                    <Users className="h-4 w-4 text-emerald-400" />
+                    <span className="text-white/80 text-sm font-medium">{content.investorCount} investisseurs</span>
                   </div>
+
+                  {/* Motivational */}
+                  {motivationalMsgs.length > 0 && (
+                    <div className="p-2.5 bg-emerald-500/5 rounded-lg border border-emerald-500/10 mb-4">
+                      <p className="text-emerald-400/80 text-[11px] text-center">{motivationalMsgs[0]}</p>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 
-              {/* Investment Card */}
+              {/* --- Investment Card --- */}
               <Card className="bg-slate-900/50 border-white/10 sticky top-28">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-white flex items-center gap-2 text-base">
                     <TrendingUp className="h-5 w-5 text-emerald-400" />
                     Investissement
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-4">
                   {canInvest ? (
-                    <div className="space-y-3">
-                      <p className="text-white/60 text-sm text-center">{"Choisissez votre montant d'investissement"}</p>
+                    <div className="space-y-4">
+                      <p className="text-white/50 text-xs text-center">{"Choisissez votre montant d'investissement"}</p>
+
+                      {/* Quick amounts */}
                       <div className="grid grid-cols-4 gap-2">
-                        {[2, 5, 10, 20].map((amount) => (
-                          <Button key={amount} variant="outline" className="bg-transparent border-emerald-500/50 text-emerald-400 hover:bg-emerald-600 hover:text-white hover:border-emerald-600">
-                            {amount}{"\u20ac"}
-                          </Button>
+                        {QUICK_AMOUNTS.map((amt) => (
+                          <button
+                            key={amt}
+                            onClick={() => setSelectedAmount(selectedAmount === amt ? null : amt)}
+                            className={`py-2.5 rounded-lg text-sm font-bold border transition-all ${
+                              selectedAmount === amt
+                                ? "bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-500/20"
+                                : "bg-transparent border-emerald-500/30 text-emerald-400 hover:bg-emerald-600/10 hover:border-emerald-500/50"
+                            }`}
+                          >
+                            {amt}{"\u20ac"}
+                          </button>
                         ))}
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white h-12 text-lg">
-                        Investir maintenant
-                      </Button>
+
+                      {/* All tiers toggle */}
+                      <button
+                        onClick={() => setShowAllTiers(!showAllTiers)}
+                        className="w-full text-center text-white/40 text-[11px] hover:text-white/60 transition-colors flex items-center justify-center gap-1"
+                      >
+                        <ChevronRight className={`h-3 w-3 transition-transform ${showAllTiers ? "rotate-90" : ""}`} />
+                        {showAllTiers ? "Masquer les autres montants" : "Voir tous les montants"}
+                      </button>
+
+                      {showAllTiers && (
+                        <div className="grid grid-cols-5 gap-1.5">
+                          {INVESTMENT_TIERS_EUR.filter((t) => !QUICK_AMOUNTS.includes(t as typeof QUICK_AMOUNTS[number])).map((amt) => (
+                            <button
+                              key={amt}
+                              onClick={() => setSelectedAmount(selectedAmount === amt ? null : amt)}
+                              className={`py-2 rounded-lg text-xs font-bold border transition-all ${
+                                selectedAmount === amt
+                                  ? "bg-emerald-600 text-white border-emerald-500"
+                                  : "bg-transparent border-white/10 text-white/50 hover:bg-white/5 hover:border-white/20"
+                              }`}
+                            >
+                              {amt}{"\u20ac"}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Investment confirmation */}
+                      {selectedAmount && !showInvestConfirm && (
+                        <Button
+                          onClick={() => setShowInvestConfirm(true)}
+                          className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white h-12 text-lg shadow-lg shadow-emerald-500/20"
+                        >
+                          Investir {selectedAmount}{"\u20ac"}
+                        </Button>
+                      )}
+
+                      {!selectedAmount && (
+                        <Button disabled className="w-full bg-slate-800 text-white/30 h-12 text-lg cursor-not-allowed">
+                          {"S\u00e9lectionnez un montant"}
+                        </Button>
+                      )}
+
+                      {/* Confirm modal inline */}
+                      {showInvestConfirm && selectedAmount && (
+                        <div className="p-4 bg-emerald-500/5 border border-emerald-500/15 rounded-xl space-y-3">
+                          <div className="text-center">
+                            <CheckCircle className="h-8 w-8 text-emerald-400 mx-auto mb-2" />
+                            <p className="text-white font-semibold text-sm">Confirmer votre investissement</p>
+                            <p className="text-emerald-400 font-bold text-2xl mt-1">{selectedAmount}{"\u20ac"}</p>
+                          </div>
+                          <p className="text-white/40 text-[11px] text-center">
+                            {"Investir comporte des risques. Les gains ne sont pas garantis."}
+                          </p>
+                          <div className="flex gap-2">
+                            <Button onClick={handleInvest} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white">
+                              Confirmer
+                            </Button>
+                            <Button onClick={() => setShowInvestConfirm(false)} variant="outline" className="flex-1 border-white/20 text-white hover:bg-white/10">
+                              Annuler
+                            </Button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : isAuthed ? (
                     <div className="space-y-4">
@@ -440,42 +629,75 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   )}
 
                   {/* Legal */}
-                  <div className="space-y-1 pt-2 border-t border-white/5">
-                    <p className="text-xs text-white/40 text-center">
+                  <div className="pt-2 border-t border-white/5">
+                    <p className="text-xs text-white/30 text-center">
                       {"Investir comporte des risques. Les gains ne sont pas garantis. VISUAL n'est pas un jeu de hasard."}
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Creator Card */}
+              {/* --- Creator Card --- */}
               <Card className="bg-slate-900/50 border-white/10">
-                <CardHeader>
-                  <CardTitle className="text-white text-lg flex items-center gap-2">
-                    <Eye className="h-5 w-5 text-emerald-400" />
-                    {"\u00c0 propos du cr\u00e9ateur"}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+                <CardContent className="p-5">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                      <span className="text-emerald-400 font-bold">{content.creatorName.charAt(0)}</span>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+                      isGold ? "bg-gradient-to-br from-amber-500 to-yellow-500" : "bg-emerald-500/20"
+                    }`}>
+                      <span className={`font-bold ${isGold ? "text-white" : "text-emerald-400"}`}>{content.creatorName.charAt(0)}</span>
                     </div>
-                    <div>
-                      <div className="font-medium text-white">{content.creatorName}</div>
-                      <div className="text-sm text-white/60">{"Cr\u00e9ateur VISUAL"}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-medium text-white truncate">{content.creatorName}</span>
+                        {isGold && <Crown className="h-3.5 w-3.5 text-amber-400 shrink-0" />}
+                      </div>
+                      <div className="text-sm text-white/50">{"Cr\u00e9ateur VISUAL"}</div>
                     </div>
                   </div>
-                  <p className="text-white/50 text-xs mb-3">
+                  {isGold && (
+                    <div className="flex items-center gap-1.5 p-2 bg-amber-500/5 rounded-lg border border-amber-500/10 mb-3">
+                      <Trophy className="h-3.5 w-3.5 text-amber-400" />
+                      <span className="text-amber-400/80 text-[11px]">Membre Gold Pass</span>
+                      <span className="text-white/20 mx-0.5">|</span>
+                      <Shield className="h-3.5 w-3.5 text-emerald-400" />
+                      <span className="text-emerald-400/80 text-[11px]">Trust : Excellent</span>
+                    </div>
+                  )}
+                  <p className="text-white/40 text-xs mb-3">
                     {"Votre projet peut trouver son public sur VISUAL."}
                   </p>
-                  <Button variant="outline" className="w-full bg-transparent border-white/20 text-white hover:bg-white/10">
+                  <Button variant="outline" className="w-full bg-transparent border-white/15 text-white/70 hover:bg-white/5 hover:text-white">
+                    <Eye className="h-4 w-4 mr-2" />
                     Voir le profil
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* Anti-piracy */}
+              {/* --- Parcours VISUAL --- */}
+              <Card className="bg-slate-900/30 border-white/5">
+                <CardContent className="p-4">
+                  <h4 className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-3">Parcours VISUAL</h4>
+                  <div className="space-y-2">
+                    {[
+                      { icon: Eye, label: "D\u00e9couvrir le projet", done: true },
+                      { icon: Play, label: "Voir l'extrait gratuit", done: isPlaying || isUnlocked },
+                      { icon: Heart, label: "Soutenir / Investir", done: false },
+                      { icon: Unlock, label: "Visionnage complet", done: isUnlocked },
+                      { icon: Trophy, label: "Classement & gains", done: false },
+                    ].map((step, i) => (
+                      <div key={step.label} className="flex items-center gap-2.5">
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${step.done ? "bg-emerald-500/20" : "bg-white/5"}`}>
+                          <step.icon className={`h-3 w-3 ${step.done ? "text-emerald-400" : "text-white/30"}`} />
+                        </div>
+                        <span className={`text-xs ${step.done ? "text-white/70" : "text-white/30"}`}>{step.label}</span>
+                        {i < 4 && <div className="flex-1 border-b border-dashed border-white/5" />}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* --- Anti-piracy --- */}
               <div className="flex items-center gap-2 p-3 rounded-lg bg-slate-900/30 border border-white/5">
                 <Shield className="h-4 w-4 text-emerald-500 shrink-0" />
                 <p className="text-white/40 text-[11px]">
