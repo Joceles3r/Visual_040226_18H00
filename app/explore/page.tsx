@@ -7,7 +7,8 @@ import { useState, useMemo, useEffect, useCallback, Suspense } from "react"
 import {
   Search, Film, FileText, Mic, Compass, SlidersHorizontal, Eye, UserPlus,
   ChevronLeft, ChevronRight, Play, TrendingUp, Users, Clock, BookOpen, Headphones,
-  Lock, Unlock, Heart, Download, Flame, Award, Star, Clapperboard, Shield
+  Lock, Unlock, Heart, Download, Flame, Award, Star, Clapperboard, Shield,
+  Crown, Sparkles, Trophy, CheckCircle, Zap, ArrowRight
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -363,6 +364,298 @@ function Pagination({
   )
 }
 
+/* ---------- Gold Pass Mock Data ---------- */
+const GOLD_MEMBERS = [
+  { name: "Marie Stellaire", role: "Cr\u00e9ateur Gold", trustScore: "Excellent", avatar: "MS", projects: 4, supporters: 312, color: "from-red-500 to-orange-500" },
+  { name: "Karim Ondes", role: "Cr\u00e9ateur Gold", trustScore: "Excellent", avatar: "KO", projects: 3, supporters: 256, color: "from-purple-500 to-pink-500" },
+  { name: "Thomas Voix", role: "Cr\u00e9ateur Gold", trustScore: "Tr\u00e8s bon", avatar: "TV", projects: 5, supporters: 456, color: "from-sky-500 to-cyan-500" },
+  { name: "Marco Pixel", role: "Investisseur Gold", trustScore: "Excellent", avatar: "MP", projects: 0, supporters: 520, color: "from-emerald-500 to-teal-500" },
+  { name: "Nora Myst\u00e8re", role: "Cr\u00e9ateur Gold", trustScore: "Tr\u00e8s bon", avatar: "NM", projects: 2, supporters: 189, color: "from-amber-500 to-orange-500" },
+  { name: "Hana Sound", role: "Membre Gold", trustScore: "Bon", avatar: "HS", projects: 1, supporters: 198, color: "from-indigo-500 to-blue-500" },
+]
+
+function isGoldCreator(name: string) {
+  return GOLD_MEMBERS.some((m) => m.name === name && m.role.includes("Cr\u00e9ateur"))
+}
+
+/* ---------- Gold Pass View ---------- */
+function GoldPassView() {
+  const { isAuthed } = useAuth()
+  const goldCreatorContents = ALL_CONTENTS.filter((c) => isGoldCreator(c.creatorName))
+  const boostedProjects = [...ALL_CONTENTS]
+    .sort((a, b) => b.investorCount - a.investorCount)
+    .slice(0, 6)
+
+  return (
+    <div className="space-y-10">
+      {/* Hero Gold Pass */}
+      <div className="relative w-full h-[340px] sm:h-[400px] rounded-2xl overflow-hidden">
+        <Image
+          src="/images/explore/gold-pass-hero.jpg"
+          alt="VISUAL Gold Pass"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
+        <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10">
+          <div className="flex items-center gap-2 mb-3">
+            <Crown className="h-6 w-6 text-amber-400" />
+            <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-amber-500/30">
+              VISUAL Gold Pass
+            </Badge>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
+            {"Les membres les plus engag\u00e9s de la communaut\u00e9 VISUAL"}
+          </h2>
+          <p className="text-white/60 text-sm sm:text-base max-w-xl mb-4">
+            {"Le Gold Pass r\u00e9compense l'engagement, la fiabilit\u00e9 et la participation active. Un statut m\u00e9rit\u00e9, jamais achet\u00e9."}
+          </p>
+          <div className="flex flex-wrap gap-3 text-xs">
+            {[
+              { icon: Crown, label: "Badge Gold visible sur toute la plateforme" },
+              { icon: Sparkles, label: "Visibilit\u00e9 accrue dans Explorer" },
+              { icon: Zap, label: "+5% VISUpoints sur les activit\u00e9s" },
+            ].map((a) => (
+              <div key={a.label} className="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1.5">
+                <a.icon className="h-3 w-3 text-amber-400" />
+                <span className="text-amber-300/90">{a.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Gold Members of the Month */}
+      <section>
+        <div className="flex items-center gap-2 mb-5">
+          <Trophy className="h-5 w-5 text-amber-400" />
+          <h3 className="text-xl font-bold text-white">Membres Gold du mois</h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {GOLD_MEMBERS.map((m) => (
+            <div
+              key={m.name}
+              className="relative bg-slate-900/60 border border-amber-500/15 hover:border-amber-500/40 rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/5 group"
+            >
+              {/* Gold shimmer accent */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400/60 to-transparent rounded-t-xl" />
+              <div className="flex items-start gap-4">
+                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${m.color} flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-lg`}>
+                  {m.avatar}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="text-white font-semibold text-sm truncate">{m.name}</h4>
+                    <Crown className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                  </div>
+                  <p className="text-amber-400/80 text-xs font-medium mb-2">{m.role}</p>
+                  <div className="flex items-center gap-3 text-[11px]">
+                    <span className="flex items-center gap-1 text-emerald-400">
+                      <CheckCircle className="h-3 w-3" />
+                      Trust : {m.trustScore}
+                    </span>
+                    <span className="text-white/30">|</span>
+                    <span className="text-white/50">{m.supporters} soutiens</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Gold Creators Projects */}
+      <section>
+        <div className="flex items-center gap-2 mb-5">
+          <Flame className="h-5 w-5 text-orange-400" />
+          <h3 className="text-xl font-bold text-white">{"Cr\u00e9ateurs Gold"}</h3>
+          <span className="text-white/30 text-xs ml-2">{"Projets de cr\u00e9ateurs ayant obtenu le Gold Pass"}</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {goldCreatorContents.slice(0, 8).map((c) => (
+            <div key={c.id} className="group block">
+              <div className="relative rounded-xl overflow-hidden bg-slate-900/60 border border-amber-500/10 hover:border-amber-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-amber-900/15 hover:-translate-y-1">
+                <Link href={`/video/${c.id}`}>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={c.coverUrl || "/placeholder.svg"}
+                      alt={c.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    {/* Gold creator badge */}
+                    <div className="absolute top-2 left-2 flex items-center gap-1 bg-gradient-to-r from-amber-500/90 to-yellow-500/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">
+                      <Crown className="h-2.5 w-2.5" />
+                      Gold
+                    </div>
+                    {/* Duration/Meta */}
+                    <div className="absolute bottom-2 right-2 flex items-center gap-1 text-white/90 text-[10px] bg-black/70 px-2 py-0.5 rounded-md backdrop-blur-sm">
+                      {c.contentType === "video" && <><Clock className="h-3 w-3" />{c.duration}</>}
+                      {c.contentType === "text" && <><BookOpen className="h-3 w-3" />{c.wordCount?.toLocaleString()} mots</>}
+                      {c.contentType === "podcast" && <><Headphones className="h-3 w-3" />{c.episodeCount} {"ep."}</>}
+                    </div>
+                    {/* Hover play */}
+                    <div className="absolute inset-0 bg-amber-600/0 group-hover:bg-amber-600/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                        <Play className="h-4 w-4 text-white fill-white" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                <div className="p-3 space-y-1.5">
+                  <Link href={`/video/${c.id}`}>
+                    <h4 className="font-semibold text-white text-sm line-clamp-1 group-hover:text-amber-400 transition-colors">{c.title}</h4>
+                  </Link>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-white/50 text-xs">{c.creatorName}</span>
+                    <Crown className="h-3 w-3 text-amber-400" />
+                  </div>
+                  <Progress value={Math.min((c.currentInvestment / c.investmentGoal) * 100, 100)} className="h-1 bg-slate-800" />
+                  <div className="flex justify-between text-[10px] text-white/40">
+                    <span className="text-amber-400 font-medium">{c.currentInvestment.toLocaleString()}{"\u20ac"}</span>
+                    <span>sur {c.investmentGoal.toLocaleString()}{"\u20ac"}</span>
+                  </div>
+                  <div className="flex gap-1.5 pt-1">
+                    <Link href={`/video/${c.id}`} className="flex-1">
+                      <Button size="sm" variant="ghost" className="w-full h-7 text-[10px] text-white/60 hover:text-white hover:bg-white/10 px-1.5">
+                        <Play className="h-3 w-3 mr-1 fill-current" />
+                        Extrait
+                      </Button>
+                    </Link>
+                    <Link href={`/video/${c.id}`} className="flex-1">
+                      <Button size="sm" variant="ghost" className="w-full h-7 text-[10px] text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 px-1.5">
+                        <Heart className="h-3 w-3 mr-1" />
+                        Soutenir
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Boosted Projects */}
+      <section>
+        <div className="flex items-center gap-2 mb-5">
+          <Sparkles className="h-5 w-5 text-yellow-400" />
+          <h3 className="text-xl font-bold text-white">{"Projets propuls\u00e9s par le Gold Pass"}</h3>
+        </div>
+        <p className="text-white/40 text-xs mb-4">
+          {"Certains projets b\u00e9n\u00e9ficient d'une visibilit\u00e9 temporaire suppl\u00e9mentaire pour attirer de nouveaux spectateurs et soutiens."}
+        </p>
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+          {boostedProjects.map((c) => (
+            <Link key={c.id} href={`/video/${c.id}`} className="shrink-0 w-[200px] group/boost">
+              <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-2 border border-amber-500/15">
+                <Image
+                  src={c.coverUrl || "/placeholder.svg"}
+                  alt={c.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover/boost:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute bottom-2 left-2 right-2">
+                  <p className="text-white text-xs font-medium line-clamp-1">{c.title}</p>
+                  <div className="flex items-center gap-1">
+                    <p className="text-white/50 text-[10px]">{c.creatorName}</p>
+                    {isGoldCreator(c.creatorName) && <Crown className="h-2.5 w-2.5 text-amber-400" />}
+                  </div>
+                </div>
+                <div className="absolute top-1.5 right-1.5 bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                  <Sparkles className="h-2 w-2" />
+                  {"Propuls\u00e9"}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Conditions & Motivational */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-slate-900/60 border border-amber-500/10 rounded-xl p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <CheckCircle className="h-5 w-5 text-amber-400" />
+            <h4 className="text-white font-bold text-sm">Conditions d'obtention</h4>
+          </div>
+          <ul className="space-y-2.5">
+            {[
+              "Activit\u00e9 r\u00e9guli\u00e8re sur VISUAL",
+              "Comportement positif et respect de la communaut\u00e9",
+              "Trust Score suffisant (minimum : Bon)",
+              "Participation communautaire active",
+              "Soutien aux projets d'autres cr\u00e9ateurs",
+            ].map((cond) => (
+              <li key={cond} className="flex items-start gap-2 text-white/60 text-xs">
+                <ArrowRight className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
+                {cond}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 pt-3 border-t border-white/5">
+            <p className="text-white/30 text-[11px]">
+              {"Dur\u00e9e : trente jours renouvelables. Le Gold Pass est retir\u00e9 en cas d'inactivit\u00e9."}
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-slate-900/60 border border-amber-500/10 rounded-xl p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Zap className="h-5 w-5 text-amber-400" />
+            <h4 className="text-white font-bold text-sm">Avantages Gold Pass</h4>
+          </div>
+          <div className="space-y-3">
+            {[
+              { icon: Crown, text: "Badge Gold visible sur toute la plateforme" },
+              { icon: Eye, text: "Visibilit\u00e9 accrue dans Explorer, Visual Social et Classements" },
+              { icon: Sparkles, text: "Mise en avant possible de vos projets" },
+              { icon: Zap, text: "+5% de VISUpoints lors d'activit\u00e9s" },
+              { icon: Star, text: "Priorit\u00e9 dans les recommandations" },
+            ].map((a) => (
+              <div key={a.text} className="flex items-center gap-3 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                <a.icon className="h-4 w-4 text-amber-400 shrink-0" />
+                <span className="text-white/70 text-xs">{a.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Motivational message */}
+      {!isAuthed && (
+        <div className="text-center py-8 bg-gradient-to-r from-amber-500/5 via-yellow-500/5 to-amber-500/5 border border-amber-500/10 rounded-xl">
+          <Crown className="h-8 w-8 text-amber-400 mx-auto mb-3" />
+          <p className="text-white font-semibold mb-1">
+            {"Votre activit\u00e9 vous rapproche du Gold Pass."}
+          </p>
+          <p className="text-white/50 text-sm mb-4">
+            {"Inscrivez-vous et contribuez \u00e0 la communaut\u00e9 VISUAL pour obtenir ce statut."}
+          </p>
+          <Link href="/signup">
+            <Button className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white font-semibold shadow-lg shadow-amber-500/30">
+              <UserPlus className="h-4 w-4 mr-2" />
+              Rejoindre VISUAL
+            </Button>
+          </Link>
+        </div>
+      )}
+      {isAuthed && (
+        <div className="text-center py-6 bg-gradient-to-r from-amber-500/5 via-yellow-500/5 to-amber-500/5 border border-amber-500/10 rounded-xl">
+          <Crown className="h-6 w-6 text-amber-400 mx-auto mb-2" />
+          <p className="text-amber-400/80 text-sm font-medium">
+            {"Continuez \u00e0 soutenir les projets pour vous rapprocher du Gold Pass."}
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ---------- Main Page ---------- */
 function ExploreContent() {
   const { isAuthed, roles } = useAuth()
@@ -370,7 +663,7 @@ function ExploreContent() {
   const router = useRouter()
   const urlType = searchParams.get("type") as ContentType | null
 
-  const [activeFilter, setActiveFilter] = useState<ContentType | "all">(urlType || "all")
+  const [activeFilter, setActiveFilter] = useState<ContentType | "all" | "goldpass">(urlType === "goldpass" ? "goldpass" : (urlType as ContentType | null) || "all")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("Tous")
   const [sortBy, setSortBy] = useState("recent")
@@ -378,7 +671,8 @@ function ExploreContent() {
 
   // Sync filter state whenever URL query param changes (e.g. from header nav)
   useEffect(() => {
-    const newFilter = urlType || "all"
+    const raw = urlType as string | null
+    const newFilter: ContentType | "all" | "goldpass" = raw === "goldpass" ? "goldpass" : (raw as ContentType | null) || "all"
     if (newFilter !== activeFilter) {
       setActiveFilter(newFilter)
       setSelectedCategory("Tous")
@@ -390,7 +684,8 @@ function ExploreContent() {
   useEffect(() => {
     const handleVisualNav = () => {
       const params = new URLSearchParams(window.location.search)
-      const freshType = (params.get("type") as ContentType | null) || "all"
+      const raw = params.get("type")
+      const freshType: ContentType | "all" | "goldpass" = raw === "goldpass" ? "goldpass" : (raw as ContentType | null) || "all"
       setActiveFilter(freshType)
       setSelectedCategory("Tous")
       setCurrentPage(1)
@@ -410,6 +705,7 @@ function ExploreContent() {
     video: "Explorer Vid\u00e9o",
     text: "Explorer \u00c9crit",
     podcast: "Explorer Podcast",
+    goldpass: "VISUAL Gold Pass",
   }
 
   const filteredContents = useMemo(() => {
@@ -472,11 +768,10 @@ function ExploreContent() {
     return [...pool].sort((a, b) => b.investorCount - a.investorCount).slice(0, 6)
   }, [activeFilter])
 
-  const handleFilterChange = useCallback((filter: ContentType | "all") => {
+  const handleFilterChange = useCallback((filter: ContentType | "all" | "goldpass") => {
     setActiveFilter(filter)
     setSelectedCategory("Tous")
     setCurrentPage(1)
-    // Sync URL so header nav and browser back/forward stay in sync
     if (filter === "all") {
       router.push("/explore", { scroll: false })
     } else {
@@ -534,20 +829,23 @@ function ExploreContent() {
 
           {/* Type Filter Tabs */}
           <div className="flex gap-1.5 mb-6 p-1 bg-slate-900/60 rounded-xl w-fit border border-white/5">
-            {[
+            {([
               { key: "all" as const, icon: Compass, label: "Tout", active: "bg-emerald-600" },
               { key: "video" as const, icon: Film, label: "Vid\u00e9o", active: "bg-red-600" },
               { key: "text" as const, icon: FileText, label: "\u00c9crit", active: "bg-amber-600" },
               { key: "podcast" as const, icon: Mic, label: "Podcast", active: "bg-purple-600" },
-            ].map((tab) => (
+              { key: "goldpass" as const, icon: Crown, label: "Gold Pass", active: "bg-gradient-to-r from-amber-500 to-yellow-500" },
+            ] as const).map((tab) => (
               <Button
                 key={tab.key}
                 variant={activeFilter === tab.key ? "default" : "ghost"}
                 onClick={() => handleFilterChange(tab.key)}
                 className={
                   activeFilter === tab.key
-                    ? `${tab.active} text-white shadow-lg`
-                    : "text-white/60 hover:text-white hover:bg-white/10"
+                    ? `${tab.active} text-white shadow-lg ${tab.key === "goldpass" ? "shadow-amber-500/30" : ""}`
+                    : tab.key === "goldpass"
+                      ? "text-amber-400/70 hover:text-amber-300 hover:bg-amber-500/10"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
                 }
               >
                 <tab.icon className="h-4 w-4 mr-2" />
@@ -556,11 +854,14 @@ function ExploreContent() {
             ))}
           </div>
 
-          {/* Hero Banner */}
-          {heroContent && <HeroBanner content={heroContent} typeLabel={typeLabels[activeFilter]} />}
+          {/* Gold Pass View -- Full dedicated view */}
+          {activeFilter === "goldpass" && <GoldPassView />}
 
-          {/* Trending Row */}
-          {trendingContents.length > 0 && (
+          {/* Hero Banner (non-goldpass) */}
+          {activeFilter !== "goldpass" && heroContent && <HeroBanner content={heroContent} typeLabel={typeLabels[activeFilter]} />}
+
+          {/* Trending Row (non-goldpass) */}
+          {activeFilter !== "goldpass" && trendingContents.length > 0 && (
             <div className="mb-8">
               <h3 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
                 <Flame className="h-5 w-5 text-orange-400" />
@@ -592,7 +893,8 @@ function ExploreContent() {
             </div>
           )}
 
-          {/* Search and Filters */}
+          {/* Search, Filters, Grid, Pagination -- hidden on goldpass */}
+          {activeFilter !== "goldpass" && <>
           <div className="flex flex-col md:flex-row gap-3 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30" />
@@ -667,6 +969,7 @@ function ExploreContent() {
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
+          </>}
 
           {/* Anti-piracy message */}
           <div className="mt-10 flex items-center justify-center gap-2 py-3 px-5 rounded-lg bg-slate-900/40 border border-white/5 mx-auto w-fit">

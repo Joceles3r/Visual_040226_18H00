@@ -21,6 +21,7 @@ import {
   Heart,
   MessageCircle,
   Share2,
+  Crown,
 } from "lucide-react"
 
 export type VisualRole =
@@ -64,6 +65,7 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Explorer (Ecrit)", href: "/explore?type=text", icon: FileText },
     { label: "Explorer (Podcast)", href: "/explore?type=podcast", icon: Mic },
     { label: "Tout voir", href: "/explore", icon: Compass },
+    { label: "Gold Pass", href: "/explore?type=goldpass", icon: Crown },
   ],
 }
 
