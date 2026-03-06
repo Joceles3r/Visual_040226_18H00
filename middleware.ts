@@ -44,7 +44,24 @@ export async function middleware(request: NextRequest) {
     res.headers.set("X-Frame-Options", "DENY");
     res.headers.set("X-Content-Type-Options", "nosniff");
     res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), fullscreen=(self)");
+    res.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+    res.headers.set("Cross-Origin-Resource-Policy", "same-site");
+    // Frontend CSP -- allow Stripe, Bunny.net CDN, and inline styles for Tailwind
+    const frontendCsp = [
+      "default-src 'self'",
+      "script-src 'self' https://js.stripe.com 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "frame-src https://js.stripe.com",
+      "connect-src 'self' https://api.stripe.com https://cdn.bunny.net https://*.vercel-analytics.com",
+      "img-src 'self' https://cdn.bunny.net https://*.b-cdn.net https://images.unsplash.com data: blob:",
+      "media-src 'self' https://cdn.bunny.net https://*.b-cdn.net blob:",
+      "font-src 'self'",
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join("; ");
+    res.headers.set("Content-Security-Policy", frontendCsp);
     return res;
   }
 

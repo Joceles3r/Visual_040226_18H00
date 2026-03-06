@@ -3,13 +3,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { useState, useMemo, useCallback } from "react"
+import { useState, useMemo, useCallback, useEffect } from "react"
 import {
   ArrowLeft, Film, FileText, Mic, Headphones, Clock, BookOpen, Users,
   Heart, Share2, TrendingUp, Play, Pause, Lock, Unlock, UserPlus,
   Sparkles, CreditCard, Star, Download, MessageSquare, Bookmark,
   Maximize2, Volume2, Settings2, Shield, Flame, Award, Clapperboard,
-  Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy,
+  Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy, Loader2,
 } from "lucide-react"
 import { ReportButton } from "@/components/report-button"
 import { Button } from "@/components/ui/button"
@@ -22,10 +22,30 @@ import VisualSocialFeed from "@/components/visual-social-feed"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
 import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
+import { isGoldCreator } from "@/lib/mock-data"
 import type { ContentType } from "@/lib/visual-social/hybrid"
 
-/* ---------- Gold Pass mock list ---------- */
-const GOLD_CREATORS = ["Marie Stellaire", "Karim Ondes", "Thomas Voix", "Nora Myst\u00e8re", "Hana Sound"]
+/* ---------- Motivational Messages ---------- */
+function DynamicWatermark({ userId, contentId }: { userId: string; contentId: string }) {
+  const [pos, setPos] = useState({ x: 20, y: 20 })
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPos({ x: Math.random() * 60, y: Math.random() * 70 })
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [])
+  const masked = userId.length > 8 ? userId.slice(0, 4) + "****" + userId.slice(-4) : userId
+  return (
+    <div
+      className="absolute z-40 pointer-events-none select-none"
+      style={{ left: `${pos.x}%`, top: `${pos.y}%`, opacity: 0.12 }}
+    >
+      <span className="text-white text-xs font-mono tracking-wide">
+        {masked} / {contentId.slice(0, 8)}
+      </span>
+    </div>
+  )
+}
 
 /* ---------- VISUAL Badges ---------- */
 function getVisualBadges(content: typeof ALL_CONTENTS[0]) {
@@ -69,6 +89,32 @@ export default function VideoPage({ params }: { params: { id: string } }) {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [showInvestConfirm, setShowInvestConfirm] = useState(false)
   const [showAllTiers, setShowAllTiers] = useState(false)
+  const [isInvesting, setIsInvesting] = useState(false)
+  const [playbackProgress, setPlaybackProgress] = useState(35)
+
+  // Anti-copy: block dev tools and context menu shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && ["u", "s", "p"].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(e.key.toLowerCase()))
+      ) {
+        e.preventDefault()
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
+  // Simulate playback progress (in real app, would come from video element)
+  useEffect(() => {
+    if (!isPlaying || !isUnlocked) return
+    const interval = setInterval(() => {
+      setPlaybackProgress((p) => (p >= 100 ? 0 : p + 0.5))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [isPlaying, isUnlocked])
 
   const progressPercent = Math.min((content.currentInvestment / content.investmentGoal) * 100, 100)
   const cType = content.contentType
@@ -78,7 +124,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
   const canInvest = isAuthed && (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener"))
   const badges = getVisualBadges(content)
   const motivationalMsgs = getMotivationalMessages(content)
-  const isGold = GOLD_CREATORS.includes(content.creatorName)
+  const isGold = isGoldCreator(content.creatorName)
 
   // Recommendations: same type, exclude current, top 8 by investors
   const recommendations = useMemo(() => {
@@ -93,10 +139,36 @@ export default function VideoPage({ params }: { params: { id: string } }) {
     setIsUnlocked(true)
   }, [])
 
-  const handleInvest = useCallback(() => {
-    setShowInvestConfirm(false)
-    setSelectedAmount(null)
-  }, [])
+  const handleInvest = useCallback(async () => {
+    if (!selectedAmount || isInvesting) return
+    setIsInvesting(true)
+    try {
+      const res = await fetch("/api/stripe/invest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contentId: content.id,
+          amountEur: selectedAmount,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        // Handle specific error codes (KYC required, VPN detected, etc.)
+        console.error("[v0] Investment error:", data.code, data.message)
+        alert(data.message || "Une erreur est survenue lors de l'investissement.")
+      } else if (data.url) {
+        // Redirect to Stripe checkout
+        window.location.href = data.url
+      }
+    } catch (err) {
+      console.error("[v0] Investment request failed:", err)
+      alert("Erreur de connexion. Veuillez reessayer.")
+    } finally {
+      setIsInvesting(false)
+      setShowInvestConfirm(false)
+      setSelectedAmount(null)
+    }
+  }, [selectedAmount, isInvesting, content.id])
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -115,8 +187,13 @@ export default function VideoPage({ params }: { params: { id: string } }) {
             <div className="lg:col-span-2 space-y-6">
 
               {/* ---------- STREAM PLAYER ---------- */}
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 group/player shadow-2xl shadow-black/50">
-                <Image src={content.coverUrl || "/placeholder.svg"} alt={content.title} fill className="object-cover" priority />
+              <div
+                className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 group/player shadow-2xl shadow-black/50 select-none"
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <Image src={content.coverUrl || "/placeholder.svg"} alt={content.title} fill className="object-cover pointer-events-none" priority />
+                {/* Dynamic watermark for DRM */}
+                {isUnlocked && isAuthed && <DynamicWatermark userId={roles[0] || "user"} contentId={content.id} />}
 
                 {/* Dark overlay */}
                 <div className={`absolute inset-0 transition-colors ${isPlaying ? "bg-black/20" : "bg-black/50"}`} />
@@ -211,7 +288,10 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                     <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 z-20 transition-opacity ${isPlaying ? "opacity-0 group-hover/player:opacity-100" : "opacity-100"}`}>
                       {/* Progress bar */}
                       <div className="w-full h-1 bg-white/20 rounded-full mb-3 cursor-pointer group/bar">
-                        <div className="h-full bg-emerald-500 rounded-full relative w-[35%] group-hover/bar:h-1.5 transition-all">
+                        <div
+                          className="h-full bg-emerald-500 rounded-full relative group-hover/bar:h-1.5 transition-all"
+                          style={{ width: `${playbackProgress}%` }}
+                        >
                           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full opacity-0 group-hover/bar:opacity-100 transition-opacity" />
                         </div>
                       </div>
@@ -574,10 +654,26 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                             {"Investir comporte des risques. Les gains ne sont pas garantis."}
                           </p>
                           <div className="flex gap-2">
-                            <Button onClick={handleInvest} className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white">
-                              Confirmer
+                            <Button
+                              onClick={handleInvest}
+                              disabled={isInvesting}
+                              className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-60"
+                            >
+                              {isInvesting ? (
+                                <>
+                                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                  Traitement...
+                                </>
+                              ) : (
+                                "Confirmer"
+                              )}
                             </Button>
-                            <Button onClick={() => setShowInvestConfirm(false)} variant="outline" className="flex-1 border-white/20 text-white hover:bg-white/10">
+                            <Button
+                              onClick={() => setShowInvestConfirm(false)}
+                              disabled={isInvesting}
+                              variant="outline"
+                              className="flex-1 border-white/20 text-white hover:bg-white/10"
+                            >
                               Annuler
                             </Button>
                           </div>

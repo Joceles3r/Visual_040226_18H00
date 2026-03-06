@@ -24,6 +24,7 @@ export interface Content {
   totalVotes: number
   isFree: boolean
   category: string
+  goldPass?: boolean // Créateur ayant le Gold Pass
   duration?: string // Pour les videos et podcasts
   wordCount?: number // Pour les ecrits
   episodeCount?: number // Pour les podcasts
@@ -55,7 +56,20 @@ export interface Transaction {
   status: "completed" | "pending" | "failed"
 }
 
-// Mock contenus audiovisuels (16 videos)
+// Gold Pass creators (source de vérité pour le statut Gold)
+export const GOLD_CREATORS_NAMES = [
+  "Marie Stellaire",
+  "Karim Ondes",
+  "Thomas Voix",
+  "Nora Mystère",
+  "Hana Sound",
+]
+
+export function isGoldCreator(creatorName: string): boolean {
+  return GOLD_CREATORS_NAMES.includes(creatorName)
+}
+
+// Filtre les contenus des créateurs Gold
 export const MOCK_VIDEO_CONTENTS: Content[] = [
   { id: "v1", title: "L'Odyss\u00e9e des \u00c9toiles", description: "Un court-m\u00e9trage de science-fiction \u00e9poustouflant explorant les confins de l'univers.", contentType: "video", coverUrl: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=800&h=450&fit=crop", creatorName: "Marie Stellaire", creatorId: "c1", createdAt: "2026-01-15", investmentGoal: 5000, currentInvestment: 3200, investorCount: 47, totalVotes: 312, isFree: false, category: "Science-Fiction", duration: "18:45" },
   { id: "v2", title: "Murmures de la For\u00eat", description: "Documentaire immersif sur la biodiversit\u00e9 cach\u00e9e des for\u00eats tropicales.", contentType: "video", coverUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=450&fit=crop", creatorName: "Lucas Nature", creatorId: "c2", createdAt: "2026-01-20", investmentGoal: 3000, currentInvestment: 2800, investorCount: 89, totalVotes: 245, isFree: false, category: "Documentaire", duration: "32:10" },

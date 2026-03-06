@@ -1,5 +1,27 @@
 "use client"
 
+/**
+ * VISUAL Auth Context
+ *
+ * ⚠️ MOCK IMPLEMENTATION FOR UI DEVELOPMENT ONLY
+ *
+ * This context provides a mock authentication state for frontend development and testing.
+ * It simulates a user logged in with basic VISUAL roles and wallet data.
+ *
+ * ALL REAL AUTHENTICATION LOGIC RUNS ON THE API SIDE:
+ * - User verification is handled in each API route via database lookups
+ * - KYC/identity checks happen in /api/stripe/* routes
+ * - Risk Gate security checks happen in /api/security/* routes
+ *
+ * TODO: Replace this mock with a real JWT/session solution before production:
+ * - Option 1: NextAuth.js (recommended for VISUAL)
+ * - Option 2: Clerk (third-party auth service)
+ * - Option 3: Custom JWT implementation with HTTP-only cookies
+ *
+ * DO NOT rely on isAuthed or roles from this context for API decisions.
+ * Always verify user identity server-side in API routes.
+ */
+
 import { createContext, useContext, useState, ReactNode } from "react"
 import type { VisualRole } from "@/components/navigation"
 import type { ParentConsent } from "@/lib/visupoints-engine"

@@ -10,6 +10,7 @@ import { checkSelfInvestment } from "@/lib/visual-rules-engine";
 import { ErrorCodes, apiError } from "@/lib/api-errors";
 import { assertInvestmentsOpenForContent } from "@/lib/rules/rule-of-100";
 import { gateAction, buildSecurityDoc } from "@/lib/security/risk-gate";
+import { logTransaction } from "@/lib/audit/log-transaction";
 
 /**
  * POST /api/stripe/invest
@@ -199,6 +200,20 @@ export async function POST(req: NextRequest) {
       INSERT INTO investments (user_id, content_id, amount_cents, votes_granted, visupoints_granted, stripe_payment_intent_id, status)
       VALUES (${userId}, ${contentId}, ${amountCents}, ${votesGranted}, ${visupointsGranted}, ${paymentIntent.id}, 'pending')
     `;
+
+    // Log transaction for audit trail
+    await logTransaction({
+      userId,
+      action: "INVEST",
+      amountCents,
+      contentId,
+      metadata: {
+        votesGranted,
+        visupointsGranted,
+        paymentIntentId: paymentIntent.id,
+      },
+      ipAddress: req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || undefined,
+    });
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
