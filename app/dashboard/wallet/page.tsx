@@ -17,6 +17,7 @@ import {
 } from "@/lib/payout/constants"
 import { SecurityGate } from "@/components/security/security-gate"
 import { VerificationBadges } from "@/components/security/verification-badges"
+import { useSounds } from "@/lib/sounds"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -104,6 +105,7 @@ export default function WalletPage() {
   const [withdrawLoading, setWithdrawLoading] = useState(false)
   const [txFilter, setTxFilter] = useState<"all" | "in" | "out">("all")
   const [financialGoal, setFinancialGoal] = useState(100_00) // 100 EUR in cents
+  const { playWin, playSuccess, playError } = useSounds()
 
   const { data, error, mutate } = useSWR(
     user ? `/api/wallet?userId=${user.id}` : null,
@@ -176,9 +178,9 @@ export default function WalletPage() {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, amountCents: available }),
       })
-      const result = await res.json()
-      if (result.error) alert(result.error)
-      else { alert(`Retrait de ${formatCents(available)} \u20ac effectu\u00e9.`); mutate() }
+  const result = await res.json()
+  if (result.error) { playError(); alert(result.error) }
+  else { playWin(); alert(`Retrait de ${formatCents(available)} \u20ac effectu\u00e9.`); mutate() }
     } catch { /* silent */ } finally { setWithdrawLoading(false) }
   }, [user, wallet, mutate])
 

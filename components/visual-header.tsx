@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LanguageSelector } from "@/components/language-selector"
+import { SoundToggle } from "@/components/sound-toggle"
 import {
   ADMIN_ITEM,
   DISCOVER_MENU,
@@ -337,10 +338,13 @@ export function VisualHeader() {
           </div>
 
           {/* Actions (toujours visibles) */}
-          <div className="flex items-center gap-2 z-10">
-            <div className="shrink-0">
-              <LanguageSelector />
-            </div>
+  <div className="flex items-center gap-2 z-10">
+  <div className="shrink-0">
+  <SoundToggle />
+  </div>
+  <div className="shrink-0">
+  <LanguageSelector />
+  </div>
 
             {isAuthed ? (
               <>
