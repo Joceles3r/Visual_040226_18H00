@@ -354,3 +354,59 @@ export function rankProjectsFromMock(contents: Content[]): RankedProject[] {
     } satisfies RankedProject
   })
 }
+
+// ── Get top 100 by category (for leaderboard + API) ──
+
+export function getTop100ByCategory(
+  contentType?: string,
+  limit: number = 100,
+): (RankedProject & { score: VisualScoreBreakdown; scores: Record<string, number> })[] {
+  const { ALL_CONTENTS } = require("@/lib/mock-data")
+  
+  // Rank all projects
+  let ranked = rankProjectsFromMock(ALL_CONTENTS)
+
+  // Filter by category if specified
+  if (contentType && contentType !== "all") {
+    ranked = ranked.filter((p) => p.contentType === contentType)
+  }
+
+  // Return top N with extended score breakdown
+  return ranked.slice(0, limit).map((p) => {
+    const content = ALL_CONTENTS.find((c: Content) => c.id === p.contentId)
+    const signals: ProjectSignals = {
+      contentId: p.contentId,
+      contentType: p.contentType,
+      currentInvestment: p.currentInvestment,
+      investmentGoal: p.investmentGoal,
+      investorCount: p.investorCount,
+      totalVotes: p.totalVotes,
+      likes: Math.round(p.totalVotes * 0.6),
+      comments: Math.round(p.totalVotes * 0.15),
+      shares: Math.round(p.totalVotes * 0.10),
+      favourites: Math.round(p.totalVotes * 0.15),
+      avgCompletionRate: Math.min(0.5 + p.investorCount / 120, 0.95),
+      daysSincePublished: Math.max(1, Math.round((Date.now() - new Date(content?.createdAt || Date.now()).getTime()) / (1000 * 60 * 60 * 24))),
+      recentInvestmentEur: Math.round(p.currentInvestment * 0.35),
+      viewGrowthRate: Math.min(p.progressPct / 100 * 0.8 + p.investorCount / 200, 1),
+      creatorTrustScore: Math.min(55 + p.investorCount * 0.5, 100),
+      creatorVerified: p.investorCount >= 30,
+      creatorGoldPass: content?.goldPass ?? false,
+      currentWave: p.wave,
+    }
+    const scoreBreakdown = computeVisualScore(signals)
+
+    return {
+      ...p,
+      score: scoreBreakdown,
+      scores: {
+        investment: scoreBreakdown.investmentScore,
+        engagement: scoreBreakdown.engagementScore,
+        longevity: scoreBreakdown.completionScore,
+        momentum: scoreBreakdown.growthScore,
+        community: scoreBreakdown.trustScore,
+        creator: scoreBreakdown.qualityBonus,
+      }
+    }
+  })
+}
