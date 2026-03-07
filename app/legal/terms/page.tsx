@@ -575,11 +575,10 @@ export default function TermsOfUsePage() {
 
                 <SubSection title="Classements TOP">
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"VISUAL établit des classements publics par catégorie, accessibles à tous les inscrits :"}
+                    {"VISUAL établit des classements publics par catégorie de créateurs, accessibles à tous les inscrits :"}
                   </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {[
-                      { label: "TOP Visiteur", color: "text-amber-400", bg: "bg-amber-500/15" },
                       { label: "TOP Porteur", color: "text-red-400", bg: "bg-red-500/15" },
                       { label: "TOP Infoporteur", color: "text-sky-400", bg: "bg-sky-500/15" },
                       { label: "TOP Podcasteur", color: "text-purple-400", bg: "bg-purple-500/15" },
