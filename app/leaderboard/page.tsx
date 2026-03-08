@@ -65,7 +65,11 @@ function LeaderboardRow({
   score: any;
   index: number;
 }) {
-  const progressPercent = Math.min((score.visualScore / 1000) * 100, 100);
+  const visualScore = score?.visualScore ?? 0;
+  const waveLevel = score?.waveLevel ?? 0;
+  const badge = score?.badge;
+  const scores = score?.scores ?? { investment: 0, engagement: 0, longevity: 0, momentum: 0, community: 0, creator: 0 };
+  const progressPercent = Math.min((visualScore / 1000) * 100, 100);
   const isTop10 = rank <= 10;
   const isTop20 = rank <= 20;
 
@@ -89,12 +93,12 @@ function LeaderboardRow({
                   <h3 className="text-white font-semibold text-sm truncate">{project.title}</h3>
                   <p className="text-white/50 text-xs truncate">{project.creatorName}</p>
                 </div>
-                <BadgeDisplay badge={score.badge} />
+                <BadgeDisplay badge={badge} />
               </div>
 
               {/* Metrics Row */}
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <WaveIndicator level={score.waveLevel} />
+                <WaveIndicator level={waveLevel} />
                 <div className="flex items-center gap-1 px-2 py-1 bg-white/5 rounded-md text-[10px] text-white/70">
                   <Users className="h-3 w-3" />
                   {project.investorCount} soutiens
@@ -110,7 +114,7 @@ function LeaderboardRow({
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-white/60">VISUAL Score</span>
                   <span className={`text-sm font-bold ${isTop10 ? "text-amber-400" : "text-emerald-400"}`}>
-                    {score.visualScore.toFixed(0)}/1000
+                    {visualScore.toFixed(0)}/1000
                   </span>
                 </div>
                 <Progress value={progressPercent} className="h-2 bg-slate-800" />
@@ -119,12 +123,12 @@ function LeaderboardRow({
               {/* Sub-Scores (horizontal bars) */}
               <div className="grid grid-cols-2 md:grid-cols-6 gap-2 mt-3">
                 {[
-                  { label: "Inv", val: score.scores.investment, icon: TrendingUp },
-                  { label: "Eng", val: score.scores.engagement, icon: Heart },
-                  { label: "Long", val: score.scores.longevity, icon: Award },
-                  { label: "Mom", val: score.scores.momentum, icon: Flame },
-                  { label: "Com", val: score.scores.community, icon: Users },
-                  { label: "Créa", val: score.scores.creator, icon: Star },
+                  { label: "Inv", val: scores.investment, icon: TrendingUp },
+                  { label: "Eng", val: scores.engagement, icon: Heart },
+                  { label: "Long", val: scores.longevity, icon: Award },
+                  { label: "Mom", val: scores.momentum, icon: Flame },
+                  { label: "Com", val: scores.community, icon: Users },
+                  { label: "Créa", val: scores.creator, icon: Star },
                 ].map((metric) => (
                   <div key={metric.label} className="text-[10px]">
                     <div className="flex items-center gap-1 mb-0.5">
