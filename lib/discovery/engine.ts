@@ -25,7 +25,7 @@ import {
   WAVE_SIZES,
   WAVE_LABELS,
 } from "./types"
-import type { Content } from "@/lib/mock-data"
+import { ALL_CONTENTS, type Content } from "@/lib/mock-data"
 
 // ── Score computation ──
 
@@ -361,8 +361,6 @@ export function getTop100ByCategory(
   contentType?: string,
   limit: number = 100,
 ): (RankedProject & { score: VisualScoreBreakdown; scores: Record<string, number> })[] {
-  const { ALL_CONTENTS } = require("@/lib/mock-data")
-  
   // Rank all projects
   let ranked = rankProjectsFromMock(ALL_CONTENTS)
 
