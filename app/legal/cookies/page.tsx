@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/visual-slogan"
 import { Cookie, Shield, Settings, BarChart3, Users, Clock, ToggleLeft, Mail, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -80,7 +80,7 @@ const cookieTypes = [
 export default function CookiesPage() {
   return (
     <div className="min-h-screen bg-black">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
@@ -93,7 +93,7 @@ export default function CookiesPage() {
               Politique de Cookies
             </h1>
             <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               {"Conformément au Règlement Général sur la Protection des Données (RGPD) et à la directive ePrivacy, VISUAL vous informe de manière transparente sur l'utilisation des cookies sur sa plateforme."}

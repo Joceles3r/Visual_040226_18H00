@@ -1,9 +1,9 @@
 /**
- * VISUAL - Rules Engine V1 (Consolidation Post 9h20)
+ * VIXUAL - Rules Engine V1 (Consolidation Post 9h20)
  *
  * Ce module centralise les regles metier validees :
  * - Interdiction auto-investissement (R3)
- * - VISUAL Trust Score (R5)
+ * - VIXUAL Trust Score (R5)
  * - Limitation stockage createurs (R6)
  * - Protection medias par token temporaire (R7)
  * - Promotion externe (R9)
@@ -152,7 +152,7 @@ export function checkSelfInvestment(
 }
 
 // ──────────────────────────────────────────────
-// R5. VISUAL TRUST SCORE
+// R5. Vixual TRUST SCORE
 // ──────────────────────────────────────────────
 
 export interface TrustScoreInput {
@@ -185,7 +185,7 @@ export interface TrustScoreResult {
 }
 
 /**
- * Calcule le VISUAL Trust Score sur 5 etoiles.
+ * Calcule le Vixual Trust Score sur 5 etoiles.
  *
  * Criteres ponderes :
  * - Anciennete (25%) : 0-5 selon jours (30j=1, 90j=2, 180j=3, 365j=4, 730j+=5)
@@ -416,7 +416,7 @@ export interface IPDeclaration {
 
 /** Texte de la declaration obligatoire */
 export const IP_DECLARATION_TEXT =
-  "Je certifie etre titulaire des droits sur l'oeuvre deposee et autorise sa diffusion sur la plateforme VISUAL."
+  "Je certifie etre titulaire des droits sur l'oeuvre deposee et autorise sa diffusion sur la plateforme Vixual."
 
 /**
  * Verifie si la declaration de propriete a ete effectuee.
@@ -445,7 +445,7 @@ export function checkIPDeclaration(
 // ──────────────────────────────────────────────
 
 /**
- * L'administrateur VISUAL n'est pas un profil utilisateur.
+ * L'administrateur Vixual n'est pas un profil utilisateur.
  * Il dispose de droits specifiques :
  * - Bloquer des comptes
  * - Geler des fonds en cas de fraude

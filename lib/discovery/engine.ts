@@ -1,12 +1,12 @@
 /**
- * VISUAL Discovery Engine V1
+ * VIXUAL Discovery Engine V1
  *
  * Core scoring, wave diffusion, badge assignment, and anti-manipulation.
  * Compatible with the Rule of 100 — this engine ranks projects within a cycle
  * but does NOT replace cycle management.
  *
  * Formula (section 3):
- *   Score_VISUAL = 40% investment + 20% engagement + 15% completion
+ *   Score_VIXUAL = 40% investment + 20% engagement + 15% completion
  *                + 10% growth + 10% trust + 5% quality bonus
  */
 

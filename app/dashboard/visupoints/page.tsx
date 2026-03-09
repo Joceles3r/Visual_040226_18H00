@@ -96,7 +96,7 @@ function EngagementBanner({ redirect }: { redirect: EngagementRedirectResult }) 
                     <p className="text-white font-medium text-sm">{"Chemin A \u2014 Consommer du contenu"}</p>
                   </div>
                   <p className="text-white/50 text-xs leading-relaxed mb-3">
-                    {"Utilisez vos VISUpoints pour acc\u00e9der \u00e0 du contenu audiovisuel ou litt\u00e9raire. Paiement hybride : minimum 30% en euros, jusqu'\u00e0 70% en VISUpoints."}
+                    {"Utilisez vos VIXUpoints pour acc\u00e9der \u00e0 du contenu audiovisuel ou litt\u00e9raire. Paiement hybride : minimum 30% en euros, jusqu'\u00e0 70% en VIXUpoints."}
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="flex-1 bg-emerald-500/10 rounded-lg p-2 text-center">
@@ -106,7 +106,7 @@ function EngagementBanner({ redirect }: { redirect: EngagementRedirectResult }) 
                     <ArrowRight className="h-3 w-3 text-white/30" />
                     <div className="flex-1 bg-amber-500/10 rounded-lg p-2 text-center">
                       <p className="text-amber-400 font-bold text-sm">70%</p>
-                      <p className="text-white/40 text-xs">max. VISUpoints</p>
+                      <p className="text-white/40 text-xs">max. VIXUpoints</p>
                     </div>
                   </div>
                   <p className="text-emerald-400/60 text-xs mt-2 flex items-center gap-1">
@@ -131,7 +131,7 @@ function EngagementBanner({ redirect }: { redirect: EngagementRedirectResult }) 
                   <div className="bg-purple-500/10 rounded-lg p-3">
                     <p className="text-purple-400 font-medium text-sm mb-1">{"Bonus \u00e9volution"}</p>
                     <p className="text-white/60 text-xs">
-                      {"Recevez +" + INVESTOR_EVOLUTION_BONUS + " VISUpoints et le d\u00e9blocage du plafond en devenant Investisseur."}
+                      {"Recevez +" + INVESTOR_EVOLUTION_BONUS + " VIXUpoints et le d\u00e9blocage du plafond en devenant Investisseur."}
                     </p>
                   </div>
                   <Button size="sm" variant="outline" className="mt-3 w-full border-purple-500/40 text-purple-400 hover:bg-purple-500/20">
@@ -163,7 +163,7 @@ function HybridSimulator({ userPoints }: { userPoints: number }) {
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-white/50 text-sm">
-          {"Visualisez la r\u00e9partition entre euros et VISUpoints pour l'achat d'un contenu. La r\u00e8gle : minimum 30% en euros, maximum 70% en VISUpoints."}
+          {"Visualisez la r\u00e9partition entre euros et VIXUpoints pour l'achat d'un contenu. La r\u00e8gle : minimum 30% en euros, maximum 70% en VIXUpoints."}
         </p>
 
         <div className="flex items-center gap-4">
@@ -207,7 +207,7 @@ function HybridSimulator({ userPoints }: { userPoints: number }) {
         <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3">
           <p className="text-amber-400/70 text-xs flex items-center gap-1.5">
             <Info className="h-3.5 w-3.5 shrink-0" />
-            {"Le paiement 100% VISUpoints n'est pas autoris\u00e9. Ce mod\u00e8le garantit un \u00e9quilibre \u00e9conomique durable pour les cr\u00e9ateurs et la plateforme."}
+            {"Le paiement 100% VIXUpoints n'est pas autoris\u00e9. Ce mod\u00e8le garantit un \u00e9quilibre \u00e9conomique durable pour les cr\u00e9ateurs et la plateforme."}
           </p>
         </div>
       </CardContent>
@@ -223,7 +223,7 @@ function ProfileTable() {
       <CardHeader>
         <CardTitle className="text-white flex items-center gap-2">
           <Users className="h-5 w-5 text-sky-400" />
-          {"VISUpoints par profil"}
+          {"VIXUpoints par profil"}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -278,7 +278,7 @@ function ProfileTable() {
           </span>
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-500/40" />
-            {"100 VISUpoints = 1\u20ac"}
+            {"100 VIXUpoints = 1\u20ac"}
           </span>
         </div>
       </CardContent>
@@ -319,7 +319,7 @@ export default function VisupointsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Mes VISUpoints</h1>
+        <h1 className="text-3xl font-bold text-white mb-2">Mes VIXUpoints</h1>
         <p className="text-white/60">
           {"Gagnez des points, consommez du contenu et \u00e9voluez sur VISUAL"}
         </p>
@@ -337,7 +337,7 @@ export default function VisupointsPage() {
               <ul className="text-white/60 text-sm space-y-1">
                 <li className="flex items-center gap-2">
                   <Lock className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                  {"Plafond : 10 000 VISUpoints (100\u20ac) \u2014 bloqu\u00e9 jusqu'\u00e0 18 ans"}
+                  {"Plafond : 10 000 VIXUpoints (100\u20ac) \u2014 bloqu\u00e9 jusqu'\u00e0 18 ans"}
                 </li>
                 <li className="flex items-center gap-2">
                   <Lock className="h-3.5 w-3.5 text-amber-400 shrink-0" />
@@ -345,7 +345,7 @@ export default function VisupointsPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                  {"Vos VISUpoints sont conserv\u00e9s et seront d\u00e9bloqu\u00e9s \u00e0 vos 18 ans"}
+                  {"Vos VIXUpoints sont conserv\u00e9s et seront d\u00e9bloqu\u00e9s \u00e0 vos 18 ans"}
                 </li>
               </ul>
             </div>
@@ -369,7 +369,7 @@ export default function VisupointsPage() {
                   <span className="text-4xl font-bold text-white">
                     {currentPoints.toLocaleString("fr-FR")}
                   </span>
-                  <span className="text-white/60">VISUpoints</span>
+                  <span className="text-white/60">VIXUpoints</span>
                   {cap && (
                     <span className="text-amber-400/70 text-sm">{"/ " + cap.toLocaleString("fr-FR")}</span>
                   )}
@@ -602,10 +602,10 @@ export default function VisupointsPage() {
         </CardContent>
       </Card>
 
-      {/* Note juridique VISUpoints */}
+      {/* Note juridique VIXUpoints */}
       <div className="bg-slate-800/30 rounded-xl p-4 border border-white/5 text-center">
         <p className="text-white/30 text-xs leading-relaxed">
-          {"Les VISUpoints constituent un avantage promotionnel interne \u00e0 VISUAL. Ils ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE. Le paiement 100% VISUpoints n'est pas autoris\u00e9. La conversion en euros est soumise aux conditions d\u00e9finies dans les "}
+          {"Les VIXUpoints constituent un avantage promotionnel interne \u00e0 VISUAL. Ils ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE. Le paiement 100% VIXUpoints n'est pas autoris\u00e9. La conversion en euros est soumise aux conditions d\u00e9finies dans les "}
           <a href="/legal/cgv" className="text-emerald-400/50 hover:text-emerald-400/70 underline underline-offset-2">CGV</a>
           {" et les "}
           <a href="/legal/terms" className="text-emerald-400/50 hover:text-emerald-400/70 underline underline-offset-2">CGU</a>

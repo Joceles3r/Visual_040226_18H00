@@ -1,5 +1,5 @@
 // lib/visual-social/hybrid.ts
-// Visual Social — Hybrid Provider (V1)
+// VIXUAL Social — Hybrid Provider (V1)
 // - "Content Thread": discussion sous un contenu (video/podcast/text)
 // - "Global Feed": fil interne global (tendances / derniers posts)
 // - Feature flag OFF => Mock provider (pret pendant la construction)
@@ -7,7 +7,7 @@
 
 export type ContentType = "video" | "podcast" | "text"
 
-export type VisualSocialRole =
+export type VIXUALSocialRole =
   | "guest"
   | "visitor"
   | "minor_visitor"
@@ -93,7 +93,7 @@ export type SocialPost = {
   contentId: string | null
   authorUserId: string
   authorName: string
-  authorRole: VisualSocialRole
+  authorRole: VIXUALSocialRole
   body: string
   tags: SocialTag[]
   parentId: string | null
@@ -120,7 +120,7 @@ export type CreateParams = {
   contentId: string | null
   authorUserId: string
   authorName: string
-  authorRole: VisualSocialRole
+  authorRole: VIXUALSocialRole
   body: string
   tags: SocialTag[]
   parentId?: string | null
@@ -131,7 +131,7 @@ export type ReportParams = { postId: string; userId: string; reason: string }
 
 // ─── Provider interface ───
 
-export interface VisualSocialProvider {
+export interface VIXUALSocialProvider {
   list(params: ListParams): Promise<{ roots: SocialPost[]; repliesByParent: Record<string, SocialPost[]> }>
   create(params: CreateParams): Promise<SocialPost>
   like(params: LikeParams): Promise<{ liked: boolean }>
@@ -140,7 +140,7 @@ export interface VisualSocialProvider {
 
 // ─── Feature flag ───
 
-export function isVisualSocialEnabled(): boolean {
+export function isVIXUALSocialEnabled(): boolean {
   const raw =
     (typeof process !== "undefined" && (process.env.NEXT_PUBLIC_VISUAL_SOCIAL_ENABLED ?? process.env.VISUAL_SOCIAL_ENABLED)) ||
     "0"
@@ -223,7 +223,7 @@ function pastISO(hoursAgo: number) {
   return d.toISOString()
 }
 
-const MOCK_AUTHORS: { name: string; role: VisualSocialRole }[] = [
+const MOCK_AUTHORS: { name: string; role: VIXUALSocialRole }[] = [
   { name: "Marie C.", role: "visitor" },
   { name: "Lucas D.", role: "porter" },
   { name: "Sophie M.", role: "investor" },
@@ -266,7 +266,7 @@ const MOCK_GLOBAL_POSTS: SocialPost[] = [
   {
     id: "p_g3", contentType: "global", contentId: null,
     authorUserId: "u5", authorName: "Julie R.", authorRole: "podcaster",
-    body: "En tant que podcasteuse, Visual Social c'est exactement ce qu'il manquait pour \u00e9changer avec notre communaut\u00e9. Des retours structur\u00e9s par tags, c'est top !",
+    body: "En tant que podcasteuse, VIXUAL Social c'est exactement ce qu'il manquait pour \u00e9changer avec notre communaut\u00e9. Des retours structur\u00e9s par tags, c'est top !",
     tags: ["idee", "amelioration"], parentId: null, depth: 0, status: "visible",
     likeCount: 15, replyCount: 0, reportCount: 0, createdAtISO: pastISO(8),
   },
@@ -319,7 +319,7 @@ const MOCK_CONTENT_POSTS: SocialPost[] = [
 
 const mockStore: SocialPost[] = [...MOCK_GLOBAL_POSTS, ...MOCK_CONTENT_POSTS]
 
-export function createMockProvider(): VisualSocialProvider {
+export function createMockProvider(): VIXUALSocialProvider {
   return {
     async list(params) {
       const limit = Math.min(params.limit ?? 30, 100)
@@ -401,7 +401,7 @@ export function createMockProvider(): VisualSocialProvider {
 
 // ─── DB Provider skeleton ───
 
-export function createDbProvider(_deps: Record<string, unknown>): VisualSocialProvider {
+export function createDbProvider(_deps: Record<string, unknown>): VIXUALSocialProvider {
   return {
     async list(_params) { throw new Error("DB provider not wired yet") },
     async create(_params) { throw new Error("DB provider not wired yet") },
@@ -412,6 +412,6 @@ export function createDbProvider(_deps: Record<string, unknown>): VisualSocialPr
 
 // ─── Factory ───
 
-export function getVisualSocialProvider(deps?: Record<string, unknown>): VisualSocialProvider {
-  return isVisualSocialEnabled() ? createDbProvider(deps ?? {}) : createMockProvider()
+export function getVIXUALSocialProvider(deps?: Record<string, unknown>): VIXUALSocialProvider {
+  return isVIXUALSocialEnabled() ? createDbProvider(deps ?? {}) : createMockProvider()
 }

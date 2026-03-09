@@ -429,7 +429,7 @@ export default function VisualSocialFeed({
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white">Visual Social</h2>
+              <h2 className="text-xl font-bold text-white">VIXUAL Social</h2>
               <p className="text-white/40 text-xs">{"Fil global \u2014 La communaut\u00e9 VISUAL s'exprime"}</p>
             </div>
           </div>
@@ -538,7 +538,7 @@ export default function VisualSocialFeed({
       {/* V1 notice */}
       {!VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1 && !isContentMode && (
         <div className="text-center py-3 text-white/15 text-xs">
-          {"V1 \u2014 Les VISUpoints Visual Social sont temporairement d\u00e9sactiv\u00e9s"}
+          {"V1 \u2014 Les VISUpoints VIXUAL Social sont temporairement d\u00e9sactiv\u00e9s"}
         </div>
       )}
     </div>

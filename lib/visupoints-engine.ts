@@ -1,10 +1,10 @@
 /**
- * VISUAL - VISUpoints Engine
+ * VIXUAL - VIXUpoints Engine
  *
  * Gere l'accumulation, le plafond mineurs (16-17 ans), le blocage retrait,
  * et la detection automatique de majorite.
  *
- * Plafond mineur : 10 000 VISUpoints (equivalent 100 EUR)
+ * Plafond mineur : 10 000 VIXUpoints (equivalent 100 EUR)
  * Plafond majeur : illimite (conversion a partir de 2 500 pts)
  */
 
@@ -34,8 +34,8 @@ export interface UserVisupointsProfile {
   userId: string
   birthDate?: string
   isMinor: boolean
-  visupointsBalance: number
-  visupointsCap: number
+  visuxpointsBalance: number
+  visuxpointsCap: number
   parentConsent: ParentConsent
   kycVerified: boolean
 }
@@ -46,7 +46,7 @@ export const MINOR_VISUPOINTS_CAP = 10_000
 export const MINOR_MIN_AGE = 16
 export const MAJORITY_AGE = 18
 
-/** Daily cap: max 60 VISUpoints/day for any user */
+/** Daily cap: max 60 VIXUpoints/day for any user */
 export const DAILY_VISUPOINTS_CAP = 60
 
 /** Profile-based caps (total or monthly depending on profile) */
@@ -96,9 +96,9 @@ export function isEligibleForSignup(birthDate: string): boolean {
   return age >= MINOR_MIN_AGE
 }
 
-// ─── VISUpoints operations ───
+// ─── VIXUpoints operations ───
 
-/** Credite des VISUpoints en respectant le plafond mineur */
+/** Credite des VIXUpoints en respectant le plafond mineur */
 export function creditVisupoints(
   currentBalance: number,
   points: number,
@@ -121,7 +121,7 @@ export function creditVisupoints(
 }
 
 /**
- * Credits VISUpoints with daily cap, profile cap, and minor cap enforcement.
+ * Credits VIXUpoints with daily cap, profile cap, and minor cap enforcement.
  * Returns the actual points credited and any cap hit.
  */
 export function creditVisupointsCapped(
@@ -177,7 +177,7 @@ export function creditVisupointsCapped(
 }
 
 /**
- * Anti-abuse: detects suspicious VISUpoints accumulation patterns.
+ * Anti-abuse: detects suspicious VIXUpoints accumulation patterns.
  * Returns a risk score 0-100 and flags.
  */
 export function detectVisupointsAbuse(
@@ -233,7 +233,7 @@ export function canWithdraw(userIsMinor: boolean, kycVerified: boolean): {
   if (userIsMinor) {
     return {
       allowed: false,
-      reason: "Les retraits sont bloqu\u00e9s jusqu'\u00e0 la majorit\u00e9 (18 ans). Vos VISUpoints seront convertibles \u00e0 vos 18 ans.",
+      reason: "Les retraits sont bloqu\u00e9s jusqu'\u00e0 la majorit\u00e9 (18 ans). Vos VIXUpoints seront convertibles \u00e0 vos 18 ans.",
     }
   }
   if (!kycVerified) {
@@ -259,7 +259,7 @@ export function canInvest(userIsMinor: boolean): {
   return { allowed: true }
 }
 
-/** Verifie si un utilisateur peut convertir ses VISUpoints en euros */
+/** Verifie si un utilisateur peut convertir ses VIXUpoints en euros */
 export function canConvertVisupoints(userIsMinor: boolean): {
   allowed: boolean
   reason?: string
@@ -267,7 +267,7 @@ export function canConvertVisupoints(userIsMinor: boolean): {
   if (userIsMinor) {
     return {
       allowed: false,
-      reason: "La conversion de VISUpoints en euros n'est pas autoris\u00e9e avant 18 ans.",
+      reason: "La conversion de VIXUpoints en euros n'est pas autoris\u00e9e avant 18 ans.",
     }
   }
   return { allowed: true }
@@ -292,34 +292,34 @@ const ENGAGEMENT_CRITICAL_THRESHOLD = 2_450
 /**
  * Moteur d'incitation a l'engagement.
  * Se declenche uniquement pour les Visiteurs majeurs
- * avec 2000+ VISUpoints.
+ * avec 2000+ VIXUpoints.
  *
  * Deux chemins proposes :
- * A) Consommer du contenu (paiement hybride 30% cash min / 70% VISUpoints max)
+ * A) Consommer du contenu (paiement hybride 30% cash min / 70% VIXUpoints max)
  * B) Evoluer vers un profil avance (Investisseur, Auditeur, etc.)
  */
 export function engagementRedirectEngine(
   role: string,
-  visupoints: number,
+  visuxpoints: number,
   isUserMinor: boolean
 ): EngagementRedirectResult | null {
   // Ne s'applique qu'aux visiteurs majeurs
   if (role !== "visitor" || isUserMinor) return null
-  if (visupoints < ENGAGEMENT_INFO_THRESHOLD) return null
+  if (visuxpoints < ENGAGEMENT_INFO_THRESHOLD) return null
 
-  if (visupoints >= ENGAGEMENT_CRITICAL_THRESHOLD) {
+  if (visuxpoints >= ENGAGEMENT_CRITICAL_THRESHOLD) {
     return {
       level: "critical",
       title: "Vous approchez du plafond de 2 500 pts !",
-      message: "Il est temps d'utiliser vos VISUpoints : consommez du contenu ou passez au niveau sup\u00e9rieur pour d\u00e9bloquer plus de fonctionnalit\u00e9s.",
+      message: "Il est temps d'utiliser vos VIXUpoints : consommez du contenu ou passez au niveau sup\u00e9rieur pour d\u00e9bloquer plus de fonctionnalit\u00e9s.",
       showPathA: true,
       showPathB: true,
     }
   }
-  if (visupoints >= ENGAGEMENT_WARNING_THRESHOLD) {
+  if (visuxpoints >= ENGAGEMENT_WARNING_THRESHOLD) {
     return {
       level: "warning",
-      title: "Vos VISUpoints s'accumulent !",
+      title: "Vos VIXUpoints s'accumulent !",
       message: "Profitez-en pour acc\u00e9der \u00e0 du contenu premium ou explorez de nouveaux r\u00f4les sur VISUAL.",
       showPathA: true,
       showPathB: true,
@@ -327,7 +327,7 @@ export function engagementRedirectEngine(
   }
   return {
     level: "info",
-    title: "Vous avez d\u00e9j\u00e0 2 000 VISUpoints !",
+    title: "Vous avez d\u00e9j\u00e0 2 000 VIXUpoints !",
     message: "Saviez-vous que vous pouvez utiliser vos points pour acc\u00e9der \u00e0 du contenu ? D\u00e9couvrez les possibilit\u00e9s.",
     showPathA: true,
     showPathB: false,
@@ -336,7 +336,7 @@ export function engagementRedirectEngine(
 
 /**
  * Calcule le paiement hybride pour l'achat de contenu (Chemin A).
- * Minimum 30% en euros, maximum 70% en VISUpoints.
+ * Minimum 30% en euros, maximum 70% en VIXUpoints.
  * Bonus : 5% des points depenses sont regagnes (max 200/mois).
  */
 export function computeHybridPurchase(
@@ -380,7 +380,7 @@ export function checkMajorityUnlock(
     return {
       ...profile,
       isMinor: false,
-      visupointsCap: Infinity,
+      visuxpointsCap: Infinity,
       parentConsent: {
         ...profile.parentConsent,
         status: "not_required",

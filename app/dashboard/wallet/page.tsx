@@ -50,7 +50,7 @@ function ProgressBar({ value, max, color = "emerald" }: { value: number; max: nu
 const TX_LABELS: Record<string, string> = {
   investment: "Investissement", return: "Retour de gain", caution: "Caution",
   caution_refund: "Remboursement caution", withdrawal: "Retrait bancaire",
-  visupoints_conversion: "Conversion VISUpoints", article_sale: "Vente d'article",
+  visupoints_conversion: "Conversion VIXUpoints", article_sale: "Vente d'article",
   video_sale: "Vente vid\u00e9o", podcast_sale: "Vente podcast",
 }
 
@@ -195,7 +195,7 @@ export default function WalletPage() {
             </div>
             {"Mon Wallet"}
           </h1>
-          <p className="text-white/50 mt-1">{"Centre financier VISUAL \u2014 g\u00e9rez vos gains, investissements et retraits"}</p>
+          <p className="text-white/50 mt-1">{"Centre financier VIXUAL \u2014 g\u00e9rez vos gains, investissements et retraits"}</p>
         </div>
         <VerificationBadges
           verificationLevel={user?.kycVerified ? 2 : 0}
@@ -423,12 +423,12 @@ export default function WalletPage() {
 
       {/* SECTION 6 + 7 : VISUPOINTS + GRAPHIQUES */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* VISUpoints */}
+        {/* VIXUpoints */}
         <Card className="bg-gradient-to-br from-amber-900/10 to-amber-800/5 border-amber-500/20">
           <CardHeader className="pb-3">
             <CardTitle className="text-white flex items-center gap-2 text-base">
               <Star className="h-5 w-5 text-amber-400" />
-              {"VISUpoints"}
+              {"VIXUpoints"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">

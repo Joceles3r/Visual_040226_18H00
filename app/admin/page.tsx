@@ -144,7 +144,7 @@ export default function AdminPage() {
         <div>
           <h1 className="text-3xl font-bold text-white flex items-center gap-3">
             <Shield className="h-8 w-8 text-red-400" />
-            Administration VISUAL
+            Administration VIXUAL
           </h1>
           <p className="text-white/50 mt-1">
             {"Panneau d'administration -- Acces restreint"}
@@ -949,7 +949,7 @@ export default function AdminPage() {
               { label: "Volume total", value: "187 650 \u20ac", icon: Wallet2, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
               { label: "Retraits en attente", value: String(stats?.pendingPayouts ?? 23), icon: Clock, color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20" },
               { label: "Cautions actives", value: "1 247", icon: Shield, color: "text-sky-400", bg: "bg-sky-500/10", border: "border-sky-500/20" },
-              { label: "VISUpoints en circulation", value: "342 800", icon: Zap, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" },
+              { label: "VIXUpoints en circulation", value: "342 800", icon: Zap, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" },
             ].map((s) => (
               <Card key={s.label} className={`${s.bg} border ${s.border}`}>
                 <CardContent className="p-4">
@@ -977,7 +977,7 @@ export default function AdminPage() {
                   { user: "Marie Stellaire", type: "Retrait", amount: "-350,00 \u20ac", status: "valid\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a trois minutes" },
                   { user: "Lucas Nature", type: "Gain investissement", amount: "+120,50 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a sept minutes" },
                   { user: "F\u00e9lix Cin\u00e9ma", type: "Retrait", amount: "-1 200,00 \u20ac", status: "en revue", statusColor: "bg-amber-500/20 text-amber-400", time: "Il y a douze minutes" },
-                  { user: "Sophie Drama", type: "Conversion VISUpoints", amount: "+25,00 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a vingt minutes" },
+                  { user: "Sophie Drama", type: "Conversion VIXUpoints", amount: "+25,00 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a vingt minutes" },
                   { user: "Karim Ondes", type: "Caution rembours\u00e9e", amount: "-10,00 \u20ac", status: "rembours\u00e9", statusColor: "bg-sky-500/20 text-sky-400", time: "Il y a trente-cinq minutes" },
                   { user: "Pierre Michel", type: "Retrait", amount: "-480,00 \u20ac", status: "valid\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a une heure" },
                   { user: "Amina Vision", type: "Gain cr\u00e9ateur", amount: "+890,00 \u20ac", status: "cr\u00e9dit\u00e9", statusColor: "bg-emerald-500/20 text-emerald-400", time: "Il y a deux heures" },
@@ -1078,7 +1078,7 @@ export default function AdminPage() {
                   { label: "Wallets cr\u00e9ateurs", value: "98 200 \u20ac", pct: 52, color: "bg-red-400" },
                   { label: "Wallets investisseurs", value: "67 450 \u20ac", pct: 36, color: "bg-emerald-400" },
                   { label: "Cautions bloqu\u00e9es", value: "18 700 \u20ac", pct: 10, color: "bg-amber-400" },
-                  { label: "VISUpoints (valeur)", value: "3 428 \u20ac", pct: 2, color: "bg-purple-400" },
+                  { label: "VIXUpoints (valeur)", value: "3 428 \u20ac", pct: 2, color: "bg-purple-400" },
                 ].map((f) => (
                   <div key={f.label} className="space-y-1">
                     <div className="flex justify-between text-xs">

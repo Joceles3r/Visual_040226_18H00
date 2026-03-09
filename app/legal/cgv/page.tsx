@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/visual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
@@ -73,7 +73,7 @@ function HighlightCard({ icon: Icon, title, children, color = "amber" }: { icon:
 export default function CGVPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
 
@@ -93,7 +93,7 @@ export default function CGVPage() {
               {"Conditions Générales de Vente"}
             </h1>
             <div className="mb-4">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-white/50 text-sm">
               {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}
@@ -120,7 +120,7 @@ export default function CGVPage() {
                   "Règle d'arrondi",
                   "Wallet et paiements",
                   "Absence de garantie",
-                  "Visual Social",
+                  "Vixual Social",
                   "Interdictions et sanctions",
                   "Propriété intellectuelle",
                   "Responsabilité de VISUAL",
@@ -440,9 +440,9 @@ export default function CGVPage() {
               </div>
             </Section>
 
-            {/* Article 11bis - Visual Social */}
-            <Section num={0} title={"Visual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
-              <P>{"Visual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VISUAL, permettant aux utilisateurs inscrits de partager des avis (2\u202f000 caract\u00e8res max) sur les contenus et la plateforme. Deux vues sont disponibles : un fil global (tendances et discussions g\u00e9n\u00e9rales) et des discussions sous chaque contenu (vid\u00e9o, podcast, \u00e9crit)."}</P>
+            {/* Article 11bis - Vixual Social */}
+            <Section num={0} title={"Vixual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
+              <P>{"Vixual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VISUAL, permettant aux utilisateurs inscrits de partager des avis (2\u202f000 caract\u00e8res max) sur les contenus et la plateforme. Deux vues sont disponibles : un fil global (tendances et discussions g\u00e9n\u00e9rales) et des discussions sous chaque contenu (vid\u00e9o, podcast, \u00e9crit)."}</P>
 
               <HighlightCard icon={MessageSquare} title={"R\u00e8gles de publication"} color="emerald">
                 <ul className="space-y-1.5">
@@ -458,7 +458,7 @@ export default function CGVPage() {
               </HighlightCard>
 
               <HighlightCard icon={Star} title={"Interactions et VISUpoints (V1)"} color="amber">
-                <p>{"Une r\u00e9action \u00ab\u202fJ'aime\u202f\u00bb (like) est disponible par post. En version V1, les VISUpoints li\u00e9s \u00e0 Visual Social sont temporairement d\u00e9sactiv\u00e9s pour garantir l'\u00e9quilibre du syst\u00e8me. Ils seront r\u00e9activ\u00e9s en V2 une fois la mod\u00e9ration et l'anti-spam stabilis\u00e9s."}</p>
+                <p>{"Une r\u00e9action \u00ab\u202fJ'aime\u202f\u00bb (like) est disponible par post. En version V1, les VISUpoints li\u00e9s \u00e0 Vixual Social sont temporairement d\u00e9sactiv\u00e9s pour garantir l'\u00e9quilibre du syst\u00e8me. Ils seront r\u00e9activ\u00e9s en V2 une fois la mod\u00e9ration et l'anti-spam stabilis\u00e9s."}</p>
               </HighlightCard>
 
               <HighlightCard icon={Shield} title={"Mod\u00e9ration"} color="red">
@@ -470,7 +470,7 @@ export default function CGVPage() {
                 </ul>
               </HighlightCard>
 
-              <P>{"En publiant sur Visual Social, l'utilisateur accorde \u00e0 VISUAL une licence non exclusive, gratuite et mondiale pour afficher et distribuer le contenu sur la plateforme. Visual Social est soumis aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de VISUAL."}</P>
+              <P>{"En publiant sur Vixual Social, l'utilisateur accorde \u00e0 VISUAL une licence non exclusive, gratuite et mondiale pour afficher et distribuer le contenu sur la plateforme. Vixual Social est soumis aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de VISUAL."}</P>
             </Section>
 
             {/* Article 12 */}

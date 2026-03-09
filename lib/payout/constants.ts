@@ -1,8 +1,8 @@
 /**
- * VISUAL - Constantes consolidees V1 (17/02/2026)
- * Source : VISUAL_Formules_Consolidees_V1_170226
+ * VIXUAL - Constantes consolidees V1 (17/02/2026)
+ * Source : Vixual_Formules_Consolidees_V1_170226
  *
- * Ce fichier centralise TOUS les parametres configurables du moteur VISUAL.
+ * Ce fichier centralise TOUS les parametres configurables du moteur Vixual.
  * Pret pour integration Stripe Connect.
  */
 
@@ -65,7 +65,7 @@ export function getVotesForInvestment(amountEur: number): number {
 // 4. VISUPOINTS - BAREME FIDELITE
 // ──────────────────────────────────────────────
 
-/** Table investissement EUR -> VISUpoints gagnes */
+/** Table investissement EUR -> VIXUpoints gagnes */
 export const INVESTMENT_TO_VISUPOINTS: ReadonlyMap<number, number> = new Map([
   [2, 10],
   [3, 15],
@@ -79,7 +79,7 @@ export const INVESTMENT_TO_VISUPOINTS: ReadonlyMap<number, number> = new Map([
   [20, 110],
 ]);
 
-/** Obtenir les VISUpoints pour un montant d'investissement */
+/** Obtenir les VIXUpoints pour un montant d'investissement */
 export function getVisupointsForInvestment(amountEur: number): number {
   return INVESTMENT_TO_VISUPOINTS.get(amountEur) ?? 0;
 }
@@ -88,17 +88,17 @@ export function getVisupointsForInvestment(amountEur: number): number {
 // 5. VISUPOINTS - CONVERSION EN EUROS
 // ──────────────────────────────────────────────
 
-/** Seuil minimum pour conversion : 2500 VISUpoints */
+/** Seuil minimum pour conversion : 2500 VIXUpoints */
 export const VISUPOINTS_CONVERSION_THRESHOLD = 2500;
 
-/** Taux : 100 VISUpoints = 1 EUR */
+/** Taux : 100 VIXUpoints = 1 EUR */
 export const VISUPOINTS_PER_EUR = 100;
 
 /** Retrait minimum en euros (correspondant au seuil) */
 export const VISUPOINTS_MIN_WITHDRAW_EUR = VISUPOINTS_CONVERSION_THRESHOLD / VISUPOINTS_PER_EUR; // 25 EUR
 
 /**
- * Convertit des VISUpoints en euros.
+ * Convertit des VIXUpoints en euros.
  * @returns { eurosConverted, pointsRemaining, eligibleForConversion }
  */
 export function convertVisupoints(points: number): {
@@ -127,8 +127,8 @@ export function convertVisupoints(points: number): {
 // ──────────────────────────────────────────────
 // 6. REPARTITION DES GAINS PAR CATEGORIE
 // ──────────────────────────────────────────────
-// Source doc: "VISUAL - Formules Mathematiques et Repartitions Completes Optimisees"
-// Hors VSLS et Petites Annonces (non implementes dans VISUAL V1)
+// Source doc: "Vixual - Formules Mathematiques et Repartitions Completes Optimisees"
+// Hors VSLS et Petites Annonces (non implementes dans Vixual V1)
 
 // ─── 6A. FILMS / VIDEOS / DOCUMENTAIRES ───
 // Cloture configurable (admin) — 40/30/7/23
@@ -141,9 +141,9 @@ export const FILMS_CREATOR_TOP10_BPS = 3000;
 /** Investisseurs rangs 11-100 : 7% */
 export const FILMS_INVESTOR_11_100_PERCENT = 7;
 export const FILMS_INVESTOR_11_100_BPS = 700;
-/** VISUAL (plateforme) : 23% */
-export const FILMS_VISUAL_PERCENT = 23;
-export const FILMS_VISUAL_BPS = 2300;
+/** Vixual (plateforme) : 23% */
+export const FILMS_Vixual_PERCENT = 23;
+export const FILMS_Vixual_BPS = 2300;
 
 /** BPS par rang dans le TOP 10 investisseurs (pro-rata votes) */
 export const FILMS_INVESTOR_TOP10_RANK_BPS: readonly number[] = [
@@ -158,7 +158,7 @@ export const FILMS_CREATOR_TOP10_RANK_BPS: readonly number[] = [
 // Vente unitaire 70/30 + Pot quotidien 60/40
 // CRON quotidien a 00:15 UTC+1
 export const VOIXINFO_SALE_AUTHOR_PERCENT = 70;
-export const VOIXINFO_SALE_VISUAL_PERCENT = 30;
+export const VOIXINFO_SALE_Vixual_PERCENT = 30;
 export const VOIXINFO_POT_AUTHORS_TOP10_PERCENT = 60;
 export const VOIXINFO_POT_READERS_PERCENT = 40;
 /** Poids degressif par rang TOP 10 (rang 1 = 10 pts, rang 10 = 1 pt) */
@@ -167,7 +167,7 @@ export const VOIXINFO_RANK_WEIGHT = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as const;
 // ─── 6C. LIVRES ───
 // Vente unitaire 70/30 + Pot mensuel 60/40
 export const LIVRES_SALE_AUTHOR_PERCENT = 70;
-export const LIVRES_SALE_VISUAL_PERCENT = 30;
+export const LIVRES_SALE_Vixual_PERCENT = 30;
 export const LIVRES_POT_AUTHORS_TOP10_PERCENT = 60;
 export const LIVRES_POT_INVESTIREADERS_PERCENT = 40;
 /** Poids degressif identique a Voix de l'Info */
@@ -180,10 +180,10 @@ export const LIVRES_TARGET_AUTHORS_MONTH = 100;
 // ─── 6D. PODCASTS ───
 // Vente episode 70/30 + Pot mensuel 40/30/20/10
 export const PODCASTS_SALE_CREATOR_PERCENT = 70;
-export const PODCASTS_SALE_VISUAL_PERCENT = 30;
+export const PODCASTS_SALE_Vixual_PERCENT = 30;
 export const PODCASTS_POT_CREATORS_PERCENT = 40;
 export const PODCASTS_POT_INVESTORS_PERCENT = 30;
-export const PODCASTS_POT_VISUAL_PERCENT = 20;
+export const PODCASTS_POT_Vixual_PERCENT = 20;
 export const PODCASTS_POT_BONUS_PERCENT = 10;
 
 /**
@@ -212,9 +212,9 @@ export const PODCASTS_LISTEN_SCORE_WEIGHTS = {
 // ─── 6E. LEGACY ALIASES (backward compat) ───
 // Pour le code existant qui reference les anciens noms
 
-/** @deprecated Use FILMS_VISUAL_BPS instead */
-export const VISUAL_FEE_PERCENT = FILMS_VISUAL_PERCENT;
-export const VISUAL_FEE_BPS = FILMS_VISUAL_BPS;
+/** @deprecated Use FILMS_Vixual_BPS instead */
+export const Vixual_FEE_PERCENT = FILMS_Vixual_PERCENT;
+export const Vixual_FEE_BPS = FILMS_Vixual_BPS;
 
 /** @deprecated Use FILMS_INVESTOR_TOP10_PERCENT instead */
 export const INVESTOR_TOP10_PERCENT = FILMS_INVESTOR_TOP10_PERCENT;
@@ -247,7 +247,7 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
       { label: "Investisseurs TOP 10", percent: FILMS_INVESTOR_TOP10_PERCENT, color: "emerald" },
       { label: "Porteurs TOP 10", percent: FILMS_CREATOR_TOP10_PERCENT, color: "teal" },
       { label: "Investisseurs rangs 11-100", percent: FILMS_INVESTOR_11_100_PERCENT, color: "sky" },
-      { label: "VISUAL (plateforme)", percent: FILMS_VISUAL_PERCENT, color: "slate" },
+      { label: "Vixual (plateforme)", percent: FILMS_Vixual_PERCENT, color: "slate" },
     ],
   },
   voix_info: {
@@ -272,7 +272,7 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
     splits: [
       { label: "Podcasteurs TOP 10 (base)", percent: PODCASTS_POT_CREATORS_PERCENT, color: "purple" },
       { label: "Auditeurs TOP 10 (investisseurs)", percent: PODCASTS_POT_INVESTORS_PERCENT, color: "emerald" },
-      { label: "VISUAL (plateforme)", percent: PODCASTS_POT_VISUAL_PERCENT, color: "slate" },
+      { label: "Vixual (plateforme)", percent: PODCASTS_POT_Vixual_PERCENT, color: "slate" },
       { label: "Bonus : primes perf. TOP 10", percent: PODCASTS_BONUS_BREAKDOWN.performancePrimesPercent, color: "amber" },
       { label: "Bonus : reserve technique", percent: PODCASTS_BONUS_BREAKDOWN.technicalReservePercent, color: "zinc" },
       { label: "Bonus : reserve evenementielle", percent: PODCASTS_BONUS_BREAKDOWN.eventReservePercent, color: "zinc" },
@@ -314,8 +314,8 @@ export const CREATOR_QUOTAS = {
 /** Part de l'auteur sur la vente d'un article */
 export const ARTICLE_SALE_AUTHOR_PERCENT = 70;
 
-/** Part de VISUAL sur la vente d'un article */
-export const ARTICLE_SALE_VISUAL_PERCENT = 30;
+/** Part de Vixual sur la vente d'un article */
+export const ARTICLE_SALE_Vixual_PERCENT = 30;
 
 /**
  * Calcule la repartition pour une vente d'article.
@@ -364,15 +364,15 @@ export const STRIPE_CONFIG = {
 // 10. MINEURS - CONFIGURATION
 // ──────────────────────────────────────────────
 
-/** Age minimum inscription VISUAL */
+/** Age minimum inscription Vixual */
 export const MINOR_MIN_AGE = 16;
 /** Age de majorite (deblocage retrait/invest/conversion) */
 export const MAJORITY_AGE = 18;
-/** Plafond VISUpoints pour les mineurs (16-17 ans) */
+/** Plafond VIXUpoints pour les mineurs (16-17 ans) */
 export const MINOR_VISUPOINTS_CAP = 10_000;
 /** Equivalent en euros du plafond mineur */
 export const MINOR_VISUPOINTS_CAP_EUR = MINOR_VISUPOINTS_CAP / VISUPOINTS_PER_EUR; // 100 EUR
-/** Seuil conversion majeur : 2500 VISUpoints */
+/** Seuil conversion majeur : 2500 VIXUpoints */
 export const ADULT_VISUPOINTS_CONVERSION_THRESHOLD = VISUPOINTS_CONVERSION_THRESHOLD;
 
 // ──────────────────────────────────────────────
@@ -433,9 +433,9 @@ export type EngagementLevel = "none" | "info" | "warning" | "critical";
 
 /** Part minimum en euros (cash) */
 export const HYBRID_PAYMENT_MIN_CASH_RATIO = 0.30;
-/** Part maximum en VISUpoints */
+/** Part maximum en VIXUpoints */
 export const HYBRID_PAYMENT_MAX_POINTS_RATIO = 0.70;
-/** Bonus d'utilisation des VISUpoints */
+/** Bonus d'utilisation des VIXUpoints */
 export const HYBRID_BONUS_RATIO = 0.05;
 /** Plafond mensuel du bonus en points */
 export const HYBRID_BONUS_MONTHLY_CAP = 200;
@@ -443,7 +443,7 @@ export const HYBRID_BONUS_MONTHLY_CAP = 200;
 /**
  * Calcule la repartition d'un paiement hybride.
  * @param priceCents Prix total en centimes
- * @param pointsBalance VISUpoints disponibles
+ * @param pointsBalance VIXUpoints disponibles
  * @returns Repartition cash/points et bonus
  */
 export function computeHybridPayment(priceCents: number, pointsBalance: number): {
@@ -463,5 +463,5 @@ export function computeHybridPayment(priceCents: number, pointsBalance: number):
 // 14. EVOLUTION DE PROFIL (CHEMIN B)
 // ──────────────────────────────────────────────
 
-/** Bonus VISUpoints au passage Investisseur */
+/** Bonus VIXUpoints au passage Investisseur */
 export const INVESTOR_EVOLUTION_BONUS = 500;

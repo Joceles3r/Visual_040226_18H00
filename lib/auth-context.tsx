@@ -1,12 +1,12 @@
 "use client"
 
 /**
- * VISUAL Auth Context
+ * VIXUAL Auth Context
  *
  * ⚠️ MOCK IMPLEMENTATION FOR UI DEVELOPMENT ONLY
  *
  * This context provides a mock authentication state for frontend development and testing.
- * It simulates a user logged in with basic VISUAL roles and wallet data.
+ * It simulates a user logged in with basic VIXUAL roles and wallet data.
  *
  * ALL REAL AUTHENTICATION LOGIC RUNS ON THE API SIDE:
  * - User verification is handled in each API route via database lookups
@@ -14,7 +14,7 @@
  * - Risk Gate security checks happen in /api/security/* routes
  *
  * TODO: Replace this mock with a real JWT/session solution before production:
- * - Option 1: NextAuth.js (recommended for VISUAL)
+ * - Option 1: NextAuth.js (recommended for VIXUAL)
  * - Option 2: Clerk (third-party auth service)
  * - Option 3: Custom JWT implementation with HTTP-only cookies
  *
@@ -23,7 +23,7 @@
  */
 
 import { createContext, useContext, useState, ReactNode } from "react"
-import type { VisualRole } from "@/components/navigation"
+import type { VixualRole } from "@/components/navigation"
 import type { ParentConsent } from "@/lib/visupoints-engine"
 import { isMinor as checkIsMinor, isEligibleForSignup, MINOR_VISUPOINTS_CAP, DEFAULT_PARENT_CONSENT, MINOR_PARENT_CONSENT, checkMajorityUnlock } from "@/lib/visupoints-engine"
 
@@ -31,7 +31,7 @@ export interface User {
   id: string
   name: string
   email: string
-  roles: VisualRole[]
+  roles: VixualRole[]
   avatarUrl?: string
   birthDate?: string
   isMinor: boolean
@@ -75,11 +75,11 @@ interface AuthContextType {
   user: User | null
   isAuthed: boolean
   isAdmin: boolean
-  roles: VisualRole[]
+  roles: VixualRole[]
   login: (email: string, password: string) => Promise<void>
   logout: () => void
   signup: (data: { name: string; email: string; password: string; birthDate?: string }) => Promise<void>
-  updateRoles: (newRoles: VisualRole[]) => void
+  updateRoles: (newRoles: VixualRole[]) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -130,7 +130,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
   const isAuthed = user !== null
-  const roles: VisualRole[] = user?.roles ?? ["guest"]
+  const roles: VixualRole[] = user?.roles ?? ["guest"]
   // Admin est un flag prive derive de l'email, pas un role de profil
   const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase()
   const isAdmin = !!(user?.email && adminEmail && user.email.toLowerCase() === adminEmail)
@@ -164,7 +164,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
   }
 
-  const updateRoles = (newRoles: VisualRole[]) => {
+  const updateRoles = (newRoles: VixualRole[]) => {
     if (user) {
       setUser({ ...user, roles: newRoles })
     }

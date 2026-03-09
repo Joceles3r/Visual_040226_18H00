@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/visual-slogan"
 import {
   Shield, User, Database, Eye, Lock, Globe, Clock, FileText,
   Mail, ArrowLeft, Scale, ServerCrash, AlertTriangle, Baby,
@@ -16,7 +16,7 @@ import { LEGAL_INFO } from "@/lib/legal-info"
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-black">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
               {"Politique de Confidentialité"}
             </h1>
             <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               {"VISUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
@@ -157,7 +157,7 @@ export default function PrivacyPolicyPage() {
                   items: [
                     "Caution vers\u00e9e (dix euros cr\u00e9ateurs, vingt euros investisseurs)",
                     "Historique des investissements (deux \u00e0 vingt euros par projet, montants, dates, projets cibl\u00e9s)",
-                    "Solde du portefeuille VISUAL et VISUpoints accumulés",
+                    "Solde du portefeuille VISUAL et VIXUpoints accumulés",
                     "Transactions Stripe (identifiant Stripe Connect, retraits, reversements)",
                     "IBAN/coordonnées bancaires pour les retraits (traités par Stripe, non stockés par VISUAL)",
                   ],
@@ -187,8 +187,8 @@ export default function PrivacyPolicyPage() {
                 },
                 {
                   icon: MessageSquare, color: "text-teal-400", bg: "bg-teal-500/15",
-                  title: "Donn\u00e9es Visual Social (mini-r\u00e9seau social)",
-                  subtitle: "Collect\u00e9es lors de l'utilisation de Visual Social",
+                  title: "Donn\u00e9es Vixual Social (mini-r\u00e9seau social)",
+                  subtitle: "Collect\u00e9es lors de l'utilisation de Vixual Social",
                   items: [
                     "Contenu des posts et r\u00e9ponses publi\u00e9s (texte brut, 2\u202f000 caract\u00e8res max)",
                     "Tags officiels s\u00e9lectionn\u00e9s sur chaque post (1 \u00e0 3 parmi la liste VISUAL)",
@@ -197,7 +197,7 @@ export default function PrivacyPolicyPage() {
                     "Signalements re\u00e7us et d\u00e9cisions de mod\u00e9ration associ\u00e9es (masquage automatique \u00e0 3 signalements)",
                     "Horodatage des publications et des interactions",
                     "Rattachement \u00e0 un contenu (vid\u00e9o, podcast, \u00e9crit) ou au fil global",
-                    "VISUpoints Visual Social (d\u00e9sactiv\u00e9s en V1, r\u00e9activ\u00e9s en V2)",
+                    "VIXUpoints Vixual Social (d\u00e9sactiv\u00e9s en V1, r\u00e9activ\u00e9s en V2)",
                   ],
                 },
               ].map((cat) => {
@@ -247,13 +247,13 @@ export default function PrivacyPolicyPage() {
                         { purpose: "Gestion du compte et authentification", basis: "Exécution du contrat", duration: "Durée du compte + 3 ans" },
                         { purpose: "Traitement des investissements et cautions", basis: "Exécution du contrat / Obligation légale", duration: "10 ans (obligations comptables)" },
                         { purpose: "Diffusion et hébergement des contenus créés", basis: "Exécution du contrat", duration: "Durée du compte + 1 an" },
-                        { purpose: "Calcul et versement des gains (VISUpoints, retours)", basis: "Exécution du contrat", duration: "10 ans (obligations comptables)" },
+                        { purpose: "Calcul et versement des gains (VIXUpoints, retours)", basis: "Exécution du contrat", duration: "10 ans (obligations comptables)" },
                         { purpose: "Classements (TOP Visiteur, Porteur, Infoporteur, Podcasteur)", basis: "Intérêt légitime", duration: "Durée du compte" },
                         { purpose: "Am\u00e9lioration de la plateforme et statistiques", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "treize mois (donn\u00e9es anonymis\u00e9es)" },
-                        { purpose: "Notifications d'engagement personnalis\u00e9es (VISUpoints)", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
-                        { purpose: "Paiement hybride (euros + VISUpoints)", basis: "Ex\u00e9cution du contrat", duration: "10 ans (obligations comptables)" },
-                        { purpose: "Visual Social : publication de posts, r\u00e9actions et tags", basis: "Ex\u00e9cution du contrat", duration: "Dur\u00e9e du compte + 1 an" },
-                        { purpose: "Visual Social : mod\u00e9ration et signalements", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
+                        { purpose: "Notifications d'engagement personnalis\u00e9es (VIXUpoints)", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
+                        { purpose: "Paiement hybride (euros + VIXUpoints)", basis: "Ex\u00e9cution du contrat", duration: "10 ans (obligations comptables)" },
+                        { purpose: "Vixual Social : publication de posts, r\u00e9actions et tags", basis: "Ex\u00e9cution du contrat", duration: "Dur\u00e9e du compte + 1 an" },
+                        { purpose: "Vixual Social : mod\u00e9ration et signalements", basis: "Int\u00e9r\u00eat l\u00e9gitime", duration: "Dur\u00e9e du compte" },
                         { purpose: "Signalements Bouton Rouge Alerte : motif, d\u00e9tails, d\u00e9cisions de mod\u00e9ration", basis: "Int\u00e9r\u00eat l\u00e9gitime / Obligation l\u00e9gale", duration: "3 ans apr\u00e8s cl\u00f4ture du signalement" },
                         { purpose: "Envoi de notifications et communications", basis: "Consentement", duration: "Jusqu'au retrait du consentement" },
                         { purpose: "Conformité réglementaire (AMF, anti-blanchiment)", basis: "Obligation légale", duration: "5 ans après la clôture du compte" },
@@ -404,8 +404,8 @@ export default function PrivacyPolicyPage() {
                     { data: "Données du compte (profil, préférences, rôle)", duration: "Durée du compte + 3 ans après suppression", icon: User },
                     { data: "Contenus créés (vidéos, écrits, podcasts)", duration: "Durée du compte + 1 an (ou sur demande de suppression)", icon: Film },
                     { data: "Données financières (investissements, cautions, gains)", duration: "10 ans après la dernière transaction (obligation comptable)", icon: CreditCard },
-                    { data: "Classements et VISUpoints", duration: "Dur\u00e9e du compte (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: BarChart3 },
-                    { data: "Posts et r\u00e9actions Visual Social", duration: "Dur\u00e9e du compte + 1 an (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: MessageSquare },
+                    { data: "Classements et VIXUpoints", duration: "Dur\u00e9e du compte (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: BarChart3 },
+                    { data: "Posts et r\u00e9actions Vixual Social", duration: "Dur\u00e9e du compte + 1 an (supprim\u00e9s \u00e0 la cl\u00f4ture)", icon: MessageSquare },
                     { data: "Donn\u00e9es de navigation (logs, IP)", duration: "treize mois (anonymis\u00e9es ensuite)", icon: Globe },
                     { data: "Données anti-fraude et conformité", duration: "5 ans après la clôture du compte", icon: AlertTriangle },
                   ].map((row) => {
@@ -450,7 +450,7 @@ export default function PrivacyPolicyPage() {
                       "Date de naissance (pour d\u00e9terminer le statut mineur et le d\u00e9blocage automatique \u00e0 18 ans)",
                       "Preuve d'autorisation parentale : nom et email du repr\u00e9sentant l\u00e9gal, acceptation des CGU/CGV",
                       "Justificatif d'identit\u00e9 du repr\u00e9sentant l\u00e9gal (optionnel selon juridiction, si upload)",
-                      "Solde de VISUpoints et historique d'activit\u00e9 (contenus vus, missions accomplies)",
+                      "Solde de VIXUpoints et historique d'activit\u00e9 (contenus vus, missions accomplies)",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500/40 shrink-0" />
@@ -512,10 +512,10 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <ul className="space-y-2 ml-7">
                     {[
-                      "Les contenus visionn\u00e9s, lus ou \u00e9cout\u00e9s sont journalis\u00e9s pour calculer les VISUpoints et les classements, conform\u00e9ment aux conditions d'utilisation accept\u00e9es",
+                      "Les contenus visionn\u00e9s, lus ou \u00e9cout\u00e9s sont journalis\u00e9s pour calculer les VIXUpoints et les classements, conform\u00e9ment aux conditions d'utilisation accept\u00e9es",
                       "Les recommandations de contenus sont bas\u00e9es sur vos pr\u00e9f\u00e9rences d\u00e9clar\u00e9es (cat\u00e9gories, favoris) et non sur un profilage algorithmique invasif",
-                      "Des notifications personnalis\u00e9es peuvent \u00eatre affich\u00e9es en fonction de votre solde de VISUpoints (moteur d'engagement). Ces notifications sont g\u00e9n\u00e9r\u00e9es en interne \u00e0 partir de votre activit\u00e9 sur la plateforme, sans partage avec des tiers",
-                      "Le paiement hybride (euros + VISUpoints) implique le traitement de votre solde de points pour calculer la r\u00e9partition du paiement. Ces donn\u00e9es restent strictement internes",
+                      "Des notifications personnalis\u00e9es peuvent \u00eatre affich\u00e9es en fonction de votre solde de VIXUpoints (moteur d'engagement). Ces notifications sont g\u00e9n\u00e9r\u00e9es en interne \u00e0 partir de votre activit\u00e9 sur la plateforme, sans partage avec des tiers",
+                      "Le paiement hybride (euros + VIXUpoints) implique le traitement de votre solde de points pour calculer la r\u00e9partition du paiement. Ces donn\u00e9es restent strictement internes",
                       "Vous pouvez t\u00e9l\u00e9charger l'historique complet de vos consultations (droit \u00e0 la portabilit\u00e9, article 20 RGPD)",
                       "Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) ont acc\u00e8s aux statistiques agr\u00e9g\u00e9es et anonymis\u00e9es de leurs contenus, jamais aux donn\u00e9es individuelles des visiteurs",
                     ].map((item) => (

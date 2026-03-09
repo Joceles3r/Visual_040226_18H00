@@ -182,7 +182,7 @@ export default function DashboardPage() {
                   {"Compte mineur (16\u201317 ans)"}
                 </p>
                 <p className="text-white/50 text-xs">
-                  {"Plafond : " + MINOR_VISUPOINTS_CAP.toLocaleString() + " VISUpoints (100\u20ac). Investissements et retraits bloqu\u00e9s jusqu'\u00e0 18 ans."}
+                  {"Plafond : " + MINOR_VISUPOINTS_CAP.toLocaleString() + " VIXUpoints (100\u20ac). Investissements et retraits bloqu\u00e9s jusqu'\u00e0 18 ans."}
                 </p>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* VISUpoints - for all (with cap for minors) */}
+        {/* VIXUpoints - for all (with cap for minors) */}
         <Card className="bg-slate-900/50 border-white/10">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
@@ -245,7 +245,7 @@ export default function DashboardPage() {
                 <Star className="h-6 w-6 text-amber-400" />
               </div>
               <div>
-                <p className="text-white/60 text-sm">VISUpoints</p>
+                <p className="text-white/60 text-sm">VIXUpoints</p>
                 <p className="text-2xl font-bold text-white">
                   {user?.visupoints || 0}
                   {user?.isMinor && (
@@ -508,7 +508,7 @@ export default function DashboardPage() {
                   {"R\u00f4les bloqu\u00e9s"}
                 </h3>
                 <p className="text-sm text-white/40">
-                  {"Investissement, retrait et conversion de VISUpoints accessibles d\u00e8s 18 ans."}
+                  {"Investissement, retrait et conversion de VIXUpoints accessibles d\u00e8s 18 ans."}
                 </p>
               </div>
             </CardContent>
@@ -612,13 +612,13 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* VISUpoints Progress (for visitors) */}
+      {/* VIXUpoints Progress (for visitors) */}
       {isVisitor && (
         <Card className="bg-gradient-to-r from-amber-900/20 to-orange-900/20 border-amber-500/30">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Star className="h-5 w-5 text-amber-400" />
-              Progression VISUpoints
+              Progression VIXUpoints
             </CardTitle>
           </CardHeader>
           <CardContent>

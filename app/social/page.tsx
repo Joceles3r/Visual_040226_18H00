@@ -1,7 +1,7 @@
 "use client"
 
-import VisualSocialFeed from "@/components/visual-social-feed"
-import { VisualHeader } from "@/components/visual-header"
+import VixualSocialFeed from "@/components/visual-social-feed"
+import { VixualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -28,7 +28,7 @@ function RulesCard() {
       <CardContent className="p-4">
         <h3 className="text-white/70 text-sm font-semibold mb-3 flex items-center gap-2">
           <Shield className="h-4 w-4 text-emerald-400" />
-          {"R\u00e8gles Visual Social"}
+          {"R\u00e8gles VIXUAL Social"}
         </h3>
         <div className="space-y-2">
           {rules.map((rule) => (
@@ -79,7 +79,7 @@ function V1Notice() {
           Version 1
         </h3>
         <div className="space-y-1.5 text-xs text-white/40">
-          <p>{"Les VISUpoints sont temporairement d\u00e9sactiv\u00e9s sur Visual Social en V1 pour garantir l'\u00e9quilibre du syst\u00e8me."}</p>
+          <p>{"Les VISUpoints sont temporairement d\u00e9sactiv\u00e9s sur VIXUAL Social en V1 pour garantir l'\u00e9quilibre du syst\u00e8me."}</p>
           <p>{"Le mode fonctionne actuellement en mock (donn\u00e9es de d\u00e9monstration). La connexion \u00e0 la base de donn\u00e9es sera activ\u00e9e en V2."}</p>
           <p>{"Deux vues disponibles : le fil global (ici) et les discussions sous chaque contenu."}</p>
         </div>
@@ -88,10 +88,10 @@ function V1Notice() {
   )
 }
 
-export default function VisualSocialPage() {
+export default function VixualSocialPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       <main className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero */}
@@ -101,7 +101,7 @@ export default function VisualSocialPage() {
               <span className="text-emerald-400 text-sm font-medium">{"Mini-r\u00e9seau social int\u00e9gr\u00e9"}</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 text-balance">
-              Visual Social
+              VIXUAL Social
             </h1>
             <p className="text-white/50 max-w-xl mx-auto text-balance">
               {"\u00c9changez avec la communaut\u00e9 VISUAL. Discussions structur\u00e9es par tags, r\u00e9ponses directes, mod\u00e9ration communautaire."}
@@ -111,7 +111,7 @@ export default function VisualSocialPage() {
           {/* Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
             {/* Global feed */}
-            <VisualSocialFeed mode="global" />
+            <VixualSocialFeed mode="global" />
 
             {/* Sidebar */}
             <div className="space-y-4 lg:sticky lg:top-24">
