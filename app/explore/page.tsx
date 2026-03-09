@@ -37,7 +37,7 @@ import { useAuth } from "@/lib/auth-context"
 
 const ITEMS_PER_PAGE = 16
 
-/* ---------- VISUAL Badges ---------- */
+/* ---------- VIXUAL Badges ---------- */
 function getVisualBadges(content: Content) {
   const badges: { label: string; icon: typeof Flame; color: string; bg: string }[] = []
   const daysSinceCreation = Math.floor(
@@ -66,7 +66,7 @@ function MicroMessage({ roles }: { roles: string[] }) {
   let icon = Eye
 
   if (roles.includes("porter") || roles.includes("infoporter") || roles.includes("podcaster")) {
-    message = "Votre projet peut trouver son public sur VISUAL."
+    message = "Votre projet peut trouver son public sur VIXUAL."
     icon = Clapperboard
   } else if (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener")) {
     message = "Soutenez les projets qui vous inspirent."
@@ -180,7 +180,7 @@ function StreamingCard({ content }: { content: Content }) {
               {badgeConfig.label}
             </Badge>
 
-            {/* VISUAL badges row */}
+            {/* VIXUAL badges row */}
             {badges.length > 0 && (
               <div className="absolute top-9 left-2.5 flex gap-1">
                 {badges.slice(0, 2).map((b) => (
@@ -392,7 +392,7 @@ function GoldPassView() {
       <div className="relative w-full h-[340px] sm:h-[400px] rounded-2xl overflow-hidden">
         <Image
           src="/images/explore/gold-pass-hero.jpg"
-          alt="VISUAL Gold Pass"
+          alt="VIXUAL Gold Pass"
           fill
           className="object-cover"
           priority
@@ -403,11 +403,11 @@ function GoldPassView() {
           <div className="flex items-center gap-2 mb-3">
             <Crown className="h-6 w-6 text-amber-400" />
             <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-amber-500/30">
-              VISUAL Gold Pass
+              VIXUAL Gold Pass
             </Badge>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
-            {"Les membres les plus engag\u00e9s de la communaut\u00e9 VISUAL"}
+            {"Les membres les plus engag\u00e9s de la communaut\u00e9 VIXUAL"}
           </h2>
           <p className="text-white/60 text-sm sm:text-base max-w-xl mb-4">
             {"Le Gold Pass r\u00e9compense l'engagement, la fiabilit\u00e9 et la participation active. Un statut m\u00e9rit\u00e9, jamais achet\u00e9."}
@@ -585,7 +585,7 @@ function GoldPassView() {
           </div>
           <ul className="space-y-2.5">
             {[
-              "Activit\u00e9 r\u00e9guli\u00e8re sur VISUAL",
+              "Activit\u00e9 r\u00e9guli\u00e8re sur VIXUAL",
               "Comportement positif et respect de la communaut\u00e9",
               "Trust Score suffisant (minimum : Bon)",
               "Participation communautaire active",
@@ -634,12 +634,12 @@ function GoldPassView() {
             {"Votre activit\u00e9 vous rapproche du Gold Pass."}
           </p>
           <p className="text-white/50 text-sm mb-4">
-            {"Inscrivez-vous et contribuez \u00e0 la communaut\u00e9 VISUAL pour obtenir ce statut."}
+            {"Inscrivez-vous et contribuez \u00e0 la communaut\u00e9 VIXUAL pour obtenir ce statut."}
           </p>
           <Link href="/signup">
             <Button className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white font-semibold shadow-lg shadow-amber-500/30">
               <UserPlus className="h-4 w-4 mr-2" />
-              Rejoindre VISUAL
+              Rejoindre VIXUAL
             </Button>
           </Link>
         </div>
@@ -705,7 +705,7 @@ function ExploreContent() {
     video: "Explorer Vid\u00e9o",
     text: "Explorer \u00c9crit",
     podcast: "Explorer Podcast",
-    goldpass: "VISUAL Gold Pass",
+    goldpass: "VIXUAL Gold Pass",
   }
 
   const filteredContents = useMemo(() => {
@@ -975,7 +975,7 @@ function ExploreContent() {
           <div className="mt-10 flex items-center justify-center gap-2 py-3 px-5 rounded-lg bg-slate-900/40 border border-white/5 mx-auto w-fit">
             <Shield className="h-4 w-4 text-emerald-500 shrink-0" />
             <p className="text-white/40 text-xs">
-              {"Sur VISUAL, chaque visionnage contribue \u00e0 soutenir les cr\u00e9ateurs."}
+              {"Sur VIXUAL, chaque visionnage contribue \u00e0 soutenir les cr\u00e9ateurs."}
             </p>
           </div>
         </div>

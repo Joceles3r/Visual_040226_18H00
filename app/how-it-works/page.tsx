@@ -28,7 +28,7 @@ const STEPS = [
     step: 1,
     title: "Explorez en tant qu'invite ou creez votre compte",
     description:
-      "Commencez a naviguer immediatement sur VISUAL en tant qu'invite : decouvrez les contenus gratuits et les extraits sans inscription. Pour debloquer toutes les fonctionnalites, inscrivez-vous gratuitement et devenez Visiteur.",
+      "Commencez a naviguer immediatement sur VIXUAL en tant qu'invite : decouvrez les contenus gratuits et les extraits sans inscription. Pour debloquer toutes les fonctionnalites, inscrivez-vous gratuitement et devenez Visiteur.",
     icon: User,
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/20",
@@ -67,7 +67,7 @@ const ROLES = [
     title: "Invite",
     subtitle: "Sans inscription",
     description:
-      "Naviguez librement sur VISUAL sans creer de compte. Acces limite aux contenus gratuits et extraits uniquement.",
+      "Naviguez librement sur VIXUAL sans creer de compte. Acces limite aux contenus gratuits et extraits uniquement.",
     features: [
       "Acces aux contenus gratuits et extraits",
       "Navigation libre sur la plateforme",
@@ -86,7 +86,7 @@ const ROLES = [
     title: "Visiteur",
     subtitle: "Gratuit (inscription requise)",
     description:
-      "Parcourez la plateforme, gagnez des VISUpoints, promouvez VISUAL",
+      "Parcourez la plateforme, gagnez des VISUpoints, promouvez VIXUAL",
     features: [
       "Acces aux contenus gratuits",
       "VISUpoints et badges",
@@ -207,7 +207,7 @@ export default function HowItWorksPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70">
-              {"VISUAL simplifie l'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}
+              {"VIXUAL simplifie l'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}
             </p>
           </div>
         </section>
@@ -251,7 +251,7 @@ export default function HowItWorksPage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Les profils VISUAL
+                Les profils VIXUAL
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
                 Choisissez le rôle qui vous correspond. Vous pouvez cumuler
@@ -313,7 +313,7 @@ export default function HowItWorksPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
-                L'investissement sur VISUAL
+                L'investissement sur VIXUAL
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -386,7 +386,7 @@ export default function HowItWorksPage() {
               <div className="mt-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
                 <p className="text-amber-200 text-sm text-center">
                   Attention : Investir comporte des risques. Les gains ne sont
-                  pas garantis. VISUAL n'est pas un jeu de hasard.
+                  pas garantis. VIXUAL n'est pas un jeu de hasard.
                 </p>
               </div>
             </div>
@@ -418,7 +418,7 @@ export default function HowItWorksPage() {
                     <div className="flex justify-between text-sm"><span className="text-emerald-400">Investisseurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-teal-400">Porteurs TOP 10</span><span className="text-white font-semibold">30%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-sky-400">Investisseurs rangs 11-100</span><span className="text-white font-semibold">7%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">23%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL (plateforme)</span><span className="text-white font-semibold">23%</span></div>
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-white/50 text-xs">
                       <span className="text-red-400 font-medium">{"Cl\u00f4ture : "}</span>
@@ -439,7 +439,7 @@ export default function HowItWorksPage() {
                   <CardContent className="space-y-2">
                     <p className="text-xs text-white/40 mb-1">Vente unitaire :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteur</span><span className="text-white font-semibold">70%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot du jour :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
@@ -459,7 +459,7 @@ export default function HowItWorksPage() {
                   <CardContent className="space-y-2">
                     <p className="text-xs text-white/40 mb-1">Vente unitaire :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteur</span><span className="text-white font-semibold">70%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
@@ -479,12 +479,12 @@ export default function HowItWorksPage() {
                   <CardContent className="space-y-2">
                     <p className="text-xs text-white/40 mb-1">Vente episode :</p>
                     <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteur</span><span className="text-white font-semibold">70%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
                     <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteurs</span><span className="text-white font-semibold">40%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-emerald-400">Auditeurs (investisseurs)</span><span className="text-white font-semibold">30%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-white/50">VISUAL (plateforme)</span><span className="text-white font-semibold">20%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL (plateforme)</span><span className="text-white font-semibold">20%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
                     <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">
                       <div className="flex justify-between text-xs"><span className="text-amber-300/70">Primes perf. TOP 10</span><span className="text-white/70">6%</span></div>

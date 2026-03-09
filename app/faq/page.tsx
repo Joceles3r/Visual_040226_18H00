@@ -18,9 +18,9 @@ const FAQ_CATEGORIES = [
     title: "Général",
     items: [
       {
-        question: "Qu'est-ce que VISUAL ?",
+        question: "Qu'est-ce que VIXUAL ?",
         answer:
-          "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
+          "VIXUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
       },
       {
         question: "Comment fonctionne l'investissement ?",
@@ -28,9 +28,9 @@ const FAQ_CATEGORIES = [
           "Vous choisissez un projet qui vous int\u00e9resse, s\u00e9lectionnez un montant entre deux euros et vingt euros, et devenez investisseur. Si le projet g\u00e9n\u00e8re des revenus, vous recevez une part proportionnelle \u00e0 votre investissement.",
       },
       {
-        question: "VISUAL est-il un jeu de hasard ?",
+        question: "VIXUAL est-il un jeu de hasard ?",
         answer:
-          "Non, VISUAL n'est pas un jeu de hasard. C'est une plateforme d'investissement participatif. Les retours dépendent du succès réel des projets et non du hasard. Les gains ne sont pas garantis.",
+          "Non, VIXUAL n'est pas un jeu de hasard. C'est une plateforme d'investissement participatif. Les retours dépendent du succès réel des projets et non du hasard. Les gains ne sont pas garantis.",
       },
     ],
   },
@@ -45,12 +45,12 @@ const FAQ_CATEGORIES = [
       {
         question: "Puis-je être créateur ET investisseur ?",
         answer:
-          "Absolument ! Vous pouvez cumuler plusieurs rôles sur VISUAL. Chaque rôle nécessite sa propre caution.",
+          "Absolument ! Vous pouvez cumuler plusieurs rôles sur VIXUAL. Chaque rôle nécessite sa propre caution.",
       },
       {
         question: "Quels sont les differents profils ?",
         answer:
-          "VISUAL propose 8 profils : Invite (sans inscription, acces limite aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
+          "VIXUAL propose 8 profils : Invite (sans inscription, acces limite aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
       },
       {
         question: "Puis-je naviguer sans m'inscrire ?",
@@ -100,7 +100,7 @@ const FAQ_CATEGORIES = [
       {
         question: "Comment sont calculés mes gains en tant que créateur ?",
         answer:
-          "La repartition depend de la categorie. Films/Videos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VISUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VISUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VISUAL.",
+          "La repartition depend de la categorie. Films/Videos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VIXUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VIXUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VIXUAL.",
       },
     ],
   },
@@ -140,7 +140,7 @@ const FAQ_CATEGORIES = [
       {
         question: "L'inscription est-elle obligatoire ?",
         answer:
-          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invite. Cependant, pour profiter de l'experience complete de VISUAL (investissements, VISUpoints, communaute), vous devez creer un compte.",
+          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invite. Cependant, pour profiter de l'experience complete de VIXUAL (investissements, VISUpoints, communaute), vous devez creer un compte.",
       },
     ],
   },
@@ -185,7 +185,7 @@ export default function FAQPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70">
-              {"Trouvez rapidement les réponses à vos questions sur VISUAL"}
+              {"Trouvez rapidement les réponses à vos questions sur VIXUAL"}
             </p>
           </div>
         </section>

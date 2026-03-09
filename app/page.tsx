@@ -84,7 +84,7 @@ export default function HomePage() {
               </div>
 
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
-                VISUAL est la plateforme d'investissement participatif pour les
+                VIXUAL est la plateforme d'investissement participatif pour les
                 projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
                 investissez dans leurs oeuvres, partagez leurs succes.
               </p>
@@ -280,7 +280,7 @@ export default function HomePage() {
         <section className="py-20 bg-gradient-to-r from-emerald-900/30 to-teal-900/30 cinema-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Prêt à rejoindre VISUAL ?
+              Prêt à rejoindre VIXUAL ?
             </h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
               Créez votre compte gratuitement et commencez à explorer des

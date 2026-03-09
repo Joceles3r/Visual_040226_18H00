@@ -281,8 +281,8 @@ export const PODCAST_CATEGORIES = [
 // FAQ data
 export const FAQ_ITEMS = [
   {
-    question: "Qu'est-ce que VISUAL ?",
-    answer: "VISUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
+    question: "Qu'est-ce que VIXUAL ?",
+    answer: "VIXUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
   },
   {
     question: "Comment fonctionne l'investissement ?",
@@ -302,7 +302,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "Puis-je être créateur ET investisseur ?",
-    answer: "Absolument ! Vous pouvez cumuler plusieurs rôles sur VISUAL. Chaque rôle nécessite sa propre caution.",
+    answer: "Absolument ! Vous pouvez cumuler plusieurs rôles sur VIXUAL. Chaque rôle nécessite sa propre caution.",
   },
 ]
 

@@ -12,7 +12,7 @@ import { SoundProvider } from "@/components/sound-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VISUAL - Investissement Audiovisuel, Litteraire & Podcast",
+  title: "VIXUAL - Investissement Audiovisuel, Litteraire & Podcast",
   description:
     "Plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, investissez dans l'art.",
   generator: "v0.app",

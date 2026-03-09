@@ -59,7 +59,7 @@ export default function TermsOfUsePage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VISUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
+              {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VIXUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
               {"Derni\u00e8re mise \u00e0 jour : quatre mars 2026 \u2014 Consolidation compl\u00e8te"}
@@ -76,7 +76,7 @@ export default function TermsOfUsePage() {
                 <Info className="h-5 w-5 text-teal-400 mt-0.5 shrink-0" />
                 <div className="space-y-2">
                   <p className="text-white/70 leading-relaxed">
-                    {"VISUAL est une plateforme num\u00e9rique internationale de diffusion et de participation \u00e9conomique \u00e0 des contenus audiovisuels et litt\u00e9raires, permettant :"}
+                    {"VIXUAL est une plateforme num\u00e9rique internationale de diffusion et de participation \u00e9conomique \u00e0 des contenus audiovisuels et litt\u00e9raires, permettant :"}
                   </p>
                   <ul className="space-y-1.5 ml-2">
                     <li className="flex gap-2 items-start text-sm">
@@ -97,7 +97,7 @@ export default function TermsOfUsePage() {
                     </li>
                   </ul>
                   <p className="text-white/50 text-sm mt-3">
-                    {"Toute inscription sur VISUAL implique l'acceptation pleine et enti\u00e8re des pr\u00e9sentes CGU. Si vous n'acceptez pas ces conditions, vous ne pouvez pas cr\u00e9er de compte."}
+                    {"Toute inscription sur VIXUAL implique l'acceptation pleine et enti\u00e8re des pr\u00e9sentes CGU. Si vous n'acceptez pas ces conditions, vous ne pouvez pas cr\u00e9er de compte."}
                   </p>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function TermsOfUsePage() {
                 ))}
               </div>
               <p className="text-amber-400/60 text-xs mt-4">
-                {"Ces informations seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
+                {"Ces informations seront compl\u00e9t\u00e9es lors de l'immatriculation officielle de VIXUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
               </p>
             </CardContent>
           </Card>
@@ -145,8 +145,8 @@ export default function TermsOfUsePage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {[
-                    { term: "Plateforme", def: "Le site web et l'application VISUAL, accessibles à l'adresse visual-platform.com" },
-                    { term: "Utilisateur / Inscrit", def: "Toute personne physique disposant d'un compte actif sur VISUAL" },
+                    { term: "Plateforme", def: "Le site web et l'application VIXUAL, accessibles à l'adresse visual-platform.com" },
+                    { term: "Utilisateur / Inscrit", def: "Toute personne physique disposant d'un compte actif sur VIXUAL" },
                     { term: "Invité", def: "Personne naviguant sans compte, accès limité aux contenus gratuits et extraits" },
                     { term: "Visiteur", def: "Inscrit de base : accès aux contenus gratuits, VISUpoints, favoris, commentaires" },
                     { term: "Porteur", def: "Créateur audiovisuel : dépose des vidéos et visuels sur la plateforme" },
@@ -157,7 +157,7 @@ export default function TermsOfUsePage() {
                     { term: "Auditeur", def: "Inscrit qui investit de deux \u00e0 vingt euros par podcast" },
                     { term: "VISUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
                     { term: "Caution", def: "D\u00e9p\u00f4t unique remboursable (dix euros cr\u00e9ateurs, vingt euros investisseurs) garantissant l'engagement" },
-                    { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VISUAL" },
+                    { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VIXUAL" },
                     { term: "Contenu", def: "Toute œuvre déposée : vidéo, écrit, podcast, incluant métadonnées et descriptions" },
                   ].map((d) => (
                     <div key={d.term} className="bg-black/30 rounded-xl p-3 border border-white/5">
@@ -191,7 +191,7 @@ export default function TermsOfUsePage() {
                   </div>
                 </SubSection>
 
-                <SubSection title="Les 7 rôles VISUAL">
+                <SubSection title="Les 7 rôles VIXUAL">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                     {[
                       { icon: Eye, color: "text-amber-400", bg: "bg-amber-500/15", border: "border-amber-500/20", role: "Visiteur", caution: "Aucune", desc: "Accède aux contenus gratuits, accumule des VISUpoints, interagit avec la communauté" },
@@ -227,7 +227,7 @@ export default function TermsOfUsePage() {
                       "Utiliser la plateforme conform\u00e9ment \u00e0 sa destination et aux lois en vigueur",
                       "Ne pas usurper l'identit\u00e9 d'un tiers ni cr\u00e9er de faux profils",
                       "Ne pas tenter de contourner les syst\u00e8mes de s\u00e9curit\u00e9 ou de paiement de la plateforme",
-                      "Respecter la Charte communautaire VISUAL : courtoisie, bienveillance et respect mutuel entre tous les utilisateurs",
+                      "Respecter la Charte communautaire VIXUAL : courtoisie, bienveillance et respect mutuel entre tous les utilisateurs",
                       "Ne publier aucun contenu ni propos raciste, homophobe, transphobe, antis\u00e9mite, anti-religieux, discriminatoire, haineux, sexuel, violent, diffamatoire ou insultant",
                       "L'incitation \u00e0 la haine sous toutes ses formes est strictement prohib\u00e9e et passible de suspension imm\u00e9diate, de blocage des fonds et de signalement aux autorit\u00e9s comp\u00e9tentes",
                       "Ne pas harc\u00e8ler, menacer ou intimider d'autres utilisateurs",
@@ -324,13 +324,13 @@ export default function TermsOfUsePage() {
 
               <div className="bg-red-500/5 border border-red-500/15 rounded-lg p-3 mt-2">
                 <p className="text-red-400/80 text-xs leading-relaxed">
-                  {"VISUAL se r\u00e9serve le droit de suspendre ou supprimer tout compte mineur en cas de fausse d\u00e9claration d'\u00e2ge, d'absence de consentement parental valide, ou de non-respect des pr\u00e9sentes conditions."}
+                  {"VIXUAL se r\u00e9serve le droit de suspendre ou supprimer tout compte mineur en cas de fausse d\u00e9claration d'\u00e2ge, d'absence de consentement parental valide, ou de non-respect des pr\u00e9sentes conditions."}
                 </p>
               </div>
 
               <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3 mt-1">
                 <p className="text-white/40 text-xs leading-relaxed">
-                  {"Droit applicable : l'\u00e2ge minimum d'inscription (16 ans) respecte le RGPD (art. 8) qui autorise les \u00c9tats membres \u00e0 fixer un seuil entre 13 et 16 ans. VISUAL applique le seuil le plus protecteur (16 ans) pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales. En cas de conflit avec la l\u00e9gislation locale du pays de l'utilisateur, la disposition la plus protectrice s'applique."}
+                  {"Droit applicable : l'\u00e2ge minimum d'inscription (16 ans) respecte le RGPD (art. 8) qui autorise les \u00c9tats membres \u00e0 fixer un seuil entre 13 et 16 ans. VIXUAL applique le seuil le plus protecteur (16 ans) pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales. En cas de conflit avec la l\u00e9gislation locale du pays de l'utilisateur, la disposition la plus protectrice s'applique."}
                 </p>
               </div>
             </CardContent>
@@ -341,7 +341,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"La caution est un dépôt unique requis pour accéder à certains rôles. Elle garantit l'engagement de l'inscrit et assure la viabilité de l'écosystème VISUAL."}
+                  {"La caution est un dépôt unique requis pour accéder à certains rôles. Elle garantit l'engagement de l'inscrit et assure la viabilité de l'écosystème VIXUAL."}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5">
@@ -379,7 +379,7 @@ export default function TermsOfUsePage() {
                       {[
                         "Résiliation volontaire du compte, sous réserve qu'aucun litige ne soit en cours et que toutes les clôtures en attente soient traitées",
                         "Suppression du rôle concerné (passage d'un rôle payant à Visiteur)",
-                        "Décision de VISUAL en cas de force majeure ou de fermeture de la plateforme",
+                        "Décision de VIXUAL en cas de force majeure ou de fermeture de la plateforme",
                       ].map((item) => (
                         <li key={item} className="flex gap-2 items-start text-xs">
                           <RefreshCw className="h-3.5 w-3.5 text-teal-400 mt-0.5 shrink-0" />
@@ -407,7 +407,7 @@ export default function TermsOfUsePage() {
                       "Un même inscrit peut investir dans plusieurs projets simultanément",
                       "L'investissement est définitif une fois confirmé et ne peut être annulé",
                       "L'investissement s'accompagne d'un vote (favorable) pris en compte dans les classements et la répartition",
-                      "Les gains potentiels dépendent du nombre de vues, votes, écoutes et du système de clôture VISUAL",
+                      "Les gains potentiels dépendent du nombre de vues, votes, écoutes et du système de clôture VIXUAL",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
                         <TrendingUp className="h-4 w-4 text-emerald-400/60 mt-0.5 shrink-0" />
@@ -420,24 +420,24 @@ export default function TermsOfUsePage() {
                 <SubSection title="Répartition des gains et clôture">
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-3">
                     <p className="text-white/60 text-sm leading-relaxed">
-                      {"Les gains sont calculés à chaque clôture selon les formules VISUAL, détaillées dans le document \"Formules & Répartitions\" téléchargeable depuis la plateforme. Les taux de répartition varient selon :"}
+                      {"Les gains sont calculés à chaque clôture selon les formules VIXUAL, détaillées dans le document \"Formules & Répartitions\" téléchargeable depuis la plateforme. Les taux de répartition varient selon :"}
                     </p>
                     <ul className="space-y-1.5 text-xs text-white/50 ml-2">
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La catégorie du contenu (audiovisuel, littéraire, podcast)"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le type de revenus (investissements, ventes, publicités, abonnements)"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le nombre de votes favorables et de VISUpoints générés"}</li>
-                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La part attribuée à VISUAL (frais de plateforme), la réserve technique et la réserve événementielle"}</li>
+                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La part attribuée à VIXUAL (frais de plateforme), la réserve technique et la réserve événementielle"}</li>
                     </ul>
                     <div className="bg-purple-500/5 border border-purple-500/15 rounded-lg p-3 mt-2">
                       <p className="text-purple-400/90 text-sm font-medium mb-1">
                         {"Primes de performance Podcast (6%)"}
                       </p>
                       <p className="text-white/50 text-xs leading-relaxed">
-                        {"6% du pot mensuel Podcast sont distribu\u00e9s en primes de performance d\u00e9gressives aux TOP 10 podcasteurs (Rang 1 : 1.2%, Rang 10 : 0.6%). Ces primes sont vers\u00e9es mensuellement en compl\u00e9ment du split standard (40% cr\u00e9ateurs / 30% auditeurs / 20% VISUAL / 10% r\u00e9serve). Le classement est \u00e9tabli selon les \u00e9coutes, l'engagement et les abonnements g\u00e9n\u00e9r\u00e9s."}
+                        {"6% du pot mensuel Podcast sont distribu\u00e9s en primes de performance d\u00e9gressives aux TOP 10 podcasteurs (Rang 1 : 1.2%, Rang 10 : 0.6%). Ces primes sont vers\u00e9es mensuellement en compl\u00e9ment du split standard (40% cr\u00e9ateurs / 30% auditeurs / 20% VIXUAL / 10% r\u00e9serve). Le classement est \u00e9tabli selon les \u00e9coutes, l'engagement et les abonnements g\u00e9n\u00e9r\u00e9s."}
                       </p>
                     </div>
                     <p className="text-white/40 text-xs">
-                      {"Les cl\u00f4tures sont configur\u00e9es par l'administration VISUAL et varient selon la cat\u00e9gorie. Les d\u00e9tails exacts sont consultables dans l'onglet \"Comment \u00e7a marche\"."}
+                      {"Les cl\u00f4tures sont configur\u00e9es par l'administration VIXUAL et varient selon la cat\u00e9gorie. Les d\u00e9tails exacts sont consultables dans l'onglet \"Comment \u00e7a marche\"."}
                     </p>
                   </div>
                 </SubSection>
@@ -451,10 +451,10 @@ export default function TermsOfUsePage() {
                           {"Investir comporte des risques. Les gains ne sont pas garantis."}
                         </p>
                         <ul className="space-y-1.5 text-xs text-white/50">
-                          <li>{"L'investissement sur VISUAL n'est pas un produit financier réglementé au sens de la directive MiFID II"}</li>
+                          <li>{"L'investissement sur VIXUAL n'est pas un produit financier réglementé au sens de la directive MiFID II"}</li>
                           <li>{"Les performances passées d'un contenu ne garantissent pas les performances futures"}</li>
                           <li>{"Le montant investi peut ne générer aucun retour si le contenu ne rencontre pas son public"}</li>
-                          <li>{"VISUAL n'est pas un intermédiaire financier agréé. Les investissements relèvent du financement participatif de projet"}</li>
+                          <li>{"VIXUAL n'est pas un intermédiaire financier agréé. Les investissements relèvent du financement participatif de projet"}</li>
                           <li>{"L'inscrit reconnaît investir en connaissance de cause et ne pas engager de sommes qu'il ne peut se permettre de perdre"}</li>
                         </ul>
                       </div>
@@ -471,7 +471,7 @@ export default function TermsOfUsePage() {
               <CardContent className="pt-6 space-y-4">
                 <SubSection title={"Nature des VISUpoints"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Les VISUpoints sont un avantage promotionnel interne \u00e0 VISUAL, attribu\u00e9s automatiquement selon les interactions de l'inscrit. Ils ne constituent ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE, ni une cr\u00e9ance financi\u00e8re exigible."}
+                    {"Les VISUpoints sont un avantage promotionnel interne \u00e0 VIXUAL, attribu\u00e9s automatiquement selon les interactions de l'inscrit. Ils ne constituent ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE, ni une cr\u00e9ance financi\u00e8re exigible."}
                   </p>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/5 mb-3">
                     <p className="text-white/70 text-sm font-medium mb-2">{"Taux et limites"}</p>
@@ -556,7 +556,7 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Moteur d'engagement (Visiteurs)"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"\u00c0 partir de 2 000 VISUpoints, VISUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
+                    {"\u00c0 partir de 2 000 VISUpoints, VIXUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
@@ -575,7 +575,7 @@ export default function TermsOfUsePage() {
 
                 <SubSection title="Classements TOP">
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"VISUAL établit des classements publics par catégorie de créateurs, accessibles à tous les inscrits :"}
+                    {"VIXUAL établit des classements publics par catégorie de créateurs, accessibles à tous les inscrits :"}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {[
@@ -606,11 +606,11 @@ export default function TermsOfUsePage() {
                 <SubSection title="Propriété intellectuelle">
                   <div className="space-y-2 text-sm text-white/60">
                     <p className="leading-relaxed">
-                      {"Le créateur (Porteur, Infoporteur, Podcasteur) conserve l'intégralité de ses droits de propriété intellectuelle sur les contenus qu'il dépose sur VISUAL. En publiant un contenu, le créateur accorde à VISUAL une licence non exclusive, mondiale et pour la durée de la présence du contenu sur la plateforme, afin de :"}
+                      {"Le créateur (Porteur, Infoporteur, Podcasteur) conserve l'intégralité de ses droits de propriété intellectuelle sur les contenus qu'il dépose sur VIXUAL. En publiant un contenu, le créateur accorde à VIXUAL une licence non exclusive, mondiale et pour la durée de la présence du contenu sur la plateforme, afin de :"}
                     </p>
                     <ul className="space-y-1.5 ml-2">
                       {[
-                        "Héberger, stocker et diffuser le contenu sur la plateforme VISUAL",
+                        "Héberger, stocker et diffuser le contenu sur la plateforme VIXUAL",
                         "Reproduire des extraits à des fins promotionnelles (bandes-annonces, aperçus)",
                         "Afficher le contenu dans les classements, recommandations et résultats de recherche",
                         "Permettre aux investisseurs de consulter et voter sur le contenu",
@@ -662,14 +662,14 @@ export default function TermsOfUsePage() {
                       </ul>
                     </div>
                     <p className="text-white/40 text-xs leading-relaxed">
-                      {"Toute publication est bloqu\u00e9e tant que cette d\u00e9claration n'a pas \u00e9t\u00e9 valid\u00e9e. En cas de fausse d\u00e9claration, VISUAL se r\u00e9serve le droit de supprimer le contenu, suspendre le compte et bloquer les fonds associ\u00e9s."}
+                      {"Toute publication est bloqu\u00e9e tant que cette d\u00e9claration n'a pas \u00e9t\u00e9 valid\u00e9e. En cas de fausse d\u00e9claration, VIXUAL se r\u00e9serve le droit de supprimer le contenu, suspendre le compte et bloquer les fonds associ\u00e9s."}
                     </p>
                   </div>
                 </SubSection>
 
                 <SubSection title={"Mod\u00e9ration et retrait"}>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"VISUAL se r\u00e9serve le droit de retirer, sans pr\u00e9avis, tout contenu signal\u00e9 ou identifi\u00e9 comme contrevenant aux pr\u00e9sentes CGU, aux lois en vigueur, ou aux droits de tiers. Le cr\u00e9ateur en sera inform\u00e9 par notification sur la plateforme et pourra contester la d\u00e9cision via la messagerie de support."}
+                    {"VIXUAL se r\u00e9serve le droit de retirer, sans pr\u00e9avis, tout contenu signal\u00e9 ou identifi\u00e9 comme contrevenant aux pr\u00e9sentes CGU, aux lois en vigueur, ou aux droits de tiers. Le cr\u00e9ateur en sera inform\u00e9 par notification sur la plateforme et pourra contester la d\u00e9cision via la messagerie de support."}
                   </p>
                 </SubSection>
               </CardContent>
@@ -682,7 +682,7 @@ export default function TermsOfUsePage() {
               <CardContent className="pt-6 space-y-4">
                 <SubSection title="Moyens de paiement">
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"Tous les paiements sur VISUAL (cautions, investissements) sont traités par Stripe, prestataire de paiement certifié PCI-DSS niveau 1. VISUAL ne stocke jamais les données bancaires (numéros de carte, IBAN) sur ses propres serveurs."}
+                    {"Tous les paiements sur VIXUAL (cautions, investissements) sont traités par Stripe, prestataire de paiement certifié PCI-DSS niveau 1. VIXUAL ne stocke jamais les données bancaires (numéros de carte, IBAN) sur ses propres serveurs."}
                   </p>
                 </SubSection>
 
@@ -700,7 +700,7 @@ export default function TermsOfUsePage() {
                       "L'activation d'un compte Stripe Connect est obligatoire pour tout utilisateur susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur)",
                       "Les fonctions financi\u00e8res sont bloqu\u00e9es tant que charges_enabled et payouts_enabled ne sont pas actifs",
                       "Les gains disponibles sont consultables dans le Portefeuille de l'espace personnel",
-                      "Les frais de transaction sont \u00e0 la charge de VISUAL (aucun frais pour l'inscrit)",
+                      "Les frais de transaction sont \u00e0 la charge de VIXUAL (aucun frais pour l'inscrit)",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
                         <CreditCard className="h-4 w-4 text-teal-400/60 mt-0.5 shrink-0" />
@@ -713,7 +713,7 @@ export default function TermsOfUsePage() {
                 <SubSection title="Obligations fiscales">
                   <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                     <p className="text-white/60 text-sm leading-relaxed">
-                      {"Les gains perçus sur VISUAL sont susceptibles d'être soumis à l'impôt sur le revenu et/ou aux prélèvements sociaux, selon la législation fiscale applicable dans le pays de résidence de l'inscrit. VISUAL ne fournit pas de conseil fiscal. Il appartient à chaque inscrit de déclarer ses gains auprès des autorités fiscales compétentes. VISUAL pourra être tenu de transmettre les informations relatives aux gains versés aux autorités fiscales conformément à la directive DAC7."}
+                      {"Les gains perçus sur VIXUAL sont susceptibles d'être soumis à l'impôt sur le revenu et/ou aux prélèvements sociaux, selon la législation fiscale applicable dans le pays de résidence de l'inscrit. VIXUAL ne fournit pas de conseil fiscal. Il appartient à chaque inscrit de déclarer ses gains auprès des autorités fiscales compétentes. VIXUAL pourra être tenu de transmettre les informations relatives aux gains versés aux autorités fiscales conformément à la directive DAC7."}
                     </p>
                   </div>
                 </SubSection>
@@ -731,7 +731,7 @@ export default function TermsOfUsePage() {
                   </div>
                   <div>
                     <p className="text-white/70 text-sm leading-relaxed">
-                      {"Visual Social est un espace d'\u00e9change communautaire int\u00e9gr\u00e9 \u00e0 VISUAL. Il permet aux inscrits de partager des avis courts sur les contenus, les projets et la vie de la plateforme."}
+                      {"Visual Social est un espace d'\u00e9change communautaire int\u00e9gr\u00e9 \u00e0 VIXUAL. Il permet aux inscrits de partager des avis courts sur les contenus, les projets et la vie de la plateforme."}
                     </p>
                   </div>
                 </div>
@@ -741,7 +741,7 @@ export default function TermsOfUsePage() {
                     {[
                       "Chaque post est limit\u00e9 \u00e0 280 caract\u00e8res maximum, en texte brut uniquement",
                       "Aucun lien externe, image, vid\u00e9o ou HTML n'est autoris\u00e9 dans les posts",
-                      "Maximum 3 tags officiels par post, choisis parmi la liste pr\u00e9-approuv\u00e9e par VISUAL",
+                      "Maximum 3 tags officiels par post, choisis parmi la liste pr\u00e9-approuv\u00e9e par VIXUAL",
                       "Maximum 5 publications par jour et par utilisateur",
                       "Un d\u00e9lai minimum de 1 minute est impos\u00e9 entre deux publications",
                     ].map((item) => (
@@ -755,7 +755,7 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Syst\u00e8me de tags"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-2">
-                    {"Les tags sont exclusivement d\u00e9finis et g\u00e9r\u00e9s par VISUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags sont regroup\u00e9s en 4 cat\u00e9gories : Genres (#Cin\u00e9maInd\u00e9, #Documentaire, #Thriller\u2026), Ambiances (#CoupDeCoeur, #P\u00e9pite\u2026), Plateforme (#VisualOriginal, #PremierProjet\u2026) et \u00c9v\u00e9nements (#VisualAwards, #Festival\u2026)."}
+                    {"Les tags sont exclusivement d\u00e9finis et g\u00e9r\u00e9s par VIXUAL. Aucun utilisateur ne peut cr\u00e9er de tag personnalis\u00e9. Les tags sont regroup\u00e9s en 4 cat\u00e9gories : Genres (#Cin\u00e9maInd\u00e9, #Documentaire, #Thriller\u2026), Ambiances (#CoupDeCoeur, #P\u00e9pite\u2026), Plateforme (#VisualOriginal, #PremierProjet\u2026) et \u00c9v\u00e9nements (#VisualAwards, #Festival\u2026)."}
                   </p>
                 </SubSection>
 
@@ -783,7 +783,7 @@ export default function TermsOfUsePage() {
                     {[
                       "Tout utilisateur peut signaler un post qu'il juge inappropri\u00e9 (un signalement par post par utilisateur)",
                       "Une publication atteignant cinq signalements est automatiquement masqu\u00e9e et soumise \u00e0 l'\u00e9quipe de mod\u00e9ration",
-                      "VISUAL se r\u00e9serve le droit de supprimer tout contenu et de suspendre les comptes en infraction",
+                      "VIXUAL se r\u00e9serve le droit de supprimer tout contenu et de suspendre les comptes en infraction",
                       "Les comportements r\u00e9p\u00e9t\u00e9s de signalement abusif peuvent entra\u00eener une suspension temporaire du compte",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
@@ -796,13 +796,13 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Propri\u00e9t\u00e9 des contenus"}>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"L'utilisateur reste propri\u00e9taire de ses posts. En publiant sur Visual Social, il accorde \u00e0 VISUAL une licence non exclusive, gratuite et mondiale pour afficher, reproduire et distribuer le contenu sur la plateforme. VISUAL peut supprimer tout contenu sans pr\u00e9avis en cas de violation des pr\u00e9sentes CGU."}
+                    {"L'utilisateur reste propri\u00e9taire de ses posts. En publiant sur Visual Social, il accorde \u00e0 VIXUAL une licence non exclusive, gratuite et mondiale pour afficher, reproduire et distribuer le contenu sur la plateforme. VIXUAL peut supprimer tout contenu sans pr\u00e9avis en cas de violation des pr\u00e9sentes CGU."}
                   </p>
                 </SubSection>
 
                 <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3">
                   <p className="text-white/40 text-xs leading-relaxed">
-                    {"Visual Social n'est pas un r\u00e9seau social autonome. C'est une fonctionnalit\u00e9 int\u00e9gr\u00e9e \u00e0 VISUAL, soumise aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de la plateforme. Les utilisateurs mineurs (16\u201317 ans) peuvent acc\u00e9der \u00e0 Visual Social sous r\u00e9serve du consentement parental d\u00e9j\u00e0 obtenu lors de l'inscription."}
+                    {"Visual Social n'est pas un r\u00e9seau social autonome. C'est une fonctionnalit\u00e9 int\u00e9gr\u00e9e \u00e0 VIXUAL, soumise aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de la plateforme. Les utilisateurs mineurs (16\u201317 ans) peuvent acc\u00e9der \u00e0 Visual Social sous r\u00e9serve du consentement parental d\u00e9j\u00e0 obtenu lors de l'inscription."}
                   </p>
                 </div>
               </CardContent>
@@ -830,12 +830,12 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
-          {/* 7ter. VISUAL Trust Score */}
-          <Section num={0} title={"VISUAL Trust Score"}>
+          {/* 7ter. VIXUAL Trust Score */}
+          <Section num={0} title={"VIXUAL Trust Score"}>
             <Card className="bg-emerald-500/5 border-emerald-500/15">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 text-sm leading-relaxed">
-                  {"Le VISUAL Trust Score est un indice de confiance sur 100 points attribu\u00e9 \u00e0 chaque utilisateur, calcul\u00e9 automatiquement en fonction de ses actions sur la plateforme. Il repose sur un syst\u00e8me d'\u00e9v\u00e9nements pond\u00e9r\u00e9s : les actions positives augmentent le score, les actions n\u00e9gatives le diminuent."}
+                  {"Le VIXUAL Trust Score est un indice de confiance sur 100 points attribu\u00e9 \u00e0 chaque utilisateur, calcul\u00e9 automatiquement en fonction de ses actions sur la plateforme. Il repose sur un syst\u00e8me d'\u00e9v\u00e9nements pond\u00e9r\u00e9s : les actions positives augmentent le score, les actions n\u00e9gatives le diminuent."}
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
@@ -907,11 +907,11 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3">
                 <p className="text-white/70 text-sm leading-relaxed">
-                  {"VISUAL peut diffuser des extraits promotionnels de contenus via ses comptes officiels sur les r\u00e9seaux sociaux (Twitter/X, Instagram, YouTube, TikTok). Cette promotion s'effectue exclusivement par les comptes officiels de VISUAL."}
+                  {"VIXUAL peut diffuser des extraits promotionnels de contenus via ses comptes officiels sur les r\u00e9seaux sociaux (Twitter/X, Instagram, YouTube, TikTok). Cette promotion s'effectue exclusivement par les comptes officiels de VIXUAL."}
                 </p>
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                   <p className="text-amber-400/80 text-xs leading-relaxed">
-                    {"L'utilisateur autorise VISUAL \u00e0 diffuser des extraits promotionnels de ses contenus sur les r\u00e9seaux sociaux partenaires. Cette autorisation est r\u00e9vocable \u00e0 tout moment depuis les param\u00e8tres du contenu."}
+                    {"L'utilisateur autorise VIXUAL \u00e0 diffuser des extraits promotionnels de ses contenus sur les r\u00e9seaux sociaux partenaires. Cette autorisation est r\u00e9vocable \u00e0 tout moment depuis les param\u00e8tres du contenu."}
                   </p>
                 </div>
               </CardContent>
@@ -927,14 +927,14 @@ export default function TermsOfUsePage() {
                 </p>
                 <div className="bg-black/30 border border-white/10 rounded-xl p-4">
                   <p className="text-teal-400 text-sm italic leading-relaxed">
-                    {"\"Je certifie \u00eatre titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e et autorise sa diffusion sur la plateforme VISUAL.\""}
+                    {"\"Je certifie \u00eatre titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e et autorise sa diffusion sur la plateforme VIXUAL.\""}
                   </p>
                 </div>
                 <div className="space-y-2">
                   {[
                     "En cas de fausse d\u00e9claration : blocage imm\u00e9diat du compte",
                     "Les fonds associ\u00e9s au contenu litigieux sont gel\u00e9s",
-                    "VISUAL se r\u00e9serve le droit d'engager toute action judiciaire",
+                    "VIXUAL se r\u00e9serve le droit d'engager toute action judiciaire",
                   ].map((item) => (
                     <div key={item} className="flex gap-2 items-start text-sm">
                       <AlertTriangle className="h-4 w-4 text-amber-400/60 mt-0.5 shrink-0" />
@@ -975,7 +975,7 @@ export default function TermsOfUsePage() {
 
                 <SubSection title="Sanctions applicables">
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"En cas de manquement aux présentes CGU, VISUAL se réserve le droit d'appliquer les mesures suivantes, de manière proportionnée et progressive :"}
+                    {"En cas de manquement aux présentes CGU, VIXUAL se réserve le droit d'appliquer les mesures suivantes, de manière proportionnée et progressive :"}
                   </p>
                   <div className="space-y-2">
                     {[
@@ -1005,7 +1005,7 @@ export default function TermsOfUsePage() {
                   <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4 mt-3 space-y-2">
                     <p className="text-sky-400/80 text-sm font-medium">{"D\u00e9lai de revue des retraits importants (soixante-douze heures)"}</p>
                     <p className="text-white/50 text-xs leading-relaxed">
-                      {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 mille euros fait l'objet d'une revue manuelle par l'\u00e9quipe VISUAL dans un d\u00e9lai maximum de soixante-douze heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
+                      {"Tout retrait d'un montant \u00e9gal ou sup\u00e9rieur \u00e0 mille euros fait l'objet d'une revue manuelle par l'\u00e9quipe VIXUAL dans un d\u00e9lai maximum de soixante-douze heures. Pendant ce d\u00e9lai, les fonds sont bloqu\u00e9s (statut \"held\"). L'utilisateur est notifi\u00e9 du r\u00e9sultat de l'examen."}
                     </p>
                   </div>
                 </SubSection>
@@ -1020,7 +1020,7 @@ export default function TermsOfUsePage() {
                         "Le signalement est anonyme vis-\u00e0-vis de l'utilisateur signal\u00e9",
                         "L'utilisateur choisit un motif parmi : racisme, homophobie, antis\u00e9mitisme, haine religieuse, insultes/harc\u00e8lement, contenu sexuel, violence, plagiat, spam, autre",
                         "Un champ optionnel permet de d\u00e9tailler le signalement (500 caract\u00e8res max)",
-                        "L'\u00e9quipe de mod\u00e9ration VISUAL examine chaque signalement dans un d\u00e9lai maximal de quarante-huit heures (vingt-quatre heures pour les signalements critiques)",
+                        "L'\u00e9quipe de mod\u00e9ration VIXUAL examine chaque signalement dans un d\u00e9lai maximal de quarante-huit heures (vingt-quatre heures pour les signalements critiques)",
                         "Les d\u00e9cisions possibles sont : approbation (fausse alerte), avertissement, suppression du contenu, suspension temporaire, suspension d\u00e9finitive, suppression du compte",
                         "L'utilisateur signal\u00e9 est notifi\u00e9 de la d\u00e9cision et peut exercer un recours aupr\u00e8s de support@visual.music",
                       ].map((item) => (
@@ -1036,7 +1036,7 @@ export default function TermsOfUsePage() {
                 <SubSection title={"Charte communautaire de respect et de courtoisie"}>
                   <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4 space-y-3">
                     <p className="text-white/60 text-sm leading-relaxed">
-                      {"VISUAL est un espace de cr\u00e9ation collaborative fond\u00e9 sur le respect mutuel. En s'inscrivant, chaque utilisateur s'engage \u00e0 respecter la Charte communautaire VISUAL :"}
+                      {"VIXUAL est un espace de cr\u00e9ation collaborative fond\u00e9 sur le respect mutuel. En s'inscrivant, chaque utilisateur s'engage \u00e0 respecter la Charte communautaire VIXUAL :"}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {[
@@ -1060,12 +1060,12 @@ export default function TermsOfUsePage() {
           </Section>
 
           {/* 9. Responsabilité */}
-          <Section num={9} title="Responsabilité de VISUAL">
+          <Section num={9} title="Responsabilité de VIXUAL">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <div className="space-y-3 text-sm text-white/60 leading-relaxed">
                   <p>
-                    {"VISUAL met en œuvre tous les moyens raisonnables pour assurer la disponibilité, la sécurité et le bon fonctionnement de la plateforme. Toutefois, VISUAL ne peut garantir :"}
+                    {"VIXUAL met en œuvre tous les moyens raisonnables pour assurer la disponibilité, la sécurité et le bon fonctionnement de la plateforme. Toutefois, VIXUAL ne peut garantir :"}
                   </p>
                   <ul className="space-y-2 ml-2">
                     {[
@@ -1081,10 +1081,10 @@ export default function TermsOfUsePage() {
                     ))}
                   </ul>
                   <p>
-                    {"VISUAL agit en tant qu'hébergeur des contenus au sens du DSA (Règlement européen sur les services numériques) et de la LCEN. À ce titre, VISUAL n'exerce pas de contrôle éditorial préalable sur les contenus déposés mais s'engage à retirer tout contenu manifestement illicite signalé dans les meilleurs délais."}
+                    {"VIXUAL agit en tant qu'hébergeur des contenus au sens du DSA (Règlement européen sur les services numériques) et de la LCEN. À ce titre, VIXUAL n'exerce pas de contrôle éditorial préalable sur les contenus déposés mais s'engage à retirer tout contenu manifestement illicite signalé dans les meilleurs délais."}
                   </p>
                   <p>
-                    {"La responsabilité de VISUAL ne saurait être engagée en cas de force majeure, d'interruption des réseaux de télécommunication, de défaillance des prestataires de paiement ou de toute circonstance indépendante de sa volonté."}
+                    {"La responsabilité de VIXUAL ne saurait être engagée en cas de force majeure, d'interruption des réseaux de télécommunication, de défaillance des prestataires de paiement ou de toute circonstance indépendante de sa volonté."}
                   </p>
                 </div>
               </CardContent>
@@ -1101,7 +1101,7 @@ export default function TermsOfUsePage() {
                       "L'inscrit peut demander la suppression de son compte à tout moment depuis les Paramètres de son espace personnel",
                       "Avant la suppression effective, les clôtures en cours doivent être finalisées et les gains disponibles retirés",
                       "La caution est rembours\u00e9e dans un d\u00e9lai de trente jours ouvr\u00e9s apr\u00e8s validation",
-                      "Les contenus déposés sont retirés de la plateforme sauf accord contraire avec VISUAL",
+                      "Les contenus déposés sont retirés de la plateforme sauf accord contraire avec VIXUAL",
                       "Les données personnelles sont supprimées conformément à la Politique de Confidentialité (sauf obligations légales de conservation)",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
@@ -1112,9 +1112,9 @@ export default function TermsOfUsePage() {
                   </div>
                 </SubSection>
 
-                <SubSection title="Résiliation par VISUAL">
+                <SubSection title="Résiliation par VIXUAL">
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"VISUAL peut suspendre ou r\u00e9silier un compte en cas de violation des pr\u00e9sentes CGU, de fraude av\u00e9r\u00e9e, ou sur injonction d'une autorit\u00e9 comp\u00e9tente. L'inscrit sera inform\u00e9 par e-mail des motifs de la r\u00e9siliation et disposera d'un d\u00e9lai de quinze jours pour contester la d\u00e9cision."}
+                    {"VIXUAL peut suspendre ou r\u00e9silier un compte en cas de violation des pr\u00e9sentes CGU, de fraude av\u00e9r\u00e9e, ou sur injonction d'une autorit\u00e9 comp\u00e9tente. L'inscrit sera inform\u00e9 par e-mail des motifs de la r\u00e9siliation et disposera d'un d\u00e9lai de quinze jours pour contester la d\u00e9cision."}
                   </p>
                   <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4 mt-3">
                     <p className="text-red-400/80 text-sm font-medium mb-2">{"Faute grave"}</p>
@@ -1139,7 +1139,7 @@ export default function TermsOfUsePage() {
                   {", qui font partie intégrante des présentes CGU."}
                 </p>
                 <p>
-                  {"VISUAL est responsable du traitement au sens du RGPD. Le Délégué à la Protection des Données (DPO) est joignable à l'adresse dpo@visual-platform.com. L'inscrit dispose de l'ensemble des droits prévus par les articles 15 à 22 du RGPD (accès, rectification, effacement, portabilité, opposition, limitation)."}
+                  {"VIXUAL est responsable du traitement au sens du RGPD. Le Délégué à la Protection des Données (DPO) est joignable à l'adresse dpo@visual-platform.com. L'inscrit dispose de l'ensemble des droits prévus par les articles 15 à 22 du RGPD (accès, rectification, effacement, portabilité, opposition, limitation)."}
                 </p>
               </CardContent>
             </Card>
@@ -1150,7 +1150,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"VISUAL se r\u00e9serve le droit de modifier les pr\u00e9sentes Conditions d'Utilisation \u00e0 tout moment. En cas de modification substantielle, les inscrits seront inform\u00e9s par e-mail et/ou par notification sur la plateforme au moins trente jours avant l'entr\u00e9e en vigueur."}
+                  {"VIXUAL se r\u00e9serve le droit de modifier les pr\u00e9sentes Conditions d'Utilisation \u00e0 tout moment. En cas de modification substantielle, les inscrits seront inform\u00e9s par e-mail et/ou par notification sur la plateforme au moins trente jours avant l'entr\u00e9e en vigueur."}
                 </p>
                 <p>
                   {"La poursuite de l'utilisation de la plateforme après l'entrée en vigueur des modifications vaut acceptation des nouvelles CGU. En cas de refus, l'inscrit peut demander la suppression de son compte et le remboursement de sa caution."}
@@ -1164,14 +1164,14 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"Les pr\u00e9sentes CGU seront soumises au droit applicable dans la juridiction d'\u00e9tablissement officielle de VISUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}
+                  {"Les pr\u00e9sentes CGU seront soumises au droit applicable dans la juridiction d'\u00e9tablissement officielle de VIXUAL lors de sa mise en ligne d\u00e9finitive. En attendant, le droit fran\u00e7ais s'applique \u00e0 titre indicatif."}
                 </p>
                 <p>
                   {"En cas de litige, les parties s'engagent \u00e0 rechercher une solution amiable dans un d\u00e9lai de trente jours. Conform\u00e9ment au r\u00e8glement europ\u00e9en n\u00b0524/2013, l'inscrit peut recourir \u00e0 la plateforme europ\u00e9enne de r\u00e9solution des litiges en ligne : "}
                   <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">{"ec.europa.eu/consumers/odr"}</a>
                 </p>
                 <p>
-                  {"\u00c0 d\u00e9faut de r\u00e9solution amiable, le litige sera soumis aux tribunaux comp\u00e9tents du ressort du si\u00e8ge social de VISUAL, sauf disposition l\u00e9gale imp\u00e9rative contraire (notamment au b\u00e9n\u00e9fice du consommateur)."}
+                  {"\u00c0 d\u00e9faut de r\u00e9solution amiable, le litige sera soumis aux tribunaux comp\u00e9tents du ressort du si\u00e8ge social de VIXUAL, sauf disposition l\u00e9gale imp\u00e9rative contraire (notamment au b\u00e9n\u00e9fice du consommateur)."}
                 </p>
               </CardContent>
             </Card>
@@ -1196,7 +1196,7 @@ export default function TermsOfUsePage() {
                       <p>{"Messagerie : "}<Link href="/support/mailbox" className="text-teal-400 hover:text-teal-300 underline underline-offset-2">Messagerie de support</Link></p>
                     </div>
                     <p className="text-white/40 text-xs mt-3">
-                      {"VISUAL s'engage \u00e0 r\u00e9pondre \u00e0 toute demande dans un d\u00e9lai de quinze jours ouvr\u00e9s."}
+                      {"VIXUAL s'engage \u00e0 r\u00e9pondre \u00e0 toute demande dans un d\u00e9lai de quinze jours ouvr\u00e9s."}
                     </p>
                   </div>
                 </div>
@@ -1209,7 +1209,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3 text-sm text-white/60 leading-relaxed">
                 <p>
-                  {"VISUAL ne saurait \u00eatre tenue responsable des retards ou impossibilit\u00e9s d'ex\u00e9cution dues \u00e0 des cas de force majeure au sens de l'article 1218 du Code civil, notamment :"}
+                  {"VIXUAL ne saurait \u00eatre tenue responsable des retards ou impossibilit\u00e9s d'ex\u00e9cution dues \u00e0 des cas de force majeure au sens de l'article 1218 du Code civil, notamment :"}
                 </p>
                 <ul className="space-y-1.5 text-xs text-white/50 ml-2">
                   <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"D\u00e9faillances des prestataires de paiement (Stripe, \u00e9tablissements bancaires)"}</li>
@@ -1220,7 +1220,7 @@ export default function TermsOfUsePage() {
                   <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Pannes d'h\u00e9bergement (Vercel, AWS, Bunny.net)"}</li>
                 </ul>
                 <p>
-                  {"En cas de force majeure, VISUAL s'engage \u00e0 informer les utilisateurs dans les meilleurs d\u00e9lais et \u00e0 mettre en \u0153uvre tous les moyens raisonnables pour r\u00e9tablir la situation."}
+                  {"En cas de force majeure, VIXUAL s'engage \u00e0 informer les utilisateurs dans les meilleurs d\u00e9lais et \u00e0 mettre en \u0153uvre tous les moyens raisonnables pour r\u00e9tablir la situation."}
                 </p>
               </CardContent>
             </Card>
@@ -1269,7 +1269,7 @@ export default function TermsOfUsePage() {
                 </p>
                 <ul className="space-y-1.5 text-xs text-white/50 ml-2">
                   <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Email \u00e0 "}<span className="text-teal-400">dpo@visual-platform.com</span></li>
-                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Courrier recommand\u00e9 \u00e0 l'adresse du si\u00e8ge social de VISUAL"}</li>
+                  <li className="flex gap-2"><span className="text-teal-400">{">"}</span>{"Courrier recommand\u00e9 \u00e0 l'adresse du si\u00e8ge social de VIXUAL"}</li>
                 </ul>
                 <p className="text-white/40 text-xs">
                   {"Le remboursement sera effectu\u00e9 dans un d\u00e9lai de quatorze jours suivant la r\u00e9ception de la demande, par le m\u00eame moyen de paiement utilis\u00e9 lors de la transaction initiale."}

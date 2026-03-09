@@ -1,5 +1,5 @@
 /**
- * VISUAL - Terminologie standardisee
+ * VIXUAL - Terminologie standardisee
  * Source : PATCH-002 conformite juridique & UX
  *
  * Utiliser ces constantes pour garantir la coherence des termes

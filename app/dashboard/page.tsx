@@ -45,7 +45,7 @@ export default function DashboardPage() {
         </h1>
         <p className="text-white/60 mb-8 max-w-md">
           Créez un compte ou connectez-vous pour accéder à toutes les
-          fonctionnalités de VISUAL
+          fonctionnalités de VIXUAL
         </p>
         <div className="flex gap-4">
           <Link href="/login">
@@ -89,7 +89,7 @@ export default function DashboardPage() {
             <VisualSlogan size="xs" opacity="medium" />
           </div>
           <p className="text-white/60">
-            {"Voici un aper\u00e7u de votre activit\u00e9 sur VISUAL"}
+            {"Voici un aper\u00e7u de votre activit\u00e9 sur VIXUAL"}
           </p>
         </div>
         <Button

@@ -282,12 +282,12 @@ export function VisualHeader() {
         <div className="container mx-auto px-4 md:px-6 h-20 relative flex items-center justify-between gap-4">
           {/* Logo + Slogan */}
           <div className="flex items-center gap-3 md:gap-4 z-10 shrink-0">
-            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <Link href="/" className="flex items-center gap-3 group shrink-0">
               <div className="relative">
                 <span className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-lg">
                   <span className="text-red-500">V</span>
                   <span className="text-amber-400">I</span>
-                  <span className="text-emerald-400">S</span>
+                  <span className="text-emerald-400">X</span>
                   <span className="text-teal-400">U</span>
                   <span className="text-sky-400">A</span>
                   <span className="text-indigo-400">L</span>

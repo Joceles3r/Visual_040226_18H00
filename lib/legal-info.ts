@@ -1,5 +1,5 @@
 /**
- * VISUAL -- Informations legales centralisees.
+ * VIXUAL -- Informations legales centralisees.
  *
  * Tous les textes legaux (CGU, CGV, Privacy, Cookies)
  * importent cet objet pour garantir la coherence.
@@ -9,7 +9,7 @@
  */
 export const LEGAL_INFO = {
   formeJuridique: "SAS",
-  denomination: "VISUAL",
+  denomination: "VIXUAL",
   capitalSocial: "________ \u20ac",
   siret: "________ ________ ________",
   rcs: "RCS ________",
