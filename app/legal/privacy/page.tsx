@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {"VISUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
+              {"VIXUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}
             </p>
             <p className="text-sm text-white/35 mt-4">
               {"Derni\u00e8re mise \u00e0 jour : 26 f\u00e9vrier 2026 \u2014 Version Provisoire Internationale"}
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"Le responsable du traitement des données à caractère personnel collectées sur la plateforme VISUAL est :"}
+                  {"Le responsable du traitement des données à caractère personnel collectées sur la plateforme VIXUAL est :"}
                 </p>
                 <div className="bg-black/30 rounded-xl p-5 border border-white/5 space-y-2">
                   <p className="text-white font-medium">{LEGAL_INFO.denomination}</p>
@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mt-3">
                   <p className="text-amber-400/80 text-sm">
-                    {"Les champs contenant des blancs (________) seront compl\u00e9t\u00e9s lors de l'immatriculation officielle de VISUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
+                    {"Les champs contenant des blancs (________) seront compl\u00e9t\u00e9s lors de l'immatriculation officielle de VIXUAL. Le droit applicable sera celui du pays d'\u00e9tablissement d\u00e9finitif."}
                   </p>
                 </div>
               </CardContent>
@@ -82,7 +82,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"En tant que plateforme combinant diffusion de contenus (streaming) et investissement participatif, VISUAL est soumise à un cadre réglementaire renforcé :"}
+                  {"En tant que plateforme combinant diffusion de contenus (streaming) et investissement participatif, VIXUAL est soumise à un cadre réglementaire renforcé :"}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {[
@@ -157,9 +157,9 @@ export default function PrivacyPolicyPage() {
                   items: [
                     "Caution vers\u00e9e (dix euros cr\u00e9ateurs, vingt euros investisseurs)",
                     "Historique des investissements (deux \u00e0 vingt euros par projet, montants, dates, projets cibl\u00e9s)",
-                    "Solde du portefeuille VISUAL et VIXUpoints accumulés",
+                    "Solde du portefeuille VIXUAL et VIXUpoints accumulés",
                     "Transactions Stripe (identifiant Stripe Connect, retraits, reversements)",
-                    "IBAN/coordonnées bancaires pour les retraits (traités par Stripe, non stockés par VISUAL)",
+                    "IBAN/coordonnées bancaires pour les retraits (traités par Stripe, non stockés par VIXUAL)",
                   ],
                 },
                 {
@@ -191,7 +191,7 @@ export default function PrivacyPolicyPage() {
                   subtitle: "Collect\u00e9es lors de l'utilisation de Vixual Social",
                   items: [
                     "Contenu des posts et r\u00e9ponses publi\u00e9s (texte brut, 2\u202f000 caract\u00e8res max)",
-                    "Tags officiels s\u00e9lectionn\u00e9s sur chaque post (1 \u00e0 3 parmi la liste VISUAL)",
+                    "Tags officiels s\u00e9lectionn\u00e9s sur chaque post (1 \u00e0 3 parmi la liste VIXUAL)",
                     "Likes donn\u00e9s et re\u00e7us",
                     "Signalements effectu\u00e9s via le Bouton Rouge Alerte (motif, d\u00e9tails, horodatage, identifiant du signaleur)",
                     "Signalements re\u00e7us et d\u00e9cisions de mod\u00e9ration associ\u00e9es (masquage automatique \u00e0 3 signalements)",
@@ -280,7 +280,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6">
                 <p className="text-white/70 leading-relaxed mb-6">
-                  {"En tant qu'inscrit sur VISUAL, vous disposez des droits suivants sur vos données personnelles, que vous pouvez exercer à tout moment :"}
+                  {"En tant qu'inscrit sur VIXUAL, vous disposez des droits suivants sur vos données personnelles, que vous pouvez exercer à tout moment :"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
@@ -307,7 +307,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <div className="bg-indigo-500/5 border border-indigo-500/15 rounded-xl p-4 mt-4">
                   <p className="text-indigo-400/80 text-sm">
-                    {"Pour exercer vos droits, envoyez un e-mail à dpo@visual-platform.com en joignant une copie de votre pièce d'identité. VISUAL s'engage à répondre dans un délai d'un mois, conformément au RGPD."}
+                    {"Pour exercer vos droits, envoyez un e-mail à dpo@visual-platform.com en joignant une copie de votre pièce d'identité. VIXUAL s'engage à répondre dans un délai d'un mois, conformément au RGPD."}
                   </p>
                 </div>
               </CardContent>
@@ -319,7 +319,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL ne vend, ne loue et ne cède jamais vos données personnelles à des tiers à des fins commerciales. Vos données peuvent être partagées uniquement avec :"}
+                  {"VIXUAL ne vend, ne loue et ne cède jamais vos données personnelles à des tiers à des fins commerciales. Vos données peuvent être partagées uniquement avec :"}
                 </p>
                 <div className="space-y-3">
                   {[
@@ -346,7 +346,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL privilégie le stockage de vos données au sein de l'Union européenne. Lorsqu'un transfert en dehors de l'UE est nécessaire (par exemple vers les États-Unis pour Stripe), nous nous appuyons sur :"}
+                  {"VIXUAL privilégie le stockage de vos données au sein de l'Union européenne. Lorsqu'un transfert en dehors de l'UE est nécessaire (par exemple vers les États-Unis pour Stripe), nous nous appuyons sur :"}
                 </p>
                 <ul className="space-y-2">
                   {[
@@ -370,7 +370,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL met en oeuvre des mesures techniques et organisationnelles appropriées pour garantir un niveau de sécurité adapté aux risques :"}
+                  {"VIXUAL met en oeuvre des mesures techniques et organisationnelles appropriées pour garantir un niveau de sécurité adapté aux risques :"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
@@ -438,7 +438,7 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <div>
                     <p className="text-white/70 leading-relaxed">
-                      {"L'inscription sur VISUAL est autoris\u00e9e aux mineurs \u00e2g\u00e9s de 16 \u00e0 17 ans inclus, sous r\u00e9serve d'une autorisation expresse du repr\u00e9sentant l\u00e9gal. Conform\u00e9ment \u00e0 l'article 8 du RGPD, VISUAL applique le seuil de 16 ans pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales."}
+                      {"L'inscription sur VIXUAL est autoris\u00e9e aux mineurs \u00e2g\u00e9s de 16 \u00e0 17 ans inclus, sous r\u00e9serve d'une autorisation expresse du repr\u00e9sentant l\u00e9gal. Conform\u00e9ment \u00e0 l'article 8 du RGPD, VIXUAL applique le seuil de 16 ans pour couvrir l'ensemble des juridictions europ\u00e9ennes et internationales."}
                     </p>
                   </div>
                 </div>
@@ -490,7 +490,7 @@ export default function PrivacyPolicyPage() {
 
                 <div className="bg-red-500/5 border border-red-500/15 rounded-lg p-3">
                   <p className="text-red-400/80 text-xs leading-relaxed">
-                    {"Les enfants de moins de 16 ans ne peuvent pas s'inscrire sur VISUAL. Si vous \u00eates parent ou tuteur et pensez que votre enfant de moins de 16 ans a fourni des donn\u00e9es personnelles, contactez-nous imm\u00e9diatement \u00e0 dpo@visual-platform.com pour suppression."}
+                    {"Les enfants de moins de 16 ans ne peuvent pas s'inscrire sur VIXUAL. Si vous \u00eates parent ou tuteur et pensez que votre enfant de moins de 16 ans a fourni des donn\u00e9es personnelles, contactez-nous imm\u00e9diatement \u00e0 dpo@visual-platform.com pour suppression."}
                   </p>
                 </div>
               </CardContent>
@@ -498,11 +498,11 @@ export default function PrivacyPolicyPage() {
           </Section>
 
           {/* 11. Spécificités streaming + participatif */}
-          <Section num={11} title="Dispositions spécifiques à VISUAL">
+          <Section num={11} title="Dispositions spécifiques à VIXUAL">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-5">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL combine deux activités soumises à des réglementations distinctes. Voici les dispositions spécifiques liées à chacune :"}
+                  {"VIXUAL combine deux activités soumises à des réglementations distinctes. Voici les dispositions spécifiques liées à chacune :"}
                 </p>
 
                 <div className="bg-black/30 rounded-xl p-5 border border-emerald-500/10">
@@ -536,7 +536,7 @@ export default function PrivacyPolicyPage() {
                     {[
                       "Les données financières sont traitées dans le respect du Code monétaire et financier et des recommandations de l'AMF relatives au financement participatif",
                       "La traçabilité des transactions est assurée pendant 10 ans minimum (obligations légales comptables et fiscales)",
-                      "Les opérations de paiement sont intégralement déléguées à Stripe (prestataire de services de paiement agréé), VISUAL ne stocke aucune donnée bancaire",
+                      "Les opérations de paiement sont intégralement déléguées à Stripe (prestataire de services de paiement agréé), VIXUAL ne stocke aucune donnée bancaire",
                       "En cas de fermeture de compte, les cautions remboursables sont restituées selon les modalités des conditions d'utilisation, les données financières sont conservées conformément aux obligations légales",
                     ].map((item) => (
                       <li key={item} className="flex gap-2 items-start text-sm">
@@ -555,7 +555,7 @@ export default function PrivacyPolicyPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL se réserve le droit de modifier cette politique de confidentialité pour l'adapter aux évolutions réglementaires, techniques ou fonctionnelles de la plateforme."}
+                  {"VIXUAL se réserve le droit de modifier cette politique de confidentialité pour l'adapter aux évolutions réglementaires, techniques ou fonctionnelles de la plateforme."}
                 </p>
                 <p className="text-white/70 leading-relaxed">
                   {"En cas de modification substantielle, vous serez inform\u00e9(e) par e-mail et/ou par notification sur la plateforme au moins trente jours avant l'entr\u00e9e en vigueur des changements. Vous aurez la possibilit\u00e9 de consulter les modifications, d'accepter les nouvelles conditions ou de supprimer votre compte."}

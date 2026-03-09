@@ -109,10 +109,10 @@ function LeaderboardRow({
                 </div>
               </div>
 
-              {/* VISUAL Score Bar */}
+              {/* VIXUAL Score Bar */}
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-white/60">VISUAL Score</span>
+                  <span className="text-xs text-white/60">VIXUAL Score</span>
                   <span className={`text-sm font-bold ${isTop10 ? "text-amber-400" : "text-emerald-400"}`}>
                     {visualScore.toFixed(0)}/1000
                   </span>
@@ -160,8 +160,8 @@ function MotivationalSection({ rank }: { rank: number }) {
   if (rank > 100) return null;
 
   const messages: Record<string, { icon: any; text: string; color: string }> = {
-    top3: { icon: Crown, text: "Vous êtes dans le TOP 3 ! Bravo, vous dominez la communauté VISUAL.", color: "text-amber-400" },
-    top10: { icon: Trophy, text: "TOP 10 atteint ! Vous êtes parmi les élites de VISUAL.", color: "text-amber-400" },
+    top3: { icon: Crown, text: "Vous êtes dans le TOP 3 ! Bravo, vous dominez la communauté VIXUAL.", color: "text-amber-400" },
+    top10: { icon: Trophy, text: "TOP 10 atteint ! Vous êtes parmi les élites de VIXUAL.", color: "text-amber-400" },
     top20: { icon: Star, text: "TOP 20 ! Félicitations, vous suscitez beaucoup d'intérêt.", color: "text-yellow-400" },
     top50: { icon: Flame, text: "TOP 50 ! Vous montez rapidement dans les classements.", color: "text-orange-400" },
     top100: { icon: CheckCircle, text: "TOP 100 ! Bienvenue dans l'élite. Continuez vos efforts.", color: "text-emerald-400" },
@@ -203,10 +203,10 @@ export default function LeaderboardPage() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
             <Trophy className="h-8 w-8 text-amber-400" />
-            <h1 className="text-4xl sm:text-5xl font-bold text-balance">VISUAL Classements</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold text-balance">VIXUAL Classements</h1>
           </div>
           <p className="text-white/60 text-lg max-w-2xl mb-4">
-            Les 100 meilleurs projets sélectionnés par le système de découverte VISUAL. Chaque projet est évalué selon 6 métriques : investissement, engagement, longévité, momentum, communauté et crédibilité créateur.
+            Les 100 meilleurs projets sélectionnés par le système de découverte VIXUAL. Chaque projet est évalué selon 6 métriques : investissement, engagement, longévité, momentum, communauté et crédibilité créateur.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge className="bg-emerald-600/30 text-emerald-300 border-emerald-500/30">Mis à jour quotidiennement</Badge>
@@ -233,7 +233,7 @@ export default function LeaderboardPage() {
               className="text-xs"
             >
               <BarChart3 className="h-4 w-4 mr-1" />
-              VISUAL Score
+              VIXUAL Score
             </Button>
             <Button
               variant={sortBy === "trending" ? "default" : "outline"}
@@ -253,7 +253,7 @@ export default function LeaderboardPage() {
             { label: "Projets évalués", value: String(top100.length), icon: BarChart3, color: "text-emerald-400" },
             { label: "Investissements", value: top100.reduce((s, p) => s + (p.currentInvestment || 0), 0).toLocaleString() + "€", icon: TrendingUp, color: "text-sky-400" },
             { label: "Soutiens totaux", value: top100.reduce((s, p) => s + (p.investorCount || 0), 0).toLocaleString(), icon: Heart, color: "text-red-400" },
-            { label: "VISUAL moyen", value: ((top100.reduce((s, p) => s + (p.score?.visualScore || 0), 0) / top100.length) || 0).toFixed(0), icon: Star, color: "text-amber-400" },
+            { label: "VIXUAL moyen", value: ((top100.reduce((s, p) => s + (p.score?.visualScore || 0), 0) / top100.length) || 0).toFixed(0), icon: Star, color: "text-amber-400" },
           ].map((stat) => (
             <Card key={stat.label} className="bg-white/[0.02] border-white/10">
               <CardContent className="p-4">

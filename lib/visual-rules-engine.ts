@@ -450,7 +450,7 @@ export function checkIPDeclaration(
  * - Bloquer des comptes
  * - Geler des fonds en cas de fraude
  * - Supprimer du contenu
- * - Gerer les tags Visual Social
+ * - Gerer les tags Vixual Social
  *
  * Voir lib/admin-guard.ts pour l'implementation.
  */

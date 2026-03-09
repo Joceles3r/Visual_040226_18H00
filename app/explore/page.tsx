@@ -416,7 +416,7 @@ function GoldPassView() {
             {[
               { icon: Crown, label: "Badge Gold visible sur toute la plateforme" },
               { icon: Sparkles, label: "Visibilit\u00e9 accrue dans Explorer" },
-              { icon: Zap, label: "+5% VISUpoints sur les activit\u00e9s" },
+              { icon: Zap, label: "+5% VIXUpoints sur les activit\u00e9s" },
             ].map((a) => (
               <div key={a.label} className="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1.5">
                 <a.icon className="h-3 w-3 text-amber-400" />
@@ -612,9 +612,9 @@ function GoldPassView() {
           <div className="space-y-3">
             {[
               { icon: Crown, text: "Badge Gold visible sur toute la plateforme" },
-              { icon: Eye, text: "Visibilit\u00e9 accrue dans Explorer, Visual Social et Classements" },
+              { icon: Eye, text: "Visibilit\u00e9 accrue dans Explorer, Vixual Social et Classements" },
               { icon: Sparkles, text: "Mise en avant possible de vos projets" },
-              { icon: Zap, text: "+5% de VISUpoints lors d'activit\u00e9s" },
+              { icon: Zap, text: "+5% de VIXUpoints lors d'activit\u00e9s" },
               { icon: Star, text: "Priorit\u00e9 dans les recommandations" },
             ].map((a) => (
               <div key={a.text} className="flex items-center gap-3 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/10">

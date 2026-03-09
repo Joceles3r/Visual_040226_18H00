@@ -476,7 +476,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <MessageSquare className="h-5 w-5 text-emerald-400" />
-                    {"Communaut\u00e9 Visual Social"}
+                    {"Communaut\u00e9 Vixual Social"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 sm:p-6">
@@ -704,7 +704,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                       <Link href="/dashboard/visupoints">
                         <Button variant="outline" className="w-full bg-transparent border-amber-500/30 text-amber-400 hover:bg-amber-600/10">
                           <Star className="h-4 w-4 mr-2" />
-                          Gagner des VISUpoints en partageant
+                          Gagner des VIXUpoints en partageant
                         </Button>
                       </Link>
                     </div>

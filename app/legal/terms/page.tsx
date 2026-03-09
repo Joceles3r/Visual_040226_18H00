@@ -148,14 +148,14 @@ export default function TermsOfUsePage() {
                     { term: "Plateforme", def: "Le site web et l'application VIXUAL, accessibles à l'adresse visual-platform.com" },
                     { term: "Utilisateur / Inscrit", def: "Toute personne physique disposant d'un compte actif sur VIXUAL" },
                     { term: "Invité", def: "Personne naviguant sans compte, accès limité aux contenus gratuits et extraits" },
-                    { term: "Visiteur", def: "Inscrit de base : accès aux contenus gratuits, VISUpoints, favoris, commentaires" },
+                    { term: "Visiteur", def: "Inscrit de base : accès aux contenus gratuits, VIXUpoints, favoris, commentaires" },
                     { term: "Porteur", def: "Créateur audiovisuel : dépose des vidéos et visuels sur la plateforme" },
                     { term: "Infoporteur", def: "Créateur littéraire : publie des écrits (articles, romans, essais, etc.)" },
                     { term: "Podcasteur", def: "Créateur podcast : dépose des podcasts, émissions audio, documentaires sonores" },
                     { term: "Investisseur", def: "Inscrit qui investit de deux \u00e0 vingt euros par projet audiovisuel" },
                     { term: "Investi-lecteur", def: "Inscrit qui investit de deux \u00e0 vingt euros par contenu litt\u00e9raire" },
                     { term: "Auditeur", def: "Inscrit qui investit de deux \u00e0 vingt euros par podcast" },
-                    { term: "VISUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
+                    { term: "VIXUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
                     { term: "Caution", def: "D\u00e9p\u00f4t unique remboursable (dix euros cr\u00e9ateurs, vingt euros investisseurs) garantissant l'engagement" },
                     { term: "Clôture", def: "Moment où les gains d'un contenu sont calculés et distribués selon les formules VIXUAL" },
                     { term: "Contenu", def: "Toute œuvre déposée : vidéo, écrit, podcast, incluant métadonnées et descriptions" },
@@ -194,7 +194,7 @@ export default function TermsOfUsePage() {
                 <SubSection title="Les 7 rôles VIXUAL">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                     {[
-                      { icon: Eye, color: "text-amber-400", bg: "bg-amber-500/15", border: "border-amber-500/20", role: "Visiteur", caution: "Aucune", desc: "Accède aux contenus gratuits, accumule des VISUpoints, interagit avec la communauté" },
+                      { icon: Eye, color: "text-amber-400", bg: "bg-amber-500/15", border: "border-amber-500/20", role: "Visiteur", caution: "Aucune", desc: "Accède aux contenus gratuits, accumule des VIXUpoints, interagit avec la communauté" },
                       { icon: Film, color: "text-red-400", bg: "bg-red-500/15", border: "border-red-500/20", role: "Porteur", caution: "Dix euros", desc: "D\u00e9pose des contenus audiovisuels, re\u00e7oit des investissements et des gains" },
                       { icon: BookOpen, color: "text-sky-400", bg: "bg-sky-500/15", border: "border-sky-500/20", role: "Infoporteur", caution: "Dix euros", desc: "Publie des contenus litt\u00e9raires, re\u00e7oit des investissements et des gains" },
                       { icon: Mic, color: "text-purple-400", bg: "bg-purple-500/15", border: "border-purple-500/20", role: "Podcasteur", caution: "Dix euros", desc: "D\u00e9pose des podcasts et \u00e9missions audio, re\u00e7oit des investissements et des gains" },
@@ -280,7 +280,7 @@ export default function TermsOfUsePage() {
                 <div className="space-y-2">
                   {[
                     "Acc\u00e8s aux contenus gratuits disponibles sur la plateforme",
-                    "Accumulation de VISUpoints dans la limite de 10 000 points (\u00e9quivalent 100\u20ac)",
+                    "Accumulation de VIXUpoints dans la limite de 10 000 points (\u00e9quivalent 100\u20ac)",
                     "Participation aux missions et aux interactions communautaires (commentaires, partages)",
                   ].map((item) => (
                     <div key={item} className="flex gap-2 items-start text-sm">
@@ -295,9 +295,9 @@ export default function TermsOfUsePage() {
                 <div className="space-y-2">
                   {[
                     "Aucun investissement autoris\u00e9 avant l'\u00e2ge de 18 ans",
-                    "Aucun retrait ni conversion de VISUpoints en euros avant la majorit\u00e9",
-                    "Les VISUpoints accumul\u00e9s constituent un avantage promotionnel interne et ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible",
-                    "Les VISUpoints ne peuvent faire l'objet d'aucun transfert, cession ou vente",
+                    "Aucun retrait ni conversion de VIXUpoints en euros avant la majorit\u00e9",
+                    "Les VIXUpoints accumul\u00e9s constituent un avantage promotionnel interne et ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible",
+                    "Les VIXUpoints ne peuvent faire l'objet d'aucun transfert, cession ou vente",
                   ].map((item) => (
                     <div key={item} className="flex gap-2 items-start text-sm">
                       <Lock className="h-4 w-4 text-red-400 mt-0.5 shrink-0" />
@@ -310,9 +310,9 @@ export default function TermsOfUsePage() {
               <SubSection title={"\u00c0 la majorit\u00e9 (18 ans)"}>
                 <div className="space-y-2">
                   {[
-                    "Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC via Stripe Connect), l'utilisateur peut convertir ses VISUpoints en cr\u00e9dit interne",
+                    "Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC via Stripe Connect), l'utilisateur peut convertir ses VIXUpoints en cr\u00e9dit interne",
                     "Le cr\u00e9dit peut \u00eatre utilis\u00e9 pour investir sur la plateforme ou faire l'objet d'un retrait bancaire",
-                    "Le plafond de VISUpoints est automatiquement lev\u00e9 au passage \u00e0 la majorit\u00e9",
+                    "Le plafond de VIXUpoints est automatiquement lev\u00e9 au passage \u00e0 la majorit\u00e9",
                   ].map((item) => (
                     <div key={item} className="flex gap-2 items-start text-sm">
                       <CheckCircle className="h-4 w-4 text-teal-400 mt-0.5 shrink-0" />
@@ -425,7 +425,7 @@ export default function TermsOfUsePage() {
                     <ul className="space-y-1.5 text-xs text-white/50 ml-2">
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La catégorie du contenu (audiovisuel, littéraire, podcast)"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le type de revenus (investissements, ventes, publicités, abonnements)"}</li>
-                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le nombre de votes favorables et de VISUpoints générés"}</li>
+                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le nombre de votes favorables et de VIXUpoints générés"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La part attribuée à VIXUAL (frais de plateforme), la réserve technique et la réserve événementielle"}</li>
                     </ul>
                     <div className="bg-purple-500/5 border border-purple-500/15 rounded-lg p-3 mt-2">
@@ -465,13 +465,13 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
-          {/* 5. VISUpoints et classements */}
-          <Section num={5} title="VISUpoints, votes et classements">
+          {/* 5. VIXUpoints et classements */}
+          <Section num={5} title="VIXUpoints, votes et classements">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
-                <SubSection title={"Nature des VISUpoints"}>
+                <SubSection title={"Nature des VIXUpoints"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Les VISUpoints sont un avantage promotionnel interne \u00e0 VIXUAL, attribu\u00e9s automatiquement selon les interactions de l'inscrit. Ils ne constituent ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE, ni une cr\u00e9ance financi\u00e8re exigible."}
+                    {"Les VIXUpoints sont un avantage promotionnel interne \u00e0 VIXUAL, attribu\u00e9s automatiquement selon les interactions de l'inscrit. Ils ne constituent ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE, ni une cr\u00e9ance financi\u00e8re exigible."}
                   </p>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/5 mb-3">
                     <p className="text-white/70 text-sm font-medium mb-2">{"Taux et limites"}</p>
@@ -494,7 +494,7 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Plafonds par profil"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Chaque profil dispose d'un plafond sp\u00e9cifique d'accumulation de VISUpoints :"}
+                    {"Chaque profil dispose d'un plafond sp\u00e9cifique d'accumulation de VIXUpoints :"}
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
@@ -529,13 +529,13 @@ export default function TermsOfUsePage() {
                     </table>
                   </div>
                   <p className="text-white/40 text-xs mt-3">
-                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VISUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Investisseur ne gagne pas de VISUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
+                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VIXUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Investisseur ne gagne pas de VIXUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
                   </p>
                 </SubSection>
 
                 <SubSection title={"Paiement hybride (achat de contenu)"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Les VISUpoints peuvent \u00eatre utilis\u00e9s pour l'achat de contenu sur la plateforme, selon un syst\u00e8me de paiement hybride :"}
+                    {"Les VIXUpoints peuvent \u00eatre utilis\u00e9s pour l'achat de contenu sur la plateforme, selon un syst\u00e8me de paiement hybride :"}
                   </p>
                   <div className="grid grid-cols-2 gap-3 mb-3">
                     <div className="bg-emerald-500/10 rounded-xl p-3 border border-emerald-500/15 text-center">
@@ -544,11 +544,11 @@ export default function TermsOfUsePage() {
                     </div>
                     <div className="bg-amber-500/10 rounded-xl p-3 border border-amber-500/15 text-center">
                       <span className="text-amber-400 font-bold text-xl">70%</span>
-                      <p className="text-white/50 text-xs mt-1">maximum en VISUpoints</p>
+                      <p className="text-white/50 text-xs mt-1">maximum en VIXUpoints</p>
                     </div>
                   </div>
                   <div className="space-y-1.5 text-xs text-white/50">
-                    <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Le paiement 100% VISUpoints n'est pas autoris\u00e9 afin de garantir un mod\u00e8le \u00e9conomique durable"}</span></div>
+                    <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Le paiement 100% VIXUpoints n'est pas autoris\u00e9 afin de garantir un mod\u00e8le \u00e9conomique durable"}</span></div>
                     <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Bonus : 5% des points d\u00e9pens\u00e9s sont retourn\u00e9s (plafond mensuel : 200 points)"}</span></div>
                     <div className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" /><span>{"Ce m\u00e9canisme assure le maintien du flux de r\u00e9mun\u00e9ration des cr\u00e9ateurs via Stripe"}</span></div>
                   </div>
@@ -556,20 +556,20 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Moteur d'engagement (Visiteurs)"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"\u00c0 partir de 2 000 VISUpoints, VIXUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
+                    {"\u00c0 partir de 2 000 VIXUpoints, VIXUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
                       <p className="text-emerald-400 font-medium mb-1">{"Chemin A : Consommer du contenu"}</p>
-                      <p className="text-white/50">{"Paiement hybride (30% cash / 70% VISUpoints max) + bonus 5%"}</p>
+                      <p className="text-white/50">{"Paiement hybride (30% cash / 70% VIXUpoints max) + bonus 5%"}</p>
                     </div>
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
                       <p className="text-purple-400 font-medium mb-1">{"Chemin B : Changer de profil"}</p>
-                      <p className="text-white/50">{"Devenir Investisseur (+500 VISUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
+                      <p className="text-white/50">{"Devenir Investisseur (+500 VIXUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
                     </div>
                   </div>
                   <p className="text-white/40 text-xs mt-3">
-                    {"Ce m\u00e9canisme est purement incitatif et non contraignant. L'inscrit reste libre de conserver ses VISUpoints."}
+                    {"Ce m\u00e9canisme est purement incitatif et non contraignant. L'inscrit reste libre de conserver ses VIXUpoints."}
                   </p>
                 </SubSection>
 
@@ -721,8 +721,8 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
-          {/* 7bis. Visual Social */}
-          <Section num={0} title={"Visual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"}>
+          {/* 7bis. Vixual Social */}
+          <Section num={0} title={"Vixual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"}>
             <Card className="bg-emerald-500/5 border-emerald-500/15">
               <CardContent className="pt-6 space-y-4">
                 <div className="flex items-start gap-3 mb-2">
@@ -731,7 +731,7 @@ export default function TermsOfUsePage() {
                   </div>
                   <div>
                     <p className="text-white/70 text-sm leading-relaxed">
-                      {"Visual Social est un espace d'\u00e9change communautaire int\u00e9gr\u00e9 \u00e0 VIXUAL. Il permet aux inscrits de partager des avis courts sur les contenus, les projets et la vie de la plateforme."}
+                      {"Vixual Social est un espace d'\u00e9change communautaire int\u00e9gr\u00e9 \u00e0 VIXUAL. Il permet aux inscrits de partager des avis courts sur les contenus, les projets et la vie de la plateforme."}
                     </p>
                   </div>
                 </div>
@@ -761,11 +761,11 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"R\u00e9actions"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-2">
-                    {"Cinq types de r\u00e9actions sont disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque r\u00e9action est unique par utilisateur et par publication (une seule r\u00e9action du m\u00eame type par publication). Les r\u00e9actions g\u00e9n\u00e8rent des VISUpoints pour l'auteur de la publication (un point par r\u00e9action re\u00e7ue)."}
+                    {"Cinq types de r\u00e9actions sont disponibles : Bravo, Feu, Inspirant, Coup de c\u0153ur et Star. Chaque r\u00e9action est unique par utilisateur et par publication (une seule r\u00e9action du m\u00eame type par publication). Les r\u00e9actions g\u00e9n\u00e8rent des VIXUpoints pour l'auteur de la publication (un point par r\u00e9action re\u00e7ue)."}
                   </p>
                 </SubSection>
 
-                <SubSection title={"VISUpoints et Visual Social"}>
+                <SubSection title={"VIXUpoints et Vixual Social"}>
                   <div className="grid grid-cols-2 gap-3 text-center">
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
                       <span className="text-emerald-400 font-bold text-base">+cinq</span>
@@ -796,13 +796,13 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Propri\u00e9t\u00e9 des contenus"}>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    {"L'utilisateur reste propri\u00e9taire de ses posts. En publiant sur Visual Social, il accorde \u00e0 VIXUAL une licence non exclusive, gratuite et mondiale pour afficher, reproduire et distribuer le contenu sur la plateforme. VIXUAL peut supprimer tout contenu sans pr\u00e9avis en cas de violation des pr\u00e9sentes CGU."}
+                    {"L'utilisateur reste propri\u00e9taire de ses posts. En publiant sur Vixual Social, il accorde \u00e0 VIXUAL une licence non exclusive, gratuite et mondiale pour afficher, reproduire et distribuer le contenu sur la plateforme. VIXUAL peut supprimer tout contenu sans pr\u00e9avis en cas de violation des pr\u00e9sentes CGU."}
                   </p>
                 </SubSection>
 
                 <div className="bg-slate-800/30 border border-white/5 rounded-lg p-3">
                   <p className="text-white/40 text-xs leading-relaxed">
-                    {"Visual Social n'est pas un r\u00e9seau social autonome. C'est une fonctionnalit\u00e9 int\u00e9gr\u00e9e \u00e0 VIXUAL, soumise aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de la plateforme. Les utilisateurs mineurs (16\u201317 ans) peuvent acc\u00e9der \u00e0 Visual Social sous r\u00e9serve du consentement parental d\u00e9j\u00e0 obtenu lors de l'inscription."}
+                    {"Vixual Social n'est pas un r\u00e9seau social autonome. C'est une fonctionnalit\u00e9 int\u00e9gr\u00e9e \u00e0 VIXUAL, soumise aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de la plateforme. Les utilisateurs mineurs (16\u201317 ans) peuvent acc\u00e9der \u00e0 Vixual Social sous r\u00e9serve du consentement parental d\u00e9j\u00e0 obtenu lors de l'inscription."}
                   </p>
                 </div>
               </CardContent>
@@ -953,7 +953,7 @@ export default function TermsOfUsePage() {
                 <SubSection title="Sont strictement interdits">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
-                      { icon: Ban, text: "Manipulation des votes, des classements ou des VISUpoints par des moyens frauduleux" },
+                      { icon: Ban, text: "Manipulation des votes, des classements ou des VIXUpoints par des moyens frauduleux" },
                       { icon: Users, text: "Cr\u00e9ation de comptes multiples pour cumuler les cautions ou les gains" },
                       { icon: XCircle, text: "Investissement fictif, blanchiment d'argent ou utilisation de fonds illicites" },
                       { icon: Ban, text: "Auto-investissement : investir dans son propre projet (annulation + recalcul des votes)" },

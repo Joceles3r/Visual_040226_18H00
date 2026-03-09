@@ -12,7 +12,7 @@ export function Footer() {
               <span className="text-2xl font-black tracking-tight">
                 <span className="text-red-500">V</span>
                 <span className="text-amber-400">I</span>
-                <span className="text-emerald-400">S</span>
+                <span className="text-emerald-400">X</span>
                 <span className="text-teal-400">U</span>
                 <span className="text-sky-400">A</span>
                 <span className="text-indigo-400">L</span>
@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/social" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Visual Social
+                  Vixual Social
                 </Link>
               </li>
             </ul>

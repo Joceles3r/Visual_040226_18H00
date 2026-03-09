@@ -39,8 +39,8 @@ export interface Investment {
   amount: InvestmentTierEur
   /** Votes gagnes pour cet investissement */
   votes: number
-  /** VISUpoints gagnes pour cet investissement */
-  visupointsEarned: number
+  /** VIXUpoints gagnes pour cet investissement */
+  vixupointsEarned: number
   date: string
   status: "active" | "completed" | "refunded"
   returns: number
@@ -297,8 +297,8 @@ export const FAQ_ITEMS = [
     answer: "Vos gains sont consultables dans votre Wallet. Pour retirer, vous devez connecter votre compte Stripe. Les retraits sont traités chaque semaine.",
   },
   {
-    question: "Que sont les VISUpoints ?",
-    answer: "Les VISUpoints sont des points de fidélité que vous gagnez en utilisant la plateforme : parrainages, partages, commentaires, etc. Ils débloquent des avantages exclusifs.",
+    question: "Que sont les VIXUpoints ?",
+    answer: "Les VIXUpoints sont des points de fidélité que vous gagnez en utilisant la plateforme : parrainages, partages, commentaires, etc. Ils débloquent des avantages exclusifs.",
   },
   {
     question: "Puis-je être créateur ET investisseur ?",
@@ -311,7 +311,7 @@ export const HOW_IT_WORKS_STEPS = [
   {
     step: 1,
     title: "Créez votre compte",
-    description: "Inscrivez-vous gratuitement et devenez Visiteur. Explorez la plateforme et gagnez des VISUpoints.",
+    description: "Inscrivez-vous gratuitement et devenez Visiteur. Explorez la plateforme et gagnez des VIXUpoints.",
     icon: "user",
   },
   {

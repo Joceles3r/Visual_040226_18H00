@@ -73,7 +73,7 @@ const ROLES = [
       "Navigation libre sur la plateforme",
     ],
     restrictions: [
-      "Aucun VISUpoint",
+      "Aucun VIXUpoint",
       "Aucun gain ni investissement",
       "Pas de participation a la communaute",
       "Pas de favoris ni de commentaires",
@@ -86,10 +86,10 @@ const ROLES = [
     title: "Visiteur",
     subtitle: "Gratuit (inscription requise)",
     description:
-      "Parcourez la plateforme, gagnez des VISUpoints, promouvez VIXUAL",
+      "Parcourez la plateforme, gagnez des VIXUpoints, promouvez VIXUAL",
     features: [
       "Acces aux contenus gratuits",
-      "VISUpoints et badges",
+      "VIXUpoints et badges",
       "Favoris et suivis",
       "Commentaires et partages",
     ],

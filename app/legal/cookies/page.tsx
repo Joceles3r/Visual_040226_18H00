@@ -16,7 +16,7 @@ const cookieTypes = [
     bgColor: "bg-emerald-500/15",
     borderColor: "border-emerald-500/20",
     description:
-      "Ces cookies sont indispensables au fonctionnement de la plateforme VISUAL. Ils permettent la navigation sur le site, la connexion à votre espace personnel, la gestion de votre session et la sécurité de vos données.",
+      "Ces cookies sont indispensables au fonctionnement de la plateforme VIXUAL. Ils permettent la navigation sur le site, la connexion à votre espace personnel, la gestion de votre session et la sécurité de vos données.",
     examples: [
       "Identifiant de session (maintien de votre connexion)",
       "Jeton d'authentification sécurisé (protection de votre compte)",
@@ -33,7 +33,7 @@ const cookieTypes = [
     bgColor: "bg-sky-500/15",
     borderColor: "border-sky-500/20",
     description:
-      "Ces cookies permettent à VISUAL de mémoriser vos choix et préférences afin de personnaliser votre expérience sur la plateforme. Ils ne sont pas indispensables mais améliorent votre confort d'utilisation.",
+      "Ces cookies permettent à VIXUAL de mémoriser vos choix et préférences afin de personnaliser votre expérience sur la plateforme. Ils ne sont pas indispensables mais améliorent votre confort d'utilisation.",
     examples: [
       "Langue d'affichage sélectionnée (français, anglais, etc.)",
       "Thème d'interface (mode sombre)",
@@ -50,7 +50,7 @@ const cookieTypes = [
     bgColor: "bg-amber-500/15",
     borderColor: "border-amber-500/20",
     description:
-      "Ces cookies nous aident à comprendre comment les visiteurs utilisent VISUAL. Les données collectées sont anonymisées et servent uniquement à améliorer les performances et l'ergonomie de la plateforme.",
+      "Ces cookies nous aident à comprendre comment les visiteurs utilisent VIXUAL. Les données collectées sont anonymisées et servent uniquement à améliorer les performances et l'ergonomie de la plateforme.",
     examples: [
       "Pages les plus consultées et parcours de navigation",
       "Temps passé sur les contenus audiovisuels, littéraires et podcasts",
@@ -67,7 +67,7 @@ const cookieTypes = [
     bgColor: "bg-purple-500/15",
     borderColor: "border-purple-500/20",
     description:
-      "VISUAL n'utilise actuellement aucun cookie de ciblage publicitaire ni de tracking à des fins marketing. Si cela venait à changer, votre consentement explicite serait requis au préalable, conformément au RGPD.",
+      "VIXUAL n'utilise actuellement aucun cookie de ciblage publicitaire ni de tracking à des fins marketing. Si cela venait à changer, votre consentement explicite serait requis au préalable, conformément au RGPD.",
     examples: [
       "Aucun cookie de ce type n'est actuellement déposé",
       "Aucun partage de données avec des régies publicitaires",
@@ -96,7 +96,7 @@ export default function CookiesPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {"Conformément au Règlement Général sur la Protection des Données (RGPD) et à la directive ePrivacy, VISUAL vous informe de manière transparente sur l'utilisation des cookies sur sa plateforme."}
+              {"Conformément au Règlement Général sur la Protection des Données (RGPD) et à la directive ePrivacy, VIXUAL vous informe de manière transparente sur l'utilisation des cookies sur sa plateforme."}
             </p>
             <p className="text-sm text-white/35 mt-4">
               {"Dernière mise à jour : 23 février 2026"}
@@ -115,7 +115,7 @@ export default function CookiesPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6">
                 <p className="text-white/70 leading-relaxed mb-4">
-                  {"Un cookie est un petit fichier texte déposé sur votre appareil (ordinateur, tablette, smartphone) lorsque vous visitez la plateforme VISUAL. Il permet de stocker des informations relatives à votre navigation afin d'améliorer votre expérience utilisateur."}
+                  {"Un cookie est un petit fichier texte déposé sur votre appareil (ordinateur, tablette, smartphone) lorsque vous visitez la plateforme VIXUAL. Il permet de stocker des informations relatives à votre navigation afin d'améliorer votre expérience utilisateur."}
                 </p>
                 <p className="text-white/70 leading-relaxed">
                   {"Les cookies ne contiennent aucune donnée personnelle sensible telle que votre mot de passe ou vos informations bancaires. Ils ne peuvent pas endommager votre appareil ni accéder à vos fichiers personnels."}
@@ -133,7 +133,7 @@ export default function CookiesPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"L'utilisation des cookies sur VISUAL est encadrée par :"}
+                  {"L'utilisation des cookies sur VIXUAL est encadrée par :"}
                 </p>
                 <ul className="space-y-3">
                   {[
@@ -160,7 +160,7 @@ export default function CookiesPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
               <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-bold text-emerald-400">3</span>
-              {"Types de cookies utilisés sur VISUAL"}
+              {"Types de cookies utilisés sur VIXUAL"}
             </h2>
             <div className="space-y-4">
               {cookieTypes.map((cookie) => {
@@ -225,7 +225,7 @@ export default function CookiesPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"Conformément au RGPD et aux recommandations de la CNIL, VISUAL recueille votre consentement avant de déposer tout cookie non strictement nécessaire au fonctionnement du site."}
+                  {"Conformément au RGPD et aux recommandations de la CNIL, VIXUAL recueille votre consentement avant de déposer tout cookie non strictement nécessaire au fonctionnement du site."}
                 </p>
                 <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-5 space-y-3">
                   <div className="flex items-center gap-3">
@@ -237,7 +237,7 @@ export default function CookiesPage() {
                       "Accepter ou refuser chaque catégorie de cookies individuellement",
                       "Modifier vos préférences à tout moment via le panneau de gestion des cookies",
                       "Retirer votre consentement sans justification",
-                      "Naviguer sur VISUAL même en refusant les cookies optionnels (seules certaines fonctionnalités de personnalisation seront limitées)",
+                      "Naviguer sur VIXUAL même en refusant les cookies optionnels (seules certaines fonctionnalités de personnalisation seront limitées)",
                     ].map((right) => (
                       <li key={right} className="flex gap-2 items-start text-sm">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500/30 shrink-0" />
@@ -247,7 +247,7 @@ export default function CookiesPage() {
                   </ul>
                 </div>
                 <p className="text-white/50 text-sm">
-                  {"Le consentement est conserv\u00e9 pour une dur\u00e9e de six mois. Pass\u00e9 ce d\u00e9lai, VISUAL vous redemandera votre accord."}
+                  {"Le consentement est conserv\u00e9 pour une dur\u00e9e de six mois. Pass\u00e9 ce d\u00e9lai, VIXUAL vous redemandera votre accord."}
                 </p>
               </CardContent>
             </Card>
@@ -262,7 +262,7 @@ export default function CookiesPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"Au-delà du panneau de gestion de VISUAL, vous pouvez configurer votre navigateur pour gérer les cookies :"}
+                  {"Au-delà du panneau de gestion de VIXUAL, vous pouvez configurer votre navigateur pour gérer les cookies :"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
@@ -279,7 +279,7 @@ export default function CookiesPage() {
                 </div>
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                   <p className="text-amber-400/80 text-sm">
-                    {"Attention : la suppression ou le blocage de certains cookies peut affecter le fonctionnement de la plateforme VISUAL, notamment l'accès à votre espace personnel et la mémorisation de vos préférences."}
+                    {"Attention : la suppression ou le blocage de certains cookies peut affecter le fonctionnement de la plateforme VIXUAL, notamment l'accès à votre espace personnel et la mémorisation de vos préférences."}
                   </p>
                 </div>
               </CardContent>
@@ -295,10 +295,10 @@ export default function CookiesPage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
                 <p className="text-white/70 leading-relaxed">
-                  {"VISUAL s'engage à ne jamais vendre, louer ou céder les données collectées via les cookies à des tiers à des fins commerciales. Les données d'analyse anonymisées peuvent être traitées par des sous-traitants techniques (hébergement, analyse de performance) situés dans l'Union européenne, dans le strict respect du RGPD."}
+                  {"VIXUAL s'engage à ne jamais vendre, louer ou céder les données collectées via les cookies à des tiers à des fins commerciales. Les données d'analyse anonymisées peuvent être traitées par des sous-traitants techniques (hébergement, analyse de performance) situés dans l'Union européenne, dans le strict respect du RGPD."}
                 </p>
                 <p className="text-white/70 leading-relaxed">
-                  {"En cas de transfert hors de l'UE, VISUAL s'assure que des garanties appropriées sont mises en place (clauses contractuelles types de la Commission européenne, décision d'adéquation ou consentement explicite de l'utilisateur)."}
+                  {"En cas de transfert hors de l'UE, VIXUAL s'assure que des garanties appropriées sont mises en place (clauses contractuelles types de la Commission européenne, décision d'adéquation ou consentement explicite de l'utilisateur)."}
                 </p>
               </CardContent>
             </Card>
