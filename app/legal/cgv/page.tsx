@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VixualHeader } from "@/components/visual-header"
+import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
-import { VixualSlogan } from "@/components/visual-slogan"
+import { VisualSlogan } from "@/components/visual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
@@ -73,7 +73,7 @@ function HighlightCard({ icon: Icon, title, children, color = "amber" }: { icon:
 export default function CGVPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VixualHeader />
+      <VisualHeader />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
 
@@ -93,7 +93,7 @@ export default function CGVPage() {
               {"Conditions Générales de Vente"}
             </h1>
             <div className="mb-4">
-              <VixualSlogan size="sm" opacity="high" withLines />
+              <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-white/50 text-sm">
               {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}

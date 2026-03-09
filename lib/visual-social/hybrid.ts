@@ -415,3 +415,6 @@ export function createDbProvider(_deps: Record<string, unknown>): VIXUALSocialPr
 export function getVIXUALSocialProvider(deps?: Record<string, unknown>): VIXUALSocialProvider {
   return isVIXUALSocialEnabled() ? createDbProvider(deps ?? {}) : createMockProvider()
 }
+
+/** @deprecated Alias for backward compatibility - use getVIXUALSocialProvider */
+export const getVisualSocialProvider = getVIXUALSocialProvider;

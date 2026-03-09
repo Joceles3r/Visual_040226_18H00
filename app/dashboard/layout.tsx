@@ -16,7 +16,7 @@ import {
   Settings,
   Upload,
 } from "lucide-react"
-import { VixualHeader } from "@/components/visual-header"
+import { VisualHeader } from "@/components/visual-header"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
@@ -112,7 +112,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VixualHeader />
+      <VisualHeader />
 
       <div className="flex pt-20">
         {/* Sidebar */}

@@ -186,6 +186,12 @@ export const PODCASTS_POT_INVESTORS_PERCENT = 30;
 export const PODCASTS_POT_Vixual_PERCENT = 20;
 export const PODCASTS_POT_BONUS_PERCENT = 10;
 
+// Backward compatibility aliases
+/** @deprecated Use FILMS_Vixual_BPS instead */
+export const FILMS_VISUAL_BPS = FILMS_Vixual_BPS;
+/** @deprecated Use PODCASTS_POT_Vixual_PERCENT instead */
+export const PODCASTS_POT_VISUAL_PERCENT = PODCASTS_POT_Vixual_PERCENT;
+
 /**
  * Detail du bonus 10% Podcasts (source: README payout-engine V2)
  *   6% : primes performance TOP 10 podcasters

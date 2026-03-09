@@ -1,7 +1,7 @@
 "use client"
 
-import VixualSocialFeed from "@/components/visual-social-feed"
-import { VixualHeader } from "@/components/visual-header"
+import VisualSocialFeed from "@/components/visual-social-feed"
+import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -91,7 +91,7 @@ function V1Notice() {
 export default function VixualSocialPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VixualHeader />
+      <VisualHeader />
       <main className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero */}
@@ -111,7 +111,7 @@ export default function VixualSocialPage() {
           {/* Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
             {/* Global feed */}
-            <VixualSocialFeed mode="global" />
+            <VisualSocialFeed mode="global" />
 
             {/* Sidebar */}
             <div className="space-y-4 lg:sticky lg:top-24">
