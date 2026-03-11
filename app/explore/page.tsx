@@ -71,7 +71,7 @@ function ImmersiveHero({ content }: { content: Content }) {
   const badges = getVisualBadges(content)
   const typeLabel = content.contentType === "video" ? "Films & Videos" : 
                     content.contentType === "text" ? "Livres & Articles" : "Podcasts"
-  const typeIcon = content.contentType === "video" ? Film : 
+  const TypeIcon = content.contentType === "video" ? Film : 
                    content.contentType === "text" ? BookOpen : Headphones
 
   return (
@@ -97,7 +97,7 @@ function ImmersiveHero({ content }: { content: Content }) {
         {/* Category & Badges */}
         <div className="flex flex-wrap gap-2 mb-4">
           <Badge className="bg-emerald-600 text-white border-0 text-xs tracking-wider uppercase px-3 py-1">
-            <typeIcon className="h-3 w-3 mr-1.5" />
+            <TypeIcon className="h-3 w-3 mr-1.5" />
             {typeLabel}
           </Badge>
           {badges.slice(0, 3).map((b) => (
