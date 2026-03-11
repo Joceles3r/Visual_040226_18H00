@@ -19,7 +19,32 @@ export const ROLE_LABELS = {
   listener: { singular: "Auditeur", plural: "Auditeurs" },
 } as const;
 
-export type RoleKey = keyof typeof ROLE_LABELS;
+// ── Categories (officially registered) ──
+
+export const CONTENT_CATEGORIES = {
+  video: {
+    label: "Films & Vidéos",
+    description: "Univers audiovisuel",
+    internal: "video",
+  },
+  text: {
+    label: "Livres & Articles",
+    description: "Univers littéraire",
+    internal: "text",
+  },
+  podcast: {
+    label: "Podcasts",
+    description: "Univers audio",
+    internal: "podcast",
+  },
+} as const;
+
+export type CategoryKey = keyof typeof CONTENT_CATEGORIES;
+
+export function getCategoryLabel(category: string): string {
+  const cat = CONTENT_CATEGORIES[category as CategoryKey];
+  return cat?.label || category;
+}
 
 /**
  * Returns the human-readable label for a role.

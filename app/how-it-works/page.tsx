@@ -37,7 +37,7 @@ const STEPS = [
     step: 2,
     title: "Choisissez votre rôle",
     description:
-      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Investisseur, Investi-lecteur, Auditeur pour soutenir des projets.",
+      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Contributeur, Contri-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -55,7 +55,7 @@ const STEPS = [
     step: 4,
     title: "Participez et gagnez",
     description:
-      "Créez ou investissez dans des projets. Suivez vos statistiques et retirez vos gains via Stripe Connect.",
+      "Créez ou contribuez dans des projets. Suivez vos statistiques et retirez vos gains via Stripe Connect.",
     icon: TrendingUp,
     color: "text-indigo-400",
     bgColor: "bg-indigo-500/20",
@@ -114,11 +114,11 @@ const ROLES = [
     color: "border-red-500/50",
   },
   {
-    title: "Investisseur",
+    title: "Contributeur",
     subtitle: "Audiovisuel",
-    description: "Investissez sur des projets video et recevez des retours",
+    description: "Contribuez à des projets video et recevez des retours",
     features: [
-      "Investissement de deux \u00e0 vingt euros",
+      "Contribution de deux à vingt euros",
       "Portefeuille de projets",
       "Historique des gains",
       "Retrait via Stripe",
@@ -145,12 +145,12 @@ const ROLES = [
     color: "border-amber-500/50",
   },
   {
-    title: "Investi-lecteur",
-    subtitle: "Investisseur litteraire",
-    description: "Investissez sur des contenus ecrits et soutenez les auteurs",
+    title: "Contri-lecteur",
+    subtitle: "Investisseur littéraire",
+    description: "Contribuez à des contenus écrits et soutenez les auteurs",
     features: [
-      "Investissement de deux \u00e0 vingt euros",
-      "Portefeuille litteraire",
+      "Contribution de deux à vingt euros",
+      "Portefeuille littéraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],
@@ -207,7 +207,7 @@ export default function HowItWorksPage() {
               <VisualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70">
-              {"VIXUAL simplifie l'investissement participatif dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}
+              {"VIXUAL simplifie la contribution participative dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}
             </p>
           </div>
         </section>
@@ -313,7 +313,7 @@ export default function HowItWorksPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
-                L'investissement sur VIXUAL
+                La contribution sur VIXUAL
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -336,7 +336,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>{"Vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur)"}</span>
+                        <span>{"Vingt euros pour les contributeurs (Contributeur, Contri-lecteur, Auditeur)"}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -360,7 +360,7 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">{"•"}</span>
-                        <span>{"Investissez de deux euros \u00e0 vingt euros par projet"}</span>
+                        <span>{"Contribuez de deux euros à vingt euros par projet"}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">{"•"}</span>
@@ -384,8 +384,8 @@ export default function HowItWorksPage() {
               </div>
 
               <div className="mt-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                <p className="text-amber-200 text-sm text-center">
-                  Attention : Investir comporte des risques. Les gains ne sont
+                    <p className="text-amber-200 text-sm text-center">
+                  Attention : Contribuer comporte des risques. Les gains ne sont
                   pas garantis. VIXUAL n'est pas un jeu de hasard.
                 </p>
               </div>

@@ -69,7 +69,7 @@ function MicroMessage({ roles }: { roles: string[] }) {
     message = "Votre projet peut trouver son public sur VIXUAL."
     icon = Clapperboard
   } else if (roles.includes("investor") || roles.includes("investireader") || roles.includes("listener")) {
-    message = "Soutenez les projets qui vous inspirent."
+    message = "Contribuez aux projets qui vous inspirent."
     icon = Heart
   }
 

@@ -61,9 +61,9 @@ export const DISCOVER_MENU: NavMenu = {
 export const EXPLORE_MENU: NavMenu = {
   label: "Explorer",
   items: [
-    { label: "Explorer (Video)", href: "/explore?type=video", icon: Film },
-    { label: "Explorer (Ecrit)", href: "/explore?type=text", icon: FileText },
-    { label: "Explorer (Podcast)", href: "/explore?type=podcast", icon: Mic },
+    { label: "Explorer (Films & Vidéos)", href: "/explore?type=video", icon: Film },
+    { label: "Explorer (Livres & Articles)", href: "/explore?type=text", icon: FileText },
+    { label: "Explorer (Podcasts)", href: "/explore?type=podcast", icon: Mic },
     { label: "Tout voir", href: "/explore", icon: Compass },
     { label: "Gold Pass", href: "/explore?type=goldpass", icon: Crown },
   ],
@@ -115,13 +115,13 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // PORTEUR (video)
     {
-      label: "Deposer une video",
+      label: "Deposer un film/video",
       href: "/upload",
       icon: Upload,
       roles: ["porter"],
     },
     {
-      label: "Mes projets (video)",
+      label: "Mes films & videos",
       href: "/dashboard/projects?type=video",
       icon: Film,
       roles: ["porter"],
@@ -129,13 +129,13 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // INFOPORTEUR (ecrit)
     {
-      label: "Deposer un ecrit",
+      label: "Deposer un livre/article",
       href: "/upload/text",
       icon: Upload,
       roles: ["infoporter"],
     },
     {
-      label: "Mes ecrits",
+      label: "Mes livres & articles",
       href: "/dashboard/projects?type=text",
       icon: FileText,
       roles: ["infoporter"],
@@ -157,7 +157,7 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // INVESTISSEUR (video)
     {
-      label: "Mes investissements (video)",
+      label: "Mes contributions (films & videos)",
       href: "/dashboard/investments?type=video",
       icon: Film,
       roles: ["investor"],
@@ -165,7 +165,7 @@ export const MY_SPACE_MENU: NavMenu = {
 
     // INVESTI-LECTEUR (ecrit)
     {
-      label: "Mes investissements (ecrit)",
+      label: "Mes contributions (livres & articles)",
       href: "/dashboard/investments?type=text",
       icon: FileText,
       roles: ["investireader"],

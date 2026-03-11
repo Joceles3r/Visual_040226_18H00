@@ -208,9 +208,9 @@ export default function CGVPage() {
                   { icon: Eye, name: "Invité", desc: "Accès libre en consultation sans compte", color: "amber" },
                   { icon: Eye, name: "Visiteur", desc: "Inscrit, peut consulter et voter", color: "amber" },
                   { icon: Film, name: "Porteur", desc: "Créateur de contenus audiovisuels", color: "red" },
-                  { icon: TrendingUp, name: "Investisseur", desc: "Participe financièrement aux projets vidéo", color: "emerald" },
+                  { icon: TrendingUp, name: "Contributeur", desc: "Participe financièrement aux projets vidéo", color: "emerald" },
                   { icon: BookOpen, name: "Infoporteur", desc: "Créateur de contenus littéraires", color: "sky" },
-                  { icon: BookOpen, name: "Investi-lecteur", desc: "Participe financièrement aux contenus écrits", color: "sky" },
+                  { icon: BookOpen, name: "Contri-lecteur", desc: "Participe financièrement aux contenus écrits", color: "sky" },
                   { icon: Mic, name: "Podcasteur", desc: "Créateur de contenus audio/podcast", color: "purple" },
                   { icon: Mic, name: "Auditeur", desc: "Écoute et participe aux contenus podcast", color: "purple" },
                 ].map((p) => (
@@ -247,7 +247,7 @@ export default function CGVPage() {
                 <Card className="bg-sky-500/5 border-sky-500/15">
                   <CardContent className="p-5 text-center">
                     <div className="text-2xl font-bold text-sky-400 mb-1">Vingt euros</div>
-                    <p className="text-white/50 text-sm">{"Participants financiers (Investisseur, Investi-lecteur, Auditeur)"}</p>
+                    <p className="text-white/50 text-sm">{"Participants financiers (Contributeur, Contri-lecteur, Auditeur)"}</p>
                   </CardContent>
                 </Card>
               </div>
@@ -303,9 +303,9 @@ export default function CGVPage() {
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
                     {[
-                      { label: "Investisseurs TOP 10", value: "40%", color: "text-emerald-400" },
+                      { label: "Contributeurs TOP 10", value: "40%", color: "text-emerald-400" },
                       { label: "Porteurs TOP 10", value: "30%", color: "text-red-400" },
-                      { label: "Investisseurs 11-100", value: "7%", color: "text-amber-400" },
+                      { label: "Contributeurs 11-100", value: "7%", color: "text-amber-400" },
                       { label: "VIXUAL", value: "23%", color: "text-white/50" },
                     ].map((r) => (
                       <div key={r.label} className="text-center p-3 rounded-lg bg-slate-800/40">
