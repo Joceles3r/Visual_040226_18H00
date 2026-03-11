@@ -1,247 +1,270 @@
 "use client"
 
 import Link from "next/link"
-import { VisualSlogan } from "@/components/visual-slogan"
-import { ArrowRight, HelpCircle } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { VisualHeader } from "@/components/visual-header"
-import { Footer } from "@/components/footer"
+import { ArrowLeft, HelpCircle, ArrowRight } from "lucide-react"
 
 const FAQ_CATEGORIES = [
   {
-    title: "Général",
+    title: "À propos de VIXUAL",
     items: [
       {
-        question: "Qu'est-ce que VIXUAL ?",
-        answer:
-          "VIXUAL est une plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Vous pouvez soutenir des createurs et potentiellement recevoir des retours sur vos investissements.",
+        question: "Qu'est-ce que VIXUAL?",
+        answer: "VIXUAL est une plateforme de contribution participative dans les projets audiovisuels, littéraires et podcasts. Vous pouvez soutenir des créateurs, créer du contenu et potentiellement générer des revenus."
       },
       {
-        question: "Comment fonctionne l'investissement ?",
-        answer:
-          "Vous choisissez un projet qui vous int\u00e9resse, s\u00e9lectionnez un montant entre deux euros et vingt euros, et devenez investisseur. Si le projet g\u00e9n\u00e8re des revenus, vous recevez une part proportionnelle \u00e0 votre investissement.",
+        question: "VIXUAL est-il un jeu de hasard?",
+        answer: "Non, VIXUAL n'est pas un jeu de hasard. C'est une plateforme de contribution participative. Les retours dépendent du succès réel des projets et non du hasard. Les gains ne sont pas garantis."
       },
       {
-        question: "VIXUAL est-il un jeu de hasard ?",
-        answer:
-          "Non, VIXUAL n'est pas un jeu de hasard. C'est une plateforme d'investissement participatif. Les retours dépendent du succès réel des projets et non du hasard. Les gains ne sont pas garantis.",
-      },
-    ],
+        question: "Pourquoi 'Contribuer' et non 'Investir'?",
+        answer: "Nous utilisons le terme 'contribution' pour clarifier que c'est une participation financière à des projets créatifs, et non un investissement boursier ou financier. Cela mieux reflète la nature participative de la plateforme."
+      }
+    ]
   },
   {
-    title: "Comptes et Profils",
+    title: "Les 6 profils",
     items: [
       {
-        question: "Comment créer un compte ?",
-        answer:
-          "Cliquez sur 'Inscription' et remplissez le formulaire. Vous devenez automatiquement Visiteur, un statut gratuit qui vous permet d'explorer la plateforme.",
+        question: "Quels sont les 6 profils sur VIXUAL?",
+        answer: "1) Invité: exploration gratuite sans inscription. 2) Visiteur: accès complet + paiement hybride. 3) Porteur: créateur vidéo. 4) Infoporteur: créateur littéraire. 5) Podcasteur: créateur audio. 6) Contributeur: soutenant de projets."
       },
       {
-        question: "Puis-je être créateur ET investisseur ?",
-        answer:
-          "Absolument ! Vous pouvez cumuler plusieurs rôles sur VIXUAL. Chaque rôle nécessite sa propre caution.",
+        question: "Puis-je changer de profil?",
+        answer: "Oui! Vous pouvez évoluer de Visiteur vers n'importe quel autre profil à tout moment. Consultez votre tableau de bord pour effectuer cette transition."
       },
       {
-        question: "Quels sont les differents profils ?",
-        answer:
-          "VIXUAL propose 8 profils : Invite (sans inscription, acces limite aux contenus gratuits et extraits), Visiteur (gratuit, inscription requise), Porteur (createur video), Infoporteur (createur ecrit), Podcasteur (createur podcast), Investisseur (investisseur video), Investi-lecteur (investisseur ecrit) et Auditeur (investisseur podcast).",
-      },
-      {
-        question: "Puis-je naviguer sans m'inscrire ?",
-        answer:
-          "Oui, en tant qu'Invite vous pouvez naviguer librement sur toute la plateforme et acceder aux contenus gratuits ou aux extraits. Cependant, vous ne pouvez ni investir, ni gagner de VISUpoints, ni participer a la communaute. Pour debloquer toutes les fonctionnalites, il vous suffit de creer un compte gratuitement.",
-      },
-    ],
+        question: "Puis-je avoir plusieurs profils?",
+        answer: "Oui, vous pouvez cumuler plusieurs rôles. Par exemple, être Porteur et Contributeur simultanément. Chaque rôle créateur a sa propre caution."
+      }
+    ]
   },
   {
-    title: "Caution et Paiements",
+    title: "Invité - Exploration gratuite",
     items: [
       {
-        question: "Qu'est-ce que la caution ?",
-        answer:
-          "La caution est un d\u00e9p\u00f4t unique (dix euros pour les cr\u00e9ateurs : Porteur, Infoporteur, Podcasteur ; vingt euros pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement sur la plateforme. Elle est remboursable en cas de r\u00e9siliation de votre compte.",
+        question: "Que puis-je faire en tant qu'Invité?",
+        answer: "En tant qu'Invité, vous pouvez naviguer librement sur VIXUAL et consulter tous les contenus gratuits et les extraits. Aucune inscription obligatoire."
       },
       {
-        question: "Comment retirer mes gains ?",
-        answer:
-          "Vos gains sont consultables dans votre Wallet. Pour retirer, vous devez connecter votre compte Stripe. Les retraits sont traités chaque semaine.",
+        question: "Quelles sont les limites du profil Invité?",
+        answer: "L'Invité ne peut pas: utiliser le paiement hybride, participer à Vixual Social, gagner des VIXUpoints, accéder aux contenus payants intégralement, ou créer du contenu."
       },
       {
-        question: "Quels moyens de paiement sont acceptés ?",
-        answer:
-          "Nous acceptons les cartes bancaires (Visa, Mastercard) via Stripe, notre partenaire de paiement sécurisé.",
-      },
-      {
-        question: "La caution est-elle vraiment remboursable ?",
-        answer:
-          "Oui, si vous résiliez votre compte en respectant les conditions d'utilisation, votre caution vous sera remboursée intégralement.",
-      },
-    ],
+        question: "Dois-je m'inscrire?",
+        answer: "Non, l'inscription n'est pas obligatoire pour explorer VIXUAL. Cependant, pour débloquer toutes les fonctionnalités (contributions, VIXUpoints, création), créez un compte gratuit en tant que Visiteur."
+      }
+    ]
   },
   {
-    title: "Créateurs",
+    title: "Visiteur - Accès complet",
     items: [
       {
-        question: "Comment déposer un projet ?",
-        answer:
-          "Apr\u00e8s avoir pay\u00e9 votre caution de cr\u00e9ateur (dix euros), acc\u00e9dez \u00e0 'Mon Espace' puis 'D\u00e9poser' pour soumettre votre projet vid\u00e9o, \u00e9crit ou podcast.",
+        question: "Quels sont les avantages du profil Visiteur?",
+        answer: "Accès à tous les contenus gratuits, paiement hybride (30% euros + 70% VIXUpoints), participation à Vixual Social, accumulation de VIXUpoints via interactions, limite max 2500 VIXUpoints remboursables en 25€."
       },
       {
-        question: "Quels types de contenus puis-je déposer ?",
-        answer:
-          "Pour l'audiovisuel : courts-metrages, documentaires, clips musicaux, animations. Pour le litteraire : romans, nouvelles, essais, articles, poesie. Pour les podcasts : emissions audio, documentaires sonores, voix de l'info.",
+        question: "Comment fonctionne le paiement hybride?",
+        answer: "Vous payez 30% minimum en euros et jusqu'à 70% maximum en VIXUpoints. Par exemple, pour un contenu à 4€: vous pouvez payer 1,20€ + 280 VIXUpoints (au maximum autorisé)."
       },
       {
-        question: "Comment sont calculés mes gains en tant que créateur ?",
-        answer:
-          "La repartition depend de la categorie. Films/Videos/Documentaires : 40% investisseurs TOP 10, 30% porteurs TOP 10, 7% investisseurs rangs 11-100, 23% VIXUAL. Podcasts (pot mensuel) : 40% podcasteurs, 30% auditeurs, 20% VIXUAL, 10% bonus. Voix de l'Info (pot quotidien) : 60% auteurs TOP 10, 40% lecteurs gagnants. Livres (pot mensuel) : 60% auteurs TOP 10, 40% investi-lecteurs gagnants. Pour les ventes unitaires (articles, livres, podcasts) : 70% auteur, 30% VIXUAL.",
-      },
-    ],
+        question: "Quelle est la limite de VIXUpoints?",
+        answer: "Maximum 2500 VIXUpoints en caisse. Une fois atteint, vous devez les échanger (2500 = 25€) ou les utiliser pour acheter du contenu. Vous ne pouvez pas en accumuler davantage sans changer de profil."
+      }
+    ]
   },
   {
-    title: "Investisseurs",
+    title: "Porteur / Infoporteur / Podcasteur - Créateurs",
     items: [
       {
-        question: "Combien puis-je investir ?",
-        answer:
-          "Vous pouvez investir entre deux euros et vingt euros par projet (tranches : deux, trois, quatre, cinq, six, huit, dix, douze, quinze, vingt euros). Vous pouvez investir dans autant de projets que vous le souhaitez.",
+        question: "Comment déposer mon contenu?",
+        answer: "Accédez à votre tableau de bord créateur, cliquez sur 'Déposer un nouveau projet', remplissez la description, fixez le prix (2€ à 20€), importez votre contenu et publiez-le. Le contenu sera soumis à validation."
       },
       {
-        question: "Quand recevrai-je mes retours ?",
-        answer:
-          "Cela depend de la categorie. Films/Videos/Documentaires : a la cloture du cycle (configurable par l'admin). Voix de l'Info : pot quotidien distribue chaque jour a 00h15. Livres : pot mensuel distribue le dernier jour du mois. Podcasts : pot mensuel distribue le dernier jour du mois. Les retours apparaissent dans votre Wallet et peuvent etre retires via Stripe Connect.",
+        question: "Comment gagnent les créateurs?",
+        answer: "Les gains proviennent des contributions des utilisateurs. Si votre projet est dans le TOP 10 sur 100, vous recevez une part des royalties (de 5% à 40% selon votre classement). Les gains sont versés le 1er du mois suivant."
       },
       {
-        question: "Puis-je perdre mon investissement ?",
-        answer:
-          "L'investissement comporte des risques. Si un projet ne génère pas de revenus, vous pourriez ne pas récupérer votre investissement. Investissez de manière responsable.",
+        question: "Quel prix fixer pour mon projet?",
+        answer: "Le prix minimum est 2€ et le maximum 20€. Vous pouvez fixer le prix que vous souhaitez dans cette gamme. Consultez les projets similaires pour calibrer."
       },
-    ],
+      {
+        question: "Puis-je acheter mon propre contenu?",
+        answer: "Non, pour maintenir l'intégrité du système, les créateurs ne peuvent pas acheter ou contribuer à leur propre contenu."
+      }
+    ]
   },
   {
-    title: "Invite (sans inscription)",
+    title: "Contributeur - Soutenant de projets",
     items: [
       {
-        question: "Que puis-je faire en tant qu'invite ?",
-        answer:
-          "En tant qu'invite, vous pouvez naviguer sur toute la plateforme et consulter les contenus gratuits ainsi que les extraits de contenus payants. Vous ne pouvez pas interagir avec la communaute, investir, ou gagner des recompenses.",
+        question: "Qu'est-ce qu'un Contributeur?",
+        answer: "Un Contributeur soutient des projets audiovisuels en y contribuant de 2€ à 20€. Vous participez au succès du projet et potentiellement aux gains si vous êtes classé TOP 10 ou 11-100."
       },
       {
-        question: "Quelles sont les limites du statut d'invite ?",
-        answer:
-          "L'invite ne peut pas : gagner de VISUpoints, ajouter des favoris, commenter, partager, investir, deposer du contenu, ou acceder aux contenus payants en entier. Pour debloquer ces fonctionnalites, creez un compte gratuit.",
+        question: "Comment gagner en tant que Contributeur?",
+        answer: "Vous gagnez si votre classement (basé sur le nombre de contributions/votes) vous place dans le TOP 10 (40% des gains) ou 11-100 (7% des gains). Les gains sont versés le 1er du mois suivant."
       },
       {
-        question: "L'inscription est-elle obligatoire ?",
-        answer:
-          "Non, l'inscription n'est pas obligatoire. Vous pouvez consulter la plateforme librement en tant qu'invite. Cependant, pour profiter de l'experience complete de VIXUAL (investissements, VISUpoints, communaute), vous devez creer un compte.",
+        question: "Puis-je utiliser le paiement hybride?",
+        answer: "Oui! Vous utilisez automatiquement le paiement hybride (30% euros + 70% VIXUpoints max). Les 5% bonus gagnés sur les points dépensés vous aident à reconstituer votre caisse."
       },
-    ],
+      {
+        question: "Combien puis-je contribuer par projet?",
+        answer: "Entre 2€ et 20€ par projet. Vous pouvez contribuer à autant de projets que vous le souhaitez."
+      }
+    ]
   },
   {
-    title: "VISUpoints",
+    title: "VIXUpoints et Paiement hybride",
     items: [
       {
-        question: "Que sont les VISUpoints ?",
-        answer:
-          "Les VISUpoints sont des points de fidélité que vous gagnez en utilisant la plateforme : parrainages, partages, commentaires, etc. Ils débloquent des avantages exclusifs.",
+        question: "Que sont les VIXUpoints?",
+        answer: "Les VIXUpoints sont une monnaie interne que vous gagnez via interactions sur Vixual Social, achat de contenu (5% bonus plafonné 200/mois), et gains de projets en tant que créateur."
       },
       {
-        question: "Comment gagner des VISUpoints ?",
-        answer:
-          "Parrainez des amis, partagez des projets sur les réseaux sociaux, commentez, suivez des créateurs, connectez-vous régulièrement, et participez aux missions spéciales.",
+        question: "Comment gagner des VIXUpoints?",
+        answer: "Interactions sur Vixual Social (likes, commentaires), bonus d'achat (5% des points dépensés, plafonné 200/mois), participation à des événements, et gains de projets en tant que créateur."
       },
       {
-        question: "À quoi servent les VISUpoints ?",
-        answer:
-          "Les VISUpoints vous permettent d'obtenir des badges, de débloquer des avantages exclusifs, et d'apparaître dans le classement des utilisateurs les plus actifs.",
+        question: "Comment utiliser mes VIXUpoints?",
+        answer: "Vous pouvez utiliser vos VIXUpoints pour: payer des contenus (hybrid 70% max), acheter du contenu exclusif, ou les échanger contre 25€ minimum une fois la limite atteinte."
       },
-    ],
+      {
+        question: "Comment fonctionne le bonus 5% sur les achats?",
+        answer: "Quand vous payez du contenu en hybride, 5% des VIXUpoints dépensés vous sont regagnés. Ce bonus est plafonné à 200 VIXUpoints par mois pour éviter les abus."
+      }
+    ]
   },
+  {
+    title: "Caution et Sécurité",
+    items: [
+      {
+        question: "Qu'est-ce que la caution?",
+        answer: "La caution est un dépôt unique (10€ pour créateurs, 20€ pour contributeurs) qui garantit votre engagement. Elle est entièrement remboursable en cas de résiliation."
+      },
+      {
+        question: "La caution est-elle vraiment remboursable?",
+        answer: "Oui, si vous résiliez votre compte en respectant les conditions d'utilisation, votre caution vous sera remboursée intégralement sur votre compte."
+      },
+      {
+        question: "Comment retirer mes gains?",
+        answer: "Vos gains sont consultables dans votre Wallet. Pour retirer, connectez votre compte Stripe Connect. Les retraits sont traités chaque semaine."
+      },
+      {
+        question: "Quels moyens de paiement acceptez-vous?",
+        answer: "Nous acceptons les cartes bancaires (Visa, Mastercard) via Stripe, notre partenaire de paiement sécurisé."
+      }
+    ]
+  },
+  {
+    title: "Compte et Données",
+    items: [
+      {
+        question: "Comment créer un compte?",
+        answer: "Cliquez sur 'S'inscrire', remplissez vos informations (email, mot de passe, nom complet), acceptez les conditions et confirmez votre email. C'est gratuit et instantané!"
+      },
+      {
+        question: "Comment supprimer mon compte?",
+        answer: "Allez dans Paramètres > Gestion du compte > Supprimer mon compte. Attention: cette action est irréversible et supprime toutes vos données."
+      },
+      {
+        question: "Mes données sont-elles sécurisées?",
+        answer: "Oui! VIXUAL utilise le chiffrement SSL, des serveurs sécurisés et respecte la protection des données (RGPD). Consultez notre politique de confidentialité pour plus d'informations."
+      }
+    ]
+  }
 ]
 
 export default function FAQPage() {
+  const router = useRouter()
+
   return (
-    <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
-
-      <main className="pt-28 pb-20 cinema-section">
-        {/* Hero */}
-        <section className="container mx-auto px-4 mb-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
-              <HelpCircle className="h-8 w-8 text-emerald-400" />
+    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+      {/* Header */}
+      <div className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => router.back()}
+              className="p-2 rounded-xl bg-slate-800/50 border border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold">Questions Fréquentes</h1>
+              <p className="text-sm text-slate-500">Trouvez les réponses à vos questions</p>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              Foire aux Questions
-            </h1>
-            <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
-            </div>
-            <p className="text-xl text-white/70">
-              {"Trouvez rapidement les réponses à vos questions sur VIXUAL"}
-            </p>
           </div>
-        </section>
+        </div>
+      </div>
 
-        {/* FAQ Categories */}
-        <section className="container mx-auto px-4 mb-20">
-          <div className="max-w-3xl mx-auto space-y-8">
-            {FAQ_CATEGORIES.map((category) => (
-              <div key={category.title}>
-                <h2 className="text-xl font-semibold text-white mb-4 pl-2 border-l-2 border-emerald-500">
-                  {category.title}
-                </h2>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Hero */}
+        <div className="text-center mb-12">
+          <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
+            <HelpCircle className="h-8 w-8 text-emerald-400" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Questions fréquentes</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            Parcourez nos sections pour trouver les réponses à vos questions sur VIXUAL et ses 6 profils.
+          </p>
+        </div>
+
+        {/* FAQ Sections */}
+        <div className="space-y-8">
+          {FAQ_CATEGORIES.map((category, idx) => (
+            <Card key={idx} className="bg-slate-800/30 border-slate-700/30">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-emerald-300 mb-4">{category.title}</h3>
                 <Accordion type="single" collapsible className="space-y-2">
-                  {category.items.map((item, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`${category.title}-${index}`}
-                      className="bg-slate-900/50 border border-white/10 rounded-lg px-4 data-[state=open]:border-emerald-500/50"
-                    >
-                      <AccordionTrigger className="text-white hover:text-emerald-400 text-left">
+                  {category.items.map((item, qIdx) => (
+                    <AccordionItem key={qIdx} value={`${idx}-${qIdx}`} className="border-slate-700/50">
+                      <AccordionTrigger className="text-white hover:text-emerald-300 transition-colors">
                         {item.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-white/70">
+                      <AccordionContent className="text-slate-400">
                         {item.answer}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
-              </div>
-            ))}
-          </div>
-        </section>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
-        {/* Contact CTA */}
-        <section className="py-16 bg-slate-900/30 cinema-section">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Vous n'avez pas trouvé votre réponse ?
-            </h2>
-            <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              Notre équipe de support est là pour vous aider
+        {/* CTA */}
+        <Card className="mt-12 bg-gradient-to-r from-teal-500/10 to-emerald-500/10 border-teal-500/30">
+          <CardContent className="p-8 text-center">
+            <h3 className="text-xl font-bold text-white mb-3">Besoin d'aide?</h3>
+            <p className="text-slate-400 mb-6">
+              Consultez notre guide complet des profils ou contactez notre support.
             </p>
-            <Link href="/support/contact">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-8"
-              >
-                Contacter le support
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/guide-profiles">
+                <Button className="bg-teal-600 hover:bg-teal-700 w-full sm:w-auto">
+                  Guide des profils
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/support/mailbox">
+                <Button variant="outline" className="border-slate-600 hover:bg-slate-800 w-full sm:w-auto">
+                  Contacter le support
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </main>
   )
 }

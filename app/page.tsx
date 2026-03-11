@@ -299,7 +299,40 @@ export default function HomePage() {
         </section>
       </main>
 
-      <Footer />
-    </div>
-  )
+        {/* Guide des Profils CTA */}
+        <section className="py-16 bg-gradient-to-r from-slate-900 via-teal-900/20 to-slate-900 border-y border-slate-800/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    Découvrez votre profil idéal
+                  </h3>
+                  <p className="text-white/60 mb-4">
+                    6 profils différents, 6 façons de participer à VIXUAL. Lequel vous correspond?
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Invité</Badge>
+                    <Badge className="bg-teal-500/20 text-teal-300 border-teal-500/30">Visiteur</Badge>
+                    <Badge className="bg-rose-500/20 text-rose-300 border-rose-500/30">Porteur</Badge>
+                    <Badge className="bg-sky-500/20 text-sky-300 border-sky-500/30">Infoporteur</Badge>
+                    <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30">Podcasteur</Badge>
+                    <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30">Contributeur</Badge>
+                  </div>
+                </div>
+                <Link href="/guide-profiles">
+                  <Button size="lg" className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 whitespace-nowrap">
+                    Consulter le guide
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </main>
+    )
+  }
 }

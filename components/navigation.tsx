@@ -50,6 +50,7 @@ export type NavMenu = {
 export const DISCOVER_MENU: NavMenu = {
   label: "Découvrir",
   items: [
+    { label: "Guide des profils", href: "/guide-profiles", icon: Crown },
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
