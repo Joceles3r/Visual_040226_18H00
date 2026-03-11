@@ -2,6 +2,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Avatar Animations ─── */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes glow-ring {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; }
+}
+.animate-pulse-subtle { animation: pulse-subtle 3s ease-in-out infinite; }
+.animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
+.animate-glow-ring { animation: glow-ring 2s ease-in-out infinite; }
+
 /* ─── Animation Keyframes (replacing tw-animate-css) ─── */
 @keyframes accordion-down {
   from { height: 0; }

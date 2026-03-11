@@ -12,6 +12,7 @@ import {
   Mic,
   LayoutDashboard,
   User,
+  Users,
   Settings,
   Mail,
   Star,
@@ -22,6 +23,7 @@ import {
   MessageCircle,
   Share2,
   Crown,
+  Shield,
 } from "lucide-react"
 
 export type VisualRole =
@@ -54,6 +56,7 @@ export const DISCOVER_MENU: NavMenu = {
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
+    { label: "Top Contributeurs", href: "/top-contributors", icon: Star },
     { label: "Vixual Social", href: "/social", icon: MessageCircle },
   ],
 }
