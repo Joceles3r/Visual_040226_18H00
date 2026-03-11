@@ -31,11 +31,15 @@ const FAQ_CATEGORIES = [
     ]
   },
   {
-    title: "Les 6 profils",
+    title: "Les 8 profils",
     items: [
       {
-        question: "Quels sont les 6 profils sur VIXUAL?",
-        answer: "1) Invité: exploration gratuite sans inscription. 2) Visiteur: accès complet + paiement hybride. 3) Porteur: créateur vidéo. 4) Infoporteur: créateur littéraire. 5) Podcasteur: créateur audio. 6) Contributeur: soutenant de projets."
+        question: "Quels sont les 8 profils sur VIXUAL?",
+        answer: "1) Invité: exploration gratuite. 2) Visiteur: accès complet + paiement hybride. 3) Porteur: créateur vidéo. 4) Infoporteur: créateur littéraire. 5) Podcasteur: créateur audio. 6) Contributeur: soutenant vidéos. 7) Investi-lecteur: soutenant écrits. 8) Auditeur: soutenant podcasts."
+      },
+      {
+        question: "Quelle est la différence entre Contributeur, Investi-lecteur et Auditeur?",
+        answer: "Ces 3 profils sont des contributeurs financiers, chacun spécialisé dans une catégorie: Contributeur pour les Films & Vidéos, Investi-lecteur pour les Livres & Articles, Auditeur pour les Podcasts. Chacun peut contribuer de 2€ à 20€ par projet."
       },
       {
         question: "Puis-je changer de profil?",
@@ -103,12 +107,56 @@ const FAQ_CATEGORIES = [
     ]
   },
   {
-    title: "Contributeur - Soutenant de projets",
+    title: "Contributeur - Films & Vidéos",
     items: [
       {
         question: "Qu'est-ce qu'un Contributeur?",
-        answer: "Un Contributeur soutient des projets audiovisuels en y contribuant de 2€ à 20€. Vous participez au succès du projet et potentiellement aux gains si vous êtes classé TOP 10 ou 11-100."
+        answer: "Un Contributeur soutient des projets audiovisuels (Films & Vidéos) en y contribuant de 2€ à 20€. Vous participez au succès du projet et potentiellement aux gains si vous êtes classé TOP 10 ou 11-100."
       },
+      {
+        question: "Comment gagner en tant que Contributeur?",
+        answer: "Vous gagnez si votre classement (basé sur le nombre de contributions/votes) vous place dans le TOP 10 (40% des gains) ou 11-100 (7% des gains). Les gains sont versés le 1er du mois suivant."
+      },
+      {
+        question: "Combien puis-je contribuer par projet?",
+        answer: "Entre 2€ et 20€ par projet vidéo. Vous pouvez contribuer à autant de projets que vous le souhaitez."
+      }
+    ]
+  },
+  {
+    title: "Investi-lecteur - Livres & Articles",
+    items: [
+      {
+        question: "Qu'est-ce qu'un Investi-lecteur?",
+        answer: "Un Investi-lecteur soutient des projets littéraires (Livres & Articles) en y contribuant de 2€ à 20€. Vous participez au succès des auteurs et potentiellement aux gains selon votre classement."
+      },
+      {
+        question: "Comment gagner en tant qu'Investi-lecteur?",
+        answer: "Même principe que le Contributeur: TOP 10 reçoit 40% des gains, rangs 11-100 reçoivent 7%. Les gains du pot mensuel Livres sont versés le dernier jour du mois."
+      },
+      {
+        question: "Quelle est la différence avec le Contributeur?",
+        answer: "L'Investi-lecteur est spécialisé dans les contenus écrits (Livres & Articles), tandis que le Contributeur soutient les Films & Vidéos. Les mécaniques de gains sont similaires mais appliquées à différentes catégories."
+      }
+    ]
+  },
+  {
+    title: "Auditeur - Podcasts",
+    items: [
+      {
+        question: "Qu'est-ce qu'un Auditeur?",
+        answer: "Un Auditeur soutient des Podcasts en y contribuant de 2€ à 20€. Vous participez au succès des podcasteurs et potentiellement aux gains selon votre classement dans le pot mensuel Podcasts."
+      },
+      {
+        question: "Comment gagner en tant qu'Auditeur?",
+        answer: "Même principe: TOP 10 reçoit 40%, rangs 11-100 reçoivent 7%. Le pot mensuel Podcasts est distribué le dernier jour du mois."
+      },
+      {
+        question: "Puis-je utiliser le paiement hybride?",
+        answer: "Oui! Tous les profils contributeurs (Contributeur, Investi-lecteur, Auditeur) utilisent automatiquement le paiement hybride (30% euros min + 70% VIXUpoints max)."
+      }
+    ]
+  },
       {
         question: "Comment gagner en tant que Contributeur?",
         answer: "Vous gagnez si votre classement (basé sur le nombre de contributions/votes) vous place dans le TOP 10 (40% des gains) ou 11-100 (7% des gains). Les gains sont versés le 1er du mois suivant."

@@ -35,9 +35,9 @@ const STEPS = [
   },
   {
     step: 2,
-    title: "Choisissez votre rôle",
+    title: "Choisissez votre role",
     description:
-      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Contributeur, Contri-lecteur, Auditeur pour soutenir des projets.",
+      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Contributeur, Investi-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -145,12 +145,12 @@ const ROLES = [
     color: "border-amber-500/50",
   },
   {
-    title: "Contri-lecteur",
-    subtitle: "Investisseur littéraire",
-    description: "Contribuez à des contenus écrits et soutenez les auteurs",
+    title: "Investi-lecteur",
+    subtitle: "Contributeur litteraire",
+    description: "Contribuez a des contenus ecrits et soutenez les auteurs",
     features: [
-      "Contribution de deux à vingt euros",
-      "Portefeuille littéraire",
+      "Contribution de deux a vingt euros",
+      "Portefeuille litteraire",
       "Historique des gains",
       "Retrait via Stripe",
     ],

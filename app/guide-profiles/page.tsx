@@ -116,7 +116,7 @@ const PROFILES = {
     ],
     cta: "Devenir Infoporteur",
     nextStep: "Déposez votre premier contenu littéraire",
-    advantage: "Touchez des Contri-lecteurs qui aiment votre style"
+    advantage: "Touchez des Investi-lecteurs qui aiment votre style"
   },
 
   podcaster: {

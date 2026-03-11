@@ -210,7 +210,7 @@ export default function CGVPage() {
                   { icon: Film, name: "Porteur", desc: "Créateur de contenus audiovisuels", color: "red" },
                   { icon: TrendingUp, name: "Contributeur", desc: "Participe financièrement aux projets vidéo", color: "emerald" },
                   { icon: BookOpen, name: "Infoporteur", desc: "Créateur de contenus littéraires", color: "sky" },
-                  { icon: BookOpen, name: "Contri-lecteur", desc: "Participe financièrement aux contenus écrits", color: "sky" },
+                  { icon: BookOpen, name: "Investi-lecteur", desc: "Participe financierement aux contenus ecrits", color: "sky" },
                   { icon: Mic, name: "Podcasteur", desc: "Créateur de contenus audio/podcast", color: "purple" },
                   { icon: Mic, name: "Auditeur", desc: "Écoute et participe aux contenus podcast", color: "purple" },
                 ].map((p) => (
@@ -247,7 +247,7 @@ export default function CGVPage() {
                 <Card className="bg-sky-500/5 border-sky-500/15">
                   <CardContent className="p-5 text-center">
                     <div className="text-2xl font-bold text-sky-400 mb-1">Vingt euros</div>
-                    <p className="text-white/50 text-sm">{"Participants financiers (Contributeur, Contri-lecteur, Auditeur)"}</p>
+                    <p className="text-white/50 text-sm">{"Participants financiers (Contributeur, Investi-lecteur, Auditeur)"}</p>
                   </CardContent>
                 </Card>
               </div>
@@ -666,7 +666,7 @@ export default function CGVPage() {
               <li>{"✅ Porteur - peut acheter contenus écrits et podcasts (pas ses vidéos)"}</li>
               <li>{"✅ Infoporteur - peut acheter vidéos et podcasts (pas ses articles)"}</li>
               <li>{"✅ Podcasteur - peut acheter vidéos et contenus écrits (pas ses podcasts)"}</li>
-              <li>{"✅ Contributeur / Contri-lecteur / Auditeur - peuvent tous acheter du contenu"}</li>
+              <li>{"✅ Contributeur / Investi-lecteur / Auditeur - peuvent tous acheter du contenu"}</li>
               <li>{"⚠️ Investisseur - déconseillé (devrait plutôt utiliser l'investissement standard)"}</li>
             </ul>
           </SubSection>

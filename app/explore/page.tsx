@@ -432,6 +432,82 @@ function CategoryTabs({
   )
 }
 
+/* ---------- PAGINATION COMPONENT ---------- */
+const ITEMS_PER_PAGE = 12
+
+function PaginationBar({ 
+  currentPage, 
+  totalPages, 
+  onPageChange 
+}: { 
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void 
+}) {
+  const pages = Array.from({ length: Math.min(totalPages, 15) }, (_, i) => i + 1)
+  
+  return (
+    <div className="flex items-center justify-center gap-2 py-8 px-4 flex-wrap">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+        disabled={currentPage === 1}
+        className="text-white/60 hover:text-white hover:bg-white/10"
+      >
+        <ChevronLeft className="h-4 w-4" />
+        Precedent
+      </Button>
+      
+      <div className="flex items-center gap-1 flex-wrap justify-center">
+        {pages.map((page) => (
+          <button
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`w-8 h-8 rounded-full text-sm font-medium transition-all ${
+              currentPage === page
+                ? "bg-emerald-600 text-white"
+                : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+        {totalPages > 15 && (
+          <>
+            <span className="text-white/40 px-2">...</span>
+            <button
+              onClick={() => onPageChange(totalPages)}
+              className={`w-8 h-8 rounded-full text-sm font-medium transition-all ${
+                currentPage === totalPages
+                  ? "bg-emerald-600 text-white"
+                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
+      </div>
+      
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+        disabled={currentPage === totalPages}
+        className="text-white/60 hover:text-white hover:bg-white/10"
+      >
+        Suivant
+        <ChevronRight className="h-4 w-4" />
+      </Button>
+      
+      <span className="text-white/40 text-sm ml-4">
+        Page {currentPage} sur {totalPages}
+      </span>
+    </div>
+  )
+}
+
 /* ---------- MAIN EXPLORER PAGE ---------- */
 function ExplorerContent() {
   const router = useRouter()
@@ -439,6 +515,7 @@ function ExplorerContent() {
   const { isAuthed, roles } = useAuth()
   const [activeTab, setActiveTab] = useState<"all" | "video" | "text" | "podcast">("all")
   const [searchQuery, setSearchQuery] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
 
   // Filter contents based on tab
   const filteredContents = useMemo(() => {
@@ -627,6 +704,18 @@ function ExplorerContent() {
             />
           </>
         )}
+
+        {/* Pagination */}
+        <div className="border-t border-white/10 mt-8">
+          <PaginationBar
+            currentPage={currentPage}
+            totalPages={Math.max(15, Math.ceil(filteredContents.length / ITEMS_PER_PAGE))}
+            onPageChange={(page) => {
+              setCurrentPage(page)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          />
+        </div>
       </div>
 
       <Footer />

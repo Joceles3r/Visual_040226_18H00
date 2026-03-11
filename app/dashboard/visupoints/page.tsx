@@ -32,8 +32,8 @@ import type { EngagementRedirectResult } from "@/lib/visupoints-engine"
 // ─── Missions ───
 
 const MISSIONS = [
-  { id: 1, title: "Parrainez un ami", description: "Invitez un ami \u00e0 rejoindre VISUAL", points: 50, icon: Users, completed: false },
-  { id: 2, title: "Partagez un projet", description: "Partagez un projet sur les r\u00e9seaux sociaux", points: 25, icon: Share2, completed: true },
+  { id: 1, title: "Parrainez un ami", description: "Invitez un ami a rejoindre VIXUAL", points: 50, icon: Users, completed: false },
+  { id: 2, title: "Partagez un projet", description: "Partagez un projet sur les reseaux sociaux", points: 25, icon: Share2, completed: true },
   { id: 3, title: "Commentez", description: "Laissez un commentaire constructif", points: 10, icon: MessageSquare, completed: false },
   { id: 4, title: "Connexion quotidienne", description: "Connectez-vous chaque jour", points: 5, icon: Calendar, completed: true },
 ]

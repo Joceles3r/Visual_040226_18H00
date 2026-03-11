@@ -15,7 +15,7 @@ export const ROLE_LABELS = {
   infoporter: { singular: "Infoporteur", plural: "Infoporteurs" },
   podcaster: { singular: "Podcasteur", plural: "Podcasteurs" },
   contributor: { singular: "Contributeur", plural: "Contributeurs" },
-  contributereader: { singular: "Contri-lecteur", plural: "Contri-lecteurs" },
+  investireader: { singular: "Investi-lecteur", plural: "Investi-lecteurs" },
   listener: { singular: "Auditeur", plural: "Auditeurs" },
 } as const;
 
@@ -74,7 +74,7 @@ export const ACTION_LABELS = {
  * @param amount  Numeric value
  * @param currency  "eur" or "visupoints"
  */
-export function formatAmount(amount: number, currency: "eur" | "visupoints" = "eur"): string {
+export function formatAmount(amount: number, currency: "eur" | "vixupoints" = "eur"): string {
   if (currency === "eur") {
     return `${amount.toLocaleString("fr-FR")}\u00a0\u20ac`;
   }
