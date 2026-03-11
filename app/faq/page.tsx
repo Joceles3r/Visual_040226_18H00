@@ -35,11 +35,11 @@ const FAQ_CATEGORIES = [
     items: [
       {
         question: "Quels sont les 8 profils sur VIXUAL?",
-        answer: "1) Invité: exploration gratuite. 2) Visiteur: accès complet + paiement hybride. 3) Porteur: créateur vidéo. 4) Infoporteur: créateur littéraire. 5) Podcasteur: créateur audio. 6) Contributeur: soutenant vidéos. 7) Investi-lecteur: soutenant écrits. 8) Auditeur: soutenant podcasts."
+        answer: "1) Invité: exploration gratuite. 2) Visiteur: accès complet + paiement hybride. 3) Porteur: créateur vidéo. 4) Infoporteur: créateur littéraire. 5) Podcasteur: créateur audio. 6) Contributeur: soutenant vidéos. 7) Contribu-lecteur: soutenant écrits. 8) Auditeur: soutenant podcasts."
       },
       {
-        question: "Quelle est la différence entre Contributeur, Investi-lecteur et Auditeur?",
-        answer: "Ces 3 profils sont des contributeurs financiers, chacun spécialisé dans une catégorie: Contributeur pour les Films & Vidéos, Investi-lecteur pour les Livres & Articles, Auditeur pour les Podcasts. Chacun peut contribuer de 2€ à 20€ par projet."
+        question: "Quelle est la différence entre Contributeur, Contribu-lecteur et Auditeur?",
+        answer: "Ces 3 profils sont des contributeurs financiers, chacun spécialisé dans une catégorie: Contributeur pour les Films & Vidéos, Contribu-lecteur pour les Livres & Articles, Auditeur pour les Podcasts. Chacun peut contribuer de 2€ à 20€ par projet."
       },
       {
         question: "Puis-je changer de profil?",
@@ -124,19 +124,19 @@ const FAQ_CATEGORIES = [
     ]
   },
   {
-    title: "Investi-lecteur - Livres & Articles",
+    title: "Contribu-lecteur - Livres & Articles",
     items: [
       {
-        question: "Qu'est-ce qu'un Investi-lecteur?",
-        answer: "Un Investi-lecteur soutient des projets littéraires (Livres & Articles) en y contribuant de 2€ à 20€. Vous participez au succès des auteurs et potentiellement aux gains selon votre classement."
+        question: "Qu'est-ce qu'un Contribu-lecteur?",
+        answer: "Un Contribu-lecteur soutient des projets littéraires (Livres & Articles) en y contribuant de 2€ à 20€. Vous participez au succès des auteurs et potentiellement aux gains selon votre classement."
       },
       {
-        question: "Comment gagner en tant qu'Investi-lecteur?",
+        question: "Comment gagner en tant que Contribu-lecteur?",
         answer: "Même principe que le Contributeur: TOP 10 reçoit 40% des gains, rangs 11-100 reçoivent 7%. Les gains du pot mensuel Livres sont versés le dernier jour du mois."
       },
       {
         question: "Quelle est la différence avec le Contributeur?",
-        answer: "L'Investi-lecteur est spécialisé dans les contenus écrits (Livres & Articles), tandis que le Contributeur soutient les Films & Vidéos. Les mécaniques de gains sont similaires mais appliquées à différentes catégories."
+        answer: "Le Contribu-lecteur est spécialisé dans les contenus écrits (Livres & Articles), tandis que le Contributeur soutient les Films & Vidéos. Les mécaniques de gains sont similaires mais appliquées à différentes catégories."
       }
     ]
   },
@@ -153,7 +153,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Puis-je utiliser le paiement hybride?",
-        answer: "Oui! Tous les profils contributeurs (Contributeur, Investi-lecteur, Auditeur) utilisent automatiquement le paiement hybride (30% euros min + 70% VIXUpoints max)."
+        answer: "Oui! Tous les profils contributeurs (Contributeur, Contribu-lecteur, Auditeur) utilisent automatiquement le paiement hybride (30% euros min + 70% VIXUpoints max)."
       }
     ]
   },

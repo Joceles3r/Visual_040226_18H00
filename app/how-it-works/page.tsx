@@ -37,7 +37,7 @@ const STEPS = [
     step: 2,
     title: "Choisissez votre role",
     description:
-      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Contributeur, Investi-lecteur, Auditeur pour soutenir des projets.",
+      "Devenez Porteur (video), Infoporteur (ecrit), Podcasteur (podcast) pour creer du contenu, ou Contributeur, Contribu-lecteur, Auditeur pour soutenir des projets.",
     icon: Layers,
     color: "text-teal-400",
     bgColor: "bg-teal-500/20",
@@ -46,7 +46,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "Dix euros pour les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les investisseurs (Investisseur, Investi-lecteur, Auditeur). Caution unique remboursable \u00e0 la r\u00e9siliation.",
+      "Dix euros pour les createurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les contributeurs (Contributeur, Contribu-lecteur, Auditeur). Caution unique remboursable a la resignation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -145,7 +145,7 @@ const ROLES = [
     color: "border-amber-500/50",
   },
   {
-    title: "Investi-lecteur",
+    title: "Contribu-lecteur",
     subtitle: "Contributeur litteraire",
     description: "Contribuez a des contenus ecrits et soutenez les auteurs",
     features: [
@@ -336,7 +336,7 @@ export default function HowItWorksPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
-                        <span>{"Vingt euros pour les contributeurs (Contributeur, Contri-lecteur, Auditeur)"}</span>
+                        <span>{"Vingt euros pour les contributeurs (Contributeur, Contribu-lecteur, Auditeur)"}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-400">•</span>
@@ -415,9 +415,9 @@ export default function HowItWorksPage() {
                     <p className="text-sm text-white/50">Cloture configurable (admin)</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Investisseurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Contributeurs TOP 10</span><span className="text-white font-semibold">40%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-teal-400">Porteurs TOP 10</span><span className="text-white font-semibold">30%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-sky-400">Investisseurs rangs 11-100</span><span className="text-white font-semibold">7%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Contributeurs rangs 11-100</span><span className="text-white font-semibold">7%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL (plateforme)</span><span className="text-white font-semibold">23%</span></div>
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-white/50 text-xs">

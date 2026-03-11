@@ -15,7 +15,7 @@ export const ROLE_LABELS = {
   infoporter: { singular: "Infoporteur", plural: "Infoporteurs" },
   podcaster: { singular: "Podcasteur", plural: "Podcasteurs" },
   contributor: { singular: "Contributeur", plural: "Contributeurs" },
-  investireader: { singular: "Investi-lecteur", plural: "Investi-lecteurs" },
+  contribureader: { singular: "Contribu-lecteur", plural: "Contribu-lecteurs" },
   listener: { singular: "Auditeur", plural: "Auditeurs" },
 } as const;
 

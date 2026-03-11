@@ -11,7 +11,7 @@ import {
   Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic
 } from "lucide-react"
 
-type ProfileKey = "guest" | "visitor" | "porter" | "infoporter" | "podcaster" | "contributor"
+type ProfileKey = "guest" | "visitor" | "porter" | "infoporter" | "podcaster" | "contributor" | "contribureader" | "listener"
 
 const PROFILES = {
   guest: {
@@ -116,7 +116,7 @@ const PROFILES = {
     ],
     cta: "Devenir Infoporteur",
     nextStep: "Déposez votre premier contenu littéraire",
-    advantage: "Touchez des Investi-lecteurs qui aiment votre style"
+    advantage: "Touchez des Contribu-lecteurs qui aiment votre style"
   },
 
   podcaster: {
@@ -169,8 +169,62 @@ const PROFILES = {
       "Distribution des gains le 1er du mois suivant"
     ],
     cta: "Devenir Contributeur",
-    nextStep: "Commencez à soutenir vos projets préférés",
+    nextStep: "Commencez à soutenir vos projets vidéo préférés",
     advantage: "Gagnez entre 1% et 40% des pools de contribution selon votre classement"
+  },
+
+  contribureader: {
+    title: "Contribu-lecteur",
+    subtitle: "Soutenant de contenu littéraire",
+    icon: Heart,
+    color: "bg-amber-500/20 border-amber-500/40",
+    textColor: "text-amber-300",
+    description: "Soutenez les auteurs en contribuant à leurs projets littéraires et potentiellement gagnant.",
+    features: [
+      "Sélection de contenus littéraires à soutenir",
+      "Contribution de 2€ à 20€ par projet",
+      "Paiement hybride: 30% euros + 70% VIXUpoints",
+      "Lecture d'extraits avant achat",
+      "Consultation des résumés complets",
+      "Gains potentiels si dans TOP 10 contribu-lecteurs",
+      "Retrait des gains via Stripe Connect",
+      "Caution initiale: 20€ (remboursable)"
+    ],
+    restrictions: [
+      "Contribution minimale 2€ par projet",
+      "Gains seulement si dans TOP 10 ou 11-100",
+      "Distribution des gains le dernier jour du mois"
+    ],
+    cta: "Devenir Contribu-lecteur",
+    nextStep: "Commencez à soutenir vos auteurs préférés",
+    advantage: "Gagnez entre 1% et 40% en soutenant les meilleurs contenus littéraires"
+  },
+
+  listener: {
+    title: "Auditeur",
+    subtitle: "Soutenant de contenu audio",
+    icon: Headphones,
+    color: "bg-violet-500/20 border-violet-500/40",
+    textColor: "text-violet-300",
+    description: "Soutenez les podcasteurs en contribuant à leurs projets audio et potentiellement gagnant.",
+    features: [
+      "Sélection de podcasts à soutenir",
+      "Contribution de 2€ à 20€ par podcast",
+      "Paiement hybride: 30% euros + 70% VIXUpoints",
+      "Écoute d'extraits avant achat",
+      "Consultation des résumés complets",
+      "Gains potentiels si dans TOP 10 auditeurs",
+      "Retrait des gains via Stripe Connect",
+      "Caution initiale: 20€ (remboursable)"
+    ],
+    restrictions: [
+      "Contribution minimale 2€ par podcast",
+      "Gains seulement si dans TOP 10 ou 11-100",
+      "Distribution des gains le dernier jour du mois"
+    ],
+    cta: "Devenir Auditeur",
+    nextStep: "Commencez à soutenir vos podcasts préférés",
+    advantage: "Gagnez entre 1% et 40% en soutenant les meilleurs podcasts"
   }
 }
 

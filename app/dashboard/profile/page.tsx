@@ -33,8 +33,8 @@ const ROLE_LABELS: Record<string, { label: string; color: string; icon: React.El
   visitor: { label: "Visiteur", color: "bg-slate-500", icon: User },
   porter: { label: "Porteur", color: "bg-red-500", icon: Film },
   infoporter: { label: "Infoporteur", color: "bg-amber-500", icon: FileText },
-  investor: { label: "Investisseur", color: "bg-emerald-500", icon: TrendingUp },
-  investireader: { label: "Investi-lecteur", color: "bg-sky-500", icon: BookOpen },
+  contributor: { label: "Contributeur", color: "bg-emerald-500", icon: TrendingUp },
+  contribureader: { label: "Contribu-lecteur", color: "bg-sky-500", icon: BookOpen },
 }
 
 export default function ProfilePage() {
