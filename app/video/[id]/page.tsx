@@ -493,7 +493,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {recommendations.map((rec) => {
-                      const recIsGold = GOLD_CREATORS.includes(rec.creatorName)
+                      const recIsGold = isGoldCreator(rec.creatorName)
                       return (
                         <Link key={rec.id} href={`/video/${rec.id}`} className="group/rec block">
                           <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-2 border border-white/5 hover:border-emerald-500/20 transition-colors">
