@@ -20,7 +20,7 @@ export interface Content {
   createdAt: string
   investmentGoal: number
   currentInvestment: number
-  investorCount: number
+  contributorCount: number
   totalVotes: number
   isFree: boolean
   category: string

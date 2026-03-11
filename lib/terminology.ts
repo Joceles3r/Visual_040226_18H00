@@ -9,13 +9,13 @@
 // ── Roles ──
 
 export const ROLE_LABELS = {
-  guest: { singular: "Invit\u00e9", plural: "Invit\u00e9s" },
+  guest: { singular: "Invite", plural: "Invites" },
   visitor: { singular: "Visiteur", plural: "Visiteurs" },
   porter: { singular: "Porteur", plural: "Porteurs" },
   infoporter: { singular: "Infoporteur", plural: "Infoporteurs" },
   podcaster: { singular: "Podcasteur", plural: "Podcasteurs" },
-  investor: { singular: "Investisseur", plural: "Investisseurs" },
-  investireader: { singular: "Investi-lecteur", plural: "Investi-lecteurs" },
+  contributor: { singular: "Contributeur", plural: "Contributeurs" },
+  contributereader: { singular: "Contri-lecteur", plural: "Contri-lecteurs" },
   listener: { singular: "Auditeur", plural: "Auditeurs" },
 } as const;
 
@@ -35,11 +35,11 @@ export function getRoleLabel(role: string, plural = false): string {
 // ── Actions ──
 
 export const ACTION_LABELS = {
-  invest: "Investir",
-  deposit: "D\u00e9poser",
+  contribute: "Contribuer",
+  deposit: "Deposer",
   withdraw: "Retirer",
   connect: "Connecter",
-  disconnect: "D\u00e9connexion",
+  disconnect: "Deconnexion",
 } as const;
 
 // ── Currency formatting ──
@@ -60,7 +60,7 @@ export function formatAmount(amount: number, currency: "eur" | "visupoints" = "e
 
 export const CAUTION_LABELS = {
   creator: "10\u00a0\u20ac",
-  investor: "20\u00a0\u20ac",
+  contributor: "20\u00a0\u20ac",
 } as const;
 
 // ── Caps ──
@@ -141,22 +141,22 @@ export const PODCAST_QUOTA_DESCRIPTIONS = {
 export const VOTE_EXPLANATION_STEPS = [
   {
     icon: "Coins" as const,
-    title: "1. Vous investissez",
-    description: "Chaque euro investi vous donne des votes selon le bar\u00e8me : 2\u00a0\u20ac = 1 vote, 5\u00a0\u20ac = 4 votes, 10\u00a0\u20ac = 7 votes, 20\u00a0\u20ac = 10 votes.",
+    title: "1. Vous contribuez",
+    description: "Chaque euro contribue vous donne des votes selon le bareme : 2 EUR = 1 vote, 5 EUR = 4 votes, 10 EUR = 7 votes, 20 EUR = 10 votes.",
   },
   {
     icon: "TrendingUp" as const,
     title: "2. Le projet grandit",
-    description: "Plus le projet re\u00e7oit d'investissements, plus la cagnotte \u00e0 partager grossit. Vos votes d\u00e9terminent votre part du g\u00e2teau.",
+    description: "Plus le projet recoit de contributions, plus la cagnotte a partager grossit. Vos votes determinent votre part du gateau.",
   },
   {
     icon: "PieChart" as const,
     title: "3. La redistribution",
-    description: "\u00c0 la cl\u00f4ture, les gains sont r\u00e9partis : 40% aux investisseurs TOP 10 (selon leurs votes), 30% aux cr\u00e9ateurs TOP 10, etc.",
+    description: "A la cloture, les gains sont repartis : 40% aux contributeurs TOP 10 (selon leurs votes), 30% aux createurs TOP 10, etc.",
   },
   {
     icon: "Wallet" as const,
     title: "4. Vous recevez",
-    description: "Si vous \u00eates dans le TOP 10, vous recevez votre part directement sur votre wallet Stripe Connect.",
+    description: "Si vous etes dans le TOP 10, vous recevez votre part directement sur votre wallet Stripe Connect.",
   },
 ] as const;

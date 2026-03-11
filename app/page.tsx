@@ -36,8 +36,8 @@ const FEATURES = [
   },
   {
     icon: TrendingUp,
-    title: "Investissement",
-    description: "De 2EUR a 20EUR par projet, recevez des retours sur vos investissements",
+    title: "Contribution",
+    description: "De 2EUR a 20EUR par projet, recevez des retours sur vos contributions",
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
   },
@@ -52,9 +52,9 @@ const FEATURES = [
 
 const STATS = [
   { value: "12,500+", label: "Utilisateurs" },
-  { value: "850+", label: "Projets financés" },
-  { value: "2.5M€", label: "Investis" },
-  { value: "89%", label: "Projets réussis" },
+  { value: "850+", label: "Projets finances" },
+  { value: "2.5M", label: "Contribues" },
+  { value: "89%", label: "Projets reussis" },
 ]
 
 export default function HomePage() {
@@ -74,7 +74,7 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance">
                 Investissez dans{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  {"l'art de demain"}
+                  les talents de demain
                 </span>
               </h1>
 
@@ -84,9 +84,9 @@ export default function HomePage() {
               </div>
 
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
-                VIXUAL est la plateforme d'investissement participatif pour les
+                VIXUAL est la plateforme de contribution participative pour les
                 projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
-                investissez dans leurs oeuvres, partagez leurs succes.
+                contribuez a leurs oeuvres, partagez leurs succes.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -144,7 +144,7 @@ export default function HomePage() {
                 Trois univers, une plateforme
               </h2>
               <p className="text-white/60 max-w-2xl mx-auto">
-                Explorez et investissez dans des projets audiovisuels,
+                Explorez et contribuez a des projets audiovisuels,
                 litteraires et podcasts uniques
               </p>
             </div>
@@ -222,10 +222,10 @@ export default function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Comment ça fonctionne ?
               </h2>
-              <p className="text-white/60 mb-12 max-w-2xl mx-auto">
-                En quelques etapes simples, devenez acteur de la creation
-                audiovisuelle, litteraire et podcast
-              </p>
+            <p className="text-white/60 mb-12 max-w-2xl mx-auto">
+              En quelques etapes simples, devenez contributeur de la creation
+              audiovisuelle, litteraire et podcast
+            </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="flex flex-col items-center">
@@ -255,10 +255,10 @@ export default function HomePage() {
                     <Star className="h-8 w-8 text-sky-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">
-                    3. Investissez et gagnez
+                    3. Contribuez et gagnez
                   </h3>
                   <p className="text-white/60">
-                    Soutenez les créateurs et recevez des retours
+                    Soutenez les createurs et recevez des retours
                   </p>
                 </div>
               </div>
