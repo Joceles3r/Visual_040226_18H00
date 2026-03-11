@@ -30,6 +30,28 @@ import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { CommunityCharter } from "@/components/community-charter"
 import { ReportButton } from "@/components/report-button"
+import { TrustScoreCard } from "@/components/trust-score-display"
+import { TrustScore } from "@/lib/trust-system"
+
+// Mock Trust Score pour le dashboard
+const MOCK_USER_TRUST_SCORE: TrustScore = {
+  userId: "user_123",
+  score: 78,
+  level: "very_reliable",
+  lastUpdated: new Date().toISOString(),
+  components: {
+    identityVerified: 22,
+    transactionHistory: 16,
+    communityParticipation: 12,
+    seniority: 10,
+    socialBehavior: 8,
+    financialReliability: 7,
+    communityBonus: 3,
+  },
+  badges: ["identity_verified", "active_contributor"],
+  warnings: [],
+  riskFlags: [],
+}
 
 export default function DashboardPage() {
   const { user, roles, isAuthed, logout } = useAuth()
@@ -212,6 +234,32 @@ export default function DashboardPage() {
 
       {/* Community Charter Reminder */}
       <CommunityCharter dismissible={true} />
+
+      {/* Trust Score Widget */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <TrustScoreCard trustScore={MOCK_USER_TRUST_SCORE} />
+        <Card className="bg-gradient-to-br from-emerald-900/20 to-teal-900/20 border-emerald-500/20">
+          <CardContent className="p-6 flex flex-col justify-between h-full">
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                <Shield className="h-5 w-5 text-emerald-400" />
+                VIXUAL Trust System
+              </h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Votre score de confiance evolue selon votre comportement sur la plateforme. 
+                Un score eleve vous permet d'acceder a des avantages exclusifs et renforce 
+                la confiance des autres utilisateurs.
+              </p>
+            </div>
+            <Link href="/trust-score">
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Voir mon Trust Score complet
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Report quick-access */}
       <Card className="bg-red-500/5 border-red-500/15">

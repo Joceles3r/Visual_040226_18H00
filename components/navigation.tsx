@@ -57,6 +57,7 @@ export const DISCOVER_MENU: NavMenu = {
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
     { label: "Top Contributeurs", href: "/top-contributors", icon: Star },
+    { label: "Trust Score", href: "/trust-score", icon: Shield },
     { label: "Vixual Social", href: "/social", icon: MessageCircle },
   ],
 }
