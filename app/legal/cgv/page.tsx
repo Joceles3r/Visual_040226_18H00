@@ -597,7 +597,94 @@ export default function CGVPage() {
 
         </div>
       </main>
-      <Footer />
-    </div>
-  )
-}
+        {/* 7bis. PAIEMENT HYBRIDE */}
+        <Section num={0} title="Paiement hybride - Achat de contenu">
+          <p className="text-white/70 mb-4">
+            {"Les créateurs (Porteur, Infoporteur, Podcasteur) ainsi que tous les utilisateurs inscrits peuvent acheter du contenu sur VIXUAL en utilisant le paiement hybride."}
+          </p>
+
+          <SubSection title="Principes généraux">
+            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
+              <li>{"Le paiement hybride combine VIXUpoints + euros"}</li>
+              <li>{"Maximum 70% du prix en VIXUpoints"}</li>
+              <li>{"Minimum 30% du prix en euros (cash)"}</li>
+              <li>{"Bonus : 5% des points dépensés sont regagnés (plafonné à 200 pts/mois)"}</li>
+              <li>{"Un créateur ne peut pas acheter son propre contenu"}</li>
+            </ul>
+          </SubSection>
+
+          <SubSection title="Exemples de paiement">
+            <div className="space-y-3 text-white/70 text-sm">
+              <div className="bg-slate-800/30 p-3 rounded">
+                <p className="font-semibold text-white mb-2">Contenu à 4€ :</p>
+                <ul className="space-y-1 pl-4">
+                  <li>{"Option 1 : 4€ (100% cash)"}</li>
+                  <li>{"Option 2 : 2€ + 200 VIXUpoints (max hybride)"}</li>
+                  <li>{"Option 3 : 1,20€ + 280 VIXUpoints (au maximum autorisé)"}</li>
+                  <li className="text-rose-400 mt-2">{"❌ Non autorisé : 400 VIXUpoints seuls (nécessiterait 100% points)"}</li>
+                </ul>
+              </div>
+            </div>
+          </SubSection>
+
+          <SubSection title="Calcul du paiement hybride">
+            <p className="text-white/70 mb-4 text-sm">
+              {"Formule : VIXUpoints_max = prix_contenu × 0,7 × 100 (car 100 VIXUpoints = 1€)"}
+            </p>
+            <div className="overflow-x-auto bg-slate-800/20 rounded p-4">
+              <table className="text-xs text-white/60 w-full">
+                <thead>
+                  <tr className="border-b border-slate-600">
+                    <th className="text-left py-2">Prix</th>
+                    <th className="text-center py-2">Min cash</th>
+                    <th className="text-center py-2">Max VIXUpoints</th>
+                    <th className="text-center py-2">Bonus possible</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { p: "1€", c: "0,30€", pts: "70", bonus: "3" },
+                    { p: "2€", c: "0,60€", pts: "140", bonus: "7" },
+                    { p: "4€", c: "1,20€", pts: "280", bonus: "14" },
+                    { p: "10€", c: "3€", pts: "700", bonus: "35" },
+                  ].map((row, i) => (
+                    <tr key={i} className="border-b border-slate-700">
+                      <td className="py-2">{row.p}</td>
+                      <td className="text-center">{row.c}</td>
+                      <td className="text-center">{row.pts}</td>
+                      <td className="text-center text-emerald-400">{row.bonus}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Profils autorisés à acheter">
+            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
+              <li>{"✅ Visiteur - peut acheter n'importe quel contenu"}</li>
+              <li>{"✅ Porteur - peut acheter contenus écrits et podcasts (pas ses vidéos)"}</li>
+              <li>{"✅ Infoporteur - peut acheter vidéos et podcasts (pas ses articles)"}</li>
+              <li>{"✅ Podcasteur - peut acheter vidéos et contenus écrits (pas ses podcasts)"}</li>
+              <li>{"✅ Contributeur / Contri-lecteur / Auditeur - peuvent tous acheter du contenu"}</li>
+              <li>{"⚠️ Investisseur - déconseillé (devrait plutôt utiliser l'investissement standard)"}</li>
+            </ul>
+          </SubSection>
+
+          <SubSection title="Avantages du système">
+            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
+              <li>{"Augmente la circulation interne des VIXUpoints"}</li>
+              <li>{"Réduit la barrière d'achat pour les utilisateurs"}</li>
+              <li>{"Crée une économie interne vivante et équilibrée"}</li>
+              <li>{"Maintient une valeur réelle via la part en euros (minimum 30%)"}</li>
+              <li>{"Encourage la découverte de contenus entre créateurs"}</li>
+            </ul>
+          </SubSection>
+
+          <SubSection title="Règles importantes">
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3 text-white/70 text-sm">
+              <p className="font-semibold text-amber-200 mb-2">{"⚠️ Un créateur ne peut pas acheter son propre contenu"}</p>
+              <p>{"Cette règle s'applique à tous les profils créateurs (Porteur, Infoporteur, Podcasteur). Cela maintient l'intégrité du système."}</p>
+            </div>
+          </SubSection>
+        </Section>

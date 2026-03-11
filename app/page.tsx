@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star } from "lucide-react"
+import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
@@ -52,9 +52,9 @@ const FEATURES = [
 
 const STATS = [
   { value: "12,500+", label: "Utilisateurs" },
-  { value: "850+", label: "Projets finances" },
-  { value: "2.5M", label: "Contribues" },
-  { value: "89%", label: "Projets reussis" },
+  { value: "850+", label: "Projets financés" },
+  { value: "2.5M€", label: "Contribués" },
+  { value: "89%", label: "Projets réussis" },
 ]
 
 export default function HomePage() {
@@ -72,9 +72,9 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance">
-                Investissez dans{" "}
+                Contribuez aux{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  les talents de demain
+                  talents de demain
                 </span>
               </h1>
 
