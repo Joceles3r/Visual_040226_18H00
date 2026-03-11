@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
   Send, MessageCircle, Hash, ChevronDown, ChevronUp,
-  X, Sparkles, Filter, ThumbsUp,
+  X, Sparkles, Filter, ThumbsUp, CornerDownRight,
 } from "lucide-react"
 import { ReportButton } from "@/components/report-button"
 import {
