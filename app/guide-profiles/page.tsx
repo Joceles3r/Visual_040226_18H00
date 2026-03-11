@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   ArrowLeft, Users, Crown, Film, TrendingUp, Heart, Lock, Unlock,
-  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic
+  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones
 } from "lucide-react"
 
 type ProfileKey = "guest" | "visitor" | "porter" | "infoporter" | "podcaster" | "contributor" | "contribureader" | "listener"
