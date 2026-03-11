@@ -157,20 +157,6 @@ const FAQ_CATEGORIES = [
       }
     ]
   },
-      {
-        question: "Comment gagner en tant que Contributeur?",
-        answer: "Vous gagnez si votre classement (basé sur le nombre de contributions/votes) vous place dans le TOP 10 (40% des gains) ou 11-100 (7% des gains). Les gains sont versés le 1er du mois suivant."
-      },
-      {
-        question: "Puis-je utiliser le paiement hybride?",
-        answer: "Oui! Vous utilisez automatiquement le paiement hybride (30% euros + 70% VIXUpoints max). Les 5% bonus gagnés sur les points dépensés vous aident à reconstituer votre caisse."
-      },
-      {
-        question: "Combien puis-je contribuer par projet?",
-        answer: "Entre 2€ et 20€ par projet. Vous pouvez contribuer à autant de projets que vous le souhaitez."
-      }
-    ]
-  },
   {
     title: "VIXUpoints et Paiement hybride",
     items: [
