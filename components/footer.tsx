@@ -61,26 +61,19 @@ export function Footer() {
 
           {/* Vixual Social */}
           <div>
-            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <Users className="h-4 w-4 text-teal-400" />
-              Vixual Social
-            </h4>
-            <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4 mb-3">
-              <p className="text-white/70 text-sm mb-3">
-                Le mini reseau social reserve aux inscrits de VIXUAL
-              </p>
-              <div className="flex items-center gap-2 text-xs text-white/50 mb-2">
-                <Lock className="h-3 w-3" />
-                <span>Acces reserve aux membres</span>
-              </div>
-              <Link 
-                href="/social" 
-                className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 transition-colors"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Acceder a Vixual Social
-              </Link>
-            </div>
+            <h4 className="text-white font-semibold mb-4">Vixual Social</h4>
+            <Link 
+              href="/social" 
+              className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Acceder a Vixual Social
+            </Link>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/legal/terms" className="text-white/60 hover:text-emerald-400 transition-colors text-sm">
@@ -102,43 +95,14 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <Link href="/contact" className="group">
-              <h4 className="text-white font-semibold mb-4 group-hover:text-emerald-400 transition-colors">
-                Contact VIXUAL
-              </h4>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              Nous contacter
             </Link>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <Phone className="h-4 w-4 text-emerald-400 mt-0.5" />
-                <div>
-                  <p className="text-white/70 text-sm">+33 (0)1 XX XX XX XX</p>
-                  <p className="text-white/40 text-xs">Lun-Ven 9h-18h</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <Mail className="h-4 w-4 text-emerald-400 mt-0.5" />
-                <div className="space-y-1">
-                  <p className="text-white/70 text-sm">contact@vixual.fr</p>
-                  <p className="text-white/70 text-sm">support@vixual.fr</p>
-                  <p className="text-white/70 text-sm">partenaires@vixual.fr</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-emerald-400 mt-0.5" />
-                <div>
-                  <p className="text-white/70 text-sm">VIXUAL SAS</p>
-                  <p className="text-white/50 text-xs">Adresse a completer</p>
-                  <p className="text-white/50 text-xs">France</p>
-                </div>
-              </div>
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors mt-2"
-              >
-                <Mail className="h-4 w-4" />
-                Nous contacter
-              </Link>
-            </div>
           </div>
         </div>
 
