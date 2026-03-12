@@ -7,14 +7,14 @@
  */
 
 // ──────────────────────────────────────────────
-// 1. TRANCHES D'INVESTISSEMENT
+// 1. TRANCHES DE CONTRIBUTION
 // ──────────────────────────────────────────────
 
-/** Montants d'investissement autorises (en euros) */
-export const INVESTMENT_TIERS_EUR = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20] as const;
-export type InvestmentTierEur = (typeof INVESTMENT_TIERS_EUR)[number];
+/** Montants de contribution autorises (en euros) */
+export const CONTRIBUTION_TIERS_EUR = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20] as const;
+export type ContributionTierEur = (typeof CONTRIBUTION_TIERS_EUR)[number];
 
-/** Prix porteur autorises (en euros) — max 10 EUR */
+/** Prix porteur autorises (en euros) - max 10 EUR */
 export const PORTER_PRICE_TIERS_EUR = [2, 3, 4, 5, 10] as const;
 export type PorterPriceTierEur = (typeof PORTER_PRICE_TIERS_EUR)[number];
 
@@ -26,24 +26,24 @@ export const EXTENSION_PRICE_EUR = 25;
 // ──────────────────────────────────────────────
 
 export const CAUTION = {
-  /** Porteur (audiovisuel) et Infoporteur (litteraire) */
+  /** Porteur (audiovisuel), Infoporteur (litteraire), Podcasteur */
   creator: 10_00, // 10 EUR en centimes
-  /** Investisseur (audiovisuel) et Investi-lecteur (litteraire) */
-  investor: 20_00, // 20 EUR en centimes
+  /** Contributeur (audiovisuel), Contribu-lecteur (litteraire), Auditeur (podcast) */
+  contributor: 20_00, // 20 EUR en centimes
 } as const;
 
 /** Cautions en euros pour affichage */
 export const CAUTION_EUR = {
   creator: CAUTION.creator / 100,
-  investor: CAUTION.investor / 100,
+  contributor: CAUTION.contributor / 100,
 } as const;
 
 // ──────────────────────────────────────────────
-// 3. BAREME VOTES (investissement -> votes)
+// 3. BAREME VOTES (contribution -> votes)
 // ──────────────────────────────────────────────
 
-/** Table investissement EUR -> nombre de votes */
-export const INVESTMENT_TO_VOTES: ReadonlyMap<number, number> = new Map([
+/** Table contribution EUR -> nombre de votes */
+export const CONTRIBUTION_TO_VOTES: ReadonlyMap<number, number> = new Map([
   [2, 1],
   [3, 2],
   [4, 3],
@@ -56,17 +56,17 @@ export const INVESTMENT_TO_VOTES: ReadonlyMap<number, number> = new Map([
   [20, 10],
 ]);
 
-/** Obtenir le nombre de votes pour un montant d'investissement */
-export function getVotesForInvestment(amountEur: number): number {
-  return INVESTMENT_TO_VOTES.get(amountEur) ?? 0;
+/** Obtenir le nombre de votes pour un montant de contribution */
+export function getVotesForContribution(amountEur: number): number {
+  return CONTRIBUTION_TO_VOTES.get(amountEur) ?? 0;
 }
 
 // ──────────────────────────────────────────────
-// 4. VISUPOINTS - BAREME FIDELITE
+// 4. VIXUPOINTS - BAREME FIDELITE
 // ──────────────────────────────────────────────
 
-/** Table investissement EUR -> VIXUpoints gagnes */
-export const INVESTMENT_TO_VISUPOINTS: ReadonlyMap<number, number> = new Map([
+/** Table contribution EUR -> VIXUpoints gagnes */
+export const CONTRIBUTION_TO_VIXUPOINTS: ReadonlyMap<number, number> = new Map([
   [2, 10],
   [3, 15],
   [4, 20],
@@ -79,20 +79,20 @@ export const INVESTMENT_TO_VISUPOINTS: ReadonlyMap<number, number> = new Map([
   [20, 110],
 ]);
 
-/** Obtenir les VIXUpoints pour un montant d'investissement */
-export function getVisupointsForInvestment(amountEur: number): number {
-  return INVESTMENT_TO_VISUPOINTS.get(amountEur) ?? 0;
+/** Obtenir les VIXUpoints pour un montant de contribution */
+export function getVixupointsForContribution(amountEur: number): number {
+  return CONTRIBUTION_TO_VIXUPOINTS.get(amountEur) ?? 0;
 }
 
 // ──────────────────────────────────────────────
-// 5. VISUPOINTS - CONVERSION EN EUROS
+// 5. VIXUPOINTS - CONVERSION EN EUROS
 // ──────────────────────────────────────────────
 
 /** Seuil minimum pour conversion : 2500 VIXUpoints */
-export const VISUPOINTS_CONVERSION_THRESHOLD = 2500;
+export const VIXUPOINTS_CONVERSION_THRESHOLD = 2500;
 
 /** Taux : 100 VIXUpoints = 1 EUR */
-export const VISUPOINTS_PER_EUR = 100;
+export const VIXUPOINTS_PER_EUR = 100;
 
 /** Retrait minimum en euros (correspondant au seuil) */
 export const VISUPOINTS_MIN_WITHDRAW_EUR = VISUPOINTS_CONVERSION_THRESHOLD / VISUPOINTS_PER_EUR; // 25 EUR

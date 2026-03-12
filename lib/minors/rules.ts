@@ -1,12 +1,12 @@
 /**
- * VISUAL Minors Module -- Rules
+ * VIXUAL Minors Module -- Rules
  *
  * Mineurs 16-17 ans:
- * - VISUpoints ONLY (pas d'euros)
- * - Pas d'investissement en euros
+ * - VIXUpoints ONLY (pas d'euros, pas de paiement hybride)
+ * - Pas de contribution en euros
  * - Pas de retrait
  * - Pas de Stripe Connect
- * - Plafond VISUpoints: 10/jour
+ * - Plafond VIXUpoints: 100/jour, 500/semaine, 10000 total
  * - Autorisation parentale requise et renouvelee tous les 12 mois
  */
 
@@ -16,8 +16,8 @@ import { sql } from "@/lib/db";
 export const MIN_AGE = 16;
 /** Age de majorite */
 export const ADULT_AGE = 18;
-/** Plafond VISUpoints quotidien pour les mineurs */
-export const MINOR_DAILY_VISUPOINTS_CAP = 10;
+/** Plafond VIXUpoints quotidien pour les mineurs */
+export const MINOR_DAILY_VIXUPOINTS_CAP = 100;
 /** Duree de validite de l'autorisation parentale (en mois) */
 export const GUARDIAN_VALIDITY_MONTHS = 12;
 

@@ -35,14 +35,14 @@ export interface User {
   avatarUrl?: string
   birthDate?: string
   isMinor: boolean
-  visupointsCap: number
+  vixupointsCap: number
   parentConsent: ParentConsent
   kycVerified: boolean
   depositStatus?: {
     porter10: boolean
-    investor20: boolean
+    contributor20: boolean
     infoporter10: boolean
-    investireader20: boolean
+    contribureader20: boolean
     podcaster10: boolean
     listener20: boolean
   }
@@ -93,14 +93,14 @@ const MOCK_USER: User = {
   visupoints: 150,
   birthDate: undefined,
   isMinor: false,
-  visupointsCap: Infinity,
+  vixupointsCap: Infinity,
   parentConsent: DEFAULT_PARENT_CONSENT,
   kycVerified: false,
   depositStatus: {
     porter10: false,
-    investor20: false,
+    contributor20: false,
     infoporter10: false,
-    investireader20: false,
+    contribureader20: false,
     podcaster10: false,
     listener20: false,
   },

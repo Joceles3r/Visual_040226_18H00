@@ -1,8 +1,9 @@
 /**
  * POST /api/visupoints/credit
  *
- * Credits VISUpoints to a user with full cap enforcement:
- * - Daily cap (60/day)
+ * Credits VIXUpoints to a user with full cap enforcement:
+ * - Daily cap (100/day)
+ * - Weekly cap (500/week)
  * - Profile cap (varies by role)
  * - Minor cap (10,000 total)
  * - Anti-abuse detection
@@ -14,7 +15,7 @@ import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
 import {
   creditVisupointsCapped,
   detectVisupointsAbuse,
-  DAILY_VISUPOINTS_CAP,
+  DAILY_VIXUPOINTS_CAP,
 } from "@/lib/visupoints-engine";
 
 export const POST = withErrorHandler(async (req: Request) => {

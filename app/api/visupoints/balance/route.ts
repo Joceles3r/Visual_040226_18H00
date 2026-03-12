@@ -1,15 +1,15 @@
 /**
  * GET /api/visupoints/balance?userId=...
  *
- * Returns full VISUpoints status: balance, daily/profile caps, abuse flags.
+ * Returns full VIXUpoints status: balance, daily/profile caps, abuse flags.
  */
 
 import { NextResponse } from "next/server";
 import { sql } from "@/lib/db";
 import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
 import {
-  DAILY_VISUPOINTS_CAP,
-  PROFILE_CAPS,
+  DAILY_VIXUPOINTS_CAP,
+  PROFILE_VIXUPOINTS_CONFIG,
   MINOR_VISUPOINTS_CAP,
   canWithdraw,
   canConvertVisupoints,
@@ -47,8 +47,8 @@ export const GET = withErrorHandler(async (req: Request) => {
   const dailyEarned = Number(dailyRows[0]?.total || 0);
 
   // Profile cap
-  const profileKey = isMinor ? "visitor_minor" : role;
-  const profileConfig = PROFILE_CAPS[profileKey] || PROFILE_CAPS.visitor;
+  const profileKey = isMinor ? "visitor_minor" : (role === "visitor" ? "visitor_adult" : role);
+  const profileConfig = PROFILE_VIXUPOINTS_CONFIG[profileKey] || PROFILE_VIXUPOINTS_CONFIG.visitor_adult;
 
   // Weekly data for abuse detection
   const weekRows = await sql`
@@ -74,9 +74,14 @@ export const GET = withErrorHandler(async (req: Request) => {
     isMinor,
     role,
     caps: {
-      daily: { limit: DAILY_VISUPOINTS_CAP, used: dailyEarned, remaining: Math.max(0, DAILY_VISUPOINTS_CAP - dailyEarned) },
-      profile: { type: profileConfig.type, limit: profileConfig.cap === Infinity ? null : profileConfig.cap, remaining: profileConfig.cap === Infinity ? null : Math.max(0, profileConfig.cap - balance) },
+      daily: { limit: DAILY_VIXUPOINTS_CAP, used: dailyEarned, remaining: Math.max(0, DAILY_VIXUPOINTS_CAP - dailyEarned) },
+      profile: { capType: profileConfig.capType, limit: profileConfig.cap === Infinity ? null : profileConfig.cap, remaining: profileConfig.cap === Infinity ? null : Math.max(0, profileConfig.cap - balance) },
       minor: isMinor ? { limit: MINOR_VISUPOINTS_CAP, remaining: Math.max(0, MINOR_VISUPOINTS_CAP - balance) } : null,
+    },
+    permissions: {
+      canUseVixupoints: profileConfig.canUseVixupoints,
+      canPayEuros: profileConfig.canPayEuros,
+      canUseHybrid: profileConfig.canUseHybrid,
     },
     canWithdraw: withdrawCheck,
     canConvert: convertCheck,

@@ -26,21 +26,24 @@ import {
   Shield,
 } from "lucide-react"
 
-export type VisualRole =
+export type VixualRole =
   | "guest"
   | "visitor"
   | "porter"
-  | "investor"
+  | "contributor"
   | "infoporter"
-  | "investireader"
+  | "contribureader"
   | "podcaster"
   | "listener"
+
+/** @deprecated Use VixualRole instead */
+export type VisualRole = VixualRole
 
 export type NavItem = {
   label: string
   href: string
   icon?: React.ComponentType<{ className?: string }>
-  roles?: VisualRole[]
+  roles?: VixualRole[]
 }
 
 export type NavMenu = {

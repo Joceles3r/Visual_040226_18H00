@@ -108,22 +108,6 @@ export const VIXUPOINTS_PEDAGOGIC_MESSAGE = "Les VIXUpoints recompensent votre p
 /** Message limite proche */
 export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoints. Decouvrez de nouveaux contenus pour les utiliser."
 
-// ─── Backward Compatibility Aliases ───
-/** @deprecated Use DAILY_VIXUPOINTS_CAP instead */
-export const DAILY_VISUPOINTS_CAP = DAILY_VIXUPOINTS_CAP
-
-/** @deprecated Use PROFILE_VIXUPOINTS_CONFIG instead */
-export const PROFILE_CAPS: Record<string, { cap: number; type: "total" | "monthly" }> = {
-  visitor: { cap: 2_500, type: "total" },
-  visitor_minor: { cap: 10_000, type: "total" },
-  auditor: { cap: 2_500, type: "total" },
-  contribureader: { cap: 2_500, type: "total" },
-  porter: { cap: 0, type: "total" },
-  infoporter: { cap: 0, type: "total" },
-  podcaster: { cap: 0, type: "total" },
-  contributor: { cap: 0, type: "total" },
-}
-
 export const DEFAULT_PARENT_CONSENT: ParentConsent = {
   status: "not_required",
   acceptedByGuardian: false,
