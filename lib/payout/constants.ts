@@ -95,7 +95,18 @@ export const VIXUPOINTS_CONVERSION_THRESHOLD = 2500;
 export const VIXUPOINTS_PER_EUR = 100;
 
 /** Retrait minimum en euros (correspondant au seuil) */
-export const VISUPOINTS_MIN_WITHDRAW_EUR = VISUPOINTS_CONVERSION_THRESHOLD / VISUPOINTS_PER_EUR; // 25 EUR
+export const VIXUPOINTS_MIN_WITHDRAW_EUR = VIXUPOINTS_CONVERSION_THRESHOLD / VIXUPOINTS_PER_EUR; // 25 EUR
+
+// ─── Backward Compatibility Aliases ───
+export const INVESTMENT_TIERS_EUR = CONTRIBUTION_TIERS_EUR;
+export type InvestmentTierEur = ContributionTierEur;
+export const INVESTMENT_TO_VOTES = CONTRIBUTION_TO_VOTES;
+export const getVotesForInvestment = getVotesForContribution;
+export const INVESTMENT_TO_VISUPOINTS = CONTRIBUTION_TO_VIXUPOINTS;
+export const getVisupointsForInvestment = getVixupointsForContribution;
+export const VISUPOINTS_CONVERSION_THRESHOLD = VIXUPOINTS_CONVERSION_THRESHOLD;
+export const VISUPOINTS_PER_EUR = VIXUPOINTS_PER_EUR;
+export const VISUPOINTS_MIN_WITHDRAW_EUR = VIXUPOINTS_MIN_WITHDRAW_EUR;
 
 /**
  * Convertit des VIXUpoints en euros.
