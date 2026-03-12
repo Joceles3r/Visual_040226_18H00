@@ -512,26 +512,43 @@ function GenreSelector({
                  activeTab === "text" ? TEXT_GENRES :
                  activeTab === "podcast" ? PODCAST_GENRES : []
 
-  if (activeTab === "all" || genres.length === 0) return null
+  // Show a hint when on "all" tab
+  if (activeTab === "all") {
+    return (
+      <div className="px-4 sm:px-8 lg:px-16 py-4 bg-gradient-to-r from-white/5 to-transparent border-y border-white/10">
+        <div className="flex items-center gap-3">
+          <SlidersHorizontal className="h-5 w-5 text-amber-400" />
+          <span className="text-white/60 text-sm">
+            Selectionnez une categorie (<span className="text-emerald-400">Films & Videos</span>, <span className="text-sky-400">Livres & Articles</span>, ou <span className="text-purple-400">Podcasts</span>) pour filtrer par genre
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  if (genres.length === 0) return null
 
   const tabConfig = {
     video: { 
-      label: "Genre cinematographique", 
+      label: "Filtrer par genre cinematographique", 
       color: "emerald",
       icon: Film,
-      gradient: "from-emerald-500/20 to-transparent"
+      gradient: "from-emerald-500/20 via-emerald-500/10 to-transparent",
+      borderColor: "border-emerald-500/40"
     },
     text: { 
-      label: "Genre litteraire", 
+      label: "Filtrer par genre litteraire", 
       color: "sky",
       icon: BookOpen,
-      gradient: "from-sky-500/20 to-transparent"
+      gradient: "from-sky-500/20 via-sky-500/10 to-transparent",
+      borderColor: "border-sky-500/40"
     },
     podcast: { 
-      label: "Categorie podcast", 
+      label: "Filtrer par categorie podcast", 
       color: "purple",
       icon: Headphones,
-      gradient: "from-purple-500/20 to-transparent"
+      gradient: "from-purple-500/20 via-purple-500/10 to-transparent",
+      borderColor: "border-purple-500/40"
     },
   }[activeTab]
 
@@ -540,29 +557,49 @@ function GenreSelector({
       activeBg: "bg-emerald-600",
       hoverBg: "hover:bg-emerald-500/20",
       border: "border-emerald-500/30",
-      text: "text-emerald-400"
+      text: "text-emerald-400",
+      glow: "shadow-emerald-500/20"
     },
     sky: {
       activeBg: "bg-sky-600",
       hoverBg: "hover:bg-sky-500/20",
       border: "border-sky-500/30",
-      text: "text-sky-400"
+      text: "text-sky-400",
+      glow: "shadow-sky-500/20"
     },
     purple: {
       activeBg: "bg-purple-600",
       hoverBg: "hover:bg-purple-500/20",
       border: "border-purple-500/30",
-      text: "text-purple-400"
+      text: "text-purple-400",
+      glow: "shadow-purple-500/20"
     },
   }[tabConfig.color]
 
   return (
-    <div className={`px-4 sm:px-8 lg:px-16 py-4 bg-gradient-to-r ${tabConfig.gradient}`}>
+    <div className={`px-4 sm:px-8 lg:px-16 py-5 bg-gradient-to-r ${tabConfig.gradient} border-y ${tabConfig.borderColor}`}>
       {/* Section Header */}
-      <div className="flex items-center gap-2 mb-3">
-        <tabConfig.icon className={`h-4 w-4 ${colorClasses.text}`} />
-        <span className="text-white/70 text-sm font-medium">{tabConfig.label}</span>
-        <SlidersHorizontal className="h-3.5 w-3.5 text-white/40 ml-1" />
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className={`p-2 rounded-lg ${colorClasses.activeBg}/20 ${colorClasses.border} border`}>
+            <tabConfig.icon className={`h-5 w-5 ${colorClasses.text}`} />
+          </div>
+          <div>
+            <h3 className="text-white font-semibold text-sm">{tabConfig.label}</h3>
+            <p className="text-white/50 text-xs">{genres.length - 1} genres disponibles</p>
+          </div>
+        </div>
+        {selectedGenre !== "all" && (
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => onGenreChange("all")}
+            className="border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
+          >
+            <SlidersHorizontal className="h-3.5 w-3.5 mr-2" />
+            Reinitialiser
+          </Button>
+        )}
       </div>
       
       {/* Genre Pills */}
@@ -571,10 +608,10 @@ function GenreSelector({
           <button
             key={genre.id}
             onClick={() => onGenreChange(genre.id)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
               selectedGenre === genre.id
-                ? `${colorClasses.activeBg} text-white border-transparent`
-                : `bg-white/5 text-white/60 ${colorClasses.border} ${colorClasses.hoverBg} hover:text-white`
+                ? `${colorClasses.activeBg} text-white border-transparent shadow-lg ${colorClasses.glow}`
+                : `bg-slate-800/50 text-white/70 ${colorClasses.border} ${colorClasses.hoverBg} hover:text-white hover:border-white/30`
             }`}
           >
             {genre.label}
@@ -584,16 +621,19 @@ function GenreSelector({
       
       {/* Active Filter Indicator */}
       {selectedGenre !== "all" && (
-        <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/10">
-          <span className="text-white/50 text-xs">Filtre actif:</span>
-          <Badge className={`${colorClasses.activeBg} text-white border-0 text-xs`}>
+        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
+          <div className="flex items-center gap-2">
+            <CheckCircle className={`h-4 w-4 ${colorClasses.text}`} />
+            <span className="text-white/60 text-sm">Filtre actif:</span>
+          </div>
+          <Badge className={`${colorClasses.activeBg} text-white border-0 px-3 py-1`}>
             {genres.find(g => g.id === selectedGenre)?.label}
           </Badge>
           <button 
             onClick={() => onGenreChange("all")}
-            className="text-white/40 hover:text-white text-xs underline ml-2"
+            className={`${colorClasses.text} hover:text-white text-sm underline underline-offset-2 ml-auto`}
           >
-            Effacer
+            Effacer le filtre
           </button>
         </div>
       )}
