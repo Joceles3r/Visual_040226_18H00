@@ -432,6 +432,175 @@ function CategoryTabs({
   )
 }
 
+/* ---------- GENRES PAR CATEGORIE ---------- */
+const VIDEO_GENRES = [
+  { id: "all", label: "Tous les genres" },
+  { id: "action", label: "Action" },
+  { id: "adventure", label: "Aventure" },
+  { id: "animation", label: "Animation" },
+  { id: "comedy", label: "Comedie" },
+  { id: "crime", label: "Crime / Policier" },
+  { id: "documentary", label: "Documentaire" },
+  { id: "drama", label: "Drame" },
+  { id: "fantasy", label: "Fantastique" },
+  { id: "horror", label: "Horreur" },
+  { id: "musical", label: "Musical" },
+  { id: "mystery", label: "Mystere / Thriller" },
+  { id: "romance", label: "Romance" },
+  { id: "scifi", label: "Science-Fiction" },
+  { id: "war", label: "Guerre" },
+  { id: "western", label: "Western" },
+  { id: "biopic", label: "Biopic" },
+  { id: "historical", label: "Historique" },
+  { id: "shortfilm", label: "Court-metrage" },
+] as const
+
+const TEXT_GENRES = [
+  { id: "all", label: "Tous les genres" },
+  { id: "novel", label: "Roman" },
+  { id: "thriller", label: "Thriller / Suspense" },
+  { id: "romance", label: "Romance" },
+  { id: "newromance", label: "New Romance" },
+  { id: "fantasy", label: "Fantasy / Fantastique" },
+  { id: "scifi", label: "Science-Fiction" },
+  { id: "horror", label: "Horreur / Epouvante" },
+  { id: "historical", label: "Roman Historique" },
+  { id: "biography", label: "Biographie / Memoires" },
+  { id: "essay", label: "Essai / Non-fiction" },
+  { id: "poetry", label: "Poesie" },
+  { id: "shortstory", label: "Nouvelles / Recueils" },
+  { id: "youngadult", label: "Young Adult" },
+  { id: "children", label: "Jeunesse" },
+  { id: "crime", label: "Polar / Crime" },
+  { id: "humor", label: "Humour" },
+  { id: "selfhelp", label: "Developpement personnel" },
+  { id: "travel", label: "Recit de voyage" },
+] as const
+
+const PODCAST_GENRES = [
+  { id: "all", label: "Tous les genres" },
+  { id: "truestory", label: "Histoire vraie / True Crime" },
+  { id: "fiction", label: "Fiction / Histoire imaginaire" },
+  { id: "documentary", label: "Documentaire audio" },
+  { id: "interview", label: "Interview / Talk-show" },
+  { id: "news", label: "Actualites / Mediatique" },
+  { id: "history", label: "Histoire / Historique" },
+  { id: "science", label: "Science / Technologie" },
+  { id: "culture", label: "Culture / Societe" },
+  { id: "business", label: "Business / Entrepreneuriat" },
+  { id: "comedy", label: "Humour / Comedie" },
+  { id: "education", label: "Education / Apprentissage" },
+  { id: "sports", label: "Sport" },
+  { id: "health", label: "Sante / Bien-etre" },
+  { id: "politics", label: "Politique / Geopolitique" },
+  { id: "music", label: "Musique" },
+  { id: "gaming", label: "Jeux video / Gaming" },
+  { id: "spirituality", label: "Spiritualite / Religion" },
+] as const
+
+/* ---------- GENRE SELECTOR ---------- */
+function GenreSelector({
+  activeTab,
+  selectedGenre,
+  onGenreChange,
+}: {
+  activeTab: "all" | "video" | "text" | "podcast"
+  selectedGenre: string
+  onGenreChange: (genre: string) => void
+}) {
+  const genres = activeTab === "video" ? VIDEO_GENRES :
+                 activeTab === "text" ? TEXT_GENRES :
+                 activeTab === "podcast" ? PODCAST_GENRES : []
+
+  if (activeTab === "all" || genres.length === 0) return null
+
+  const tabConfig = {
+    video: { 
+      label: "Genre cinematographique", 
+      color: "emerald",
+      icon: Film,
+      gradient: "from-emerald-500/20 to-transparent"
+    },
+    text: { 
+      label: "Genre litteraire", 
+      color: "sky",
+      icon: BookOpen,
+      gradient: "from-sky-500/20 to-transparent"
+    },
+    podcast: { 
+      label: "Categorie podcast", 
+      color: "purple",
+      icon: Headphones,
+      gradient: "from-purple-500/20 to-transparent"
+    },
+  }[activeTab]
+
+  const colorClasses = {
+    emerald: {
+      activeBg: "bg-emerald-600",
+      hoverBg: "hover:bg-emerald-500/20",
+      border: "border-emerald-500/30",
+      text: "text-emerald-400"
+    },
+    sky: {
+      activeBg: "bg-sky-600",
+      hoverBg: "hover:bg-sky-500/20",
+      border: "border-sky-500/30",
+      text: "text-sky-400"
+    },
+    purple: {
+      activeBg: "bg-purple-600",
+      hoverBg: "hover:bg-purple-500/20",
+      border: "border-purple-500/30",
+      text: "text-purple-400"
+    },
+  }[tabConfig.color]
+
+  return (
+    <div className={`px-4 sm:px-8 lg:px-16 py-4 bg-gradient-to-r ${tabConfig.gradient}`}>
+      {/* Section Header */}
+      <div className="flex items-center gap-2 mb-3">
+        <tabConfig.icon className={`h-4 w-4 ${colorClasses.text}`} />
+        <span className="text-white/70 text-sm font-medium">{tabConfig.label}</span>
+        <SlidersHorizontal className="h-3.5 w-3.5 text-white/40 ml-1" />
+      </div>
+      
+      {/* Genre Pills */}
+      <div className="flex flex-wrap gap-2">
+        {genres.map((genre) => (
+          <button
+            key={genre.id}
+            onClick={() => onGenreChange(genre.id)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+              selectedGenre === genre.id
+                ? `${colorClasses.activeBg} text-white border-transparent`
+                : `bg-white/5 text-white/60 ${colorClasses.border} ${colorClasses.hoverBg} hover:text-white`
+            }`}
+          >
+            {genre.label}
+          </button>
+        ))}
+      </div>
+      
+      {/* Active Filter Indicator */}
+      {selectedGenre !== "all" && (
+        <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/10">
+          <span className="text-white/50 text-xs">Filtre actif:</span>
+          <Badge className={`${colorClasses.activeBg} text-white border-0 text-xs`}>
+            {genres.find(g => g.id === selectedGenre)?.label}
+          </Badge>
+          <button 
+            onClick={() => onGenreChange("all")}
+            className="text-white/40 hover:text-white text-xs underline ml-2"
+          >
+            Effacer
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ---------- PAGINATION COMPONENT ---------- */
 const ITEMS_PER_PAGE = 12
 
@@ -514,14 +683,31 @@ function ExplorerContent() {
   const searchParams = useSearchParams()
   const { isAuthed, roles } = useAuth()
   const [activeTab, setActiveTab] = useState<"all" | "video" | "text" | "podcast">("all")
+  const [selectedGenre, setSelectedGenre] = useState<string>("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Filter contents based on tab
+  // Reset genre when tab changes
+  const handleTabChange = (tab: "all" | "video" | "text" | "podcast") => {
+    setActiveTab(tab)
+    setSelectedGenre("all")
+    setCurrentPage(1)
+  }
+
+  // Filter contents based on tab and genre
   const filteredContents = useMemo(() => {
     let contents = ALL_CONTENTS
     if (activeTab !== "all") {
       contents = contents.filter(c => c.contentType === activeTab)
+    }
+    // Genre filter (mock - in real app, content would have genre field)
+    if (selectedGenre !== "all") {
+      // Simulate genre filtering by using a deterministic hash
+      contents = contents.filter(c => {
+        const hash = c.id.charCodeAt(0) + c.title.length
+        const genreIndex = hash % 10
+        return genreIndex < 5 // Simulate ~50% match for demo
+      })
     }
     if (searchQuery) {
       contents = contents.filter(c => 
@@ -530,7 +716,7 @@ function ExplorerContent() {
       )
     }
     return contents
-  }, [activeTab, searchQuery])
+  }, [activeTab, selectedGenre, searchQuery])
 
   // Prepare different sections
   const heroContent = useMemo(() => {
@@ -604,7 +790,14 @@ function ExplorerContent() {
       {heroContent && <ImmersiveHero content={heroContent} />}
 
       {/* Category Tabs */}
-      <CategoryTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      <CategoryTabs activeTab={activeTab} onTabChange={handleTabChange} />
+
+      {/* Genre Selector */}
+      <GenreSelector 
+        activeTab={activeTab}
+        selectedGenre={selectedGenre}
+        onGenreChange={setSelectedGenre}
+      />
 
       {/* Search Bar */}
       <div className="px-4 sm:px-8 lg:px-16 py-4">
