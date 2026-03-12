@@ -249,7 +249,7 @@ export default function FAQPage() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Questions fréquentes</h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Parcourez nos sections pour trouver les réponses à vos questions sur VIXUAL et ses 6 profils.
+            Parcourez nos sections pour trouver les reponses a vos questions sur VIXUAL et ses 8 profils (1 Invite non inscrit + 7 inscrits).
           </p>
         </div>
 

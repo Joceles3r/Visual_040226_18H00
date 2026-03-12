@@ -4,7 +4,19 @@
  *
  * Utiliser ces constantes pour garantir la coherence des termes
  * dans toute l'interface utilisateur.
+ *
+ * COMPTAGE OFFICIEL DES PROFILS VIXUAL:
+ * - 8 profils au total
+ * - 1 Invite (non inscrit)
+ * - 7 inscrits: Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur
  */
+
+// ── Nombre de profils ──
+export const PROFILE_COUNT = {
+  total: 8,
+  nonInscrit: 1, // Invite
+  inscrits: 7,   // Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur
+} as const;
 
 // ── Roles ──
 

@@ -111,10 +111,10 @@ body.push(bulletList([
 body.push(spacer());
 
 // ═══════════════════════════════════════════════
-// 1. LES 6 PROFILS
+// 1. LES 8 PROFILS
 // ═══════════════════════════════════════════════
-body.push(heading("1. Les 6 Profils VISUAL", 1));
-body.push(p("VISUAL distingue 6 profils actifs (hors Visiteur et Guest) repartis en deux familles :"));
+body.push(heading("1. Les 8 Profils VIXUAL", 1));
+body.push(p("VIXUAL compte 8 profils : 1 Invite (non inscrit) + 7 inscrits (Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur). Repartis en deux familles :"));
 body.push(spacer());
 
 body.push(heading("Createurs (mettent un projet en ligne)", 2));

@@ -60,12 +60,12 @@ export default function DownloadFormulesPage() {
               Contenu du document
             </p>
             {[
-              "6 profils : Porteur, Infoporteur, Podcaster, Investisseur, Investi-lecteur, Auditeur",
+              "8 profils : Invite, Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur",
               "Films/Videos/Docs : 40 / 30 / 7 / 23",
               "Voix de l'Info : vente 70/30 + pot quotidien 60/40",
               "Livres : vente 70/30 + pot mensuel 60/40",
               "Podcasts : vente 70/30 + pot mensuel 40/30/20/10",
-              "Baremes votes, VISUpoints, cautions, quotas createurs",
+              "Baremes votes, VIXUpoints, cautions, quotas createurs",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />

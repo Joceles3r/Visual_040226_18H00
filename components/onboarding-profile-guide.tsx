@@ -26,7 +26,7 @@ export function OnboardingProfileGuide({ isOpen, onClose }: OnboardingProps) {
       title: "Bienvenue sur VIXUAL",
       description: "Découvrez comment participer à la plateforme selon votre profil",
       icon: Users,
-      content: "VIXUAL propose 6 profils différents : Invité, Visiteur, Porteur, Infoporteur, Podcasteur et Contributeur. Chacun offre des avantages uniques!"
+      content: "VIXUAL propose 8 profils : 1 Invite (non inscrit) + 7 inscrits (Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur). Chacun offre des avantages uniques!"
     },
     {
       title: "Invité ou Visiteur?",
