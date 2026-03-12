@@ -153,7 +153,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Puis-je utiliser le paiement hybride?",
-        answer: "Seuls les visiteurs majeurs, contribu-lecteurs et auditeurs (rapport de gains moins eleve que le contributeur) peuvent beneficier du paiement hybride (VIXUpoints + Euros). Les visiteurs mineurs peuvent uniquement acheter avec des VIXUpoints (systeme tres encadre). Le contributeur ne beneficie pas du paiement hybride."
+        answer: "Seuls les visiteurs majeurs/contribu-lecteurs et auditeurs (rapport/gains moins eleves que contributeur) peuvent beneficier du paiement hybride (VIXUpoints + euros). Les visiteurs mineurs sont les seuls autorises a pouvoir acheter du contenu sur VIXUAL avec des VIXUpoints (systeme tres encadre). Le contributeur/porteur/infoporteur/podcasteur ne beneficie pas des VIXUpoints et du paiement hybride."
       }
     ]
   },

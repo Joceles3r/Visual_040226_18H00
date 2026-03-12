@@ -102,7 +102,11 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contact VIXUAL</h4>
+            <Link href="/contact" className="group">
+              <h4 className="text-white font-semibold mb-4 group-hover:text-emerald-400 transition-colors">
+                Contact VIXUAL
+              </h4>
+            </Link>
             <div className="space-y-3">
               <div className="flex items-start gap-2">
                 <Phone className="h-4 w-4 text-emerald-400 mt-0.5" />
@@ -124,10 +128,16 @@ export function Footer() {
                 <div>
                   <p className="text-white/70 text-sm">VIXUAL SAS</p>
                   <p className="text-white/50 text-xs">Adresse a completer</p>
-                  <p className="text-white/50 text-xs">Code postal - Ville</p>
                   <p className="text-white/50 text-xs">France</p>
                 </div>
               </div>
+              <Link 
+                href="/contact" 
+                className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors mt-2"
+              >
+                <Mail className="h-4 w-4" />
+                Nous contacter
+              </Link>
             </div>
           </div>
         </div>
