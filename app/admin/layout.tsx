@@ -13,14 +13,18 @@ import {
   Settings,
   ArrowLeft,
   Lock,
+  UserCog,
+  ShieldCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ADMIN_NAV = [
   { label: "Tableau de bord", href: "/admin", icon: BarChart3 },
+  { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog, highlight: true },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
   { label: "Paiements", href: "/admin#payouts", icon: DollarSign },
   { label: "Signalements", href: "/admin#reports", icon: AlertTriangle },
+  { label: "Securite", href: "/admin/security", icon: ShieldCheck },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -71,10 +75,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/60 hover:text-white hover:bg-red-500/10 transition-colors"
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                item.highlight
+                  ? "text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20"
+                  : "text-white/60 hover:text-white hover:bg-red-500/10"
+              }`}
             >
-              <item.icon className="h-4 w-4 text-red-400/60" />
+              <item.icon className={`h-4 w-4 ${item.highlight ? "text-amber-400" : "text-red-400/60"}`} />
               {item.label}
+              {item.highlight && (
+                <span className="ml-auto text-xs bg-amber-500 text-black px-1.5 py-0.5 rounded font-semibold">
+                  3
+                </span>
+              )}
             </Link>
           ))}
         </nav>
