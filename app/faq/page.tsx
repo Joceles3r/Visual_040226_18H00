@@ -153,7 +153,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Puis-je utiliser le paiement hybride?",
-        answer: "Oui! Tous les profils contributeurs (Contributeur, Contribu-lecteur, Auditeur) utilisent automatiquement le paiement hybride (30% euros min + 70% VIXUpoints max)."
+        answer: "Seuls les visiteurs majeurs, contribu-lecteurs et auditeurs (rapport de gains moins eleve que le contributeur) peuvent beneficier du paiement hybride (VIXUpoints + Euros). Les visiteurs mineurs peuvent uniquement acheter avec des VIXUpoints (systeme tres encadre). Le contributeur ne beneficie pas du paiement hybride."
       }
     ]
   },

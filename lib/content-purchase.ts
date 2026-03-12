@@ -1,12 +1,15 @@
 /**
- * VIXUAL - Système d'Achat de Contenu avec Paiement Hybride
+ * VIXUAL - Systeme d'Achat de Contenu avec Paiement Hybride
  *
- * Permet aux créateurs (Porteur, Infoporteur, Podcasteur) d'acheter du contenu
- * sur VIXUAL en utilisant un paiement hybride (70% max VIXUpoints + 30% min euros).
+ * NOUVELLES REGLES DU PAIEMENT HYBRIDE (mise a jour 12/03/2026):
+ * - Seuls les visiteurs majeurs, contribu-lecteurs et auditeurs beneficient du paiement hybride
+ * - Les visiteurs mineurs peuvent UNIQUEMENT acheter avec des VIXUpoints (systeme tres encadre)
+ * - Le contributeur NE beneficie PAS du paiement hybride ni des VIXUpoints
+ * - Les createurs (Porteur, Infoporteur, Podcasteur) NE beneficient PAS du paiement hybride
  *
- * Règle importante : Un créateur ne peut pas acheter son propre contenu.
+ * Regle importante : Un createur ne peut pas acheter son propre contenu.
  *
- * @since 2026-03-11
+ * @since 2026-03-12
  */
 
 import { VISUPOINTS_PER_EUR } from "./payout/constants"
@@ -14,7 +17,16 @@ import { VISUPOINTS_PER_EUR } from "./payout/constants"
 // ─── Types ───
 
 export type CreatorProfile = "porter" | "infoporter" | "podcaster"
-export type BuyerProfile = "visitor" | "auditor" | "investireader" | "porter" | "infoporter" | "podcaster"
+export type BuyerProfile = "visitor" | "auditor" | "contribureader" | "contributor" | "porter" | "infoporter" | "podcaster"
+
+/** Profils autorises a utiliser le paiement hybride */
+export type HybridPaymentProfile = "visitor_adult" | "contribureader" | "auditor"
+
+/** Profils devant payer 100% en euros (pas de paiement hybride) */
+export type CashOnlyProfile = "contributor" | "porter" | "infoporter" | "podcaster"
+
+/** Profils mineurs (VIXUpoints uniquement, systeme tres encadre) */
+export type MinorProfile = "visitor_minor"
 
 export interface ContentItem {
   id: string
@@ -56,11 +68,27 @@ export const HYBRID_BONUS_RATE = 0.05
 /** Plafond mensuel du bonus en points */
 export const HYBRID_BONUS_MONTHLY_CAP = 200
 
-/** Profils autorisés à acheter du contenu */
+/** Profils autorises a acheter du contenu */
 export const BUYER_PROFILES: BuyerProfile[] = [
   "visitor",
   "auditor",
-  "investireader",
+  "contribureader",
+  "contributor",
+  "porter",
+  "infoporter",
+  "podcaster",
+]
+
+/** Profils pouvant utiliser le paiement hybride (VIXUpoints + Euros) */
+export const HYBRID_PAYMENT_PROFILES: HybridPaymentProfile[] = [
+  "visitor_adult",
+  "contribureader",
+  "auditor",
+]
+
+/** Profils devant payer 100% en euros (pas de paiement hybride) */
+export const CASH_ONLY_PROFILES: CashOnlyProfile[] = [
+  "contributor",
   "porter",
   "infoporter",
   "podcaster",

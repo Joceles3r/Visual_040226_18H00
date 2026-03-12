@@ -1,13 +1,14 @@
 import Link from "next/link"
 import { VisualSlogan } from "@/components/visual-slogan"
+import { Phone, Mail, MapPin, Users, MessageCircle, Lock } from "lucide-react"
 
 export function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-white/10 cinema-footer">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo & Description */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <span className="text-2xl font-black tracking-tight">
                 <span className="text-red-500">V</span>
@@ -22,7 +23,7 @@ export function Footer() {
               <VisualSlogan size="xs" opacity="medium" />
             </div>
             <p className="text-white/60 max-w-md">
-              {"La plateforme d'investissement participatif pour les projets audiovisuels, littéraires et podcasts. Soutenez les créateurs, investissez dans l'art."}
+              {"La plateforme de contribution participative pour les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, contribuez a l'art."}
             </p>
           </div>
 
@@ -37,7 +38,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/how-it-works" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Comment ça marche
+                  Comment ca marche
                 </Link>
               </li>
               <li>
@@ -51,43 +52,83 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/social" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Vixual Social
+                <Link href="/guide-profiles" className="text-white/60 hover:text-emerald-400 transition-colors">
+                  Guide des 8 profils
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Vixual Social */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Légal</h4>
+            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
+              <Users className="h-4 w-4 text-teal-400" />
+              Vixual Social
+            </h4>
+            <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4 mb-3">
+              <p className="text-white/70 text-sm mb-3">
+                Le mini reseau social reserve aux inscrits de VIXUAL
+              </p>
+              <div className="flex items-center gap-2 text-xs text-white/50 mb-2">
+                <Lock className="h-3 w-3" />
+                <span>Acces reserve aux membres</span>
+              </div>
+              <Link 
+                href="/social" 
+                className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 transition-colors"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Acceder a Vixual Social
+              </Link>
+            </div>
             <ul className="space-y-2">
               <li>
-                <Link href="/legal/terms" className="text-white/60 hover:text-emerald-400 transition-colors">
+                <Link href="/legal/terms" className="text-white/60 hover:text-emerald-400 transition-colors text-sm">
                   Conditions d'utilisation
                 </Link>
               </li>
               <li>
-                <Link href="/legal/privacy" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Politique de confidentialité
+                <Link href="/legal/privacy" className="text-white/60 hover:text-emerald-400 transition-colors text-sm">
+                  Politique de confidentialite
                 </Link>
               </li>
               <li>
-                <Link href="/legal/cgv" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  {"Conditions Générales de Vente"}
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal/cookies" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Cookies
-                </Link>
-              </li>
-              <li>
-                <Link href="/support/contact" className="text-white/60 hover:text-emerald-400 transition-colors">
-                  Contact
+                <Link href="/legal/cgv" className="text-white/60 hover:text-emerald-400 transition-colors text-sm">
+                  CGV
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact VIXUAL</h4>
+            <div className="space-y-3">
+              <div className="flex items-start gap-2">
+                <Phone className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <div>
+                  <p className="text-white/70 text-sm">+33 (0)1 XX XX XX XX</p>
+                  <p className="text-white/40 text-xs">Lun-Ven 9h-18h</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <Mail className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <div className="space-y-1">
+                  <p className="text-white/70 text-sm">contact@vixual.fr</p>
+                  <p className="text-white/70 text-sm">support@vixual.fr</p>
+                  <p className="text-white/70 text-sm">partenaires@vixual.fr</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <div>
+                  <p className="text-white/70 text-sm">VIXUAL SAS</p>
+                  <p className="text-white/50 text-xs">Adresse a completer</p>
+                  <p className="text-white/50 text-xs">Code postal - Ville</p>
+                  <p className="text-white/50 text-xs">France</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -97,7 +138,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <span className="text-white/40 text-sm">
-              Investir comporte des risques. Les gains ne sont pas garantis.
+              Contribuer comporte des risques. Les gains ne sont pas garantis.
             </span>
           </div>
         </div>

@@ -310,15 +310,17 @@ export default function HomePage() {
                     Découvrez votre profil idéal
                   </h3>
                   <p className="text-white/60 mb-4">
-                    6 profils différents, 6 façons de participer à VIXUAL. Lequel vous correspond?
+                    8 profils differents, 8 facons de participer a VIXUAL. Lequel vous correspond?
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Invité</Badge>
+                    <Badge className="bg-slate-500/20 text-slate-300 border-slate-500/30">Invite</Badge>
                     <Badge className="bg-teal-500/20 text-teal-300 border-teal-500/30">Visiteur</Badge>
                     <Badge className="bg-rose-500/20 text-rose-300 border-rose-500/30">Porteur</Badge>
                     <Badge className="bg-sky-500/20 text-sky-300 border-sky-500/30">Infoporteur</Badge>
                     <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30">Podcasteur</Badge>
-                    <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30">Contributeur</Badge>
+                    <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Contributeur</Badge>
+                    <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30">Contribu-lecteur</Badge>
+                    <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">Auditeur</Badge>
                   </div>
                 </div>
                 <Link href="/guide-profiles">

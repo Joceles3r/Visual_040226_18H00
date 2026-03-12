@@ -660,31 +660,54 @@ export default function CGVPage() {
             </div>
           </SubSection>
 
-          <SubSection title="Profils autorisés à acheter">
-            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
-              <li>{"✅ Visiteur - peut acheter n'importe quel contenu"}</li>
-              <li>{"✅ Porteur - peut acheter contenus écrits et podcasts (pas ses vidéos)"}</li>
-              <li>{"✅ Infoporteur - peut acheter vidéos et podcasts (pas ses articles)"}</li>
-              <li>{"✅ Podcasteur - peut acheter vidéos et contenus écrits (pas ses podcasts)"}</li>
-              <li>{"✅ Contributeur / Contribu-lecteur / Auditeur - peuvent tous acheter du contenu"}</li>
-              <li>{"⚠️ Investisseur - déconseillé (devrait plutôt utiliser l'investissement standard)"}</li>
-            </ul>
+          <SubSection title="Profils et paiement hybride">
+            <div className="space-y-4">
+              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded p-3">
+                <p className="font-semibold text-emerald-200 mb-2">{"Profils eligibles au paiement hybride (VIXUpoints + Euros)"}</p>
+                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
+                  <li>{"Visiteur majeur - paiement hybride autorise"}</li>
+                  <li>{"Contribu-lecteur - paiement hybride autorise"}</li>
+                  <li>{"Auditeur - paiement hybride autorise"}</li>
+                </ul>
+              </div>
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3">
+                <p className="font-semibold text-amber-200 mb-2">{"Profils payant 100% en euros (pas de paiement hybride)"}</p>
+                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
+                  <li>{"Contributeur - paiement en euros uniquement"}</li>
+                  <li>{"Porteur / Infoporteur / Podcasteur - paiement en euros uniquement"}</li>
+                </ul>
+              </div>
+              <div className="bg-sky-500/10 border border-sky-500/30 rounded p-3">
+                <p className="font-semibold text-sky-200 mb-2">{"Cas special : Visiteurs mineurs"}</p>
+                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
+                  <li>{"Achat avec VIXUpoints uniquement (systeme tres encadre)"}</li>
+                  <li>{"Controle parental obligatoire"}</li>
+                  <li>{"Limites strictes sur les achats"}</li>
+                </ul>
+              </div>
+            </div>
           </SubSection>
 
-          <SubSection title="Avantages du système">
+          <SubSection title="Avantages du systeme">
             <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
               <li>{"Augmente la circulation interne des VIXUpoints"}</li>
-              <li>{"Réduit la barrière d'achat pour les utilisateurs"}</li>
-              <li>{"Crée une économie interne vivante et équilibrée"}</li>
-              <li>{"Maintient une valeur réelle via la part en euros (minimum 30%)"}</li>
-              <li>{"Encourage la découverte de contenus entre créateurs"}</li>
+              <li>{"Reduit la barriere d'achat pour les utilisateurs eligibles"}</li>
+              <li>{"Cree une economie interne vivante et equilibree"}</li>
+              <li>{"Maintient une valeur reelle via la part en euros (minimum 30%)"}</li>
+              <li>{"Encourage la decouverte de contenus"}</li>
             </ul>
           </SubSection>
 
-          <SubSection title="Règles importantes">
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3 text-white/70 text-sm">
-              <p className="font-semibold text-amber-200 mb-2">{"⚠️ Un créateur ne peut pas acheter son propre contenu"}</p>
-              <p>{"Cette règle s'applique à tous les profils créateurs (Porteur, Infoporteur, Podcasteur). Cela maintient l'intégrité du système."}</p>
+          <SubSection title="Regles importantes">
+            <div className="space-y-3">
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3 text-white/70 text-sm">
+                <p className="font-semibold text-amber-200 mb-2">{"Un createur ne peut pas acheter son propre contenu"}</p>
+                <p>{"Cette regle s'applique a tous les profils createurs (Porteur, Infoporteur, Podcasteur)."}</p>
+              </div>
+              <div className="bg-rose-500/10 border border-rose-500/30 rounded p-3 text-white/70 text-sm">
+                <p className="font-semibold text-rose-200 mb-2">{"Le Contributeur ne beneficie pas du paiement hybride"}</p>
+                <p>{"Contrairement aux Contribu-lecteurs et Auditeurs, le Contributeur paie 100% en euros."}</p>
+              </div>
             </div>
           </SubSection>
         </Section>

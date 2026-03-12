@@ -46,7 +46,7 @@ const STEPS = [
     step: 3,
     title: "Payez votre caution",
     description:
-      "Dix euros pour les createurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les contributeurs (Contributeur, Contribu-lecteur, Auditeur). Caution unique remboursable a la resignation.",
+      "Dix euros pour les createurs (Porteur, Infoporteur, Podcasteur), vingt euros pour les contributeurs (Contributeur, Contribu-lecteur, Auditeur). Caution unique remboursable a la resiliation.",
     icon: Shield,
     color: "text-sky-400",
     bgColor: "bg-sky-500/20",
@@ -92,6 +92,7 @@ const ROLES = [
       "VIXUpoints et badges",
       "Favoris et suivis",
       "Commentaires et partages",
+      "Beneficier du paiement hybride (majeurs uniquement)",
     ],
     restrictions: [],
     caution: null,
@@ -153,6 +154,7 @@ const ROLES = [
       "Portefeuille litteraire",
       "Historique des gains",
       "Retrait via Stripe",
+      "Beneficier du paiement hybride",
     ],
     restrictions: [],
     caution: "Vingt euros",
@@ -176,13 +178,14 @@ const ROLES = [
   },
   {
     title: "Auditeur",
-    subtitle: "Investisseur podcast",
-    description: "Investissez sur des podcasts et soutenez les podcasteurs",
+    subtitle: "Contributeur podcast",
+    description: "Contribuez a des podcasts et soutenez les podcasteurs",
     features: [
-      "Investissement de deux \u00e0 vingt euros",
+      "Contribution de deux a vingt euros",
       "Portefeuille podcasts",
       "Historique des gains",
       "Retrait via Stripe",
+      "Beneficier du paiement hybride",
     ],
     restrictions: [],
     caution: "Vingt euros",
@@ -443,7 +446,7 @@ export default function HowItWorksPage() {
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot du jour :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-sky-400">Lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Contribu-lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
                   </CardContent>
                 </Card>
 
@@ -463,7 +466,7 @@ export default function HowItWorksPage() {
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-sky-400">Investi-lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-sky-400">Contribu-lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
                   </CardContent>
                 </Card>
 
