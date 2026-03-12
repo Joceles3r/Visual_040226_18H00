@@ -722,17 +722,48 @@ function ExplorerContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { isAuthed, roles } = useAuth()
-  const [activeTab, setActiveTab] = useState<"all" | "video" | "text" | "podcast">("all")
-  const [selectedGenre, setSelectedGenre] = useState<string>("all")
+  
+  // Read initial state from URL params
+  const tabParam = searchParams.get("tab") as "all" | "video" | "text" | "podcast" | null
+  const genreParam = searchParams.get("genre") || "all"
+  const pageParam = parseInt(searchParams.get("page") || "1", 10)
+  
+  const [activeTab, setActiveTab] = useState<"all" | "video" | "text" | "podcast">(tabParam || "all")
+  const [selectedGenre, setSelectedGenre] = useState<string>(genreParam)
   const [searchQuery, setSearchQuery] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(pageParam)
+
+  // Sync URL when state changes
+  const updateURL = useCallback((tab: string, genre: string, page: number) => {
+    const params = new URLSearchParams()
+    if (tab !== "all") params.set("tab", tab)
+    if (genre !== "all") params.set("genre", genre)
+    if (page > 1) params.set("page", page.toString())
+    
+    const newURL = params.toString() ? `/explore?${params.toString()}` : "/explore"
+    router.push(newURL, { scroll: false })
+  }, [router])
 
   // Reset genre when tab changes
-  const handleTabChange = (tab: "all" | "video" | "text" | "podcast") => {
+  const handleTabChange = useCallback((tab: "all" | "video" | "text" | "podcast") => {
     setActiveTab(tab)
     setSelectedGenre("all")
     setCurrentPage(1)
-  }
+    updateURL(tab, "all", 1)
+  }, [updateURL])
+
+  // Handle genre change
+  const handleGenreChange = useCallback((genre: string) => {
+    setSelectedGenre(genre)
+    setCurrentPage(1)
+    updateURL(activeTab, genre, 1)
+  }, [activeTab, updateURL])
+
+  // Handle page change
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page)
+    updateURL(activeTab, selectedGenre, page)
+  }, [activeTab, selectedGenre, updateURL])
 
   // Filter contents based on tab and genre
   const filteredContents = useMemo(() => {
@@ -836,7 +867,7 @@ function ExplorerContent() {
       <GenreSelector 
         activeTab={activeTab}
         selectedGenre={selectedGenre}
-        onGenreChange={setSelectedGenre}
+        onGenreChange={handleGenreChange}
       />
 
       {/* Search Bar */}
@@ -944,7 +975,7 @@ function ExplorerContent() {
             currentPage={currentPage}
             totalPages={Math.max(15, Math.ceil(filteredContents.length / ITEMS_PER_PAGE))}
             onPageChange={(page) => {
-              setCurrentPage(page)
+              handlePageChange(page)
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           />
