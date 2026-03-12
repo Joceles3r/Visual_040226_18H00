@@ -597,33 +597,105 @@ export default function CGVPage() {
 
         </div>
       </main>
-        {/* 7bis. PAIEMENT HYBRIDE */}
-        <Section num={0} title="Paiement hybride - Achat de contenu">
-          <p className="text-white/70 mb-4">
-            {"Les créateurs (Porteur, Infoporteur, Podcasteur) ainsi que tous les utilisateurs inscrits peuvent acheter du contenu sur VIXUAL en utilisant le paiement hybride."}
-          </p>
-
-          <SubSection title="Principes généraux">
-            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
-              <li>{"Le paiement hybride combine VIXUpoints + euros"}</li>
-              <li>{"Maximum 70% du prix en VIXUpoints"}</li>
-              <li>{"Minimum 30% du prix en euros (cash)"}</li>
-              <li>{"Bonus : 5% des points dépensés sont regagnés (plafonné à 200 pts/mois)"}</li>
-              <li>{"Un créateur ne peut pas acheter son propre contenu"}</li>
-            </ul>
+        {/* 7bis. PAIEMENT HYBRIDE ET VIXUPOINTS */}
+        <Section num={0} title="VIXUpoints et Paiement hybride">
+          <SubSection title="Definition des VIXUpoints">
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-4">
+              <p className="text-white/80 text-sm mb-2">
+                {"Les VIXUpoints sont des points de participation attribues aux utilisateurs pour leur activite positive sur VIXUAL."}
+              </p>
+              <p className="text-amber-200 font-semibold">{"Conversion officielle: 100 VIXUpoints = 1 EUR"}</p>
+              <p className="text-white/60 text-xs mt-2">
+                {"Les VIXUpoints ne constituent PAS une monnaie, ni un produit financier."}
+              </p>
+            </div>
           </SubSection>
 
-          <SubSection title="Exemples de paiement">
-            <div className="space-y-3 text-white/70 text-sm">
-              <div className="bg-slate-800/30 p-3 rounded">
-                <p className="font-semibold text-white mb-2">Contenu à 4€ :</p>
-                <ul className="space-y-1 pl-4">
-                  <li>{"Option 1 : 4€ (100% cash)"}</li>
-                  <li>{"Option 2 : 2€ + 200 VIXUpoints (max hybride)"}</li>
-                  <li>{"Option 3 : 1,20€ + 280 VIXUpoints (au maximum autorisé)"}</li>
-                  <li className="text-rose-400 mt-2">{"❌ Non autorisé : 400 VIXUpoints seuls (nécessiterait 100% points)"}</li>
-                </ul>
-              </div>
+          <SubSection title="Principe du paiement hybride">
+            <p className="text-white/70 mb-3 text-sm">
+              {"Le paiement hybride permet de payer un contenu avec: VIXUpoints + Euros"}
+            </p>
+            <div className="bg-slate-800/30 p-3 rounded mb-4">
+              <p className="font-semibold text-white mb-2">{"Exemple pour un contenu a 3 EUR:"}</p>
+              <ul className="space-y-1 pl-4 text-white/70 text-sm">
+                <li>{"3 EUR (100% euros)"}</li>
+                <li>{"200 VIXUpoints + 1 EUR"}</li>
+                <li>{"100 VIXUpoints + 2 EUR"}</li>
+              </ul>
+            </div>
+          </SubSection>
+
+          <SubSection title="Profils et autorisations">
+            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
+              <table className="text-xs text-white/70 w-full">
+                <thead>
+                  <tr className="border-b border-slate-600">
+                    <th className="text-left py-2">Profil</th>
+                    <th className="text-center py-2">VIXUpoints</th>
+                    <th className="text-center py-2">Euros</th>
+                    <th className="text-center py-2">Hybride</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Visiteur mineur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Visiteur majeur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Contributeur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-rose-400">Non</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Contribu-lecteur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Auditeur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Porteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Infoporteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
+                  <tr><td className="py-2">Podcasteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Regles pour les visiteurs mineurs">
+            <div className="bg-sky-500/10 border border-sky-500/30 rounded-lg p-4 mb-4">
+              <p className="text-sky-200 font-semibold mb-2">{"Les visiteurs mineurs peuvent:"}</p>
+              <ul className="space-y-1 pl-4 text-white/70 text-sm list-disc list-inside">
+                <li>{"Gagner des VIXUpoints"}</li>
+                <li>{"Utiliser leurs VIXUpoints pour acceder aux contenus"}</li>
+              </ul>
+              <p className="text-rose-300 font-semibold mt-3 mb-2">{"Les visiteurs mineurs NE peuvent PAS:"}</p>
+              <ul className="space-y-1 pl-4 text-white/70 text-sm list-disc list-inside">
+                <li>{"Payer en euros"}</li>
+                <li>{"Utiliser le paiement hybride"}</li>
+                <li>{"Retirer de l'argent"}</li>
+              </ul>
+            </div>
+          </SubSection>
+
+          <SubSection title="Obtention des VIXUpoints">
+            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
+              <table className="text-xs text-white/70 w-full">
+                <thead>
+                  <tr className="border-b border-slate-600">
+                    <th className="text-left py-2">Action</th>
+                    <th className="text-center py-2">VIXUpoints</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Visionner un extrait</td><td className="text-center text-amber-400">+5</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Visionner un contenu complet</td><td className="text-center text-amber-400">+15</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Commentaire utile sur Vixual Social</td><td className="text-center text-amber-400">+5</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Commentaire apprecie</td><td className="text-center text-amber-400">+10</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Partage d'un contenu VIXUAL</td><td className="text-center text-amber-400">+10</td></tr>
+                  <tr><td className="py-2">Inscription via partage (parrainage)</td><td className="text-center text-amber-400">+40</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Limites anti-abus">
+            <div className="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4">
+              <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
+                <li>{"Maximum 100 VIXUpoints par jour"}</li>
+                <li>{"Maximum 500 VIXUpoints par semaine"}</li>
+                <li>{"Plafond visiteur mineur: 10 000 VIXUpoints"}</li>
+                <li>{"Plafond visiteur majeur: 2 500 VIXUpoints"}</li>
+                <li>{"Les VIXUpoints obtenus frauduleusement peuvent etre supprimes"}</li>
+              </ul>
             </div>
           </SubSection>
 

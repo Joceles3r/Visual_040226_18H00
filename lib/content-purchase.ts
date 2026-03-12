@@ -1,13 +1,26 @@
 /**
  * VIXUAL - Systeme d'Achat de Contenu avec Paiement Hybride
  *
- * NOUVELLES REGLES DU PAIEMENT HYBRIDE (mise a jour 12/03/2026):
- * - Seuls les visiteurs majeurs, contribu-lecteurs et auditeurs beneficient du paiement hybride
- * - Les visiteurs mineurs peuvent UNIQUEMENT acheter avec des VIXUpoints (systeme tres encadre)
- * - Le contributeur NE beneficie PAS du paiement hybride ni des VIXUpoints
- * - Les createurs (Porteur, Infoporteur, Podcasteur) NE beneficient PAS du paiement hybride
+ * PAIEMENT HYBRIDE: Permet de payer un contenu avec VIXUpoints + Euros
  *
- * Regle importante : Un createur ne peut pas acheter son propre contenu.
+ * Exemple pour un contenu a 3 EUR:
+ * - 3 EUR (100% euros)
+ * - 200 VIXUpoints + 1 EUR
+ * - 100 VIXUpoints + 2 EUR
+ *
+ * REGLES PAR PROFIL (mise a jour 12/03/2026):
+ * | Profil           | VIXUpoints | Euros | Hybride |
+ * |------------------|------------|-------|---------|
+ * | Visiteur mineur  | Oui        | Non   | Non     |
+ * | Visiteur majeur  | Oui        | Oui   | Oui     |
+ * | Contributeur     | Non        | Oui   | Non     |
+ * | Contribu-lecteur | Oui        | Oui   | Oui     |
+ * | Auditeur         | Oui        | Oui   | Oui     |
+ * | Porteur          | Non        | Non   | Non     |
+ * | Infoporteur      | Non        | Non   | Non     |
+ * | Podcasteur       | Non        | Non   | Non     |
+ *
+ * Regle importante: Un createur ne peut pas acheter son propre contenu.
  *
  * @since 2026-03-12
  */

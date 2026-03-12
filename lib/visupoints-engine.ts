@@ -1,11 +1,31 @@
 /**
  * VIXUAL - VIXUpoints Engine
  *
- * Gere l'accumulation, le plafond mineurs (16-17 ans), le blocage retrait,
- * et la detection automatique de majorite.
+ * DEFINITION: Les VIXUpoints sont des points de participation attribues aux utilisateurs
+ * pour leur activite positive sur la plateforme VIXUAL.
  *
- * Plafond mineur : 10 000 VIXUpoints (equivalent 100 EUR)
- * Plafond majeur : illimite (conversion a partir de 2 500 pts)
+ * CONVERSION OFFICIELLE: 100 VIXUpoints = 1 EUR
+ *
+ * Les VIXUpoints permettent:
+ * - d'acceder a des contenus
+ * - d'encourager la participation communautaire
+ * - de soutenir indirectement les createurs
+ *
+ * Les VIXUpoints ne constituent PAS une monnaie, ni un produit financier.
+ *
+ * REGLES PAR PROFIL:
+ * - Visiteur mineur: VIXUpoints UNIQUEMENT (pas d'euros, pas de paiement hybride)
+ * - Visiteur majeur: VIXUpoints + Euros + Paiement hybride
+ * - Contributeur: Euros UNIQUEMENT (pas de VIXUpoints, pas de paiement hybride)
+ * - Contribu-lecteur: VIXUpoints + Euros + Paiement hybride
+ * - Auditeur: VIXUpoints + Euros + Paiement hybride
+ * - Porteur/Infoporteur/Podcasteur: NE beneficient PAS des VIXUpoints ni du paiement hybride
+ *
+ * LIMITES ANTI-ABUS:
+ * - Maximum 100 VIXUpoints par jour
+ * - Maximum 500 VIXUpoints par semaine
+ * - Plafond mineur: 10 000 VIXUpoints
+ * - Plafond visiteur majeur: 2 500 VIXUpoints
  */
 
 // ─── Types ───
@@ -42,23 +62,66 @@ export interface UserVisupointsProfile {
 
 // ─── Constants ───
 
+/** Conversion officielle: 100 VIXUpoints = 1 EUR */
+export const VIXUPOINTS_PER_EUR = 100
+
 export const MINOR_VISUPOINTS_CAP = 10_000
+export const ADULT_VISITOR_CAP = 2_500
 export const MINOR_MIN_AGE = 16
 export const MAJORITY_AGE = 18
 
-/** Daily cap: max 60 VIXUpoints/day for any user */
-export const DAILY_VISUPOINTS_CAP = 60
+/** Limites anti-abus */
+export const DAILY_VIXUPOINTS_CAP = 100    // Max 100 VIXUpoints par jour
+export const WEEKLY_VIXUPOINTS_CAP = 500   // Max 500 VIXUpoints par semaine
 
-/** Profile-based caps (total or monthly depending on profile) */
+/** Actions pour gagner des VIXUpoints (visiteurs mineurs) */
+export const VIXUPOINTS_ACTIONS = {
+  viewExcerpt: 5,           // Visionner un extrait
+  viewFullContent: 15,      // Visionner un contenu complet
+  usefulComment: 5,         // Commentaire utile sur Vixual Social
+  appreciatedComment: 10,   // Commentaire apprecie
+  shareContent: 10,         // Partage d'un contenu VIXUAL
+  referralSignup: 40,       // Inscription via partage
+} as const
+
+/** Profile-based caps and permissions */
+export const PROFILE_VIXUPOINTS_CONFIG: Record<string, {
+  canUseVixupoints: boolean
+  canPayEuros: boolean
+  canUseHybrid: boolean
+  cap: number
+  capType: "total" | "monthly"
+}> = {
+  visitor_minor: { canUseVixupoints: true, canPayEuros: false, canUseHybrid: false, cap: 10_000, capType: "total" },
+  visitor_adult: { canUseVixupoints: true, canPayEuros: true, canUseHybrid: true, cap: 2_500, capType: "total" },
+  contributor: { canUseVixupoints: false, canPayEuros: true, canUseHybrid: false, cap: 0, capType: "total" },
+  contribureader: { canUseVixupoints: true, canPayEuros: true, canUseHybrid: true, cap: 2_500, capType: "total" },
+  auditor: { canUseVixupoints: true, canPayEuros: true, canUseHybrid: true, cap: 2_500, capType: "total" },
+  porter: { canUseVixupoints: false, canPayEuros: false, canUseHybrid: false, cap: 0, capType: "total" },
+  infoporter: { canUseVixupoints: false, canPayEuros: false, canUseHybrid: false, cap: 0, capType: "total" },
+  podcaster: { canUseVixupoints: false, canPayEuros: false, canUseHybrid: false, cap: 0, capType: "total" },
+}
+
+/** Message pedagogique VIXUAL */
+export const VIXUPOINTS_PEDAGOGIC_MESSAGE = "Les VIXUpoints recompensent votre participation a la communaute VIXUAL. Decouvrez les contenus, encouragez les createurs et utilisez vos points pour acceder a de nouvelles experiences."
+
+/** Message limite proche */
+export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoints. Decouvrez de nouveaux contenus pour les utiliser."
+
+// ─── Backward Compatibility Aliases ───
+/** @deprecated Use DAILY_VIXUPOINTS_CAP instead */
+export const DAILY_VISUPOINTS_CAP = DAILY_VIXUPOINTS_CAP
+
+/** @deprecated Use PROFILE_VIXUPOINTS_CONFIG instead */
 export const PROFILE_CAPS: Record<string, { cap: number; type: "total" | "monthly" }> = {
   visitor: { cap: 2_500, type: "total" },
   visitor_minor: { cap: 10_000, type: "total" },
   auditor: { cap: 2_500, type: "total" },
-  investireader: { cap: 2_500, type: "total" },
-  porter: { cap: 1_000, type: "monthly" },
-  infoporter: { cap: 1_000, type: "monthly" },
-  podcaster: { cap: 1_000, type: "monthly" },
-  investor: { cap: Infinity, type: "total" },
+  contribureader: { cap: 2_500, type: "total" },
+  porter: { cap: 0, type: "total" },
+  infoporter: { cap: 0, type: "total" },
+  podcaster: { cap: 0, type: "total" },
+  contributor: { cap: 0, type: "total" },
 }
 
 export const DEFAULT_PARENT_CONSENT: ParentConsent = {

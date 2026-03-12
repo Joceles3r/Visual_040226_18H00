@@ -162,19 +162,27 @@ const FAQ_CATEGORIES = [
     items: [
       {
         question: "Que sont les VIXUpoints?",
-        answer: "Les VIXUpoints sont une monnaie interne que vous gagnez via interactions sur Vixual Social, achat de contenu (5% bonus plafonné 200/mois), et gains de projets en tant que créateur."
+        answer: "Les VIXUpoints sont des points de participation attribues pour votre activite positive sur VIXUAL. Conversion: 100 VIXUpoints = 1 EUR. Ils permettent d'acceder a des contenus et d'encourager la participation communautaire. Ce ne sont PAS une monnaie ni un produit financier."
       },
       {
         question: "Comment gagner des VIXUpoints?",
-        answer: "Interactions sur Vixual Social (likes, commentaires), bonus d'achat (5% des points dépensés, plafonné 200/mois), participation à des événements, et gains de projets en tant que créateur."
+        answer: "Visionner un extrait (+5 pts), visionner un contenu complet (+15 pts), commentaire utile (+5 pts), commentaire apprecie (+10 pts), partage de contenu (+10 pts), inscription via partage (+40 pts). Limites: max 100 pts/jour, max 500 pts/semaine."
       },
       {
-        question: "Comment utiliser mes VIXUpoints?",
-        answer: "Vous pouvez utiliser vos VIXUpoints pour: payer des contenus (hybrid 70% max), acheter du contenu exclusif, ou les échanger contre 25€ minimum une fois la limite atteinte."
+        question: "Quels profils peuvent utiliser les VIXUpoints?",
+        answer: "Visiteurs majeurs, Contribu-lecteurs et Auditeurs peuvent utiliser les VIXUpoints ET le paiement hybride. Les Visiteurs mineurs peuvent UNIQUEMENT utiliser les VIXUpoints. Les Contributeurs, Porteurs, Infoporteurs et Podcasteurs ne beneficient PAS des VIXUpoints."
       },
       {
-        question: "Comment fonctionne le bonus 5% sur les achats?",
-        answer: "Quand vous payez du contenu en hybride, 5% des VIXUpoints dépensés vous sont regagnés. Ce bonus est plafonné à 200 VIXUpoints par mois pour éviter les abus."
+        question: "Qu'est-ce que le paiement hybride?",
+        answer: "Le paiement hybride permet de payer un contenu avec VIXUpoints + Euros. Exemple pour 3 EUR: soit 3 EUR, soit 200 pts + 1 EUR, soit 100 pts + 2 EUR. Le systeme calcule automatiquement la meilleure combinaison."
+      },
+      {
+        question: "Quelles sont les limites des VIXUpoints?",
+        answer: "Plafond visiteur mineur: 10 000 VIXUpoints. Plafond visiteur majeur: 2 500 VIXUpoints. Maximum 100 pts/jour, 500 pts/semaine. Les VIXUpoints obtenus frauduleusement peuvent etre supprimes."
+      },
+      {
+        question: "Les visiteurs mineurs peuvent-ils utiliser de l'argent?",
+        answer: "Non. Les visiteurs mineurs peuvent UNIQUEMENT utiliser leurs VIXUpoints pour acceder aux contenus. Ils ne peuvent pas payer en euros, ni utiliser le paiement hybride, ni retirer d'argent."
       }
     ]
   },
