@@ -191,7 +191,7 @@ export default function TermsOfUsePage() {
                   </div>
                 </SubSection>
 
-                <SubSection title="Les 7 rôles VIXUAL">
+                <SubSection title="Les 7 rôles inscrits dans VIXUAL">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                     {[
                       { icon: Eye, color: "text-amber-400", bg: "bg-amber-500/15", border: "border-amber-500/20", role: "Visiteur", caution: "Aucune", desc: "Accède aux contenus gratuits, accumule des VIXUpoints, interagit avec la communauté" },
