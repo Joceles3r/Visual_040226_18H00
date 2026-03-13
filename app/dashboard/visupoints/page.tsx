@@ -4,12 +4,14 @@ import { useState } from "react"
 import {
   Star, Share2, Users, MessageSquare, Calendar, Gift, Trophy, Lock,
   ArrowRight, ShieldAlert, AlertTriangle, CheckCircle2, Zap, ShoppingBag,
-  TrendingUp, Info, Sparkles, CreditCard,
+  TrendingUp, Info, Sparkles, CreditCard, Package,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/lib/auth-context"
+import { MicropacksShop } from "@/components/vixupoints-micropacks"
 import {
   VISUPOINTS_CONVERSION_THRESHOLD,
   VISUPOINTS_PER_EUR,
@@ -429,6 +431,23 @@ export default function VisupointsPage() {
 
       {/* Simulateur Paiement Hybride */}
       <HybridSimulator userPoints={currentPoints} />
+
+      {/* Micro-Packs VIXUpoints */}
+      <Card className="bg-slate-900/50 border-white/10">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <Package className="h-5 w-5 text-amber-400" />
+            Acheter des VIXUpoints
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <MicropacksShop
+            userProfile={userIsMinor ? "visitor_minor" : userRole}
+            currentBalance={currentPoints}
+            isMinor={userIsMinor}
+          />
+        </CardContent>
+      </Card>
 
       {/* Conversion Card */}
       <Card className="bg-slate-900/50 border-white/10">

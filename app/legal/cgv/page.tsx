@@ -699,6 +699,52 @@ export default function CGVPage() {
             </div>
           </SubSection>
 
+          <SubSection title="Micro-Packs VIXUpoints">
+            <p className="text-white/70 mb-4 text-sm">
+              {"Les micro-packs permettent d'acheter des VIXUpoints avec un bonus inclus. Ils evitent les micro-paiements et simplifient les achats inferieurs a 2 EUR."}
+            </p>
+            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
+              <table className="text-xs text-white/70 w-full">
+                <thead>
+                  <tr className="border-b border-slate-600">
+                    <th className="text-left py-2">Pack</th>
+                    <th className="text-center py-2">Prix</th>
+                    <th className="text-center py-2">VIXUpoints</th>
+                    <th className="text-center py-2">Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Micro Pack</td><td className="text-center">5 EUR</td><td className="text-center text-amber-400">550</td><td className="text-center text-emerald-400">+10%</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Starter Pack</td><td className="text-center">10 EUR</td><td className="text-center text-amber-400">1 150</td><td className="text-center text-emerald-400">+15%</td></tr>
+                  <tr className="border-b border-slate-700/50"><td className="py-2">Creator Pack</td><td className="text-center">20 EUR</td><td className="text-center text-amber-400">2 400</td><td className="text-center text-emerald-400">+20%</td></tr>
+                  <tr><td className="py-2">Community Pack</td><td className="text-center">50 EUR</td><td className="text-center text-amber-400">6 500</td><td className="text-center text-emerald-400">+30%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+              <p className="text-amber-200 font-semibold mb-2">{"Profils eligibles a l'achat de micro-packs"}</p>
+              <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
+                <li>{"Visiteur majeur"}</li>
+                <li>{"Visiteur mineur (limite a 2 achats/mois, max 1 100 pts)"}</li>
+                <li>{"Contribu-lecteur"}</li>
+                <li>{"Auditeur"}</li>
+              </ul>
+              <p className="text-rose-300 text-xs mt-3">{"Le Contributeur ne peut PAS acheter de micro-packs (euros uniquement)."}</p>
+            </div>
+          </SubSection>
+
+          <SubSection title="Limites d'achat micro-packs">
+            <div className="bg-slate-800/30 rounded-lg p-4">
+              <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
+                <li>{"Maximum 2 achats par jour"}</li>
+                <li>{"Maximum 3 000 VIXUpoints achetes par jour"}</li>
+                <li>{"Maximum 5 achats par semaine"}</li>
+                <li>{"Maximum 10 000 VIXUpoints achetes par semaine"}</li>
+                <li>{"Mineurs: maximum 2 achats par mois (1 100 VIXUpoints max)"}</li>
+              </ul>
+            </div>
+          </SubSection>
+
           <SubSection title="Calcul du paiement hybride">
             <p className="text-white/70 mb-4 text-sm">
               {"Formule : VIXUpoints_max = prix_contenu × 0,7 × 100 (car 100 VIXUpoints = 1€)"}

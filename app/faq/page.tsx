@@ -183,6 +183,14 @@ const FAQ_CATEGORIES = [
       {
         question: "Les visiteurs mineurs peuvent-ils utiliser de l'argent?",
         answer: "Non. Les visiteurs mineurs peuvent UNIQUEMENT utiliser leurs VIXUpoints pour acceder aux contenus. Ils ne peuvent pas payer en euros, ni utiliser le paiement hybride, ni retirer d'argent."
+      },
+      {
+        question: "Qu'est-ce que les micro-packs VIXUpoints?",
+        answer: "Les micro-packs permettent d'acheter des VIXUpoints avec un bonus inclus. 4 packs disponibles: Micro (5 EUR = 550 pts, +10%), Starter (10 EUR = 1150 pts, +15%), Creator (20 EUR = 2400 pts, +20%), Community (50 EUR = 6500 pts, +30%)."
+      },
+      {
+        question: "Qui peut acheter des micro-packs?",
+        answer: "Les Visiteurs (majeurs et mineurs), Contribu-lecteurs et Auditeurs peuvent acheter des micro-packs. Les Contributeurs ne peuvent PAS acheter de micro-packs car ils utilisent uniquement des euros. Les mineurs sont limites a 2 achats par mois."
       }
     ]
   },

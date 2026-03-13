@@ -108,6 +108,83 @@ export const VIXUPOINTS_PEDAGOGIC_MESSAGE = "Les VIXUpoints recompensent votre p
 /** Message limite proche */
 export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoints. Decouvrez de nouveaux contenus pour les utiliser."
 
+// ─── Micro-Packs VIXUpoints ───
+
+export interface VixupointsPack {
+  id: string
+  name: string
+  priceEur: number
+  basePoints: number
+  bonusPercent: number
+  totalPoints: number
+  popular?: boolean
+  description: string
+}
+
+/** Micro-packs officiels VIXUpoints */
+export const VIXUPOINTS_PACKS: VixupointsPack[] = [
+  {
+    id: "micro",
+    name: "Micro Pack",
+    priceEur: 5,
+    basePoints: 500,
+    bonusPercent: 10,
+    totalPoints: 550,
+    description: "Ideal pour debloquer quelques contenus"
+  },
+  {
+    id: "starter",
+    name: "Starter Pack",
+    priceEur: 10,
+    basePoints: 1000,
+    bonusPercent: 15,
+    totalPoints: 1150,
+    popular: true,
+    description: "Le choix populaire pour les visiteurs actifs"
+  },
+  {
+    id: "creator",
+    name: "Creator Pack",
+    priceEur: 20,
+    basePoints: 2000,
+    bonusPercent: 20,
+    totalPoints: 2400,
+    description: "Pour soutenir vos createurs preferes"
+  },
+  {
+    id: "community",
+    name: "Community Pack",
+    priceEur: 50,
+    basePoints: 5000,
+    bonusPercent: 30,
+    totalPoints: 6500,
+    description: "Maximum de valeur pour les passionnes"
+  },
+]
+
+/** Profils autorises a acheter des micro-packs */
+export const MICROPACKS_ELIGIBLE_PROFILES = [
+  "visitor_minor",
+  "visitor_adult", 
+  "contribureader",
+  "auditor",
+] as const
+
+/** Verifie si un profil peut acheter des micro-packs */
+export function canBuyMicropacks(profile: string): boolean {
+  return MICROPACKS_ELIGIBLE_PROFILES.includes(profile as any)
+}
+
+/** Limites anti-abus pour les achats de micro-packs */
+export const MICROPACKS_LIMITS = {
+  maxPurchasePerDay: 2,           // Max 2 achats par jour
+  maxPointsPerDay: 3000,          // Max 3000 VIXUpoints achetes par jour
+  maxPurchasePerWeek: 5,          // Max 5 achats par semaine
+  maxPointsPerWeek: 10000,        // Max 10000 VIXUpoints achetes par semaine
+  minorMaxPerMonth: 2,            // Mineurs: max 2 achats par mois
+  minorMaxPointsPerMonth: 1100,   // Mineurs: max 1100 VIXUpoints par mois
+} as const
+
 export const DEFAULT_PARENT_CONSENT: ParentConsent = {
   status: "not_required",
   acceptedByGuardian: false,
