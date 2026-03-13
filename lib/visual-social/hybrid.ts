@@ -12,11 +12,11 @@ export type VIXUALSocialRole =
   | "visitor"
   | "minor_visitor"
   | "porter"
-  | "investor"
+  | "contributor"
   | "infoporter"
-  | "investireader"
+  | "contribureader"
   | "podcaster"
-  | "listener"
+  | "auditor"
 
 export type SocialStatus = "visible" | "hidden" | "pending" | "deleted"
 

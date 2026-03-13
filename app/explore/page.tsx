@@ -723,7 +723,7 @@ function ExplorerContent() {
   const searchParams = useSearchParams()
   const { isAuthed, roles } = useAuth()
   
-  // Read initial state from URL params
+  // Read URL params
   const tabParam = searchParams.get("tab") as "all" | "video" | "text" | "podcast" | null
   const genreParam = searchParams.get("genre") || "all"
   const pageParam = parseInt(searchParams.get("page") || "1", 10)
@@ -733,7 +733,18 @@ function ExplorerContent() {
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(pageParam)
 
-  // Sync URL when state changes
+  // Sync state with URL params when they change (back/forward navigation)
+  useEffect(() => {
+    const newTab = tabParam || "all"
+    const newGenre = genreParam || "all"
+    const newPage = pageParam || 1
+    
+    if (newTab !== activeTab) setActiveTab(newTab)
+    if (newGenre !== selectedGenre) setSelectedGenre(newGenre)
+    if (newPage !== currentPage) setCurrentPage(newPage)
+  }, [tabParam, genreParam, pageParam])
+
+  // Update URL without triggering re-render loop
   const updateURL = useCallback((tab: string, genre: string, page: number) => {
     const params = new URLSearchParams()
     if (tab !== "all") params.set("tab", tab)
@@ -741,7 +752,7 @@ function ExplorerContent() {
     if (page > 1) params.set("page", page.toString())
     
     const newURL = params.toString() ? `/explore?${params.toString()}` : "/explore"
-    router.push(newURL, { scroll: false })
+    router.replace(newURL, { scroll: false })
   }, [router])
 
   // Reset genre when tab changes

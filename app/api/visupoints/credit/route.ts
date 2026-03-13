@@ -70,7 +70,7 @@ export const POST = withErrorHandler(async (req: Request) => {
       success: false,
       credited: 0,
       reason: result.dailyCapHit ? "daily_cap" : result.profileCapHit ? "profile_cap" : "minor_cap",
-      dailyRemaining: Math.max(0, DAILY_VISUPOINTS_CAP - dailyEarnedToday),
+      dailyRemaining: Math.max(0, DAILY_VIXUPOINTS_CAP - dailyEarnedToday),
     });
   }
 
@@ -123,6 +123,6 @@ export const POST = withErrorHandler(async (req: Request) => {
     dailyCapHit: result.dailyCapHit,
     profileCapHit: result.profileCapHit,
     minorCapHit: result.minorCapHit,
-    dailyRemaining: Math.max(0, DAILY_VISUPOINTS_CAP - dailyEarnedToday - result.actualCredited),
+    dailyRemaining: Math.max(0, DAILY_VIXUPOINTS_CAP - dailyEarnedToday - result.actualCredited),
   });
 });

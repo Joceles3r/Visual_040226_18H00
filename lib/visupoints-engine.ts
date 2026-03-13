@@ -108,6 +108,19 @@ export const VIXUPOINTS_PEDAGOGIC_MESSAGE = "Les VIXUpoints recompensent votre p
 /** Message limite proche */
 export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoints. Decouvrez de nouveaux contenus pour les utiliser."
 
+// ─── Compatibility Exports ───
+// These are aliases for backward compatibility with existing code
+
+export const VISUPOINTS_CONVERSION_THRESHOLD = 2500
+export const VISUPOINTS_PER_EUR = VIXUPOINTS_PER_EUR
+export const VISUPOINTS_MAX_DAILY = DAILY_VIXUPOINTS_CAP
+export const VISUPOINTS_PROFILE_CAPS = {
+  visitor_minor: { cap: 10_000, maxDaily: 100, canWithdraw: false },
+  visitor_adult: { cap: 2_500, maxDaily: 100, canWithdraw: false },
+  contribureader: { cap: 2_500, maxDaily: 100, canWithdraw: true },
+  auditor: { cap: 2_500, maxDaily: 100, canWithdraw: true },
+} as const
+
 // ─── Micro-Packs VIXUpoints ───
 
 export interface VixupointsPack {
