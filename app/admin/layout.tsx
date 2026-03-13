@@ -14,17 +14,19 @@ import {
   ArrowLeft,
   Lock,
   UserCog,
-  ShieldCheck,
+  ShieldAlert,
+  Crown,
+  Zap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ADMIN_NAV = [
   { label: "Tableau de bord", href: "/admin", icon: BarChart3 },
+  { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
   { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog, highlight: true },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
   { label: "Paiements", href: "/admin#payouts", icon: DollarSign },
   { label: "Signalements", href: "/admin#reports", icon: AlertTriangle },
-  { label: "Securite", href: "/admin/security", icon: ShieldCheck },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -55,16 +57,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-slate-950 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900/80 border-r border-red-500/20 flex flex-col shrink-0 sticky top-0 h-screen">
+      <aside className="w-64 bg-slate-900/80 border-r border-amber-500/30 flex flex-col shrink-0 sticky top-0 h-screen">
         {/* Admin header */}
-        <div className="p-5 border-b border-red-500/20">
+        <div className="p-5 border-b border-amber-500/30 bg-gradient-to-r from-amber-500/10 to-transparent">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center justify-center">
-              <Shield className="h-5 w-5 text-red-400" />
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/30 to-rose-500/20 border border-amber-500/50 flex items-center justify-center">
+              <Crown className="h-6 w-6 text-amber-400" />
             </div>
             <div>
-              <p className="text-sm font-bold text-white">VISUAL Admin</p>
-              <p className="text-xs text-red-400/70 truncate max-w-[140px]">{user?.email}</p>
+              <p className="text-sm font-bold text-amber-400">ADMIN / PATRON</p>
+              <p className="text-xs text-white/50 truncate max-w-[130px]">{user?.email}</p>
             </div>
           </div>
         </div>
@@ -76,13 +78,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               key={item.href}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                item.highlight
+                item.critical
+                  ? "text-rose-300 bg-rose-500/10 border border-rose-500/40 hover:bg-rose-500/20"
+                  : item.highlight
                   ? "text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20"
-                  : "text-white/60 hover:text-white hover:bg-red-500/10"
+                  : "text-white/60 hover:text-white hover:bg-amber-500/10"
               }`}
             >
-              <item.icon className={`h-4 w-4 ${item.highlight ? "text-amber-400" : "text-red-400/60"}`} />
+              <item.icon className={`h-4 w-4 ${item.critical ? "text-rose-400" : item.highlight ? "text-amber-400" : "text-amber-400/60"}`} />
               {item.label}
+              {item.critical && (
+                <span className="ml-auto text-xs bg-rose-500 text-white px-1.5 py-0.5 rounded font-semibold">
+                  !
+                </span>
+              )}
               {item.highlight && (
                 <span className="ml-auto text-xs bg-amber-500 text-black px-1.5 py-0.5 rounded font-semibold">
                   3
