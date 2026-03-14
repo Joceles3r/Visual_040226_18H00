@@ -84,9 +84,9 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-// Mock user pour demonstration
+// Mock user pour demonstration (UUID format requis par Neon)
 const MOCK_USER: User = {
-  id: "1",
+  id: "00000000-0000-0000-0000-000000000001",
   name: "Jean Dupont",
   email: "jean@example.com",
   roles: ["visitor"],
