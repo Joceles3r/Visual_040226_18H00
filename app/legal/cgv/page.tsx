@@ -612,7 +612,7 @@ export default function CGVPage() {
         </div>
       </main>
         {/* 7bis. PAIEMENT HYBRIDE ET VIXUPOINTS */}
-        <Section num={0} title="VIXUpoints et Paiement hybride">
+        <Section num={0} title="VIXUpoints et Paiement hybride" icon={Star}>
           <SubSection title="Definition des VIXUpoints">
             <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-4">
               <p className="text-white/80 text-sm mb-2">
