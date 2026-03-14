@@ -7,7 +7,7 @@ import { VisualSlogan } from "@/components/visual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
-  Ban, Vote, Gavel, Wallet, Star, Users, CheckCircle,
+  Ban, Vote, Gavel, Wallet, Star, Users, CheckCircle, Calculator,
   BadgeCheck, Info, TrendingUp, Award, BarChart3, Handshake, UserCheck,
   MessageSquare, Hash,
 } from "lucide-react"
@@ -384,6 +384,108 @@ export default function CGVPage() {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Nouvelle grille officielle 2026 */}
+              <Card className="bg-amber-500/5 border-amber-500/15 mt-4">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-amber-400 mb-3 flex items-center gap-2">
+                    <TrendingUp className="h-4 w-4" />
+                    {"Grille officielle Contribution → Votes (2026)"}
+                  </h3>
+                  <p className="text-white/60 text-sm leading-relaxed mb-4">
+                    {"Le nombre de votes attribué dépend du montant de la contribution selon cette grille publique. Les votes servent uniquement au classement et à la visibilité, PAS au calcul des gains."}
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-white/10 text-white/50">
+                          <th className="text-left py-2 pr-3 font-medium">{"Contribution"}</th>
+                          <th className="text-center py-2 px-2 font-medium">{"Votes"}</th>
+                          <th className="text-left py-2 pr-3 font-medium">{"Contribution"}</th>
+                          <th className="text-center py-2 px-2 font-medium">{"Votes"}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        <tr>
+                          <td className="py-1.5 pr-3 text-white/70">2 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">1</td>
+                          <td className="py-1.5 pr-3 text-white/70">8 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">7</td>
+                        </tr>
+                        <tr>
+                          <td className="py-1.5 pr-3 text-white/70">3 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">2</td>
+                          <td className="py-1.5 pr-3 text-white/70">10 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">8</td>
+                        </tr>
+                        <tr>
+                          <td className="py-1.5 pr-3 text-white/70">4 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">3</td>
+                          <td className="py-1.5 pr-3 text-white/70">12 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">10</td>
+                        </tr>
+                        <tr>
+                          <td className="py-1.5 pr-3 text-white/70">5 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">4</td>
+                          <td className="py-1.5 pr-3 text-white/70">15 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">13</td>
+                        </tr>
+                        <tr>
+                          <td className="py-1.5 pr-3 text-white/70">6 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">5</td>
+                          <td className="py-1.5 pr-3 text-white/70">20 EUR</td>
+                          <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">15</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Formule de calcul des gains */}
+              <Card className="bg-emerald-500/5 border-emerald-500/15 mt-4">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-emerald-400 mb-3 flex items-center gap-2">
+                    <Calculator className="h-4 w-4" />
+                    {"Formule officielle de calcul des gains"}
+                  </h3>
+                  <p className="text-white/60 text-sm leading-relaxed mb-4">
+                    {"La plateforme VIXUAL applique une règle de répartition transparente des gains. Les montants redistribués aux contributeurs gagnants sont calculés proportionnellement à leur participation financière."}
+                  </p>
+                  <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
+                    <p className="text-white/70 text-sm font-medium mb-2">{"Formule appliquée"}</p>
+                    <div className="bg-black/40 rounded-lg p-3 font-mono text-xs text-emerald-400">
+                      {"gain utilisateur = (contribution utilisateur / total contributions gagnantes) × enveloppe de gains"}
+                    </div>
+                  </div>
+                  <div className="bg-rose-500/10 rounded-lg p-3 border border-rose-500/20">
+                    <p className="text-rose-300 text-xs leading-relaxed">
+                      {"Cette méthode garantit une répartition équitable basée sur le risque financier réellement engagé par chaque participant. Les votes n'interviennent PAS dans le calcul des gains financiers."}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Répartition globale */}
+              <Card className="bg-slate-500/5 border-white/10 mt-4">
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-white mb-3">{"Répartition globale des revenus VIXUAL"}</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                    {[
+                      { label: "Créateurs", value: "40%", color: "text-red-400" },
+                      { label: "Contributeurs gagnants", value: "30%", color: "text-emerald-400" },
+                      { label: "Communauté", value: "23%", color: "text-sky-400" },
+                      { label: "Plateforme", value: "7%", color: "text-amber-400" },
+                    ].map((r) => (
+                      <div key={r.label} className="text-center p-3 rounded-lg bg-slate-800/40">
+                        <div className={`text-xl font-bold ${r.color}`}>{r.value}</div>
+                        <div className="text-white/40 text-xs mt-1">{r.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-white/40 text-xs mt-3">{"Total = 100%. Cette répartition assure l'équilibre entre rémunération des créateurs, récompense des contributeurs et pérennité de la plateforme."}</p>
+                </CardContent>
+              </Card>
             </Section>
 
             {/* Article 9 */}
@@ -497,7 +599,7 @@ export default function CGVPage() {
                 <Bullet>{"Tout propos ou contenu raciste, homophobe, transphobe, antis\u00e9mite, anti-religieux, discriminatoire, insultant ou incitant \u00e0 la haine"}</Bullet>
                 <Bullet>{"Tout harc\u00e8lement, menace, intimidation ou injure envers un autre utilisateur"}</Bullet>
                 <Bullet>{"Toute tentative de fraude, de contournement des syst\u00e8mes de s\u00e9curit\u00e9 ou d'exploitation abusive de la plateforme"}</Bullet>
-                <Bullet>{"L'auto-investissement : un utilisateur ne peut investir dans son propre projet. Sanction : annulation, recalcul des votes, suspension possible"}</Bullet>
+                <Bullet>{"L'auto-contribution : un utilisateur ne peut contribuer à son propre projet. Sanction : annulation, recalcul des votes, suspension possible"}</Bullet>
                 <Bullet>{"Le partage, l'extraction ou le contournement des jetons d'acc\u00e8s aux m\u00e9dias prot\u00e9g\u00e9s"}</Bullet>
               </ul>
               <P>{"Chaque utilisateur inscrit dispose d'un Bouton Rouge de Signalement (Bouton Rouge Alerte) sur chaque contenu, commentaire et profil. Les signalements sont trait\u00e9s par l'\u00e9quipe de mod\u00e9ration VIXUAL sous quarante-huit heures (vingt-quatre heures pour les signalements critiques). Les d\u00e9cisions incluent : avertissement, suppression du contenu, suspension temporaire (sept \u00e0 quatre-vingt-dix jours), suspension d\u00e9finitive et suppression du compte."}</P>
@@ -554,7 +656,7 @@ export default function CGVPage() {
                     <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
                       <p className="text-red-400 font-medium text-sm mb-2">{"Ce qui est interdit avant 18 ans"}</p>
                       <ul className="space-y-1.5 text-white/60 text-xs">
-                        <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Investir sur la plateforme"}</span></li>
+                        <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Contribuer sur la plateforme"}</span></li>
                         <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Retirer ou convertir des VIXUpoints en euros"}</span></li>
                         <li className="flex gap-2 items-start"><Lock className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" /><span>{"Verser une caution ou acc\u00e9der aux r\u00f4les payants"}</span></li>
                       </ul>
@@ -567,7 +669,7 @@ export default function CGVPage() {
                       <p className="text-white font-medium text-sm">{"\u00c0 la majorit\u00e9 (18 ans)"}</p>
                     </div>
                     <p className="text-white/60 text-xs leading-relaxed">
-                      {"Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC), le mineur devenu majeur peut convertir ses VIXUpoints en cr\u00e9dit interne, investir, et effectuer des retraits via Stripe Connect. Le plafond est automatiquement lev\u00e9."}
+                      {"Apr\u00e8s v\u00e9rification d'identit\u00e9 (KYC), le mineur devenu majeur peut convertir ses VIXUpoints en cr\u00e9dit interne, contribuer aux projets, et effectuer des retraits via Stripe Connect. Le plafond est automatiquement lev\u00e9."}
                     </p>
                   </div>
 

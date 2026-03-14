@@ -396,17 +396,17 @@ export default function TermsOfUsePage() {
             </Card>
           </Section>
 
-          {/* 4. Investissement participatif */}
-          <Section num={4} title="Investissement participatif : règles et risques">
+          {/* 4. Contribution participative */}
+          <Section num={4} title="Contribution participative : règles et risques">
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-4">
-                <SubSection title="Modalités d'investissement">
+                <SubSection title="Modalités de contribution">
                   <div className="space-y-2">
                     {[
                       "Montant : de deux euros \u00e0 vingt euros par projet, par transaction",
-                      "Un même inscrit peut investir dans plusieurs projets simultanément",
-                      "L'investissement est définitif une fois confirmé et ne peut être annulé",
-                      "L'investissement s'accompagne d'un vote (favorable) pris en compte dans les classements et la répartition",
+                      "Un même inscrit peut contribuer à plusieurs projets simultanément",
+                      "La contribution est définitive une fois confirmée et ne peut être annulée",
+                      "La contribution s'accompagne d'un vote (favorable) pris en compte dans les classements et la visibilité",
                       "Les gains potentiels dépendent du nombre de vues, votes, écoutes et du système de clôture VIXUAL",
                     ].map((item) => (
                       <div key={item} className="flex gap-2 items-start text-sm">
@@ -424,7 +424,7 @@ export default function TermsOfUsePage() {
                     </p>
                     <ul className="space-y-1.5 text-xs text-white/50 ml-2">
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La catégorie du contenu (audiovisuel, littéraire, podcast)"}</li>
-                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le type de revenus (investissements, ventes, publicités, abonnements)"}</li>
+                      <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le type de revenus (contributions, ventes, publicités, abonnements)"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"Le nombre de votes favorables et de VIXUpoints générés"}</li>
                       <li className="flex gap-2"><span className="text-teal-400">{">"}</span> {"La part attribuée à VIXUAL (frais de plateforme), la réserve technique et la réserve événementielle"}</li>
                     </ul>
@@ -448,14 +448,14 @@ export default function TermsOfUsePage() {
                       <AlertTriangle className="h-5 w-5 text-amber-400 mt-0.5 shrink-0" />
                       <div className="space-y-2">
                         <p className="text-amber-400/90 text-sm font-medium">
-                          {"Investir comporte des risques. Les gains ne sont pas garantis."}
+                          {"Contribuer comporte des risques. Les gains ne sont pas garantis."}
                         </p>
                         <ul className="space-y-1.5 text-xs text-white/50">
-                          <li>{"L'investissement sur VIXUAL n'est pas un produit financier réglementé au sens de la directive MiFID II"}</li>
+                          <li>{"La contribution sur VIXUAL n'est pas un produit financier réglementé au sens de la directive MiFID II"}</li>
                           <li>{"Les performances passées d'un contenu ne garantissent pas les performances futures"}</li>
-                          <li>{"Le montant investi peut ne générer aucun retour si le contenu ne rencontre pas son public"}</li>
-                          <li>{"VIXUAL n'est pas un intermédiaire financier agréé. Les investissements relèvent du financement participatif de projet"}</li>
-                          <li>{"L'inscrit reconnaît investir en connaissance de cause et ne pas engager de sommes qu'il ne peut se permettre de perdre"}</li>
+                          <li>{"Le montant contribué peut ne générer aucun retour si le contenu ne rencontre pas son public"}</li>
+                          <li>{"VIXUAL n'est pas un intermédiaire financier agréé. Les contributions relèvent du financement participatif de projet"}</li>
+                          <li>{"L'inscrit reconnaît contribuer en connaissance de cause et ne pas engager de sommes qu'il ne peut se permettre de perdre"}</li>
                         </ul>
                       </div>
                     </div>
@@ -594,6 +594,89 @@ export default function TermsOfUsePage() {
                     <li className="flex gap-2 items-start"><User className="h-3.5 w-3.5 text-teal-400 mt-0.5 shrink-0" /> {"Chaque inscrit peut consulter son propre positionnement (de 1 à illimité) dans son espace personnel"}</li>
                     <li className="flex gap-2 items-start"><RefreshCw className="h-3.5 w-3.5 text-teal-400 mt-0.5 shrink-0" /> {"Les classements sont mis à jour en temps réel en fonction de l'activité"}</li>
                   </ul>
+                </SubSection>
+
+                <SubSection title={"Système de contribution et de votes (Grille officielle 2026)"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-3">
+                    {"Les contributions financières réalisées par les utilisateurs permettent d'obtenir des votes servant à soutenir et classer les projets présents sur la plateforme VIXUAL. Le nombre de votes attribué dépend du montant de la contribution selon la grille publique suivante :"}
+                  </p>
+                  <div className="overflow-x-auto bg-black/30 rounded-xl p-4 border border-white/5 mb-4">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-white/10 text-white/50">
+                          <th className="text-left py-2 pr-3 font-medium">{"Contribution (EUR)"}</th>
+                          <th className="text-center py-2 px-2 font-medium">{"Votes attribués"}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {[
+                          { eur: "2", votes: "1" },
+                          { eur: "3", votes: "2" },
+                          { eur: "4", votes: "3" },
+                          { eur: "5", votes: "4" },
+                          { eur: "6", votes: "5" },
+                          { eur: "8", votes: "7" },
+                          { eur: "10", votes: "8" },
+                          { eur: "12", votes: "10" },
+                          { eur: "15", votes: "13" },
+                          { eur: "20", votes: "15" },
+                        ].map((row) => (
+                          <tr key={row.eur}>
+                            <td className="py-1.5 pr-3 text-white/70">{row.eur} EUR</td>
+                            <td className="py-1.5 px-2 text-center text-amber-400 font-mono font-bold">{row.votes}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20 mb-3">
+                    <p className="text-emerald-300 font-medium text-sm mb-2">{"Principe fondamental"}</p>
+                    <p className="text-white/60 text-xs leading-relaxed">
+                      {"Plus la contribution financière est élevée, plus le nombre de votes attribués augmente. Ce système encourage la prise de risque financière tout en maintenant l'accessibilité aux petites contributions."}
+                    </p>
+                  </div>
+                  <div className="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
+                    <p className="text-amber-300 font-medium text-sm mb-2">{"Rôle des votes"}</p>
+                    <ul className="space-y-1.5 text-xs text-white/60">
+                      <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-amber-400 mt-0.5 shrink-0" /> {"Les votes servent uniquement à classer les projets"}</li>
+                      <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-amber-400 mt-0.5 shrink-0" /> {"Les votes servent à sélectionner les projets du TOP"}</li>
+                      <li className="flex gap-2 items-start"><CheckCircle className="h-3.5 w-3.5 text-amber-400 mt-0.5 shrink-0" /> {"Les votes influencent la visibilité"}</li>
+                      <li className="flex gap-2 items-start"><AlertTriangle className="h-3.5 w-3.5 text-rose-400 mt-0.5 shrink-0" /> {"Les votes n'ont PAS de valeur financière directe"}</li>
+                      <li className="flex gap-2 items-start"><AlertTriangle className="h-3.5 w-3.5 text-rose-400 mt-0.5 shrink-0" /> {"Les votes ne déterminent pas les gains financiers"}</li>
+                    </ul>
+                  </div>
+                </SubSection>
+
+                <SubSection title={"Calcul des gains (Règle d'équité)"}>
+                  <p className="text-white/60 text-sm leading-relaxed mb-3">
+                    {"Les gains éventuels sont calculés exclusivement sur la base des contributions financières réellement engagées par les utilisateurs, et non sur le nombre de votes."}
+                  </p>
+                  <div className="bg-slate-800/50 rounded-xl p-4 border border-white/10 mb-4">
+                    <p className="text-white/70 text-sm font-medium mb-2">{"Formule officielle de répartition"}</p>
+                    <div className="bg-black/40 rounded-lg p-3 font-mono text-xs text-emerald-400">
+                      {"gain utilisateur = (contribution utilisateur / total contributions gagnantes) × enveloppe de gains"}
+                    </div>
+                  </div>
+                  <p className="text-white/50 text-xs leading-relaxed">
+                    {"Ce système garantit une répartition équitable, une récompense proportionnelle au risque financier, et une impossibilité de manipulation via les votes."}
+                  </p>
+                </SubSection>
+
+                <SubSection title={"Répartition globale des revenus VIXUAL"}>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
+                    {[
+                      { label: "Créateurs", pct: "40%", color: "text-red-400", bg: "bg-red-500/15" },
+                      { label: "Contributeurs gagnants", pct: "30%", color: "text-emerald-400", bg: "bg-emerald-500/15" },
+                      { label: "Communauté", pct: "23%", color: "text-sky-400", bg: "bg-sky-500/15" },
+                      { label: "Plateforme", pct: "7%", color: "text-amber-400", bg: "bg-amber-500/15" },
+                    ].map((item) => (
+                      <div key={item.label} className={`${item.bg} rounded-xl p-3 text-center border border-white/5`}>
+                        <span className={`text-lg font-bold ${item.color}`}>{item.pct}</span>
+                        <p className="text-white/50 text-xs mt-1">{item.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-white/40 text-xs">{"Total = 100%. Cette répartition assure un équilibre entre rémunération des créateurs, récompense des contributeurs et pérennité de la plateforme."}</p>
                 </SubSection>
               </CardContent>
             </Card>

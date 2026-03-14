@@ -39,26 +39,88 @@ export const CAUTION_EUR = {
 } as const;
 
 // ──────────────────────────────────────────────
-// 3. BAREME VOTES (contribution -> votes)
+// 3. BAREME VOTES (contribution -> votes) - NOUVELLE GRILLE OFFICIELLE 2026
 // ──────────────────────────────────────────────
 
-/** Table contribution EUR -> nombre de votes */
+/** 
+ * Table contribution EUR -> nombre de votes (Grille officielle 2026)
+ * Principe: plus la contribution est elevee, plus le nombre de votes augmente
+ * Les votes servent uniquement au classement, PAS aux gains financiers
+ */
 export const CONTRIBUTION_TO_VOTES: ReadonlyMap<number, number> = new Map([
   [2, 1],
   [3, 2],
   [4, 3],
   [5, 4],
   [6, 5],
-  [8, 6],
-  [10, 7],
-  [12, 8],
-  [15, 9],
-  [20, 10],
+  [8, 7],
+  [10, 8],
+  [12, 10],
+  [15, 13],
+  [20, 15],
 ]);
 
-/** Obtenir le nombre de votes pour un montant de contribution */
+/** 
+ * Obtenir le nombre de votes pour un montant de contribution
+ * @param amountEur Montant en euros
+ * @returns Nombre de votes attribues
+ */
 export function getVotesForContribution(amountEur: number): number {
   return CONTRIBUTION_TO_VOTES.get(amountEur) ?? 0;
+}
+
+/**
+ * Conversion euros vers votes (fonction alternative basee sur seuils)
+ * Conforme a la grille officielle VIXUAL 2026
+ */
+export function euroToVotes(amount: number): number {
+  const table = [
+    { amount: 2, votes: 1 },
+    { amount: 3, votes: 2 },
+    { amount: 4, votes: 3 },
+    { amount: 5, votes: 4 },
+    { amount: 6, votes: 5 },
+    { amount: 8, votes: 7 },
+    { amount: 10, votes: 8 },
+    { amount: 12, votes: 10 },
+    { amount: 15, votes: 13 },
+    { amount: 20, votes: 15 },
+  ];
+  const match = table.find(t => amount <= t.amount);
+  return match ? match.votes : 15;
+}
+
+// ──────────────────────────────────────────────
+// 3bis. REPARTITION DES GAINS - REGLES OFFICIELLES
+// ──────────────────────────────────────────────
+
+/**
+ * Repartition globale des revenus VIXUAL (en pourcentage)
+ * Total = 100%
+ */
+export const REVENUE_DISTRIBUTION = {
+  creators: 40,           // Createurs de projets
+  contributors: 30,       // Contributeurs gagnants
+  community: 23,          // Communaute / redistribution
+  platform: 7,            // Plateforme VIXUAL
+} as const;
+
+/**
+ * Calcule le gain d'un utilisateur sur un projet gagnant
+ * Formule: (contribution utilisateur / total contributions gagnantes) x enveloppe gains
+ * 
+ * @param userContribution Contribution de l'utilisateur en euros
+ * @param totalWinningContributions Total des contributions sur les projets gagnants
+ * @param prizePool Enveloppe de gains attribuee aux contributeurs
+ * @returns Gain de l'utilisateur en euros
+ */
+export function calculateUserGain(
+  userContribution: number,
+  totalWinningContributions: number,
+  prizePool: number
+): number {
+  if (totalWinningContributions <= 0) return 0;
+  return (userContribution / totalWinningContributions) * prizePool;
 }
 
 // ──────────────────────────────────────────────
