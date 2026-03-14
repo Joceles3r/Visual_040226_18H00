@@ -68,6 +68,20 @@ function HighlightCard({ icon: Icon, title, children, color = "amber" }: { icon:
   )
 }
 
+function SubSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-6">
+      <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+        <span className="w-1 h-4 bg-amber-500/50 rounded-full" />
+        {title}
+      </h4>
+      <div className="pl-3 border-l border-white/10">
+        {children}
+      </div>
+    </div>
+  )
+}
+
 /* ── Page ──────────────────────────────────────────── */
 
 export default function CGVPage() {
