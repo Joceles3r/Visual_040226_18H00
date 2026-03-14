@@ -164,7 +164,7 @@ export default function WalletPage() {
       })
       const result = await res.json()
       if (result.error) alert(result.error)
-      else { alert(`Caution ${cautionType === "creator" ? "Cr\u00e9ateur" : "Investisseur"} : paiement initialis\u00e9.`); mutate() }
+      else { alert(`Caution ${cautionType === "creator" ? "Cr\u00e9ateur" : "Contributeur"} : paiement initialis\u00e9.`); mutate() }
     } catch { /* silent */ } finally { setCautionLoading(null) }
   }, [user, mutate])
 
@@ -359,8 +359,8 @@ export default function WalletPage() {
               <p className="text-white/50 text-xs font-medium uppercase tracking-wider">{"Cautions"}</p>
               {(["creator", "investor"] as const).map((type) => {
                 const paid = type === "creator" ? data?.cautions?.creatorPaid : data?.cautions?.investorPaid
-                const label = type === "creator" ? "Cr\u00e9ateur" : "Investisseur"
-                const sub = type === "creator" ? "Porteur / Infoporteur / Podcasteur" : "Investisseur / Investi-lecteur / Auditeur"
+                const label = type === "creator" ? "Cr\u00e9ateur" : "Contributeur"
+                const sub = type === "creator" ? "Porteur / Infoporteur / Podcasteur" : "Contributeur / Contribu-lecteur / Auditeur"
                 const amount = CAUTION_EUR[type]
                 return (
                   <div key={type} className="flex items-center justify-between p-3 bg-slate-800/40 rounded-lg">

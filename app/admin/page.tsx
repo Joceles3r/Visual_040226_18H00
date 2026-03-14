@@ -49,13 +49,13 @@ interface AdminStats {
 // Mock data for users and reports
 const MOCK_USERS = [
   { id: "u1", name: "Marie Stellaire", email: "marie@example.com", role: "Porteur", status: "active", joined: "2025-01-15", investments: 0, raised: 15600 },
-  { id: "u2", name: "Alexandre M.", email: "alex@example.com", role: "Investisseur", status: "active", joined: "2025-02-03", investments: 2450, raised: 0 },
+  { id: "u2", name: "Alexandre M.", email: "alex@example.com", role: "Contributeur", status: "active", joined: "2025-02-03", investments: 2450, raised: 0 },
   { id: "u3", name: "Pierre Michel", email: "pierre@example.com", role: "Infoporteur", status: "active", joined: "2025-03-12", investments: 0, raised: 9800 },
   { id: "u4", name: "Karim Ondes", email: "karim@example.com", role: "Podcasteur", status: "active", joined: "2025-04-01", investments: 0, raised: 8200 },
-  { id: "u5", name: "Sophie L.", email: "sophie@example.com", role: "Investisseur", status: "suspended", joined: "2025-01-28", investments: 1890, raised: 0 },
+  { id: "u5", name: "Sophie L.", email: "sophie@example.com", role: "Contributeur", status: "suspended", joined: "2025-01-28", investments: 1890, raised: 0 },
   { id: "u6", name: "Lucas Nature", email: "lucas@example.com", role: "Porteur", status: "active", joined: "2025-02-18", investments: 0, raised: 12400 },
   { id: "u7", name: "Clara M.", email: "clara@example.com", role: "Visiteur", status: "active", joined: "2025-05-02", investments: 0, raised: 0 },
-  { id: "u8", name: "Thomas R.", email: "thomas@example.com", role: "Investisseur", status: "active", joined: "2025-03-20", investments: 1650, raised: 0 },
+  { id: "u8", name: "Thomas R.", email: "thomas@example.com", role: "Contributeur", status: "active", joined: "2025-03-20", investments: 1650, raised: 0 },
 ]
 
 const REPORT_CATEGORY_LABELS: Record<string, { label: string; severity: "low" | "medium" | "high" | "critical" }> = {
@@ -326,7 +326,7 @@ export default function AdminPage() {
                               u.role === "Porteur" ? "border-red-500/40 text-red-400" :
                               u.role === "Infoporteur" ? "border-sky-500/40 text-sky-400" :
                               u.role === "Podcasteur" ? "border-purple-500/40 text-purple-400" :
-                              u.role === "Investisseur" ? "border-emerald-500/40 text-emerald-400" :
+                              u.role === "Contributeur" ? "border-emerald-500/40 text-emerald-400" :
                               "border-white/20 text-white/50"
                             }
                           >

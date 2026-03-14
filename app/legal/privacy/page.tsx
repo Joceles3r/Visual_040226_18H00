@@ -147,7 +147,7 @@ export default function PrivacyPolicyPage() {
                     "Adresse e-mail et mot de passe (chiffré, jamais stocké en clair)",
                     "Date de naissance (vérification de majorité)",
                     "Photo de profil (facultatif)",
-                    "Rôle sélectionné : Visiteur, Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur, Auditeur",
+                    "Rôle sélectionné : Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur",
                   ],
                 },
                 {

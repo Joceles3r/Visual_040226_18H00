@@ -152,8 +152,8 @@ export default function TermsOfUsePage() {
                     { term: "Porteur", def: "Créateur audiovisuel : dépose des vidéos et visuels sur la plateforme" },
                     { term: "Infoporteur", def: "Créateur littéraire : publie des écrits (articles, romans, essais, etc.)" },
                     { term: "Podcasteur", def: "Créateur podcast : dépose des podcasts, émissions audio, documentaires sonores" },
-                    { term: "Investisseur", def: "Inscrit qui investit de deux \u00e0 vingt euros par projet audiovisuel" },
-                    { term: "Investi-lecteur", def: "Inscrit qui investit de deux \u00e0 vingt euros par contenu litt\u00e9raire" },
+                    { term: "Contributeur", def: "Inscrit qui investit de deux \u00e0 vingt euros par projet audiovisuel" },
+                    { term: "Contribu-lecteur", def: "Inscrit qui investit de deux \u00e0 vingt euros par contenu litt\u00e9raire" },
                     { term: "Auditeur", def: "Inscrit qui investit de deux \u00e0 vingt euros par podcast" },
                     { term: "VIXUpoints", def: "Avantage promotionnel interne (cent points \u00e9quivalent un euro). Plafond et convertibilit\u00e9 variables selon le profil. Ne constitue pas une monnaie \u00e9lectronique." },
                     { term: "Caution", def: "D\u00e9p\u00f4t unique remboursable (dix euros cr\u00e9ateurs, vingt euros investisseurs) garantissant l'engagement" },
@@ -359,11 +359,11 @@ export default function TermsOfUsePage() {
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5">
                     <div className="flex items-center gap-2 mb-3">
                       <Wallet className="h-5 w-5 text-emerald-400" />
-                      <span className="text-white font-medium">Caution Investisseur</span>
+                      <span className="text-white font-medium">Caution Contributeur</span>
                       <span className="text-emerald-400 font-bold ml-auto">Vingt euros</span>
                     </div>
                     <ul className="space-y-1.5 text-xs text-white/50">
-                      <li>{"Applicable aux rôles : Investisseur, Investi-lecteur, Auditeur"}</li>
+                      <li>{"Applicable aux rôles : Contributeur, Contribu-lecteur, Auditeur"}</li>
                       <li>{"Versée une seule fois lors de l'activation du rôle investisseur"}</li>
                       <li>{"Traitée via Stripe, sécurisée et traçable"}</li>
                     </ul>
@@ -512,11 +512,11 @@ export default function TermsOfUsePage() {
                           { p: "Visiteur majeur", cap: "2 500", type: "Total", conv: true },
                           { p: "Visiteur mineur (16\u201317)", cap: "10 000", type: "Total", conv: false },
                           { p: "Auditeur", cap: "2 500", type: "Total", conv: true },
-                          { p: "Investi-lecteur", cap: "2 500", type: "Total", conv: true },
+                          { p: "Contribu-lecteur", cap: "2 500", type: "Total", conv: true },
                           { p: "Porteur", cap: "1 000", type: "/mois", conv: false },
                           { p: "Infoporteur", cap: "1 000", type: "/mois", conv: false },
                           { p: "Podcasteur", cap: "1 000", type: "/mois", conv: false },
-                          { p: "Investisseur", cap: "\u2014", type: "\u2014", conv: false },
+                          { p: "Contributeur", cap: "\u2014", type: "\u2014", conv: false },
                         ].map((row) => (
                           <tr key={row.p}>
                             <td className="py-1.5 pr-3 text-white/70">{row.p}</td>
@@ -529,7 +529,7 @@ export default function TermsOfUsePage() {
                     </table>
                   </div>
                   <p className="text-white/40 text-xs mt-3">
-                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VIXUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Investisseur ne gagne pas de VIXUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
+                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VIXUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Contributeur ne gagne pas de VIXUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
                   </p>
                 </SubSection>
 
@@ -565,7 +565,7 @@ export default function TermsOfUsePage() {
                     </div>
                     <div className="bg-black/30 rounded-xl p-3 border border-white/5">
                       <p className="text-purple-400 font-medium mb-1">{"Chemin B : Changer de profil"}</p>
-                      <p className="text-white/50">{"Devenir Investisseur (+500 VIXUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
+                      <p className="text-white/50">{"Devenir Contributeur (+500 VIXUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
                     </div>
                   </div>
                   <p className="text-white/40 text-xs mt-3">
@@ -697,7 +697,7 @@ export default function TermsOfUsePage() {
                 <SubSection title="Stripe Connect obligatoire">
                   <div className="space-y-2">
                     {[
-                      "L'activation d'un compte Stripe Connect est obligatoire pour tout utilisateur susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur)",
+                      "L'activation d'un compte Stripe Connect est obligatoire pour tout utilisateur susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur)",
                       "Les fonctions financi\u00e8res sont bloqu\u00e9es tant que charges_enabled et payouts_enabled ne sont pas actifs",
                       "Les gains disponibles sont consultables dans le Portefeuille de l'espace personnel",
                       "Les frais de transaction sont \u00e0 la charge de VIXUAL (aucun frais pour l'inscrit)",

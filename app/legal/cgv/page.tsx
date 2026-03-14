@@ -399,7 +399,7 @@ export default function CGVPage() {
                 <Bullet>{"Les paiements sont effectu\u00e9s mensuellement, le premier jour du mois suivant la cl\u00f4ture des op\u00e9rations, via un batch unique Stripe Connect"}</Bullet>
                 <Bullet>{"Chaque virement utilise des cl\u00e9s d'idempotence (idempotency keys) garantissant l'absence de doublons"}</Bullet>
                 <Bullet>{"Les \u00e9tats de chaque paiement sont : en attente (pending), valid\u00e9 (validated), pay\u00e9 (paid) ou bloqu\u00e9 (blocked)"}</Bullet>
-                <Bullet>{"L'activation d'un compte Stripe Connect est obligatoire pour tout profil susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Investisseur, Investi-lecteur)"}</Bullet>
+                <Bullet>{"L'activation d'un compte Stripe Connect est obligatoire pour tout profil susceptible de percevoir des gains (Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur)"}</Bullet>
                 <Bullet>{"Les fonctions financi\u00e8res sont bloqu\u00e9es tant que charges_enabled et payouts_enabled ne sont pas actifs sur le compte Stripe Connect"}</Bullet>
                 <Bullet>{"VIXUAL s'appuie sur les obligations de v\u00e9rification d'identit\u00e9 (KYC) de Stripe en tant que prestataire de paiement"}</Bullet>
               </ul>
@@ -445,7 +445,7 @@ export default function CGVPage() {
                 </CardContent>
               </Card>
 
-              <P>{"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) re\u00e7oivent un plafond mensuel de 1 000 VIXUpoints utilisables comme boost de visibilit\u00e9. Ces points ne sont pas convertibles en euros. L'Investisseur, r\u00e9mun\u00e9r\u00e9 via les gains classiques, ne cumule pas de VIXUpoints."}</P>
+              <P>{"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) re\u00e7oivent un plafond mensuel de 1 000 VIXUpoints utilisables comme boost de visibilit\u00e9. Ces points ne sont pas convertibles en euros. L'Contributeur, r\u00e9mun\u00e9r\u00e9 via les gains classiques, ne cumule pas de VIXUpoints."}</P>
 
               <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3 mt-3">
                 <p className="text-amber-400/70 text-xs leading-relaxed">

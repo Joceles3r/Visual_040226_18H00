@@ -88,7 +88,7 @@ export class FilmStrategy implements PayoutStrategy {
 
     const platformFeeGross = mulBpsFloor(G, FILMS_VISUAL_BPS);
 
-    // Investisseurs TOP10 (40% rank-weighted)
+    // Contributeurs TOP10 (40% rank-weighted)
     for (let r = 0; r < Math.min(10, input.top10Investors.length); r++) {
       const winner = input.top10Investors[r];
       const gross = mulBpsFloor(G, FILMS_INVESTOR_TOP10_RANK_BPS[r]);
@@ -114,7 +114,7 @@ export class FilmStrategy implements PayoutStrategy {
       });
     }
 
-    // Investisseurs rangs 11-100 (7% equal split)
+    // Contributeurs rangs 11-100 (7% equal split)
     const eligible = input.investors11to100 ?? [];
     const pool11_100Gross = mulBpsFloor(G, FILMS_INVESTOR_11_100_BPS);
 

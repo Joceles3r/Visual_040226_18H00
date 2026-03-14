@@ -189,7 +189,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: "tr0",
     type: "caution",
-    description: `Caution Investisseur (${CAUTION_EUR.investor}EUR)`,
+    description: `Caution Contributeur (${CAUTION_EUR.investor}EUR)`,
     amount: -CAUTION_EUR.investor,
     date: "2026-01-15",
     status: "completed",
@@ -290,7 +290,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "Qu'est-ce que la caution ?",
-    answer: "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Investisseur, Investi-lecteur, Auditeur) qui garantit votre engagement. Elle est remboursable en cas de resiliation.",
+    answer: "La caution est un depot unique (10 EUR pour les createurs : Porteur, Infoporteur, Podcasteur ; 20 EUR pour les investisseurs : Contributeur, Contribu-lecteur, Auditeur) qui garantit votre engagement. Elle est remboursable en cas de resiliation.",
   },
   {
     question: "Comment retirer mes gains ?",
@@ -317,7 +317,7 @@ export const HOW_IT_WORKS_STEPS = [
   {
     step: 2,
     title: "Choisissez votre rôle",
-    description: "Devenez Porteur pour créer du contenu audiovisuel, Infoporteur pour publier des écrits, ou Investisseur pour soutenir des projets.",
+    description: "Devenez Porteur pour créer du contenu audiovisuel, Infoporteur pour publier des écrits, ou Contributeur pour soutenir des projets.",
     icon: "layers",
   },
   {

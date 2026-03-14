@@ -128,16 +128,16 @@ function EngagementBanner({ redirect }: { redirect: EngagementRedirectResult }) 
                     <p className="text-white font-medium text-sm">{"Chemin B \u2014 \u00c9voluer de profil"}</p>
                   </div>
                   <p className="text-white/50 text-xs leading-relaxed mb-3">
-                    {"Passez au profil Investisseur pour d\u00e9bloquer les fonctionnalit\u00e9s avanc\u00e9es : investir dans des projets, voter, et percevoir des gains."}
+                    {"Passez au profil Contributeur pour d\u00e9bloquer les fonctionnalit\u00e9s avanc\u00e9es : investir dans des projets, voter, et percevoir des gains."}
                   </p>
                   <div className="bg-purple-500/10 rounded-lg p-3">
                     <p className="text-purple-400 font-medium text-sm mb-1">{"Bonus \u00e9volution"}</p>
                     <p className="text-white/60 text-xs">
-                      {"Recevez +" + INVESTOR_EVOLUTION_BONUS + " VIXUpoints et le d\u00e9blocage du plafond en devenant Investisseur."}
+                      {"Recevez +" + INVESTOR_EVOLUTION_BONUS + " VIXUpoints et le d\u00e9blocage du plafond en devenant Contributeur."}
                     </p>
                   </div>
                   <Button size="sm" variant="outline" className="mt-3 w-full border-purple-500/40 text-purple-400 hover:bg-purple-500/20">
-                    {"Passer Investisseur"}
+                    {"Passer Contributeur"}
                   </Button>
                 </div>
               )}
