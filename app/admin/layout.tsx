@@ -17,13 +17,15 @@ import {
   ShieldAlert,
   Crown,
   Zap,
+  Brain,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ADMIN_NAV = [
   { label: "Tableau de bord", href: "/admin", icon: BarChart3 },
+  { label: "Financial Brain", href: "/admin/financial-brain", icon: Brain, highlight: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
-  { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog, highlight: true },
+  { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
   { label: "Paiements", href: "/admin#payouts", icon: DollarSign },
   { label: "Signalements", href: "/admin#reports", icon: AlertTriangle },
