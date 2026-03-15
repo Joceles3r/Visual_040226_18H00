@@ -137,6 +137,99 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Section Pedagogique - Comprendre VIXUAL */}
+        <section className="py-20 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950 cinema-section">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 mb-4">
+                Nouveau sur VIXUAL ?
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Comprendre VIXUAL en 3 points
+              </h2>
+              <p className="text-white/60 max-w-2xl mx-auto">
+                Une plateforme simple, transparente et equitable pour tous
+              </p>
+            </div>
+
+            {/* Les 3 cartes explicatives avec images */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              
+              {/* Carte 1: Les 3 Familles */}
+              <Card className="bg-slate-900/70 border-white/10 overflow-hidden hover:border-emerald-500/30 transition-colors">
+                <div className="aspect-[16/10] relative bg-white">
+                  <img 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_familles_150326-LsTbIXa22jY23wkp61cydcX4P3UlhF.png" 
+                    alt="Les 3 familles VIXUAL" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <h3 className="text-lg font-bold text-white mb-2">Les 3 Familles</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    <span className="text-rose-400 font-medium">Createurs</span> publient des oeuvres, <span className="text-emerald-400 font-medium">Contributeurs</span> soutiennent financierement, <span className="text-sky-400 font-medium">Public</span> decouvre et participe.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Carte 2: Comment ca fonctionne */}
+              <Card className="bg-slate-900/70 border-white/10 overflow-hidden hover:border-teal-500/30 transition-colors">
+                <div className="aspect-[16/10] relative bg-white">
+                  <img 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_fonctionnement_150326-xo8XpxV5JzawGdHFQ4RARu5O2KsFHe.png" 
+                    alt="Comment fonctionne VIXUAL" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <h3 className="text-lg font-bold text-white mb-2">Comment ca fonctionne</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    Createur publie, contributeurs soutiennent, votes classent, meilleurs gagnent, gains redistribues equitablement.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Carte 3: Principe des gains */}
+              <Card className="bg-slate-900/70 border-white/10 overflow-hidden hover:border-amber-500/30 transition-colors">
+                <div className="aspect-[16/10] relative bg-white">
+                  <img 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_gains_150326-UElSPo0snOQmzKcGvDBkR1a9h7ppoy.png" 
+                    alt="Principe des gains VIXUAL" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <h3 className="text-lg font-bold text-white mb-2">Principe des gains</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    Les votes classent les projets. Les gains sont calcules au prorata de votre contribution financiere reelle.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Slogan et VIXUpoints */}
+            <div className="mt-12 max-w-3xl mx-auto">
+              <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 rounded-2xl p-6 border border-emerald-500/20">
+                <div className="text-center mb-4">
+                  <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                    Regarde — Contribue — Gagne
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="bg-slate-900/50 rounded-lg p-4">
+                    <p className="text-amber-400 font-semibold mb-1">VIXUpoints</p>
+                    <p className="text-white/60 text-xs">Debloquez des contenus, soutenez la plateforme, achetez des micro-contenus. Ils ne servent jamais a influencer les gains.</p>
+                  </div>
+                  <div className="bg-slate-900/50 rounded-lg p-4">
+                    <p className="text-emerald-400 font-semibold mb-1">Paiement hybride</p>
+                    <p className="text-white/60 text-xs">Selon votre profil: euros uniquement, VIXUpoints + euros, ou VIXUpoints seuls. Equitable et transparent.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Features Section */}
         <section className="py-20 cinema-section">
           <div className="container mx-auto px-4">
