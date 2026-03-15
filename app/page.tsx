@@ -157,7 +157,7 @@ export default function HomePage() {
               
               {/* Carte 1: Les 3 Familles */}
               <Card className="bg-gradient-to-b from-indigo-950/60 to-slate-900/80 border-indigo-500/20 overflow-hidden hover:border-indigo-400/40 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-indigo-50 to-violet-50">
+                <div className="aspect-[16/10] relative bg-gradient-to-br from-slate-200 via-purple-100 to-indigo-200">
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_familles_150326-LsTbIXa22jY23wkp61cydcX4P3UlhF.png" 
                     alt="Les 3 familles VIXUAL" 
@@ -174,7 +174,7 @@ export default function HomePage() {
 
               {/* Carte 2: Comment ca fonctionne */}
               <Card className="bg-gradient-to-b from-violet-950/60 to-slate-900/80 border-violet-500/20 overflow-hidden hover:border-violet-400/40 hover:shadow-lg hover:shadow-violet-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-violet-50 to-indigo-50">
+                <div className="aspect-[16/10] relative bg-gradient-to-br from-purple-100 via-slate-200 to-indigo-200">
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_fonctionnement_150326-xo8XpxV5JzawGdHFQ4RARu5O2KsFHe.png" 
                     alt="Comment fonctionne VIXUAL" 
@@ -191,7 +191,7 @@ export default function HomePage() {
 
               {/* Carte 3: Principe des gains */}
               <Card className="bg-gradient-to-b from-blue-950/60 to-slate-900/80 border-blue-500/20 overflow-hidden hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-blue-50 to-violet-50">
+                <div className="aspect-[16/10] relative bg-gradient-to-br from-indigo-200 via-purple-100 to-slate-200">
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_gains_150326-UElSPo0snOQmzKcGvDBkR1a9h7ppoy.png" 
                     alt="Principe des gains VIXUAL" 
