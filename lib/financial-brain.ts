@@ -21,8 +21,8 @@ export type AdminRole = "patron" | "adjoint" | "moderator" | "support"
 export interface DistributionKey {
   creators: number       // 40%
   contributors: number   // 30%
-  community: number      // 23%
-  platform: number       // 7%
+  community: number      // 7%  (rang 11-100)
+  platform: number       // 23% (VIXUAL)
 }
 
 export interface CycleHealth {
