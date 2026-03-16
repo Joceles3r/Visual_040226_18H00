@@ -20,9 +20,9 @@ export function VisualSlogan({
   }
 
   const opacityMap = {
-    low: { regarde: "from-red-500/50 to-amber-400/50", investis: "from-emerald-400/50 to-teal-400/50", gagne: "from-sky-400/50 to-indigo-400/50", dash: "text-white/20" },
-    medium: { regarde: "from-red-500/70 to-amber-400/70", investis: "from-emerald-400/70 to-teal-400/70", gagne: "from-sky-400/70 to-indigo-400/70", dash: "text-white/30" },
-    high: { regarde: "from-red-500 to-amber-400", investis: "from-emerald-400 to-teal-400", gagne: "from-sky-400 to-indigo-400", dash: "text-white/40" },
+    low: { regarde: "from-red-500/50 to-amber-400/50", participe: "from-emerald-400/50 to-teal-400/50", gagne: "from-sky-400/50 to-indigo-400/50", dash: "text-white/20" },
+    medium: { regarde: "from-red-500/70 to-amber-400/70", participe: "from-emerald-400/70 to-teal-400/70", gagne: "from-sky-400/70 to-indigo-400/70", dash: "text-white/30" },
+    high: { regarde: "from-red-500 to-amber-400", participe: "from-emerald-400 to-teal-400", gagne: "from-sky-400 to-indigo-400", dash: "text-white/40" },
   }
 
   const colors = opacityMap[opacity]
@@ -47,10 +47,10 @@ export function VisualSlogan({
       <span
         className={cn(
           "text-transparent bg-clip-text bg-gradient-to-r",
-          colors.investis
+          colors.participe
         )}
       >
-        Investis
+        Participe
       </span>
       <span className={cn(colors.dash, "mx-0.5")}>{"\u2013"}</span>
       <span

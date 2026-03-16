@@ -84,7 +84,7 @@ const body = [];
 // ═══════════════════════════════════════════════
 body.push(heading("VISUAL - Formules Mathematiques et Repartitions des Gains", 1));
 body.push(p(`Version V2 - ${today}`));
-body.push(p('Plateforme : VISUAL - "Regarde-Investis-Gagne"'));
+body.push(p('Plateforme : VIXUAL - "Regarde-Participe-Gagne"'));
 body.push(p("Reference interne : 100 VISUpoints = 1 EUR"));
 body.push(p("Hors VSLS et Petites Annonces (non deployes en V1)"));
 body.push(spacer());

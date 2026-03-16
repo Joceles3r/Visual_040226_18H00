@@ -215,7 +215,7 @@ export default function HomePage() {
               <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 rounded-2xl p-6 border border-emerald-500/20">
                 <div className="text-center mb-4">
                   <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                    Regarde — Contribue — Gagne
+                    Regarde — Participe — Gagne
                   </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
