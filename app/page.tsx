@@ -152,55 +152,55 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Les 3 cartes explicatives avec images */}
+            {/* Les 3 cartes explicatives avec images - Palette VIXUAL Streaming */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               
               {/* Carte 1: Les 3 Familles */}
-              <Card className="bg-gradient-to-b from-indigo-950/60 to-slate-900/80 border-indigo-500/20 overflow-hidden hover:border-indigo-400/40 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-slate-200 via-purple-100 to-indigo-200">
+              <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#7A00FF]/20 transition-all duration-300 border-[#7A00FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(10, 77, 255, 0.15), rgba(122, 0, 255, 0.1))' }}>
+                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #1a1f3c 0%, #2d1f4e 50%, #1a2a4a 100%)' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_familles_150326-LsTbIXa22jY23wkp61cydcX4P3UlhF.png" 
                     alt="Les 3 familles VIXUAL" 
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
                   />
                 </div>
                 <CardContent className="p-5">
-                  <h3 className="text-lg font-bold text-indigo-200 mb-2">Les 3 Familles</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">
-                    <span className="text-rose-400 font-medium">Createurs</span> publient des oeuvres, <span className="text-emerald-400 font-medium">Contributeurs</span> soutiennent financierement, <span className="text-sky-400 font-medium">Public</span> decouvre et participe.
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Les 3 Familles</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
+                    <span style={{ color: '#00E5FF' }} className="font-medium">Createurs</span> publient des oeuvres, <span style={{ color: '#00E5FF' }} className="font-medium">Contributeurs</span> soutiennent financierement, <span style={{ color: '#00E5FF' }} className="font-medium">Public</span> decouvre et participe.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Carte 2: Comment ca fonctionne */}
-              <Card className="bg-gradient-to-b from-violet-950/60 to-slate-900/80 border-violet-500/20 overflow-hidden hover:border-violet-400/40 hover:shadow-lg hover:shadow-violet-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-purple-100 via-slate-200 to-indigo-200">
+              <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#0A4DFF]/20 transition-all duration-300 border-[#0A4DFF]/30" style={{ background: 'linear-gradient(to bottom, rgba(122, 0, 255, 0.15), rgba(10, 77, 255, 0.1))' }}>
+                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #2d1f4e 0%, #1a2a4a 50%, #1a1f3c 100%)' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_fonctionnement_150326-xo8XpxV5JzawGdHFQ4RARu5O2KsFHe.png" 
                     alt="Comment fonctionne VIXUAL" 
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
                   />
                 </div>
                 <CardContent className="p-5">
-                  <h3 className="text-lg font-bold text-violet-200 mb-2">Comment ca fonctionne</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Comment ca fonctionne</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
                     Createur publie, contributeurs soutiennent, votes classent, meilleurs gagnent, gains redistribues equitablement.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Carte 3: Principe des gains */}
-              <Card className="bg-gradient-to-b from-blue-950/60 to-slate-900/80 border-blue-500/20 overflow-hidden hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300">
-                <div className="aspect-[16/10] relative bg-gradient-to-br from-indigo-200 via-purple-100 to-slate-200">
+              <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#00E5FF]/20 transition-all duration-300 border-[#00E5FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(0, 229, 255, 0.1), rgba(122, 0, 255, 0.1))' }}>
+                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #1a2a4a 0%, #1a1f3c 50%, #2d1f4e 100%)' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_gains_150326-UElSPo0snOQmzKcGvDBkR1a9h7ppoy.png" 
                     alt="Principe des gains VIXUAL" 
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
                   />
                 </div>
                 <CardContent className="p-5">
-                  <h3 className="text-lg font-bold text-blue-200 mb-2">Principe des gains</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Principe des gains</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
                     Les votes classent les projets. Les gains sont calcules au prorata de votre contribution financiere reelle.
                   </p>
                 </CardContent>
