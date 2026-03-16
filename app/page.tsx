@@ -157,11 +157,12 @@ export default function HomePage() {
               
               {/* Carte 1: Les 3 Familles */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#7A00FF]/20 transition-all duration-300 border-[#7A00FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(10, 77, 255, 0.15), rgba(122, 0, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #1a1f3c 0%, #2d1f4e 50%, #1a2a4a 100%)' }}>
+                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#0A4DFF' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_familles_150326-LsTbIXa22jY23wkp61cydcX4P3UlhF.png" 
                     alt="Les 3 familles VIXUAL" 
-                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    style={{ filter: 'invert(1) brightness(1.1)' }}
                   />
                 </div>
                 <CardContent className="p-5">
@@ -174,11 +175,12 @@ export default function HomePage() {
 
               {/* Carte 2: Comment ca fonctionne */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#0A4DFF]/20 transition-all duration-300 border-[#0A4DFF]/30" style={{ background: 'linear-gradient(to bottom, rgba(122, 0, 255, 0.15), rgba(10, 77, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #2d1f4e 0%, #1a2a4a 50%, #1a1f3c 100%)' }}>
+                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#7A00FF' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_fonctionnement_150326-xo8XpxV5JzawGdHFQ4RARu5O2KsFHe.png" 
                     alt="Comment fonctionne VIXUAL" 
-                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    style={{ filter: 'invert(1) brightness(1.1)' }}
                   />
                 </div>
                 <CardContent className="p-5">
@@ -191,11 +193,12 @@ export default function HomePage() {
 
               {/* Carte 3: Principe des gains */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#00E5FF]/20 transition-all duration-300 border-[#00E5FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(0, 229, 255, 0.1), rgba(122, 0, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative" style={{ background: 'linear-gradient(135deg, #1a2a4a 0%, #1a1f3c 50%, #2d1f4e 100%)' }}>
+                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#00E5FF' }}>
                   <img 
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_gains_150326-UElSPo0snOQmzKcGvDBkR1a9h7ppoy.png" 
                     alt="Principe des gains VIXUAL" 
-                    className="w-full h-full object-contain mix-blend-lighten opacity-95"
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    style={{ filter: 'invert(1) brightness(1.1)' }}
                   />
                 </div>
                 <CardContent className="p-5">
