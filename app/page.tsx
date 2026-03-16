@@ -85,9 +85,7 @@ export default function HomePage() {
               </div>
 
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">
-                VIXUAL est la plateforme de contribution participative pour les
-                projets audiovisuels, litteraires et podcasts. Soutenez les createurs,
-                contribuez a leurs oeuvres, partagez leurs succes.
+                VIXUAL, la première plateforme de streaming participative pour les films, écrits et podcasts. Soutenez les créateurs en contribuant à leur succès.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
