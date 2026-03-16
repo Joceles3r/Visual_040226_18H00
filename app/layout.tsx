@@ -4,19 +4,24 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
+import { StripeModeBanner } from "@/components/stripe-mode-banner"
+import { CookieConsentBanner } from "@/components/cookie-consent"
+import { MinorClientGuard } from "@/components/minors/minor-client-guard"
+import { SoundProvider } from "@/components/sound-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VISUAL - Investissement Audiovisuel & Littéraire",
+  title: "VIXUAL - Investissement Audiovisuel, Litteraire & Podcast",
   description:
-    "Plateforme d'investissement participatif dans les projets audiovisuels et littéraires. Soutenez les créateurs, investissez dans l'art.",
+    "Plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, investissez dans l'art.",
   generator: "v0.app",
   keywords: [
     "investissement",
     "audiovisuel",
-    "littéraire",
-    "créateurs",
+    "litteraire",
+    "podcast",
+    "createurs",
     "financement participatif",
   ],
 }
@@ -35,7 +40,14 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
-        <AuthProvider>{children}</AuthProvider>
+        <StripeModeBanner />
+        <AuthProvider>
+          <SoundProvider>
+            <MinorClientGuard />
+            {children}
+          </SoundProvider>
+        </AuthProvider>
+        <CookieConsentBanner />
         <Analytics />
       </body>
     </html>

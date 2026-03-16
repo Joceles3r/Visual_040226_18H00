@@ -5,7 +5,10 @@ import React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Mail, Lock, User, ArrowRight, Eye, EyeOff, Check } from "lucide-react"
+import { Mail, Lock, User, ArrowRight, Eye, EyeOff, Check, Calendar, ShieldAlert } from "lucide-react"
+import { VisualSlogan } from "@/components/visual-slogan"
+import { isMinor, isEligibleForSignup, computeAge, MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
+import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,10 +17,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
 
 const BENEFITS = [
-  "Accès aux contenus gratuits",
+  "Acces aux contenus gratuits",
   "Gagnez des VISUpoints",
-  "Suivez vos créateurs préférés",
-  "Passez Investisseur ou Créateur",
+  "Suivez vos createurs preferes",
+  "Devenez Investisseur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
 ]
 
 export default function SignupPage() {
@@ -31,8 +34,15 @@ export default function SignupPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    birthDate: "",
   })
   const [error, setError] = useState("")
+  const [signupDone, setSignupDone] = useState(false)
+  const [isUserMinor, setIsUserMinor] = useState(false)
+
+  const userAge = formData.birthDate ? computeAge(formData.birthDate) : null
+  const showMinorWarning = userAge !== null && userAge >= 16 && userAge < 18
+  const showTooYoung = userAge !== null && userAge < 16
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,17 +63,34 @@ export default function SignupPage() {
       return
     }
 
+    if (!formData.birthDate) {
+      setError("La date de naissance est obligatoire.")
+      return
+    }
+
+    if (!isEligibleForSignup(formData.birthDate)) {
+      setError("Vous devez avoir au moins 16 ans pour vous inscrire sur VIXUAL.")
+      return
+    }
+
     setIsLoading(true)
 
     try {
+      const minor = isMinor(formData.birthDate)
       await signup({
         name: formData.name,
         email: formData.email,
         password: formData.password,
+        birthDate: formData.birthDate,
       })
-      router.push("/dashboard")
+      setIsUserMinor(minor)
+      if (minor) {
+        setSignupDone(true)
+      } else {
+        router.push("/dashboard")
+      }
     } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.")
+      setError("Une erreur est survenue. Veuillez r\u00e9essayer.")
     } finally {
       setIsLoading(false)
     }
@@ -76,25 +103,30 @@ export default function SignupPage() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-md">
-        {/* Logo */}
-        <Link href="/" className="flex justify-center mb-8">
-          <span className="text-3xl font-black tracking-tight">
-            <span className="text-red-500">V</span>
-            <span className="text-amber-400">I</span>
-            <span className="text-emerald-400">S</span>
-            <span className="text-teal-400">U</span>
-            <span className="text-sky-400">A</span>
-            <span className="text-indigo-400">L</span>
-          </span>
-        </Link>
+        {/* Logo + Slogan */}
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-flex justify-center">
+            <span className="text-3xl font-black tracking-tight">
+              <span className="text-red-500">V</span>
+              <span className="text-amber-400">I</span>
+              <span className="text-emerald-400">S</span>
+              <span className="text-teal-400">U</span>
+              <span className="text-sky-400">A</span>
+              <span className="text-indigo-400">L</span>
+            </span>
+          </Link>
+          <div className="mt-2">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
+        </div>
 
-        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl">
+        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">
-              Créer un compte
+              {"Créer un compte"}
             </CardTitle>
             <p className="text-white/60 mt-2">
-              Rejoignez VISUAL et devenez Visiteur gratuitement
+              Rejoignez VIXUAL et devenez Visiteur gratuitement
             </p>
           </CardHeader>
           <CardContent>
@@ -161,6 +193,41 @@ export default function SignupPage() {
                     className="pl-10 bg-slate-800/50 border-white/10 text-white placeholder:text-white/40 focus:border-emerald-500/50"
                   />
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="birthDate" className="text-white">
+                  Date de naissance
+                </Label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white/40" />
+                  <Input
+                    id="birthDate"
+                    type="date"
+                    value={formData.birthDate}
+                    onChange={(e) =>
+                      setFormData({ ...formData, birthDate: e.target.value })
+                    }
+                    required
+                    className="pl-10 bg-slate-800/50 border-white/10 text-white placeholder:text-white/40 focus:border-emerald-500/50"
+                  />
+                </div>
+                {showMinorWarning && (
+                  <div className="flex items-start gap-2 p-2.5 bg-amber-500/10 border border-amber-500/25 rounded-lg">
+                    <ShieldAlert className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                    <p className="text-amber-400/90 text-xs leading-relaxed">
+                      {"Vous avez entre 16 et 17 ans. Votre compte sera soumis \u00e0 des restrictions : plafond de 10 000 VISUpoints (100\u20ac), aucun retrait ni investissement avant 18 ans. Une autorisation parentale sera demand\u00e9e."}
+                    </p>
+                  </div>
+                )}
+                {showTooYoung && (
+                  <div className="flex items-start gap-2 p-2.5 bg-red-500/10 border border-red-500/25 rounded-lg">
+                    <ShieldAlert className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
+                    <p className="text-red-400/90 text-xs leading-relaxed">
+                      {"Vous devez avoir au moins 16 ans pour vous inscrire sur VIXUAL."}
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -262,7 +329,7 @@ export default function SignupPage() {
 
             <div className="mt-6 text-center">
               <p className="text-white/60">
-                Déjà un compte ?{" "}
+                {"D\u00e9j\u00e0 un compte ? "}
                 <Link
                   href="/login"
                   className="text-emerald-400 hover:text-emerald-300 font-medium"
@@ -273,6 +340,30 @@ export default function SignupPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Formulaire consentement parental apres inscription mineur */}
+        {signupDone && isUserMinor && (
+          <div className="mt-6 space-y-4">
+            <ParentalConsentForm
+              userId="new-minor-user"
+              onSubmitted={() => {
+                setTimeout(() => router.push("/dashboard"), 2000)
+              }}
+            />
+            <p className="text-center text-white/40 text-xs">
+              {"Vous pouvez aussi compl\u00e9ter cette \u00e9tape plus tard depuis votre tableau de bord."}
+            </p>
+            <div className="text-center">
+              <Button
+                variant="ghost"
+                onClick={() => router.push("/dashboard")}
+                className="text-white/50 hover:text-white/70"
+              >
+                {"Passer pour l'instant"}
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

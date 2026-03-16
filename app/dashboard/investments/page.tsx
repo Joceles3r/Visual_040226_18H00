@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { TrendingUp, Film, FileText, ArrowUpRight, Wallet } from "lucide-react"
+import { TrendingUp, Film, FileText, Mic, ArrowUpRight, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -92,11 +92,15 @@ export default function InvestmentsPage() {
                     className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                       investment.contentType === "video"
                         ? "bg-red-500/20"
-                        : "bg-amber-500/20"
+                        : investment.contentType === "podcast"
+                          ? "bg-purple-500/20"
+                          : "bg-amber-500/20"
                     }`}
                   >
                     {investment.contentType === "video" ? (
                       <Film className="h-6 w-6 text-red-400" />
+                    ) : investment.contentType === "podcast" ? (
+                      <Mic className="h-6 w-6 text-purple-400" />
                     ) : (
                       <FileText className="h-6 w-6 text-amber-400" />
                     )}
