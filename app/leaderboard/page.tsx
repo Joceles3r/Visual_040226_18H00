@@ -178,10 +178,10 @@ function CategorySelector({ value, onChange }: { value: CategoryOption; onChange
           <button
             key={cat}
             onClick={() => onChange(cat)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
               active
-                ? `${cfg.activeClass} shadow-sm`
-                : "text-white/40 border-transparent hover:text-white/70 hover:bg-white/5"
+                ? `${cfg.activeClass} border-[#7A00FF] shadow-lg shadow-[#7A00FF]/15`
+                : "text-white/40 border-white/10 hover:text-white/70 hover:border-[#7A00FF]/30"
             }`}
           >
             <Icon className="h-4 w-4" />
@@ -213,7 +213,7 @@ function StatsSummary({ projects }: { projects: any[] }) {
       {stats.map((s) => (
         <div
           key={s.label}
-          className={`bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center shadow-lg ${s.glow}`}
+          className={`bg-white/[0.06] backdrop-blur-sm border-2 border-[#7A00FF] rounded-2xl p-4 text-center shadow-lg ${s.glow}`}
         >
           <s.icon className={`h-5 w-5 mx-auto mb-2 ${s.color}`} />
           <p className="text-xl font-bold text-white">{s.value}</p>
@@ -257,6 +257,10 @@ export default function LeaderboardPage() {
         <div
           className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full opacity-10 blur-3xl"
           style={{ background: "radial-gradient(ellipse, #0ea5e9 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute top-1/4 right-1/4 w-[550px] h-[350px] rounded-full opacity-12 blur-3xl"
+          style={{ background: "radial-gradient(ellipse, #00e5ff 0%, transparent 70%)" }}
         />
       </div>
 
