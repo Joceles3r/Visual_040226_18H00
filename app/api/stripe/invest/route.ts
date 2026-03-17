@@ -223,7 +223,7 @@ export async function POST(req: NextRequest) {
       visupointsGranted,
     });
   } catch (error: unknown) {
-    console.error("[VISUAL API] Investment error:", error);
+    console.error("[VIXUAL API] Investment error:", error);
     const message = error instanceof Error ? error.message : "Internal server error";
     return apiError(ErrorCodes.ERR_INTERNAL, message, 500);
   }

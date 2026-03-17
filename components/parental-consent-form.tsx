@@ -74,7 +74,7 @@ export function ParentalConsentForm({ userId, onSubmitted }: ParentalConsentForm
           <div>
             <p className="text-white font-medium">Autorisation enregistr\u00e9e</p>
             <p className="text-white/60 text-sm mt-1">
-              {"Statut : en attente de validation par l'\u00e9quipe VISUAL. Votre compte mineur est actif avec un plafond de 10 000 VISUpoints."}
+              {"Statut : en attente de validation par l'équipe VIXUAL. Votre compte mineur est actif avec un plafond de 10 000 VIXUpoints."}
             </p>
           </div>
         </CardContent>
@@ -93,7 +93,7 @@ export function ParentalConsentForm({ userId, onSubmitted }: ParentalConsentForm
           <div>
             <h3 className="text-white font-semibold text-lg">{"Autorisation parentale (16\u201317 ans)"}</h3>
             <p className="text-white/60 text-sm mt-1">
-              {"Obligatoire pour activer le compte. Plafond : 10 000 VISUpoints (100\u20ac). Aucun retrait ni investissement avant 18 ans."}
+              {"Obligatoire pour activer le compte. Plafond : 10 000 VIXUpoints (100€). Aucun retrait ni investissement avant 18 ans."}
             </p>
           </div>
         </div>
@@ -102,7 +102,7 @@ export function ParentalConsentForm({ userId, onSubmitted }: ParentalConsentForm
         <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 flex items-start gap-2">
           <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
           <p className="text-amber-400/80 text-xs leading-relaxed">
-            {"Les VISUpoints accumul\u00e9s par un mineur sont un avantage promotionnel interne. Ils ne constituent pas une cr\u00e9ance financi\u00e8re exigible et ne sont convertibles qu'\u00e0 la majorit\u00e9."}
+            {"Les VIXUpoints accumulés par un mineur sont un avantage promotionnel interne. Ils ne constituent pas une créance financière exigible et ne sont convertibles qu'à la majorité."}
           </p>
         </div>
 
@@ -115,7 +115,7 @@ export function ParentalConsentForm({ userId, onSubmitted }: ParentalConsentForm
             className="mt-1 border-white/30 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
           />
           <Label htmlFor="parentConsent" className="text-sm text-white/80 leading-relaxed">
-            {"Je confirme \u00eatre le repr\u00e9sentant l\u00e9gal (parent ou tuteur) et j'autorise l'ouverture d'un compte VISUAL pour le mineur. J'ai lu et j'accepte les "}
+            {"Je confirme être le représentant légal (parent ou tuteur) et j'autorise l'ouverture d'un compte VIXUAL pour le mineur. J'ai lu et j'accepte les "}
             <a href="/legal/terms" className="text-emerald-400 hover:underline">CGU</a>
             {" et la "}
             <a href="/legal/privacy" className="text-emerald-400 hover:underline">{"Politique de Confidentialit\u00e9"}</a>.

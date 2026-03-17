@@ -81,7 +81,7 @@ export const TAG_CATEGORIES = [
   { key: "other" as const,    label: "Autre", tags: ["investissement", "spoiler"] as SocialTag[] },
 ]
 
-// VISUpoints desactives en V1 pour eviter le farming
+// VIXUpoints desactives en V1 pour eviter le farming
 // avant que la moderation et l'anti-spam soient stables
 export const VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1 = false
 

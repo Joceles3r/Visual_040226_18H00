@@ -83,7 +83,7 @@ export async function isUserMinor(userId: string): Promise<{
   return { isMinor, age, birthdate: user.birthdate, hasGuardianApproval, guardianExpired };
 }
 
-/** Check if a minor has exceeded their daily VISUpoints cap */
+/** Check if a minor has exceeded their daily VIXUpoints cap */
 export async function checkMinorDailyCap(userId: string): Promise<{
   exceeded: boolean;
   used: number;

@@ -86,7 +86,7 @@ export default function PromoPage() {
         <div>
           <h1 className="text-3xl font-bold text-white">Promotion / Parrainage</h1>
           <p className="text-white/50 mt-2">
-            {"Partagez VISUAL avec vos proches et suivez l'impact de vos actions."}
+            {"Partagez VIXUAL avec vos proches et suivez l'impact de vos actions."}
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export default function PromoPage() {
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2 text-base">
               <Share2 className="h-5 w-5 text-emerald-400" />
-              Partager VISUAL
+              Partager VIXUAL
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -200,7 +200,7 @@ export default function PromoPage() {
         {/* Info */}
         <div className="bg-sky-500/5 border border-sky-500/15 rounded-xl p-4">
           <p className="text-sky-400/80 text-sm leading-relaxed">
-            {"Le syst\u00e8me de promotion VISUAL est con\u00e7u pour r\u00e9compenser le bouche-\u00e0-oreille authentique. Les actions de partage sont soumises \u00e0 des limites anti-abus (dix par jour, d\u00e9lai de soixante-douze heures entre emails). Vos statistiques sont mises \u00e0 jour en temps r\u00e9el."}
+            {"Le système de promotion VIXUAL est conçu pour récompenser le bouche-à-oreille authentique. Les actions de partage sont soumises à des limites anti-abus (dix par jour, délai de soixante-douze heures entre emails). Vos statistiques sont mises à jour en temps réel."}
           </p>
         </div>
       </div>

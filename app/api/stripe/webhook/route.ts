@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     );
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Invalid signature";
-    console.error("[VISUAL Webhook] Signature verification failed:", message);
+    console.error("[VIXUAL Webhook] Signature verification failed:", message);
     return apiError(ErrorCodes.ERR_STRIPE_WEBHOOK_INVALID, message, 400);
   }
 
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
   const eventId = event.id;
   const eventType = event.type;
   const payloadHash = createHash("sha256").update(body).digest("hex");
-  console.log(`[VISUAL Webhook] Received event ${eventId} (${eventType})`);
+  console.log(`[VIXUAL Webhook] Received event ${eventId} (${eventType})`);
 
   // ── Write to stripe_webhook_logs for audit trail ──
   try {
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       ON CONFLICT (event_id) DO NOTHING
     `;
   } catch (logErr) {
-    console.error("[VISUAL Webhook] Failed to write audit log:", logErr);
+    console.error("[VIXUAL Webhook] Failed to write audit log:", logErr);
   }
 
   // ── Enqueue to Redis for async retry capability ──
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     await enqueueWebhookEvent(eventId, eventType, body);
   } catch (queueErr) {
     // Queue failure is non-blocking -- we still process synchronously
-    console.error("[VISUAL Webhook] Queue enqueue failed:", queueErr);
+    console.error("[VIXUAL Webhook] Queue enqueue failed:", queueErr);
   }
 
   try {
@@ -83,10 +83,10 @@ export async function POST(req: NextRequest) {
         break;
 
       default:
-        console.log(`[VISUAL Webhook] Unhandled event type: ${eventType}`);
+        console.log(`[VIXUAL Webhook] Unhandled event type: ${eventType}`);
     }
   } catch (error) {
-    console.error(`[VISUAL Webhook] Processing error for event ${eventId}:`, error);
+    console.error(`[VIXUAL Webhook] Processing error for event ${eventId}:`, error);
     // Update audit log status to 'failed'
     await sql`
       UPDATE stripe_webhook_logs
@@ -163,7 +163,7 @@ async function handlePaymentSucceeded(paymentIntent: Record<string, unknown>, ev
 
   // ── IDEMPOTENCY CHECK ──
   if (await isPaymentAlreadyProcessed(piId)) {
-    console.warn(`[VISUAL Webhook] DUPLICATE detected: payment_intent ${piId} already processed. Skipping. Event: ${eventId}`);
+    console.warn(`[VIXUAL Webhook] DUPLICATE detected: payment_intent ${piId} already processed. Skipping. Event: ${eventId}`);
     return; // Return 200 to Stripe so it stops retrying
   }
 

@@ -52,7 +52,7 @@ const ROLE_UPGRADES = [
   {
     role: "porter" as const,
     label: "Porteur",
-    description: "Deposez des videos et contenus audiovisuels sur VISUAL",
+    description: "Deposez des videos et contenus audiovisuels sur VIXUAL",
     icon: Film,
     color: "red",
     caution: CAUTION_EUR.creator,
@@ -181,7 +181,7 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Shield className="h-5 w-5 text-emerald-400" />
-            {"Mes rôles VISUAL"}
+            {"Mes rôles VIXUAL"}
           </CardTitle>
           <CardDescription className="text-white/60">
             {"Activez de nouveaux rôles pour débloquer des fonctionnalités. Chaque rôle nécessite une caution unique, remboursable en cas de résiliation."}
@@ -554,7 +554,7 @@ export default function SettingsPage() {
               <div>
                 <p className="text-white font-medium">{"Résilier mon compte"}</p>
                 <p className="text-white/60 text-sm">
-                  {"La résiliation entraîne le remboursement de votre caution (si applicable) et la désactivation de tous vos rôles. Vos investissements en cours seront clôturés selon les règles VISUAL."}
+                  {"La résiliation entraîne le remboursement de votre caution (si applicable) et la désactivation de tous vos rôles. Vos investissements en cours seront clôturés selon les règles VIXUAL."}
                 </p>
               </div>
               <AlertDialog>
@@ -569,7 +569,7 @@ export default function SettingsPage() {
                       {"Confirmer la résiliation"}
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-white/60">
-                      {"En r\u00e9siliant votre compte, vos r\u00f4les seront d\u00e9sactiv\u00e9s et votre caution sera rembours\u00e9e sous sept jours ouvr\u00e9s via Stripe. Vos investissements en cours seront trait\u00e9s selon les r\u00e8gles de cl\u00f4ture VISUAL."}
+                      {"En résiliant votre compte, vos rôles seront désactivés et votre caution sera remboursée sous sept jours ouvrés via Stripe. Vos investissements en cours seront traités selon les règles de clôture VIXUAL."}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>

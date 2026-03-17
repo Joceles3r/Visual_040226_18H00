@@ -323,7 +323,7 @@ export default function VisupointsPage() {
       <div>
         <h1 className="text-3xl font-bold text-white mb-2">Mes VIXUpoints</h1>
         <p className="text-white/60">
-          {"Gagnez des points, consommez du contenu et \u00e9voluez sur VISUAL"}
+          {"Gagnez des points, consommez du contenu et évoluez sur VIXUAL"}
         </p>
       </div>
 
@@ -497,7 +497,7 @@ export default function VisupointsPage() {
                 {"Convertir " + conversion.eurosConverted + "\u20ac en cr\u00e9dit interne"}
               </Button>
               <p className="text-white/40 text-xs">
-                {"Le cr\u00e9dit sera ajout\u00e9 \u00e0 votre Wallet VISUAL."}
+                {"Le crédit sera ajouté à votre Wallet VIXUAL."}
               </p>
             </div>
           )}
@@ -624,7 +624,7 @@ export default function VisupointsPage() {
       {/* Note juridique VIXUpoints */}
       <div className="bg-slate-800/30 rounded-xl p-4 border border-white/5 text-center">
         <p className="text-white/30 text-xs leading-relaxed">
-          {"Les VIXUpoints constituent un avantage promotionnel interne \u00e0 VISUAL. Ils ne repr\u00e9sentent pas une cr\u00e9ance financi\u00e8re exigible ni une monnaie \u00e9lectronique au sens de la directive 2009/110/CE. Le paiement 100% VIXUpoints n'est pas autoris\u00e9. La conversion en euros est soumise aux conditions d\u00e9finies dans les "}
+          {"Les VIXUpoints constituent un avantage promotionnel interne à VIXUAL. Ils ne représentent pas une créance financière exigible ni une monnaie électronique au sens de la directive 2009/110/CE. Le paiement 100% VIXUpoints n'est pas autorisé. La conversion en euros est soumise aux conditions définies dans les "}
           <a href="/legal/cgv" className="text-emerald-400/50 hover:text-emerald-400/70 underline underline-offset-2">CGV</a>
           {" et les "}
           <a href="/legal/terms" className="text-emerald-400/50 hover:text-emerald-400/70 underline underline-offset-2">CGU</a>

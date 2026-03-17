@@ -88,7 +88,7 @@ export function InvestSimulator() {
             <span className="text-emerald-400 font-bold text-lg">{votes}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-white/60 text-sm">VISUpoints</span>
+            <span className="text-white/60 text-sm">VIXUpoints</span>
             <span className="text-amber-400 font-bold text-lg">+{visupoints}</span>
           </div>
         </div>

@@ -18,7 +18,7 @@ import { useAuth } from "@/lib/auth-context"
 
 const BENEFITS = [
   "Acces aux contenus gratuits",
-  "Gagnez des VISUpoints",
+  "Gagnez des VIXUpoints",
   "Suivez vos createurs preferes",
   "Devenez Investisseur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
 ]

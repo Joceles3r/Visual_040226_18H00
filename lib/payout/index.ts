@@ -49,7 +49,7 @@ export {
   // Votes
   INVESTMENT_TO_VOTES,
   getVotesForInvestment,
-  // VISUpoints
+  // VIXUpoints
   INVESTMENT_TO_VISUPOINTS,
   getVisupointsForInvestment,
   VISUPOINTS_CONVERSION_THRESHOLD,

@@ -109,7 +109,7 @@ export const POST = withErrorHandler(async (req: Request) => {
       // Log the abuse alert -- admin can review
       await sql`
         INSERT INTO reports (reporter_id, target_id, target_type, category, reason, status, created_at)
-        VALUES ('system', ${userId}, 'user', 'spam', ${`Auto-detected VISUpoints abuse: score=${abuse.riskScore}, flags=${abuse.flags.join(",")}`}, 'pending', NOW())
+        VALUES ('system', ${userId}, 'user', 'spam', ${`Auto-detected VIXUpoints abuse: score=${abuse.riskScore}, flags=${abuse.flags.join(",")}`}, 'pending', NOW())
       `;
     }
   } catch {

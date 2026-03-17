@@ -104,7 +104,7 @@ export default function VixualSocialPage() {
               VIXUAL Social
             </h1>
             <p className="text-white/50 max-w-xl mx-auto text-balance">
-              {"\u00c9changez avec la communaut\u00e9 VISUAL. Discussions structur\u00e9es par tags, r\u00e9ponses directes, mod\u00e9ration communautaire."}
+              {"Échangez avec la communauté VIXUAL. Discussions structurées par tags, réponses directes, modération communautaire."}
             </p>
           </div>
 

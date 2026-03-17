@@ -538,7 +538,7 @@ export default function VisualSocialFeed({
       {/* V1 notice */}
       {!VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1 && !isContentMode && (
         <div className="text-center py-3 text-white/15 text-xs">
-          {"V1 \u2014 Les VISUpoints VIXUAL Social sont temporairement d\u00e9sactiv\u00e9s"}
+          {"V1 — Les VIXUpoints VIXUAL Social sont temporairement désactivés"}
         </div>
       )}
     </div>

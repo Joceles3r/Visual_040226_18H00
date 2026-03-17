@@ -7,7 +7,7 @@ import { ALL_CONTENTS } from "@/lib/mock-data";
 /**
  * POST /api/discovery/score
  *
- * Compute or refresh VISUAL Score for a specific project.
+ * Compute or refresh VIXUAL Score for a specific project.
  * Accepts: contentId (query param)
  * Returns: updated discovery_score object with all metrics
  */
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       return apiError(ErrorCodes.ERR_NOT_FOUND, "Content not found", 404);
     }
 
-    // Compute VISUAL Score
+    // Compute VIXUAL Score
     const score = computeVisualScore(content);
 
     // Upsert into discovery_scores table
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       ...score,
     });
   } catch (error: unknown) {
-    console.error("[VISUAL API] Discovery score error:", error);
+    console.error("[VIXUAL API] Discovery score error:", error);
     const message = error instanceof Error ? error.message : "Internal server error";
     return apiError(ErrorCodes.ERR_INTERNAL, message, 500);
   }
@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
       results: top100,
     });
   } catch (error: unknown) {
-    console.error("[VISUAL API] Discovery query error:", error);
+    console.error("[VIXUAL API] Discovery query error:", error);
     const message = error instanceof Error ? error.message : "Internal server error";
     return apiError(ErrorCodes.ERR_INTERNAL, message, 500);
   }

@@ -660,7 +660,7 @@ export default function AdminPage() {
               <div className="flex items-start gap-3">
                 <AlertOctagon className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
                 <div className="space-y-2">
-                  <p className="text-emerald-400 font-medium text-sm">{"Rappel -- Charte de mod\u00e9ration VISUAL"}</p>
+                  <p className="text-emerald-400 font-medium text-sm">{"Rappel -- Charte de modération VIXUAL"}</p>
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="text-white/50">{"Signalements critiques (racisme, homophobie, antis\u00e9mitisme) : traitement prioritaire sous vingt-quatre heures."}</div>
                     <div className="text-white/50">{"Pipeline : Signalement > Examen > D\u00e9cision (approuver / avertir / supprimer contenu / suspendre / bannir)."}</div>

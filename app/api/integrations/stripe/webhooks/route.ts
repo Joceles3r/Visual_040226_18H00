@@ -122,7 +122,7 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
       WHERE stripe_payment_intent_id = ${paymentIntent.id}
     `;
     
-    // Credit VISUpoints to investor
+    // Credit VIXUpoints to investor
     const visupointsGranted = parseInt(metadata.visupoints_granted || "0", 10);
     if (visupointsGranted > 0) {
       await sql`

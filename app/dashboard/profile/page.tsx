@@ -46,7 +46,7 @@ export default function ProfilePage() {
     email: user?.email || "",
     phone: "+33 6 12 34 56 78",
     location: "Paris, France",
-    bio: "Passionné de cinéma et de littérature, je soutiens les créateurs indépendants sur VISUAL.",
+    bio: "Passionné de cinéma et de littérature, je soutiens les créateurs indépendants sur VIXUAL.",
   })
 
   const handleSave = () => {
@@ -57,7 +57,7 @@ export default function ProfilePage() {
   const stats = [
     { label: "Projets soutenus", value: "12", icon: Star },
     { label: "Total investi", value: "245€", icon: TrendingUp },
-    { label: "VISUpoints", value: "1,850", icon: Award },
+    { label: "VIXUpoints", value: "1,850", icon: Award },
     { label: "Membre depuis", value: "Jan 2026", icon: Calendar },
   ]
 

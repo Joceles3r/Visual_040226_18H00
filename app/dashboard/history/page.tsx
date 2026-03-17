@@ -72,7 +72,7 @@ export default function HistoryPage() {
       case "deposit":
         return "Caution"
       case "visupoints":
-        return "VISUpoints"
+        return "VIXUpoints"
       default:
         return type
     }
@@ -129,7 +129,7 @@ export default function HistoryPage() {
               value="visupoints"
               className="text-white focus:bg-emerald-600/30 focus:text-white"
             >
-              VISUpoints
+              VIXUpoints
             </SelectItem>
           </SelectContent>
         </Select>
