@@ -13,7 +13,23 @@
  * 8. Coherence economique et juridique
  * 
  * Ce moteur constitue le cerveau mathematique et economique de VIXUAL.
+ * 
+ * IMPORTANT: Toutes les formules officielles sont centralisees dans /lib/formulas.ts
  */
+
+import {
+  DISTRIBUTION_KEY as FORMULAS_DISTRIBUTION_KEY,
+  CONTRIBUTION_TO_VOTES as FORMULAS_CONTRIBUTION_TO_VOTES,
+  SCORE_WEIGHTS as FORMULAS_SCORE_WEIGHTS,
+  CYCLE_THRESHOLD as FORMULAS_CYCLE_THRESHOLD,
+  TOP_WINNERS as FORMULAS_TOP_WINNERS,
+  calculateUserGain,
+  calculateProjectScore as formulasCalculateProjectScore,
+  getRankCategory,
+  isWinningRank,
+  isCommunityRank,
+  validateAllFormulas,
+} from "./formulas"
 
 // ─── Types de base ───
 
@@ -21,42 +37,22 @@ export type Universe = "audiovisual" | "literary" | "podcast"
 export type CycleStatus = "open" | "closing" | "closed" | "distributed"
 export type ProjectRank = "top10" | "participant" | "unranked"
 
-// ─── Constantes officielles ───
+// ─── Constantes officielles (re-exportees depuis formulas.ts) ───
 
 /** Nombre de projets par cycle */
-export const CYCLE_THRESHOLD = 100
+export const CYCLE_THRESHOLD = FORMULAS_CYCLE_THRESHOLD
 
 /** Nombre de projets gagnants (TOP 10) */
-export const TOP_WINNERS = 10
+export const TOP_WINNERS = FORMULAS_TOP_WINNERS
 
 /** Cle de repartition officielle */
-export const DISTRIBUTION_KEY = {
-  creators: 0.40,      // 40% - Createurs gagnants
-  contributors: 0.30,  // 30% - Contributeurs gagnants
-  community: 0.07,     // 7%  - Communaute (rang 11-100)
-  platform: 0.23,      // 23% - VIXUAL
-} as const
+export const DISTRIBUTION_KEY = FORMULAS_DISTRIBUTION_KEY
 
 /** Table de conversion contribution -> votes */
-export const CONTRIBUTION_TO_VOTES: Record<number, number> = {
-  2: 1,
-  3: 2,
-  4: 3,
-  5: 4,
-  6: 5,
-  8: 7,
-  10: 8,
-  12: 10,
-  15: 13,
-  20: 15,
-}
+export const CONTRIBUTION_TO_VOTES = FORMULAS_CONTRIBUTION_TO_VOTES
 
 /** Poids du score projet */
-export const SCORE_WEIGHTS = {
-  votes: 0.50,       // 50% - Votes ponderes
-  funding: 0.30,     // 30% - Financement total
-  engagement: 0.20,  // 20% - Engagement public
-} as const
+export const SCORE_WEIGHTS = FORMULAS_SCORE_WEIGHTS
 
 // ─── Interfaces ───
 
