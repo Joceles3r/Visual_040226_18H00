@@ -8,6 +8,7 @@ import { StripeModeBanner } from "@/components/stripe-mode-banner"
 import { CookieConsentBanner } from "@/components/cookie-consent"
 import { MinorClientGuard } from "@/components/minors/minor-client-guard"
 import { SoundProvider } from "@/components/sound-provider"
+import { ResizeObserverFix } from "@/components/resize-observer-fix"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
+        <ResizeObserverFix />
         <StripeModeBanner />
         <AuthProvider>
           <SoundProvider>
