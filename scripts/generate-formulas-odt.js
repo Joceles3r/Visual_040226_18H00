@@ -99,7 +99,7 @@ body.push(bulletList([
   "3. VISUpoints - Bareme Fidelite et Conversion",
   "4. Cautions",
   "5. Films / Videos / Documentaires - Cloture 40/30/7/23",
-  "6. Voix de l'Info - Vente 70/30 + Pot quotidien 60/40",
+"6. Voix de l'Info - Vente 70/30 + Pot mensuel 60/40",
   "7. Livres - Vente 70/30 + Pot mensuel 60/40",
   "8. Podcasts - Vente 70/30 + Pot mensuel 40/30/20/10",
   "9. Quotas Createurs (mise en ligne Bunny.net)",

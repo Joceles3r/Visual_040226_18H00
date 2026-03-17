@@ -331,7 +331,7 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
   },
   voix_info: {
     label: "Voix de l'Info (articles)",
-    frequency: "Quotidien (CRON 00:15 UTC+1)",
+    frequency: "Mensuel (1er du mois)",
     splits: [
       { label: "Auteurs TOP 10", percent: VOIXINFO_POT_AUTHORS_TOP10_PERCENT, color: "amber" },
       { label: "Lecteurs gagnants", percent: VOIXINFO_POT_READERS_PERCENT, color: "sky" },
@@ -339,7 +339,7 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
   },
   livres: {
     label: "Livres",
-    frequency: "Mensuel (dernier jour du mois)",
+    frequency: "Mensuel (1er du mois)",
     splits: [
       { label: "Auteurs TOP 10", percent: LIVRES_POT_AUTHORS_TOP10_PERCENT, color: "amber" },
       { label: "Investi-lecteurs gagnants", percent: LIVRES_POT_INVESTIREADERS_PERCENT, color: "sky" },
@@ -347,7 +347,7 @@ export const CATEGORY_SPLITS: Record<VisualCategory, {
   },
   podcasts: {
     label: "Podcasts",
-    frequency: "Mensuel (dernier jour du mois)",
+    frequency: "Mensuel (1er du mois)",
     splits: [
       { label: "Podcasteurs TOP 10 (base)", percent: PODCASTS_POT_CREATORS_PERCENT, color: "purple" },
       { label: "Auditeurs TOP 10 (investisseurs)", percent: PODCASTS_POT_INVESTORS_PERCENT, color: "emerald" },

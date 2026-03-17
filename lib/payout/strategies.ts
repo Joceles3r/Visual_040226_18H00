@@ -232,7 +232,7 @@ export class PodcastStrategy implements PayoutStrategy {
   }
 }
 
-// ── Voix de l'Info Strategy (60/40 pot quotidien) ──
+// ── Voix de l'Info Strategy (60/40 pot mensuel) ──
 
 export class VoixInfoStrategy implements PayoutStrategy {
   category: PayoutCategory = "voix_info";

@@ -62,7 +62,7 @@ export default function DownloadFormulesPage() {
             {[
               "8 profils : Invite, Visiteur, Porteur, Infoporteur, Podcasteur, Contributeur, Contribu-lecteur, Auditeur",
               "Films/Videos/Docs : 40 / 30 / 7 / 23",
-              "Voix de l'Info : vente 70/30 + pot quotidien 60/40",
+              "Voix de l'Info : vente 70/30 + pot mensuel 60/40",
               "Livres : vente 70/30 + pot mensuel 60/40",
               "Podcasts : vente 70/30 + pot mensuel 40/30/20/10",
               "Baremes votes, VIXUpoints, cautions, quotas createurs",

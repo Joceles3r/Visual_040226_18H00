@@ -437,14 +437,14 @@ export default function HowItWorksPage() {
                       <FileText className="h-5 w-5 text-amber-400" />
                       Voix de l'Info (articles)
                     </CardTitle>
-                    <p className="text-sm text-white/50">Vente 70/30 + Pot quotidien</p>
+                    <p className="text-sm text-white/50">Vente 70/30 + Pot mensuel</p>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <p className="text-xs text-white/40 mb-1">Vente unitaire :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteur</span><span className="text-white font-semibold">70%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL</span><span className="text-white font-semibold">30%</span></div>
                     <div className="border-t border-white/10 my-2" />
-                    <p className="text-xs text-white/40 mb-1">Pot du jour :</p>
+                    <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Auteurs TOP 10</span><span className="text-white font-semibold">60%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-sky-400">Contribu-lecteurs gagnants</span><span className="text-white font-semibold">40%</span></div>
                   </CardContent>
@@ -486,7 +486,7 @@ export default function HowItWorksPage() {
                     <div className="border-t border-white/10 my-2" />
                     <p className="text-xs text-white/40 mb-1">Pot mensuel :</p>
                     <div className="flex justify-between text-sm"><span className="text-purple-400">Podcasteurs</span><span className="text-white font-semibold">40%</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Auditeurs (investisseurs)</span><span className="text-white font-semibold">30%</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-emerald-400">Auditeurs (contributeurs)</span><span className="text-white font-semibold">30%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-white/50">VIXUAL (plateforme)</span><span className="text-white font-semibold">20%</span></div>
                     <div className="flex justify-between text-sm"><span className="text-amber-400">Bonus Pool</span><span className="text-white font-semibold">10%</span></div>
                     <div className="pl-4 mt-1 space-y-1 border-l-2 border-amber-400/30">

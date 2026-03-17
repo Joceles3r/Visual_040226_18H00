@@ -64,7 +64,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Dois-je m'inscrire?",
-        answer: "Non, l'inscription n'est pas obligatoire pour explorer VIXUAL. Cependant, pour débloquer toutes les fonctionnalités (contributions, VIXUpoints, création), créez un compte gratuit en tant que Visiteur."
+        answer: "Non, l'inscription n'est pas obligatoire pour explorer VIXUAL. Cependant, pour débloquer toutes les fonctionnalités (contributions, VIXUpoints, création), créez un compte gratuit en tant que Visiteur ou payant pour un autre profil."
       }
     ]
   },
@@ -94,7 +94,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Comment gagnent les créateurs?",
-        answer: "Les gains proviennent des contributions des utilisateurs. Si votre projet est dans le TOP 10 sur 100, vous recevez une part des royalties (de 5% à 40% selon votre classement). Les gains sont versés le 1er du mois suivant."
+        answer: "Les gains proviennent des contributions des utilisateurs. Si votre projet est dans le TOP 10 sur 100, vous recevez une part des royalties (de 7% à 40% selon votre classement). Les gains sont versés le 1er du mois suivant."
       },
       {
         question: "Quel prix fixer pour mon projet?",
@@ -132,7 +132,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Comment gagner en tant que Contribu-lecteur?",
-        answer: "Même principe que le Contributeur: TOP 10 reçoit 40% des gains, rangs 11-100 reçoivent 7%. Les gains du pot mensuel Livres sont versés le dernier jour du mois."
+        answer: "Même principe que le Contributeur: TOP 10 reçoit 40% des gains, rangs 11-100 reçoivent 7%. Les gains du pot mensuel Livres sont versés le 1er du mois."
       },
       {
         question: "Quelle est la différence avec le Contributeur?",
@@ -149,7 +149,7 @@ const FAQ_CATEGORIES = [
       },
       {
         question: "Comment gagner en tant qu'Auditeur?",
-        answer: "Même principe: TOP 10 reçoit 40%, rangs 11-100 reçoivent 7%. Le pot mensuel Podcasts est distribué le dernier jour du mois."
+        answer: "Même principe: TOP 10 reçoit 40%, rangs 11-100 reçoivent 7%. Le pot mensuel Podcasts est distribué le 1er du mois."
       },
       {
         question: "Puis-je utiliser le paiement hybride?",
