@@ -19,6 +19,7 @@ import {
   Zap,
   Brain,
   Orbit,
+  TrendingUp,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -26,6 +27,7 @@ const ADMIN_NAV = [
   { label: "Tableau de bord", href: "/admin", icon: BarChart3 },
   { label: "ORBIT Engine", href: "/admin/orbit-engine", icon: Orbit, highlight: true },
   { label: "Financial Brain", href: "/admin/financial-brain", icon: Brain },
+  { label: "SEO + Growth", href: "/admin/seo-growth", icon: TrendingUp, highlight: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
   { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
