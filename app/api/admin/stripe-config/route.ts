@@ -6,7 +6,7 @@
  *
  * GET  /api/admin/stripe-config       → lit la config (clés masquées)
  * POST /api/admin/stripe-config       → met à jour la config
- * PATCH /api/admin/stripe-config      → bascule le mode test/live
+ * DELETE /api/admin/stripe-config     → bascule le mode test/live
  */
 import { NextRequest, NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
