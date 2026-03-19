@@ -90,13 +90,13 @@ export default function DashboardPage() {
 
   const isVisitor = roles.includes("visitor")
   const isPorter = roles.includes("porter")
-  const isInvestor = roles.includes("investor")
+  const isContributor = roles.includes("contributor") || roles.includes("investor") // compatibilite
   const isInfoporter = roles.includes("infoporter")
-  const isInvestireader = roles.includes("investireader")
+  const isContribuReader = roles.includes("contribu_reader") || roles.includes("investireader") // compatibilite
   const isPodcaster = roles.includes("podcaster")
   const isListener = roles.includes("listener")
   const hasCreatorRole = isPorter || isInfoporter || isPodcaster
-  const hasInvestorRole = isInvestor || isInvestireader || isListener
+  const hasContributorRole = isContributor || isContribuReader || isListener
 
   return (
     <div className="space-y-8">

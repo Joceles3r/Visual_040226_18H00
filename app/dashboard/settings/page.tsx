@@ -77,31 +77,31 @@ const ROLE_UPGRADES = [
     cautionType: "creator" as const,
   },
   {
-    role: "investor" as const,
-    label: "Investisseur",
-    description: "Investissez dans des projets audiovisuels",
+    role: "contributor" as const,
+    label: "Contributeur",
+    description: "Contribuez aux projets audiovisuels",
     icon: TrendingUp,
     color: "emerald",
-    caution: CAUTION_EUR.investor,
-    cautionType: "investor" as const,
+    caution: CAUTION_EUR.contributor,
+    cautionType: "contributor" as const,
   },
   {
-    role: "investireader" as const,
-    label: "Investi-lecteur",
-    description: "Investissez dans des contenus litteraires",
+    role: "contribu_reader" as const,
+    label: "Contribu-lecteur",
+    description: "Contribuez aux contenus litteraires",
     icon: BookOpen,
     color: "sky",
-    caution: CAUTION_EUR.investor,
-    cautionType: "investor" as const,
+    caution: CAUTION_EUR.contributor,
+    cautionType: "contributor" as const,
   },
   {
     role: "listener" as const,
     label: "Auditeur",
-    description: "Investissez dans des podcasts et contenus audio",
+    description: "Contribuez aux podcasts et contenus audio",
     icon: Headphones,
     color: "violet",
-    caution: CAUTION_EUR.investor,
-    cautionType: "investor" as const,
+    caution: CAUTION_EUR.contributor,
+    cautionType: "contributor" as const,
   },
 ] as const
 
@@ -123,7 +123,7 @@ export default function SettingsPage() {
   }
 
   const handleUpgradeRole = useCallback(
-    async (role: string, cautionType: "creator" | "investor") => {
+    async (role: string, cautionType: "creator" | "contributor") => {
       if (!user) return
       setUpgradingRole(role)
       try {

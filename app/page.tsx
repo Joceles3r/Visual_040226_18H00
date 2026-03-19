@@ -392,8 +392,6 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
-      </main>
-
         {/* Guide des Profils CTA */}
         <section className="py-16 bg-gradient-to-r from-slate-900 via-teal-900/20 to-slate-900 border-y border-slate-800/50">
           <div className="container mx-auto px-4">
@@ -431,5 +429,4 @@ export default function HomePage() {
         <Footer />
       </main>
     )
-  }
 }

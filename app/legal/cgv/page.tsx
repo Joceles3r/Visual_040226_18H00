@@ -976,3 +976,12 @@ export default function CGVPage() {
             </div>
           </SubSection>
         </Section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</div>
+  )
+}
