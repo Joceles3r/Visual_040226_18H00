@@ -20,6 +20,7 @@ import {
   Brain,
   Orbit,
   TrendingUp,
+  CreditCard,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -28,6 +29,7 @@ const ADMIN_NAV = [
   { label: "ORBIT Engine", href: "/admin/orbit-engine", icon: Orbit, highlight: true },
   { label: "Financial Brain", href: "/admin/financial-brain", icon: Brain },
   { label: "SEO + Growth", href: "/admin/seo-growth", icon: TrendingUp, highlight: true },
+  { label: "Config Stripe", href: "/admin/stripe-config", icon: CreditCard, stripe: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
   { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
@@ -86,12 +88,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                 item.critical
                   ? "text-rose-300 bg-rose-500/10 border border-rose-500/40 hover:bg-rose-500/20"
+                  : (item as { stripe?: boolean }).stripe
+                  ? "text-violet-300 bg-violet-500/10 border border-violet-500/40 hover:bg-violet-500/20"
                   : item.highlight
                   ? "text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20"
                   : "text-white/60 hover:text-white hover:bg-amber-500/10"
               }`}
             >
-              <item.icon className={`h-4 w-4 ${item.critical ? "text-rose-400" : item.highlight ? "text-amber-400" : "text-amber-400/60"}`} />
+              <item.icon className={`h-4 w-4 ${item.critical ? "text-rose-400" : (item as { stripe?: boolean }).stripe ? "text-violet-400" : item.highlight ? "text-amber-400" : "text-amber-400/60"}`} />
               {item.label}
               {item.critical && (
                 <span className="ml-auto text-xs bg-rose-500 text-white px-1.5 py-0.5 rounded font-semibold">
