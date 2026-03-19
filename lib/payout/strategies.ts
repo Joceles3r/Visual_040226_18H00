@@ -52,6 +52,34 @@ function sum(arr: readonly number[]) {
   return arr.reduce((a, b) => a + b, 0);
 }
 
+/**
+ * Fonction centralisée pour gérer les arrondis dans les répartitions financières.
+ * Garantit que la somme des allocations est toujours égale au montant initial.
+ */
+function finalizeAllocations(
+  allocations: PayoutAllocation[],
+  residualTotal: number,
+  totalAmount: number,
+): PayoutAllocation[] {
+  // Vérifier que la somme des allocations + résidu = total
+  const sumAllocated = allocations.reduce((s, a) => s + a.amountCents, 0);
+  const expectedSum = totalAmount - residualTotal;
+  
+  if (sumAllocated !== expectedSum) {
+    console.warn(
+      `[PAYOUT] Rounding discrepancy detected: allocated=${sumAllocated}, expected=${expectedSum}, diff=${expectedSum - sumAllocated}`
+    );
+    
+    // Corriger la dernière allocation pour compenser la différence
+    if (allocations.length > 0) {
+      const lastAlloc = allocations[allocations.length - 1];
+      lastAlloc.amountCents += (expectedSum - sumAllocated);
+    }
+  }
+  
+  return allocations;
+}
+
 // ── Strategy interface ──
 
 export interface StrategyResult {
@@ -314,7 +342,7 @@ export class LivresStrategy implements PayoutStrategy {
     const readers = [...input.top10Investors, ...(input.investors11to100 ?? [])];
     if (readers.length === 0) {
       residualTotal += investiReadersPool;
-      warnings.push("No eligible investi-lecteurs for Livres; 40% pool captured by VISUAL.");
+      warnings.push("No eligible contribu-lecteurs for Livres; 40% pool held in reserve for next cycle.");
     } else {
       const perReader = Math.floor(investiReadersPool / readers.length);
       for (const reader of readers) {

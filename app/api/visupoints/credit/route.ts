@@ -16,6 +16,7 @@ import {
   creditVisupointsCapped,
   detectVisupointsAbuse,
   DAILY_VIXUPOINTS_CAP,
+  MINOR_VISUPOINTS_CAP,
 } from "@/lib/visupoints-engine";
 
 export const POST = withErrorHandler(async (req: Request) => {

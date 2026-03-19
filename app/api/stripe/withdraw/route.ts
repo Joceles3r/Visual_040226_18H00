@@ -173,15 +173,31 @@ export const POST = withErrorHandler(async (req: Request) => {
   const withdrawalId = (withdrawals[0] as { id: string }).id;
 
   // Create Stripe Transfer to the connected account
-  const transfer = await stripe.transfers.create({
-    amount: amountCents,
-    currency: "eur",
-    destination: stripeAccountId,
-    metadata: {
-      withdrawal_id: withdrawalId,
-      user_id: userId,
-    },
-  });
+  let transfer;
+  try {
+    transfer = await stripe.transfers.create({
+      amount: amountCents,
+      currency: "eur",
+      destination: stripeAccountId,
+      metadata: {
+        withdrawal_id: withdrawalId,
+        user_id: userId,
+      },
+    });
+  } catch (error) {
+    // Mark withdrawal as failed
+    await sql`
+      UPDATE withdrawal_requests
+      SET status = 'failed', processed_at = now()
+      WHERE id = ${withdrawalId}
+    `;
+    return apiError(
+      ErrorCodes.ERR_STRIPE_TRANSFER_FAILED,
+      "Transfer creation failed. Please contact support.",
+      500,
+      error instanceof Error ? error.message : "Unknown error"
+    );
+  }
 
   // Update wallet
   await sql`
