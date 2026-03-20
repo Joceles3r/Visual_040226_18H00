@@ -90,9 +90,9 @@ export default function DashboardPage() {
 
   const isVisitor = roles.includes("visitor")
   const isPorter = roles.includes("porter")
-  const isContributor = roles.includes("contributor") || roles.includes("investor") // compatibilite
+  const isContributor = roles.includes("contributor") || roles.includes("investor")
   const isInfoporter = roles.includes("infoporter")
-  const isContribuReader = roles.includes("contribu_reader") || roles.includes("investireader") // compatibilite
+  const isContribuReader = roles.includes("contribu_reader") || roles.includes("investireader")
   const isPodcaster = roles.includes("podcaster")
   const isListener = roles.includes("listener")
   const hasCreatorRole = isPorter || isInfoporter || isPodcaster
@@ -125,7 +125,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stripe Connect Banner */}
-      {(hasInvestorRole || hasCreatorRole) &&
+      {(hasContributorRole || hasCreatorRole) &&
         user?.stripeConnect?.status !== "verified" && (
           <Card className="bg-gradient-to-r from-[#635BFF]/10 to-[#635BFF]/5 border-[#635BFF]/30">
             <CardContent className="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -331,7 +331,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Investments or Projects count based on role */}
-        {hasInvestorRole && (
+        {hasContributorRole && (
           <Card className="bg-slate-900/50 border-white/10">
             <CardContent className="p-6">
               <div className="flex items-center gap-4">
@@ -504,7 +504,7 @@ export default function DashboardPage() {
           </Link>
         )}
 
-        {hasInvestorRole && (
+        {hasContributorRole && (
           <Link href="/dashboard/wallet">
             <Card className="bg-slate-900/50 border-white/10 hover:border-teal-500/50 transition-colors cursor-pointer h-full">
               <CardContent className="p-6 flex items-center gap-4">
@@ -523,7 +523,7 @@ export default function DashboardPage() {
           </Link>
         )}
 
-        {!hasCreatorRole && !hasInvestorRole && !user?.isMinor && (
+        {!hasCreatorRole && !hasContributorRole && !user?.isMinor && (
           <Link href="/dashboard/settings">
             <Card className="bg-gradient-to-r from-emerald-900/30 to-teal-900/30 border-emerald-500/30 hover:border-emerald-500/50 transition-colors cursor-pointer h-full">
               <CardContent className="p-6 flex items-center gap-4">
@@ -545,7 +545,7 @@ export default function DashboardPage() {
         )}
 
         {/* Minor restriction card */}
-        {user?.isMinor && !hasCreatorRole && !hasInvestorRole && (
+        {user?.isMinor && !hasCreatorRole && !hasContributorRole && (
           <Card className="bg-slate-900/50 border-white/10 opacity-75">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center">
@@ -567,7 +567,7 @@ export default function DashboardPage() {
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Investments */}
-        {hasInvestorRole && MOCK_INVESTMENTS.length > 0 && (
+        {hasContributorRole && MOCK_INVESTMENTS.length > 0 && (
           <Card className="bg-slate-900/50 border-white/10">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-white">
