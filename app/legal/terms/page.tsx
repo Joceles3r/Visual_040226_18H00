@@ -475,62 +475,84 @@ export default function TermsOfUsePage() {
                   </p>
                   <div className="bg-black/30 rounded-xl p-4 border border-white/5 mb-3">
                     <p className="text-white/70 text-sm font-medium mb-2">{"Taux et limites"}</p>
-                    <div className="grid grid-cols-3 gap-3 text-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                       <div>
                         <span className="text-amber-400 font-bold text-lg">100</span>
-                        <p className="text-white/40 text-xs">{"points \u00e9quivalent un euro"}</p>
+                        <p className="text-white/40 text-xs">{"points = 1\u20ac"}</p>
                       </div>
                       <div>
-                        <span className="text-emerald-400 font-bold text-lg">60</span>
+                        <span className="text-emerald-400 font-bold text-lg">50</span>
                         <p className="text-white/40 text-xs">pts max / jour</p>
+                      </div>
+                      <div>
+                        <span className="text-violet-400 font-bold text-lg">500</span>
+                        <p className="text-white/40 text-xs">pts max / semaine*</p>
                       </div>
                       <div>
                         <span className="text-sky-400 font-bold text-lg">2 500</span>
                         <p className="text-white/40 text-xs">seuil conversion</p>
                       </div>
                     </div>
+                    <p className="text-white/30 text-xs mt-2 italic">{"*Le plafond hebdomadaire de 500 pts s'applique uniquement en cas de participation communautaire active ou de promotion de VIXUAL."}</p>
                   </div>
                 </SubSection>
 
-                <SubSection title={"Plafonds par profil"}>
+                <SubSection title={"Utilisation des VIXUpoints par profil"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"Chaque profil dispose d'un plafond sp\u00e9cifique d'accumulation de VIXUpoints :"}
+                    {"Les VIXUpoints sont réservés à certains profils d'utilisateurs selon les règles suivantes :"}
                   </p>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
-                      <thead>
-                        <tr className="border-b border-white/10 text-white/50">
-                          <th className="text-left py-2 pr-3 font-medium">Profil</th>
-                          <th className="text-center py-2 px-2 font-medium">Plafond</th>
-                          <th className="text-center py-2 px-2 font-medium">Type</th>
-                          <th className="text-center py-2 px-2 font-medium">{"Convertible ?"}</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-white/5">
-                        {[
-                          { p: "Invit\u00e9", cap: "\u2014", type: "\u2014", conv: false },
-                          { p: "Visiteur majeur", cap: "2 500", type: "Total", conv: true },
-                          { p: "Visiteur mineur (16\u201317)", cap: "10 000", type: "Total", conv: false },
-                          { p: "Auditeur", cap: "2 500", type: "Total", conv: true },
-                          { p: "Contribu-lecteur", cap: "2 500", type: "Total", conv: true },
-                          { p: "Porteur", cap: "1 000", type: "/mois", conv: false },
-                          { p: "Infoporteur", cap: "1 000", type: "/mois", conv: false },
-                          { p: "Podcasteur", cap: "1 000", type: "/mois", conv: false },
-                          { p: "Contributeur", cap: "\u2014", type: "\u2014", conv: false },
-                        ].map((row) => (
-                          <tr key={row.p}>
-                            <td className="py-1.5 pr-3 text-white/70">{row.p}</td>
-                            <td className="py-1.5 px-2 text-center text-amber-400 font-mono">{row.cap}</td>
-                            <td className="py-1.5 px-2 text-center text-white/40">{row.type}</td>
-                            <td className="py-1.5 px-2 text-center">{row.conv ? <CheckCircle className="h-3.5 w-3.5 text-emerald-400 mx-auto" /> : <Lock className="h-3.5 w-3.5 text-white/20 mx-auto" />}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                      <p className="text-emerald-400 font-medium text-sm mb-2">{"Profils autorisés"}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                          <span className="text-white/70"><strong className="text-white/90">Visiteur majeur</strong> : VIXUpoints + paiement hybride</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                          <span className="text-white/70"><strong className="text-white/90">Visiteur mineur (16-17 ans)</strong> : VIXUpoints uniquement</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                          <span className="text-white/70"><strong className="text-white/90">Contribu-lecteur</strong> : VIXUpoints + paiement hybride</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                          <span className="text-white/70"><strong className="text-white/90">Auditeur</strong> : VIXUpoints + paiement hybride</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-rose-500/10 rounded-xl p-4 border border-rose-500/20">
+                      <p className="text-rose-400 font-medium text-sm mb-2">{"Profils non éligibles aux VIXUpoints"}</p>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <Lock className="h-3.5 w-3.5 text-rose-400/60 shrink-0" />
+                          <span className="text-white/50">Contributeur</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Lock className="h-3.5 w-3.5 text-rose-400/60 shrink-0" />
+                          <span className="text-white/50">Porteur</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Lock className="h-3.5 w-3.5 text-rose-400/60 shrink-0" />
+                          <span className="text-white/50">Infoporteur</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Lock className="h-3.5 w-3.5 text-rose-400/60 shrink-0" />
+                          <span className="text-white/50">Podcasteur</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-white/40 text-xs mt-3">
-                    {"Les cr\u00e9ateurs (Porteur, Infoporteur, Podcasteur) utilisent leurs VIXUpoints comme boost de visibilit\u00e9, non comme cr\u00e9dit convertible. L'Contributeur ne gagne pas de VIXUpoints (il est r\u00e9mun\u00e9r\u00e9 via les gains classiques)."}
-                  </p>
+                  
+                  <div className="bg-slate-800/50 rounded-lg p-3 mt-4 border border-white/5">
+                    <p className="text-white/50 text-xs leading-relaxed">
+                      {"Les VIXUpoints ne peuvent en aucun cas être utilisés comme outil de contribution financière directe aux projets audiovisuels, ni comme mécanisme de gain financier. Ils constituent exclusivement un outil promotionnel interne et d'engagement communautaire."}
+                    </p>
+                  </div>
                 </SubSection>
 
                 <SubSection title={"Paiement hybride (achat de contenu)"}>
@@ -556,21 +578,35 @@ export default function TermsOfUsePage() {
 
                 <SubSection title={"Moteur d'engagement (Visiteurs)"}>
                   <p className="text-white/60 text-sm leading-relaxed mb-3">
-                    {"\u00c0 partir de 2 000 VIXUpoints, VIXUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
+                    {"À partir de 500 VIXUpoints (pas avant), VIXUAL propose aux Visiteurs majeurs deux options pour valoriser leurs points :"}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                      <p className="text-emerald-400 font-medium mb-1">{"Chemin A : Consommer du contenu"}</p>
-                      <p className="text-white/50">{"Paiement hybride (30% cash / 70% VIXUpoints max) + bonus 5%"}</p>
+                    <div className="bg-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                          <span className="text-emerald-400 font-bold text-xs">A</span>
+                        </div>
+                        <p className="text-emerald-400 font-medium">{"Consommer du contenu"}</p>
+                      </div>
+                      <p className="text-white/60 text-xs leading-relaxed">{"Paiement hybride (30% cash / 70% VIXUpoints max) + bonus 5%"}</p>
+                      <p className="text-emerald-400/60 text-xs mt-2 italic">{"Disponible dès 500 pts"}</p>
                     </div>
-                    <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                      <p className="text-purple-400 font-medium mb-1">{"Chemin B : Changer de profil"}</p>
-                      <p className="text-white/50">{"Devenir Contributeur (+500 VIXUpoints bonus, plafond d\u00e9bloqu\u00e9)"}</p>
+                    <div className="bg-violet-500/10 rounded-xl p-4 border border-violet-500/20">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 rounded-full bg-violet-500/20 flex items-center justify-center">
+                          <span className="text-violet-400 font-bold text-xs">B</span>
+                        </div>
+                        <p className="text-violet-400 font-medium">{"Changer de profil"}</p>
+                      </div>
+                      <p className="text-white/60 text-xs leading-relaxed">{"Devenir Contributeur (+500 VIXUpoints bonus, plafond débloqué)"}</p>
+                      <p className="text-violet-400/60 text-xs mt-2 italic">{"Disponible à partir de 2 000 pts"}</p>
                     </div>
                   </div>
-                  <p className="text-white/40 text-xs mt-3">
-                    {"Ce m\u00e9canisme est purement incitatif et non contraignant. L'inscrit reste libre de conserver ses VIXUpoints."}
-                  </p>
+                  <div className="bg-slate-800/50 rounded-lg p-3 mt-3 border border-white/5">
+                    <p className="text-white/40 text-xs">
+                      {"Ce mécanisme est purement incitatif et non contraignant. L'inscrit reste libre de conserver ses VIXUpoints sans obligation de les utiliser."}
+                    </p>
+                  </div>
                 </SubSection>
 
                 <SubSection title="Classements TOP">
