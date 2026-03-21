@@ -32,9 +32,21 @@ async function resetAdminPassword() {
   console.log(`Admin email: ${adminEmail}`)
   
   try {
-    // Check if user exists
+    // First, ensure password_reset_tokens table exists
+    await sql`
+      CREATE TABLE IF NOT EXISTS password_reset_tokens (
+        id SERIAL PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        token TEXT NOT NULL,
+        expires_at TIMESTAMPTZ NOT NULL,
+        created_at TIMESTAMPTZ DEFAULT now()
+      )
+    `
+    console.log("OK: password_reset_tokens table ready")
+    
+    // Check if user exists (using only columns that exist in schema)
     const existingUsers = await sql`
-      SELECT id, email, name, is_admin FROM users WHERE LOWER(email) = ${adminEmail.toLowerCase()}
+      SELECT id, email, name, roles FROM users WHERE LOWER(email) = ${adminEmail.toLowerCase()}
     `
     
     if (existingUsers.length === 0) {
@@ -42,30 +54,32 @@ async function resetAdminPassword() {
       const tempPasswordHash = await bcrypt.hash(resetToken, 12)
       
       await sql`
-        INSERT INTO users (id, email, name, password_hash, roles, is_admin, created_at, updated_at)
+        INSERT INTO users (id, email, name, password_hash, roles, visupoints, created_at, updated_at)
         VALUES (
           gen_random_uuid(),
           ${adminEmail},
           'PATRON VIXUAL',
           ${tempPasswordHash},
           ARRAY['visitor', 'patron']::text[],
-          true,
+          0,
           now(),
           now()
         )
       `
       console.log("Admin user created successfully!")
     } else {
-      // Update existing user to be admin
+      // Update existing user to have patron role
+      const currentRoles = existingUsers[0].roles || []
+      const newRoles = [...new Set([...currentRoles, 'patron'])]
+      
       await sql`
         UPDATE users 
         SET 
-          is_admin = true,
-          roles = ARRAY['visitor', 'patron']::text[],
+          roles = ${newRoles}::text[],
           updated_at = now()
         WHERE LOWER(email) = ${adminEmail.toLowerCase()}
       `
-      console.log("Admin privileges updated for existing user!")
+      console.log("Admin privileges (patron role) updated for existing user!")
     }
     
     // Create or update password reset token
@@ -90,21 +104,7 @@ async function resetAdminPassword() {
     
   } catch (error) {
     console.error("Error:", error.message)
-    
-    // If password_reset_tokens table doesn't exist, create it
-    if (error.message.includes("password_reset_tokens")) {
-      console.log("Creating password_reset_tokens table...")
-      await sql`
-        CREATE TABLE IF NOT EXISTS password_reset_tokens (
-          id SERIAL PRIMARY KEY,
-          email TEXT UNIQUE NOT NULL,
-          token TEXT NOT NULL,
-          expires_at TIMESTAMPTZ NOT NULL,
-          created_at TIMESTAMPTZ DEFAULT now()
-        )
-      `
-      console.log("Table created. Please run the script again.")
-    }
+    console.error("Full error:", error)
   }
 }
 
