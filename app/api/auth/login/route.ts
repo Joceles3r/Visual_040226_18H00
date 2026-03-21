@@ -42,7 +42,6 @@ export async function POST(request: NextRequest) {
         name, 
         password_hash, 
         roles,
-        is_admin,
         created_at
       FROM users 
       WHERE LOWER(email) = ${normalizedEmail}
@@ -71,13 +70,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if user has patron role (admin)
+    const userRoles = user.roles || ["visitor"]
+    const isPatron = userRoles.includes("patron")
+
     // Create JWT token
     const token = await new SignJWT({
       userId: user.id,
       email: user.email,
       name: user.name,
-      roles: user.roles || ["visitor"],
-      isAdmin: user.is_admin || false,
+      roles: userRoles,
+      isAdmin: isPatron,
     })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
@@ -91,8 +94,8 @@ export async function POST(request: NextRequest) {
         id: user.id,
         email: user.email,
         name: user.name,
-        roles: user.roles || ["visitor"],
-        isAdmin: user.is_admin || false,
+        roles: userRoles,
+        isAdmin: isPatron,
       },
     })
 
