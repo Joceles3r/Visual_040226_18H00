@@ -136,30 +136,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAdmin = !!(user?.email && adminEmail && user.email.toLowerCase() === adminEmail)
 
   const login = async (email: string, password: string) => {
-    // Simulation d'authentification
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    // Real authentication via secure API
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.error || "Echec de connexion")
+    }
+
+    // Set user from API response
     setUser({
       ...MOCK_USER,
-      name: email.split("@")[0],
-      email: email,
+      id: data.user.id,
+      name: data.user.name,
+      email: data.user.email,
+      roles: data.user.roles || ["visitor"],
     })
   }
 
-  const logout = () => {
+  const logout = async () => {
+    // Clear session cookie
+    await fetch("/api/auth/logout", { method: "POST" })
     setUser(null)
   }
 
   const signup = async (data: { name: string; email: string; password: string; birthDate?: string }) => {
-    // Simulation d'inscription
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    // Real signup via secure API
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw new Error(result.error || "Echec d'inscription")
+    }
+
     const minor = data.birthDate ? checkIsMinor(data.birthDate) : false
     setUser({
       ...MOCK_USER,
+      id: result.user.id,
       name: data.name,
       email: data.email,
       birthDate: data.birthDate,
       isMinor: minor,
-      visupointsCap: minor ? MINOR_VISUPOINTS_CAP : Infinity,
+      vixupointsCap: minor ? MINOR_VISUPOINTS_CAP : Infinity,
       parentConsent: minor ? MINOR_PARENT_CONSENT : DEFAULT_PARENT_CONSENT,
     })
   }
