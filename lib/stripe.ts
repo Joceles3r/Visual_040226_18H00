@@ -89,3 +89,8 @@ export function logStripeEvent(event: string, data: Record<string, unknown>) {
     ...data,
   });
 }
+
+/**
+ * Alias pour getStripeClient (compatibilité avec anciens imports)
+ */
+export const getStripe = getStripeClient;

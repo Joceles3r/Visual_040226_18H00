@@ -13,12 +13,15 @@ async function createSupportPaymentsTable() {
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
       creator_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-      project_id UUID REFERENCES projects(id) ON DELETE SET NULL,
+      project_id VARCHAR(255), -- ID projet optionnel (pas de FK car table projects peut ne pas exister)
+      project_title VARCHAR(500), -- Titre du projet pour reference
       amount INTEGER NOT NULL CHECK (amount >= 200), -- minimum 2€ en centimes
-      fee INTEGER NOT NULL CHECK (fee >= 0), -- commission VIXUAL
-      net INTEGER NOT NULL CHECK (net > 0), -- montant net pour le créateur
+      fee INTEGER NOT NULL CHECK (fee >= 0), -- commission VIXUAL 15%
+      net INTEGER NOT NULL CHECK (net > 0), -- montant net pour le créateur (85%)
       status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'completed', 'failed', 'refunded')),
       stripe_payment_id VARCHAR(255),
+      message TEXT, -- message optionnel du supporter
+      anonymous BOOLEAN DEFAULT FALSE, -- don anonyme
       created_at TIMESTAMPTZ DEFAULT NOW(),
       updated_at TIMESTAMPTZ DEFAULT NOW(),
       
