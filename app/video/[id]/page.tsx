@@ -12,6 +12,7 @@ import {
   Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy, Loader2,
 } from "lucide-react"
 import { ReportButton } from "@/components/report-button"
+import { SupportButton } from "@/components/support-button"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -424,8 +425,16 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                       className={`bg-transparent border-white/20 hover:bg-white/10 ${isFavorite ? "text-red-400 border-red-500/30" : "text-white"}`}
                     >
                       <Heart className={`h-4 w-4 mr-2 ${isFavorite ? "fill-current" : ""}`} />
-                      {isFavorite ? "Favori" : "Soutenir"}
+                      {isFavorite ? "Favori" : "J'aime"}
                     </Button>
+                    <SupportButton
+                      creatorId={content.creator.id || "creator-1"}
+                      creatorName={content.creator.name}
+                      projectId={content.id}
+                      projectTitle={content.title}
+                      variant="outline"
+                      className="bg-transparent border-rose-500/30 text-rose-400 hover:bg-rose-500/10"
+                    />
                     <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10">
                       <MessageSquare className="h-4 w-4 mr-2" />
                       Commenter

@@ -714,6 +714,52 @@ export default function TermsOfUsePage() {
                   </div>
                   <p className="text-white/40 text-xs">{"Total = 100%. Cette répartition assure un équilibre entre rémunération des créateurs, récompense des contributeurs et pérennité de la plateforme."}</p>
                 </SubSection>
+
+                <SubSection title={"Système de Soutien (Don)"}>
+                  <div className="bg-rose-500/10 rounded-xl p-4 border border-rose-500/20 mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Heart className="h-5 w-5 text-rose-400" />
+                      <p className="text-rose-300 font-medium text-sm">{"Principe fondamental"}</p>
+                    </div>
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {"Le soutien (don) est une contribution volontaire et sans contrepartie permettant d'aider directement un créateur ou un projet. Contrairement à la contribution classique, le soutien :"}
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5 text-center">
+                      <Lock className="h-5 w-5 text-white/40 mx-auto mb-2" />
+                      <p className="text-white/70 text-xs font-medium">{"N'attribue aucun vote"}</p>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5 text-center">
+                      <Lock className="h-5 w-5 text-white/40 mx-auto mb-2" />
+                      <p className="text-white/70 text-xs font-medium">{"N'influence aucun classement"}</p>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-3 border border-white/5 text-center">
+                      <Lock className="h-5 w-5 text-white/40 mx-auto mb-2" />
+                      <p className="text-white/70 text-xs font-medium">{"Ne génère aucun gain"}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-rose-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{"Montants disponibles : 2€, 5€, 10€, 20€ ou montant libre (minimum 2€)"}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-rose-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{"Commission VIXUAL : 15% (le créateur reçoit 85% du montant)"}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-rose-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{"Le soutien est définitif et non remboursable"}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <AlertCircle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{"L'auto-soutien (se soutenir soi-même) est interdit"}</span>
+                    </div>
+                  </div>
+                </SubSection>
               </CardContent>
             </Card>
           </Section>
