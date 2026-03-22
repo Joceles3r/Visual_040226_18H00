@@ -10,6 +10,7 @@ import {
   Ban, HelpCircle, Trash2, Award, BarChart3, Vote,
   Gavel, Handshake, BadgeCheck, Info, TrendingUp, Wallet,
   Star, Users, CheckCircle, XCircle, RefreshCw, MessageSquare,
+  Heart, AlertCircle,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { LEGAL_INFO } from "@/lib/legal-info"
