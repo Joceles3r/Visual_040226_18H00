@@ -522,8 +522,8 @@ export default function CGVPage() {
               </Card>
             </Section>
 
-            {/* Article 11bis - VIXUpoints et paiement hybride */}
-            <Section num={0} title={"VIXUpoints et paiement hybride"} icon={Star}>
+            {/* Article 12 - VIXUpoints et paiement hybride */}
+            <Section num={12} title={"VIXUpoints et paiement hybride"} icon={Star}>
               <P>{"Les VIXUpoints ne constituent pas une monnaie \u00e9lectronique et ne peuvent \u00eatre convertis librement en num\u00e9raire. Ils constituent un avantage promotionnel interne \u00e0 VIXUAL au sens de la directive 2009/110/CE. Le taux de r\u00e9f\u00e9rence est de cent VIXUpoints \u00e9quivalent un euro. Plafonds : mineurs (seize \u00e0 dix-huit ans) dix mille points (cent euros), majeurs deux mille cinq cents points."}</P>
 
               <Card className="bg-slate-800/40 border-white/5 mt-3 mb-3">
@@ -587,8 +587,8 @@ export default function CGVPage() {
               </div>
             </Section>
 
-            {/* Article 11bis - Vixual Social */}
-            <Section num={0} title={"Vixual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
+            {/* Article 13 - Vixual Social */}
+            <Section num={13} title={"Vixual Social \u2014 Mini-r\u00e9seau social int\u00e9gr\u00e9"} icon={MessageSquare}>
               <P>{"Vixual Social est une fonctionnalit\u00e9 communautaire int\u00e9gr\u00e9e \u00e0 VIXUAL, permettant aux utilisateurs inscrits de partager des avis (2\u202f000 caract\u00e8res max) sur les contenus et la plateforme. Deux vues sont disponibles : un fil global (tendances et discussions g\u00e9n\u00e9rales) et des discussions sous chaque contenu (vid\u00e9o, podcast, \u00e9crit)."}</P>
 
               <HighlightCard icon={MessageSquare} title={"R\u00e8gles de publication"} color="emerald">
@@ -620,8 +620,8 @@ export default function CGVPage() {
               <P>{"En publiant sur Vixual Social, l'utilisateur accorde \u00e0 VIXUAL une licence non exclusive, gratuite et mondiale pour afficher et distribuer le contenu sur la plateforme. Vixual Social est soumis aux m\u00eames CGU, CGV et Politique de Confidentialit\u00e9 que l'ensemble de VIXUAL."}</P>
             </Section>
 
-            {/* Article 12 */}
-            <Section num={12} title="Interdictions et sanctions" icon={Ban}>
+            {/* Article 14 */}
+            <Section num={14} title="Interdictions et sanctions" icon={Ban}>
               <P>{"Sont strictement interdits sur VIXUAL :"}</P>
               <ul className="space-y-2 ml-1">
                 <Bullet>{"La d\u00e9tention de plusieurs comptes (multi-comptes)"}</Bullet>
@@ -637,8 +637,8 @@ export default function CGVPage() {
               <P>{"En cas de manquement constat\u00e9, VIXUAL se r\u00e9serve le droit de suspendre ou supprimer le compte de l'utilisateur, de retenir la caution, de geler les fonds, et le cas \u00e9ch\u00e9ant d'engager toute action en justice."}</P>
             </Section>
 
-            {/* Article 13 */}
-            <Section num={13} title={"Propriété intellectuelle"} icon={Award}>
+            {/* Article 15 */}
+            <Section num={15} title={"Propriété intellectuelle"} icon={Award}>
               <P>{"Les cr\u00e9ateurs de contenus diffus\u00e9s sur VIXUAL conservent l'int\u00e9gralit\u00e9 de leurs droits de propri\u00e9t\u00e9 intellectuelle sur leurs \u0153uvres."}</P>
               <P>{"En publiant un contenu sur VIXUAL, le cr\u00e9ateur accorde \u00e0 la plateforme une licence non exclusive, mondiale et r\u00e9vocable, pour les besoins de la diffusion, de la promotion et du fonctionnement du service (affichage, streaming, extraits promotionnels)."}</P>
               <P>{"Avant toute publication, le cr\u00e9ateur doit remplir un formulaire de d\u00e9claration obligatoire : \u00ab\u00a0Je certifie \u00eatre titulaire des droits sur l'\u0153uvre d\u00e9pos\u00e9e.\u00a0\u00bb En cas de fausse d\u00e9claration : blocage du compte, gel des fonds associ\u00e9s, action judiciaire possible."}</P>
@@ -646,8 +646,8 @@ export default function CGVPage() {
               <P>{"VIXUAL ne pourra \u00eatre tenu responsable en cas de contrefa\u00e7on commise par un utilisateur."}</P>
             </Section>
 
-            {/* Article 14 */}
-            <Section num={14} title={"Responsabilité de VIXUAL"} icon={Shield}>
+            {/* Article 16 */}
+            <Section num={16} title={"Responsabilité de VIXUAL"} icon={Shield}>
               <P>{"VIXUAL agit en qualité d'intermédiaire technique et d'hébergeur au sens de la loi pour la confiance dans l'économie numérique (LCEN) et du règlement européen sur les services numériques (DSA)."}</P>
               <ul className="space-y-2 ml-1">
                 <Bullet>{"VIXUAL n'exerce aucun contrôle éditorial préalable sur les contenus publiés par les utilisateurs"}</Bullet>
@@ -657,8 +657,8 @@ export default function CGVPage() {
               </ul>
             </Section>
 
-            {/* Article 15 */}
-            <Section num={15} title={"Données personnelles"} icon={Lock}>
+            {/* Article 17 */}
+            <Section num={17} title={"Données personnelles"} icon={Lock}>
               <P>{"Le traitement des données personnelles des utilisateurs est régi par la Politique de Confidentialité de VIXUAL, accessible à tout moment depuis la plateforme."}</P>
               <P>{"VIXUAL s'engage à traiter les données personnelles conformément au Règlement Général sur la Protection des Données (RGPD - Règlement UE 2016/679), à la loi Informatique et Libertés du 6 janvier 1978 modifiée, et à toute réglementation applicable en matière de protection des données."}</P>
               <div className="mt-3">
@@ -669,8 +669,8 @@ export default function CGVPage() {
               </div>
             </Section>
 
-            {/* Article 15bis - Mineurs */}
-            <Section num={0} title={"Dispositions sp\u00e9cifiques \u2014 Utilisateurs mineurs (16\u201317 ans)"} icon={ShieldCheck}>
+            {/* Article 18 - Mineurs */}
+            <Section num={18} title={"Dispositions sp\u00e9cifiques \u2014 Utilisateurs mineurs (16\u201317 ans)"} icon={ShieldCheck}>
               <Card className="bg-amber-500/5 border-amber-500/15">
                 <CardContent className="pt-6 space-y-4">
                   <P>{"L'inscription sur VIXUAL est autoris\u00e9e aux mineurs \u00e2g\u00e9s de 16 \u00e0 17 ans inclus, sous r\u00e9serve d'une autorisation expresse du repr\u00e9sentant l\u00e9gal et de la validation des CGU/CGV par ce dernier."}</P>
@@ -742,240 +742,6 @@ export default function CGVPage() {
             </CardContent>
           </Card>
 
-        </div>
-      </main>
-        {/* 7bis. PAIEMENT HYBRIDE ET VIXUPOINTS */}
-        <Section num={0} title="VIXUpoints et Paiement hybride" icon={Star}>
-          <SubSection title="Definition des VIXUpoints">
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-4">
-              <p className="text-white/80 text-sm mb-2">
-                {"Les VIXUpoints sont des points de participation attribues aux utilisateurs pour leur activite positive sur VIXUAL."}
-              </p>
-              <p className="text-amber-200 font-semibold">{"Conversion officielle: 100 VIXUpoints = 1 EUR"}</p>
-              <p className="text-white/60 text-xs mt-2">
-                {"Les VIXUpoints ne constituent PAS une monnaie, ni un produit financier."}
-              </p>
-            </div>
-          </SubSection>
-
-          <SubSection title="Principe du paiement hybride">
-            <p className="text-white/70 mb-3 text-sm">
-              {"Le paiement hybride permet de payer un contenu avec: VIXUpoints + Euros"}
-            </p>
-            <div className="bg-slate-800/30 p-3 rounded mb-4">
-              <p className="font-semibold text-white mb-2">{"Exemple pour un contenu a 3 EUR:"}</p>
-              <ul className="space-y-1 pl-4 text-white/70 text-sm">
-                <li>{"3 EUR (100% euros)"}</li>
-                <li>{"200 VIXUpoints + 1 EUR"}</li>
-                <li>{"100 VIXUpoints + 2 EUR"}</li>
-              </ul>
-            </div>
-          </SubSection>
-
-          <SubSection title="Profils et autorisations">
-            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
-              <table className="text-xs text-white/70 w-full">
-                <thead>
-                  <tr className="border-b border-slate-600">
-                    <th className="text-left py-2">Profil</th>
-                    <th className="text-center py-2">VIXUpoints</th>
-                    <th className="text-center py-2">Euros</th>
-                    <th className="text-center py-2">Hybride</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Visiteur mineur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Visiteur majeur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Contributeur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-rose-400">Non</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Contribu-lecteur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Auditeur</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td><td className="text-center text-emerald-400">Oui</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Porteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Infoporteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
-                  <tr><td className="py-2">Podcasteur</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td><td className="text-center text-rose-400">Non</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </SubSection>
-
-          <SubSection title="Regles pour les visiteurs mineurs">
-            <div className="bg-sky-500/10 border border-sky-500/30 rounded-lg p-4 mb-4">
-              <p className="text-sky-200 font-semibold mb-2">{"Les visiteurs mineurs peuvent:"}</p>
-              <ul className="space-y-1 pl-4 text-white/70 text-sm list-disc list-inside">
-                <li>{"Gagner des VIXUpoints"}</li>
-                <li>{"Utiliser leurs VIXUpoints pour acceder aux contenus"}</li>
-              </ul>
-              <p className="text-rose-300 font-semibold mt-3 mb-2">{"Les visiteurs mineurs NE peuvent PAS:"}</p>
-              <ul className="space-y-1 pl-4 text-white/70 text-sm list-disc list-inside">
-                <li>{"Payer en euros"}</li>
-                <li>{"Utiliser le paiement hybride"}</li>
-                <li>{"Retirer de l'argent"}</li>
-              </ul>
-            </div>
-          </SubSection>
-
-          <SubSection title="Obtention des VIXUpoints">
-            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
-              <table className="text-xs text-white/70 w-full">
-                <thead>
-                  <tr className="border-b border-slate-600">
-                    <th className="text-left py-2">Action</th>
-                    <th className="text-center py-2">VIXUpoints</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Visionner un extrait</td><td className="text-center text-amber-400">+5</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Visionner un contenu complet</td><td className="text-center text-amber-400">+15</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Commentaire utile sur Vixual Social</td><td className="text-center text-amber-400">+5</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Commentaire apprecie</td><td className="text-center text-amber-400">+10</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Partage d'un contenu VIXUAL</td><td className="text-center text-amber-400">+10</td></tr>
-                  <tr><td className="py-2">Inscription via partage (parrainage)</td><td className="text-center text-amber-400">+40</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </SubSection>
-
-          <SubSection title="Limites anti-abus">
-            <div className="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4">
-              <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
-                <li>{"Maximum 100 VIXUpoints par jour"}</li>
-                <li>{"Maximum 500 VIXUpoints par semaine"}</li>
-                <li>{"Plafond visiteur mineur: 10 000 VIXUpoints"}</li>
-                <li>{"Plafond visiteur majeur: 2 500 VIXUpoints"}</li>
-                <li>{"Les VIXUpoints obtenus frauduleusement peuvent etre supprimes"}</li>
-              </ul>
-            </div>
-          </SubSection>
-
-          <SubSection title="Micro-Packs VIXUpoints">
-            <p className="text-white/70 mb-4 text-sm">
-              {"Les micro-packs permettent d'acheter des VIXUpoints avec un bonus inclus. Ils evitent les micro-paiements et simplifient les achats inferieurs a 2 EUR."}
-            </p>
-            <div className="overflow-x-auto bg-slate-800/20 rounded p-4 mb-4">
-              <table className="text-xs text-white/70 w-full">
-                <thead>
-                  <tr className="border-b border-slate-600">
-                    <th className="text-left py-2">Pack</th>
-                    <th className="text-center py-2">Prix</th>
-                    <th className="text-center py-2">VIXUpoints</th>
-                    <th className="text-center py-2">Bonus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Micro Pack</td><td className="text-center">5 EUR</td><td className="text-center text-amber-400">550</td><td className="text-center text-emerald-400">+10%</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Starter Pack</td><td className="text-center">10 EUR</td><td className="text-center text-amber-400">1 150</td><td className="text-center text-emerald-400">+15%</td></tr>
-                  <tr className="border-b border-slate-700/50"><td className="py-2">Creator Pack</td><td className="text-center">20 EUR</td><td className="text-center text-amber-400">2 400</td><td className="text-center text-emerald-400">+20%</td></tr>
-                  <tr><td className="py-2">Community Pack</td><td className="text-center">50 EUR</td><td className="text-center text-amber-400">6 500</td><td className="text-center text-emerald-400">+30%</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
-              <p className="text-amber-200 font-semibold mb-2">{"Profils eligibles a l'achat de micro-packs"}</p>
-              <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
-                <li>{"Visiteur majeur"}</li>
-                <li>{"Visiteur mineur (limite a 2 achats/mois, max 1 100 pts)"}</li>
-                <li>{"Contribu-lecteur"}</li>
-                <li>{"Auditeur"}</li>
-              </ul>
-              <p className="text-rose-300 text-xs mt-3">{"Le Contributeur ne peut PAS acheter de micro-packs (euros uniquement)."}</p>
-            </div>
-          </SubSection>
-
-          <SubSection title="Limites d'achat micro-packs">
-            <div className="bg-slate-800/30 rounded-lg p-4">
-              <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
-                <li>{"Maximum 2 achats par jour"}</li>
-                <li>{"Maximum 3 000 VIXUpoints achetes par jour"}</li>
-                <li>{"Maximum 5 achats par semaine"}</li>
-                <li>{"Maximum 10 000 VIXUpoints achetes par semaine"}</li>
-                <li>{"Mineurs: maximum 2 achats par mois (1 100 VIXUpoints max)"}</li>
-              </ul>
-            </div>
-          </SubSection>
-
-          <SubSection title="Calcul du paiement hybride">
-            <p className="text-white/70 mb-4 text-sm">
-              {"Formule : VIXUpoints_max = prix_contenu × 0,7 × 100 (car 100 VIXUpoints = 1€)"}
-            </p>
-            <div className="overflow-x-auto bg-slate-800/20 rounded p-4">
-              <table className="text-xs text-white/60 w-full">
-                <thead>
-                  <tr className="border-b border-slate-600">
-                    <th className="text-left py-2">Prix</th>
-                    <th className="text-center py-2">Min cash</th>
-                    <th className="text-center py-2">Max VIXUpoints</th>
-                    <th className="text-center py-2">Bonus possible</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { p: "1€", c: "0,30€", pts: "70", bonus: "3" },
-                    { p: "2€", c: "0,60€", pts: "140", bonus: "7" },
-                    { p: "4€", c: "1,20€", pts: "280", bonus: "14" },
-                    { p: "10€", c: "3€", pts: "700", bonus: "35" },
-                  ].map((row, i) => (
-                    <tr key={i} className="border-b border-slate-700">
-                      <td className="py-2">{row.p}</td>
-                      <td className="text-center">{row.c}</td>
-                      <td className="text-center">{row.pts}</td>
-                      <td className="text-center text-emerald-400">{row.bonus}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </SubSection>
-
-          <SubSection title="Profils et paiement hybride">
-            <div className="space-y-4">
-              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded p-3">
-                <p className="font-semibold text-emerald-200 mb-2">{"Profils eligibles au paiement hybride (VIXUpoints + Euros)"}</p>
-                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
-                  <li>{"Visiteur majeur - paiement hybride autorise"}</li>
-                  <li>{"Contribu-lecteur - paiement hybride autorise"}</li>
-                  <li>{"Auditeur - paiement hybride autorise"}</li>
-                </ul>
-              </div>
-              <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3">
-                <p className="font-semibold text-amber-200 mb-2">{"Profils payant 100% en euros (pas de paiement hybride)"}</p>
-                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
-                  <li>{"Contributeur - paiement en euros uniquement"}</li>
-                  <li>{"Porteur / Infoporteur / Podcasteur - paiement en euros uniquement"}</li>
-                </ul>
-              </div>
-              <div className="bg-sky-500/10 border border-sky-500/30 rounded p-3">
-                <p className="font-semibold text-sky-200 mb-2">{"Cas special : Visiteurs mineurs"}</p>
-                <ul className="space-y-1 text-white/70 text-sm list-disc list-inside">
-                  <li>{"Achat avec VIXUpoints uniquement (systeme tres encadre)"}</li>
-                  <li>{"Controle parental obligatoire"}</li>
-                  <li>{"Limites strictes sur les achats"}</li>
-                </ul>
-              </div>
-            </div>
-          </SubSection>
-
-          <SubSection title="Avantages du systeme">
-            <ul className="space-y-2 text-white/70 text-sm list-disc list-inside">
-              <li>{"Augmente la circulation interne des VIXUpoints"}</li>
-              <li>{"Reduit la barriere d'achat pour les utilisateurs eligibles"}</li>
-              <li>{"Cree une economie interne vivante et equilibree"}</li>
-              <li>{"Maintient une valeur reelle via la part en euros (minimum 30%)"}</li>
-              <li>{"Encourage la decouverte de contenus"}</li>
-            </ul>
-          </SubSection>
-
-          <SubSection title="Regles importantes">
-            <div className="space-y-3">
-              <div className="bg-amber-500/10 border border-amber-500/30 rounded p-3 text-white/70 text-sm">
-                <p className="font-semibold text-amber-200 mb-2">{"Un createur ne peut pas acheter son propre contenu"}</p>
-                <p>{"Cette regle s'applique a tous les profils createurs (Porteur, Infoporteur, Podcasteur)."}</p>
-              </div>
-              <div className="bg-rose-500/10 border border-rose-500/30 rounded p-3 text-white/70 text-sm">
-                <p className="font-semibold text-rose-200 mb-2">{"Le Contributeur ne beneficie pas du paiement hybride"}</p>
-                <p>{"Contrairement aux Contribu-lecteurs et Auditeurs, le Contributeur paie 100% en euros."}</p>
-              </div>
-            </div>
-          </SubSection>
-        </Section>
         </div>
       </main>
 
