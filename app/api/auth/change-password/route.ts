@@ -2,12 +2,17 @@ import { NextRequest, NextResponse } from "next/server"
 import { neon } from "@neondatabase/serverless"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
+import { jwtVerify } from "jose"
 
 const sql = neon(process.env.DATABASE_URL!)
 
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || "vixual-secret-key-change-in-production"
+)
+
 export async function POST(request: NextRequest) {
   try {
-    const { currentPassword, newPassword } = await request.json()
+    const { currentPassword, newPassword, email } = await request.json()
 
     // Validate input
     if (!currentPassword || !newPassword) {
@@ -32,34 +37,35 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get user from session cookie
+    // Get user from JWT auth cookie
     const cookieStore = await cookies()
-    const sessionCookie = cookieStore.get("vixual_session")
+    const authCookie = cookieStore.get("vixual_auth")
     
-    if (!sessionCookie) {
+    let userId: string | null = null
+    let userEmail: string | null = email || null
+
+    if (authCookie) {
+      try {
+        const { payload } = await jwtVerify(authCookie.value, JWT_SECRET)
+        userId = payload.userId as string
+        userEmail = payload.email as string
+      } catch {
+        // JWT invalid, try with email
+      }
+    }
+
+    // If no valid JWT, require email
+    if (!userId && !userEmail) {
       return NextResponse.json(
         { error: "Session invalide. Veuillez vous reconnecter." },
         { status: 401 }
       )
     }
 
-    // Parse session
-    let session
-    try {
-      session = JSON.parse(sessionCookie.value)
-    } catch {
-      return NextResponse.json(
-        { error: "Session corrompue. Veuillez vous reconnecter." },
-        { status: 401 }
-      )
-    }
-
-    // Fetch user from database
-    const users = await sql`
-      SELECT id, email, password_hash
-      FROM users
-      WHERE id = ${session.userId}
-    `
+    // Fetch user from database (by ID or email)
+    const users = userId 
+      ? await sql`SELECT id, email, password_hash FROM users WHERE id = ${userId}`
+      : await sql`SELECT id, email, password_hash FROM users WHERE LOWER(email) = ${userEmail!.toLowerCase()}`
 
     if (users.length === 0) {
       return NextResponse.json(

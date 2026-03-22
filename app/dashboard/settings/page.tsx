@@ -22,6 +22,8 @@ import {
   Headphones,
   Loader2,
   AlertCircle,
+  Eye,
+  EyeOff,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -125,6 +127,9 @@ export default function SettingsPage() {
   const [passwordLoading, setPasswordLoading] = useState(false)
   const [passwordSuccess, setPasswordSuccess] = useState(false)
   const [passwordError, setPasswordError] = useState("")
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   // Password validation
   const hasMinLength = newPassword.length >= 8
@@ -152,6 +157,7 @@ export default function SettingsPage() {
         body: JSON.stringify({
           currentPassword,
           newPassword,
+          email: user?.email,
         }),
       })
       
@@ -512,28 +518,46 @@ export default function SettingsPage() {
               <Label htmlFor="current-password" className="text-white">
                 Mot de passe actuel
               </Label>
-              <Input
-                id="current-password"
-                type="password"
-                placeholder="Entrez votre mot de passe actuel"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                className="bg-slate-800 border-white/20 text-white"
-              />
+              <div className="relative">
+                <Input
+                  id="current-password"
+                  type={showCurrentPassword ? "text" : "password"}
+                  placeholder="Entrez votre mot de passe actuel"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  className="bg-slate-800 border-white/20 text-white pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors"
+                >
+                  {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="new-password" className="text-white">
                 Nouveau mot de passe
               </Label>
-              <Input
-                id="new-password"
-                type="password"
-                placeholder="Entrez votre nouveau mot de passe"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className="bg-slate-800 border-white/20 text-white"
-              />
+              <div className="relative">
+                <Input
+                  id="new-password"
+                  type={showNewPassword ? "text" : "password"}
+                  placeholder="Entrez votre nouveau mot de passe"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  className="bg-slate-800 border-white/20 text-white pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors"
+                >
+                  {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               <div className="grid grid-cols-2 gap-2 mt-2">
                 <div className={`flex items-center gap-1.5 text-xs ${hasMinLength ? "text-emerald-400" : "text-white/30"}`}>
                   <CheckCircle className="h-3 w-3" />
@@ -558,16 +582,25 @@ export default function SettingsPage() {
               <Label htmlFor="confirm-password" className="text-white">
                 Confirmer le nouveau mot de passe
               </Label>
-              <Input
-                id="confirm-password"
-                type="password"
-                placeholder="Confirmez votre nouveau mot de passe"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className={`bg-slate-800 border-white/20 text-white ${
-                  confirmPassword && !passwordsMatch ? "border-rose-500" : ""
-                }`}
-              />
+              <div className="relative">
+                <Input
+                  id="confirm-password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirmez votre nouveau mot de passe"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className={`bg-slate-800 border-white/20 text-white pr-10 ${
+                    confirmPassword && !passwordsMatch ? "border-rose-500" : ""
+                  }`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors"
+                >
+                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               {confirmPassword && !passwordsMatch && (
                 <p className="text-xs text-rose-400">Les mots de passe ne correspondent pas</p>
               )}
