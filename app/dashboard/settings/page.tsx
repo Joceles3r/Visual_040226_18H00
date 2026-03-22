@@ -13,6 +13,7 @@ import {
   Trash2,
   ExternalLink,
   Check,
+  CheckCircle,
   Film,
   FileText,
   Mic,
@@ -116,10 +117,60 @@ export default function SettingsPage() {
   const [language, setLanguage] = useState("fr")
   const [saved, setSaved] = useState(false)
   const [upgradingRole, setUpgradingRole] = useState<string | null>(null)
+  
+  // Password change state
+  const [currentPassword, setCurrentPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [passwordLoading, setPasswordLoading] = useState(false)
+  const [passwordSuccess, setPasswordSuccess] = useState(false)
+  const [passwordError, setPasswordError] = useState("")
+
+  // Password validation
+  const hasMinLength = newPassword.length >= 8
+  const hasUppercase = /[A-Z]/.test(newPassword)
+  const hasLowercase = /[a-z]/.test(newPassword)
+  const hasNumber = /[0-9]/.test(newPassword)
+  const passwordsMatch = newPassword === confirmPassword && confirmPassword.length > 0
+  const isPasswordValid = hasMinLength && hasUppercase && hasLowercase && hasNumber && passwordsMatch && currentPassword.length > 0
 
   const handleSave = () => {
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
+  }
+
+  const handleChangePassword = async () => {
+    if (!isPasswordValid) return
+    
+    setPasswordLoading(true)
+    setPasswordError("")
+    
+    try {
+      const response = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || "Erreur lors du changement de mot de passe")
+      }
+      
+      setPasswordSuccess(true)
+      setCurrentPassword("")
+      setNewPassword("")
+      setConfirmPassword("")
+      setTimeout(() => setPasswordSuccess(false), 3000)
+    } catch (err) {
+      setPasswordError(err instanceof Error ? err.message : "Une erreur est survenue")
+    } finally {
+      setPasswordLoading(false)
+    }
   }
 
   const handleUpgradeRole = useCallback(
@@ -443,6 +494,20 @@ export default function SettingsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            {passwordSuccess && (
+              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-3 flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <p className="text-emerald-400 text-sm">Mot de passe modifie avec succes!</p>
+              </div>
+            )}
+            
+            {passwordError && (
+              <div className="bg-rose-500/10 border border-rose-500/30 rounded-lg p-3 flex items-center gap-2">
+                <AlertCircle className="h-4 w-4 text-rose-400" />
+                <p className="text-rose-400 text-sm">{passwordError}</p>
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="current-password" className="text-white">
                 Mot de passe actuel
@@ -450,7 +515,9 @@ export default function SettingsPage() {
               <Input
                 id="current-password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Entrez votre mot de passe actuel"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
                 className="bg-slate-800 border-white/20 text-white"
               />
             </div>
@@ -462,30 +529,83 @@ export default function SettingsPage() {
               <Input
                 id="new-password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Entrez votre nouveau mot de passe"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
                 className="bg-slate-800 border-white/20 text-white"
               />
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                <div className={`flex items-center gap-1.5 text-xs ${hasMinLength ? "text-emerald-400" : "text-white/30"}`}>
+                  <CheckCircle className="h-3 w-3" />
+                  <span>8 caracteres min</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs ${hasUppercase ? "text-emerald-400" : "text-white/30"}`}>
+                  <CheckCircle className="h-3 w-3" />
+                  <span>Une majuscule</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs ${hasLowercase ? "text-emerald-400" : "text-white/30"}`}>
+                  <CheckCircle className="h-3 w-3" />
+                  <span>Une minuscule</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-xs ${hasNumber ? "text-emerald-400" : "text-white/30"}`}>
+                  <CheckCircle className="h-3 w-3" />
+                  <span>Un chiffre</span>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="confirm-password" className="text-white">
-                Confirmer le mot de passe
+                Confirmer le nouveau mot de passe
               </Label>
               <Input
                 id="confirm-password"
                 type="password"
-                placeholder="••••••••"
-                className="bg-slate-800 border-white/20 text-white"
+                placeholder="Confirmez votre nouveau mot de passe"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={`bg-slate-800 border-white/20 text-white ${
+                  confirmPassword && !passwordsMatch ? "border-rose-500" : ""
+                }`}
               />
+              {confirmPassword && !passwordsMatch && (
+                <p className="text-xs text-rose-400">Les mots de passe ne correspondent pas</p>
+              )}
+              {passwordsMatch && (
+                <p className="text-xs text-emerald-400 flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3" />
+                  Les mots de passe correspondent
+                </p>
+              )}
             </div>
 
             <Button
-              variant="outline"
-              className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+              onClick={handleChangePassword}
+              disabled={!isPasswordValid || passwordLoading}
+              className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-medium disabled:opacity-50"
             >
-              <Shield className="h-4 w-4 mr-2" />
-              Activer l'authentification à deux facteurs
+              {passwordLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Modification en cours...
+                </>
+              ) : (
+                <>
+                  <Lock className="h-4 w-4 mr-2" />
+                  Enregistrer le nouveau mot de passe
+                </>
+              )}
             </Button>
+
+            <div className="border-t border-white/10 pt-4 mt-4">
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+              >
+                <Shield className="h-4 w-4 mr-2" />
+                Activer l'authentification a deux facteurs
+              </Button>
+            </div>
           </CardContent>
         </Card>
 

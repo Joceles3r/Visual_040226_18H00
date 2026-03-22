@@ -48,12 +48,7 @@ export async function POST(request: NextRequest) {
       LIMIT 1
     `
 
-    console.log("[v0] Login attempt for:", normalizedEmail)
-    console.log("[v0] Users found:", users.length)
-
     if (users.length === 0) {
-      // Use generic message to prevent email enumeration
-      console.log("[v0] No user found for email:", normalizedEmail)
       return NextResponse.json(
         { error: "Identifiants invalides" },
         { status: 401 }
@@ -61,16 +56,11 @@ export async function POST(request: NextRequest) {
     }
 
     const user = users[0]
-    console.log("[v0] User found:", user.email, "roles:", user.roles)
-    console.log("[v0] Password hash exists:", !!user.password_hash)
 
     // Verify password with bcrypt
     const isValidPassword = await bcrypt.compare(password, user.password_hash)
-    console.log("[v0] Password valid:", isValidPassword)
 
     if (!isValidPassword) {
-      // Log failed attempt for security monitoring
-      console.log(`[VIXUAL Auth] Failed login attempt for: ${normalizedEmail}`)
       return NextResponse.json(
         { error: "Identifiants invalides" },
         { status: 401 }
