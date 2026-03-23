@@ -71,7 +71,7 @@ const PROFILES = {
     icon: Film,
     color: "bg-rose-500/20 border-rose-500/40",
     textColor: "text-rose-300",
-    description: "Créez et publiez vos films et vidéos pour toucher des royalties et monétiser votre talent.",
+    description: "Publiez vos films et vidéos pour toucher des royalties et monétiser votre talent.",
     features: [
       "Dépôt de contenu audiovisuel (films, vidéos)",
       "Fixez vous-même le prix de vente",
@@ -125,7 +125,7 @@ const PROFILES = {
     icon: Mic,
     color: "bg-violet-500/20 border-violet-500/40",
     textColor: "text-violet-300",
-    description: "Créez et monétisez vos podcasts auprès de votre audience fidèle.",
+    description: "Publiez et monétisez vos podcasts auprès de votre audience fidèle.",
     features: [
       "Dépôt de fichiers audio (podcasts)",
       "Fixez vous-même le prix de vente",
@@ -274,7 +274,7 @@ export default function GuideProfilesPage() {
             </div>
 
             {/* Profile Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {Object.entries(PROFILES).map(([key, prof]) => {
                 const Prof = prof.icon
                 return (
@@ -294,6 +294,19 @@ export default function GuideProfilesPage() {
                 )
               })}
             </div>
+
+            {/* Carte informative - 9eme carte */}
+            <Card className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-amber-500/30 mb-12">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
+                  <CheckCircle className="h-6 w-6 text-amber-400" />
+                </div>
+                <div>
+                  <p className="font-semibold text-amber-100 mb-1">Information importante</p>
+                  <p className="text-sm text-amber-50/80">Tous les profils peuvent bénéficier d'un accès complet sauf profil limité pour « Invité ».</p>
+                </div>
+              </CardContent>
+            </Card>
           </>
         ) : (
           profile && (

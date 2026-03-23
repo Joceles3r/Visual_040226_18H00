@@ -166,7 +166,7 @@ export default function HomePage() {
                 <CardContent className="p-5">
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Les 3 Familles</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
-                    <span style={{ color: '#00E5FF' }} className="font-medium">Createurs</span> publient des oeuvres, <span style={{ color: '#00E5FF' }} className="font-medium">Contributeurs</span> soutiennent financierement, <span style={{ color: '#00E5FF' }} className="font-medium">Public</span> decouvre et participe.
+                    <span style={{ color: '#00E5FF' }} className="font-medium">Créateurs</span> publient des oeuvres, <span style={{ color: '#00E5FF' }} className="font-medium">Participants</span> soutiennent financièrement, <span style={{ color: '#00E5FF' }} className="font-medium">Public</span> découvre et participe.
                   </p>
                 </CardContent>
               </Card>
@@ -184,7 +184,7 @@ export default function HomePage() {
                 <CardContent className="p-5">
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Comment ca fonctionne</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
-                    Createur publie, contributeurs soutiennent, votes classent, meilleurs gagnent, gains redistribues equitablement.
+                    Créateur publie, participants soutiennent, votes classent, meilleurs gagnent, gains redistribués équitablement.
                   </p>
                 </CardContent>
               </Card>

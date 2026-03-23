@@ -21,6 +21,10 @@ const FAQ_CATEGORIES = [
         answer: "VIXUAL est une plateforme de contribution participative dans les projets audiovisuels, littéraires et podcasts. Vous pouvez soutenir des créateurs, créer du contenu et potentiellement générer des revenus."
       },
       {
+        question: "À qui s'adresse VIXUAL?",
+        answer: "VIXUAL s'adresse à tous ceux qui désirent publier leurs contenus audios/visuels/audiovisuels, amateurs comme professionnels. Que vous soyez créateur souhaitant monétiser vos oeuvres, ou spectateur/lecteur/auditeur souhaitant soutenir des projets créatifs, VIXUAL est fait pour vous."
+      },
+      {
         question: "VIXUAL est-il un jeu de hasard?",
         answer: "Non, VIXUAL n'est pas un jeu de hasard. C'est une plateforme de contribution participative. Les retours dépendent du succès réel des projets et non du hasard. Les gains ne sont pas garantis."
       },
