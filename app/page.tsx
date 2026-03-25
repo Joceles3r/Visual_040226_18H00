@@ -155,11 +155,14 @@ export default function HomePage() {
               
               {/* Carte 1: Les 3 Familles */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#7A00FF]/20 transition-all duration-300 border-[#7A00FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(10, 77, 255, 0.15), rgba(122, 0, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#0A4DFF' }}>
+                <div className="aspect-[16/10] relative overflow-hidden">
+                  {/* Gradient overlay bleu futuriste / pourpre / rose */}
+                  <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10, 77, 255, 0.85) 0%, rgba(122, 0, 255, 0.8) 50%, rgba(219, 39, 119, 0.7) 100%)' }} />
                   <img 
-                    src="/images/vixual_familles.jpg" 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/New_Image_les%203%20familles-ViOIfPSfMFo4lpLHf7IwaeiAmPOLfN.png" 
                     alt="Les 3 familles VIXUAL - 1. CREATEURS 2. PARTICIPANTS 3. PUBLIC" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain mix-blend-screen"
+                    style={{ filter: 'invert(1) brightness(1.2)' }}
                   />
                 </div>
                 <CardContent className="p-5">
@@ -172,11 +175,14 @@ export default function HomePage() {
 
               {/* Carte 2: Comment ca fonctionne */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#0A4DFF]/20 transition-all duration-300 border-[#0A4DFF]/30" style={{ background: 'linear-gradient(to bottom, rgba(122, 0, 255, 0.15), rgba(10, 77, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#7A00FF' }}>
+                <div className="aspect-[16/10] relative overflow-hidden">
+                  {/* Gradient overlay pourpre / bleu futuriste / rose */}
+                  <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(122, 0, 255, 0.85) 0%, rgba(10, 77, 255, 0.8) 50%, rgba(236, 72, 153, 0.7) 100%)' }} />
                   <img 
-                    src="/images/vixual_fonctionnement.jpg" 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/New_vixual_fonctionnement-E34edxU95umlIxsuC5PBqGeNaCpYGZ.png" 
                     alt="Comment fonctionne VIXUAL - Les participants soutiennent le projet" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain mix-blend-screen"
+                    style={{ filter: 'invert(1) brightness(1.2)' }}
                   />
                 </div>
                 <CardContent className="p-5">
