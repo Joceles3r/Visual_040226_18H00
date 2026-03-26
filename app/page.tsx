@@ -248,15 +248,40 @@ export default function HomePage() {
                 </CardContent>
               </Card>
 
-              {/* Carte 3: Principe des gains */}
+              {/* Carte 3: Principe des gains - Fallback CSS (remplacer par image quand disponible) */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#00E5FF]/20 transition-all duration-300 border-[#00E5FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(0, 229, 255, 0.1), rgba(122, 0, 255, 0.1))' }}>
-                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: '#00E5FF' }}>
-                  <img 
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vixual_gains_150326-UElSPo0snOQmzKcGvDBkR1a9h7ppoy.png" 
-                    alt="Principe des gains VIXUAL" 
-                    className="w-full h-full object-contain mix-blend-multiply"
-                    style={{ filter: 'invert(1) brightness(1.1)' }}
-                  />
+                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #1a2d4a 100%)' }}>
+                  {/* Fallback CSS - Graphique barres TOP 5 */}
+                  <div className="absolute inset-0 flex items-end justify-center gap-2 p-6 pb-8">
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-10 h-12 rounded-t-md bg-gradient-to-t from-[#00E5FF]/40 to-[#00E5FF]/20" />
+                      <span className="text-[10px] text-white/50">5</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-10 h-16 rounded-t-md bg-gradient-to-t from-[#00E5FF]/50 to-[#7A00FF]/30" />
+                      <span className="text-[10px] text-white/50">4</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-10 h-24 rounded-t-md bg-gradient-to-t from-[#7A00FF]/70 to-[#00E5FF]/50" />
+                      <span className="text-[10px] text-amber-400">3</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-10 h-28 rounded-t-md bg-gradient-to-t from-[#7A00FF] to-[#00E5FF]/70" />
+                      <span className="text-[10px] text-amber-400">2</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-10 h-32 rounded-t-md bg-gradient-to-t from-[#00E5FF] to-[#7A00FF]" />
+                      <span className="text-[10px] text-amber-400 font-bold">1</span>
+                    </div>
+                  </div>
+                  {/* Badge TOP 3 */}
+                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30">
+                    <span className="text-xs font-semibold text-amber-400">TOP 3 = gains max</span>
+                  </div>
+                  {/* Titre overlay */}
+                  <div className="absolute top-4 left-4">
+                    <span className="text-white/90 font-semibold text-sm">Classement des projets</span>
+                  </div>
                 </div>
                 <CardContent className="p-5">
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Principe des gains</h3>

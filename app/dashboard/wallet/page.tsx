@@ -18,6 +18,7 @@ import {
 import { SecurityGate } from "@/components/security/security-gate"
 import { VerificationBadges } from "@/components/security/verification-badges"
 import { useSounds } from "@/lib/sounds"
+import { useToast } from "@/hooks/use-toast"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -106,6 +107,7 @@ export default function WalletPage() {
   const [txFilter, setTxFilter] = useState<"all" | "in" | "out">("all")
   const [financialGoal, setFinancialGoal] = useState(100_00) // 100 EUR in cents
   const { playWin, playSuccess, playError } = useSounds()
+  const { toast } = useToast()
 
   const { data, error, mutate } = useSWR(
     user ? `/api/wallet?userId=${user.id}` : null,
@@ -163,8 +165,12 @@ export default function WalletPage() {
         body: JSON.stringify({ userId: user.id, cautionType }),
       })
       const result = await res.json()
-      if (result.error) alert(result.error)
-      else { alert(`Caution ${cautionType === "creator" ? "Cr\u00e9ateur" : "Contributeur"} : paiement initialis\u00e9.`); mutate() }
+      if (result.error) {
+        toast({ title: "Erreur", description: result.error, variant: "destructive" })
+      } else {
+        toast({ title: "Caution initialisee", description: `Caution ${cautionType === "creator" ? "Createur" : "Contributeur"} : paiement en cours de traitement.` })
+        mutate()
+      }
     } catch { /* silent */ } finally { setCautionLoading(null) }
   }, [user, mutate])
 
@@ -178,11 +184,17 @@ export default function WalletPage() {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, amountCents: available }),
       })
-  const result = await res.json()
-  if (result.error) { playError(); alert(result.error) }
-  else { playWin(); alert(`Retrait de ${formatCents(available)} \u20ac effectu\u00e9.`); mutate() }
+      const result = await res.json()
+      if (result.error) {
+        playError()
+        toast({ title: "Erreur de retrait", description: result.error, variant: "destructive" })
+      } else {
+        playWin()
+        toast({ title: "Retrait effectue", description: `${formatCents(available)} € en cours de virement vers votre compte bancaire.` })
+        mutate()
+      }
     } catch { /* silent */ } finally { setWithdrawLoading(false) }
-  }, [user, wallet, mutate])
+  }, [user, wallet, mutate, playError, playWin, toast])
 
   return (
     <div className="space-y-6">

@@ -315,7 +315,7 @@ export default function SettingsPage() {
           <div className="mt-4 p-3 bg-slate-800/30 rounded-lg flex items-start gap-2">
             <AlertCircle className="h-4 w-4 text-white/40 mt-0.5 shrink-0" />
             <p className="text-xs text-white/40">
-              {"La caution est un dépôt unique remboursable en cas de résiliation de votre compte. Créateurs : 10€ | Investisseurs : 20€. Le paiement est sécurisé par Stripe."}
+              {"La caution est un dépôt unique remboursable en cas de résiliation de votre compte. Créateurs : 10€ | Contributeurs : 20€. Le paiement est sécurisé par Stripe."}
             </p>
           </div>
         </CardContent>

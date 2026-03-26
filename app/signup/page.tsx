@@ -20,7 +20,7 @@ const BENEFITS = [
   "Acces aux contenus gratuits",
   "Gagnez des VIXUpoints",
   "Suivez vos createurs preferes",
-  "Devenez Investisseur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
+  "Devenez Contributeur, Contribu-lecteur, Auditeur ou Createur (Porteur, Infoporteur, Podcasteur)",
 ]
 
 export default function SignupPage() {

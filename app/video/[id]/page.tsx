@@ -267,8 +267,24 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 ) : (
                   /* Playable content */
                   <>
-                    {/* Center play/pause */}
-                    <button
+                    {/* ── BUNNY CDN : module non encore connecté ── */}
+                    {/* Overlay Coming Soon - À SUPPRIMER quand Bunny.net sera actif */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center z-30 bg-gradient-to-b from-black/60 via-black/70 to-black/80">
+                      <div className="w-20 h-20 rounded-full bg-emerald-500/20 backdrop-blur-sm flex items-center justify-center border border-emerald-500/30 mb-4">
+                        <Play className="h-10 w-10 text-emerald-400 ml-1" />
+                      </div>
+                      <h3 className="text-white font-bold text-xl mb-2">Streaming bientot disponible</h3>
+                      <p className="text-white/60 text-sm text-center max-w-xs mb-4">
+                        Le module de streaming est en cours d'activation. Revenez tres bientot pour visionner ce contenu.
+                      </p>
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                        <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-emerald-400 text-sm font-medium">Lancement imminent</span>
+                      </div>
+                    </div>
+
+                    {/* Center play/pause - Masqué temporairement, changer {false &&} en {true &&} pour activer */}
+                    {false && <button
                       onClick={() => setIsPlaying(!isPlaying)}
                       className={`absolute inset-0 flex items-center justify-center z-10 transition-opacity ${isPlaying ? "opacity-0 group-hover/player:opacity-100" : "opacity-100"}`}
                     >
@@ -283,7 +299,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                           <BookOpen className="h-10 w-10 text-white" />
                         )}
                       </div>
-                    </button>
+                    </button>}
 
                     {/* Player controls bar */}
                     <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 z-20 transition-opacity ${isPlaying ? "opacity-0 group-hover/player:opacity-100" : "opacity-100"}`}>
@@ -607,20 +623,36 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                       <span className="text-white/70">Vous pouvez generer un <span className="text-purple-400 font-medium">gain</span> si le projet reussit</span>
                     </li>
                   </ul>
-                  {/* Mini simulateur */}
+                  {/* Mini simulateur interactif */}
                   <div className="p-3 bg-slate-800/50 rounded-lg border border-white/5">
                     <p className="text-white/50 text-[10px] uppercase tracking-wider mb-2">Estimation de gains</p>
                     <div className="grid grid-cols-2 gap-2 text-center">
                       <div className="p-2 rounded bg-amber-500/10 border border-amber-500/20">
                         <p className="text-amber-400 font-bold text-sm">TOP 10</p>
-                        <p className="text-white/60 text-xs">+15% a +30%</p>
+                        {selectedAmount ? (
+                          <p className="text-amber-300 font-semibold text-xs">
+                            {(selectedAmount * 1.15).toFixed(2)}€ – {(selectedAmount * 1.30).toFixed(2)}€
+                          </p>
+                        ) : (
+                          <p className="text-white/60 text-xs">+15% a +30%</p>
+                        )}
                       </div>
                       <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
                         <p className="text-emerald-400 font-bold text-sm">TOP 5</p>
-                        <p className="text-white/60 text-xs">+30% a +50%</p>
+                        {selectedAmount ? (
+                          <p className="text-emerald-300 font-semibold text-xs">
+                            {(selectedAmount * 1.30).toFixed(2)}€ – {(selectedAmount * 1.50).toFixed(2)}€
+                          </p>
+                        ) : (
+                          <p className="text-white/60 text-xs">+30% a +50%</p>
+                        )}
                       </div>
                     </div>
-                    <p className="text-white/30 text-[9px] text-center mt-2">Les gains dependent du succes reel du projet</p>
+                    {selectedAmount ? (
+                      <p className="text-white/40 text-[9px] text-center mt-2">Estimation indicative — gains reels selon classement final</p>
+                    ) : (
+                      <p className="text-white/30 text-[9px] text-center mt-2">Selectionnez un montant pour voir votre estimation</p>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -752,7 +784,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                           <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
                             <CreditCard className="h-4 w-4 mr-2" />
                             {"Devenir "}
-                            {isVideo ? "Investisseur" : isPodcast ? "Auditeur" : "Investi-lecteur"}
+                            {isVideo ? "Contributeur" : isPodcast ? "Auditeur" : "Contribu-lecteur"}
                           </Button>
                         </Link>
                         <p className="text-xs text-white/40 text-center mt-2">{"Caution remboursable en cas de r\u00e9siliation"}</p>

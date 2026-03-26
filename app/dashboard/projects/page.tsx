@@ -155,7 +155,7 @@ function ProjectsContent() {
                 <Users className="h-6 w-6 text-sky-400" />
               </div>
               <div>
-                <p className="text-white/60 text-sm">Investisseurs</p>
+                <p className="text-white/60 text-sm">Participants</p>
                 <p className="text-2xl font-bold text-white">
                   {filteredProjects.reduce((sum, p) => sum + p.investors, 0)}
                 </p>
