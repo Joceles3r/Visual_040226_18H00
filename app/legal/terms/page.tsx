@@ -1059,7 +1059,7 @@ export default function TermsOfUsePage() {
             <Card className="bg-slate-900/50 border-white/10">
               <CardContent className="pt-6 space-y-3">
                 <p className="text-white/70 text-sm leading-relaxed">
-                  {"L'acc\u00e8s aux contenus m\u00e9dias (vid\u00e9os, podcasts, extraits) est prot\u00e9g\u00e9 par un syst\u00e8me de jetons (tokens) temporaires. Chaque jeton est personnel, li\u00e9 \u00e0 un contenu et \u00e0 un utilisateur, et dispose d'une dur\u00e9e de validit\u00e9 limit\u00e9e."}
+                  {"L'acc\u00e8s aux contenus m\u00e9dias (vid\u00e9os, podcasts, contenus litt\u00e9raires) est prot\u00e9g\u00e9 par un syst\u00e8me de jetons (tokens) temporaires. Chaque jeton est personnel, li\u00e9 \u00e0 un contenu et \u00e0 un utilisateur, et dispose d'une dur\u00e9e de validit\u00e9 limit\u00e9e."}
                 </p>
                 <p className="text-white/50 text-xs leading-relaxed">
                   {"Toute tentative de partage, d'extraction ou de contournement des jetons d'acc\u00e8s constitue une violation des CGU et pourra entra\u00eener la suspension imm\u00e9diate du compte."}
