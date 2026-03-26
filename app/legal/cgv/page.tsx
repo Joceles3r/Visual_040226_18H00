@@ -474,8 +474,8 @@ export default function CGVPage() {
                     {[
                       { label: "Créateurs", value: "40%", color: "text-red-400" },
                       { label: "Contributeurs gagnants", value: "30%", color: "text-emerald-400" },
-                      { label: "Communauté", value: "23%", color: "text-sky-400" },
-                      { label: "Plateforme", value: "7%", color: "text-amber-400" },
+                      { label: "Communauté", value: "7%", color: "text-sky-400" },
+                      { label: "Plateforme", value: "23%", color: "text-amber-400" },
                     ].map((r) => (
                       <div key={r.label} className="text-center p-3 rounded-lg bg-slate-800/40">
                         <div className={`text-xl font-bold ${r.color}`}>{r.value}</div>
