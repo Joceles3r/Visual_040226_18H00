@@ -124,6 +124,85 @@ export default function DashboardPage() {
         </Button>
       </div>
 
+      {/* Bloc Comprendre VIXUAL - Onboarding universel */}
+      <Card className="bg-gradient-to-r from-emerald-500/10 via-slate-900/50 to-purple-500/10 border-emerald-500/20">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-lg text-white flex items-center gap-2">
+            <Compass className="h-5 w-5 text-emerald-400" />
+            Comprendre VIXUAL rapidement
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-white/70 text-sm">
+            VIXUAL est une plateforme de streaming participative. Voici comment ca fonctionne :
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                  <Film className="h-4 w-4 text-emerald-400" />
+                </div>
+                <span className="font-medium text-white text-sm">Decouvrir</span>
+              </div>
+              <p className="text-white/50 text-xs">Regardez des films, lisez des ecrits, ecoutez des podcasts.</p>
+            </div>
+            <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="h-8 w-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                  <CreditCard className="h-4 w-4 text-amber-400" />
+                </div>
+                <span className="font-medium text-white text-sm">Participer</span>
+              </div>
+              <p className="text-white/50 text-xs">Contribuez aux projets et obtenez des votes pour le classement.</p>
+            </div>
+            <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="h-8 w-8 rounded-full bg-purple-500/20 flex items-center justify-center">
+                  <TrendingUp className="h-4 w-4 text-purple-400" />
+                </div>
+                <span className="font-medium text-white text-sm">Gagner</span>
+              </div>
+              <p className="text-white/50 text-xs">Les meilleurs projets redistribuent les gains aux participants.</p>
+            </div>
+          </div>
+          
+          {/* Actions rapides selon profil */}
+          <div className="pt-2 border-t border-white/10">
+            <p className="text-white/50 text-xs mb-3">Commencer maintenant :</p>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/explore">
+                <Button size="sm" variant="outline" className="bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 h-8 text-xs">
+                  <Film className="h-3 w-3 mr-1" />
+                  Explorer
+                </Button>
+              </Link>
+              {!hasCreatorRole && (
+                <Link href="/guide-profiles">
+                  <Button size="sm" variant="outline" className="bg-purple-500/10 border-purple-500/30 text-purple-300 hover:bg-purple-500/20 h-8 text-xs">
+                    <Upload className="h-3 w-3 mr-1" />
+                    Devenir createur
+                  </Button>
+                </Link>
+              )}
+              {hasCreatorRole && (
+                <Link href="/dashboard/projects">
+                  <Button size="sm" variant="outline" className="bg-purple-500/10 border-purple-500/30 text-purple-300 hover:bg-purple-500/20 h-8 text-xs">
+                    <Upload className="h-3 w-3 mr-1" />
+                    Publier un contenu
+                  </Button>
+                </Link>
+              )}
+              <Link href="/faq">
+                <Button size="sm" variant="outline" className="bg-slate-500/10 border-slate-500/30 text-slate-300 hover:bg-slate-500/20 h-8 text-xs">
+                  <AlertCircle className="h-3 w-3 mr-1" />
+                  FAQ
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Stripe Connect Banner */}
       {(hasContributorRole || hasCreatorRole) &&
         user?.stripeConnect?.status !== "verified" && (
@@ -562,6 +641,189 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         )}
+      </div>
+
+      {/* Section profil specifique - Ma progression */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Visiteur - Progression VIXUpoints */}
+        {isVisitor && !hasContributorRole && !hasCreatorRole && (
+          <Card className="bg-gradient-to-br from-amber-900/20 to-orange-900/20 border-amber-500/20">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <Star className="h-5 w-5 text-amber-400" />
+                Ma progression Visiteur
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-white/70 text-sm">
+                En tant que visiteur, vous gagnez des VIXUpoints en regardant des contenus et en participant a la communaute.
+              </p>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/60">VIXUpoints gagnes</span>
+                  <span className="text-amber-400 font-semibold">{user?.visupoints || 0} pts</span>
+                </div>
+                <Progress value={Math.min(((user?.visupoints || 0) / 1000) * 100, 100)} className="h-2 bg-white/10" />
+                <p className="text-xs text-white/40">Prochain palier : 1 000 pts</p>
+              </div>
+              <div className="pt-2 border-t border-white/10">
+                <p className="text-white/50 text-xs mb-2">Prochaines actions :</p>
+                <ul className="space-y-1 text-xs text-white/60">
+                  <li className="flex items-center gap-2">
+                    <Film className="h-3 w-3 text-emerald-400" />
+                    Regarder un contenu (+15 pts)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Heart className="h-3 w-3 text-rose-400" />
+                    Ajouter aux favoris (+5 pts)
+                  </li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Contributeur - Projets soutenus */}
+        {hasContributorRole && (
+          <Card className="bg-gradient-to-br from-teal-900/20 to-emerald-900/20 border-teal-500/20">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-teal-400" />
+                Ma progression Participant
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-white/70 text-sm">
+                Vos contributions influencent le classement des projets. Si un projet que vous soutenez atteint le TOP, vous recevez une part des gains.
+              </p>
+              <div className="grid grid-cols-3 gap-3 text-center">
+                <div className="p-3 rounded-lg bg-slate-800/50">
+                  <p className="text-xl font-bold text-teal-400">{MOCK_INVESTMENTS.length}</p>
+                  <p className="text-xs text-white/50">Projets soutenus</p>
+                </div>
+                <div className="p-3 rounded-lg bg-slate-800/50">
+                  <p className="text-xl font-bold text-amber-400">{MOCK_INVESTMENTS.reduce((acc, inv) => acc + inv.votes, 0)}</p>
+                  <p className="text-xs text-white/50">Votes obtenus</p>
+                </div>
+                <div className="p-3 rounded-lg bg-slate-800/50">
+                  <p className="text-xl font-bold text-emerald-400">{(user?.wallet?.available || 0).toFixed(0)}€</p>
+                  <p className="text-xs text-white/50">Gains potentiels</p>
+                </div>
+              </div>
+              <div className="pt-2 border-t border-white/10">
+                <p className="text-white/50 text-xs mb-2">Prochaines actions :</p>
+                <ul className="space-y-1 text-xs text-white/60">
+                  <li className="flex items-center gap-2">
+                    <CreditCard className="h-3 w-3 text-teal-400" />
+                    Contribuer a un nouveau projet
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Wallet className="h-3 w-3 text-purple-400" />
+                    Connecter Stripe pour retirer vos gains
+                  </li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Createur - Suivi projets */}
+        {hasCreatorRole && (
+          <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border-purple-500/20">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <Upload className="h-5 w-5 text-purple-400" />
+                Mon espace Createur
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-white/70 text-sm">
+                Publiez vos contenus, suivez leur performance et recevez des royalties selon le succes de vos projets.
+              </p>
+              <div className="grid grid-cols-2 gap-3 text-center">
+                <div className="p-3 rounded-lg bg-slate-800/50">
+                  <p className="text-xl font-bold text-purple-400">0</p>
+                  <p className="text-xs text-white/50">Contenus publies</p>
+                </div>
+                <div className="p-3 rounded-lg bg-slate-800/50">
+                  <p className="text-xl font-bold text-emerald-400">{(user?.wallet?.available || 0).toFixed(0)}€</p>
+                  <p className="text-xs text-white/50">Royalties</p>
+                </div>
+              </div>
+              <div className="pt-2 border-t border-white/10">
+                <p className="text-white/50 text-xs mb-2">Etapes pour publier :</p>
+                <ol className="space-y-1 text-xs text-white/60 list-decimal list-inside">
+                  <li>Remplir les informations du projet</li>
+                  <li>Configurer les parametres de contribution</li>
+                  <li>Uploader votre contenu</li>
+                  <li>Soumettre pour validation</li>
+                </ol>
+              </div>
+              <Link href="/dashboard/projects">
+                <Button size="sm" className="w-full bg-purple-600 hover:bg-purple-500 text-white">
+                  <Upload className="h-4 w-4 mr-2" />
+                  Publier maintenant
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Ce que je peux faire - tous profils */}
+        <Card className="bg-slate-900/50 border-white/10">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Compass className="h-5 w-5 text-emerald-400" />
+              Ce que je peux faire
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <div className="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <Film className="h-3 w-3 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-white text-sm font-medium">Decouvrir des contenus</p>
+                  <p className="text-white/50 text-xs">Films, ecrits, podcasts - gratuits ou payants</p>
+                </div>
+              </li>
+              {!user?.isMinor && (
+                <li className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <CreditCard className="h-3 w-3 text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">Contribuer aux projets</p>
+                    <p className="text-white/50 text-xs">Obtenez des votes et influencez le classement</p>
+                  </div>
+                </li>
+              )}
+              {hasCreatorRole && (
+                <li className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <Upload className="h-3 w-3 text-purple-400" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">Publier vos creations</p>
+                    <p className="text-white/50 text-xs">Monetisez vos films, ecrits ou podcasts</p>
+                  </div>
+                </li>
+              )}
+              {(hasContributorRole || hasCreatorRole) && (
+                <li className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <Wallet className="h-3 w-3 text-teal-400" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">Retirer vos gains</p>
+                    <p className="text-white/50 text-xs">Via Stripe Connect - retraits hebdomadaires</p>
+                  </div>
+                </li>
+              )}
+            </ul>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Recent Activity */}

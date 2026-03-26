@@ -578,18 +578,65 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                 </CardContent>
               </Card>
 
+              {/* --- Comprendre votre contribution --- */}
+              <Card className="bg-gradient-to-br from-emerald-900/20 to-teal-900/20 border-emerald-500/20">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-white flex items-center gap-2 text-sm">
+                    <AlertCircle className="h-4 w-4 text-emerald-400" />
+                    Comprendre votre contribution
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <ul className="space-y-2 text-xs">
+                    <li className="flex items-start gap-2">
+                      <div className="h-5 w-5 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                        <CheckCircle className="h-3 w-3 text-emerald-400" />
+                      </div>
+                      <span className="text-white/70">Vous obtenez des <span className="text-emerald-400 font-medium">votes</span> proportionnels a votre contribution</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="h-5 w-5 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                        <TrendingUp className="h-3 w-3 text-amber-400" />
+                      </div>
+                      <span className="text-white/70">Vous influencez le <span className="text-amber-400 font-medium">classement</span> du projet</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="h-5 w-5 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                        <Wallet className="h-3 w-3 text-purple-400" />
+                      </div>
+                      <span className="text-white/70">Vous pouvez generer un <span className="text-purple-400 font-medium">gain</span> si le projet reussit</span>
+                    </li>
+                  </ul>
+                  {/* Mini simulateur */}
+                  <div className="p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider mb-2">Estimation de gains</p>
+                    <div className="grid grid-cols-2 gap-2 text-center">
+                      <div className="p-2 rounded bg-amber-500/10 border border-amber-500/20">
+                        <p className="text-amber-400 font-bold text-sm">TOP 10</p>
+                        <p className="text-white/60 text-xs">+15% a +30%</p>
+                      </div>
+                      <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
+                        <p className="text-emerald-400 font-bold text-sm">TOP 5</p>
+                        <p className="text-white/60 text-xs">+30% a +50%</p>
+                      </div>
+                    </div>
+                    <p className="text-white/30 text-[9px] text-center mt-2">Les gains dependent du succes reel du projet</p>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* --- Investment Card --- */}
               <Card className="bg-slate-900/50 border-white/10 sticky top-28">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-white flex items-center gap-2 text-base">
                     <TrendingUp className="h-5 w-5 text-emerald-400" />
-                    Investissement
+                    Contribuer au projet
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {canInvest ? (
                     <div className="space-y-4">
-                      <p className="text-white/50 text-xs text-center">{"Choisissez votre montant d'investissement"}</p>
+                      <p className="text-white/50 text-xs text-center">{"Choisissez votre montant de contribution"}</p>
 
                       {/* Quick amounts */}
                       <div className="grid grid-cols-4 gap-2">
