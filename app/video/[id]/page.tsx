@@ -9,7 +9,7 @@ import {
   Heart, Share2, TrendingUp, Play, Pause, Lock, Unlock, UserPlus,
   Sparkles, CreditCard, Star, Download, MessageSquare, Bookmark,
   Maximize2, Volume2, Settings2, Shield, Flame, Award, Clapperboard,
-  Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy, Loader2,
+  Eye, ChevronRight, CheckCircle, AlertCircle, Crown, Zap, Trophy, Loader2, Wallet,
 } from "lucide-react"
 import { ReportButton } from "@/components/report-button"
 import { SupportButton } from "@/components/support-button"
