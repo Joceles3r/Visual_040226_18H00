@@ -136,11 +136,14 @@ export default function InvestmentsPage() {
                       +{investment.returns.toFixed(2)}€
                     </p>
                   </div>
-                  <Link href={`/video/${investment.contentId}`}>
+                  <Link href={`/video/${investment.contentId}`} onClick={(e) => {
+                    if (!investment.contentId) e.preventDefault()
+                  }}>
                     <Button
                       variant="outline"
                       size="sm"
                       className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                      disabled={!investment.contentId}
                     >
                       Voir
                     </Button>

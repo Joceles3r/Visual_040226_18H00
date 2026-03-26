@@ -173,7 +173,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
   },
   {
     id: "inv4",
-    contentId: "v4",
+    contentId: "t4",
     contentTitle: "Pages d'Amour",
     contentType: "text",
     amount: 20,
