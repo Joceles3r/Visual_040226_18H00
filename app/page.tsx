@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award } from "lucide-react"
+import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award, CreditCard, Wallet, Upload } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
