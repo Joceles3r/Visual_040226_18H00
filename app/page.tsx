@@ -157,7 +157,7 @@ export default function HomePage() {
                     Decouvrir
                   </Button>
                 </Link>
-                <Link href="/explore?tab=trending">
+                <Link href="/guide-profiles">
                   <Button variant="outline" className="bg-amber-500/10 border-amber-500/30 text-amber-300 hover:bg-amber-500/20">
                     <CreditCard className="h-4 w-4 mr-2" />
                     Participer

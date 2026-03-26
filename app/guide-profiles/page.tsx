@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   ArrowLeft, Users, Crown, Film, TrendingUp, Heart, Lock, Unlock,
-  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones
+  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones, LogIn
 } from "lucide-react"
 
 type ProfileKey = "guest" | "visitor" | "porter" | "infoporter" | "podcaster" | "contributor" | "contribureader" | "listener"
@@ -296,7 +296,7 @@ export default function GuideProfilesPage() {
             </div>
 
             {/* Carte informative - 9eme carte */}
-            <Card className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-amber-500/30 mb-12">
+            <Card className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-amber-500/30 mb-6">
               <CardContent className="p-6 flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
                   <CheckCircle className="h-6 w-6 text-amber-400" />
@@ -304,6 +304,29 @@ export default function GuideProfilesPage() {
                 <div>
                   <p className="font-semibold text-amber-100 mb-1">Information importante</p>
                   <p className="text-sm text-amber-50/80">Tous les profils peuvent bénéficier d'un accès complet sauf profil limité pour « Invité ».</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Carte Connexion - 10eme encart */}
+            <Card className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 border-emerald-500/30 mb-12">
+              <CardContent className="p-6">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                      <LogIn className="h-6 w-6 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-emerald-100 mb-1">Pret a commencer ?</p>
+                      <p className="text-sm text-emerald-50/80">Connectez-vous ou creez votre compte pour acceder a toutes les fonctionnalites.</p>
+                    </div>
+                  </div>
+                  <Link href="/login">
+                    <Button className="bg-emerald-600 hover:bg-emerald-500 text-white px-6">
+                      <LogIn className="h-4 w-4 mr-2" />
+                      Connexion
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
