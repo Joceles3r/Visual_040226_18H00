@@ -704,8 +704,8 @@ export default function TermsOfUsePage() {
                     {[
                       { label: "Créateurs", pct: "40%", color: "text-red-400", bg: "bg-red-500/15" },
                       { label: "Contributeurs gagnants", pct: "30%", color: "text-emerald-400", bg: "bg-emerald-500/15" },
-                      { label: "Communauté", pct: "23%", color: "text-sky-400", bg: "bg-sky-500/15" },
-                      { label: "Plateforme", pct: "7%", color: "text-amber-400", bg: "bg-amber-500/15" },
+                      { label: "Communauté", pct: "7%", color: "text-sky-400", bg: "bg-sky-500/15" },
+                      { label: "Plateforme", pct: "23%", color: "text-amber-400", bg: "bg-amber-500/15" },
                     ].map((item) => (
                       <div key={item.label} className={`${item.bg} rounded-xl p-3 text-center border border-white/5`}>
                         <span className={`text-lg font-bold ${item.color}`}>{item.pct}</span>
