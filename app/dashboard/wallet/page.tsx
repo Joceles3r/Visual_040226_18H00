@@ -48,7 +48,7 @@ function ProgressBar({ value, max, color = "emerald" }: { value: number; max: nu
 }
 
 const TX_LABELS: Record<string, string> = {
-  investment: "Investissement", return: "Retour de gain", caution: "Caution",
+  investment: "Contribution", return: "Retour de gain", caution: "Caution",
   caution_refund: "Remboursement caution", withdrawal: "Retrait bancaire",
   visupoints_conversion: "Conversion VIXUpoints", article_sale: "Vente d'article",
   video_sale: "Vente vid\u00e9o", podcast_sale: "Vente podcast",
@@ -67,13 +67,13 @@ const MOCK_WALLET = {
 const MOCK_VISUPOINTS = { balance: 1200, cap: 5000, todayEarned: 15 }
 const MOCK_TRANSACTIONS = [
   { id: "tx1", type: "video_sale", amountCents: 1000, description: "Vente vid\u00e9o : L'Odyss\u00e9e des \u00c9toiles", status: "completed", createdAt: "2026-03-03" },
-  { id: "tx2", type: "return", amountCents: 400, description: "Retour investissement : Murmures de la For\u00eat", status: "completed", createdAt: "2026-03-02" },
-  { id: "tx3", type: "investment", amountCents: -500, description: "Investissement : M\u00e9tropolis 2050", status: "completed", createdAt: "2026-03-01" },
+  { id: "tx2", type: "return", amountCents: 400, description: "Retour contribution : Murmures de la For\u00eat", status: "completed", createdAt: "2026-03-02" },
+  { id: "tx3", type: "investment", amountCents: -500, description: "Contribution : M\u00e9tropolis 2050", status: "completed", createdAt: "2026-03-01" },
   { id: "tx4", type: "article_sale", amountCents: 350, description: "Vente article : R\u00e9flexions sur l'IA", status: "completed", createdAt: "2026-02-28" },
   { id: "tx5", type: "withdrawal", amountCents: -2000, description: "Retrait bancaire", status: "completed", createdAt: "2026-02-25" },
   { id: "tx6", type: "podcast_sale", amountCents: 280, description: "Vente podcast : Les Voix de la Nuit", status: "completed", createdAt: "2026-02-22" },
   { id: "tx7", type: "caution", amountCents: -1000, description: "Caution Cr\u00e9ateur", status: "completed", createdAt: "2026-01-15" },
-  { id: "tx8", type: "return", amountCents: 650, description: "Retour investissement : Jazz \u00e0 Minuit", status: "completed", createdAt: "2026-02-20" },
+  { id: "tx8", type: "return", amountCents: 650, description: "Retour contribution : Jazz \u00e0 Minuit", status: "completed", createdAt: "2026-02-20" },
 ]
 const MOCK_PENDING_WITHDRAWALS = [
   { id: "w1", amountCents: 4_50, requestDate: "2026-03-03", status: "processing" as const, holdEnd: null },
@@ -339,17 +339,41 @@ export default function WalletPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-amber-400">{"V\u00e9rification en cours"}</p>
-                  <p className="text-sm text-white/50">{"Stripe examine votre compte"}</p>
+                  <p className="text-sm text-white/50">{"Stripe examine votre compte (24-48h)"}</p>
                 </div>
               </div>
             ) : (
-              <div className="flex items-center gap-3 p-4 bg-slate-800/50 border border-white/5 rounded-xl">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                  <AlertCircle className="h-5 w-5 text-white/30" />
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 p-4 bg-slate-800/50 border border-white/5 rounded-xl">
+                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                    <AlertCircle className="h-5 w-5 text-white/30" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white/70">{"Recevoir mes gains"}</p>
+                    <p className="text-sm text-white/40">{"Configurez Stripe Connect pour retirer vos gains"}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-white/70">{"Non configur\u00e9"}</p>
-                  <p className="text-sm text-white/40">{"Configurez Stripe pour retirer vos gains"}</p>
+                {/* Etapes Stripe Connect */}
+                <div className="p-4 bg-[#635BFF]/5 border border-[#635BFF]/20 rounded-xl">
+                  <p className="text-[#635BFF] text-sm font-medium mb-3">{"Etapes pour recevoir vos gains :"}</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-6 h-6 rounded-full bg-[#635BFF]/20 flex items-center justify-center text-xs font-bold text-[#635BFF]">1</div>
+                      <span className="text-white/70">{"Creer votre compte Stripe"}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-6 h-6 rounded-full bg-[#635BFF]/20 flex items-center justify-center text-xs font-bold text-[#635BFF]">2</div>
+                      <span className="text-white/70">{"Verifier votre identite (KYC)"}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-6 h-6 rounded-full bg-[#635BFF]/20 flex items-center justify-center text-xs font-bold text-[#635BFF]">3</div>
+                      <span className="text-white/70">{"Activer les paiements"}</span>
+                    </div>
+                  </div>
+                  <Button onClick={handleConnectStripe} className="w-full mt-4 bg-[#635BFF] hover:bg-[#5851DB] text-white">
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    {"Connecter mon compte Stripe"}
+                  </Button>
                 </div>
               </div>
             )}

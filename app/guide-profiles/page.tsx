@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   ArrowLeft, Users, Crown, Film, TrendingUp, Heart, Lock, Unlock,
-  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones, LogIn
+  Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones, LogIn, Target
 } from "lucide-react"
 
 type ProfileKey = "guest" | "visitor" | "porter" | "infoporter" | "podcaster" | "contributor" | "contribureader" | "listener"
@@ -308,7 +308,36 @@ export default function GuideProfilesPage() {
               </CardContent>
             </Card>
 
-            {/* Carte Connexion - 10eme encart */}
+            {/* Carte Pourquoi se specialiser */}
+            <Card className="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-500/10 border-purple-500/30 mb-6">
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
+                    <Target className="h-6 w-6 text-purple-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-purple-100 mb-2">Pourquoi se specialiser ?</p>
+                    <p className="text-sm text-purple-50/80 mb-3">En vous concentrant sur une categorie (Films, Ecrits ou Podcasts) :</p>
+                    <ul className="space-y-2 text-sm text-white/70">
+                      <li className="flex items-center gap-2">
+                        <ArrowRight className="h-4 w-4 text-purple-400" />
+                        Vos contributions sont plus ciblees
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <ArrowRight className="h-4 w-4 text-purple-400" />
+                        Votre impact sur le classement est renforce
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <ArrowRight className="h-4 w-4 text-purple-400" />
+                        Votre comprehension des projets est meilleure
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Carte Connexion - 11eme encart */}
             <Card className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 border-emerald-500/30 mb-12">
               <CardContent className="p-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

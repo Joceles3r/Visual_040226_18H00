@@ -19,6 +19,8 @@ import {
   ShieldAlert,
   Lock,
   LogOut,
+  Sparkles,
+  HelpCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -202,6 +204,52 @@ export default function DashboardPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Message de bienvenue pour nouveaux utilisateurs */}
+      {user && !hasContributorRole && !hasCreatorRole && (
+        <Card className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-emerald-500/20">
+          <CardContent className="p-5">
+            <div className="flex items-start gap-4">
+              <div className="h-12 w-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                <Sparkles className="h-6 w-6 text-emerald-400" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-white mb-2">Bienvenue sur VIXUAL</h3>
+                <p className="text-white/70 text-sm mb-4">Voici vos premieres actions pour bien demarrer :</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <Link href="/explore" className="flex items-center gap-2 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                    <div className="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                      <Film className="h-4 w-4 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">1. Decouvrir</p>
+                      <p className="text-white/50 text-xs">Explorer les contenus</p>
+                    </div>
+                  </Link>
+                  <Link href="/guide-profiles" className="flex items-center gap-2 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                    <div className="h-8 w-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 text-amber-400" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">2. Participer</p>
+                      <p className="text-white/50 text-xs">Choisir un profil</p>
+                    </div>
+                  </Link>
+                  <Link href="/faq" className="flex items-center gap-2 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                    <div className="h-8 w-8 rounded-full bg-purple-500/20 flex items-center justify-center">
+                      <HelpCircle className="h-4 w-4 text-purple-400" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">3. Comprendre</p>
+                      <p className="text-white/50 text-xs">Lire la FAQ</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Stripe Connect Banner */}
       {(hasContributorRole || hasCreatorRole) &&
@@ -678,6 +726,17 @@ export default function DashboardPage() {
                     Ajouter aux favoris (+5 pts)
                   </li>
                 </ul>
+              </div>
+              {/* CTA Evolution de profil */}
+              <div className="pt-3 mt-3 border-t border-amber-500/20 bg-amber-500/5 -mx-6 -mb-6 px-6 py-4 rounded-b-xl">
+                <p className="text-amber-200 text-sm font-medium mb-2">Debloquez les contributions</p>
+                <p className="text-white/60 text-xs mb-3">Devenez Contributeur pour soutenir financierement les projets et generer des gains.</p>
+                <Link href="/guide-profiles">
+                  <Button size="sm" className="w-full bg-amber-600 hover:bg-amber-500 text-white">
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                    Devenir Contributeur
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

@@ -13,17 +13,18 @@ import { ResizeObserverFix } from "@/components/resize-observer-fix"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VIXUAL - Investissement Audiovisuel, Litteraire & Podcast",
+  title: "VIXUAL - Contribution Participative Audiovisuel, Litteraire & Podcast",
   description:
-    "Plateforme d'investissement participatif dans les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, investissez dans l'art.",
+    "Plateforme de contribution participative dans les projets audiovisuels, litteraires et podcasts. Regarde - Participe - Gagne. Soutenez les createurs, participez a l'art.",
   generator: "v0.app",
   keywords: [
-    "investissement",
+    "contribution participative",
     "audiovisuel",
     "litteraire",
     "podcast",
     "createurs",
-    "financement participatif",
+    "streaming",
+    "regarde participe gagne",
   ],
 }
 

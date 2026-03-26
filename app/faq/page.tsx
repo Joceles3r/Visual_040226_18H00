@@ -235,6 +235,31 @@ const FAQ_CATEGORIES = [
         answer: "Oui! VIXUAL utilise le chiffrement SSL, des serveurs sécurisés et respecte la protection des données (RGPD). Consultez notre politique de confidentialité pour plus d'informations."
       }
     ]
+  },
+  {
+    title: "Utilisateur Actif - Suivi et Gains",
+    items: [
+      {
+        question: "Quand vois-je mes gains?",
+        answer: "Vos gains apparaissent dans votre Wallet apres le calcul de fin de periode (1er de chaque mois). Les gains sont bases sur le classement final des projets soutenus et votre position parmi les participants."
+      },
+      {
+        question: "Que se passe-t-il si mon projet n'est pas TOP 10?",
+        answer: "Si le projet que vous soutenez n'atteint pas le TOP 10, vous ne percevez pas de gains sur ce projet. Votre contribution reste acquise au createur. Seuls les participants des projets TOP 10 recoivent une part des royalties."
+      },
+      {
+        question: "Comment suivre mes contributions?",
+        answer: "Rendez-vous dans Dashboard > Mes Contributions pour voir la liste de tous vos projets soutenus, leur statut actuel, le classement en temps reel et vos gains potentiels estimes."
+      },
+      {
+        question: "Quand puis-je retirer mon argent?",
+        answer: "Les retraits sont possibles des que votre solde disponible atteint le seuil minimum (5 EUR). Connectez votre compte Stripe Connect pour recevoir vos paiements. Les virements sont traites chaque semaine."
+      },
+      {
+        question: "Pourquoi se specialiser dans une categorie?",
+        answer: "En vous concentrant sur une categorie (Films, Ecrits ou Podcasts), vos contributions sont plus ciblees, votre comprehension des projets est meilleure et votre impact sur le classement est renforce. Cela augmente vos chances de gains."
+      }
+    ]
   }
 ]
 
