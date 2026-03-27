@@ -9,6 +9,7 @@ import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { VisualSlogan } from "@/components/visual-slogan"
 import { ContentCard } from "@/components/content-card"
+import { TrafficLight } from "@/components/traffic-light"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 
 const FEATURED_CONTENTS = ALL_CONTENTS.slice(0, 4)
@@ -72,12 +73,16 @@ export default function HomePage() {
 
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance">
-                Contribuez aux{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                  talents de demain
-                </span>
-              </h1>
+              <div className="flex items-center justify-center gap-4 md:gap-6 mb-4">
+                <TrafficLight size="lg" className="hidden sm:flex" />
+                <h1 className="text-4xl md:text-6xl font-bold text-white text-balance">
+                  Contribuez aux{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                    talents de demain
+                  </span>
+                </h1>
+                <TrafficLight size="lg" className="hidden sm:flex" />
+              </div>
 
               {/* Slogan signature */}
               <div className="mb-8">

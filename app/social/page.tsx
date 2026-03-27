@@ -3,6 +3,7 @@
 import VisualSocialFeed from "@/components/visual-social-feed"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
+import { TrafficLight } from "@/components/traffic-light"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   MessageCircle, Shield, Sparkles, Clock, Hash,
@@ -100,9 +101,13 @@ export default function VixualSocialPage() {
               <Sparkles className="h-4 w-4 text-emerald-400" />
               <span className="text-emerald-400 text-sm font-medium">{"Mini-r\u00e9seau social int\u00e9gr\u00e9"}</span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 text-balance">
-              VIXUAL Social
-            </h1>
+            <div className="flex items-center justify-center gap-4 md:gap-6 mb-3">
+              <TrafficLight size="md" />
+              <h1 className="text-3xl md:text-4xl font-bold text-white text-balance">
+                VIXUAL Social
+              </h1>
+              <TrafficLight size="md" />
+            </div>
             <p className="text-white/50 max-w-xl mx-auto text-balance">
               {"Échangez avec la communauté VIXUAL. Discussions structurées par tags, réponses directes, modération communautaire."}
             </p>

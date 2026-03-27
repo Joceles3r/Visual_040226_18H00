@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { ArrowLeft, HelpCircle, ArrowRight } from "lucide-react"
+import { TrafficLight } from "@/components/traffic-light"
 
 const FAQ_CATEGORIES = [
   {
@@ -292,7 +293,11 @@ export default function FAQPage() {
           <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
             <HelpCircle className="h-8 w-8 text-emerald-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Questions fréquentes</h2>
+          <div className="flex items-center justify-center gap-4 md:gap-6 mb-4">
+            <TrafficLight size="md" />
+            <h2 className="text-3xl md:text-4xl font-bold">Questions fréquentes</h2>
+            <TrafficLight size="md" />
+          </div>
           <p className="text-slate-400 max-w-2xl mx-auto">
             Parcourez nos sections pour trouver les reponses a vos questions sur VIXUAL et ses 8 profils (1 Invite non inscrit + 7 inscrits).
           </p>

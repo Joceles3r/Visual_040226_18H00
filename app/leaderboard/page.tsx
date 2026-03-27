@@ -11,6 +11,7 @@ import {
   Crown, CheckCircle, ArrowLeft, Film, FileText, Mic, Sparkles, Medal, ChevronRight
 } from "lucide-react"
 import { getTop100ByCategory } from "@/lib/discovery/engine"
+import { TrafficLight } from "@/components/traffic-light"
 
 type TierOption = 10 | 100 | 500
 type CategoryOption = "all" | "video" | "text" | "podcast"
@@ -308,9 +309,13 @@ export default function LeaderboardPage() {
             <Sparkles className="h-4 w-4 text-amber-300" />
             <span className="text-sm font-medium text-white/70">Classement officiel VIXUAL</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-3 tracking-tight" style={{ color: "#F5F7FF" }}>
-            {tierCfg.label}
-          </h2>
+          <div className="flex items-center justify-center gap-4 md:gap-6 mb-3">
+            <TrafficLight size="lg" />
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ color: "#F5F7FF" }}>
+              {tierCfg.label}
+            </h2>
+            <TrafficLight size="lg" />
+          </div>
           <p className="text-white/45 max-w-md mx-auto text-sm leading-relaxed">
             Les projets les mieux notés selon notre algorithme basé sur 6 critères d'évaluation.
           </p>

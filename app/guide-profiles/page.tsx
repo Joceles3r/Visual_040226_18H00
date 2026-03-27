@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { TrafficLight } from "@/components/traffic-light"
 import {
   ArrowLeft, Users, Crown, Film, TrendingUp, Heart, Lock, Unlock,
   Play, Gift, Zap, CheckCircle, AlertCircle, ArrowRight, BookOpen, Mic, Headphones, LogIn, Target
@@ -267,7 +268,11 @@ export default function GuideProfilesPage() {
           <>
             {/* Hero */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Choisissez votre profil</h2>
+              <div className="flex items-center justify-center gap-4 md:gap-6 mb-4">
+                <TrafficLight size="md" />
+                <h2 className="text-3xl md:text-4xl font-bold">Choisissez votre profil</h2>
+                <TrafficLight size="md" />
+              </div>
               <p className="text-slate-400 max-w-2xl mx-auto mb-8">
                 Chaque profil offre des avantages uniques. Explorez les différentes façons de participer à VIXUAL.
               </p>
