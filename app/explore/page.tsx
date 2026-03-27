@@ -287,6 +287,52 @@ function ProjectCard({ content, size = "normal" }: { content: Content; size?: "n
   )
 }
 
+/* ---------- FEU TRICOLORE ANIME ---------- */
+function TrafficLight({ className = "" }: { className?: string }) {
+  const [activeLight, setActiveLight] = useState(0) // 0=red, 1=yellow, 2=green
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveLight((prev) => (prev + 1) % 3)
+    }, 800) // Change every 800ms
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      {/* Boitier du feu */}
+      <div className="relative bg-gradient-to-b from-slate-700 to-slate-800 rounded-lg p-1.5 shadow-lg border border-slate-600/50">
+        {/* Rouge */}
+        <div 
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            activeLight === 0 
+              ? "bg-red-500 shadow-[0_0_8px_2px_rgba(239,68,68,0.7)]" 
+              : "bg-red-900/40"
+          }`}
+        />
+        {/* Jaune */}
+        <div 
+          className={`w-3 h-3 rounded-full mt-1 transition-all duration-300 ${
+            activeLight === 1 
+              ? "bg-yellow-400 shadow-[0_0_8px_2px_rgba(250,204,21,0.7)]" 
+              : "bg-yellow-900/40"
+          }`}
+        />
+        {/* Vert */}
+        <div 
+          className={`w-3 h-3 rounded-full mt-1 transition-all duration-300 ${
+            activeLight === 2 
+              ? "bg-emerald-400 shadow-[0_0_8px_2px_rgba(52,211,153,0.7)]" 
+              : "bg-emerald-900/40"
+          }`}
+        />
+      </div>
+      {/* Pied du feu */}
+      <div className="w-1.5 h-2 bg-gradient-to-b from-slate-600 to-slate-700 mx-auto rounded-b-sm" />
+    </div>
+  )
+}
+
 /* ---------- RANGEE HORIZONTALE TYPE NETFLIX ---------- */
 function ContentRow({ 
   title, 
@@ -294,7 +340,8 @@ function ContentRow({
   contents, 
   accentColor = "emerald",
   size = "normal",
-  showViewAll = true
+  showViewAll = true,
+  showTrafficLights = true
 }: { 
   title: string
   icon: typeof Flame
@@ -302,6 +349,7 @@ function ContentRow({
   accentColor?: "emerald" | "amber" | "rose" | "sky" | "purple"
   size?: "normal" | "large"
   showViewAll?: boolean
+  showTrafficLights?: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -347,7 +395,9 @@ function ContentRow({
       <div className="flex items-center justify-between mb-4 px-4 sm:px-8 lg:px-16">
         <div className="flex items-center gap-3">
           <Icon className={`h-5 w-5 ${colorClasses[accentColor]}`} />
+          {showTrafficLights && <TrafficLight />}
           <h2 className="text-xl sm:text-2xl font-bold text-white">{title}</h2>
+          {showTrafficLights && <TrafficLight />}
           <Badge className="bg-white/10 text-white/60 border-0 text-xs">
             {contents.length}
           </Badge>
