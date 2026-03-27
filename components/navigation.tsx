@@ -69,11 +69,11 @@ export const DISCOVER_MENU: NavMenu = {
 export const EXPLORE_MENU: NavMenu = {
   label: "Explorer",
   items: [
-    { label: "Explorer (Films & Vidéos)", href: "/explore?type=video", icon: Film },
-    { label: "Explorer (Livres & Articles)", href: "/explore?type=text", icon: FileText },
-    { label: "Explorer (Podcasts)", href: "/explore?type=podcast", icon: Mic },
-    { label: "Tout voir", href: "/explore", icon: Compass },
-    { label: "Gold Pass", href: "/explore?type=goldpass", icon: Crown },
+    { label: "Films & Videos", href: "/explore?tab=video", icon: Film },
+    { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
+    { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
+    { label: "Tout Explorer", href: "/explore", icon: Compass },
+    { label: "Gold Pass", href: "/explore?goldpass=true", icon: Crown },
   ],
 }
 

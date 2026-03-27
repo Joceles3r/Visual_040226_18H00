@@ -732,17 +732,55 @@ function ExplorerContent() {
   const [selectedGenre, setSelectedGenre] = useState<string>(genreParam)
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(pageParam)
+  
+  // Track previous URL params to detect external navigation changes
+  const prevTabRef = useRef(tabParam)
+  const prevGenreRef = useRef(genreParam)
+  const prevPageRef = useRef(pageParam)
 
-  // Sync state with URL params when they change (back/forward navigation)
+  // Sync state with URL params when they change (back/forward navigation or external links)
   useEffect(() => {
     const newTab = tabParam || "all"
     const newGenre = genreParam || "all"
     const newPage = pageParam || 1
     
-    if (newTab !== activeTab) setActiveTab(newTab)
-    if (newGenre !== selectedGenre) setSelectedGenre(newGenre)
-    if (newPage !== currentPage) setCurrentPage(newPage)
+    // Only update if URL params actually changed (not from our own updates)
+    if (prevTabRef.current !== tabParam) {
+      setActiveTab(newTab)
+      prevTabRef.current = tabParam
+    }
+    if (prevGenreRef.current !== genreParam) {
+      setSelectedGenre(newGenre)
+      prevGenreRef.current = genreParam
+    }
+    if (prevPageRef.current !== pageParam) {
+      setCurrentPage(newPage)
+      prevPageRef.current = pageParam
+    }
   }, [tabParam, genreParam, pageParam])
+
+  // Listen for header navigation events to force re-sync
+  useEffect(() => {
+    const handleVisualNav = () => {
+      // Force re-read URL params after header navigation
+      const params = new URLSearchParams(window.location.search)
+      const newTab = (params.get("tab") as "all" | "video" | "text" | "podcast") || "all"
+      const newGenre = params.get("genre") || "all"
+      const newPage = parseInt(params.get("page") || "1", 10)
+      
+      // Update refs and state
+      prevTabRef.current = newTab === "all" ? null : newTab
+      prevGenreRef.current = newGenre
+      prevPageRef.current = newPage
+      
+      setActiveTab(newTab)
+      setSelectedGenre(newGenre)
+      setCurrentPage(newPage)
+    }
+    
+    window.addEventListener("visual-nav", handleVisualNav)
+    return () => window.removeEventListener("visual-nav", handleVisualNav)
+  }, [])
 
   // Update URL without triggering re-render loop
   const updateURL = useCallback((tab: string, genre: string, page: number) => {
@@ -757,6 +795,11 @@ function ExplorerContent() {
 
   // Reset genre when tab changes
   const handleTabChange = useCallback((tab: "all" | "video" | "text" | "podcast") => {
+    // Update refs to prevent useEffect from overwriting
+    prevTabRef.current = tab === "all" ? null : tab
+    prevGenreRef.current = "all"
+    prevPageRef.current = 1
+    
     setActiveTab(tab)
     setSelectedGenre("all")
     setCurrentPage(1)
@@ -765,6 +808,9 @@ function ExplorerContent() {
 
   // Handle genre change
   const handleGenreChange = useCallback((genre: string) => {
+    prevGenreRef.current = genre === "all" ? "all" : genre
+    prevPageRef.current = 1
+    
     setSelectedGenre(genre)
     setCurrentPage(1)
     updateURL(activeTab, genre, 1)
@@ -772,6 +818,8 @@ function ExplorerContent() {
 
   // Handle page change
   const handlePageChange = useCallback((page: number) => {
+    prevPageRef.current = page
+    
     setCurrentPage(page)
     updateURL(activeTab, selectedGenre, page)
   }, [activeTab, selectedGenre, updateURL])
