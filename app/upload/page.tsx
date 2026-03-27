@@ -31,6 +31,7 @@ import { Progress } from "@/components/ui/progress"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
+import { useToast } from "@/hooks/use-toast"
 import { VIDEO_CATEGORIES } from "@/lib/mock-data"
 import { CAUTION_EUR } from "@/lib/payout/constants"
 import { AlertCircle, Shield, CreditCard, Loader2 } from "lucide-react"
@@ -38,6 +39,7 @@ import { AlertCircle, Shield, CreditCard, Loader2 } from "lucide-react"
 export default function UploadVideoPage() {
   const router = useRouter()
   const { user } = useAuth()
+  const { toast } = useToast()
   const [isUploading, setIsUploading] = useState(false)
   const [cautionLoading, setCautionLoading] = useState(false)
 

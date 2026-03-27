@@ -49,6 +49,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useAuth } from "@/lib/auth-context"
+import { useToast } from "@/hooks/use-toast"
 import { CAUTION_EUR } from "@/lib/payout/constants"
 
 const ROLE_UPGRADES = [
@@ -110,6 +111,7 @@ const ROLE_UPGRADES = [
 
 export default function SettingsPage() {
   const { user, roles, updateRoles } = useAuth()
+  const { toast } = useToast()
   const [notifications, setNotifications] = useState({
     email: true,
     investments: true,
@@ -193,17 +195,18 @@ export default function SettingsPage() {
         })
         const result = await res.json()
         if (result.error) {
-          alert(result.error)
+          toast({ title: "Erreur", description: result.error, variant: "destructive" })
         } else {
           // Activation locale du role (mock)
           const newRoles = [...new Set([...roles, role])] as typeof roles
           updateRoles(newRoles)
-          alert(
-            `Role "${role}" active avec succes. En production, le paiement de la caution sera requis via Stripe.`
-          )
+          toast({ 
+            title: "Role active", 
+            description: `Role "${role}" active avec succes. En production, le paiement de la caution sera requis via Stripe.` 
+          })
         }
       } catch {
-        alert("Erreur lors de l'activation du role. Veuillez reessayer.")
+        toast({ title: "Erreur", description: "Erreur lors de l'activation du role. Veuillez reessayer.", variant: "destructive" })
       } finally {
         setUpgradingRole(null)
       }

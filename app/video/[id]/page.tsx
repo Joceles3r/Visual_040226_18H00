@@ -22,6 +22,7 @@ import { Footer } from "@/components/footer"
 import VisualSocialFeed from "@/components/visual-social-feed"
 import { ALL_CONTENTS } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
+import { useToast } from "@/hooks/use-toast"
 import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
 import { isGoldCreator } from "@/lib/mock-data"
 import type { ContentType } from "@/lib/visual-social/hybrid"
@@ -79,6 +80,7 @@ const QUICK_AMOUNTS = [3, 5, 10, 20] as const
 export default function VideoPage({ params }: { params: { id: string } }) {
   const { id } = params
   const { isAuthed, roles } = useAuth()
+  const { toast } = useToast()
 
   const content = ALL_CONTENTS.find((c) => c.id === id)
   if (!content) notFound()
@@ -154,16 +156,21 @@ export default function VideoPage({ params }: { params: { id: string } }) {
       })
       const data = await res.json()
       if (!res.ok) {
-        // Handle specific error codes (KYC required, VPN detected, etc.)
-        console.error("[v0] Investment error:", data.code, data.message)
-        alert(data.message || "Une erreur est survenue lors de l'investissement.")
+        toast({ 
+          title: "Erreur de contribution", 
+          description: data.message || "Une erreur est survenue lors de la contribution.", 
+          variant: "destructive" 
+        })
       } else if (data.url) {
         // Redirect to Stripe checkout
         window.location.href = data.url
       }
-    } catch (err) {
-      console.error("[v0] Investment request failed:", err)
-      alert("Erreur de connexion. Veuillez reessayer.")
+    } catch {
+      toast({ 
+        title: "Erreur de connexion", 
+        description: "Veuillez reessayer.", 
+        variant: "destructive" 
+      })
     } finally {
       setIsInvesting(false)
       setShowInvestConfirm(false)

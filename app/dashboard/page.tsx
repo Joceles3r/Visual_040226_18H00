@@ -21,13 +21,13 @@ import {
   LogOut,
   Sparkles,
   HelpCircle,
+  Trophy,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
 import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGORIES } from "@/lib/mock-data"
-  import { Trophy } from "lucide-react"
 import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { CommunityCharter } from "@/components/community-charter"
