@@ -7,6 +7,7 @@ import { Slider } from "@/components/ui/slider"
 import { Badge } from "@/components/ui/badge"
 import { Coins, Euro, AlertCircle, CheckCircle, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { VIXUPOINTS_PER_EUR } from "@/lib/payout/constants"
 
 // ─── Types ───
 
@@ -34,10 +35,6 @@ export interface PaymentOption {
   isHybrid: boolean
   isValid: boolean
 }
-
-// ─── Constants ───
-
-const VIXUPOINTS_PER_EUR = 100
 
 /** Configuration des profils pour le paiement */
 const PROFILE_PAYMENT_CONFIG: Record<PaymentProfile, {

@@ -1,5 +1,5 @@
 /**
- * VISUAL - Edge Middleware
+ * VIXUAL - Edge Middleware
  *
  * Applies to all /api/* routes:
  * - Security headers (CSP, HSTS, X-Frame-Options, etc.)
@@ -7,8 +7,7 @@
  * - Request logging for audit trail
  */
 
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 // ── Route classification ──
 

@@ -1,8 +1,8 @@
 /**
- * VISUAL Payout Engine - Point d'entree
+ * VIXUAL Payout Engine - Point d'entree
  *
  * Ce module exporte l'ensemble du moteur de calcul et des constantes
- * necessaires a la repartition des gains VISUAL.
+ * necessaires a la repartition des gains VIXUAL.
  * Pret pour integration Stripe Connect.
  */
 
@@ -37,7 +37,7 @@ export {
 export { simulateBatch, isTodayBatchDay, getCurrentMonth } from "./batch";
 export type { BatchSimulationResult, CategorySimulation, BatchStatus } from "./batch";
 
-// Constantes VISUAL V1
+// Constantes VIXUAL V1
 export {
   // Tranches
   INVESTMENT_TIERS_EUR,

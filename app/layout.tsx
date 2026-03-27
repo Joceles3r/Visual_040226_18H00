@@ -9,13 +9,13 @@ import { CookieConsentBanner } from "@/components/cookie-consent"
 import { MinorClientGuard } from "@/components/minors/minor-client-guard"
 import { SoundProvider } from "@/components/sound-provider"
 import { ResizeObserverFix } from "@/components/resize-observer-fix"
+import { APP_NAME, APP_DESCRIPTION } from "@/lib/branding"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VIXUAL - Contribution Participative Audiovisuel, Litteraire & Podcast",
-  description:
-    "Plateforme de contribution participative dans les projets audiovisuels, litteraires et podcasts. Regarde - Participe - Gagne. Soutenez les createurs, participez a l'art.",
+  title: `${APP_NAME} - Contribution Participative Audiovisuel, Litteraire & Podcast`,
+  description: APP_DESCRIPTION,
   generator: "v0.app",
   keywords: [
     "contribution participative",

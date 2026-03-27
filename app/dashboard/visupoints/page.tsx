@@ -28,8 +28,8 @@ import {
   MINOR_VISUPOINTS_CAP,
   engagementRedirectEngine,
   computeHybridPurchase,
+  type EngagementRedirectResult,
 } from "@/lib/visupoints-engine"
-import type { EngagementRedirectResult } from "@/lib/visupoints-engine"
 
 // ─── Missions ───
 

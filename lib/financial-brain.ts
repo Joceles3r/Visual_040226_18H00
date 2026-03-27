@@ -12,11 +12,13 @@
  * Principe: IA analyse — humains decident — systeme trace
  */
 
+import type { AdminRole } from "@/lib/admin/roles"
+
 // ─── Types ───
 
 export type PaymentStatus = "green" | "orange" | "red" | "critical"
 export type ClusterLevel = "low" | "medium" | "high" | "critical"
-export type AdminRole = "patron" | "adjoint" | "moderator" | "support"
+export type { AdminRole }
 
 export interface DistributionKey {
   creators: number       // 40%
@@ -87,7 +89,7 @@ export interface CycleOverview {
   vixupointsActivityToday: number
 }
 
-export interface AuditLog {
+export interface AIAuditLog {
   id: string
   timestamp: string
   cycle: string
@@ -509,7 +511,7 @@ export function getMockGamingAlerts(): GamingAlert[] {
   ]
 }
 
-export function getMockAuditLogs(): AuditLog[] {
+export function getMockAuditLogs(): AIAuditLog[] {
   return [
     {
       id: "log-001",

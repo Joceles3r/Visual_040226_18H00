@@ -219,8 +219,8 @@ export default function HomePage() {
                   {/* Gradient overlay bleu futuriste / pourpre / rose */}
                   <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10, 77, 255, 0.85) 0%, rgba(122, 0, 255, 0.8) 50%, rgba(219, 39, 119, 0.7) 100%)' }} />
                   <img 
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/New_Image_les%203%20familles-ViOIfPSfMFo4lpLHf7IwaeiAmPOLfN.png" 
-                    alt="Les 3 familles VIXUAL - 1. CREATEURS 2. PARTICIPANTS 3. PUBLIC" 
+                    src="/images/vixual_familles.jpg" 
+                    alt="Les 3 familles VIXUAL - Créateurs, Participants, Public" 
                     className="w-full h-full object-contain mix-blend-screen"
                     style={{ filter: 'invert(1) brightness(1.2)' }}
                   />
@@ -239,7 +239,7 @@ export default function HomePage() {
                   {/* Gradient overlay pourpre / bleu futuriste / rose */}
                   <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(122, 0, 255, 0.85) 0%, rgba(10, 77, 255, 0.8) 50%, rgba(236, 72, 153, 0.7) 100%)' }} />
                   <img 
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/New_vixual_fonctionnement-E34edxU95umlIxsuC5PBqGeNaCpYGZ.png" 
+                    src="/images/vixual_fonctionnement.jpg" 
                     alt="Comment fonctionne VIXUAL - Les participants soutiennent le projet" 
                     className="w-full h-full object-contain mix-blend-screen"
                     style={{ filter: 'invert(1) brightness(1.2)' }}

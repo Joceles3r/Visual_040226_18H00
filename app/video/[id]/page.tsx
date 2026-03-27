@@ -20,11 +20,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import VisualSocialFeed from "@/components/visual-social-feed"
-import { ALL_CONTENTS } from "@/lib/mock-data"
+import { ALL_CONTENTS, isGoldCreator } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
 import { useToast } from "@/hooks/use-toast"
 import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
-import { isGoldCreator } from "@/lib/mock-data"
 import type { ContentType } from "@/lib/visual-social/hybrid"
 
 /* ---------- Motivational Messages ---------- */

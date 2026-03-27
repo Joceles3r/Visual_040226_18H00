@@ -1,7 +1,5 @@
 "use client"
 
-import React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -15,6 +13,10 @@ import {
   X,
   Clock,
   Music,
+  AlertCircle,
+  Shield,
+  CreditCard,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -35,7 +37,6 @@ import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
 import { PODCAST_CATEGORIES } from "@/lib/mock-data"
 import { CAUTION_EUR } from "@/lib/payout/constants"
-import { AlertCircle, Shield, CreditCard, Loader2 } from "lucide-react"
 
 export default function UploadPodcastPage() {
   const router = useRouter()

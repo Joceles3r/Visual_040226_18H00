@@ -83,8 +83,8 @@ class StripeConnectService {
           transfers: { requested: true },
         },
         metadata: {
-          visual_user_id: userId,
-          platform: "visual",
+          vixual_user_id: userId,
+          platform: "vixual",
         },
       });
       
@@ -198,10 +198,10 @@ class StripeConnectService {
       currency: "eur",
       metadata: {
         type: "investment",
-        visual_user_id: userId,
-        visual_content_id: contentId,
+        vixual_user_id: userId,
+        vixual_content_id: contentId,
         content_title: contentTitle,
-        platform: "visual",
+        platform: "vixual",
         ...metadata,
       },
     };
@@ -255,11 +255,11 @@ class StripeConnectService {
       currency: "eur",
       destination: accountId,
       metadata: {
-        visual_user_id: userId,
+        vixual_user_id: userId,
         category,
         cycle_id: cycleId || "",
         type: "creator_payout",
-        platform: "visual",
+        platform: "vixual",
       },
     });
     
@@ -321,7 +321,7 @@ class StripeConnectService {
       reason: "requested_by_customer",
       metadata: {
         visual_reason: reason || "User requested refund",
-        platform: "visual",
+        platform: "vixual",
       },
     });
     

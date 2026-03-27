@@ -30,10 +30,11 @@ import {
   isCommunityRank,
   validateAllFormulas,
 } from "./formulas"
+import type { Universe } from "@/lib/rules/rule-of-100"
 
 // ─── Types de base ───
 
-export type Universe = "audiovisual" | "literary" | "podcast"
+export type { Universe }
 export type CycleStatus = "open" | "closing" | "closed" | "distributed"
 export type ProjectRank = "top10" | "participant" | "unranked"
 

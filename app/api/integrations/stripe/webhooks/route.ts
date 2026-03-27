@@ -114,7 +114,7 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
   
   const metadata = paymentIntent.metadata;
   
-  if (metadata.type === "investment" && metadata.visual_user_id) {
+  if (metadata.type === "investment" && metadata.vixual_user_id) {
     // Update investment status
     await sql`
       UPDATE investments 
@@ -128,16 +128,16 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
       await sql`
         UPDATE users 
         SET visupoints = COALESCE(visupoints, 0) + ${visupointsGranted}
-        WHERE id = ${metadata.visual_user_id}
+        WHERE id = ${metadata.vixual_user_id}
       `;
     }
     
     // Update content funding
-    if (metadata.visual_content_id) {
+    if (metadata.vixual_content_id) {
       await sql`
         UPDATE contents 
         SET current_investment = COALESCE(current_investment, 0) + ${paymentIntent.amount}
-        WHERE id = ${metadata.visual_content_id}
+        WHERE id = ${metadata.vixual_content_id}
       `;
     }
   }

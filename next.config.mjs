@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     // Enable Next.js image optimization for better LCP
     remotePatterns: [
+      // CDN principal VIXUAL (activer lors du branchement Bunny.net)
       {
         protocol: "https",
         hostname: "cdn.bunny.net",
@@ -15,10 +16,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.b-cdn.net",
       },
+      // Images de développement uniquement — supprimer en production
       {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      // NE PAS ajouter hebbkx1anhila5yf.public.blob.vercel-storage.com
+      // Toutes les images pédagogiques doivent être dans /public/images/
     ],
     formats: ["image/avif", "image/webp"],
   },
