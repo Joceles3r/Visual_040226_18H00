@@ -340,8 +340,7 @@ function ContentRow({
   contents, 
   accentColor = "emerald",
   size = "normal",
-  showViewAll = true,
-  showTrafficLights = true
+  showViewAll = true
 }: { 
   title: string
   icon: typeof Flame
@@ -349,7 +348,6 @@ function ContentRow({
   accentColor?: "emerald" | "amber" | "rose" | "sky" | "purple"
   size?: "normal" | "large"
   showViewAll?: boolean
-  showTrafficLights?: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -395,9 +393,7 @@ function ContentRow({
       <div className="flex items-center justify-between mb-4 px-4 sm:px-8 lg:px-16">
         <div className="flex items-center gap-3">
           <Icon className={`h-5 w-5 ${colorClasses[accentColor]}`} />
-          {showTrafficLights && <TrafficLight />}
           <h2 className="text-xl sm:text-2xl font-bold text-white">{title}</h2>
-          {showTrafficLights && <TrafficLight />}
           <Badge className="bg-white/10 text-white/60 border-0 text-xs">
             {contents.length}
           </Badge>
@@ -971,6 +967,24 @@ function ExplorerContent() {
 
       {/* Category Tabs */}
       <CategoryTabs activeTab={activeTab} onTabChange={handleTabChange} />
+
+      {/* Main Category Title with Traffic Lights */}
+      {activeTab !== "all" && (
+        <div className="flex items-center justify-center gap-4 sm:gap-6 py-6 px-4">
+          {/* Traffic Light Left */}
+          <TrafficLight className="scale-125 sm:scale-150" />
+          
+          {/* Main Title */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center">
+            {activeTab === "video" && "Films & Videos"}
+            {activeTab === "text" && "Livres & Articles"}
+            {activeTab === "podcast" && "Podcasts"}
+          </h1>
+          
+          {/* Traffic Light Right */}
+          <TrafficLight className="scale-125 sm:scale-150" />
+        </div>
+      )}
 
       {/* Genre Selector */}
       <GenreSelector 
