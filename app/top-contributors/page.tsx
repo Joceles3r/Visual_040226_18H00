@@ -21,6 +21,7 @@ import {
   calculateContributorScore,
   getContributorRankBadge
 } from "@/lib/identity-system"
+import { TrafficLight } from "@/components/traffic-light"
 
 type TierFilter = 10 | 50 | 100 | 500
 
@@ -119,10 +120,14 @@ export default function TopContributorsPage() {
             <span className="text-sm font-medium text-slate-300">Classement officiel</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3">
-            <span className={tierConfig.color}>{tierConfig.label}</span>
-            <span className="text-slate-500"> Contributeurs</span>
-          </h2>
+          <div className="flex items-center justify-center gap-4 md:gap-6 mb-3">
+            <TrafficLight size="lg" />
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              <span className={tierConfig.color}>{tierConfig.label}</span>
+              <span className="text-slate-500"> Contributeurs</span>
+            </h2>
+            <TrafficLight size="lg" />
+          </div>
           
           <p className="text-slate-400 max-w-xl mx-auto mb-6">
             Les contributeurs les plus actifs de la communaute VIXUAL. Le classement est base sur le montant contribue, la diversification, la regularite et l'anciennete.
