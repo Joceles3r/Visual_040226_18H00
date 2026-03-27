@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award, CreditCard, Wallet, Upload } from "lucide-react"
+import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award, CreditCard, Wallet, Upload, Eye, Euro, Trophy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -328,7 +328,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
               {FEATURES.map((feature) => (
                 <Card
                   key={feature.title}
@@ -347,6 +347,32 @@ export default function HomePage() {
                   </CardContent>
                 </Card>
               ))}
+              
+              {/* Encart special - Regarde Participe Gagne */}
+              <Card className="bg-slate-900/50 border-white/10 hover:border-white/30 transition-colors">
+                <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <Eye className="h-5 w-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <Euro className="h-5 w-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <Trophy className="h-5 w-5 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white text-center mb-1">
+                    Regarde
+                  </h3>
+                  <h3 className="text-lg font-semibold text-white text-center mb-1">
+                    Participe
+                  </h3>
+                  <h3 className="text-lg font-semibold text-white text-center">
+                    Gagne
+                  </h3>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
