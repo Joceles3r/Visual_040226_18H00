@@ -217,7 +217,7 @@ export default function HomePage() {
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#7A00FF]/20 transition-all duration-300 border-[#7A00FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(10, 77, 255, 0.15), rgba(122, 0, 255, 0.1))' }}>
                 <div className="aspect-[16/10] relative overflow-hidden">
                   <img 
-                    src="/images/vixual_familles_v2.jpg" 
+                    src="/images/vixual_3familles.png" 
                     alt="Les 3 familles VIXUAL - Créateurs, Participants, Public" 
                     className="w-full h-full object-cover"
                   />
@@ -234,8 +234,8 @@ export default function HomePage() {
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#0A4DFF]/20 transition-all duration-300 border-[#0A4DFF]/30" style={{ background: 'linear-gradient(to bottom, rgba(122, 0, 255, 0.15), rgba(10, 77, 255, 0.1))' }}>
                 <div className="aspect-[16/10] relative overflow-hidden">
                   <img 
-                    src="/images/vixual_fonctionnement_v2.jpg" 
-                    alt="Comment fonctionne VIXUAL - Les participants soutiennent le projet" 
+                    src="/images/vixual_comment_ca_marche.png" 
+                    alt="Comment fonctionne VIXUAL - Sélectionnez, Participez, Gagnez" 
                     className="w-full h-full object-cover"
                   />
                 </div>
