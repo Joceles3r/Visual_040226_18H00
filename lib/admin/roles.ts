@@ -91,3 +91,44 @@ export function canCreateRole(creatorRole: AdminRole, targetRole: AdminRole): bo
   if (targetRole === 'admin') return false; // Can't create another ADMIN
   return true;
 }
+
+/**
+ * Verify if a user has the required admin role or higher
+ * Returns true if user has sufficient privileges
+ */
+export function verifyAdminRole(
+  userRole: AdminRole | undefined | null, 
+  requiredRole: AdminRole
+): boolean {
+  if (!userRole) return false;
+  
+  const roleHierarchy: Record<AdminRole, number> = {
+    admin: 4,
+    admin_adjoint: 3,
+    moderator: 2,
+    support: 1,
+  };
+  
+  const userLevel = roleHierarchy[userRole] ?? 0;
+  const requiredLevel = roleHierarchy[requiredRole] ?? 0;
+  
+  return userLevel >= requiredLevel;
+}
+
+/**
+ * Check if user is the PATRON (super admin)
+ */
+export function isPatron(email: string | undefined | null): boolean {
+  return email === PATRON_EMAIL;
+}
+
+/**
+ * Get admin role from user email (for mock/demo purposes)
+ */
+export function getAdminRoleFromEmail(email: string): AdminRole | null {
+  if (email === PATRON_EMAIL) return 'admin';
+  if (email.includes('adjoint')) return 'admin_adjoint';
+  if (email.includes('moderator') || email.includes('modo')) return 'moderator';
+  if (email.includes('support')) return 'support';
+  return null;
+}

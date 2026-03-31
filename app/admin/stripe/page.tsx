@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -23,6 +24,7 @@ import {
   ExternalLink,
   Copy,
   Webhook,
+  Building2,
 } from "lucide-react"
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -294,15 +296,24 @@ export default function StripeConfigPage() {
           </p>
         </div>
 
-        <a
-          href="https://dashboard.stripe.com/apikeys"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-500/10 border border-violet-500/30 text-violet-400 text-sm hover:bg-violet-500/20 transition-colors shrink-0"
-        >
-          <ExternalLink className="h-4 w-4" />
-          Dashboard Stripe
-        </a>
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            href="/admin/stripe-connect"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm hover:bg-emerald-500/20 transition-colors"
+          >
+            <Building2 className="h-4 w-4" />
+            Stripe Connect
+          </Link>
+          <a
+            href="https://dashboard.stripe.com/apikeys"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-500/10 border border-violet-500/30 text-violet-400 text-sm hover:bg-violet-500/20 transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+            Dashboard Stripe
+          </a>
+        </div>
       </div>
 
       {/* ── Statut du mode ──────────────────────────────────────────────── */}
