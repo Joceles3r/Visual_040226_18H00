@@ -5,6 +5,7 @@ import { useAuth } from "@/lib/auth-context";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import {
   Share2,
   Mail,
@@ -14,7 +15,15 @@ import {
   Check,
   BarChart3,
   Clock,
+  Users,
+  TrendingUp,
+  Gift,
+  QrCode,
+  Twitter,
+  Facebook,
+  Linkedin,
 } from "lucide-react";
+import { generateReferralLink, getShareUrl, REFERRAL_REWARD_VIXUPOINTS } from "@/lib/referral-system";
 
 interface PromoStats {
   monthlyEmails: number;
@@ -22,6 +31,12 @@ interface PromoStats {
   monthlyShares: number;
   totalShares: number;
   cooldownHours: number;
+  // New viral stats
+  totalClicks: number;
+  totalConversions: number;
+  conversionRate: number;
+  totalRewardsEarned: number;
+  pendingRewards: number;
 }
 
 export default function PromoPage() {
@@ -46,9 +61,12 @@ export default function PromoPage() {
     if (isAuthed) fetchStats();
   }, [isAuthed, fetchStats]);
 
-  const referralLink = typeof window !== "undefined"
-    ? `${window.location.origin}?ref=${user?.id?.slice(0, 8) || "visual"}`
-    : "";
+  const referralData = typeof window !== "undefined" && user?.id
+    ? generateReferralLink(user.id, undefined, window.location.origin)
+    : { url: "", code: "", qrCodeUrl: "" };
+  
+  const referralLink = referralData.url;
+  const qrCodeUrl = referralData.qrCodeUrl;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(referralLink);
@@ -90,90 +108,189 @@ export default function PromoPage() {
           </p>
         </div>
 
-        {/* Stats cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Stats cards - Row 1 */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <Card className="bg-slate-900/60 border-white/10">
-            <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-500/15 flex items-center justify-center">
-                <Mail className="h-6 w-6 text-sky-400" />
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center">
+                <Users className="h-5 w-5 text-sky-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
-                  {loading ? "--" : `${stats?.monthlyEmails ?? 0}/${stats?.monthlyEmailCap ?? 4}`}
+                <p className="text-xl font-bold text-white">
+                  {loading ? "--" : stats?.totalClicks ?? 0}
                 </p>
-                <p className="text-white/40 text-xs">Emails promo ce mois</p>
+                <p className="text-white/40 text-xs">Clics</p>
               </div>
             </CardContent>
           </Card>
           <Card className="bg-slate-900/60 border-white/10">
-            <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                <Share2 className="h-6 w-6 text-emerald-400" />
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                <TrendingUp className="h-5 w-5 text-emerald-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
-                  {loading ? "--" : stats?.monthlyShares ?? 0}
+                <p className="text-xl font-bold text-white">
+                  {loading ? "--" : stats?.totalConversions ?? 0}
                 </p>
-                <p className="text-white/40 text-xs">Partages ce mois</p>
+                <p className="text-white/40 text-xs">Conversions</p>
               </div>
             </CardContent>
           </Card>
           <Card className="bg-slate-900/60 border-white/10">
-            <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/15 flex items-center justify-center">
-                <BarChart3 className="h-6 w-6 text-amber-400" />
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
+                <BarChart3 className="h-5 w-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
-                  {loading ? "--" : stats?.totalShares ?? 0}
+                <p className="text-xl font-bold text-white">
+                  {loading ? "--" : `${(stats?.conversionRate ?? 0).toFixed(1)}%`}
                 </p>
-                <p className="text-white/40 text-xs">Partages au total</p>
+                <p className="text-white/40 text-xs">Taux conversion</p>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-slate-900/60 border-white/10">
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center">
+                <Gift className="h-5 w-5 text-amber-400" />
+              </div>
+              <div>
+                <p className="text-xl font-bold text-white">
+                  {loading ? "--" : stats?.totalRewardsEarned ?? 0}
+                </p>
+                <p className="text-white/40 text-xs">VIXUpoints gagnes</p>
               </div>
             </CardContent>
           </Card>
         </div>
-
-        {/* Referral link */}
-        <Card className="bg-slate-900/60 border-white/10">
-          <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2 text-base">
-              <Link2 className="h-5 w-5 text-sky-400" />
-              Votre lien de parrainage
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+        
+        {/* Rewards info */}
+        <Card className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-amber-500/20">
+          <CardContent className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex-1 bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white/70 text-sm font-mono truncate">
-                {referralLink || "Chargement..."}
+              <Gift className="h-6 w-6 text-amber-400" />
+              <div>
+                <p className="text-white font-medium">Recompense parrainage</p>
+                <p className="text-white/50 text-sm">Gagnez {REFERRAL_REWARD_VIXUPOINTS} VIXUpoints par filleul inscrit</p>
               </div>
-              <Button
-                onClick={handleCopy}
-                variant="outline"
-                className="border-white/15 text-white/70 hover:bg-white/5 shrink-0 gap-2"
-              >
-                {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
-                {copied ? "Copie !" : "Copier"}
-              </Button>
             </div>
-            <p className="text-white/30 text-xs mt-3">
-              {"Partagez ce lien pour inviter vos amis. Chaque inscription via ce lien sera comptabilis\u00e9e."}
-            </p>
+            {stats?.pendingRewards ? (
+              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
+                {stats.pendingRewards} en attente
+              </Badge>
+            ) : null}
           </CardContent>
         </Card>
+
+        {/* Referral link + QR Code */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <Card className="bg-slate-900/60 border-white/10 lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2 text-base">
+                <Link2 className="h-5 w-5 text-sky-400" />
+                Votre lien de parrainage
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3">
+                <div className="flex-1 bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white/70 text-sm font-mono truncate">
+                  {referralLink || "Chargement..."}
+                </div>
+                <Button
+                  onClick={handleCopy}
+                  variant="outline"
+                  className="border-white/15 text-white/70 hover:bg-white/5 shrink-0 gap-2"
+                >
+                  {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                  {copied ? "Copie !" : "Copier"}
+                </Button>
+              </div>
+              <p className="text-white/30 text-xs mt-3">
+                {"Partagez ce lien pour inviter vos amis. Chaque inscription via ce lien vous rapporte des VIXUpoints."}
+              </p>
+              
+              {/* Social share buttons */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a
+                  href={getShareUrl({ platform: "twitter", url: referralLink, title: "Decouvrez VIXUAL - Regarde, Participe, Gagne!" })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 border border-[#1DA1F2]/30 rounded-lg text-[#1DA1F2] text-sm transition-colors"
+                >
+                  <Twitter className="h-4 w-4" />
+                  Twitter
+                </a>
+                <a
+                  href={getShareUrl({ platform: "facebook", url: referralLink })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-[#4267B2]/10 hover:bg-[#4267B2]/20 border border-[#4267B2]/30 rounded-lg text-[#4267B2] text-sm transition-colors"
+                >
+                  <Facebook className="h-4 w-4" />
+                  Facebook
+                </a>
+                <a
+                  href={getShareUrl({ platform: "linkedin", url: referralLink })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-[#0077B5]/10 hover:bg-[#0077B5]/20 border border-[#0077B5]/30 rounded-lg text-[#0077B5] text-sm transition-colors"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
+                <a
+                  href={getShareUrl({ platform: "whatsapp", url: referralLink, title: "VIXUAL" })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 rounded-lg text-[#25D366] text-sm transition-colors"
+                >
+                  <Globe className="h-4 w-4" />
+                  WhatsApp
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* QR Code */}
+          <Card className="bg-slate-900/60 border-white/10">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2 text-base">
+                <QrCode className="h-5 w-5 text-purple-400" />
+                QR Code
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center">
+              {qrCodeUrl ? (
+                <div className="bg-white p-2 rounded-lg">
+                  <img 
+                    src={qrCodeUrl} 
+                    alt="QR Code parrainage" 
+                    className="w-32 h-32"
+                  />
+                </div>
+              ) : (
+                <div className="w-32 h-32 bg-white/10 rounded-lg animate-pulse" />
+              )}
+              <p className="text-white/40 text-xs mt-3 text-center">
+                Scannez pour partager
+              </p>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Share actions */}
         <Card className="bg-slate-900/60 border-white/10">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2 text-base">
               <Share2 className="h-5 w-5 text-emerald-400" />
-              Partager VIXUAL
+              Actions de partage
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { channel: "email" as const, label: "Par email", icon: Mail, color: "text-sky-400", bg: "bg-sky-500/15" },
-                { channel: "link" as const, label: "Par lien", icon: Link2, color: "text-amber-400", bg: "bg-amber-500/15" },
+                { channel: "email" as const, label: "Inviter par email", icon: Mail, color: "text-sky-400", bg: "bg-sky-500/15" },
+                { channel: "link" as const, label: "Envoyer le lien", icon: Link2, color: "text-amber-400", bg: "bg-amber-500/15" },
                 { channel: "social" as const, label: "Reseaux sociaux", icon: Globe, color: "text-emerald-400", bg: "bg-emerald-500/15" },
               ].map((item) => (
                 <Button

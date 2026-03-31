@@ -16,6 +16,14 @@ export const LEGAL_MESSAGES = {
   vixupointsNotMoney: "Les VIXUpoints ne constituent pas une monnaie ni un produit financier.",
 }
 
+// Watermark et branding video
+export const VIDEO_BRANDING = {
+  watermarkText: "Propulse par VIXUAL",
+  introText: "VIXUAL presente",
+  outroText: "Regarde - Participe - Gagne | vixual.com",
+  youtubeChannelSuffix: "| Propulse par VIXUAL",
+}
+
 // URLs officielles
 export const OFFICIAL_URLS = {
   terms: "/legal/terms",
@@ -24,4 +32,14 @@ export const OFFICIAL_URLS = {
   faq: "/faq",
   howItWorks: "/how-it-works",
   guideProfiles: "/guide-profiles",
+}
+
+// Version info
+export const VERSION_INFO = {
+  current: "V1",
+  features: {
+    V1: ["referralSystem", "promoEmail", "trustScore", "goldPass", "minorProtection", "watermark"],
+    V2: ["vixupoints", "hybridPayment", "youtubeAuto", "hubSpoke"],
+    V3: ["socialFeatures", "aiModeration"],
+  },
 }
