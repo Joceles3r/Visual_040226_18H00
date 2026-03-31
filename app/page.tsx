@@ -216,19 +216,16 @@ export default function HomePage() {
               {/* Carte 1: Les 3 Familles */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#7A00FF]/20 transition-all duration-300 border-[#7A00FF]/30" style={{ background: 'linear-gradient(to bottom, rgba(10, 77, 255, 0.15), rgba(122, 0, 255, 0.1))' }}>
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  {/* Gradient overlay bleu futuriste / pourpre / rose */}
-                  <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(10, 77, 255, 0.85) 0%, rgba(122, 0, 255, 0.8) 50%, rgba(219, 39, 119, 0.7) 100%)' }} />
                   <img 
-                    src="/images/vixual_familles.jpg" 
+                    src="/images/vixual_familles_v2.jpg" 
                     alt="Les 3 familles VIXUAL - Créateurs, Participants, Public" 
-                    className="w-full h-full object-contain mix-blend-screen"
-                    style={{ filter: 'invert(1) brightness(1.2)' }}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <CardContent className="p-5">
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#F5F7FF' }}>Les 3 Familles</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(245, 247, 255, 0.7)' }}>
-                    <span style={{ color: '#00E5FF' }} className="font-medium">Créateurs</span> publient des oeuvres, <span style={{ color: '#00E5FF' }} className="font-medium">Participants</span> soutiennent financièrement, <span style={{ color: '#00E5FF' }} className="font-medium">Public</span> découvre et participe.
+                    <span style={{ color: '#00E5FF' }} className="font-medium">Créateurs</span> publient des oeuvres, <span style={{ color: '#00E5FF' }} className="font-medium">Participants</span> soutiennent financièrement, <span style={{ color: '#00E5FF' }} className="font-medium">Public</span> découvre/participe/partage.
                   </p>
                 </CardContent>
               </Card>
@@ -236,13 +233,10 @@ export default function HomePage() {
               {/* Carte 2: Comment ca fonctionne */}
               <Card className="overflow-hidden hover:shadow-xl hover:shadow-[#0A4DFF]/20 transition-all duration-300 border-[#0A4DFF]/30" style={{ background: 'linear-gradient(to bottom, rgba(122, 0, 255, 0.15), rgba(10, 77, 255, 0.1))' }}>
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  {/* Gradient overlay pourpre / bleu futuriste / rose */}
-                  <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(122, 0, 255, 0.85) 0%, rgba(10, 77, 255, 0.8) 50%, rgba(236, 72, 153, 0.7) 100%)' }} />
                   <img 
-                    src="/images/vixual_fonctionnement.jpg" 
+                    src="/images/vixual_fonctionnement_v2.jpg" 
                     alt="Comment fonctionne VIXUAL - Les participants soutiennent le projet" 
-                    className="w-full h-full object-contain mix-blend-screen"
-                    style={{ filter: 'invert(1) brightness(1.2)' }}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <CardContent className="p-5">
