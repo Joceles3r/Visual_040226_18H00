@@ -22,6 +22,7 @@ import {
   TrendingUp,
   CreditCard,
   Eye,
+  Building2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -32,6 +33,7 @@ const ADMIN_NAV = [
   { label: "Visibility Engine", href: "/admin/visibility-engine", icon: Eye, visibility: true },
   { label: "SEO + Growth", href: "/admin/seo-growth", icon: TrendingUp, highlight: true },
   { label: "Config Stripe", href: "/admin/stripe", icon: CreditCard, stripe: true },
+  { label: "Stripe Connect", href: "/admin/stripe-connect", icon: Building2, stripe: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
   { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
