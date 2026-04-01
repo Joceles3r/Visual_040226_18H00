@@ -34,6 +34,7 @@ import { CommunityCharter } from "@/components/community-charter"
 import { ReportButton } from "@/components/report-button"
 import { TrustScoreCard } from "@/components/trust-score-display"
 import { TrustScore } from "@/lib/trust-system"
+import { CreatorProgressCard } from "@/components/creator-progress-card"
 
 // Mock Trust Score pour le dashboard
 const MOCK_USER_TRUST_SCORE: TrustScore = {
@@ -284,6 +285,14 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         )}
+
+      {/* Creator Progression Module */}
+      {hasCreatorRole && user?.id && (
+        <CreatorProgressCard 
+          userId={user.id}
+          creatorType={isPorter ? "porter" : isInfoporter ? "infoporter" : "podcaster"}
+        />
+      )}
 
       {/* Caution Reminder */}
       {hasCreatorRole &&

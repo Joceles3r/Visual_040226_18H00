@@ -15,6 +15,7 @@ import {
   History,
   Settings,
   Upload,
+  Sparkles,
 } from "lucide-react"
 import { VisualHeader } from "@/components/visual-header"
 import { useAuth } from "@/lib/auth-context"
@@ -38,6 +39,13 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     href: "/dashboard/favorites",
     icon: Heart,
     roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
+  },
+  {
+    label: "Ma progression",
+    href: "/dashboard/creator",
+    icon: Sparkles,
+    roles: ["porter", "infoporter", "podcaster"],
+    accent: true,
   },
   {
     label: "Mes projets (video)",
