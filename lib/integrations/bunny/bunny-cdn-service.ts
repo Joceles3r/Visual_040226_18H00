@@ -93,10 +93,31 @@ async function withRetry<T>(
 class BunnyCDNService {
   private apiKey: string;
   private storageApiKey: string;
+  private initialized: boolean = false;
   
   constructor() {
     this.apiKey = process.env.BUNNY_API_KEY || "";
     this.storageApiKey = process.env.BUNNY_STORAGE_API_KEY || "";
+    this.initialized = !!(this.apiKey && this.storageApiKey);
+  }
+  
+  /**
+   * Check if Bunny CDN is configured
+   */
+  isConfigured(): boolean {
+    return this.initialized;
+  }
+  
+  /**
+   * Ensure Bunny is configured before operations
+   */
+  private ensureConfigured(): void {
+    if (!this.initialized) {
+      throw new Error(
+        "[VIXUAL] Bunny CDN non configure. " +
+        "Definissez BUNNY_API_KEY et BUNNY_STORAGE_API_KEY dans les variables d'environnement."
+      );
+    }
   }
   
   // ── Storage Operations ──
@@ -105,6 +126,7 @@ class BunnyCDNService {
    * Upload a file to Bunny Storage
    */
   async uploadFile(params: UploadParams): Promise<UploadResult> {
+    this.ensureConfigured();
     const { file, fileName, path, contentType, userId } = params;
     
     // Validate file type

@@ -34,12 +34,12 @@ import {
   AlertTriangle,
 } from "lucide-react"
 import {
-  TrustScore,
-  TrustScoreLevel,
-  BadgeType,
+  type TrustScore,
+  type TrustScoreLevel,
+  type BadgeType,
   TRUST_SCORE_RANGES,
   TRUST_BADGES,
-} from "@/lib/trust-system"
+} from "@/lib/trust"
 
 // ─── Utils ───
 

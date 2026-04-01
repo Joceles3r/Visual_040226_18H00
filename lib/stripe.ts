@@ -54,12 +54,35 @@ const legacySecretKey =
   process.env.STRIPE_LIVE_SECRET_KEY;
 
 // Fallback gracieux si aucune clé n'est encore configurée
-export const stripe = legacySecretKey
+const _stripeSync = legacySecretKey
   ? new Stripe(legacySecretKey, {
       apiVersion: "2025-04-30.basil",
       typescript: true,
     })
-  : (null as unknown as Stripe); // null guard — sera remplacé par getStripeClient()
+  : null;
+
+export const stripe = _stripeSync as Stripe;
+
+/**
+ * Safe Stripe getter - throws if Stripe is not configured
+ * Use this instead of `stripe` directly for safer access
+ */
+export function getStripeSafe(): Stripe {
+  if (!_stripeSync) {
+    throw new Error(
+      "[VIXUAL] Stripe non configure. Ajoutez vos cles depuis Admin → Config Stripe " +
+      "ou definissez STRIPE_SECRET_KEY dans les variables d'environnement."
+    );
+  }
+  return _stripeSync;
+}
+
+/**
+ * Check if Stripe is configured
+ */
+export function isStripeConfigured(): boolean {
+  return _stripeSync !== null;
+}
 
 // ── Webhook secret ────────────────────────────────────────────────────────────
 

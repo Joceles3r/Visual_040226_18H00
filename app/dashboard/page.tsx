@@ -33,7 +33,7 @@ import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { CommunityCharter } from "@/components/community-charter"
 import { ReportButton } from "@/components/report-button"
 import { TrustScoreCard } from "@/components/trust-score-display"
-import { TrustScore } from "@/lib/trust-system"
+import { type TrustScore } from "@/lib/trust"
 import { CreatorProgressCard } from "@/components/creator-progress-card"
 
 // Mock Trust Score pour le dashboard
