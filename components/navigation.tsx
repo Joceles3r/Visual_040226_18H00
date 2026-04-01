@@ -24,6 +24,7 @@ import {
   Share2,
   Crown,
   Shield,
+  Archive,
 } from "lucide-react"
 
 export type VixualRole =
@@ -59,6 +60,7 @@ export const DISCOVER_MENU: NavMenu = {
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
+    { label: "Archives & Statistiques", href: "/archives-statistiques", icon: Archive },
     { label: "Top Contributeurs", href: "/top-contributors", icon: Star },
     { label: "Trust Score", href: "/trust-score", icon: Shield },
     { label: "Vixual Social", href: "/social", icon: MessageCircle },
