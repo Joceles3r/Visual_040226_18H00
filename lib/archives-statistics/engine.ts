@@ -114,6 +114,33 @@ export function computePublicTrend(currentScore: number, previousScore: number):
   return "stable"
 }
 
+// Fallback images for different categories
+const FALLBACK_IMAGES = {
+  video: [
+    "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=450&fit=crop",
+  ],
+  text: [
+    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=450&fit=crop",
+  ],
+  podcast: [
+    "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=800&h=450&fit=crop",
+    "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=450&fit=crop",
+  ],
+}
+
+function getRandomFallbackImage(category: "video" | "text" | "podcast"): string {
+  const images = FALLBACK_IMAGES[category] || FALLBACK_IMAGES.video
+  return images[Math.floor(Math.random() * images.length)]
+}
+
 /**
  * Map raw content to public project stats
  */
@@ -121,18 +148,25 @@ export function mapToPublicProjectStats(content: any, rank: number | null = null
   const baseScore = Math.random() * 500 + 100
   const previousScore = baseScore * (0.9 + Math.random() * 0.2)
   const trendDelta = baseScore - previousScore
+  const category = content.contentType || content.type || "video"
+  
+  // Get thumbnail from coverUrl, thumbnail, or fallback
+  let thumbnail = content.coverUrl || content.thumbnail
+  if (!thumbnail || thumbnail.includes("placeholder")) {
+    thumbnail = getRandomFallbackImage(category)
+  }
   
   return {
     id: content.id,
     slug: content.slug || content.id,
     title: content.title,
-    thumbnail: content.thumbnail || "/placeholder.svg?height=200&width=300",
-    category: content.type || "video",
+    thumbnail,
+    category,
     creatorName: content.creatorName || "Createur VIXUAL",
     creatorId: content.creatorId || "creator-1",
     publicRank: rank,
     publicScore: Math.round(baseScore),
-    publicSupportCount: Math.floor(Math.random() * 500) + 50,
+    publicSupportCount: content.contributorCount || Math.floor(Math.random() * 500) + 50,
     publicQualifiedViews: Math.floor(Math.random() * 5000) + 500,
     trend: computePublicTrend(baseScore, previousScore),
     trendDelta: Math.round(trendDelta),
