@@ -37,3 +37,19 @@ export const TRUST_WEIGHTS: Record<TrustEventType, number> = {
   admin_boost: +10,
   admin_penalty: -15,
 };
+
+/**
+ * Initial trust score for new users
+ */
+export const TRUST_INITIAL_SCORE = 50;
+
+/**
+ * Trust level thresholds and labels
+ */
+export const TRUST_LEVELS = {
+  exemplary: { min: 90, max: 100, label: "Exemplaire", color: "emerald" },
+  very_reliable: { min: 75, max: 89, label: "Tres fiable", color: "teal" },
+  correct: { min: 60, max: 74, label: "Correct", color: "blue" },
+  to_watch: { min: 40, max: 59, label: "A surveiller", color: "amber" },
+  at_risk: { min: 0, max: 39, label: "A risque", color: "rose" },
+} as const;
