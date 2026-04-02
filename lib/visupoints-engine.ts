@@ -114,12 +114,22 @@ export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoin
 export const VISUPOINTS_CONVERSION_THRESHOLD = 2500
 export const VISUPOINTS_PER_EUR = VIXUPOINTS_PER_EUR
 export const VISUPOINTS_MAX_DAILY = DAILY_VIXUPOINTS_CAP
+export const DAILY_VISUPOINTS_CAP = DAILY_VIXUPOINTS_CAP
 export const VISUPOINTS_PROFILE_CAPS = {
   visitor_minor: { cap: 10_000, maxDaily: 100, canWithdraw: false },
   visitor_adult: { cap: 2_500, maxDaily: 100, canWithdraw: false },
   contribureader: { cap: 2_500, maxDaily: 100, canWithdraw: true },
   auditor: { cap: 2_500, maxDaily: 100, canWithdraw: true },
 } as const
+
+/** Alias pour compatibilite avec creditVisupointsCapped */
+export const PROFILE_CAPS: Record<string, { cap: number }> = {
+  visitor_minor: { cap: 10_000 },
+  visitor_adult: { cap: 2_500 },
+  visitor: { cap: 2_500 },
+  contribureader: { cap: 2_500 },
+  auditor: { cap: 2_500 },
+}
 
 // ─── Micro-Packs VIXUpoints ───
 
