@@ -104,10 +104,11 @@ function PrestigeBadge({ label }: { label: PrestigeLabel }) {
 
 function ProjectCard({ project, variant = "default" }: { project: PublicProjectStats; variant?: "default" | "compact" | "featured" }) {
   const CategoryIcon = CATEGORY_ICONS[project.category]
+  const projectHref = project.id ? `/video/${project.id}` : `/archives-statistiques/${project.slug || project.id}`
   
   if (variant === "compact") {
     return (
-      <Link href={`/video/${project.id}`}>
+      <Link href={projectHref}>
         <Card className="bg-white/5 border-white/10 hover:bg-white/10 hover:border-violet-400/30 transition-all duration-300 cursor-pointer">
           <CardContent className="p-4 flex items-center gap-4">
             {project.publicRank && (
@@ -127,7 +128,7 @@ function ProjectCard({ project, variant = "default" }: { project: PublicProjectS
   }
   
   return (
-    <Link href={`/video/${project.id}`}>
+    <Link href={projectHref}>
       <Card className={`relative overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 hover:border-violet-400/30 
         transition-all duration-300 cursor-pointer group ${project.publicRank && project.publicRank <= 3 ? "border-amber-400/20" : ""}`}>
         {project.publicRank && <RankBadge rank={project.publicRank} />}

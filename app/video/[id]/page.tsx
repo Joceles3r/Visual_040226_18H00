@@ -81,6 +81,11 @@ export default function VideoPage({ params }: { params: { id: string } }) {
   const { isAuthed, roles } = useAuth()
   const { toast } = useToast()
 
+  // Guard against undefined or invalid IDs
+  if (!id || id === "undefined" || id === "null") {
+    notFound()
+  }
+
   const content = ALL_CONTENTS.find((c) => c.id === id)
   if (!content) notFound()
 
