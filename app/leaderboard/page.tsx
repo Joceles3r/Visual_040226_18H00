@@ -242,33 +242,42 @@ export default function LeaderboardPage() {
     <main
       className="min-h-screen text-white relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #0f1535 0%, #1a1060 25%, #0d1a40 50%, #160d35 75%, #0a1628 100%)",
+        background: "linear-gradient(160deg, #0a1628 0%, #0f1d3a 15%, #1a2a5e 30%, #2d1f5e 50%, #1e1548 70%, #0d1a40 85%, #0a1628 100%)",
       }}
     >
-      {/* Decorative light blobs */}
+      {/* Soft futuristic streaming-style blobs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+        {/* Top-left blue glow */}
         <div
-          className="absolute -top-32 left-1/3 w-[600px] h-[400px] rounded-full opacity-20 blur-3xl"
-          style={{ background: "radial-gradient(ellipse, #4f46e5 0%, transparent 70%)" }}
+          className="absolute -top-20 -left-20 w-[700px] h-[500px] rounded-full opacity-25 blur-[120px]"
+          style={{ background: "radial-gradient(ellipse, #3b82f6 0%, #1e40af 40%, transparent 70%)" }}
         />
+        {/* Center-right purple glow */}
         <div
-          className="absolute top-1/2 -right-40 w-[500px] h-[500px] rounded-full opacity-15 blur-3xl"
-          style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)" }}
+          className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full opacity-20 blur-[100px]"
+          style={{ background: "radial-gradient(ellipse, #8b5cf6 0%, #6d28d9 40%, transparent 70%)" }}
         />
+        {/* Bottom-left soft purple */}
         <div
-          className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full opacity-10 blur-3xl"
-          style={{ background: "radial-gradient(ellipse, #0ea5e9 0%, transparent 70%)" }}
+          className="absolute bottom-0 left-1/4 w-[500px] h-[400px] rounded-full opacity-15 blur-[100px]"
+          style={{ background: "radial-gradient(ellipse, #a78bfa 0%, #7c3aed 40%, transparent 70%)" }}
         />
+        {/* Top-right blue accent */}
         <div
-          className="absolute top-1/4 right-1/4 w-[550px] h-[350px] rounded-full opacity-12 blur-3xl"
-          style={{ background: "radial-gradient(ellipse, #00e5ff 0%, transparent 70%)" }}
+          className="absolute top-10 right-1/3 w-[450px] h-[350px] rounded-full opacity-18 blur-[90px]"
+          style={{ background: "radial-gradient(ellipse, #60a5fa 0%, #2563eb 40%, transparent 70%)" }}
+        />
+        {/* Subtle noise overlay for depth */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }}
         />
       </div>
 
       {/* Sticky header */}
       <div
         className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl"
-        style={{ background: "rgba(15, 21, 53, 0.75)" }}
+        style={{ background: "rgba(15, 25, 50, 0.85)" }}
       >
         <div className="max-w-5xl mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
