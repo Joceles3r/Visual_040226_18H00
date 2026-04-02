@@ -1,6 +1,6 @@
 import "server-only";
 import Stripe from "stripe";
-import { stripe, logStripeEvent } from "@/lib/stripe";
+import { getStripeSafe, isStripeConfigured, logStripeEvent } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { 
   STRIPE_CONNECT_CONFIG, 
@@ -9,7 +9,7 @@ import {
 } from "../config";
 
 /**
- * VISUAL Platform - Stripe Connect Service
+ * VIXUAL Platform - Stripe Connect Service
  * Complete service for managing Stripe Connect accounts, payments, and payouts
  */
 

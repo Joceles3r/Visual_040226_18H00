@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { stripe, STRIPE_WEBHOOK_SECRET, logStripeEvent } from "@/lib/stripe";
+import { getStripeSafe, isStripeConfigured, STRIPE_WEBHOOK_SECRET, logStripeEvent } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { stripeConnectService } from "@/lib/integrations/stripe/stripe-connect-service";
 
@@ -9,6 +9,12 @@ import { stripeConnectService } from "@/lib/integrations/stripe/stripe-connect-s
  * Handle Stripe Connect webhooks with idempotency
  */
 export async function POST(req: NextRequest) {
+  // Fail-fast if Stripe is not configured
+  if (!isStripeConfigured()) {
+    console.error("[Stripe Webhook] Stripe is not configured");
+    return NextResponse.json({ error: "Stripe not configured" }, { status: 503 });
+  }
+  
   const body = await req.text();
   const signature = req.headers.get("stripe-signature");
   
@@ -18,6 +24,7 @@ export async function POST(req: NextRequest) {
   }
   
   let event: Stripe.Event;
+  const stripe = getStripeSafe();
   
   try {
     event = stripe.webhooks.constructEvent(body, signature, STRIPE_WEBHOOK_SECRET);
@@ -122,12 +129,12 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
       WHERE stripe_payment_intent_id = ${paymentIntent.id}
     `;
     
-    // Credit VIXUpoints to investor
+    // Credit VIXUpoints to investor (use visupoints_balance, not legacy visupoints column)
     const visupointsGranted = parseInt(metadata.visupoints_granted || "0", 10);
     if (visupointsGranted > 0) {
       await sql`
         UPDATE users 
-        SET visupoints = COALESCE(visupoints, 0) + ${visupointsGranted}
+        SET visupoints_balance = COALESCE(visupoints_balance, 0) + ${visupointsGranted}
         WHERE id = ${metadata.vixual_user_id}
       `;
     }
