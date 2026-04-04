@@ -208,6 +208,6 @@ export const TRUST_SCORE_RANGES = {
   exemplary: { min: 90, max: 100, label: "Profil exemplaire", color: "text-emerald-400" },
   very_reliable: { min: 75, max: 89, label: "Profil tres fiable", color: "text-teal-400" },
   correct: { min: 60, max: 74, label: "Profil correct", color: "text-blue-400" },
-  to_watch: { min: 40, max: 59, label: "Profil a surveiller", color: "text-amber-400" },
-  at_risk: { min: 0, max: 39, label: "Profil a risque", color: "text-rose-400" },
+  to_watch: { min: 40, max: 59, label: "Profil en meilleure progression", color: "text-amber-400" },
+  at_risk: { min: 0, max: 39, label: "Profil doit faire ses preuves", color: "text-rose-400" },
 } as const;

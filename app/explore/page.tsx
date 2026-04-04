@@ -654,10 +654,58 @@ function PaginationBar({
   totalPages: number
   onPageChange: (page: number) => void 
 }) {
-  const pages = Array.from({ length: Math.min(totalPages, 15) }, (_, i) => i + 1)
+  // Generate smart page numbers: show first, last, current and nearby pages
+  const getPageNumbers = () => {
+    const pages: (number | "...")[] = []
+    const delta = 2 // Pages to show around current page
+    
+    // Always show page 1
+    pages.push(1)
+    
+    // Calculate range around current page
+    const rangeStart = Math.max(2, currentPage - delta)
+    const rangeEnd = Math.min(totalPages - 1, currentPage + delta)
+    
+    // Add ellipsis if there's a gap after page 1
+    if (rangeStart > 2) {
+      pages.push("...")
+    }
+    
+    // Add pages in range
+    for (let i = rangeStart; i <= rangeEnd; i++) {
+      if (!pages.includes(i)) pages.push(i)
+    }
+    
+    // Add ellipsis if there's a gap before last page
+    if (rangeEnd < totalPages - 1) {
+      pages.push("...")
+    }
+    
+    // Always show last page if more than 1 page
+    if (totalPages > 1 && !pages.includes(totalPages)) {
+      pages.push(totalPages)
+    }
+    
+    return pages
+  }
+
+  const pageNumbers = getPageNumbers()
   
   return (
     <div className="flex items-center justify-center gap-2 py-8 px-4 flex-wrap">
+      {/* First page button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => onPageChange(1)}
+        disabled={currentPage === 1}
+        className="text-white/60 hover:text-white hover:bg-white/10 hidden sm:flex"
+      >
+        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft className="h-4 w-4 -ml-2" />
+      </Button>
+      
+      {/* Previous page button */}
       <Button
         variant="ghost"
         size="sm"
@@ -666,40 +714,31 @@ function PaginationBar({
         className="text-white/60 hover:text-white hover:bg-white/10"
       >
         <ChevronLeft className="h-4 w-4" />
-        Precedent
+        <span className="hidden sm:inline">Precedent</span>
       </Button>
       
+      {/* Page numbers */}
       <div className="flex items-center gap-1 flex-wrap justify-center">
-        {pages.map((page) => (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={`w-8 h-8 rounded-full text-sm font-medium transition-all ${
-              currentPage === page
-                ? "bg-emerald-600 text-white"
-                : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-        {totalPages > 15 && (
-          <>
-            <span className="text-white/40 px-2">...</span>
+        {pageNumbers.map((page, index) => (
+          page === "..." ? (
+            <span key={`ellipsis-${index}`} className="text-white/40 px-2">...</span>
+          ) : (
             <button
-              onClick={() => onPageChange(totalPages)}
-              className={`w-8 h-8 rounded-full text-sm font-medium transition-all ${
-                currentPage === totalPages
-                  ? "bg-emerald-600 text-white"
+              key={page}
+              onClick={() => onPageChange(page)}
+              className={`w-9 h-9 rounded-lg text-sm font-medium transition-all ${
+                currentPage === page
+                  ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30"
                   : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
-              {totalPages}
+              {page}
             </button>
-          </>
-        )}
+          )
+        ))}
       </div>
       
+      {/* Next page button */}
       <Button
         variant="ghost"
         size="sm"
@@ -707,8 +746,20 @@ function PaginationBar({
         disabled={currentPage === totalPages}
         className="text-white/60 hover:text-white hover:bg-white/10"
       >
-        Suivant
+        <span className="hidden sm:inline">Suivant</span>
         <ChevronRight className="h-4 w-4" />
+      </Button>
+      
+      {/* Last page button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => onPageChange(totalPages)}
+        disabled={currentPage === totalPages}
+        className="text-white/60 hover:text-white hover:bg-white/10 hidden sm:flex"
+      >
+        <ChevronRight className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4 -ml-2" />
       </Button>
       
       <span className="text-white/40 text-sm ml-4">
