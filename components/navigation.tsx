@@ -75,7 +75,7 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
     { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
     { label: "Tout Explorer", href: "/explore", icon: Compass },
-    { label: "Gold Pass", href: "/explore?goldpass=true", icon: Crown },
+    { label: "Gold Pass", href: "/gold-pass", icon: Crown },
   ],
 }
 

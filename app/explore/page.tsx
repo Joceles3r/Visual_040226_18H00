@@ -725,8 +725,13 @@ function PaginationBar({
           ) : (
             <button
               key={page}
-              onClick={() => onPageChange(page)}
-              className={`w-9 h-9 rounded-lg text-sm font-medium transition-all ${
+              type="button"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                onPageChange(page as number)
+              }}
+              className={`w-9 h-9 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                 currentPage === page
                   ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30"
                   : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
