@@ -84,6 +84,58 @@ export interface AITriageResult {
   keywords: string[];
 }
 
+// ── Support Message Types (Admin Panel) ──
+
+export type MessagePriority = "urgent" | "important" | "normal" | "low";
+export type MessageCategory = 
+  | "payment"
+  | "technical"
+  | "account"
+  | "content"
+  | "general"
+  | "abuse"
+  | "stripe_onboarding"
+  | "ticket_gold"
+  | "creator_support"
+  | "archives_stats";
+
+export type MessageStatus = "new" | "in_progress" | "waiting_user" | "resolved" | "closed";
+
+export interface SupportMessage {
+  id: string;
+  userId: string;
+  category: MessageCategory;
+  priority: MessagePriority;
+  subject: string;
+  body: string;
+  assignedEmployeeId?: string;
+  status: MessageStatus;
+  aiConfidence: number;
+  aiAutoReplied: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export const MESSAGE_PRIORITIES: Record<MessagePriority, { label: string; color: string }> = {
+  urgent: { label: "Urgent", color: "rose" },
+  important: { label: "Important", color: "amber" },
+  normal: { label: "Normal", color: "sky" },
+  low: { label: "Faible", color: "slate" },
+};
+
+export const MESSAGE_CATEGORIES: Record<MessageCategory, { label: string; description: string }> = {
+  payment: { label: "Paiement", description: "Questions liees aux paiements et Stripe" },
+  technical: { label: "Technique", description: "Bugs et problemes techniques" },
+  account: { label: "Compte", description: "Gestion de compte et profil" },
+  content: { label: "Contenu", description: "Questions sur les contenus" },
+  general: { label: "General", description: "Questions generales" },
+  abuse: { label: "Signalement", description: "Signalements d'abus ou fraude" },
+  stripe_onboarding: { label: "Onboarding Stripe", description: "Activation compte Stripe" },
+  ticket_gold: { label: "Ticket Gold", description: "Questions sur les Tickets Gold" },
+  creator_support: { label: "Support Createur", description: "Aide aux createurs" },
+  archives_stats: { label: "Archives/Stats", description: "Questions archives et statistiques" },
+};
+
 // ── Constants ──
 
 export const PRIORITY_CONFIG: Record<TicketPriority, { label: string; color: string; slaHours: number }> = {

@@ -23,11 +23,19 @@ import {
   CreditCard,
   Eye,
   Building2,
+  Mail,
+  Bot,
+  UsersRound,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ADMIN_NAV = [
   { label: "Tableau de bord", href: "/admin", icon: BarChart3 },
+  // ADMIN-Adjoint + Employes Module
+  { label: "ADMIN-Adjoint + Employes", href: "/admin/employees", icon: UsersRound, employees: true },
+  { label: "Messages Support", href: "/admin/messages", icon: Mail, messages: true },
+  { label: "Support IA", href: "/admin/support", icon: Bot, support: true },
+  // Existing modules
   { label: "ORBIT Engine", href: "/admin/orbit-engine", icon: Orbit, highlight: true },
   { label: "Financial Brain", href: "/admin/financial-brain", icon: Brain },
   { label: "Visibility Engine", href: "/admin/visibility-engine", icon: Eye, visibility: true },
@@ -35,7 +43,7 @@ const ADMIN_NAV = [
   { label: "Config Stripe", href: "/admin/stripe", icon: CreditCard, stripe: true },
   { label: "Stripe Connect", href: "/admin/stripe-connect", icon: Building2, stripe: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
-  { label: "Gestion Equipe", href: "/admin/roles", icon: UserCog },
+  { label: "Gestion Roles", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
   { label: "Paiements", href: "/admin#payouts", icon: DollarSign },
   { label: "Signalements", href: "/admin#reports", icon: AlertTriangle },
@@ -88,6 +96,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {ADMIN_NAV.map((item) => {
             const isStripe = (item as { stripe?: boolean }).stripe
             const isVisibility = (item as { visibility?: boolean }).visibility
+            const isEmployees = (item as { employees?: boolean }).employees
+            const isMessages = (item as { messages?: boolean }).messages
+            const isSupport = (item as { support?: boolean }).support
             return (
             <Link
               key={item.href}
@@ -95,6 +106,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                 item.critical
                   ? "text-rose-300 bg-rose-500/10 border border-rose-500/40 hover:bg-rose-500/20"
+                  : isEmployees
+                  ? "text-orange-300 bg-orange-500/10 border border-orange-500/40 hover:bg-orange-500/20"
+                  : isMessages
+                  ? "text-sky-300 bg-sky-500/10 border border-sky-500/40 hover:bg-sky-500/20"
+                  : isSupport
+                  ? "text-emerald-300 bg-emerald-500/10 border border-emerald-500/40 hover:bg-emerald-500/20"
                   : isStripe
                   ? "text-violet-300 bg-violet-500/10 border border-violet-500/40 hover:bg-violet-500/20"
                   : isVisibility
@@ -104,15 +121,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   : "text-white/60 hover:text-white hover:bg-amber-500/10"
               }`}
             >
-              <item.icon className={`h-4 w-4 ${item.critical ? "text-rose-400" : isStripe ? "text-violet-400" : isVisibility ? "text-fuchsia-400" : item.highlight ? "text-amber-400" : "text-amber-400/60"}`} />
+              <item.icon className={`h-4 w-4 ${
+                item.critical ? "text-rose-400" 
+                : isEmployees ? "text-orange-400" 
+                : isMessages ? "text-sky-400" 
+                : isSupport ? "text-emerald-400" 
+                : isStripe ? "text-violet-400" 
+                : isVisibility ? "text-fuchsia-400" 
+                : item.highlight ? "text-amber-400" 
+                : "text-amber-400/60"
+              }`} />
               {item.label}
               {item.critical && (
                 <span className="ml-auto text-xs bg-rose-500 text-white px-1.5 py-0.5 rounded font-semibold">
                   !
                 </span>
               )}
-              {item.highlight && (
-                <span className="ml-auto text-xs bg-amber-500 text-black px-1.5 py-0.5 rounded font-semibold">
+              {isMessages && (
+                <span className="ml-auto text-xs bg-sky-500 text-white px-1.5 py-0.5 rounded font-semibold">
                   3
                 </span>
               )}
