@@ -18,6 +18,10 @@ import {
   Lock,
   Zap,
   HelpCircle,
+  Users,
+  XCircle,
+  ExternalLink,
+  AlertCircle,
 } from "lucide-react"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
@@ -74,6 +78,28 @@ const SECURITY_POINTS = [
     title: "Zero stockage sur VIXUAL",
     description: "Vos donnees bancaires ne transitent jamais par nos serveurs",
   },
+]
+
+// Profils concernes par l'obligation Stripe
+const PROFILS_STRIPE_OBLIGATOIRE = [
+  { name: "Porteur", description: "Pour recevoir les revenus de vos projets video" },
+  { name: "Infoporteur", description: "Pour recevoir les revenus de vos ecrits" },
+  { name: "Podcasteur", description: "Pour recevoir les revenus de vos podcasts" },
+  { name: "Contributeur", description: "Pour percevoir vos gains eventuels" },
+  { name: "ContribuLecteur", description: "Pour percevoir vos gains de lecture" },
+  { name: "Auditeur", description: "Pour percevoir vos gains d'ecoute" },
+]
+
+const PROFILS_STRIPE_NON_REQUIS = [
+  { name: "Invite", description: "Acces limite, pas de gains possibles" },
+  { name: "Visiteur", description: "Consultation uniquement, pas de gains" },
+]
+
+const STRIPE_ONBOARDING_STEPS = [
+  { step: 1, title: "Cliquez sur \"Activer Stripe\"", description: "Depuis votre dashboard ou wallet" },
+  { step: 2, title: "Remplissez vos informations", description: "Identite + coordonnees bancaires (2 min)" },
+  { step: 3, title: "Validez votre compte", description: "Verification automatique par Stripe" },
+  { step: 4, title: "Recevez vos gains", description: "Versements automatiques sur votre compte" },
 ]
 
 export default function GuideStripePage() {
@@ -180,6 +206,128 @@ export default function GuideStripePage() {
           </CardContent>
         </Card>
 
+        {/* Section OBLIGATION STRIPE PAR PROFIL */}
+        <Card className="bg-amber-500/5 border-amber-500/20 mb-8">
+          <CardHeader>
+            <CardTitle className="text-amber-400 flex items-center gap-3 text-2xl">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center">
+                <Users className="h-5 w-5 text-amber-400" />
+              </div>
+              Qui doit activer Stripe ?
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {/* Message cle */}
+            <div className="p-4 bg-amber-500/10 rounded-lg border border-amber-500/20 mb-6">
+              <p className="text-amber-300 text-sm text-center font-medium">
+                <AlertCircle className="inline h-4 w-4 mr-2" />
+                Stripe n&apos;est PAS une contrainte - C&apos;est l&apos;outil necessaire pour recevoir vos gains
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Profils concernes */}
+              <div>
+                <h3 className="text-emerald-400 font-semibold mb-4 flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5" />
+                  Compte Stripe OBLIGATOIRE
+                </h3>
+                <div className="space-y-3">
+                  {PROFILS_STRIPE_OBLIGATOIRE.map((profil, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-3 bg-emerald-500/5 rounded-lg border border-emerald-500/10">
+                      <CheckCircle className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-white font-medium text-sm">{profil.name}</p>
+                        <p className="text-white/50 text-xs">{profil.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Profils non concernes */}
+              <div>
+                <h3 className="text-white/60 font-semibold mb-4 flex items-center gap-2">
+                  <XCircle className="h-5 w-5" />
+                  Compte Stripe NON requis
+                </h3>
+                <div className="space-y-3">
+                  {PROFILS_STRIPE_NON_REQUIS.map((profil, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10">
+                      <XCircle className="h-4 w-4 text-white/40 mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-white/70 font-medium text-sm">{profil.name}</p>
+                        <p className="text-white/40 text-xs">{profil.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 p-3 bg-sky-500/10 rounded-lg border border-sky-500/20">
+                  <p className="text-sky-300 text-xs">
+                    <CheckCircle className="inline h-3 w-3 mr-1" />
+                    Stripe n&apos;est PAS obligatoire pour UTILISER VIXUAL ni pour PAYER/CONTRIBUER
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Section PROCEDURE ACTIVATION */}
+        <Card className="bg-violet-500/5 border-violet-500/20 mb-8">
+          <CardHeader>
+            <CardTitle className="text-violet-400 flex items-center gap-3 text-2xl">
+              <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
+                <Zap className="h-5 w-5 text-violet-400" />
+              </div>
+              Activer Stripe en 4 etapes
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-4 gap-4 mb-6">
+              {STRIPE_ONBOARDING_STEPS.map((item) => (
+                <div key={item.step} className="text-center">
+                  <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mx-auto mb-3 text-violet-400 font-bold">
+                    {item.step}
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-1">{item.title}</h4>
+                  <p className="text-white/50 text-xs">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Stripe officiel */}
+            <div className="p-6 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-xl border border-violet-500/20 text-center">
+              <h3 className="text-white font-semibold mb-2">Pret a recevoir vos gains ?</h3>
+              <p className="text-white/60 text-sm mb-4">
+                Creez votre compte Stripe gratuitement en 2 minutes
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link href="/dashboard/wallet">
+                  <Button className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white">
+                    <Wallet className="mr-2 h-4 w-4" />
+                    Activer depuis mon Wallet
+                  </Button>
+                </Link>
+                <a 
+                  href="https://stripe.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" className="border-violet-500/30 text-violet-300 hover:bg-violet-500/10">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Ouvrir un compte Stripe
+                  </Button>
+                </a>
+              </div>
+              <p className="text-white/40 text-xs mt-3">
+                Lien officiel: stripe.com - 100% gratuit, aucun abonnement
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Section SECURITE */}
         <Card className="bg-sky-500/5 border-sky-500/20 mb-8">
           <CardHeader>
@@ -203,7 +351,7 @@ export default function GuideStripePage() {
             <div className="mt-6 text-center">
               <Badge className="bg-sky-500/20 text-sky-300 border-sky-500/30">
                 <Shield className="h-3 w-3 mr-1" />
-                Stripe est utilise par des millions d'entreprises dans le monde
+                Stripe est utilise par des millions d&apos;entreprises dans le monde
               </Badge>
             </div>
           </CardContent>
@@ -219,19 +367,27 @@ export default function GuideStripePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="text-white font-medium mb-1">Puis-je payer sans compte Stripe ?</h4>
-              <p className="text-white/60 text-sm">Oui, les contributeurs n'ont pas besoin de compte Stripe. Vous payez directement avec votre carte bancaire.</p>
+              <h4 className="text-white font-medium mb-1">Dois-je creer un compte Stripe ?</h4>
+              <p className="text-white/60 text-sm">Oui, uniquement si vous souhaitez recevoir vos gains. Sans Stripe, les gains ne peuvent pas etre verses.</p>
             </div>
             <div>
-              <h4 className="text-white font-medium mb-1">Combien de temps pour creer un compte Stripe Connect ?</h4>
-              <p className="text-white/60 text-sm">Environ 2 minutes. Vous aurez besoin d'une piece d'identite et de vos coordonnees bancaires.</p>
+              <h4 className="text-white font-medium mb-1">Pourquoi Stripe est obligatoire pour les gains ?</h4>
+              <p className="text-white/60 text-sm">Pour recevoir vos gains, securiser vos paiements, et transferer l&apos;argent vers votre compte bancaire. C&apos;est le seul moyen legal et securise.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-medium mb-1">Puis-je payer/contribuer sans compte Stripe ?</h4>
+              <p className="text-white/60 text-sm">Oui absolument ! Les contributeurs n&apos;ont pas besoin de compte Stripe. Vous payez directement avec votre carte bancaire.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-medium mb-1">Combien de temps pour creer un compte Stripe ?</h4>
+              <p className="text-white/60 text-sm">Environ 2 minutes. Vous aurez besoin d&apos;une piece d&apos;identite et de vos coordonnees bancaires (IBAN).</p>
             </div>
             <div>
               <h4 className="text-white font-medium mb-1">VIXUAL a-t-il acces a mes donnees bancaires ?</h4>
               <p className="text-white/60 text-sm">Non. Toutes les donnees bancaires sont gerees exclusivement par Stripe. VIXUAL ne stocke aucune information sensible.</p>
             </div>
             <div>
-              <h4 className="text-white font-medium mb-1">Quels sont les frais ?</h4>
+              <h4 className="text-white font-medium mb-1">Quels sont les frais Stripe ?</h4>
               <p className="text-white/60 text-sm">Stripe preleve des frais standards (environ 1.4% + 0.25EUR par transaction). VIXUAL preleve sa commission selon les regles de la plateforme.</p>
             </div>
           </CardContent>
