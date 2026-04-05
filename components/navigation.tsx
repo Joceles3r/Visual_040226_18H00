@@ -25,6 +25,7 @@ import {
   Crown,
   Shield,
   Archive,
+  Rocket,
 } from "lucide-react"
 
 export type VixualRole =
@@ -58,6 +59,7 @@ export const DISCOVER_MENU: NavMenu = {
   items: [
     { label: "Guide des profils", href: "/guide-profiles", icon: Crown },
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
+    { label: "Guide Paiements", href: "/guide-stripe", icon: Wallet },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
     { label: "Archives & Statistiques", href: "/archives-statistiques", icon: Archive },
@@ -75,7 +77,7 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
     { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
     { label: "Tout Explorer", href: "/explore", icon: Compass },
-    { label: "Gold Pass", href: "/gold-pass", icon: Crown },
+    { label: "Ticket Gold", href: "/gold-pass", icon: Rocket },
   ],
 }
 

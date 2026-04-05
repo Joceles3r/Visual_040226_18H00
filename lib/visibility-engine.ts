@@ -399,6 +399,40 @@ function getNextLevel(current: VisibilityLevel): VisibilityLevel | null {
   return idx < order.length - 1 ? order[idx + 1] : null;
 }
 
+// ── Ticket Gold Boost ──
+
+export interface TicketGoldBoost {
+  isActive: boolean;
+  expiresAt?: Date;
+  boostMultiplier: number;
+}
+
+/**
+ * Calcule le score de visibilite avec boost Ticket Gold
+ * Formule: visibility = base + engagement + freshness + boost
+ * boost = base * 0.5 (si Ticket Gold actif)
+ */
+export function computeVisibilityWithTicketGold(
+  baseScore: number,
+  engagementBonus: number,
+  freshnessBonus: number,
+  ticketGold?: TicketGoldBoost
+): { finalScore: number; boostApplied: number; hasTicketGold: boolean } {
+  const baseWithBonuses = baseScore + engagementBonus + freshnessBonus;
+  
+  let boostApplied = 0;
+  let hasTicketGold = false;
+  
+  if (ticketGold?.isActive && ticketGold.expiresAt && new Date(ticketGold.expiresAt) > new Date()) {
+    boostApplied = Math.round(baseScore * ticketGold.boostMultiplier);
+    hasTicketGold = true;
+  }
+  
+  const finalScore = Math.min(100, baseWithBonuses + boostApplied);
+  
+  return { finalScore, boostApplied, hasTicketGold };
+}
+
 // ── UI Helpers ──
 
 export function getVisibilityLevelColor(level: VisibilityLevel): string {
