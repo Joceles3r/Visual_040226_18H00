@@ -40,11 +40,12 @@ import {
 export default function VisitorDashboardPage() {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
-  // Mock data - en production, charger depuis l'API
-  const [vixupoints, setVixupoints] = useState(850);
-  const [dailyEarned, setDailyEarned] = useState(45);
-  const [excerptViewsToday, setExcerptViewsToday] = useState(1);
+  // State for API data
+  const [vixupoints, setVixupoints] = useState(0);
+  const [dailyEarned, setDailyEarned] = useState(0);
+  const [excerptViewsToday, setExcerptViewsToday] = useState(0);
   const [interactionsToday, setInteractionsToday] = useState(0);
   const [passUnlocked, setPassUnlocked] = useState(false);
   const [passUsed, setPassUsed] = useState(false);
@@ -73,9 +74,38 @@ export default function VisitorDashboardPage() {
     : 0;
   
   useEffect(() => {
-    // Simuler le chargement
-    const timer = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(timer);
+    // Charger les donnees depuis les APIs
+    async function loadData() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Charger le solde VIXUpoints
+        const balanceRes = await fetch("/api/visupoints/balance");
+        if (balanceRes.ok) {
+          const balanceData = await balanceRes.json();
+          setVixupoints(balanceData.balance || 0);
+          setDailyEarned(balanceData.dailyEarned || 0);
+        }
+        
+        // Charger le statut du Pass Decouverte
+        const passRes = await fetch("/api/visupoints/discovery-pass");
+        if (passRes.ok) {
+          const passData = await passRes.json();
+          setExcerptViewsToday(passData.excerptViewsToday || 0);
+          setInteractionsToday(passData.interactionsToday || 0);
+          setPassUnlocked(passData.unlocked || false);
+          setPassUsed(passData.usedToday || false);
+        }
+      } catch (err) {
+        console.error("[v0] Error loading visitor data:", err);
+        setError("Impossible de charger vos donnees");
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadData();
   }, []);
   
   // Actions

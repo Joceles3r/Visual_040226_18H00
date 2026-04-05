@@ -1,9 +1,9 @@
 /**
- * VISUAL - Request User Helper
+ * VIXUAL - Request User Helper
  *
  * Extracts and validates user identity from request headers.
  * In production, this would validate a JWT or session token.
- * Currently reads from x-visual-user-id / x-visual-user-email headers
+ * Currently reads from x-vixual-user-id / x-vixual-user-email headers
  * set by the auth context or middleware.
  */
 
@@ -24,8 +24,8 @@ export interface RequestUser {
  * Returns null if no user identity is found.
  */
 export async function getRequestUser(req: Request): Promise<RequestUser | null> {
-  const userId = req.headers.get("x-visual-user-id");
-  const userEmail = req.headers.get("x-visual-user-email");
+  const userId = req.headers.get("x-vixual-user-id");
+  const userEmail = req.headers.get("x-vixual-user-email");
 
   if (!userId && !userEmail) return null;
 

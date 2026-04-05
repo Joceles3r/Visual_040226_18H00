@@ -1,5 +1,5 @@
 /**
- * VISUAL - Rate Limiter (Upstash Redis)
+ * VIXUAL - Rate Limiter (Upstash Redis)
  *
  * Token bucket rate limiting using Upstash Redis.
  * Each route can define its own limit/window.

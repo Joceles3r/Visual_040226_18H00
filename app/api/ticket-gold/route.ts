@@ -25,10 +25,33 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  // Mock: en production, recuperer depuis la DB
-  const mockTickets: TicketGold[] = [];
+  // Recuperer les tickets existants depuis la DB
+  let existingTickets: TicketGold[] = [];
   
-  const status = canPurchaseTicketGold(projectId, userId, mockTickets);
+  if (isDatabaseConfigured()) {
+    try {
+      const rows = await sql`
+        SELECT id, project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+        FROM ticket_gold
+        WHERE project_id = ${projectId} AND user_id = ${userId}
+        ORDER BY purchased_at DESC
+      `;
+      existingTickets = rows.map((row: any) => ({
+        id: row.id,
+        projectId: row.project_id,
+        userId: row.user_id,
+        status: row.status,
+        purchasedAt: new Date(row.purchased_at),
+        activatedAt: row.activated_at ? new Date(row.activated_at) : undefined,
+        expiresAt: row.expires_at ? new Date(row.expires_at) : undefined,
+        stripeSessionId: row.stripe_session_id,
+      }));
+    } catch (err) {
+      console.error("[Ticket Gold] Erreur DB:", err);
+    }
+  }
+  
+  const status = canPurchaseTicketGold(projectId, userId, existingTickets);
 
   return NextResponse.json({
     success: true,
@@ -65,9 +88,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Mock: verifier le cooldown en production
-    const mockTickets: TicketGold[] = [];
-    const status = canPurchaseTicketGold(projectId, userId, mockTickets);
+    // Verifier le cooldown depuis la DB
+    let existingTickets: TicketGold[] = [];
+    
+    if (isDatabaseConfigured()) {
+      try {
+        const rows = await sql`
+          SELECT id, project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+          FROM ticket_gold
+          WHERE project_id = ${projectId} AND user_id = ${userId}
+          ORDER BY purchased_at DESC
+        `;
+        existingTickets = rows.map((row: any) => ({
+          id: row.id,
+          projectId: row.project_id,
+          userId: row.user_id,
+          status: row.status,
+          purchasedAt: new Date(row.purchased_at),
+          activatedAt: row.activated_at ? new Date(row.activated_at) : undefined,
+          expiresAt: row.expires_at ? new Date(row.expires_at) : undefined,
+          stripeSessionId: row.stripe_session_id,
+        }));
+      } catch (err) {
+        console.error("[Ticket Gold] Erreur DB lors de POST:", err);
+      }
+    }
+    
+    const status = canPurchaseTicketGold(projectId, userId, existingTickets);
 
     if (!status.canPurchase) {
       return NextResponse.json(

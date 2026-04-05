@@ -1,12 +1,12 @@
 /**
- * VISUAL Platform - Integrations Configuration
+ * VIXUAL Platform - Integrations Configuration
  * Centralized configuration for Stripe Connect and Bunny.net CDN
  */
 
 // ── Stripe Connect Configuration ──
 export const STRIPE_CONNECT_CONFIG = {
   // Platform fees (percentage of transaction)
-  platformFeePercent: 10, // 10% commission VISUAL
+  platformFeePercent: 10, // 10% commission VIXUAL
   
   // Stripe fees (approximate, for estimation)
   stripeFeesPercent: 2.9,
@@ -31,6 +31,7 @@ export const STRIPE_CONNECT_CONFIG = {
   
   // Webhook events to handle
   webhookEvents: [
+    "checkout.session.completed",
     "payment_intent.succeeded",
     "payment_intent.payment_failed",
     "charge.refunded",
@@ -45,11 +46,11 @@ export const STRIPE_CONNECT_CONFIG = {
 // ── Bunny.net CDN Configuration ──
 export const BUNNY_CDN_CONFIG = {
   // Storage settings
-  storageZoneName: process.env.BUNNY_STORAGE_ZONE_NAME || "visual-storage",
+  storageZoneName: process.env.BUNNY_STORAGE_ZONE_NAME || "vixual-storage",
   storageRegion: process.env.BUNNY_STORAGE_REGION || "de", // Frankfurt
   
   // CDN settings
-  cdnHostname: process.env.BUNNY_CDN_HOSTNAME || "visual.b-cdn.net",
+  cdnHostname: process.env.BUNNY_CDN_HOSTNAME || "vixual.b-cdn.net",
   pullZoneId: process.env.BUNNY_PULL_ZONE_ID || "",
   
   // Video Library (optional)

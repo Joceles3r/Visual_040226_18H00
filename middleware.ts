@@ -14,9 +14,9 @@ import { NextResponse, type NextRequest } from "next/server";
 type RouteClass = "financial" | "auth" | "webhook" | "admin" | "report" | "batch" | "standard";
 
 function classifyRoute(pathname: string): RouteClass {
-  if (pathname.includes("/api/stripe/webhook")) return "webhook";
+  if (pathname.includes("/api/integrations/stripe/webhooks") || pathname.includes("/api/integrations/bunny/webhook")) return "webhook";
   if (pathname.includes("/api/payout/batch")) return "batch";
-  if (pathname.includes("/api/payout") || pathname.includes("/api/stripe/invest") || pathname.includes("/api/stripe/withdraw") || pathname.includes("/api/stripe/caution")) return "financial";
+  if (pathname.includes("/api/payout") || pathname.includes("/api/integrations/stripe/")) return "financial";
   if (pathname.includes("/api/admin")) return "admin";
   if (pathname.includes("/api/auth")) return "auth";
   if (pathname.includes("/api/report")) return "report";
@@ -68,7 +68,7 @@ export async function middleware(request: NextRequest) {
   const config = RATE_CONFIGS[routeClass];
 
   // ── Extract identifier ──
-  const userId = request.headers.get("x-visual-user-id");
+  const userId = request.headers.get("x-vixual-user-id");
   const forwarded = request.headers.get("x-forwarded-for");
   const ip = forwarded?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
   const identifier = userId ? `user:${userId}` : `ip:${ip}`;

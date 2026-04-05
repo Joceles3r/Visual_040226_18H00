@@ -34,13 +34,13 @@ export {
   DEFAULT_PARENT_CONSENT,
   MINOR_PARENT_CONSENT,
   
-  // Backward compat aliases
+  // Backward compat aliases (using correct export names from visupoints-engine)
   VISUPOINTS_CONVERSION_THRESHOLD,
   VISUPOINTS_PER_EUR,
   VISUPOINTS_MAX_DAILY,
-  DAILY_VISUPOINTS_CAP,
+  DAILY_VIXUPOINTS_CAP as DAILY_VISUPOINTS_CAP,
   VISUPOINTS_PROFILE_CAPS,
-  PROFILE_CAPS,
+  VISUPOINTS_PROFILE_CAPS as PROFILE_CAPS,
   
   // Functions
   computeAge,

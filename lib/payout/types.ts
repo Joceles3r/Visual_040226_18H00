@@ -1,13 +1,13 @@
 export type Currency = "eur";
 
 export type Role =
-  | "investor"
-  | "investireader"
+  | "contributor"
+  | "contribureader"
   | "listener"
   | "porter"
   | "infoporter"
   | "podcaster"
-  | "visual_platform";
+  | "vixual_platform";
 
 /** Category determines which formula set applies */
 export type PayoutCategory = "films" | "voix_info" | "livres" | "podcasts";
@@ -16,12 +16,12 @@ export type Bucket =
   | "INV_TOP10"
   | "PORTEUR_TOP10"
   | "INV_11_100"
-  | "VISUAL_FEE"
-  | "VISUAL_RESIDUAL"
+  | "VIXUAL_FEE"
+  | "VIXUAL_RESIDUAL"
   // Podcasts-specific buckets
   | "PODCAST_CREATORS"
   | "PODCAST_INVESTORS"
-  | "PODCAST_VISUAL"
+  | "PODCAST_VIXUAL"
   | "PODCAST_BONUS"
   // Voix Info / Livres buckets
   | "AUTHORS_TOP10"

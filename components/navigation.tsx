@@ -90,25 +90,25 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Tableau de bord",
       href: "/dashboard",
       icon: LayoutDashboard,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
       label: "Mon profil",
       href: "/dashboard/profile",
       icon: User,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
-      label: "Paramètres",
+      label: "Parametres",
       href: "/dashboard/settings",
       icon: Settings,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
-      label: "Support (Boîte interne)",
+      label: "Support (Boite interne)",
       href: "/support/mailbox",
       icon: Mail,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
 
     // VISITEUR (+ tous les inscrits)
@@ -116,13 +116,13 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Mes VIXUpoints",
       href: "/dashboard/visupoints",
       icon: Star,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
       label: "Mes favoris / suivis",
       href: "/dashboard/favorites",
       icon: Heart,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
 
     // PORTEUR (video)
@@ -167,20 +167,20 @@ export const MY_SPACE_MENU: NavMenu = {
       roles: ["podcaster"],
     },
 
-    // INVESTISSEUR (video)
+    // CONTRIBUTEUR (video)
     {
       label: "Mes contributions (films & videos)",
       href: "/dashboard/investments?type=video",
       icon: Film,
-      roles: ["investor"],
+      roles: ["contributor"],
     },
 
-    // INVESTI-LECTEUR (ecrit)
+    // CONTRIBULECTEUR (ecrit)
     {
       label: "Mes contributions (livres & articles)",
       href: "/dashboard/investments?type=text",
       icon: FileText,
-      roles: ["investireader"],
+      roles: ["contribureader"],
     },
 
     // AUDITEUR (podcast)
@@ -202,21 +202,21 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Promotion / Parrainage",
       href: "/dashboard/promo",
       icon: Share2,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
 
-    // WALLET (investisseurs + createurs)
+    // WALLET (contributeurs + createurs)
     {
       label: "Mon wallet / gains",
       href: "/dashboard/wallet",
       icon: Wallet,
-      roles: ["investor", "investireader", "listener", "porter", "infoporter", "podcaster"],
+      roles: ["contributor", "contribureader", "listener", "porter", "infoporter", "podcaster"],
     },
     {
       label: "Historique",
       href: "/dashboard/history",
       icon: History,
-      roles: ["investor", "investireader", "listener", "porter", "infoporter", "podcaster"],
+      roles: ["contributor", "contribureader", "listener", "porter", "infoporter", "podcaster"],
     },
   ],
 }

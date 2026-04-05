@@ -52,6 +52,10 @@ export async function POST(req: NextRequest) {
   try {
     // Process event based on type
     switch (event.type) {
+      case "checkout.session.completed":
+        await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session);
+        break;
+        
       case "payment_intent.succeeded":
         await handlePaymentIntentSucceeded(event.data.object as Stripe.PaymentIntent);
         break;
@@ -244,4 +248,52 @@ async function handlePayoutFailed(payout: Stripe.Payout) {
   });
   
   // TODO: Notify admin and affected user
+}
+
+/**
+ * Handle Checkout Session completed (Ticket Gold, etc.)
+ */
+async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
+  logStripeEvent("Checkout session completed", { 
+    id: session.id,
+    paymentStatus: session.payment_status,
+    metadata: session.metadata
+  });
+  
+  const metadata = session.metadata || {};
+  
+  // Handle Ticket Gold purchase
+  if (metadata.product_type === "ticket_gold") {
+    const projectId = metadata.project_id;
+    const userId = metadata.user_id;
+    
+    if (projectId && userId) {
+      const now = new Date();
+      const expiresAt = new Date(now.getTime() + 48 * 60 * 60 * 1000); // 48 hours
+      
+      // Insert or update ticket_gold record
+      await sql`
+        INSERT INTO ticket_gold (
+          project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+        ) VALUES (
+          ${projectId}, ${userId}, 'active', NOW(), NOW(), ${expiresAt.toISOString()}, ${session.id}
+        )
+        ON CONFLICT (project_id, user_id, stripe_session_id) DO UPDATE SET
+          status = 'active',
+          activated_at = NOW(),
+          expires_at = ${expiresAt.toISOString()}
+      `;
+      
+      // Update project visibility boost
+      await sql`
+        UPDATE projects 
+        SET visibility_boost = COALESCE(visibility_boost, 0) + 50,
+            ticket_gold_active = true,
+            ticket_gold_expires_at = ${expiresAt.toISOString()}
+        WHERE id = ${projectId}
+      `;
+      
+      logStripeEvent("Ticket Gold activated", { projectId, userId, expiresAt });
+    }
+  }
 }

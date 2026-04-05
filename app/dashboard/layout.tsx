@@ -33,13 +33,13 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     label: "Mes VIXUpoints",
     href: "/dashboard/visupoints",
     icon: Star,
-    roles: ["visitor", "contribureader", "listener", "auditor"],
+    roles: ["visitor", "contribureader", "listener"],
   },
   {
     label: "Pass Decouverte",
     href: "/dashboard/visitor",
     icon: Ticket,
-    roles: ["visitor", "contribureader", "auditor"],
+    roles: ["visitor", "contribureader", "listener"],
     accent: true,
   },
   {

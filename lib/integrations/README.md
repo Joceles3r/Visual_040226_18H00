@@ -1,8 +1,8 @@
-# VISUAL Integrations Documentation
+# VIXUAL Integrations Documentation
 
 ## Overview
 
-This directory contains the integration layer for VISUAL's two critical external services:
+This directory contains the integration layer for VIXUAL's two critical external services:
 - **Stripe Connect** — Payment processing, payouts, and financial transactions
 - **Bunny.net CDN** — Content delivery and video hosting
 
