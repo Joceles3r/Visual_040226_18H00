@@ -94,7 +94,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 p-3 flex flex-col gap-1">
+        <nav className="flex-1 p-3 flex flex-col gap-1 overflow-y-auto">
           {ADMIN_NAV.map((item) => {
             const isStripe = (item as { stripe?: boolean }).stripe
             const isVisibility = (item as { visibility?: boolean }).visibility
