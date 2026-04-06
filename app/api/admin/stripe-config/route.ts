@@ -13,6 +13,54 @@ import { neon } from "@neondatabase/serverless";
 import { encryptValue, decryptValue, maskKey, invalidateStripeConfigCache } from "@/lib/stripe-config";
 import { PATRON_EMAIL } from "@/lib/admin/roles";
 
+// ── In-memory fallback cache (when DB is not available) ──
+let memoryCache: {
+  test_secret_key?: string;
+  test_publishable_key?: string;
+  test_webhook_secret?: string;
+  live_secret_key?: string;
+  live_publishable_key?: string;
+  live_webhook_secret?: string;
+  active_mode?: string;
+  connect_client_id?: string;
+  updated_by?: string;
+  updated_at?: string;
+} = {};
+
+// ── Check if DB is configured ──
+function isDatabaseConfigured(): boolean {
+  return !!process.env.DATABASE_URL && !process.env.DATABASE_URL.includes("your-database");
+}
+
+// ── Ensure table exists ──
+async function ensureTableExists() {
+  if (!isDatabaseConfigured()) return false;
+  
+  try {
+    const sql = neon(process.env.DATABASE_URL!);
+    await sql`
+      CREATE TABLE IF NOT EXISTS stripe_config (
+        id INTEGER PRIMARY KEY DEFAULT 1,
+        test_secret_key TEXT,
+        test_publishable_key TEXT,
+        test_webhook_secret TEXT,
+        live_secret_key TEXT,
+        live_publishable_key TEXT,
+        live_webhook_secret TEXT,
+        active_mode TEXT DEFAULT 'test',
+        connect_client_id TEXT,
+        updated_by TEXT,
+        updated_at TIMESTAMPTZ DEFAULT NOW(),
+        CONSTRAINT single_row CHECK (id = 1)
+      )
+    `;
+    return true;
+  } catch (err) {
+    console.error("[Admin/StripeConfig] Table creation error:", err);
+    return false;
+  }
+}
+
 // ── Auth guard ────────────────────────────────────────────────────────────────
 
 function getAdminEmail(req: NextRequest): string | null {
@@ -34,54 +82,77 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Accès réservé au PATRON" }, { status: 403 });
   }
 
-  try {
-    const sql = neon(process.env.DATABASE_URL!);
-    const rows = await sql`
-      SELECT
-        test_secret_key, test_publishable_key, test_webhook_secret,
-        live_secret_key, live_publishable_key, live_webhook_secret,
-        active_mode, connect_client_id,
-        updated_by, updated_at
-      FROM stripe_config
-      WHERE id = 1
-      LIMIT 1
-    `;
+  // Try DB first, fallback to memory cache
+  if (isDatabaseConfigured()) {
+    try {
+      await ensureTableExists();
+      const sql = neon(process.env.DATABASE_URL!);
+      const rows = await sql`
+        SELECT
+          test_secret_key, test_publishable_key, test_webhook_secret,
+          live_secret_key, live_publishable_key, live_webhook_secret,
+          active_mode, connect_client_id,
+          updated_by, updated_at
+        FROM stripe_config
+        WHERE id = 1
+        LIMIT 1
+      `;
 
-    if (rows.length === 0) {
-      return NextResponse.json({ configured: false, active_mode: "test" });
+      if (rows.length > 0) {
+        const row = rows[0];
+        const testSecretRaw = decryptValue(row.test_secret_key as string || "");
+        const liveSecretRaw = decryptValue(row.live_secret_key as string || "");
+        const testWebhookRaw = decryptValue(row.test_webhook_secret as string || "");
+        const liveWebhookRaw = decryptValue(row.live_webhook_secret as string || "");
+
+        return NextResponse.json({
+          configured: !!(testSecretRaw || liveSecretRaw),
+          active_mode: row.active_mode,
+          updated_by: row.updated_by,
+          updated_at: row.updated_at,
+          test_secret_key_masked: maskKey(testSecretRaw),
+          test_publishable_key: row.test_publishable_key || "",
+          test_webhook_secret_masked: maskKey(testWebhookRaw),
+          live_secret_key_masked: maskKey(liveSecretRaw),
+          live_publishable_key: row.live_publishable_key || "",
+          live_webhook_secret_masked: maskKey(liveWebhookRaw),
+          connect_client_id: row.connect_client_id || "",
+          has_test_secret: testSecretRaw.startsWith("sk_test_"),
+          has_live_secret: liveSecretRaw.startsWith("sk_live_"),
+          has_test_webhook: testWebhookRaw.startsWith("whsec_"),
+          has_live_webhook: liveWebhookRaw.startsWith("whsec_"),
+          source: "database",
+        });
+      }
+    } catch (err) {
+      console.error("[Admin/StripeConfig] GET DB error, using memory fallback:", err);
     }
-
-    const row = rows[0];
-
-    // Decrypt then re-mask for display
-    const testSecretRaw = decryptValue(row.test_secret_key as string || "");
-    const liveSecretRaw = decryptValue(row.live_secret_key as string || "");
-    const testWebhookRaw = decryptValue(row.test_webhook_secret as string || "");
-    const liveWebhookRaw = decryptValue(row.live_webhook_secret as string || "");
-
-    return NextResponse.json({
-      configured: !!(testSecretRaw || liveSecretRaw),
-      active_mode: row.active_mode,
-      updated_by: row.updated_by,
-      updated_at: row.updated_at,
-      // Masked values for display
-      test_secret_key_masked: maskKey(testSecretRaw),
-      test_publishable_key: row.test_publishable_key || "",
-      test_webhook_secret_masked: maskKey(testWebhookRaw),
-      live_secret_key_masked: maskKey(liveSecretRaw),
-      live_publishable_key: row.live_publishable_key || "",
-      live_webhook_secret_masked: maskKey(liveWebhookRaw),
-      connect_client_id: row.connect_client_id || "",
-      // Presence flags (so the UI knows what's filled)
-      has_test_secret: testSecretRaw.startsWith("sk_test_"),
-      has_live_secret: liveSecretRaw.startsWith("sk_live_"),
-      has_test_webhook: testWebhookRaw.startsWith("whsec_"),
-      has_live_webhook: liveWebhookRaw.startsWith("whsec_"),
-    });
-  } catch (err) {
-    console.error("[Admin/StripeConfig] GET error:", err);
-    return NextResponse.json({ error: "Erreur base de données" }, { status: 500 });
   }
+
+  // Fallback to memory cache
+  const testSecretRaw = memoryCache.test_secret_key || "";
+  const liveSecretRaw = memoryCache.live_secret_key || "";
+  const testWebhookRaw = memoryCache.test_webhook_secret || "";
+  const liveWebhookRaw = memoryCache.live_webhook_secret || "";
+
+  return NextResponse.json({
+    configured: !!(testSecretRaw || liveSecretRaw),
+    active_mode: memoryCache.active_mode || "test",
+    updated_by: memoryCache.updated_by,
+    updated_at: memoryCache.updated_at,
+    test_secret_key_masked: maskKey(testSecretRaw),
+    test_publishable_key: memoryCache.test_publishable_key || "",
+    test_webhook_secret_masked: maskKey(testWebhookRaw),
+    live_secret_key_masked: maskKey(liveSecretRaw),
+    live_publishable_key: memoryCache.live_publishable_key || "",
+    live_webhook_secret_masked: maskKey(liveWebhookRaw),
+    connect_client_id: memoryCache.connect_client_id || "",
+    has_test_secret: testSecretRaw.startsWith("sk_test_"),
+    has_live_secret: liveSecretRaw.startsWith("sk_live_"),
+    has_test_webhook: testWebhookRaw.startsWith("whsec_"),
+    has_live_webhook: liveWebhookRaw.startsWith("whsec_"),
+    source: "memory",
+  });
 }
 
 // ── POST ──────────────────────────────────────────────────────────────────────
@@ -127,51 +198,81 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validations.join(" | ") }, { status: 422 });
   }
 
-  try {
-    const sql = neon(process.env.DATABASE_URL!);
+  // Always update memory cache first
+  const now = new Date().toISOString();
+  if (body.test_secret_key !== undefined) memoryCache.test_secret_key = body.test_secret_key || undefined;
+  if (body.test_publishable_key !== undefined) memoryCache.test_publishable_key = body.test_publishable_key || undefined;
+  if (body.test_webhook_secret !== undefined) memoryCache.test_webhook_secret = body.test_webhook_secret || undefined;
+  if (body.live_secret_key !== undefined) memoryCache.live_secret_key = body.live_secret_key || undefined;
+  if (body.live_publishable_key !== undefined) memoryCache.live_publishable_key = body.live_publishable_key || undefined;
+  if (body.live_webhook_secret !== undefined) memoryCache.live_webhook_secret = body.live_webhook_secret || undefined;
+  if (body.active_mode !== undefined) memoryCache.active_mode = body.active_mode;
+  if (body.connect_client_id !== undefined) memoryCache.connect_client_id = body.connect_client_id || undefined;
+  memoryCache.updated_by = email;
+  memoryCache.updated_at = now;
 
-    // Build update fields dynamically
-    const updates: Record<string, string | null> = {
-      updated_by: email,
-      updated_at: new Date().toISOString(),
-    };
+  // Try to persist to DB if available
+  let savedToDb = false;
+  if (isDatabaseConfigured()) {
+    try {
+      await ensureTableExists();
+      const sql = neon(process.env.DATABASE_URL!);
 
-    if (body.test_secret_key !== undefined)
-      updates.test_secret_key = body.test_secret_key ? encryptValue(body.test_secret_key) : null;
-    if (body.test_publishable_key !== undefined)
-      updates.test_publishable_key = body.test_publishable_key || null;
-    if (body.test_webhook_secret !== undefined)
-      updates.test_webhook_secret = body.test_webhook_secret ? encryptValue(body.test_webhook_secret) : null;
-    if (body.live_secret_key !== undefined)
-      updates.live_secret_key = body.live_secret_key ? encryptValue(body.live_secret_key) : null;
-    if (body.live_publishable_key !== undefined)
-      updates.live_publishable_key = body.live_publishable_key || null;
-    if (body.live_webhook_secret !== undefined)
-      updates.live_webhook_secret = body.live_webhook_secret ? encryptValue(body.live_webhook_secret) : null;
-    if (body.active_mode !== undefined)
-      updates.active_mode = body.active_mode;
-    if (body.connect_client_id !== undefined)
-      updates.connect_client_id = body.connect_client_id || null;
+      // Build update fields dynamically
+      const updates: Record<string, string | null> = {
+        updated_by: email,
+        updated_at: now,
+      };
 
-    await sql`
-      INSERT INTO stripe_config (id, ${sql(Object.keys(updates))})
-      VALUES (1, ${sql(Object.values(updates) as string[])})
-      ON CONFLICT (id) DO UPDATE
-        SET ${sql(updates)}
-    `;
+      if (body.test_secret_key !== undefined)
+        updates.test_secret_key = body.test_secret_key ? encryptValue(body.test_secret_key) : null;
+      if (body.test_publishable_key !== undefined)
+        updates.test_publishable_key = body.test_publishable_key || null;
+      if (body.test_webhook_secret !== undefined)
+        updates.test_webhook_secret = body.test_webhook_secret ? encryptValue(body.test_webhook_secret) : null;
+      if (body.live_secret_key !== undefined)
+        updates.live_secret_key = body.live_secret_key ? encryptValue(body.live_secret_key) : null;
+      if (body.live_publishable_key !== undefined)
+        updates.live_publishable_key = body.live_publishable_key || null;
+      if (body.live_webhook_secret !== undefined)
+        updates.live_webhook_secret = body.live_webhook_secret ? encryptValue(body.live_webhook_secret) : null;
+      if (body.active_mode !== undefined)
+        updates.active_mode = body.active_mode;
+      if (body.connect_client_id !== undefined)
+        updates.connect_client_id = body.connect_client_id || null;
 
-    // Invalidate the in-memory cache so next request picks up new keys
-    invalidateStripeConfigCache();
-
-    return NextResponse.json({
-      success: true,
-      message: "Configuration Stripe mise à jour avec succès",
-      active_mode: body.active_mode || "inchangé",
-    });
-  } catch (err) {
-    console.error("[Admin/StripeConfig] POST error:", err);
-    return NextResponse.json({ error: "Erreur lors de la sauvegarde" }, { status: 500 });
+      await sql`
+        INSERT INTO stripe_config (id, test_secret_key, test_publishable_key, test_webhook_secret, live_secret_key, live_publishable_key, live_webhook_secret, active_mode, connect_client_id, updated_by, updated_at)
+        VALUES (1, ${updates.test_secret_key || null}, ${updates.test_publishable_key || null}, ${updates.test_webhook_secret || null}, ${updates.live_secret_key || null}, ${updates.live_publishable_key || null}, ${updates.live_webhook_secret || null}, ${updates.active_mode || 'test'}, ${updates.connect_client_id || null}, ${updates.updated_by}, ${updates.updated_at})
+        ON CONFLICT (id) DO UPDATE SET
+          test_secret_key = COALESCE(EXCLUDED.test_secret_key, stripe_config.test_secret_key),
+          test_publishable_key = COALESCE(EXCLUDED.test_publishable_key, stripe_config.test_publishable_key),
+          test_webhook_secret = COALESCE(EXCLUDED.test_webhook_secret, stripe_config.test_webhook_secret),
+          live_secret_key = COALESCE(EXCLUDED.live_secret_key, stripe_config.live_secret_key),
+          live_publishable_key = COALESCE(EXCLUDED.live_publishable_key, stripe_config.live_publishable_key),
+          live_webhook_secret = COALESCE(EXCLUDED.live_webhook_secret, stripe_config.live_webhook_secret),
+          active_mode = COALESCE(EXCLUDED.active_mode, stripe_config.active_mode),
+          connect_client_id = COALESCE(EXCLUDED.connect_client_id, stripe_config.connect_client_id),
+          updated_by = EXCLUDED.updated_by,
+          updated_at = EXCLUDED.updated_at
+      `;
+      savedToDb = true;
+    } catch (err) {
+      console.error("[Admin/StripeConfig] POST DB error, saved to memory only:", err);
+    }
   }
+
+  // Invalidate the in-memory cache so next request picks up new keys
+  invalidateStripeConfigCache();
+
+  return NextResponse.json({
+    success: true,
+    message: savedToDb 
+      ? "Configuration Stripe sauvegardee en base de donnees" 
+      : "Configuration Stripe sauvegardee en memoire (base de donnees non disponible)",
+    active_mode: body.active_mode || memoryCache.active_mode || "test",
+    source: savedToDb ? "database" : "memory",
+  });
 }
 
 // ── PATCH — basculer mode test/live ──────────────────────────────────────────
@@ -192,22 +293,34 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "mode doit être 'test' ou 'live'" }, { status: 422 });
   }
 
-  try {
-    const sql = neon(process.env.DATABASE_URL!);
-    await sql`
-      UPDATE stripe_config
-      SET active_mode = ${body.mode}, updated_by = ${body.email}, updated_at = NOW()
-      WHERE id = 1
-    `;
-    invalidateStripeConfigCache();
+  // Update memory cache
+  memoryCache.active_mode = body.mode;
+  memoryCache.updated_by = body.email;
+  memoryCache.updated_at = new Date().toISOString();
 
-    return NextResponse.json({
-      success: true,
-      message: `Mode basculé en ${body.mode.toUpperCase()}`,
-      active_mode: body.mode,
-    });
-  } catch (err) {
-    console.error("[Admin/StripeConfig] PATCH error:", err);
-    return NextResponse.json({ error: "Erreur lors du basculement de mode" }, { status: 500 });
+  // Try to persist to DB
+  let savedToDb = false;
+  if (isDatabaseConfigured()) {
+    try {
+      await ensureTableExists();
+      const sql = neon(process.env.DATABASE_URL!);
+      await sql`
+        UPDATE stripe_config
+        SET active_mode = ${body.mode}, updated_by = ${body.email}, updated_at = NOW()
+        WHERE id = 1
+      `;
+      savedToDb = true;
+    } catch (err) {
+      console.error("[Admin/StripeConfig] PATCH DB error:", err);
+    }
   }
+
+  invalidateStripeConfigCache();
+
+  return NextResponse.json({
+    success: true,
+    message: `Mode bascule en ${body.mode.toUpperCase()}`,
+    active_mode: body.mode,
+    source: savedToDb ? "database" : "memory",
+  });
 }
