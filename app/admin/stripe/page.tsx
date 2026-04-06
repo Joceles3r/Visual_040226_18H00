@@ -175,7 +175,6 @@ function SecretField({
     </div>
   )
 }
-  }
 
   return (
     <div className="space-y-1.5">
