@@ -1,12 +1,15 @@
 import "server-only";
 import Stripe from "stripe";
-import { getStripeSafe, isStripeConfigured, logStripeEvent } from "@/lib/stripe";
+import { getStripeSafe, isStripeConfigured, logStripeEvent, stripe } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { 
   STRIPE_CONNECT_CONFIG, 
   calculateStripeFees,
   type StripeConnectAccountStatus 
 } from "../config";
+
+// Re-export for convenience
+export { getStripeSafe, isStripeConfigured, logStripeEvent, stripe };
 
 /**
  * VIXUAL Platform - Stripe Connect Service

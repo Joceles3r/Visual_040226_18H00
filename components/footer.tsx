@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { VisualSlogan } from "@/components/visual-slogan"
-import { Phone, Mail, MapPin, Users, MessageCircle, Lock } from "lucide-react"
+import { Phone, Mail, MapPin, Users, MessageCircle, Lock, Heart } from "lucide-react"
 
 export function Footer() {
   return (
@@ -106,9 +106,33 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Soutien Libre Section */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Heart className="h-5 w-5 text-rose-400" />
+              <span className="text-rose-300 font-semibold">Vous connaissez un createur sur VIXUAL ?</span>
+            </div>
+            <p className="text-white/60 text-sm mb-4">
+              Un petit geste peut faire une grande difference. Aidez un projet a demarrer, 
+              encouragez un createur a continuer, participez a une aventure.
+            </p>
+            <Link 
+              href="/soutien-libre" 
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:bg-rose-500/20 transition-colors"
+            >
+              <Heart className="h-4 w-4" />
+              Soutenir un createur
+            </Link>
+            <p className="text-white/40 text-xs mt-3">
+              Soutien libre, sans impact sur le classement
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
-            2026 VIXUAL. Tous droits réservés.
+            2026 VIXUAL. Tous droits reserves.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-white/40 text-sm">

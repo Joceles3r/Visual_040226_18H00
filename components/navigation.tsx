@@ -78,6 +78,7 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
     { label: "Tout Explorer", href: "/explore", icon: Compass },
     { label: "Ticket Gold", href: "/gold-pass", icon: Rocket },
+    { label: "Soutien Libre", href: "/soutien-libre", icon: Heart },
   ],
 }
 
