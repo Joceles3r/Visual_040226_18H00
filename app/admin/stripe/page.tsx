@@ -167,10 +167,21 @@ export default function StripeConfigPage() {
     if (!user?.email) return
     setLoading(true)
     try {
-      const res = await fetch(`/api/admin/stripe-config?email=${encodeURIComponent(user.email)}`)
+      const res = await fetch(`/api/admin/stripe-config?email=${encodeURIComponent(user.email)}`, {
+        headers: { "x-admin-email": user.email }
+      })
       if (res.ok) {
         const data = await res.json()
         setConfig(data)
+        // Pre-fill form with existing publishable keys (visible ones)
+        if (data.test_publishable_key || data.live_publishable_key || data.connect_client_id) {
+          setForm(prev => ({
+            ...prev,
+            test_publishable_key: data.test_publishable_key || prev.test_publishable_key,
+            live_publishable_key: data.live_publishable_key || prev.live_publishable_key,
+            connect_client_id: data.connect_client_id || prev.connect_client_id,
+          }))
+        }
       }
     } catch {
       setMessage({ type: "error", text: "Impossible de charger la configuration." })
@@ -201,22 +212,24 @@ export default function StripeConfigPage() {
     try {
       const res = await fetch("/api/admin/stripe-config", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-admin-email": user.email 
+        },
         body: JSON.stringify(payload),
       })
       const data = await res.json()
       if (res.ok) {
-        setMessage({ type: "success", text: data.message || "Clés sauvegardées avec succès." })
-        // Clear form fields after save
-        setForm({
+        setMessage({ type: "success", text: data.message || "Cles sauvegardees avec succes." })
+        // Clear only secret fields after save, keep visible ones
+        setForm(prev => ({
+          ...prev,
           test_secret_key: "",
-          test_publishable_key: "",
           test_webhook_secret: "",
           live_secret_key: "",
-          live_publishable_key: "",
           live_webhook_secret: "",
-          connect_client_id: "",
-        })
+          // Keep publishable keys and connect_client_id visible
+        }))
         fetchConfig()
       } else {
         setMessage({ type: "error", text: data.error || "Erreur lors de la sauvegarde." })
@@ -246,7 +259,10 @@ export default function StripeConfigPage() {
     try {
       const res = await fetch("/api/admin/stripe-config", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-admin-email": user.email 
+        },
         body: JSON.stringify({ email: user.email, mode: newMode }),
       })
       const data = await res.json()
