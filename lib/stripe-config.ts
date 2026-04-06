@@ -12,16 +12,85 @@ import "server-only";
 import { neon } from "@neondatabase/serverless";
 import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "crypto";
 
+// ── Environment Detection ────────────────────────────────────────────────────
+
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const DEV_FALLBACK_KEY = "VIXUAL_DEV_FALLBACK_KEY_32chars!!";
+
+// ── Encryption Key Validation ────────────────────────────────────────────────
+
+/**
+ * Validates that the encryption key meets security requirements.
+ * In production, requires ADMIN_ENCRYPTION_KEY env var.
+ * In development, allows fallback with warning.
+ */
+export function validateEncryptionKey(): { valid: boolean; warning?: string; error?: string } {
+  const key = process.env.ADMIN_ENCRYPTION_KEY;
+  
+  if (!key) {
+    if (IS_PRODUCTION) {
+      return {
+        valid: false,
+        error: "ADMIN_ENCRYPTION_KEY is required in production. Generate with: openssl rand -base64 32",
+      };
+    }
+    return {
+      valid: true,
+      warning: "Using development fallback encryption key. Set ADMIN_ENCRYPTION_KEY for production.",
+    };
+  }
+  
+  if (key.length < 32) {
+    return {
+      valid: false,
+      error: "ADMIN_ENCRYPTION_KEY must be at least 32 characters long.",
+    };
+  }
+  
+  if (key === DEV_FALLBACK_KEY) {
+    if (IS_PRODUCTION) {
+      return {
+        valid: false,
+        error: "Cannot use development fallback key in production.",
+      };
+    }
+    return {
+      valid: true,
+      warning: "Using default development key. Change for production.",
+    };
+  }
+  
+  return { valid: true };
+}
+
+// Log validation on module load (server-side only)
+const keyValidation = validateEncryptionKey();
+if (keyValidation.warning) {
+  console.warn(`[Stripe Config] ${keyValidation.warning}`);
+}
+if (keyValidation.error) {
+  console.error(`[Stripe Config] CRITICAL: ${keyValidation.error}`);
+  if (IS_PRODUCTION) {
+    throw new Error(keyValidation.error);
+  }
+}
+
 // ── Chiffrement AES-256-GCM ──────────────────────────────────────────────────
 
-const ENCRYPTION_KEY_RAW = process.env.ADMIN_ENCRYPTION_KEY || "VIXUAL_DEV_FALLBACK_KEY_32chars!!";
-// Derive a 32-byte key from the raw string
-const DERIVED_KEY = scryptSync(ENCRYPTION_KEY_RAW, "vixual-stripe-salt", 32);
+const ENCRYPTION_KEY_RAW = process.env.ADMIN_ENCRYPTION_KEY || DEV_FALLBACK_KEY;
+// Derive a 32-byte key from the raw string (memoized)
+let _derivedKey: Buffer | null = null;
+function getDerivedKey(): Buffer {
+  if (!_derivedKey) {
+    _derivedKey = scryptSync(ENCRYPTION_KEY_RAW, "vixual-stripe-salt", 32);
+  }
+  return _derivedKey;
+}
 
 export function encryptValue(plaintext: string): string {
   if (!plaintext) return "";
   const iv = randomBytes(12);
-  const cipher = createCipheriv("aes-256-gcm", DERIVED_KEY, iv);
+  const cipher = createCipheriv("aes-256-gcm", getDerivedKey(), iv);
   const encrypted = Buffer.concat([cipher.update(plaintext, "utf8"), cipher.final()]);
   const tag = cipher.getAuthTag();
   // Format: iv(hex):tag(hex):ciphertext(hex)
@@ -35,7 +104,7 @@ export function decryptValue(ciphertext: string): string {
     const iv = Buffer.from(ivHex, "hex");
     const tag = Buffer.from(tagHex, "hex");
     const enc = Buffer.from(encHex, "hex");
-    const decipher = createDecipheriv("aes-256-gcm", DERIVED_KEY, iv);
+    const decipher = createDecipheriv("aes-256-gcm", getDerivedKey(), iv);
     decipher.setAuthTag(tag);
     return decipher.update(enc).toString("utf8") + decipher.final("utf8");
   } catch {

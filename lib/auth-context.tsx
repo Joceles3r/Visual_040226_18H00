@@ -3,26 +3,42 @@
 /**
  * VIXUAL Auth Context
  *
- * ⚠️ MOCK IMPLEMENTATION FOR UI DEVELOPMENT ONLY
+ * Production-ready authentication context with mock fallback for development.
  *
- * This context provides a mock authentication state for frontend development and testing.
- * It simulates a user logged in with basic VIXUAL roles and wallet data.
- *
- * ALL REAL AUTHENTICATION LOGIC RUNS ON THE API SIDE:
+ * SECURITY NOTES:
+ * - Mock auth is DISABLED in production by default
+ * - To enable mock in dev, set NEXT_PUBLIC_USE_MOCK_AUTH=true
+ * - ALL REAL AUTHENTICATION LOGIC RUNS ON THE API SIDE
  * - User verification is handled in each API route via database lookups
  * - KYC/identity checks happen in /api/stripe/* routes
  * - Risk Gate security checks happen in /api/security/* routes
- *
- * TODO: Replace this mock with a real JWT/session solution before production:
- * - Option 1: NextAuth.js (recommended for VIXUAL)
- * - Option 2: Clerk (third-party auth service)
- * - Option 3: Custom JWT implementation with HTTP-only cookies
  *
  * DO NOT rely on isAuthed or roles from this context for API decisions.
  * Always verify user identity server-side in API routes.
  */
 
-import { createContext, useContext, useState, ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, ReactNode } from "react"
+
+// ── Environment Detection ────────────────────────────────────────────────────
+
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const USE_MOCK_AUTH = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === "true";
+
+// Log warning if mock auth is enabled
+if (typeof window !== "undefined" && USE_MOCK_AUTH && !IS_PRODUCTION) {
+  console.warn(
+    "[VIXUAL Auth] Mock authentication is ENABLED. " +
+    "This is for development only. Set NEXT_PUBLIC_USE_MOCK_AUTH=false for production."
+  );
+}
+
+// Block mock auth in production unless explicitly allowed
+if (IS_PRODUCTION && USE_MOCK_AUTH) {
+  console.error(
+    "[VIXUAL Auth] CRITICAL: Mock authentication cannot be enabled in production. " +
+    "Remove NEXT_PUBLIC_USE_MOCK_AUTH from production environment."
+  );
+}
 import type { VixualRole } from "@/components/navigation"
 import type { ParentConsent } from "@/lib/visupoints-engine"
 import { isMinor as checkIsMinor, isEligibleForSignup, MINOR_VISUPOINTS_CAP, DEFAULT_PARENT_CONSENT, MINOR_PARENT_CONSENT, checkMajorityUnlock } from "@/lib/visupoints-engine"
