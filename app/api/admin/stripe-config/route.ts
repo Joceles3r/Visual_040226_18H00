@@ -253,22 +253,60 @@ export async function POST(req: NextRequest) {
       if (body.connect_client_id !== undefined)
         updates.connect_client_id = body.connect_client_id || null;
 
+      // Log pour debug
+      console.log("[Admin/StripeConfig] Saving to DB with updates:", {
+        hasTestSecret: !!updates.test_secret_key,
+        hasTestPublishable: !!updates.test_publishable_key,
+        hasTestWebhook: !!updates.test_webhook_secret,
+        hasLiveSecret: !!updates.live_secret_key,
+        hasLivePublishable: !!updates.live_publishable_key,
+        hasLiveWebhook: !!updates.live_webhook_secret,
+        activeMode: updates.active_mode,
+      });
+
+      // Utiliser CASE WHEN pour ne mettre a jour que les champs fournis (non-null)
+      // Cela evite le probleme du COALESCE qui conserve l'ancienne valeur quand null est passe
       await sql`
         INSERT INTO stripe_config (id, test_secret_key, test_publishable_key, test_webhook_secret, live_secret_key, live_publishable_key, live_webhook_secret, active_mode, connect_client_id, updated_by, updated_at)
         VALUES (1, ${updates.test_secret_key || null}, ${updates.test_publishable_key || null}, ${updates.test_webhook_secret || null}, ${updates.live_secret_key || null}, ${updates.live_publishable_key || null}, ${updates.live_webhook_secret || null}, ${updates.active_mode || 'test'}, ${updates.connect_client_id || null}, ${updates.updated_by}, ${updates.updated_at})
         ON CONFLICT (id) DO UPDATE SET
-          test_secret_key = COALESCE(EXCLUDED.test_secret_key, stripe_config.test_secret_key),
-          test_publishable_key = COALESCE(EXCLUDED.test_publishable_key, stripe_config.test_publishable_key),
-          test_webhook_secret = COALESCE(EXCLUDED.test_webhook_secret, stripe_config.test_webhook_secret),
-          live_secret_key = COALESCE(EXCLUDED.live_secret_key, stripe_config.live_secret_key),
-          live_publishable_key = COALESCE(EXCLUDED.live_publishable_key, stripe_config.live_publishable_key),
-          live_webhook_secret = COALESCE(EXCLUDED.live_webhook_secret, stripe_config.live_webhook_secret),
-          active_mode = COALESCE(EXCLUDED.active_mode, stripe_config.active_mode),
-          connect_client_id = COALESCE(EXCLUDED.connect_client_id, stripe_config.connect_client_id),
-          updated_by = EXCLUDED.updated_by,
-          updated_at = EXCLUDED.updated_at
+          test_secret_key = CASE 
+            WHEN ${updates.test_secret_key !== undefined} THEN ${updates.test_secret_key || null}
+            ELSE stripe_config.test_secret_key 
+          END,
+          test_publishable_key = CASE 
+            WHEN ${updates.test_publishable_key !== undefined} THEN ${updates.test_publishable_key || null}
+            ELSE stripe_config.test_publishable_key 
+          END,
+          test_webhook_secret = CASE 
+            WHEN ${updates.test_webhook_secret !== undefined} THEN ${updates.test_webhook_secret || null}
+            ELSE stripe_config.test_webhook_secret 
+          END,
+          live_secret_key = CASE 
+            WHEN ${updates.live_secret_key !== undefined} THEN ${updates.live_secret_key || null}
+            ELSE stripe_config.live_secret_key 
+          END,
+          live_publishable_key = CASE 
+            WHEN ${updates.live_publishable_key !== undefined} THEN ${updates.live_publishable_key || null}
+            ELSE stripe_config.live_publishable_key 
+          END,
+          live_webhook_secret = CASE 
+            WHEN ${updates.live_webhook_secret !== undefined} THEN ${updates.live_webhook_secret || null}
+            ELSE stripe_config.live_webhook_secret 
+          END,
+          active_mode = CASE 
+            WHEN ${updates.active_mode !== undefined} THEN ${updates.active_mode || 'test'}
+            ELSE stripe_config.active_mode 
+          END,
+          connect_client_id = CASE 
+            WHEN ${updates.connect_client_id !== undefined} THEN ${updates.connect_client_id || null}
+            ELSE stripe_config.connect_client_id 
+          END,
+          updated_by = ${updates.updated_by},
+          updated_at = ${updates.updated_at}
       `;
       savedToDb = true;
+      console.log("[Admin/StripeConfig] Successfully saved to database");
     } catch (err) {
       console.error("[Admin/StripeConfig] POST DB error, saved to memory only:", err);
     }

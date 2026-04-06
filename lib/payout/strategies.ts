@@ -1,5 +1,5 @@
 /**
- * VISUAL Payout Engine V3 -- Strategy Pattern
+ * VIXUAL Payout Engine V3 -- Strategy Pattern
  *
  * Refactored from monolithic payout-engine.ts into per-category strategies
  * implementing a common PayoutStrategy interface. This limits side-effects
@@ -148,7 +148,7 @@ export class FilmStrategy implements PayoutStrategy {
 
     if (eligible.length === 0) {
       residualTotal += pool11_100Gross;
-      warnings.push("No eligible investors11to100 provided; 7% pool captured by VISUAL.");
+      warnings.push("No eligible investors11to100 provided; 7% pool captured by VIXUAL.");
     } else {
       const perUserGross = Math.floor(pool11_100Gross / eligible.length);
       for (const u of eligible) {
@@ -216,7 +216,7 @@ export class PodcastStrategy implements PayoutStrategy {
 
     if (totalInvWeight === 0) {
       residualTotal += investorsPool;
-      warnings.push("No investor weights for podcasts; 30% pool captured by VISUAL.");
+      warnings.push("No investor weights for podcasts; 30% pool captured by VIXUAL.");
     } else {
       for (const iw of investorWeights) {
         const gross = Math.floor((investorsPool * iw.weight) / totalInvWeight);
@@ -291,7 +291,7 @@ export class VoixInfoStrategy implements PayoutStrategy {
     const readers = [...input.top10Investors, ...(input.investors11to100 ?? [])];
     if (readers.length === 0) {
       residualTotal += readersPool;
-      warnings.push("No eligible readers for Voix de l'Info; 40% pool captured by VISUAL.");
+      warnings.push("No eligible readers for Voix de l'Info; 40% pool captured by VIXUAL.");
     } else {
       const perReader = Math.floor(readersPool / readers.length);
       for (const reader of readers) {

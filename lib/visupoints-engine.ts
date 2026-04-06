@@ -190,7 +190,7 @@ export const MICROPACKS_ELIGIBLE_PROFILES = [
   "visitor_minor",
   "visitor_adult", 
   "contribureader",
-  "auditor",
+  "listener",
 ] as const
 
 /** Verifie si un profil peut acheter des micro-packs */

@@ -89,7 +89,7 @@ export async function checkRateLimit(
     };
   } catch (error) {
     // If Redis is down, allow the request (fail-open)
-    console.error("[VISUAL rate-limit] Redis error, failing open:", error);
+    console.error("[VIXUAL rate-limit] Redis error, failing open:", error);
     return {
       allowed: true,
       remaining: config.maxRequests,
