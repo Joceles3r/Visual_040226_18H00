@@ -153,3 +153,41 @@ export function maskKey(key: string): string {
   if (!key || key.length < 12) return "••••••••";
   return key.slice(0, 10) + "••••••••" + key.slice(-4);
 }
+
+/** Placeholder masque standard pour les cles secretes */
+export const MASKED_PLACEHOLDER = "••••••••••••••••";
+
+/** Verifier si une valeur est le placeholder masque */
+export function isMaskedPlaceholder(value: string | undefined | null): boolean {
+  if (!value) return false;
+  // Le placeholder contient uniquement des bullets
+  return /^•+$/.test(value) || value === MASKED_PLACEHOLDER;
+}
+
+/** Valider le format d'une cle Stripe */
+export function isValidStripeKey(
+  key: string, 
+  type: "secret" | "publishable" | "webhook"
+): boolean {
+  if (!key || isMaskedPlaceholder(key)) return false;
+  
+  switch (type) {
+    case "secret":
+      return /^sk_(test|live)_[a-zA-Z0-9]+$/.test(key);
+    case "publishable":
+      return /^pk_(test|live)_[a-zA-Z0-9]+$/.test(key);
+    case "webhook":
+      return /^whsec_[a-zA-Z0-9]+$/.test(key);
+    default:
+      return false;
+  }
+}
+
+/** Verifier si une valeur doit etre mise a jour (non vide et non placeholder) */
+export function shouldUpdateSecretField(
+  newValue: string | undefined | null
+): boolean {
+  if (!newValue) return false;
+  if (isMaskedPlaceholder(newValue)) return false;
+  return true;
+}

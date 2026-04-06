@@ -59,6 +59,8 @@ interface FormData {
 
 // ── Composant champ de saisie sécurisé ────────────────────────────────────────
 
+const MASKED_PLACEHOLDER = "••••••••••••••••"
+
 function SecretField({
   label,
   id,
@@ -69,6 +71,7 @@ function SecretField({
   hasValue,
   required,
   helpText,
+  isSecret = true,
 }: {
   label: string
   id: keyof FormData
@@ -79,9 +82,11 @@ function SecretField({
   hasValue?: boolean
   required?: boolean
   helpText?: string
+  isSecret?: boolean
 }) {
   const [visible, setVisible] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
 
   const handleCopy = () => {
     if (value) {
@@ -89,6 +94,87 @@ function SecretField({
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     }
+  }
+
+  // Si cle secrete configuree et pas en mode edition, afficher le placeholder masque
+  const displayValue = isSecret && hasValue && !isEditing && !value ? MASKED_PLACEHOLDER : value
+  const showConfiguredBadge = hasValue && !value && !isEditing
+
+  const handleFocus = () => {
+    if (isSecret && hasValue && !value) {
+      setIsEditing(true)
+    }
+  }
+
+  const handleBlur = () => {
+    if (isSecret && !value) {
+      setIsEditing(false)
+    }
+  }
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-center justify-between">
+        <label className="text-xs font-semibold text-white/70 uppercase tracking-wider">
+          {label}
+          {required && <span className="text-red-400 ml-1">*</span>}
+        </label>
+        {showConfiguredBadge && (
+          <Badge className="text-xs bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+            <CheckCircle className="h-3 w-3 mr-1" />
+            Configuree
+          </Badge>
+        )}
+      </div>
+      <div className="relative flex items-center gap-2">
+        <div className="relative flex-1">
+          <input
+            type={visible ? "text" : "password"}
+            value={displayValue}
+            onChange={(e) => {
+              const newVal = e.target.value
+              // Si l'utilisateur efface le placeholder masque, vider le champ
+              if (newVal === MASKED_PLACEHOLDER.slice(0, -1) || newVal === "") {
+                onChange(id, "")
+              } else if (newVal !== MASKED_PLACEHOLDER) {
+                onChange(id, newVal)
+              }
+            }}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            placeholder={masked || placeholder}
+            className={`w-full bg-slate-900/80 border rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/30 font-mono pr-10 ${
+              showConfiguredBadge ? "border-emerald-500/30" : "border-white/10"
+            }`}
+          />
+          <button
+            type="button"
+            onClick={() => setVisible(!visible)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/70 transition-colors"
+          >
+            {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
+        </div>
+        {value && (
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="p-2.5 rounded-lg bg-slate-800 border border-white/10 text-white/40 hover:text-white/80 hover:bg-slate-700 transition-all"
+            title="Copier"
+          >
+            {copied ? <CheckCircle className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+          </button>
+        )}
+      </div>
+      {helpText && <p className="text-xs text-white/30 pl-1">{helpText}</p>}
+      {showConfiguredBadge && (
+        <p className="text-xs text-emerald-400/60 pl-1">
+          Cle deja configuree. Laissez vide pour conserver, ou saisissez une nouvelle cle pour remplacer.
+        </p>
+      )}
+    </div>
+  )
+}
   }
 
   return (
@@ -482,14 +568,14 @@ export default function StripeConfigPage() {
               helpText="Commence par sk_test_ — ne la partagez jamais"
             />
             <SecretField
-              label="Clé publique TEST (Publishable Key)"
+              label="Cle publique TEST (Publishable Key)"
               id="test_publishable_key"
               value={form.test_publishable_key}
               onChange={updateField}
               placeholder="pk_test_..."
-              masked={config?.test_publishable_key ? undefined : undefined}
               hasValue={!!config?.test_publishable_key}
-              helpText="Commence par pk_test_ — utilisée côté client"
+              helpText="Commence par pk_test_ — utilisee cote client"
+              isSecret={false}
             />
             <SecretField
               label="Secret Webhook TEST"
@@ -547,13 +633,14 @@ export default function StripeConfigPage() {
               helpText="Commence par sk_live_ — accès complet à votre compte Stripe"
             />
             <SecretField
-              label="Clé publique LIVE (Publishable Key)"
+              label="Cle publique LIVE (Publishable Key)"
               id="live_publishable_key"
               value={form.live_publishable_key}
               onChange={updateField}
               placeholder="pk_live_..."
               hasValue={!!config?.live_publishable_key}
-              helpText="Commence par pk_live_ — utilisée côté client"
+              helpText="Commence par pk_live_ — utilisee cote client"
+              isSecret={false}
             />
             <SecretField
               label="Secret Webhook LIVE"

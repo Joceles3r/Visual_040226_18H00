@@ -10,7 +10,14 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
-import { encryptValue, decryptValue, maskKey, invalidateStripeConfigCache } from "@/lib/stripe-config";
+import { 
+  encryptValue, 
+  decryptValue, 
+  maskKey, 
+  invalidateStripeConfigCache,
+  isMaskedPlaceholder,
+  shouldUpdateSecretField 
+} from "@/lib/stripe-config";
 import { PATRON_EMAIL } from "@/lib/admin/roles";
 
 // ── In-memory fallback cache (when DB is not available) ──
@@ -170,42 +177,44 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Accès réservé au PATRON" }, { status: 403 });
   }
 
-  // Validate keys format
+  // Validate keys format - ignorer les placeholders masques
   const validations: string[] = [];
-  if (body.test_secret_key && !body.test_secret_key.startsWith("sk_test_")) {
-    validations.push("La clé secrète TEST doit commencer par sk_test_");
+  if (body.test_secret_key && !isMaskedPlaceholder(body.test_secret_key) && !body.test_secret_key.startsWith("sk_test_")) {
+    validations.push("La cle secrete TEST doit commencer par sk_test_");
   }
-  if (body.live_secret_key && !body.live_secret_key.startsWith("sk_live_")) {
-    validations.push("La clé secrète LIVE doit commencer par sk_live_");
+  if (body.live_secret_key && !isMaskedPlaceholder(body.live_secret_key) && !body.live_secret_key.startsWith("sk_live_")) {
+    validations.push("La cle secrete LIVE doit commencer par sk_live_");
   }
   if (body.test_publishable_key && !body.test_publishable_key.startsWith("pk_test_")) {
-    validations.push("La clé publique TEST doit commencer par pk_test_");
+    validations.push("La cle publique TEST doit commencer par pk_test_");
   }
   if (body.live_publishable_key && !body.live_publishable_key.startsWith("pk_live_")) {
-    validations.push("La clé publique LIVE doit commencer par pk_live_");
+    validations.push("La cle publique LIVE doit commencer par pk_live_");
   }
-  if (body.test_webhook_secret && !body.test_webhook_secret.startsWith("whsec_")) {
+  if (body.test_webhook_secret && !isMaskedPlaceholder(body.test_webhook_secret) && !body.test_webhook_secret.startsWith("whsec_")) {
     validations.push("Le secret webhook TEST doit commencer par whsec_");
   }
-  if (body.live_webhook_secret && !body.live_webhook_secret.startsWith("whsec_")) {
+  if (body.live_webhook_secret && !isMaskedPlaceholder(body.live_webhook_secret) && !body.live_webhook_secret.startsWith("whsec_")) {
     validations.push("Le secret webhook LIVE doit commencer par whsec_");
   }
   if (body.active_mode && !["test", "live"].includes(body.active_mode)) {
-    validations.push("active_mode doit être 'test' ou 'live'");
+    validations.push("active_mode doit etre 'test' ou 'live'");
   }
 
   if (validations.length > 0) {
     return NextResponse.json({ error: validations.join(" | ") }, { status: 422 });
   }
 
-  // Always update memory cache first
+  // Update memory cache - ignorer les placeholders masques pour les cles secretes
   const now = new Date().toISOString();
-  if (body.test_secret_key !== undefined) memoryCache.test_secret_key = body.test_secret_key || undefined;
+  // Cles secretes: ne mettre a jour que si vraie nouvelle valeur
+  if (shouldUpdateSecretField(body.test_secret_key)) memoryCache.test_secret_key = body.test_secret_key;
+  if (shouldUpdateSecretField(body.test_webhook_secret)) memoryCache.test_webhook_secret = body.test_webhook_secret;
+  if (shouldUpdateSecretField(body.live_secret_key)) memoryCache.live_secret_key = body.live_secret_key;
+  if (shouldUpdateSecretField(body.live_webhook_secret)) memoryCache.live_webhook_secret = body.live_webhook_secret;
+  // Cles publiques: toujours mettre a jour si fournies
   if (body.test_publishable_key !== undefined) memoryCache.test_publishable_key = body.test_publishable_key || undefined;
-  if (body.test_webhook_secret !== undefined) memoryCache.test_webhook_secret = body.test_webhook_secret || undefined;
-  if (body.live_secret_key !== undefined) memoryCache.live_secret_key = body.live_secret_key || undefined;
   if (body.live_publishable_key !== undefined) memoryCache.live_publishable_key = body.live_publishable_key || undefined;
-  if (body.live_webhook_secret !== undefined) memoryCache.live_webhook_secret = body.live_webhook_secret || undefined;
   if (body.active_mode !== undefined) memoryCache.active_mode = body.active_mode;
   if (body.connect_client_id !== undefined) memoryCache.connect_client_id = body.connect_client_id || undefined;
   memoryCache.updated_by = email;
@@ -218,24 +227,27 @@ export async function POST(req: NextRequest) {
       await ensureTableExists();
       const sql = neon(process.env.DATABASE_URL!);
 
-      // Build update fields dynamically
-      const updates: Record<string, string | null> = {
+      // Build update fields dynamically - ignorer les placeholders masques
+      const updates: Record<string, string | null | undefined> = {
         updated_by: email,
         updated_at: now,
       };
 
-      if (body.test_secret_key !== undefined)
-        updates.test_secret_key = body.test_secret_key ? encryptValue(body.test_secret_key) : null;
+      // Cles secretes: ne mettre a jour que si vraie nouvelle valeur (pas placeholder)
+      if (shouldUpdateSecretField(body.test_secret_key))
+        updates.test_secret_key = encryptValue(body.test_secret_key);
+      if (shouldUpdateSecretField(body.test_webhook_secret))
+        updates.test_webhook_secret = encryptValue(body.test_webhook_secret);
+      if (shouldUpdateSecretField(body.live_secret_key))
+        updates.live_secret_key = encryptValue(body.live_secret_key);
+      if (shouldUpdateSecretField(body.live_webhook_secret))
+        updates.live_webhook_secret = encryptValue(body.live_webhook_secret);
+      
+      // Cles publiques: toujours mettre a jour si fournies
       if (body.test_publishable_key !== undefined)
         updates.test_publishable_key = body.test_publishable_key || null;
-      if (body.test_webhook_secret !== undefined)
-        updates.test_webhook_secret = body.test_webhook_secret ? encryptValue(body.test_webhook_secret) : null;
-      if (body.live_secret_key !== undefined)
-        updates.live_secret_key = body.live_secret_key ? encryptValue(body.live_secret_key) : null;
       if (body.live_publishable_key !== undefined)
         updates.live_publishable_key = body.live_publishable_key || null;
-      if (body.live_webhook_secret !== undefined)
-        updates.live_webhook_secret = body.live_webhook_secret ? encryptValue(body.live_webhook_secret) : null;
       if (body.active_mode !== undefined)
         updates.active_mode = body.active_mode;
       if (body.connect_client_id !== undefined)
