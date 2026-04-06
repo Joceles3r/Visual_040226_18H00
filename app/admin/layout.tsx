@@ -39,9 +39,11 @@ const ADMIN_NAV = [
   { label: "ORBIT Engine", href: "/admin/orbit-engine", icon: Orbit, highlight: true },
   { label: "Financial Brain", href: "/admin/financial-brain", icon: Brain },
   { label: "Visibility Engine", href: "/admin/visibility-engine", icon: Eye, visibility: true },
-  { label: "SEO + Growth", href: "/admin/seo-growth", icon: TrendingUp, highlight: true },
+  // Stripe modules (sous Visibility Engine)
   { label: "Config Stripe", href: "/admin/stripe", icon: CreditCard, stripe: true },
   { label: "Stripe Connect", href: "/admin/stripe-connect", icon: Building2, stripe: true },
+  // Suite modules
+  { label: "SEO + Growth", href: "/admin/seo-growth", icon: TrendingUp, highlight: true },
   { label: "Centre de Controle", href: "/admin/security", icon: ShieldAlert, critical: true },
   { label: "Gestion Roles", href: "/admin/roles", icon: UserCog },
   { label: "Utilisateurs", href: "/admin#users", icon: Users },
