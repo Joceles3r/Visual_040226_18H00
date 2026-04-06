@@ -92,6 +92,9 @@ export default function SoutienLibrePage() {
           <h2 className="text-4xl font-bold mb-4 text-white">
             Soutenez un createur
           </h2>
+          <p className="text-rose-300 text-xl font-medium mb-3">
+            Vous connaissez un createur sur VIXUAL ?
+          </p>
           <p className="text-white/70 text-lg mb-6">
             Un petit geste peut faire une grande difference. Aidez un projet a demarrer, 
             encouragez un createur a continuer, participez a une aventure.
