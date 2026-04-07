@@ -31,6 +31,8 @@ export const ROLE_LABELS = {
   listener: { singular: "Auditeur", plural: "Auditeurs" },
 } as const;
 
+export type RoleKey = keyof typeof ROLE_LABELS;
+
 // ── Categories (officially registered) ──
 
 export const CONTENT_CATEGORIES = {
