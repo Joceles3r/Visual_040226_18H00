@@ -31,20 +31,21 @@ export async function GET(req: NextRequest) {
   if (isDatabaseConfigured()) {
     try {
       const rows = await sql`
-        SELECT id, project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+        SELECT id, project_id, user_id, is_active, purchased_at, activated_at, expires_at, stripe_payment_id
         FROM ticket_gold
         WHERE project_id = ${projectId} AND user_id = ${userId}
         ORDER BY purchased_at DESC
       `;
-      existingTickets = rows.map((row: any) => ({
-        id: row.id,
-        projectId: row.project_id,
-        userId: row.user_id,
-        status: row.status,
-        purchasedAt: new Date(row.purchased_at),
-        activatedAt: row.activated_at ? new Date(row.activated_at) : undefined,
-        expiresAt: row.expires_at ? new Date(row.expires_at) : undefined,
-        stripeSessionId: row.stripe_session_id,
+      existingTickets = rows.map((row: Record<string, unknown>) => ({
+        id: row.id as string,
+        projectId: row.project_id as string,
+        userId: row.user_id as string,
+        status: (row.is_active as boolean) ? "active" : "expired",
+        isActive: row.is_active as boolean,
+        purchasedAt: new Date(row.purchased_at as string),
+        activatedAt: row.activated_at ? new Date(row.activated_at as string) : undefined,
+        expiresAt: row.expires_at ? new Date(row.expires_at as string) : undefined,
+        stripePaymentId: row.stripe_payment_id as string | undefined,
       }));
     } catch (err) {
       console.error("[Ticket Gold] Erreur DB:", err);
@@ -94,20 +95,21 @@ export async function POST(req: NextRequest) {
     if (isDatabaseConfigured()) {
       try {
         const rows = await sql`
-          SELECT id, project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+          SELECT id, project_id, user_id, is_active, purchased_at, activated_at, expires_at, stripe_payment_id
           FROM ticket_gold
           WHERE project_id = ${projectId} AND user_id = ${userId}
           ORDER BY purchased_at DESC
         `;
-        existingTickets = rows.map((row: any) => ({
-          id: row.id,
-          projectId: row.project_id,
-          userId: row.user_id,
-          status: row.status,
-          purchasedAt: new Date(row.purchased_at),
-          activatedAt: row.activated_at ? new Date(row.activated_at) : undefined,
-          expiresAt: row.expires_at ? new Date(row.expires_at) : undefined,
-          stripeSessionId: row.stripe_session_id,
+        existingTickets = rows.map((row: Record<string, unknown>) => ({
+          id: row.id as string,
+          projectId: row.project_id as string,
+          userId: row.user_id as string,
+          status: (row.is_active as boolean) ? "active" : "expired",
+          isActive: row.is_active as boolean,
+          purchasedAt: new Date(row.purchased_at as string),
+          activatedAt: row.activated_at ? new Date(row.activated_at as string) : undefined,
+          expiresAt: row.expires_at ? new Date(row.expires_at as string) : undefined,
+          stripePaymentId: row.stripe_payment_id as string | undefined,
         }));
       } catch (err) {
         console.error("[Ticket Gold] Erreur DB lors de POST:", err);

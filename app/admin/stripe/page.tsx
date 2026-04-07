@@ -187,6 +187,15 @@ export default function StripeConfigPage() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [toggling, setToggling] = useState(false)
+  const [testingHealth, setTestingHealth] = useState(false)
+  const [healthResult, setHealthResult] = useState<{
+    ok: boolean;
+    source: string;
+    mode: string;
+    can_process_payments: boolean;
+    warnings: string[];
+    errors: string[];
+  } | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [activeSection, setActiveSection] = useState<"test" | "live">("test")
 
@@ -279,6 +288,25 @@ export default function StripeConfigPage() {
       setMessage({ type: "error", text: "Erreur réseau." })
     } finally {
       setSaving(false)
+    }
+  }
+
+  const handleTestHealth = async () => {
+    setTestingHealth(true)
+    setHealthResult(null)
+    try {
+      const res = await fetch("/api/admin/stripe-health")
+      const data = await res.json()
+      setHealthResult(data)
+      if (data.ok) {
+        setMessage({ type: "success", text: "Connexion Stripe OK - Pret pour les paiements" })
+      } else if (data.errors?.length > 0) {
+        setMessage({ type: "error", text: data.errors[0] })
+      }
+    } catch {
+      setMessage({ type: "error", text: "Impossible de tester la connexion Stripe" })
+    } finally {
+      setTestingHealth(false)
     }
   }
 
@@ -433,6 +461,22 @@ export default function StripeConfigPage() {
         </CardContent>
       </Card>
 
+      {/* ── Banniere critique si mode memoire ────────────────────────────────── */}
+      {config?.source === "memory" && (
+        <div className="p-4 rounded-xl bg-red-950/50 border-2 border-red-500/50 space-y-2">
+          <div className="flex items-center gap-2 text-red-400">
+            <AlertTriangle className="h-5 w-5" />
+            <span className="font-bold">Configuration Stripe temporaire en memoire seulement</span>
+          </div>
+          <p className="text-red-300/80 text-sm">
+            Elle sera perdue au redemarrage du serveur. Les vrais tests Stripe durables exigent une base de donnees configuree.
+          </p>
+          <p className="text-red-400/60 text-xs font-mono">
+            Tests Stripe serieux interdits tant que source !== database
+          </p>
+        </div>
+      )}
+
       {/* ── Indicateur de source de stockage ────────────────────────────────── */}
       {config?.source && (
         <div className={`flex items-center gap-3 p-4 rounded-lg border ${
@@ -463,6 +507,33 @@ export default function StripeConfigPage() {
           )}
         </div>
       )}
+
+      {/* ── Bouton Test Connexion Stripe ────────────────────────────────────── */}
+      <div className="flex items-center gap-4">
+        <Button
+          onClick={handleTestHealth}
+          disabled={testingHealth}
+          variant="outline"
+          className="border-white/20 hover:bg-white/5"
+        >
+          {testingHealth ? (
+            <>
+              <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+              Test en cours...
+            </>
+          ) : (
+            <>
+              <Zap className="h-4 w-4 mr-2" />
+              Tester la connexion Stripe
+            </>
+          )}
+        </Button>
+        {healthResult && (
+          <span className={`text-sm ${healthResult.ok ? "text-emerald-400" : "text-rose-400"}`}>
+            {healthResult.ok ? "Pret pour les paiements" : "Configuration incomplete"}
+          </span>
+        )}
+      </div>
 
       {/* ── Statut des clés ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

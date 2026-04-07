@@ -274,17 +274,17 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
       const now = new Date();
       const expiresAt = new Date(now.getTime() + 48 * 60 * 60 * 1000); // 48 hours
       
-      // Insert or update ticket_gold record
+      // Insert ticket_gold record - aligned with migration 025 schema
+      // Schema uses: is_active, stripe_payment_id (not status, stripe_session_id)
+      const ticketId = `tg_${projectId}_${Date.now()}`;
       await sql`
         INSERT INTO ticket_gold (
-          project_id, user_id, status, purchased_at, activated_at, expires_at, stripe_session_id
+          id, project_id, user_id, purchased_at, activated_at, expires_at, 
+          is_active, boost_multiplier, stripe_payment_id
         ) VALUES (
-          ${projectId}, ${userId}, 'active', NOW(), NOW(), ${expiresAt.toISOString()}, ${session.id}
+          ${ticketId}, ${projectId}, ${userId}, NOW(), NOW(), ${expiresAt.toISOString()}, 
+          TRUE, 0.50, ${session.payment_intent || session.id}
         )
-        ON CONFLICT (project_id, user_id, stripe_session_id) DO UPDATE SET
-          status = 'active',
-          activated_at = NOW(),
-          expires_at = ${expiresAt.toISOString()}
       `;
       
       // Update project visibility boost
