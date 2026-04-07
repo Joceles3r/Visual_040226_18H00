@@ -18,7 +18,7 @@ import {
 import { SecurityGate } from "@/components/security/security-gate"
 import { VerificationBadges } from "@/components/security/verification-badges"
 import { useSounds } from "@/lib/sounds"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 

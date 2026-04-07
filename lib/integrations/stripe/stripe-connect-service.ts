@@ -1,6 +1,6 @@
 import "server-only";
 import Stripe from "stripe";
-import { getStripeSafe, isStripeConfigured, logStripeEvent, stripe } from "@/lib/stripe";
+import { getStripeClient, isStripeConfiguredAsync, logStripeEvent } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { 
   STRIPE_CONNECT_CONFIG, 
@@ -9,7 +9,7 @@ import {
 } from "../config";
 
 // Re-export for convenience
-export { getStripeSafe, isStripeConfigured, logStripeEvent, stripe };
+export { getStripeClient, isStripeConfiguredAsync, logStripeEvent };
 
 /**
  * VIXUAL Platform - Stripe Connect Service
@@ -75,6 +75,7 @@ class StripeConnectService {
     logStripeEvent("Creating Connect account", { userId, email, country, type });
     
     try {
+      const stripe = await getStripeClient();
       // Create Stripe Connect account
       const account = await stripe.accounts.create({
         type,
@@ -137,6 +138,7 @@ class StripeConnectService {
    * Get account status and requirements
    */
   async getAccountStatus(accountId: string): Promise<AccountStatus> {
+    const stripe = await getStripeClient();
     const account = await stripe.accounts.retrieve(accountId);
     
     let status: StripeConnectAccountStatus = "none";
@@ -168,6 +170,7 @@ class StripeConnectService {
    * Generate dashboard login link for creator
    */
   async createDashboardLink(accountId: string): Promise<string> {
+    const stripe = await getStripeClient();
     const loginLink = await stripe.accounts.createLoginLink(accountId);
     return loginLink.url;
   }
@@ -176,6 +179,7 @@ class StripeConnectService {
    * Refresh onboarding link (if expired)
    */
   async refreshOnboardingLink(accountId: string): Promise<string> {
+    const stripe = await getStripeClient();
     const accountLink = await stripe.accountLinks.create({
       account: accountId,
       refresh_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/wallet?stripe_refresh=true`,
@@ -192,6 +196,7 @@ class StripeConnectService {
    */
   async createPaymentIntent(params: PaymentIntentParams): Promise<Stripe.PaymentIntent> {
     const { amount, userId, contentId, contentTitle, creatorAccountId, metadata = {} } = params;
+    const stripe = await getStripeClient();
     
     const amountCents = Math.round(amount * 100);
     const fees = calculateStripeFees(amountCents);
@@ -234,6 +239,7 @@ class StripeConnectService {
    * Confirm payment intent
    */
   async confirmPaymentIntent(paymentIntentId: string, paymentMethodId: string): Promise<Stripe.PaymentIntent> {
+    const stripe = await getStripeClient();
     return stripe.paymentIntents.confirm(paymentIntentId, {
       payment_method: paymentMethodId,
     });
@@ -246,6 +252,7 @@ class StripeConnectService {
    */
   async createPayout(params: PayoutParams): Promise<Stripe.Transfer> {
     const { userId, accountId, amount, category, cycleId } = params;
+    const stripe = await getStripeClient();
     
     // Verify account can receive payouts
     const status = await this.getAccountStatus(accountId);
@@ -319,6 +326,7 @@ class StripeConnectService {
    * Create a refund for a payment
    */
   async createRefund(paymentIntentId: string, reason?: string): Promise<Stripe.Refund> {
+    const stripe = await getStripeClient();
     const refund = await stripe.refunds.create({
       payment_intent: paymentIntentId,
       reason: "requested_by_customer",
@@ -355,6 +363,7 @@ class StripeConnectService {
    * Get balance for a Connect account
    */
   async getAccountBalance(accountId: string): Promise<Stripe.Balance> {
+    const stripe = await getStripeClient();
     return stripe.balance.retrieve({
       stripeAccount: accountId,
     });
@@ -364,6 +373,7 @@ class StripeConnectService {
    * List recent transfers to an account
    */
   async listTransfers(accountId: string, limit = 10): Promise<Stripe.Transfer[]> {
+    const stripe = await getStripeClient();
     const transfers = await stripe.transfers.list({
       destination: accountId,
       limit,

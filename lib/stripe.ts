@@ -78,13 +78,29 @@ export function getStripeSafe(): Stripe {
 }
 
 /**
- * Check if Stripe is configured
+ * Check if Stripe is configured (sync - uses env vars)
  */
 export function isStripeConfigured(): boolean {
   return _stripeSync !== null;
 }
 
-// ── Webhook secret ────────────────────────────────────────────────────────────
+/**
+ * Check if Stripe is configured (async - uses DB config)
+ */
+export async function isStripeConfiguredAsync(): Promise<boolean> {
+  const config = await getStripeConfig();
+  return !!config.secretKey;
+}
+
+/**
+ * Get webhook secret (async - from DB config)
+ */
+export async function getWebhookSecret(): Promise<string> {
+  const config = await getStripeConfig();
+  return config.webhookSecret;
+}
+
+// ── Webhook secret (sync fallback) ────────────────────────────────────────────
 
 export const STRIPE_WEBHOOK_SECRET =
   process.env.STRIPE_TEST_WEBHOOK_SECRET ||

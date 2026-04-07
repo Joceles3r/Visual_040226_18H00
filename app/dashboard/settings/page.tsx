@@ -49,7 +49,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useAuth } from "@/lib/auth-context"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 import { CAUTION_EUR } from "@/lib/payout/constants"
 
 const ROLE_UPGRADES = [

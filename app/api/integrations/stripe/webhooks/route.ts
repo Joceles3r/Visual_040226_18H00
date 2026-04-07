@@ -1,33 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { getStripeSafe, isStripeConfigured, STRIPE_WEBHOOK_SECRET, logStripeEvent } from "@/lib/stripe";
+import { getStripeClient, isStripeConfiguredAsync, getWebhookSecret, logStripeEvent } from "@/lib/stripe";
 import { sql } from "@/lib/db";
 import { stripeConnectService } from "@/lib/integrations/stripe/stripe-connect-service";
 
 /**
  * POST /api/integrations/stripe/webhooks
  * Handle Stripe Connect webhooks with idempotency
+ * Uses async DB-based Stripe configuration
  */
 export async function POST(req: NextRequest) {
-  // Fail-fast if Stripe is not configured
-  if (!isStripeConfigured()) {
+  // Fail-fast if Stripe is not configured (async check)
+  const isConfigured = await isStripeConfiguredAsync();
+  if (!isConfigured) {
     console.error("[Stripe Webhook] Stripe is not configured");
     return NextResponse.json({ error: "Stripe not configured" }, { status: 503 });
   }
   
   const body = await req.text();
   const signature = req.headers.get("stripe-signature");
+  const webhookSecret = await getWebhookSecret();
   
-  if (!signature || !STRIPE_WEBHOOK_SECRET) {
+  if (!signature || !webhookSecret) {
     console.error("[Stripe Webhook] Missing signature or webhook secret");
-    return NextResponse.json({ error: "Missing signature" }, { status: 400 });
+    return NextResponse.json({ error: "Missing signature or secret" }, { status: 400 });
   }
   
   let event: Stripe.Event;
-  const stripe = getStripeSafe();
+  const stripe = await getStripeClient();
   
   try {
-    event = stripe.webhooks.constructEvent(body, signature, STRIPE_WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err) {
     console.error("[Stripe Webhook] Signature verification failed:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });

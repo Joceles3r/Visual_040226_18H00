@@ -33,7 +33,7 @@ import { Progress } from "@/components/ui/progress"
 import { VisualHeader } from "@/components/visual-header"
 import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 import { VIDEO_CATEGORIES } from "@/lib/mock-data"
 import { CAUTION_EUR } from "@/lib/payout/constants"
 

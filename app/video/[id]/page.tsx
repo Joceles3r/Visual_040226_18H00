@@ -22,7 +22,7 @@ import { Footer } from "@/components/footer"
 import VisualSocialFeed from "@/components/visual-social-feed"
 import { ALL_CONTENTS, isGoldCreator } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
 import type { ContentType } from "@/lib/visual-social/hybrid"
 
