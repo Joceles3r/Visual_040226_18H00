@@ -25,6 +25,8 @@ import {
   Copy,
   Webhook,
   Building2,
+  Database,
+  HardDrive,
 } from "lucide-react"
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -45,6 +47,7 @@ interface StripeConfigState {
   has_live_secret?: boolean
   has_test_webhook?: boolean
   has_live_webhook?: boolean
+  source?: "database" | "memory"
 }
 
 interface FormData {
@@ -429,6 +432,37 @@ export default function StripeConfigPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* ── Indicateur de source de stockage ────────────────────────────────── */}
+      {config?.source && (
+        <div className={`flex items-center gap-3 p-4 rounded-lg border ${
+          config.source === "database"
+            ? "bg-emerald-500/5 border-emerald-500/20"
+            : "bg-amber-500/10 border-amber-500/30"
+        }`}>
+          {config.source === "database" ? (
+            <>
+              <Database className="h-5 w-5 text-emerald-400" />
+              <div>
+                <span className="text-emerald-400 font-medium">Stockage Database</span>
+                <p className="text-emerald-400/60 text-xs">Configuration sauvegardee en base de donnees (persistante)</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <HardDrive className="h-5 w-5 text-amber-400" />
+              <div className="flex-1">
+                <span className="text-amber-400 font-medium">Mode Memoire Volatile</span>
+                <p className="text-amber-400/60 text-xs">Configuration temporaire - sera perdue au redemarrage serveur</p>
+              </div>
+              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
+                <AlertTriangle className="h-3 w-3 mr-1" />
+                Action requise
+              </Badge>
+            </>
+          )}
+        </div>
+      )}
 
       {/* ── Statut des clés ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

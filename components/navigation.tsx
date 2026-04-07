@@ -77,7 +77,7 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
     { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
     { label: "Tout Explorer", href: "/explore", icon: Compass },
-    { label: "Ticket Gold", href: "/gold-pass", icon: Rocket },
+    { label: "Ticket Gold", href: "/ticket-gold", icon: Rocket },
     { label: "Soutien Libre", href: "/soutien-libre", icon: Heart },
   ],
 }

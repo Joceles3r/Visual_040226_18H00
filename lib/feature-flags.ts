@@ -23,7 +23,7 @@ export type FeatureFlag =
   | "hubSpoke"
   | "promoEmail"
   | "trustScore"
-  | "goldPass"
+  | "ticketGold"
   | "minorProtection"
 
 export type FeatureVersion = "V1" | "V2" | "V3"
@@ -54,10 +54,10 @@ export const FEATURES: Record<FeatureFlag, FeatureConfig> = {
     version: "V1",
     description: "Score de confiance utilisateur",
   },
-  goldPass: {
+  ticketGold: {
     enabled: true,
     version: "V1",
-    description: "Accès Gold Pass pour contenus premium",
+    description: "Ticket Gold - boost visibilite temporaire 48h",
   },
   minorProtection: {
     enabled: true,

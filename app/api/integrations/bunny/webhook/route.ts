@@ -1,11 +1,43 @@
 import { NextResponse } from "next/server"
 import { sql } from "@/lib/db"
 import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors"
+import { createHmac } from "crypto"
+
+/**
+ * Verify Bunny.net webhook signature
+ * Bunny uses HMAC-SHA256 with the webhook secret
+ */
+function verifyBunnyWebhookSignature(
+  signature: string,
+  rawBody: string,
+  secret: string
+): boolean {
+  try {
+    const expectedSignature = createHmac("sha256", secret)
+      .update(rawBody)
+      .digest("hex")
+    
+    // Constant-time comparison to prevent timing attacks
+    if (signature.length !== expectedSignature.length) {
+      return false
+    }
+    
+    let result = 0
+    for (let i = 0; i < signature.length; i++) {
+      result |= signature.charCodeAt(i) ^ expectedSignature.charCodeAt(i)
+    }
+    
+    return result === 0
+  } catch (error) {
+    console.error("[BUNNY WEBHOOK] Signature verification error:", error)
+    return false
+  }
+}
 
 /**
  * POST /api/integrations/bunny/webhook
  *
- * Reçoit les notifications de Bunny.com concernant le statut de transcodage des vidéos.
+ * Recoit les notifications de Bunny.net concernant le statut de transcodage des videos.
  * 
  * Statuts Bunny:
  * - 0: Created
@@ -16,20 +48,47 @@ import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors"
  * - 5: Error
  */
 export const POST = withErrorHandler(async (req: Request) => {
-  const body = await req.json()
+  // Read raw body for signature verification
+  const rawBody = await req.text()
+  let body: Record<string, unknown>
   
-  // Vérifier la signature du webhook (optionnel mais recommandé)
+  try {
+    body = JSON.parse(rawBody)
+  } catch {
+    console.error("[BUNNY WEBHOOK] Invalid JSON body")
+    return apiError(ErrorCodes.ERR_INVALID_BODY, "Invalid JSON body", 400)
+  }
+  
+  // Verify webhook signature (required in production)
   const webhookSecret = process.env.BUNNY_WEBHOOK_SECRET
+  const isProduction = process.env.NODE_ENV === "production"
+  
   if (webhookSecret) {
-    const signature = req.headers.get("x-bunny-signature")
+    const signature = req.headers.get("x-bunny-signature") || req.headers.get("x-signature")
+    
     if (!signature) {
-      return apiError(ErrorCodes.ERR_INVALID_SIGNATURE, "Missing webhook signature", 403)
+      console.warn("[BUNNY WEBHOOK] Missing signature header")
+      if (isProduction) {
+        return apiError(ErrorCodes.ERR_INVALID_SIGNATURE, "Missing webhook signature", 403)
+      }
+      // Allow in dev without signature but log warning
+      console.warn("[BUNNY WEBHOOK] DEV MODE: Allowing request without signature")
+    } else {
+      const isValid = verifyBunnyWebhookSignature(signature, rawBody, webhookSecret)
+      
+      if (!isValid) {
+        console.error("[BUNNY WEBHOOK] Invalid signature detected - possible spoofing attempt")
+        return apiError(ErrorCodes.ERR_INVALID_SIGNATURE, "Invalid webhook signature", 403)
+      }
+      
+      console.log("[BUNNY WEBHOOK] Signature verified successfully")
     }
-    // TODO: Implémenter la vérification de signature selon la documentation Bunny
-    // const isValid = verifyBunnyWebhookSignature(signature, body, webhookSecret)
-    // if (!isValid) {
-    //   return apiError(ErrorCodes.ERR_INVALID_SIGNATURE, "Invalid webhook signature", 403)
-    // }
+  } else if (isProduction) {
+    console.error("[BUNNY WEBHOOK] CRITICAL: No BUNNY_WEBHOOK_SECRET configured in production!")
+    // In production without secret, reject all webhooks for security
+    return apiError(ErrorCodes.ERR_SERVER_ERROR, "Webhook not configured", 500)
+  } else {
+    console.warn("[BUNNY WEBHOOK] DEV MODE: No webhook secret configured - accepting all requests")
   }
   
   const { VideoGuid, Status, Length, Width, Height, ErrorMessage } = body

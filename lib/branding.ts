@@ -38,7 +38,7 @@ export const OFFICIAL_URLS = {
 export const VERSION_INFO = {
   current: "V1",
   features: {
-    V1: ["referralSystem", "promoEmail", "trustScore", "goldPass", "minorProtection", "watermark"],
+    V1: ["referralSystem", "promoEmail", "trustScore", "ticketGold", "minorProtection", "watermark"],
     V2: ["vixupoints", "hybridPayment", "youtubeAuto", "hubSpoke"],
     V3: ["socialFeatures", "aiModeration"],
   },

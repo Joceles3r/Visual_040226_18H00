@@ -207,15 +207,6 @@ export async function POST(req: NextRequest) {
 
   // Update memory cache - ignorer les placeholders masques pour les cles secretes
   const now = new Date().toISOString();
-  console.log("[Admin/StripeConfig] Processing POST body:", {
-    hasTestSecret: !!body.test_secret_key && !isMaskedPlaceholder(body.test_secret_key),
-    hasTestWebhook: !!body.test_webhook_secret && !isMaskedPlaceholder(body.test_webhook_secret),
-    hasLiveSecret: !!body.live_secret_key && !isMaskedPlaceholder(body.live_secret_key),
-    hasLiveWebhook: !!body.live_webhook_secret && !isMaskedPlaceholder(body.live_webhook_secret),
-    hasTestPublishable: !!body.test_publishable_key,
-    hasLivePublishable: !!body.live_publishable_key,
-    activeMode: body.active_mode,
-  });
   
   // Cles secretes: ne mettre a jour que si vraie nouvelle valeur
   if (shouldUpdateSecretField(body.test_secret_key)) memoryCache.test_secret_key = body.test_secret_key;
@@ -263,24 +254,11 @@ export async function POST(req: NextRequest) {
       if (body.connect_client_id !== undefined)
         updates.connect_client_id = body.connect_client_id || null;
 
-      // Log pour debug
-      console.log("[Admin/StripeConfig] Saving to DB with updates:", {
-        hasTestSecret: !!updates.test_secret_key,
-        hasTestPublishable: !!updates.test_publishable_key,
-        hasTestWebhook: !!updates.test_webhook_secret,
-        hasLiveSecret: !!updates.live_secret_key,
-        hasLivePublishable: !!updates.live_publishable_key,
-        hasLiveWebhook: !!updates.live_webhook_secret,
-        activeMode: updates.active_mode,
-      });
-
       // Verifier si la row existe
       const existingRows = await sql`SELECT * FROM stripe_config WHERE id = 1`;
-      console.log("[Admin/StripeConfig] Existing row:", existingRows.length > 0 ? "found" : "not found");
       
       if (existingRows.length === 0) {
         // INSERT - premiere creation
-        console.log("[Admin/StripeConfig] Creating new row...");
         await sql`
           INSERT INTO stripe_config (id, test_secret_key, test_publishable_key, test_webhook_secret, live_secret_key, live_publishable_key, live_webhook_secret, active_mode, connect_client_id, updated_by, updated_at)
           VALUES (1, ${updates.test_secret_key || null}, ${updates.test_publishable_key || null}, ${updates.test_webhook_secret || null}, ${updates.live_secret_key || null}, ${updates.live_publishable_key || null}, ${updates.live_webhook_secret || null}, ${updates.active_mode || 'test'}, ${updates.connect_client_id || null}, ${updates.updated_by}, ${updates.updated_at})
