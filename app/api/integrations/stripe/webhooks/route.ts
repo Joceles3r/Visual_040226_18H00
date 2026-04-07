@@ -36,20 +36,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
   
-  // Check for duplicate event (idempotency)
+  // Check for duplicate event (idempotency) - use stripe_events_log table
   const existingEvent = await sql`
-    SELECT id FROM webhook_events WHERE event_id = ${event.id}
+    SELECT id, processing_status FROM stripe_events_log WHERE id = ${event.id}
   `;
   
   if (existingEvent.length > 0) {
-    logStripeEvent("Duplicate webhook ignored", { eventId: event.id, type: event.type });
+    logStripeEvent("Duplicate webhook ignored", { 
+      eventId: event.id, 
+      type: event.type,
+      previousStatus: existingEvent[0].processing_status
+    });
     return NextResponse.json({ received: true, duplicate: true });
   }
   
   // Record event before processing (for idempotency)
   await sql`
-    INSERT INTO webhook_events (event_id, event_type, payload)
-    VALUES (${event.id}, ${event.type}, ${JSON.stringify(event.data)})
+    INSERT INTO stripe_events_log (id, event_type, livemode, payload, processing_status)
+    VALUES (${event.id}, ${event.type}, ${event.livemode}, ${JSON.stringify(event.data)}, 'processing')
   `;
   
   try {
@@ -95,22 +99,22 @@ export async function POST(req: NextRequest) {
         logStripeEvent("Unhandled webhook event", { type: event.type });
     }
     
-    // Mark event as processed
+    // Mark event as processed successfully
     await sql`
-      UPDATE webhook_events 
-      SET processed_at = NOW() 
-      WHERE event_id = ${event.id}
+      UPDATE stripe_events_log 
+      SET processing_status = 'processed', processed_at = NOW() 
+      WHERE id = ${event.id}
     `;
     
     return NextResponse.json({ received: true });
     
   } catch (error) {
-    // Record error but don't fail (Stripe will retry)
+    // Record error but return 200 (Stripe will retry on 5xx)
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     await sql`
-      UPDATE webhook_events 
-      SET error = ${errorMessage}
-      WHERE event_id = ${event.id}
+      UPDATE stripe_events_log 
+      SET processing_status = 'failed', error_message = ${errorMessage}
+      WHERE id = ${event.id}
     `;
     
     console.error("[Stripe Webhook] Processing error:", error);

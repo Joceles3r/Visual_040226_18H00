@@ -252,6 +252,146 @@ export function isValidStripeKey(
   }
 }
 
+/**
+ * Validation format des cles Stripe avec type specifique
+ * Conforme au patch technique Stripe VIXUAL
+ */
+export function validateStripeKeyFormat(
+  input: string,
+  type: "pk" | "sk" | "whsec"
+): { valid: boolean; error?: string } {
+  if (!input) return { valid: false, error: "Cle manquante" };
+  
+  if (type === "pk") {
+    const isValid = /^pk_(test|live)_[A-Za-z0-9]+$/.test(input);
+    if (!isValid) return { valid: false, error: "Format invalide: doit commencer par pk_test_ ou pk_live_" };
+    return { valid: true };
+  }
+  
+  if (type === "sk") {
+    const isValid = /^sk_(test|live)_[A-Za-z0-9]+$/.test(input);
+    if (!isValid) return { valid: false, error: "Format invalide: doit commencer par sk_test_ ou sk_live_" };
+    return { valid: true };
+  }
+  
+  if (type === "whsec") {
+    const isValid = /^whsec_[A-Za-z0-9]+$/.test(input);
+    if (!isValid) return { valid: false, error: "Format invalide: doit commencer par whsec_" };
+    return { valid: true };
+  }
+  
+  return { valid: false, error: "Type de cle inconnu" };
+}
+
+/**
+ * Detecter si le mode de la cle correspond au mode configure
+ */
+export function detectKeyMode(key: string): "test" | "live" | "unknown" {
+  if (key.includes("_test_")) return "test";
+  if (key.includes("_live_")) return "live";
+  return "unknown";
+}
+
+/**
+ * Verifier la coherence mode/cle
+ */
+export function validateKeyModeCoherence(
+  key: string,
+  expectedMode: StripeMode
+): { coherent: boolean; warning?: string } {
+  const keyMode = detectKeyMode(key);
+  if (keyMode === "unknown") {
+    return { coherent: true }; // webhook secrets n'ont pas de mode
+  }
+  if (keyMode !== expectedMode) {
+    return {
+      coherent: false,
+      warning: `Cle en mode ${keyMode} mais configuration en mode ${expectedMode}`,
+    };
+  }
+  return { coherent: true };
+}
+
+// ── Interface pour AdminStripeSettings (lecture DB brute) ────────────────────
+
+export interface AdminStripeSettings {
+  stripe_mode: StripeMode;
+  stripe_publishable_key_test?: string;
+  stripe_secret_key_test?: string;
+  stripe_webhook_secret_test?: string;
+  stripe_publishable_key_live?: string;
+  stripe_secret_key_live?: string;
+  stripe_webhook_secret_live?: string;
+  stripe_connect_client_id?: string;
+}
+
+/**
+ * Resoudre la configuration Stripe active selon le mode
+ * C'est LA fonction centrale pour obtenir les cles selon le mode actif
+ */
+export function resolveStripeRuntimeConfig(settings: AdminStripeSettings): StripeRuntimeConfig {
+  const mode = settings.stripe_mode === "live" ? "live" : "test";
+
+  if (mode === "live") {
+    return {
+      mode,
+      publishableKey: settings.stripe_publishable_key_live || process.env.STRIPE_PUBLISHABLE_KEY_LIVE || "",
+      secretKey: settings.stripe_secret_key_live || process.env.STRIPE_SECRET_KEY_LIVE || "",
+      webhookSecret: settings.stripe_webhook_secret_live || process.env.STRIPE_WEBHOOK_SECRET_LIVE || "",
+      connectClientId: settings.stripe_connect_client_id || process.env.STRIPE_CONNECT_CLIENT_ID || "",
+      source: "database",
+    };
+  }
+
+  return {
+    mode,
+    publishableKey: settings.stripe_publishable_key_test || process.env.STRIPE_PUBLISHABLE_KEY_TEST || "",
+    secretKey: settings.stripe_secret_key_test || process.env.STRIPE_SECRET_KEY_TEST || "",
+    webhookSecret: settings.stripe_webhook_secret_test || process.env.STRIPE_WEBHOOK_SECRET_TEST || "",
+    connectClientId: settings.stripe_connect_client_id || process.env.STRIPE_CONNECT_CLIENT_ID || "",
+    source: "database",
+  };
+}
+
+/**
+ * Charger les settings admin depuis la DB (format brut)
+ */
+export async function loadAdminStripeSettings(): Promise<AdminStripeSettings | null> {
+  try {
+    const sql = neon(process.env.DATABASE_URL!);
+    const rows = await sql`
+      SELECT
+        active_mode as stripe_mode,
+        test_publishable_key as stripe_publishable_key_test,
+        test_secret_key as stripe_secret_key_test,
+        test_webhook_secret as stripe_webhook_secret_test,
+        live_publishable_key as stripe_publishable_key_live,
+        live_secret_key as stripe_secret_key_live,
+        live_webhook_secret as stripe_webhook_secret_live,
+        connect_client_id as stripe_connect_client_id
+      FROM stripe_config
+      WHERE id = 1
+      LIMIT 1
+    `;
+
+    if (rows.length === 0) return null;
+
+    const row = rows[0];
+    return {
+      stripe_mode: (row.stripe_mode as StripeMode) || "test",
+      stripe_publishable_key_test: row.stripe_publishable_key_test as string || undefined,
+      stripe_secret_key_test: decryptValue(row.stripe_secret_key_test as string || ""),
+      stripe_webhook_secret_test: decryptValue(row.stripe_webhook_secret_test as string || ""),
+      stripe_publishable_key_live: row.stripe_publishable_key_live as string || undefined,
+      stripe_secret_key_live: decryptValue(row.stripe_secret_key_live as string || ""),
+      stripe_webhook_secret_live: decryptValue(row.stripe_webhook_secret_live as string || ""),
+      stripe_connect_client_id: row.stripe_connect_client_id as string || undefined,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /** Verifier si une valeur doit etre mise a jour (non vide et non placeholder) */
 export function shouldUpdateSecretField(
   newValue: string | undefined | null

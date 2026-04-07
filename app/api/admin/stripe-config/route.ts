@@ -19,6 +19,7 @@ import {
   shouldUpdateSecretField 
 } from "@/lib/stripe-config";
 import { PATRON_EMAIL } from "@/lib/admin/roles";
+import { logStripeSettingsUpdate } from "@/lib/admin/audit";
 
 // ── In-memory fallback cache (when DB is not available) ──
 let memoryCache: {
@@ -311,6 +312,19 @@ export async function POST(req: NextRequest) {
   // Invalidate the in-memory cache so next request picks up new keys
   invalidateStripeConfigCache();
 
+  // Log audit event
+  const keysUpdated: string[] = [];
+  if (shouldUpdateSecretField(body.test_secret_key)) keysUpdated.push("test_secret_key");
+  if (shouldUpdateSecretField(body.test_webhook_secret)) keysUpdated.push("test_webhook_secret");
+  if (shouldUpdateSecretField(body.live_secret_key)) keysUpdated.push("live_secret_key");
+  if (shouldUpdateSecretField(body.live_webhook_secret)) keysUpdated.push("live_webhook_secret");
+  if (body.test_publishable_key) keysUpdated.push("test_publishable_key");
+  if (body.live_publishable_key) keysUpdated.push("live_publishable_key");
+  
+  if (keysUpdated.length > 0) {
+    logStripeSettingsUpdate(email, email, { keysUpdated }).catch(() => {});
+  }
+
   return NextResponse.json({
     success: true,
     message: savedToDb 
@@ -356,6 +370,12 @@ export async function PATCH(req: NextRequest) {
         WHERE id = 1
       `;
       savedToDb = true;
+      
+      // Log mode change audit event
+      logStripeSettingsUpdate(body.email, body.email, {
+        modeChanged: true,
+        newMode: body.mode,
+      }).catch(() => {});
     } catch (err) {
       console.error("[Admin/StripeConfig] PATCH DB error:", err);
     }
