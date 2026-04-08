@@ -3,6 +3,7 @@ import { sql } from "@/lib/db";
 import { getStripeConfig } from "@/lib/stripe-config";
 import { STRIPE_CANONICAL_WEBHOOK_PATH, validateModeKeyConsistency } from "@/lib/integrations/stripe/constants";
 import { runtimeFlags, isProduction } from "@/lib/runtime-flags";
+import Stripe from "stripe";
 
 /**
  * GET /api/admin/stripe-health
@@ -32,6 +33,9 @@ export async function GET() {
     can_process_payments: boolean;
     can_receive_webhooks: boolean;
     mode_key_consistent: boolean;
+    stripe_connected: boolean;
+    stripe_account_id?: string;
+    stripe_test_result?: string;
   } = {
     ok: false,
     source: "error",
@@ -47,6 +51,7 @@ export async function GET() {
     can_process_payments: false,
     can_receive_webhooks: false,
     mode_key_consistent: false,
+    stripe_connected: false,
   };
 
   try {
@@ -113,11 +118,45 @@ export async function GET() {
     health.can_process_payments = health.has_secret_key && health.mode_key_consistent;
     health.can_receive_webhooks = health.has_webhook_secret;
 
-    // Verdict final
+    // TEST REEL DE CONNEXION STRIPE
+    // Faire un appel API reel pour verifier que les cles fonctionnent
+    if (config.secretKey) {
+      try {
+        const testStripe = new Stripe(config.secretKey, {
+          apiVersion: "2025-04-30.basil",
+          typescript: true,
+        });
+        
+        // Appel leger: recuperer le solde du compte (lecture seule)
+        const balance = await testStripe.balance.retrieve();
+        
+        health.stripe_connected = true;
+        health.stripe_test_result = `Connexion OK - Balance disponible: ${balance.available.length} devise(s)`;
+        
+        // Optionnel: recuperer l'ID du compte
+        try {
+          const account = await testStripe.accounts.retrieve("self");
+          health.stripe_account_id = account.id;
+        } catch {
+          // Pas grave si ca echoue, c'est juste pour info
+        }
+        
+      } catch (stripeError) {
+        health.stripe_connected = false;
+        const errorMessage = stripeError instanceof Error ? stripeError.message : "Erreur inconnue";
+        health.stripe_test_result = `Echec connexion: ${errorMessage}`;
+        health.errors.push(`Connexion Stripe echouee: ${errorMessage}`);
+      }
+    } else {
+      health.stripe_test_result = "Aucune cle secrete configuree - test impossible";
+    }
+
+    // Verdict final - maintenant inclut le test de connexion reel
     health.ok = 
       health.errors.length === 0 && 
       health.source === "database" &&
-      health.can_process_payments;
+      health.can_process_payments &&
+      health.stripe_connected;
 
     // Warnings supplementaires
     if (health.mode === "live" && health.source === "memory") {

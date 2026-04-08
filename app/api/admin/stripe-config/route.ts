@@ -108,23 +108,10 @@ export async function GET(req: NextRequest) {
 
       if (rows.length > 0) {
         const row = rows[0];
-        // Debug: log raw DB values lengths for troubleshooting
-        console.log("[v0] stripe_config row found:", {
-          test_secret_key_len: (row.test_secret_key as string || "").length,
-          test_webhook_secret_len: (row.test_webhook_secret as string || "").length,
-          test_publishable_key: row.test_publishable_key ? "present" : "missing",
-        });
-        
         const testSecretRaw = decryptValue(row.test_secret_key as string || "");
         const liveSecretRaw = decryptValue(row.live_secret_key as string || "");
         const testWebhookRaw = decryptValue(row.test_webhook_secret as string || "");
         const liveWebhookRaw = decryptValue(row.live_webhook_secret as string || "");
-        
-        // Debug: log decrypted values presence
-        console.log("[v0] decrypted values:", {
-          testSecretRaw_valid: testSecretRaw.startsWith("sk_test_"),
-          testWebhookRaw_valid: testWebhookRaw.startsWith("whsec_"),
-        });
 
         return NextResponse.json({
           configured: !!(testSecretRaw || liveSecretRaw),
@@ -296,13 +283,6 @@ export async function POST(req: NextRequest) {
         const finalActiveMode = updates.active_mode !== undefined ? updates.active_mode : existingRow.active_mode;
         const finalConnectId = updates.connect_client_id !== undefined ? updates.connect_client_id : existingRow.connect_client_id;
         
-        console.log("[Admin/StripeConfig] Updating with preserved values:", {
-          hasTestSecret: !!finalTestSecret,
-          hasTestWebhook: !!finalTestWebhook,
-          hasLiveSecret: !!finalLiveSecret,
-          activeMode: finalActiveMode,
-        });
-        
         await sql`
           UPDATE stripe_config SET
             test_secret_key = ${finalTestSecret},
@@ -319,7 +299,6 @@ export async function POST(req: NextRequest) {
         `;
       }
       savedToDb = true;
-      console.log("[Admin/StripeConfig] Successfully saved to database");
     } catch (err) {
       console.error("[Admin/StripeConfig] POST DB error, saved to memory only:", err);
     }

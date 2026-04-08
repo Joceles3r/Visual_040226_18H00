@@ -195,6 +195,9 @@ export default function StripeConfigPage() {
     can_process_payments: boolean;
     warnings: string[];
     errors: string[];
+    stripe_connected: boolean;
+    stripe_test_result?: string;
+    stripe_account_id?: string;
   } | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [activeSection, setActiveSection] = useState<"test" | "live">("test")
@@ -223,13 +226,6 @@ export default function StripeConfigPage() {
       })
       if (res.ok) {
         const data = await res.json()
-        // Debug: log API response for troubleshooting persistence
-        console.log("[v0] stripe-config API response:", {
-          has_test_secret: data.has_test_secret,
-          has_test_webhook: data.has_test_webhook,
-          test_publishable_key: data.test_publishable_key ? "present" : "missing",
-          source: data.source,
-        })
         setConfig(data)
         // FIX #1 — toujours réhydrater les clés publiques (visibles) dans le form, sans condition
         setForm(prev => ({
@@ -534,13 +530,21 @@ export default function StripeConfigPage() {
               Tester la connexion Stripe
             </>
           )}
-        </Button>
-        {healthResult && (
-          <span className={`text-sm ${healthResult.ok ? "text-emerald-400" : "text-rose-400"}`}>
-            {healthResult.ok ? "Pret pour les paiements" : "Configuration incomplete"}
-          </span>
-        )}
-      </div>
+  </Button>
+  {healthResult && (
+    <div className="flex flex-col gap-1">
+      <span className={`text-sm font-medium ${healthResult.stripe_connected ? "text-emerald-400" : "text-rose-400"}`}>
+        {healthResult.stripe_connected ? "Connexion Stripe reussie" : "Connexion Stripe echouee"}
+      </span>
+      {healthResult.stripe_test_result && (
+        <span className="text-xs text-muted-foreground">{healthResult.stripe_test_result}</span>
+      )}
+      {healthResult.stripe_account_id && (
+        <span className="text-xs text-muted-foreground font-mono">Account: {healthResult.stripe_account_id}</span>
+      )}
+    </div>
+  )}
+  </div>
 
       {/* ── Statut des clés ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
