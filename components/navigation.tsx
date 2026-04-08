@@ -62,10 +62,10 @@ export const DISCOVER_MENU: NavMenu = {
     { label: "Guide Paiements", href: "/guide-stripe", icon: Wallet },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
-    { label: "Archives & Statistiques", href: "/archives-statistiques", icon: Archive },
     { label: "Top Contributeurs", href: "/top-contributors", icon: Star },
     { label: "Trust Score", href: "/trust-score", icon: Shield },
-    { label: "Vixual Social", href: "/social", icon: MessageCircle },
+    { label: "Ticket Gold", href: "/ticket-gold", icon: Rocket },
+    { label: "Soutien Libre", href: "/soutien-libre", icon: Heart },
   ],
 }
 
@@ -77,8 +77,8 @@ export const EXPLORE_MENU: NavMenu = {
     { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
     { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
     { label: "Tout Explorer", href: "/explore", icon: Compass },
-    { label: "Ticket Gold", href: "/ticket-gold", icon: Rocket },
-    { label: "Soutien Libre", href: "/soutien-libre", icon: Heart },
+    { label: "Archives & Statistiques", href: "/archives-statistiques", icon: Archive },
+    { label: "Vixual Social", href: "/social", icon: MessageCircle },
   ],
 }
 
