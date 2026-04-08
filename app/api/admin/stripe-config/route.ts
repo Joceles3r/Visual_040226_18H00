@@ -127,8 +127,9 @@ export async function GET(req: NextRequest) {
           connect_client_id: row.connect_client_id || "",
           has_test_secret: testSecretRaw.startsWith("sk_test_"),
           has_live_secret: liveSecretRaw.startsWith("sk_live_"),
-          has_test_webhook: testWebhookRaw.startsWith("whsec_"),
-          has_live_webhook: liveWebhookRaw.startsWith("whsec_"),
+          // FIX #4 — double-check : valeur déchiffrée OU valeur brute présente en DB
+          has_test_webhook: testWebhookRaw.startsWith("whsec_") || !!row.test_webhook_secret,
+          has_live_webhook: liveWebhookRaw.startsWith("whsec_") || !!row.live_webhook_secret,
           source: "database",
         });
       }
@@ -252,8 +253,9 @@ export async function POST(req: NextRequest) {
         updates.live_publishable_key = body.live_publishable_key || null;
       if (body.active_mode !== undefined)
         updates.active_mode = body.active_mode;
-      if (body.connect_client_id !== undefined)
-        updates.connect_client_id = body.connect_client_id || null;
+      // FIX #5 — n'écraser connect_client_id en DB que si une valeur non-vide est fournie
+      if (body.connect_client_id)
+        updates.connect_client_id = body.connect_client_id;
 
       // Verifier si la row existe
       const existingRows = await sql`SELECT * FROM stripe_config WHERE id = 1`;

@@ -8,7 +8,7 @@ import {
 } from "../config";
 
 /**
- * VISUAL Platform - Bunny.net CDN Service
+ * VIXUAL Platform - Bunny.net CDN Service
  * Complete service for storage, CDN, and video streaming
  */
 

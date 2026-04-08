@@ -218,20 +218,19 @@ export default function StripeConfigPage() {
     setLoading(true)
     try {
       const res = await fetch(`/api/admin/stripe-config?email=${encodeURIComponent(user.email)}`, {
-        headers: { "x-admin-email": user.email }
+        headers: { "x-admin-email": user.email },
+        cache: "no-store",   // FIX #3 — empêche le cache navigateur de servir d'anciennes données
       })
       if (res.ok) {
         const data = await res.json()
         setConfig(data)
-        // Pre-fill form with existing publishable keys (visible ones)
-        if (data.test_publishable_key || data.live_publishable_key || data.connect_client_id) {
-          setForm(prev => ({
-            ...prev,
-            test_publishable_key: data.test_publishable_key || prev.test_publishable_key,
-            live_publishable_key: data.live_publishable_key || prev.live_publishable_key,
-            connect_client_id: data.connect_client_id || prev.connect_client_id,
-          }))
-        }
+        // FIX #1 — toujours réhydrater les clés publiques (visibles) dans le form, sans condition
+        setForm(prev => ({
+          ...prev,
+          test_publishable_key: data.test_publishable_key || prev.test_publishable_key,
+          live_publishable_key: data.live_publishable_key || prev.live_publishable_key,
+          connect_client_id: data.connect_client_id || prev.connect_client_id,
+        }))
       }
     } catch {
       setMessage({ type: "error", text: "Impossible de charger la configuration." })
@@ -257,7 +256,8 @@ export default function StripeConfigPage() {
     if (form.live_secret_key) payload.live_secret_key = form.live_secret_key
     if (form.live_publishable_key) payload.live_publishable_key = form.live_publishable_key
     if (form.live_webhook_secret) payload.live_webhook_secret = form.live_webhook_secret
-    if (form.connect_client_id !== undefined) payload.connect_client_id = form.connect_client_id
+    // FIX #2 — n'envoyer connect_client_id que si non-vide pour ne pas écraser la valeur DB
+    if (form.connect_client_id) payload.connect_client_id = form.connect_client_id
 
     try {
       const res = await fetch("/api/admin/stripe-config", {

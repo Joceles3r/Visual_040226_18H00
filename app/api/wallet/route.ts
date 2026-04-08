@@ -11,8 +11,8 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Verify user exists
-    const users = await sql`SELECT id, account_status FROM users WHERE id = ${userId}`;
+    // Verify user exists — FIX B : inclure visupoints_balance pour l'affichage wallet
+    const users = await sql`SELECT id, account_status, visupoints_balance FROM users WHERE id = ${userId}`;
     if (users.length === 0) {
       return apiError(ErrorCodes.ERR_USER_NOT_FOUND, "User not found", 404);
     }
@@ -60,6 +60,10 @@ export async function GET(req: NextRequest) {
     // Flag if account is suspended (read-only wallet access)
     const accountStatus = users[0].account_status || "active";
 
+    // FIX B — Calculer le solde VIXUpoints réel depuis la DB
+    const vixupointsBalance = Number(users[0].visupoints_balance || 0);
+    const VIXUPOINTS_MAX_CONVERSION = 2500; // 25 € max (100 pts = 1 €)
+
     return NextResponse.json({
       wallet: {
         availableCents: wallet.available_cents,
@@ -82,6 +86,12 @@ export async function GET(req: NextRequest) {
         status: w.status,
         requestedAt: w.requested_at,
       })),
+      // FIX B — Champ visupoints désormais présent (plus de fallback MOCK côté frontend)
+      visupoints: {
+        balance: vixupointsBalance,
+        cap: VIXUPOINTS_MAX_CONVERSION,
+        todayEarned: 0, // À enrichir ultérieurement avec une table visupoints_transactions
+      },
       accountStatus,
       isFinanciallyBlocked: accountStatus === "suspended" || accountStatus === "banned",
     });

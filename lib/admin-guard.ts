@@ -1,15 +1,19 @@
 /**
  * Server-side admin verification utility.
- * Uses NEXT_PUBLIC_ADMIN_EMAIL as source of truth (the only admin email var configured).
- * If you later add a server-only VISUAL_ADMIN_EMAIL in Vars, it will take priority.
+ * Uses VIXUAL_ADMIN_EMAIL (server-only) as primary source of truth.
+ * Falls back to NEXT_PUBLIC_ADMIN_EMAIL, then to the hardcoded PATRON email.
  *
  * IMPORTANT: This file must ONLY run on the server (route handlers, server actions).
  */
 
+// FIX A — Correction du nom de variable (VISUAL → VIXUAL) + ajout fallback PATRON
+const PATRON_FALLBACK_EMAIL = "jocelyndru@gmail.com";
+
 function getAdminEmail(): string | undefined {
   return (
-    process.env.VISUAL_ADMIN_EMAIL?.toLowerCase() ||
-    process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase()
+    process.env.VIXUAL_ADMIN_EMAIL?.toLowerCase() ||
+    process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase() ||
+    PATRON_FALLBACK_EMAIL
   )
 }
 
