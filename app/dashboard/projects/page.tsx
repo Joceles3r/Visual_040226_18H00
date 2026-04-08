@@ -3,7 +3,7 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { Film, FileText, Upload, Users, TrendingUp, Eye } from "lucide-react"
+import { Film, FileText, Mic, Upload, Users, TrendingUp, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -43,6 +43,17 @@ const MOCK_PROJECTS = [
     views: 890,
     createdAt: "2026-01-20",
   },
+  {
+    id: "pod1",
+    title: "Histoires du soir",
+    type: "podcast",
+    status: "active",
+    investment: 650,
+    goal: 1200,
+    investors: 12,
+    views: 540,
+    createdAt: "2026-02-01",
+  },
 ]
 
 function ProjectsContent() {
@@ -55,40 +66,54 @@ function ProjectsContent() {
 
   const isVideoFilter = typeFilter === "video"
   const isTextFilter = typeFilter === "text"
+  const isPodcastFilter = typeFilter === "podcast"
+
+  const getTitle = () => {
+    if (isVideoFilter) return "Mes projets video"
+    if (isTextFilter) return "Mes ecrits"
+    if (isPodcastFilter) return "Mes podcasts"
+    return "Mes projets"
+  }
+
+  const getUploadHref = () => {
+    if (isTextFilter) return "/upload/text"
+    if (isPodcastFilter) return "/upload/podcast"
+    return "/upload"
+  }
+
+  const getUploadLabel = () => {
+    if (isTextFilter) return "Deposer un ecrit"
+    if (isPodcastFilter) return "Deposer un podcast"
+    return "Deposer une video"
+  }
 
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
-            {isVideoFilter
-              ? "Mes projets vidéo"
-              : isTextFilter
-                ? "Mes écrits"
-                : "Mes projets"}
-          </h1>
-          <p className="text-white/60">Gérez et suivez vos créations</p>
+          <h1 className="text-3xl font-bold text-white mb-2">{getTitle()}</h1>
+          <p className="text-white/60">Gerez et suivez vos creations</p>
         </div>
 
-        <Link href={isTextFilter ? "/upload/text" : "/upload"}>
+        <Link href={getUploadHref()}>
           <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
             <Upload className="mr-2 h-4 w-4" />
-            {isTextFilter ? "Déposer un écrit" : "Déposer une vidéo"}
+            {getUploadLabel()}
           </Button>
         </Link>
       </div>
 
       {/* Filter tabs */}
       {!typeFilter && (
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Link href="/dashboard/projects?type=video">
             <Button
               variant="outline"
               className="bg-transparent border-white/20 text-white hover:bg-red-600/20 hover:border-red-500/50"
             >
               <Film className="mr-2 h-4 w-4 text-red-400" />
-              Vidéos
+              Videos
             </Button>
           </Link>
           <Link href="/dashboard/projects?type=text">
@@ -97,7 +122,16 @@ function ProjectsContent() {
               className="bg-transparent border-white/20 text-white hover:bg-amber-600/20 hover:border-amber-500/50"
             >
               <FileText className="mr-2 h-4 w-4 text-amber-400" />
-              Écrits
+              Ecrits
+            </Button>
+          </Link>
+          <Link href="/dashboard/projects?type=podcast">
+            <Button
+              variant="outline"
+              className="bg-transparent border-white/20 text-white hover:bg-violet-600/20 hover:border-violet-500/50"
+            >
+              <Mic className="mr-2 h-4 w-4 text-violet-400" />
+              Podcasts
             </Button>
           </Link>
         </div>
@@ -155,7 +189,7 @@ function ProjectsContent() {
                 <Users className="h-6 w-6 text-sky-400" />
               </div>
               <div>
-                <p className="text-white/60 text-sm">Investisseurs</p>
+                <p className="text-white/60 text-sm">Participants</p>
                 <p className="text-2xl font-bold text-white">
                   {filteredProjects.reduce((sum, p) => sum + p.investors, 0)}
                 </p>
