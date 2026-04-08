@@ -17,8 +17,8 @@ const ALL_TRANSACTIONS = [
   ...MOCK_TRANSACTIONS,
   {
     id: "tr4",
-    type: "investment" as const,
-    description: "Investissement - Contes de Minuit",
+    type: "contribution" as const,
+    description: "Contribution - Contes de Minuit",
     amount: -10,
     date: "2026-01-28",
     status: "completed" as const,
@@ -34,7 +34,7 @@ const ALL_TRANSACTIONS = [
   {
     id: "tr6",
     type: "deposit" as const,
-    description: "Caution Investisseur",
+    description: "Caution Contributeur",
     amount: -20,
     date: "2026-01-15",
     status: "completed" as const,
@@ -63,8 +63,8 @@ export default function HistoryPage() {
 
   const getTypeLabel = (type: string) => {
     switch (type) {
-      case "investment":
-        return "Investissement"
+      case "contribution":
+        return "Contribution"
       case "return":
         return "Retour"
       case "withdrawal":
@@ -72,7 +72,7 @@ export default function HistoryPage() {
       case "deposit":
         return "Caution"
       case "visupoints":
-        return "VISUpoints"
+        return "VIXUpoints"
       default:
         return type
     }
@@ -102,10 +102,10 @@ export default function HistoryPage() {
               Toutes les transactions
             </SelectItem>
             <SelectItem
-              value="investment"
+              value="contribution"
               className="text-white focus:bg-emerald-600/30 focus:text-white"
             >
-              Investissements
+              Contributions
             </SelectItem>
             <SelectItem
               value="return"
@@ -129,7 +129,7 @@ export default function HistoryPage() {
               value="visupoints"
               className="text-white focus:bg-emerald-600/30 focus:text-white"
             >
-              VISUpoints
+              VIXUpoints
             </SelectItem>
           </SelectContent>
         </Select>

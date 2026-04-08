@@ -6,6 +6,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react"
+import { VisualSlogan } from "@/components/visual-slogan"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -45,19 +46,24 @@ export default function LoginPage() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-md">
-        {/* Logo */}
-        <Link href="/" className="flex justify-center mb-8">
-          <span className="text-3xl font-black tracking-tight">
-            <span className="text-red-500">V</span>
-            <span className="text-amber-400">I</span>
-            <span className="text-emerald-400">S</span>
-            <span className="text-teal-400">U</span>
-            <span className="text-sky-400">A</span>
-            <span className="text-indigo-400">L</span>
-          </span>
-        </Link>
+        {/* Logo + Slogan */}
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-flex justify-center">
+            <span className="text-3xl font-black tracking-tight">
+              <span className="text-red-500">V</span>
+              <span className="text-amber-400">I</span>
+              <span className="text-emerald-400">S</span>
+              <span className="text-teal-400">U</span>
+              <span className="text-sky-400">A</span>
+              <span className="text-indigo-400">L</span>
+            </span>
+          </Link>
+          <div className="mt-2">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
+        </div>
 
-        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl">
+        <Card className="bg-slate-900/70 border-white/10 backdrop-blur-xl cinema-panel">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-white">Connexion</CardTitle>
             <p className="text-white/60 mt-2">
