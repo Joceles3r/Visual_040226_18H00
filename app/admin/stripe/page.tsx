@@ -223,6 +223,13 @@ export default function StripeConfigPage() {
       })
       if (res.ok) {
         const data = await res.json()
+        // Debug: log API response for troubleshooting persistence
+        console.log("[v0] stripe-config API response:", {
+          has_test_secret: data.has_test_secret,
+          has_test_webhook: data.has_test_webhook,
+          test_publishable_key: data.test_publishable_key ? "present" : "missing",
+          source: data.source,
+        })
         setConfig(data)
         // FIX #1 — toujours réhydrater les clés publiques (visibles) dans le form, sans condition
         setForm(prev => ({

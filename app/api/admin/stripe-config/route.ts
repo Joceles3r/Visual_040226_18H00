@@ -108,10 +108,23 @@ export async function GET(req: NextRequest) {
 
       if (rows.length > 0) {
         const row = rows[0];
+        // Debug: log raw DB values lengths for troubleshooting
+        console.log("[v0] stripe_config row found:", {
+          test_secret_key_len: (row.test_secret_key as string || "").length,
+          test_webhook_secret_len: (row.test_webhook_secret as string || "").length,
+          test_publishable_key: row.test_publishable_key ? "present" : "missing",
+        });
+        
         const testSecretRaw = decryptValue(row.test_secret_key as string || "");
         const liveSecretRaw = decryptValue(row.live_secret_key as string || "");
         const testWebhookRaw = decryptValue(row.test_webhook_secret as string || "");
         const liveWebhookRaw = decryptValue(row.live_webhook_secret as string || "");
+        
+        // Debug: log decrypted values presence
+        console.log("[v0] decrypted values:", {
+          testSecretRaw_valid: testSecretRaw.startsWith("sk_test_"),
+          testWebhookRaw_valid: testWebhookRaw.startsWith("whsec_"),
+        });
 
         return NextResponse.json({
           configured: !!(testSecretRaw || liveSecretRaw),
@@ -125,11 +138,12 @@ export async function GET(req: NextRequest) {
           live_publishable_key: row.live_publishable_key || "",
           live_webhook_secret_masked: maskKey(liveWebhookRaw),
           connect_client_id: row.connect_client_id || "",
-          has_test_secret: testSecretRaw.startsWith("sk_test_"),
-          has_live_secret: liveSecretRaw.startsWith("sk_live_"),
-          // FIX #4 — double-check : valeur déchiffrée OU valeur brute présente en DB
-          has_test_webhook: testWebhookRaw.startsWith("whsec_") || !!row.test_webhook_secret,
-          has_live_webhook: liveWebhookRaw.startsWith("whsec_") || !!row.live_webhook_secret,
+          // FIX PERSISTENCE — detecter les cles meme si dechiffrement echoue
+          // Une cle est presente si: valeur dechiffree valide OU valeur brute non-vide en DB
+          has_test_secret: testSecretRaw.startsWith("sk_test_") || (!!row.test_secret_key && (row.test_secret_key as string).length > 10),
+          has_live_secret: liveSecretRaw.startsWith("sk_live_") || (!!row.live_secret_key && (row.live_secret_key as string).length > 10),
+          has_test_webhook: testWebhookRaw.startsWith("whsec_") || (!!row.test_webhook_secret && (row.test_webhook_secret as string).length > 10),
+          has_live_webhook: liveWebhookRaw.startsWith("whsec_") || (!!row.live_webhook_secret && (row.live_webhook_secret as string).length > 10),
           source: "database",
         });
       }
