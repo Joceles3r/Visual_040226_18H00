@@ -9,8 +9,10 @@ import {
   Compass,
   Film,
   FileText,
+  Mic,
   LayoutDashboard,
   User,
+  Users,
   Settings,
   Mail,
   Star,
@@ -18,22 +20,32 @@ import {
   Wallet,
   History,
   Heart,
+  MessageCircle,
+  Share2,
+  Crown,
+  Shield,
+  Archive,
+  Rocket,
 } from "lucide-react"
 
-export type VisualRole =
+export type VixualRole =
   | "guest"
   | "visitor"
   | "porter"
-  | "investor"
+  | "contributor"
   | "infoporter"
-  | "investireader"
-  | "admin"
+  | "contribureader"
+  | "podcaster"
+  | "listener"
+
+/** @deprecated Use VixualRole instead */
+export type VisualRole = VixualRole
 
 export type NavItem = {
   label: string
   href: string
   icon?: React.ComponentType<{ className?: string }>
-  roles?: VisualRole[]
+  roles?: VixualRole[]
 }
 
 export type NavMenu = {
@@ -45,9 +57,15 @@ export type NavMenu = {
 export const DISCOVER_MENU: NavMenu = {
   label: "Découvrir",
   items: [
+    { label: "Guide des profils", href: "/guide-profiles", icon: Crown },
     { label: "Comment ça marche", href: "/how-it-works", icon: BookOpen },
+    { label: "Guide Paiements", href: "/guide-stripe", icon: Wallet },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
-    { label: "Classement / Top 10", href: "/leaderboard", icon: Trophy },
+    { label: "Classements TOP 10/100/500", href: "/leaderboard", icon: Trophy },
+    { label: "Top Contributeurs", href: "/top-contributors", icon: Star },
+    { label: "Trust Score", href: "/trust-score", icon: Shield },
+    { label: "Ticket Gold", href: "/ticket-gold", icon: Rocket },
+    { label: "Soutien Libre", href: "/soutien-libre", icon: Heart },
   ],
 }
 
@@ -55,9 +73,12 @@ export const DISCOVER_MENU: NavMenu = {
 export const EXPLORE_MENU: NavMenu = {
   label: "Explorer",
   items: [
-    { label: "Explorer (Vidéo)", href: "/explore?type=video", icon: Film },
-    { label: "Explorer (Écrit)", href: "/explore?type=text", icon: FileText },
-    { label: "Tout voir", href: "/explore", icon: Compass },
+    { label: "Films & Videos", href: "/explore?tab=video", icon: Film },
+    { label: "Livres & Articles", href: "/explore?tab=text", icon: FileText },
+    { label: "Podcasts", href: "/explore?tab=podcast", icon: Mic },
+    { label: "Tout Explorer", href: "/explore", icon: Compass },
+    { label: "Archives & Statistiques", href: "/archives-statistiques", icon: Archive },
+    { label: "Vixual Social", href: "/social", icon: MessageCircle },
   ],
 }
 
@@ -70,108 +91,143 @@ export const MY_SPACE_MENU: NavMenu = {
       label: "Tableau de bord",
       href: "/dashboard",
       icon: LayoutDashboard,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
       label: "Mon profil",
-      href: "/profile/me",
+      href: "/dashboard/profile",
       icon: User,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
-      label: "Paramètres",
+      label: "Parametres",
       href: "/dashboard/settings",
       icon: Settings,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
-      label: "Support (Boîte interne)",
+      label: "Support (Boite interne)",
       href: "/support/mailbox",
       icon: Mail,
-      roles: ["visitor", "porter", "investor", "infoporter", "investireader", "admin"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
 
-    // VISITEUR
+    // VISITEUR (+ tous les inscrits)
     {
-      label: "Mes VISUpoints",
+      label: "Mes VIXUpoints",
       href: "/dashboard/visupoints",
       icon: Star,
-      roles: ["visitor"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
     {
       label: "Mes favoris / suivis",
       href: "/dashboard/favorites",
       icon: Heart,
-      roles: ["visitor"],
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     },
 
-    // PORTEUR (vidéo)
+    // PORTEUR (video)
     {
-      label: "Déposer une vidéo",
+      label: "Deposer un film/video",
       href: "/upload",
       icon: Upload,
       roles: ["porter"],
     },
     {
-      label: "Mes projets (vidéo)",
+      label: "Mes films & videos",
       href: "/dashboard/projects?type=video",
       icon: Film,
       roles: ["porter"],
     },
 
-    // INFOPORTEUR (écrit)
+    // INFOPORTEUR (ecrit)
     {
-      label: "Déposer un écrit",
+      label: "Deposer un livre/article",
       href: "/upload/text",
       icon: Upload,
       roles: ["infoporter"],
     },
     {
-      label: "Mes écrits",
+      label: "Mes livres & articles",
       href: "/dashboard/projects?type=text",
       icon: FileText,
       roles: ["infoporter"],
     },
 
-    // INVESTISSEUR (vidéo)
+    // PODCASTEUR (podcast)
     {
-      label: "Mes investissements (vidéo)",
+      label: "Deposer un podcast",
+      href: "/upload/podcast",
+      icon: Upload,
+      roles: ["podcaster"],
+    },
+    {
+      label: "Mes podcasts",
+      href: "/dashboard/projects?type=podcast",
+      icon: Mic,
+      roles: ["podcaster"],
+    },
+
+    // CONTRIBUTEUR (video)
+    {
+      label: "Mes contributions (films & videos)",
       href: "/dashboard/investments?type=video",
       icon: Film,
-      roles: ["investor"],
+      roles: ["contributor"],
     },
 
-    // INVESTI-LECTEUR (écrit)
+    // CONTRIBULECTEUR (ecrit)
     {
-      label: "Mes investissements (écrit)",
+      label: "Mes contributions (livres & articles)",
       href: "/dashboard/investments?type=text",
       icon: FileText,
-      roles: ["investireader"],
+      roles: ["contribureader"],
     },
 
-    // WALLET (investisseurs)
+    // AUDITEUR (podcast)
+    {
+      label: "Explorer les podcasts",
+      href: "/explore?type=podcast",
+      icon: Compass,
+      roles: ["listener"],
+    },
+    {
+      label: "Mes investissements (podcast)",
+      href: "/dashboard/investments?type=podcast",
+      icon: Mic,
+      roles: ["listener"],
+    },
+
+    // PROMOTION / PARRAINAGE (tous les inscrits)
+    {
+      label: "Promotion / Parrainage",
+      href: "/dashboard/promo",
+      icon: Share2,
+      roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
+    },
+
+    // WALLET (contributeurs + createurs)
     {
       label: "Mon wallet / gains",
       href: "/dashboard/wallet",
       icon: Wallet,
-      roles: ["investor", "investireader", "porter", "infoporter"],
+      roles: ["contributor", "contribureader", "listener", "porter", "infoporter", "podcaster"],
     },
     {
       label: "Historique",
       href: "/dashboard/history",
       icon: History,
-      roles: ["investor", "investireader", "porter", "infoporter"],
+      roles: ["contributor", "contribureader", "listener", "porter", "infoporter", "podcaster"],
     },
   ],
 }
 
-// Admin (hors profils)
-export const ADMIN_ITEM: NavItem = {
+// Admin (hors profils — visibilite geree par isAdmin, pas par roles)
+export const ADMIN_ITEM = {
   label: "Administration",
   href: "/admin",
   icon: Settings,
-  roles: ["admin"],
-}
+} as const
 
 // Helper pour vérifier les rôles
 export function hasAnyRole(userRoles: VisualRole[], itemRoles?: VisualRole[]) {
