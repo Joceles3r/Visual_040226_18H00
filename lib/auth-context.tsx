@@ -1,19 +1,66 @@
 "use client"
 
-import { createContext, useContext, useState, ReactNode } from "react"
-import type { VisualRole } from "@/components/navigation"
+/**
+ * VIXUAL Auth Context
+ *
+ * Production-ready authentication context with mock fallback for development.
+ *
+ * SECURITY NOTES:
+ * - Mock auth is DISABLED in production by default
+ * - To enable mock in dev, set NEXT_PUBLIC_USE_MOCK_AUTH=true
+ * - ALL REAL AUTHENTICATION LOGIC RUNS ON THE API SIDE
+ * - User verification is handled in each API route via database lookups
+ * - KYC/identity checks happen in /api/stripe/* routes
+ * - Risk Gate security checks happen in /api/security/* routes
+ *
+ * DO NOT rely on isAuthed or roles from this context for API decisions.
+ * Always verify user identity server-side in API routes.
+ */
+
+import { createContext, useContext, useState, useEffect, ReactNode } from "react"
+
+// ── Environment Detection ────────────────────────────────────────────────────
+
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const USE_MOCK_AUTH = process.env.NEXT_PUBLIC_USE_MOCK_AUTH === "true";
+
+// Log warning if mock auth is enabled
+if (typeof window !== "undefined" && USE_MOCK_AUTH && !IS_PRODUCTION) {
+  console.warn(
+    "[VIXUAL Auth] Mock authentication is ENABLED. " +
+    "This is for development only. Set NEXT_PUBLIC_USE_MOCK_AUTH=false for production."
+  );
+}
+
+// Block mock auth in production unless explicitly allowed
+if (IS_PRODUCTION && USE_MOCK_AUTH) {
+  console.error(
+    "[VIXUAL Auth] CRITICAL: Mock authentication cannot be enabled in production. " +
+    "Remove NEXT_PUBLIC_USE_MOCK_AUTH from production environment."
+  );
+}
+import type { VixualRole } from "@/components/navigation"
+import type { ParentConsent } from "@/lib/visupoints-engine"
+import { isMinor as checkIsMinor, isEligibleForSignup, MINOR_VISUPOINTS_CAP, DEFAULT_PARENT_CONSENT, MINOR_PARENT_CONSENT, checkMajorityUnlock } from "@/lib/visupoints-engine"
 
 export interface User {
   id: string
   name: string
   email: string
-  roles: VisualRole[]
+  roles: VixualRole[]
   avatarUrl?: string
+  birthDate?: string
+  isMinor: boolean
+  vixupointsCap: number
+  parentConsent: ParentConsent
+  kycVerified: boolean
   depositStatus?: {
     porter10: boolean
-    investor20: boolean
+    contributor20: boolean
     infoporter10: boolean
-    investireader20: boolean
+    contribureader20: boolean
+    podcaster10: boolean
+    listener20: boolean
   }
   stripeConnect?: {
     accountId?: string
@@ -24,32 +71,54 @@ export interface User {
     pending: number
   }
   visupoints?: number
+  // Security fields (Identity + VPN Risk Gate)
+  verificationLevel?: 0 | 1 | 2
+  riskFlags?: {
+    vpnSuspected?: boolean
+    proxySuspected?: boolean
+    torSuspected?: boolean
+    datacenterIp?: boolean
+    countryMismatch?: boolean
+  }
+  stepUp?: {
+    phoneVerified?: boolean
+    totpEnabled?: boolean
+    lastStepUpAt?: string
+  }
 }
 
 interface AuthContextType {
   user: User | null
   isAuthed: boolean
-  roles: VisualRole[]
+  isAdmin: boolean
+  roles: VixualRole[]
   login: (email: string, password: string) => Promise<void>
   logout: () => void
-  signup: (data: { name: string; email: string; password: string }) => Promise<void>
-  updateRoles: (newRoles: VisualRole[]) => void
+  signup: (data: { name: string; email: string; password: string; birthDate?: string }) => Promise<void>
+  updateRoles: (newRoles: VixualRole[]) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-// Mock user pour démonstration
+// Mock user pour demonstration (UUID format requis par Neon)
 const MOCK_USER: User = {
-  id: "1",
+  id: "00000000-0000-0000-0000-000000000001",
   name: "Jean Dupont",
   email: "jean@example.com",
   roles: ["visitor"],
   visupoints: 150,
+  birthDate: undefined,
+  isMinor: false,
+  vixupointsCap: Infinity,
+  parentConsent: DEFAULT_PARENT_CONSENT,
+  kycVerified: false,
   depositStatus: {
     porter10: false,
-    investor20: false,
+    contributor20: false,
     infoporter10: false,
-    investireader20: false,
+    contribureader20: false,
+    podcaster10: false,
+    listener20: false,
   },
   stripeConnect: {
     status: "not_started",
@@ -58,35 +127,88 @@ const MOCK_USER: User = {
     available: 0,
     pending: 0,
   },
+  verificationLevel: 0,
+  riskFlags: {
+    vpnSuspected: false,
+    proxySuspected: false,
+    torSuspected: false,
+    datacenterIp: false,
+    countryMismatch: false,
+  },
+  stepUp: {
+    phoneVerified: false,
+    totpEnabled: false,
+    lastStepUpAt: undefined,
+  },
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
   const isAuthed = user !== null
-  const roles: VisualRole[] = user?.roles ?? ["guest"]
+  const roles: VixualRole[] = user?.roles ?? ["guest"]
+  // Admin est un flag prive derive de l'email, pas un role de profil
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase()
+  const isAdmin = !!(user?.email && adminEmail && user.email.toLowerCase() === adminEmail)
 
   const login = async (email: string, password: string) => {
-    // Simulation d'authentification
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    setUser(MOCK_USER)
-  }
+    // Real authentication via secure API
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
 
-  const logout = () => {
-    setUser(null)
-  }
+    const data = await response.json()
 
-  const signup = async (data: { name: string; email: string; password: string }) => {
-    // Simulation d'inscription
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    if (!response.ok) {
+      throw new Error(data.error || "Echec de connexion")
+    }
+
+    // Set user from API response
     setUser({
       ...MOCK_USER,
-      name: data.name,
-      email: data.email,
+      id: data.user.id,
+      name: data.user.name,
+      email: data.user.email,
+      roles: data.user.roles || ["visitor"],
     })
   }
 
-  const updateRoles = (newRoles: VisualRole[]) => {
+  const logout = async () => {
+    // Clear session cookie
+    await fetch("/api/auth/logout", { method: "POST" })
+    setUser(null)
+  }
+
+  const signup = async (data: { name: string; email: string; password: string; birthDate?: string }) => {
+    // Real signup via secure API
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw new Error(result.error || "Echec d'inscription")
+    }
+
+    const minor = data.birthDate ? checkIsMinor(data.birthDate) : false
+    setUser({
+      ...MOCK_USER,
+      id: result.user.id,
+      name: data.name,
+      email: data.email,
+      birthDate: data.birthDate,
+      isMinor: minor,
+      vixupointsCap: minor ? MINOR_VISUPOINTS_CAP : Infinity,
+      parentConsent: minor ? MINOR_PARENT_CONSENT : DEFAULT_PARENT_CONSENT,
+    })
+  }
+
+  const updateRoles = (newRoles: VixualRole[]) => {
     if (user) {
       setUser({ ...user, roles: newRoles })
     }
@@ -97,6 +219,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         isAuthed,
+        isAdmin,
         roles,
         login,
         logout,
