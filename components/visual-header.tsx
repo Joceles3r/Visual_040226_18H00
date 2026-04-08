@@ -1,10 +1,14 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { ReportButton } from "@/components/report-button"
+import { VisualSlogan } from "@/components/visual-slogan"
 import {
   ChevronDown,
+  Eye,
   LogIn,
   UserPlus,
   Shield,
@@ -21,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LanguageSelector } from "@/components/language-selector"
+import { SoundToggle } from "@/components/sound-toggle"
 import {
   ADMIN_ITEM,
   DISCOVER_MENU,
@@ -31,6 +36,7 @@ import {
   type VisualRole,
 } from "@/components/navigation"
 import { useAuth } from "@/lib/auth-context"
+import { MinorStatusBadge } from "@/components/minors/minor-status-badge"
 
 function MenuBlock({
   label,
@@ -41,12 +47,14 @@ function MenuBlock({
   items: NavItem[]
   roles: VisualRole[]
 }) {
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
   const visibleItems = items.filter((it) => hasAnyRole(roles, it.roles))
 
   if (visibleItems.length === 0) return null
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -65,14 +73,34 @@ function MenuBlock({
         {visibleItems.map((it) => {
           const Icon = it.icon
           return (
-            <Link key={it.href + it.label} href={it.href} className="w-full">
-              <DropdownMenuItem className="focus:bg-emerald-600/30 focus:text-white cursor-pointer group py-3">
-                {Icon ? (
-                  <Icon className="mr-3 h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
-                ) : null}
-                <span className="font-medium">{it.label}</span>
-              </DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem
+              key={it.href + it.label}
+              className="focus:bg-emerald-600/30 focus:text-white cursor-pointer group py-3"
+              onSelect={(e) => {
+                e.preventDefault()
+                setOpen(false)
+                // Use window.location for query-param navigation on same path
+                // to guarantee a full re-render (router.push doesn't always
+                // trigger useSearchParams updates on same-path nav)
+                const target = new URL(it.href, window.location.origin)
+                const current = new URL(window.location.href)
+                if (target.pathname === current.pathname) {
+                  // Same path, possibly different query params -- force refresh
+                  router.replace(it.href, { scroll: false })
+                  // Dispatch a custom event so the explore page picks it up
+                  setTimeout(() => {
+                    window.dispatchEvent(new Event("visual-nav"))
+                  }, 50)
+                } else {
+                  router.push(it.href)
+                }
+              }}
+            >
+              {Icon ? (
+                <Icon className="mr-3 h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+              ) : null}
+              <span className="font-medium">{it.label}</span>
+            </DropdownMenuItem>
           )
         })}
       </DropdownMenuContent>
@@ -85,14 +113,18 @@ function MobileMenu({
   onClose,
   roles,
   isAuthed,
+  isAdmin,
   onLogout,
 }: {
   isOpen: boolean
   onClose: () => void
   roles: VisualRole[]
   isAuthed: boolean
+  isAdmin: boolean
   onLogout: () => void
 }) {
+  const router = useRouter()
+
   if (!isOpen) return null
 
   const allMenus = [DISCOVER_MENU, EXPLORE_MENU]
@@ -100,15 +132,34 @@ function MobileMenu({
     allMenus.push(MY_SPACE_MENU)
   }
 
+  const navigateTo = (href: string) => {
+    onClose()
+    const target = new URL(href, window.location.origin)
+    const current = new URL(window.location.href)
+    if (target.pathname === current.pathname) {
+      router.replace(href, { scroll: false })
+      setTimeout(() => {
+        window.dispatchEvent(new Event("visual-nav"))
+      }, 50)
+    } else {
+      router.push(href)
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
       <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-b from-slate-900 to-slate-950 border-l border-emerald-500/20 overflow-y-auto">
-        <div className="p-4 flex justify-between items-center border-b border-white/10">
-          <span className="text-xl font-bold text-white">Menu</span>
-          <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
-            <X className="h-6 w-6" />
-          </Button>
+        <div className="p-4 border-b border-white/10">
+          <div className="flex justify-between items-center">
+            <span className="text-xl font-bold text-white">Menu</span>
+            <Button variant="ghost" size="icon" onClick={onClose} className="text-white">
+              <X className="h-6 w-6" />
+            </Button>
+          </div>
+          <div className="mt-2 text-center">
+            <VisualSlogan size="xs" opacity="medium" />
+          </div>
         </div>
 
         <div className="p-4 space-y-6">
@@ -125,15 +176,14 @@ function MobileMenu({
                   {visibleItems.map((item) => {
                     const Icon = item.icon
                     return (
-                      <Link
+                      <button
                         key={item.href + item.label}
-                        href={item.href}
-                        onClick={onClose}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-emerald-600/20 text-white/90 hover:text-white transition-colors"
+                        onClick={() => navigateTo(item.href)}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-emerald-600/20 text-white/90 hover:text-white transition-colors text-left"
                       >
                         {Icon && <Icon className="h-5 w-5 text-emerald-400" />}
                         <span>{item.label}</span>
-                      </Link>
+                      </button>
                     )
                   })}
                 </div>
@@ -141,34 +191,53 @@ function MobileMenu({
             )
           })}
 
-          {roles.includes("admin") && (
+          {isAdmin && (
             <div>
               <h3 className="text-amber-400 font-bold mb-3">Administration</h3>
               <Link
                 href={ADMIN_ITEM.href}
                 onClick={onClose}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-amber-600/20 text-white/90 hover:text-white transition-colors"
+                className="relative overflow-hidden flex items-center gap-3 px-3 py-2.5 rounded-lg bg-amber-900/20 border border-amber-400/30 text-white hover:bg-amber-800/30 transition-colors animate-admin-glow"
               >
-                <Shield className="h-5 w-5 text-amber-400" />
-                <span>{ADMIN_ITEM.label}</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent animate-admin-shine" />
+                <Shield className="h-5 w-5 text-red-500 animate-pulse drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+                <span className="relative z-10 bg-gradient-to-r from-amber-300 to-red-400 bg-clip-text text-transparent font-bold">{ADMIN_ITEM.label}</span>
               </Link>
             </div>
           )}
 
           <div className="pt-4 border-t border-white/10 space-y-2">
             {isAuthed ? (
-              <Button
-                onClick={() => {
-                  onLogout()
-                  onClose()
-                }}
-                className="w-full bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-500/30"
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                Déconnexion
-              </Button>
+              <>
+                <div className="flex justify-center mb-2">
+                  <MinorStatusBadge />
+                </div>
+                <div className="flex justify-center mb-2">
+                  <ReportButton
+                    targetId="general"
+                    targetType="other"
+                    targetName="Signalement g\u00e9n\u00e9ral"
+                    variant="full"
+                    size="default"
+                  />
+                </div>
+                <Button
+                  onClick={() => {
+                    onLogout()
+                    onClose()
+                  }}
+                  className="w-full bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-500/30"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {"D\u00e9connexion"}
+                </Button>
+              </>
             ) : (
               <>
+                <div className="flex items-center gap-2 text-slate-400 text-sm mb-2 justify-center">
+                  <Eye className="h-4 w-4" />
+                  <span>Vous naviguez en tant qu'invite</span>
+                </div>
                 <Link href="/login" onClick={onClose} className="block">
                   <Button
                     variant="outline"
@@ -194,7 +263,7 @@ function MobileMenu({
 }
 
 export function VisualHeader() {
-  const { user, isAuthed, roles, logout } = useAuth()
+  const { user, isAuthed, isAdmin, roles, logout } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const effectiveRoles = useMemo<VisualRole[]>(() => {
@@ -203,28 +272,36 @@ export function VisualHeader() {
     return r.includes("guest") ? r.filter((x) => x !== "guest") : r
   }, [isAuthed, roles])
 
-  const isAdmin = effectiveRoles.includes("admin")
+  // isAdmin vient du auth context, pas des roles de profil
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-950/98 to-slate-900/98 backdrop-blur-2xl border-b border-white/10 h-20 shadow-xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-950/98 to-slate-900/98 backdrop-blur-2xl border-b border-white/10 h-20 shadow-xl cinema-header-glow" />
 
         <div className="container mx-auto px-4 md:px-6 h-20 relative flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 z-10 group shrink-0">
-            <div className="relative">
-              <span className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-lg">
-                <span className="text-red-500">V</span>
-                <span className="text-amber-400">I</span>
-                <span className="text-emerald-400">S</span>
-                <span className="text-teal-400">U</span>
-                <span className="text-sky-400">A</span>
-                <span className="text-indigo-400">L</span>
-              </span>
-              <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-emerald-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Logo + Slogan */}
+          <div className="flex items-center gap-3 md:gap-4 z-10 shrink-0">
+              <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <div className="relative">
+                <span className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-lg">
+                  <span className="text-red-500">V</span>
+                  <span className="text-amber-400">I</span>
+                  <span className="text-emerald-400">X</span>
+                  <span className="text-teal-400">U</span>
+                  <span className="text-sky-400">A</span>
+                  <span className="text-indigo-400">L</span>
+                </span>
+                <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-emerald-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </Link>
+
+            {/* Slogan */}
+            <div className="hidden sm:flex items-center">
+              <div className="w-px h-6 bg-white/15 mr-3 md:mr-4" />
+              <VisualSlogan size="sm" opacity="high" />
             </div>
-          </Link>
+          </div>
 
           {/* Menus principaux (desktop) */}
           <div className="hidden md:flex items-center gap-2 z-10">
@@ -250,26 +327,46 @@ export function VisualHeader() {
               <Link href={ADMIN_ITEM.href}>
                 <Button
                   variant="ghost"
-                  className="bg-amber-900/30 hover:bg-amber-800/50 text-white rounded-lg border border-amber-400/40 h-10 px-5 text-sm font-semibold hover:border-amber-400/80"
+                  className="relative overflow-hidden bg-amber-900/30 hover:bg-amber-800/50 text-white rounded-lg border border-amber-400/40 h-10 px-5 text-sm font-semibold hover:border-amber-400/80 animate-admin-glow"
                 >
-                  <Shield className="mr-2 h-4 w-4" />
-                  Administration
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/25 to-transparent animate-admin-shine" />
+                  <Shield className="mr-2 h-4 w-4 text-red-500 animate-pulse drop-shadow-[0_0_6px_rgba(239,68,68,0.7)]" />
+                  <span className="relative z-10 bg-gradient-to-r from-amber-300 to-red-400 bg-clip-text text-transparent font-bold">Administration</span>
                 </Button>
               </Link>
             )}
           </div>
 
           {/* Actions (toujours visibles) */}
-          <div className="flex items-center gap-2 z-10">
-            <div className="shrink-0">
-              <LanguageSelector />
-            </div>
+  <div className="flex items-center gap-2 z-10">
+  <div className="shrink-0">
+  <SoundToggle />
+  </div>
+  <div className="shrink-0">
+  <LanguageSelector />
+  </div>
 
             {isAuthed ? (
               <>
+                {/* Report alert button (always visible when logged in) */}
+                <div className="hidden md:block">
+                  <ReportButton
+                    targetId="general"
+                    targetType="other"
+                    targetName="Signalement g\u00e9n\u00e9ral"
+                    variant="icon"
+                    size="sm"
+                  />
+                </div>
+
+                {/* Minor status badge */}
+                <div className="hidden md:block">
+                  <MinorStatusBadge />
+                </div>
+
                 {/* User info desktop */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-white/70 text-sm">
+                  <span className="text-white/70 text-sm truncate max-w-[120px]">
                     {user?.name}
                   </span>
                   <Button
@@ -284,6 +381,10 @@ export function VisualHeader() {
               </>
             ) : (
               <>
+                <div className="hidden md:flex items-center gap-1.5 text-slate-400 text-xs mr-1">
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>Invite</span>
+                </div>
                 <Link href="/login" className="shrink-0 hidden md:block">
                   <Button
                     variant="ghost"
@@ -321,6 +422,7 @@ export function VisualHeader() {
         onClose={() => setMobileMenuOpen(false)}
         roles={effectiveRoles}
         isAuthed={isAuthed}
+        isAdmin={isAdmin}
         onLogout={logout}
       />
     </>
