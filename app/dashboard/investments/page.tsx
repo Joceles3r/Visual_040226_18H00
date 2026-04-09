@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { TrendingUp, Film, FileText, ArrowUpRight, Wallet } from "lucide-react"
+import { TrendingUp, Film, FileText, Mic, ArrowUpRight, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,9 +15,9 @@ export default function InvestmentsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Mes investissements</h1>
+        <h1 className="text-3xl font-bold text-white mb-2">Mes contributions</h1>
         <p className="text-white/60">
-          Suivez vos investissements et leurs performances
+          Suivez vos contributions et leurs performances
         </p>
       </div>
 
@@ -30,7 +30,7 @@ export default function InvestmentsPage() {
                 <TrendingUp className="h-6 w-6 text-emerald-400" />
               </div>
               <div>
-                <p className="text-white/60 text-sm">Total investi</p>
+                <p className="text-white/60 text-sm">Total contribue</p>
                 <p className="text-2xl font-bold text-white">{totalInvested}€</p>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function InvestmentsPage() {
       {/* Investments List */}
       <Card className="bg-slate-900/50 border-white/10">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-white">Liste des investissements</CardTitle>
+          <CardTitle className="text-white">Liste des contributions</CardTitle>
           <Link href="/explore">
             <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
               Explorer plus de projets
@@ -92,11 +92,15 @@ export default function InvestmentsPage() {
                     className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                       investment.contentType === "video"
                         ? "bg-red-500/20"
-                        : "bg-amber-500/20"
+                        : investment.contentType === "podcast"
+                          ? "bg-purple-500/20"
+                          : "bg-amber-500/20"
                     }`}
                   >
                     {investment.contentType === "video" ? (
                       <Film className="h-6 w-6 text-red-400" />
+                    ) : investment.contentType === "podcast" ? (
+                      <Mic className="h-6 w-6 text-purple-400" />
                     ) : (
                       <FileText className="h-6 w-6 text-amber-400" />
                     )}
@@ -132,11 +136,14 @@ export default function InvestmentsPage() {
                       +{investment.returns.toFixed(2)}€
                     </p>
                   </div>
-                  <Link href={`/video/${investment.contentId}`}>
+                  <Link href={`/video/${investment.contentId}`} onClick={(e) => {
+                    if (!investment.contentId) e.preventDefault()
+                  }}>
                     <Button
                       variant="outline"
                       size="sm"
                       className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                      disabled={!investment.contentId}
                     >
                       Voir
                     </Button>
@@ -148,7 +155,7 @@ export default function InvestmentsPage() {
             <div className="text-center py-12">
               <TrendingUp className="h-12 w-12 text-white/20 mx-auto mb-4" />
               <p className="text-white/60 mb-4">
-                Vous n'avez pas encore d'investissement
+                Vous n'avez pas encore de contribution
               </p>
               <Link href="/explore">
                 <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
