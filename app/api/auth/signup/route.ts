@@ -6,14 +6,9 @@ import { NextRequest, NextResponse } from "next/server"
 import { neon } from "@neondatabase/serverless"
 import bcrypt from "bcryptjs"
 import { SignJWT } from "jose"
+import { JWT_SECRET, SESSION_DURATION_MS } from "@/lib/auth/jwt"
 
 const sql = neon(process.env.DATABASE_URL!)
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || process.env.DATABASE_URL?.slice(0, 32) || "vixual-secure-jwt-secret-key-2026"
-)
-
-const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000
 
 export async function POST(request: NextRequest) {
   try {
@@ -96,7 +91,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: SESSION_DURATION / 1000,
+      maxAge: SESSION_DURATION_MS / 1000,
       path: "/",
     })
 

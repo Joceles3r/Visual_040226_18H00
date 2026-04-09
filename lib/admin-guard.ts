@@ -1,20 +1,33 @@
 /**
  * Server-side admin verification utility.
  * Uses VIXUAL_ADMIN_EMAIL (server-only) as primary source of truth.
- * Falls back to NEXT_PUBLIC_ADMIN_EMAIL, then to the hardcoded PATRON email.
+ * Falls back to NEXT_PUBLIC_ADMIN_EMAIL.
+ * In production, NO hardcoded fallback is allowed for security.
  *
  * IMPORTANT: This file must ONLY run on the server (route handlers, server actions).
  */
 
-// FIX A — Correction du nom de variable (VISUAL → VIXUAL) + ajout fallback PATRON
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+
+// Fallback ONLY in development - NEVER in production
 const PATRON_FALLBACK_EMAIL = "jocelyndru@gmail.com";
 
 function getAdminEmail(): string | undefined {
-  return (
+  const adminEmail = 
     process.env.VIXUAL_ADMIN_EMAIL?.toLowerCase() ||
-    process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase() ||
-    PATRON_FALLBACK_EMAIL
-  )
+    process.env.NEXT_PUBLIC_ADMIN_EMAIL?.toLowerCase();
+  
+  if (adminEmail) return adminEmail;
+  
+  // In production, refuse to use hardcoded fallback
+  if (IS_PRODUCTION) {
+    console.error("[VIXUAL CRITICAL] No admin email configured in production. Set VIXUAL_ADMIN_EMAIL.");
+    return undefined;
+  }
+  
+  // Dev only fallback
+  console.warn("[VIXUAL] Using dev fallback admin email - not for production use");
+  return PATRON_FALLBACK_EMAIL;
 }
 
 /**
