@@ -9,81 +9,112 @@ import {
   Heart,
   Film,
   FileText,
+  Mic,
   Wallet,
+  Wallet2,
   History,
   Settings,
   Upload,
+  Sparkles,
+  Ticket,
 } from "lucide-react"
 import { VisualHeader } from "@/components/visual-header"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
-const SIDEBAR_ITEMS = [
+const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; accent?: boolean }[] = [
   {
     label: "Tableau de bord",
     href: "/dashboard",
     icon: LayoutDashboard,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
   },
   {
-    label: "Mes VISUpoints",
+    label: "Mes VIXUpoints",
     href: "/dashboard/visupoints",
     icon: Star,
-    roles: ["visitor"],
+    roles: ["visitor"],   // VIXUpoints = Visiteur uniquement dans la sidebar
+  },
+  {
+    label: "Pass Decouverte",
+    href: "/dashboard/visitor",
+    icon: Ticket,
+    roles: ["visitor"],   // Pass Decouverte = Visiteur uniquement
+    accent: true,
   },
   {
     label: "Mes favoris",
     href: "/dashboard/favorites",
     icon: Heart,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
   },
   {
-    label: "Mes projets (vidéo)",
+    label: "Ma progression",
+    href: "/dashboard/creator",
+    icon: Sparkles,
+    roles: ["porter", "infoporter", "podcaster"],
+    accent: true,
+  },
+  {
+    label: "Mes projets (video)",
     href: "/dashboard/projects?type=video",
     icon: Film,
     roles: ["porter"],
   },
   {
-    label: "Mes écrits",
+    label: "Mes ecrits",
     href: "/dashboard/projects?type=text",
     icon: FileText,
     roles: ["infoporter"],
   },
   {
-    label: "Mes investissements",
-    href: "/dashboard/investments",
-    icon: Wallet,
-    roles: ["investor", "investireader"],
+    label: "Mes podcasts",
+    href: "/dashboard/projects?type=podcast",
+    icon: Mic,
+    roles: ["podcaster"],
   },
   {
-    label: "Mon wallet",
-    href: "/dashboard/wallet",
+    label: "Mes contributions",
+    href: "/dashboard/contributions",
     icon: Wallet,
-    roles: ["porter", "investor", "infoporter", "investireader"],
+    roles: ["contributor", "contribureader", "listener"],
+  },
+  {
+    label: "Mon Wallet",
+    href: "/dashboard/wallet",
+    icon: Wallet2,
+    roles: ["porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
+    accent: true,
   },
   {
     label: "Historique",
     href: "/dashboard/history",
     icon: History,
-    roles: ["porter", "investor", "infoporter", "investireader"],
+    roles: ["porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
   },
   {
-    label: "Déposer une vidéo",
+    label: "Deposer une video",
     href: "/upload",
     icon: Upload,
     roles: ["porter"],
   },
   {
-    label: "Déposer un écrit",
+    label: "Deposer un ecrit",
     href: "/upload/text",
     icon: Upload,
     roles: ["infoporter"],
   },
   {
-    label: "Paramètres",
+    label: "Deposer un podcast",
+    href: "/upload/podcast",
+    icon: Upload,
+    roles: ["podcaster"],
+  },
+  {
+    label: "Parametres",
     href: "/dashboard/settings",
     icon: Settings,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader"],
+    roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
   },
 ]
 
@@ -101,7 +132,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
       <div className="flex pt-20">
         {/* Sidebar */}
-        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20">
+        <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-white/10 bg-slate-900/50 min-h-[calc(100vh-5rem)] sticky top-20 cinema-sidebar">
           <nav className="flex-1 p-4 space-y-1">
             {visibleItems.map((item) => {
               const isActive =
@@ -112,14 +143,20 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors",
-                    isActive
-                      ? "bg-emerald-600/20 text-emerald-400"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all",
+                    item.accent && !isActive && "border border-emerald-500/25 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/15 hover:border-emerald-500/40",
+                    item.accent && isActive && "border border-emerald-500/40 bg-emerald-600/25 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.15)]",
+                    !item.accent && isActive && "bg-emerald-600/20 text-emerald-400",
+                    !item.accent && !isActive && "text-white/70 hover:bg-white/5 hover:text-white",
                   )}
                 >
-                  <item.icon className="h-5 w-5" />
-                  <span className="text-sm font-medium">{item.label}</span>
+                  <item.icon className={cn("h-5 w-5", item.accent && "drop-shadow-[0_0_4px_rgba(16,185,129,0.4)]")} />
+                  <span className={cn("text-sm font-medium", item.accent && "font-semibold")}>{item.label}</span>
+                  {item.accent && (
+                    <span className="ml-auto text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">
+                      NEW
+                    </span>
+                  )}
                 </Link>
               )
             })}
@@ -127,7 +164,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-6 lg:p-8 cinema-section">{children}</main>
       </div>
     </div>
   )
