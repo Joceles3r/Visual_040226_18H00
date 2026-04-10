@@ -35,6 +35,7 @@ import { ReportButton } from "@/components/report-button"
 import { TrustScoreCard } from "@/components/trust-score-display"
 import { type TrustScore } from "@/lib/trust"
 import { CreatorProgressCard } from "@/components/creator-progress-card"
+import { OnboardingModal } from "@/components/onboarding-modal"
 
 // Mock Trust Score pour le dashboard
 const MOCK_USER_TRUST_SCORE: TrustScore = {
@@ -102,8 +103,10 @@ export default function DashboardPage() {
   const hasContributorRole = isContributor || isContribuReader || isListener
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
+    <>
+      <OnboardingModal />
+      <div className="space-y-8">
+        {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
@@ -1024,6 +1027,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       )}
-    </div>
+      </div>
+    </>
   )
 }

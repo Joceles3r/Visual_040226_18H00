@@ -224,7 +224,7 @@ export function getProfileLabel(role: VixualRole): string {
     infoporter: "Infoporteur",
     contribureader: "ContribuReader",
     podcaster: "Podcasteur",
-    listener: "Auditeur",
+    listener: "Auditeur-soutien",
   };
   return labels[role] || role;
 }
@@ -241,7 +241,7 @@ export function getProfileDescription(role: VixualRole): string {
     infoporter: "Publiez vos livres et articles",
     contribureader: "Soutenez financierement les ecrits",
     podcaster: "Diffusez vos podcasts",
-    listener: "Soutenez financierement les podcasts",
+    listener: "Soutenez financierement les podcasteurs",
   };
   return descriptions[role] || "";
 }

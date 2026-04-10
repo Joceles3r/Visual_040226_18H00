@@ -28,7 +28,7 @@ export const ROLE_LABELS = {
   podcaster: { singular: "Podcasteur", plural: "Podcasteurs" },
   contributor: { singular: "Contributeur", plural: "Contributeurs" },
   contribureader: { singular: "Contribu-lecteur", plural: "Contribu-lecteurs" },
-  listener: { singular: "Auditeur", plural: "Auditeurs" },
+  listener: { singular: "Auditeur-soutien", plural: "Auditeurs-soutien" },
 } as const;
 
 export type RoleKey = keyof typeof ROLE_LABELS;

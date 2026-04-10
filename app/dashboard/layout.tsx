@@ -33,13 +33,13 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     label: "Mes VIXUpoints",
     href: "/dashboard/visupoints",
     icon: Star,
-    roles: ["visitor", "contribureader", "listener"],
+    roles: ["visitor"],   // VIXUpoints = Visiteur uniquement dans la sidebar
   },
   {
     label: "Pass Decouverte",
     href: "/dashboard/visitor",
     icon: Ticket,
-    roles: ["visitor", "contribureader", "listener"],
+    roles: ["visitor"],   // Pass Decouverte = Visiteur uniquement
     accent: true,
   },
   {
@@ -80,7 +80,7 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     roles: ["contributor", "contribureader", "listener"],
   },
   {
-    label: "Mon Wallet V3",
+    label: "Mon Wallet",
     href: "/dashboard/wallet",
     icon: Wallet2,
     roles: ["porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],

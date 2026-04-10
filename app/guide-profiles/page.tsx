@@ -202,12 +202,12 @@ const PROFILES = {
   },
 
   listener: {
-    title: "Auditeur",
-    subtitle: "Soutenant de contenu audio",
+    title: "Auditeur-soutien",
+    subtitle: "Contributeur financier de podcasts",
     icon: Headphones,
     color: "bg-violet-500/20 border-violet-500/40",
     textColor: "text-violet-300",
-    description: "Soutenez les podcasteurs en contribuant à leurs projets audio et potentiellement gagnant.",
+    description: "Soutenez financierement les podcasteurs en contribuant a leurs episodes. Potentiellement gagnant si votre soutien les propulse dans le TOP.",
     features: [
       "Sélection de podcasts à soutenir",
       "Contribution de 2€ à 20€ par podcast",
@@ -223,7 +223,7 @@ const PROFILES = {
       "Gains seulement si dans TOP 10 ou 11-100",
       "Distribution des gains le dernier jour du mois"
     ],
-    cta: "Devenir Auditeur",
+    cta: "Devenir Auditeur-soutien",
     nextStep: "Commencez à soutenir vos podcasts préférés",
     advantage: "Gagnez entre 1% et 40% en soutenant les meilleurs podcasts"
   }
