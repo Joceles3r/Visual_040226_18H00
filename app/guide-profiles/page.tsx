@@ -42,28 +42,28 @@ const PROFILES = {
 
   visitor: {
     title: "Visiteur",
-    subtitle: "Accès complet aux contenus",
+    subtitle: "Pass Decouverte gratuit",
     icon: Crown,
     color: "bg-emerald-500/20 border-emerald-500/40",
     textColor: "text-emerald-300",
-    description: "Profitez du paiement hybride, participez à Vixual Social et gagnez des VIXUpoints.",
+    description: "Votre Pass Decouverte vous permet de regarder des extraits et d'accumuler des VIXUpoints. Chaque interaction (like, commentaire, partage) vous rapporte des points. A partir de 2500 points (25 euros), vous pouvez les convertir en euros ou les utiliser pour acheter du contenu.",
     features: [
-      "Accès à tous les extraits et contenus gratuits",
+      "Acces a tous les extraits et contenus gratuits",
+      "Gagnez des VIXUpoints a chaque interaction",
       "Paiement hybride: 30% euros + 70% VIXUpoints",
-      "Participation à Vixual Social (mini-réseau)",
-      "Accumulation de VIXUpoints via interactions",
-      "Échange: 2500 VIXUpoints = 25€",
-      "Limite max 2500 VIXUpoints en caisse"
+      "Participation a Vixual Social (mini-reseau)",
+      "Conversion: 2500 VIXUpoints = 25 euros",
+      "Utilisez vos points comme cagnotte d'achat"
     ],
     restrictions: [
-      "Pas de création de contenu",
-      "Limite de VIXUpoints fixée (2500 max)",
+      "Pas de creation de contenu",
+      "Limite de VIXUpoints fixee (2500 max)",
       "Pas de gains directs de projets",
-      "Pas accès au withdrawal si dépasse 2500"
+      "Attention: une fois quitte, impossible de revenir Visiteur"
     ],
     cta: "S'inscrire comme Visiteur",
-    nextStep: "Accédez au paiement hybride et à Vixual Social",
-    advantage: "Les VIXUpoints peuvent être utilisés comme cagnotte pour acheter du contenu ou échangés contre 25€ minimum"
+    nextStep: "Commencez a accumuler des VIXUpoints gratuitement",
+    advantage: "Les VIXUpoints peuvent etre utilises comme cagnotte pour acheter du contenu ou echanges contre 25 euros minimum"
   },
 
   porter: {
@@ -149,29 +149,29 @@ const PROFILES = {
 
   contributor: {
     title: "Contributeur",
-    subtitle: "Soutenant de contenu audiovisuel",
+    subtitle: "Investisseur de projets video",
     icon: TrendingUp,
     color: "bg-emerald-500/20 border-emerald-500/40",
     textColor: "text-emerald-300",
-    description: "Découvrez et soutenez les meilleurs projets audiovisuels. Potentiellement gagnant si dans TOP 10.",
+    description: "Investissez dans les meilleurs projets audiovisuels. Si le projet atteint le TOP 10, vous recevez une part des gains le mois suivant.",
     features: [
-      "Sélection de contenus audiovisuels à soutenir",
-      "Contribution de 2€ à 20€ par projet",
-      "Paiement hybride: 30% euros + 70% VIXUpoints",
-      "Visionnage d'extraits avant achat",
-      "Consultation des résumés complets",
-      "Gains potentiels si dans TOP 10 contributeurs",
+      "Investissement de 2 a 20 euros par projet",
+      "Gains potentiels si le projet est TOP 10 (15% a 30% de votre investissement)",
+      "Systeme de bonus BPS pour les premiers investisseurs",
+      "Redistribution des gains le 1er du mois suivant la cloture",
+      "Visionnage d'extraits avant investissement",
+      "Consultation des resumes complets",
       "Retrait des gains via Stripe Connect",
-      "Caution initiale: 20€ (remboursable)"
+      "Caution initiale: 20 euros (remboursable)"
     ],
     restrictions: [
-      "Contribution minimale 2€ par projet",
+      "Contribution minimale 2 euros par projet",
       "Gains seulement si dans TOP 10 ou 11-100",
       "Distribution des gains le 1er du mois suivant"
     ],
     cta: "Devenir Contributeur",
-    nextStep: "Commencez à soutenir vos projets vidéo préférés",
-    advantage: "Gagnez entre 1% et 40% des pools de contribution selon votre classement"
+    nextStep: "Explorez les projets video et investissez",
+    advantage: "Plus vous investissez tot, plus votre part est importante grace au systeme BPS (Bonus Premier Soutien)"
   },
 
   contribureader: {
@@ -203,29 +203,29 @@ const PROFILES = {
 
   listener: {
     title: "Auditeur-soutien",
-    subtitle: "Contributeur financier de podcasts",
+    subtitle: "Investisseur de podcasts",
     icon: Headphones,
     color: "bg-violet-500/20 border-violet-500/40",
     textColor: "text-violet-300",
-    description: "Soutenez financierement les podcasteurs en contribuant a leurs episodes. Potentiellement gagnant si votre soutien les propulse dans le TOP.",
+    description: "Soutenez financierement les podcasteurs. Si le podcast est dans le TOP 10, vous recevez 30% du pot mensuel redistribue.",
     features: [
-      "Sélection de podcasts à soutenir",
-      "Contribution de 2€ à 20€ par podcast",
+      "Selection de podcasts a soutenir",
+      "Contribution de 2 a 20 euros par podcast",
       "Paiement hybride: 30% euros + 70% VIXUpoints",
-      "Écoute d'extraits avant achat",
-      "Consultation des résumés complets",
+      "Ecoute d'extraits avant achat",
+      "30% du pot mensuel pour les supporters TOP 10",
       "Gains potentiels si dans TOP 10 auditeurs",
       "Retrait des gains via Stripe Connect",
-      "Caution initiale: 20€ (remboursable)"
+      "Caution initiale: 20 euros (remboursable)"
     ],
     restrictions: [
-      "Contribution minimale 2€ par podcast",
+      "Contribution minimale 2 euros par podcast",
       "Gains seulement si dans TOP 10 ou 11-100",
       "Distribution des gains le dernier jour du mois"
     ],
     cta: "Devenir Auditeur-soutien",
-    nextStep: "Commencez à soutenir vos podcasts préférés",
-    advantage: "Gagnez entre 1% et 40% en soutenant les meilleurs podcasts"
+    nextStep: "Decouvrez les podcasts et soutenez vos preferes",
+    advantage: "30% du pot mensuel podcasts va aux Auditeurs-soutien dans le TOP 10. Profitez du paiement hybride: payez 30% en euros et 70% en VIXUpoints gagnes precedemment."
   }
 }
 

@@ -5,11 +5,37 @@ import { TrendingUp, Film, FileText, Mic, ArrowUpRight, Wallet } from "lucide-re
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MOCK_INVESTMENTS } from "@/lib/mock-data"
+import { useAuth } from "@/lib/auth-context"
+
+// Donnees reelles - etat vide par defaut
+interface Investment {
+  id: string
+  contentId?: string
+  contentTitle: string
+  contentType: "video" | "text" | "podcast"
+  amount: number
+  returns: number
+  status: "active" | "completed" | "refunded"
+  date: string
+}
 
 export default function InvestmentsPage() {
-  const totalInvested = MOCK_INVESTMENTS.reduce((sum, inv) => sum + inv.amount, 0)
-  const totalReturns = MOCK_INVESTMENTS.reduce((sum, inv) => sum + inv.returns, 0)
+  const { user } = useAuth()
+  // TODO: Charger les vraies contributions depuis l'API
+  const investments: Investment[] = []
+  
+  const totalInvested = investments.reduce((sum, inv) => sum + inv.amount, 0)
+  const totalReturns = investments.reduce((sum, inv) => sum + inv.returns, 0)
+  
+  // Determiner le type de contenu en fonction du role
+  const userRole = user?.roles?.[0] || "contributor"
+  const contentType = userRole === "listener" ? "podcast" : userRole === "contribureader" ? "text" : "video"
+  const exploreHref = `/explore?type=${contentType}`
+  const emptyMessage = userRole === "listener" 
+    ? "Decouvrez les podcasts et soutenez vos preferes. Si le podcast est dans le TOP 10, vous recevez 30% du pot mensuel."
+    : userRole === "contribureader"
+      ? "Decouvrez les ecrits et soutenez les auteurs. Si l'auteur est dans le TOP 10, vous touchez une part des gains."
+      : "Partez a la decouverte des projets video et contribuez a ceux qui vous inspirent. Vos contributions peuvent vous rapporter si le projet atteint le TOP 10."
 
   return (
     <div className="space-y-8">
@@ -81,9 +107,9 @@ export default function InvestmentsPage() {
           </Link>
         </CardHeader>
         <CardContent>
-          {MOCK_INVESTMENTS.length > 0 ? (
+          {investments.length > 0 ? (
             <div className="space-y-4">
-              {MOCK_INVESTMENTS.map((investment) => (
+              {investments.map((investment) => (
                 <div
                   key={investment.id}
                   className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-lg"
@@ -152,14 +178,17 @@ export default function InvestmentsPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <TrendingUp className="h-12 w-12 text-white/20 mx-auto mb-4" />
-              <p className="text-white/60 mb-4">
-                Vous n'avez pas encore de contribution
+            <div className="text-center py-16 border border-white/5 rounded-xl">
+              <div className="w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="h-7 w-7 text-emerald-400/40" />
+              </div>
+              <p className="text-white/40 font-medium mb-2">Aucune contribution realisee</p>
+              <p className="text-white/25 text-sm mb-5 max-w-sm mx-auto">
+                {emptyMessage}
               </p>
-              <Link href="/explore">
-                <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
-                  Explorer les projets
+              <Link href={exploreHref}>
+                <Button className="bg-emerald-600 hover:bg-emerald-500">
+                  Explorer les projets {contentType === "podcast" ? "podcasts" : contentType === "text" ? "ecrits" : "video"}
                 </Button>
               </Link>
             </div>

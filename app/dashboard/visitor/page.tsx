@@ -158,8 +158,8 @@ export default function VisitorDashboardPage() {
                 )}
               </div>
             </div>
-            <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
-              Mode V1
+            <Badge className="bg-slate-500/20 text-slate-400 border-slate-500/30">
+              Phase de lancement
             </Badge>
           </div>
           
@@ -186,12 +186,19 @@ export default function VisitorDashboardPage() {
             />
           </div>
           
-          {/* Info V1 */}
-          <div className="mt-4 bg-black/20 rounded-lg p-3 flex items-start gap-2">
-            <Info className="h-4 w-4 text-amber-400/70 shrink-0 mt-0.5" />
-            <p className="text-white/50 text-xs">
-              {PEDAGOGIC_MESSAGES.conversion}. Utilisation future en cours de preparation.
-            </p>
+          {/* Info VIXUpoints */}
+          <div className="mt-4 bg-emerald-500/10 rounded-lg p-3 border border-emerald-500/20">
+            <div className="flex items-start gap-2">
+              <Info className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="text-white/70 text-xs">
+                <p className="font-medium text-emerald-300 mb-1">Comment utiliser mes VIXUpoints ?</p>
+                <ul className="space-y-1 text-white/50">
+                  <li>- <span className="text-white/70">2500 pts = 25 euros</span> - Convertissez vos points en euros (minimum 25 euros)</li>
+                  <li>- <span className="text-white/70">Paiement hybride</span> - Payez 30% en euros + 70% en pts sur les contenus</li>
+                  <li>- <span className="text-white/70">Plafond</span> - Maximum 2500 pts cumulables si vous restez Visiteur</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -61,43 +61,16 @@ const TX_ICONS: Record<string, string> = {
   video_sale: "in", podcast_sale: "in",
 }
 
-// Mock data for demo
+// Donnees reelles - etat vide par defaut
 const MOCK_WALLET = {
-  availableCents: 18_42, pendingCents: 4_50, totalEarnedCents: 156_80, totalWithdrawnCents: 45_00,
+  availableCents: 0, pendingCents: 0, totalEarnedCents: 0, totalWithdrawnCents: 0,
 }
-const MOCK_VISUPOINTS = { balance: 1200, cap: 5000, todayEarned: 15 }
-const MOCK_TRANSACTIONS = [
-  { id: "tx1", type: "video_sale", amountCents: 1000, description: "Vente vid\u00e9o : L'Odyss\u00e9e des \u00c9toiles", status: "completed", createdAt: "2026-03-03" },
-  { id: "tx2", type: "return", amountCents: 400, description: "Retour contribution : Murmures de la For\u00eat", status: "completed", createdAt: "2026-03-02" },
-  { id: "tx3", type: "investment", amountCents: -500, description: "Contribution : M\u00e9tropolis 2050", status: "completed", createdAt: "2026-03-01" },
-  { id: "tx4", type: "article_sale", amountCents: 350, description: "Vente article : R\u00e9flexions sur l'IA", status: "completed", createdAt: "2026-02-28" },
-  { id: "tx5", type: "withdrawal", amountCents: -2000, description: "Retrait bancaire", status: "completed", createdAt: "2026-02-25" },
-  { id: "tx6", type: "podcast_sale", amountCents: 280, description: "Vente podcast : Les Voix de la Nuit", status: "completed", createdAt: "2026-02-22" },
-  { id: "tx7", type: "caution", amountCents: -1000, description: "Caution Cr\u00e9ateur", status: "completed", createdAt: "2026-01-15" },
-  { id: "tx8", type: "return", amountCents: 650, description: "Retour contribution : Jazz \u00e0 Minuit", status: "completed", createdAt: "2026-02-20" },
-]
-const MOCK_PENDING_WITHDRAWALS = [
-  { id: "w1", amountCents: 4_50, requestDate: "2026-03-03", status: "processing" as const, holdEnd: null },
-]
-const MOCK_MONTHLY_DATA = [
-  { month: "Oct", earned: 8_20, spent: 3_00 },
-  { month: "Nov", earned: 12_50, spent: 5_00 },
-  { month: "Dec", earned: 18_00, spent: 8_00 },
-  { month: "Jan", earned: 22_30, spent: 10_00 },
-  { month: "F\u00e9v", earned: 34_60, spent: 12_00 },
-  { month: "Mar", earned: 42_80, spent: 7_00 },
-]
-const MOCK_REVENUE_BY_TYPE = [
-  { type: "Vid\u00e9os", amount: 68_00, color: "bg-red-500", pct: 43 },
-  { type: "Podcasts", amount: 42_00, color: "bg-purple-500", pct: 27 },
-  { type: "\u00c9crits", amount: 28_00, color: "bg-sky-500", pct: 18 },
-  { type: "Investissements", amount: 18_80, color: "bg-emerald-500", pct: 12 },
-]
-const MOCK_INSIGHTS = [
-  "Vos gains ont augment\u00e9 de vingt-quatre pour cent ce mois.",
-  "Les projets podcasts g\u00e9n\u00e8rent plus de revenus pour vous.",
-  "Vous pourriez atteindre cinquante euros d'ici deux semaines.",
-]
+const MOCK_VISUPOINTS = { balance: 0, cap: 5000, todayEarned: 0 }
+const MOCK_TRANSACTIONS: { id: string; type: string; amountCents: number; description: string; status: string; createdAt: string }[] = []
+const MOCK_PENDING_WITHDRAWALS: { id: string; amountCents: number; requestDate: string; status: "processing" | "held"; holdEnd: string | null }[] = []
+const MOCK_MONTHLY_DATA: { month: string; earned: number; spent: number }[] = []
+const MOCK_REVENUE_BY_TYPE: { type: string; amount: number; color: string; pct: number }[] = []
+const MOCK_INSIGHTS: string[] = []
 
 export default function WalletPage() {
   const { user } = useAuth()

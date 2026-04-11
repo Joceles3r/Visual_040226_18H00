@@ -235,13 +235,13 @@ export function getProfileLabel(role: VixualRole): string {
 export function getProfileDescription(role: VixualRole): string {
   const descriptions: Record<VixualRole, string> = {
     guest: "Non connecte - Acces limite",
-    visitor: "Decouvrez VIXUAL gratuitement avec le Pass Decouverte",
+    visitor: "Explorez la plateforme sans payer. Gagnez des VIXUpoints en regardant des extraits et en interagissant. Convertissez 2500+ points en euros ou utilisez-les pour acheter du contenu.",
     porter: "Creez et partagez vos films et videos",
-    contributor: "Soutenez financierement les projets video",
+    contributor: "Investissez 2 a 20 euros dans des projets video. Si le projet se classe dans le TOP 10, vous recevez une part des gains le mois suivant. Plus vous investissez tot, plus votre part est importante (systeme BPS).",
     infoporter: "Publiez vos livres et articles",
-    contribureader: "Soutenez financierement les ecrits",
+    contribureader: "Soutenez financierement les ecrits et touchez une part du pot mensuel si TOP 10",
     podcaster: "Diffusez vos podcasts",
-    listener: "Soutenez financierement les podcasteurs",
+    listener: "Soutenez financierement les podcasts. Si votre podcast soutenu est dans le TOP 10, vous recevez 30% du pot mensuel redistribue. Profitez du paiement hybride (30% euros + 70% VIXUpoints).",
   };
   return descriptions[role] || "";
 }

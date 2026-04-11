@@ -17,10 +17,10 @@ export const ROLE_LABELS: Record<string, string> = {
 // Descriptions des profils
 export const ROLE_DESCRIPTIONS: Record<string, string> = {
   guest: "Acces limite, decouverte de la plateforme",
-  visitor: "Acces aux contenus, utilisation des VIXUpoints",
-  contributor: "Contribution en euros aux projets audiovisuels",
-  contribu_reader: "Contribution aux livres et ecrits (euros/VIXUpoints/hybride)",
-  listener: "Soutien financier aux podcasts (euros/VIXUpoints/hybride)",
+  visitor: "Explorez gratuitement, gagnez des VIXUpoints, utilisez-les comme cagnotte",
+  contributor: "Investissez dans les films et videos, touchez des gains si le projet est TOP 10",
+  contribu_reader: "Soutenez les auteurs, touchez 30% du pot mensuel si TOP 10",
+  listener: "Soutenez les podcasteurs, touchez 30% du pot mensuel si vous etes dans le TOP 10",
   porter: "Createur de contenus audiovisuels",
   infoporter: "Auteur de contenus ecrits et articles",
   podcaster: "Createur de podcasts",

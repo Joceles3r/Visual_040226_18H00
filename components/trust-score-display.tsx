@@ -40,6 +40,7 @@ import {
   TRUST_SCORE_RANGES,
   TRUST_BADGES,
 } from "@/lib/trust/types"
+// Note: Import directly from types to avoid server-only imports from the main trust module
 
 // ─── Utils ───
 

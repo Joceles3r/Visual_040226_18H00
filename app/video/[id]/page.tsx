@@ -636,14 +636,17 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   </ul>
                   {/* Mini simulateur interactif */}
                   <div className="p-3 bg-slate-800/50 rounded-lg border border-white/5">
-                    <p className="text-white/50 text-[10px] uppercase tracking-wider mb-2">Estimation de gains</p>
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider mb-2">Estimation de gains si TOP 10</p>
                     <div className="grid grid-cols-2 gap-2 text-center">
                       <div className="p-2 rounded bg-amber-500/10 border border-amber-500/20">
                         <p className="text-amber-400 font-bold text-sm">TOP 10</p>
                         {selectedAmount ? (
-                          <p className="text-amber-300 font-semibold text-xs">
-                            {(selectedAmount * 1.15).toFixed(2)}€ – {(selectedAmount * 1.30).toFixed(2)}€
-                          </p>
+                          <div>
+                            <p className="text-amber-300 font-semibold text-xs">
+                              +{(selectedAmount * 0.15).toFixed(2)}€ a +{(selectedAmount * 0.30).toFixed(2)}€
+                            </p>
+                            <p className="text-amber-200/50 text-[9px]">sur {selectedAmount}€ contribue(s)</p>
+                          </div>
                         ) : (
                           <p className="text-white/60 text-xs">+15% a +30%</p>
                         )}
@@ -651,16 +654,19 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                       <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
                         <p className="text-emerald-400 font-bold text-sm">TOP 5</p>
                         {selectedAmount ? (
-                          <p className="text-emerald-300 font-semibold text-xs">
-                            {(selectedAmount * 1.30).toFixed(2)}€ – {(selectedAmount * 1.50).toFixed(2)}€
-                          </p>
+                          <div>
+                            <p className="text-emerald-300 font-semibold text-xs">
+                              +{(selectedAmount * 0.30).toFixed(2)}€ a +{(selectedAmount * 0.50).toFixed(2)}€
+                            </p>
+                            <p className="text-emerald-200/50 text-[9px]">sur {selectedAmount}€ contribue(s)</p>
+                          </div>
                         ) : (
                           <p className="text-white/60 text-xs">+30% a +50%</p>
                         )}
                       </div>
                     </div>
                     {selectedAmount ? (
-                      <p className="text-white/40 text-[9px] text-center mt-2">Estimation indicative — gains reels selon classement final</p>
+                      <p className="text-white/40 text-[9px] text-center mt-2">Estimation si le projet finit TOP 10 — redistribution le 1er du mois suivant</p>
                     ) : (
                       <p className="text-white/30 text-[9px] text-center mt-2">Selectionnez un montant pour voir votre estimation</p>
                     )}
@@ -731,7 +737,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                           onClick={() => setShowInvestConfirm(true)}
                           className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white h-12 text-lg shadow-lg shadow-emerald-500/20"
                         >
-                          Investir {selectedAmount}{"\u20ac"}
+                          Contribuer {selectedAmount}{"\u20ac"}
                         </Button>
                       )}
 
@@ -746,11 +752,11 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                         <div className="p-4 bg-emerald-500/5 border border-emerald-500/15 rounded-xl space-y-3">
                           <div className="text-center">
                             <CheckCircle className="h-8 w-8 text-emerald-400 mx-auto mb-2" />
-                            <p className="text-white font-semibold text-sm">Confirmer votre investissement</p>
+                            <p className="text-white font-semibold text-sm">Confirmer votre contribution</p>
                             <p className="text-emerald-400 font-bold text-2xl mt-1">{selectedAmount}{"\u20ac"}</p>
                           </div>
                           <p className="text-white/40 text-[11px] text-center">
-                            {"Investir comporte des risques. Les gains ne sont pas garantis."}
+                            {"Contribuer comporte des risques. Les gains ne sont pas garantis."}
                           </p>
                           <div className="flex gap-2">
                             <Button
@@ -826,7 +832,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   {/* Legal */}
                   <div className="pt-2 border-t border-white/5">
                     <p className="text-xs text-white/30 text-center">
-                      {"Investir comporte des risques. Les gains ne sont pas garantis. VISUAL n'est pas un jeu de hasard."}
+                      {"Contribuer comporte des risques. Les gains ne sont pas garantis. VIXUAL n'est pas un jeu de hasard."}
                     </p>
                   </div>
                 </CardContent>
@@ -876,7 +882,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                     {[
                       { icon: Eye, label: "D\u00e9couvrir le projet", done: true },
                       { icon: Play, label: "Voir l'extrait gratuit", done: isPlaying || isUnlocked },
-                      { icon: Heart, label: "Soutenir / Investir", done: false },
+                      { icon: Heart, label: "Soutenir / Contribuer", done: false },
                       { icon: Unlock, label: "Visionnage complet", done: isUnlocked },
                       { icon: Trophy, label: "Classement & gains", done: false },
                     ].map((step, i) => (

@@ -152,11 +152,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 >
                   <item.icon className={cn("h-5 w-5", item.accent && "drop-shadow-[0_0_4px_rgba(16,185,129,0.4)]")} />
                   <span className={cn("text-sm font-medium", item.accent && "font-semibold")}>{item.label}</span>
-                  {item.accent && (
-                    <span className="ml-auto text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">
-                      NEW
-                    </span>
-                  )}
+
                 </Link>
               )
             })}

@@ -9,52 +9,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 
-const MOCK_PROJECTS = [
-  {
-    id: "p1",
-    title: "Mon premier court-métrage",
-    type: "video",
-    status: "active",
-    investment: 1500,
-    goal: 3000,
-    investors: 24,
-    views: 1250,
-    createdAt: "2026-01-15",
-  },
-  {
-    id: "p2",
-    title: "Documentaire nature",
-    type: "video",
-    status: "funded",
-    investment: 2000,
-    goal: 2000,
-    investors: 45,
-    views: 3400,
-    createdAt: "2026-01-01",
-  },
-  {
-    id: "t1",
-    title: "Recueil de nouvelles",
-    type: "text",
-    status: "active",
-    investment: 800,
-    goal: 1500,
-    investors: 18,
-    views: 890,
-    createdAt: "2026-01-20",
-  },
-  {
-    id: "pod1",
-    title: "Histoires du soir",
-    type: "podcast",
-    status: "active",
-    investment: 650,
-    goal: 1200,
-    investors: 12,
-    views: 540,
-    createdAt: "2026-02-01",
-  },
-]
+// Donnees reelles - etat vide par defaut
+// TODO: Charger les vrais projets depuis l'API
+interface Project {
+  id: string
+  title: string
+  type: "video" | "text" | "podcast"
+  status: "active" | "funded"
+  investment: number
+  goal: number
+  investors: number
+  views: number
+  createdAt: string
+}
+
+const MOCK_PROJECTS: Project[] = []
 
 function ProjectsContent() {
   const searchParams = useSearchParams()
@@ -282,15 +251,19 @@ function ProjectsContent() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <Film className="h-12 w-12 text-white/20 mx-auto mb-4" />
-              <p className="text-white/60 mb-4">
-                Vous n'avez pas encore de projet
+            <div className="text-center py-16 border border-white/5 rounded-xl">
+              <div className="w-14 h-14 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+                <Upload className="h-7 w-7 text-purple-400/40" />
+              </div>
+              <p className="text-white/40 font-medium mb-2">Aucun contenu publie</p>
+              <p className="text-white/25 text-sm mb-5 max-w-sm mx-auto">
+                Deposez votre premier contenu pour commencer a recevoir des contributions 
+                et avoir une chance de figurer dans le TOP 10.
               </p>
-              <Link href={isTextFilter ? "/upload/text" : "/upload"}>
-                <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white">
-                  <Upload className="mr-2 h-4 w-4" />
-                  Créer mon premier projet
+              <Link href={getUploadHref()}>
+                <Button className="bg-gradient-to-r from-emerald-600 to-teal-600">
+                  <Upload className="h-4 w-4 mr-2" />
+                  {getUploadLabel()}
                 </Button>
               </Link>
             </div>
