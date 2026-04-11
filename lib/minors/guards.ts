@@ -47,7 +47,7 @@ export async function guardMinorAction(
   // Minor attempting euro-related actions -- always blocked
   if (action === "invest" || action === "withdraw" || action === "stripe_connect") {
     const config = BLOCKED_ACTIONS[action];
-    return apiError(config.code, config.message, 403);
+    return apiError(config.code as import("@/lib/api-errors").ErrorCode, config.message, 403);
   }
 
   // VISUpoints actions require valid guardian approval

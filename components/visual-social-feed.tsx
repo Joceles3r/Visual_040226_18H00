@@ -190,9 +190,9 @@ function PostComposer({
   const [selectedTags, setSelectedTags] = useState<SocialTag[]>([])
   const [showTagPicker, setShowTagPicker] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const { user, role } = useAuth()
+  const { user, roles } = useAuth()
 
-  const roleConfig = ROLE_SOCIAL_CONFIG[role?.[0] || "guest"]
+  const roleConfig = ROLE_SOCIAL_CONFIG[roles?.[0] || "guest"]
   const charsLeft = MAX_BODY_LENGTH - body.length
   const charsColor = charsLeft < 0 ? "text-red-400" : charsLeft < 100 ? "text-amber-400" : "text-white/30"
   const isReply = Boolean(replyTo)
@@ -327,7 +327,7 @@ export default function VisualSocialFeed({
   contentType?: ContentType
   contentId?: string
 }) {
-  const { user, role } = useAuth()
+  const { user, roles } = useAuth()
   const [roots, setRoots] = useState<SocialPost[]>([])
   const [repliesByParent, setRepliesByParent] = useState<Record<string, SocialPost[]>>({})
   const [filterTag, setFilterTag] = useState<SocialTag | null>(null)

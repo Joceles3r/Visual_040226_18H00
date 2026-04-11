@@ -83,8 +83,8 @@ export async function GET() {
     health.has_secret_key = !!config.secretKey;
     health.has_publishable_key = !!config.publishableKey;
     health.has_webhook_secret = !!config.webhookSecret;
-    health.updated_at = config.updatedAt || null;
-    health.updated_by = config.updatedBy || null;
+    health.updated_at = null;  // Ces champs sont dans stripe_config DB, pas dans StripeRuntimeConfig
+    health.updated_by = null;
 
     // Verifications de coherence
     if (!health.has_secret_key) {
@@ -122,7 +122,7 @@ export async function GET() {
     if (config.secretKey) {
       try {
         const stripe = new Stripe(config.secretKey, {
-          apiVersion: "2025-04-30.basil",
+          apiVersion: "2026-01-28.clover",
           typescript: true,
         });
         

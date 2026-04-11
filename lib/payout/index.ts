@@ -160,7 +160,6 @@ export {
 } from "../visual-rules-engine";
 
 export type {
-  BatchStatus,
   MonthlyBatchEntry,
   MonthlyBatchResult,
   PayableRole,

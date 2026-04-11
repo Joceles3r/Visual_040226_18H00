@@ -83,7 +83,7 @@ export type PayoutEngineInput = {
    * For literary: role = investireader / infoporter.
    * For podcasts: role = listener / podcaster.
    */
-  top10Investors: { userId: string; role: "investor" | "investireader" | "listener" }[];
+  top10Investors: { userId: string; role: "contributor" | "contribureader" | "listener" }[];
   top10Creators: { userId: string; role: "porter" | "infoporter" | "podcaster" }[];
 
   /**
@@ -92,7 +92,7 @@ export type PayoutEngineInput = {
    * Podcasts: included in the 30% investor pool (pro-rata).
    * Voix Info / Livres: readers/investi-lecteurs gagnants.
    */
-  investors11to100: { userId: string; role: "investor" | "investireader" | "listener" }[];
+  investors11to100: { userId: string; role: "contributor" | "contribureader" | "listener" }[];
 
   /**
    * Podcast-specific: listen_score per investor for weighting.

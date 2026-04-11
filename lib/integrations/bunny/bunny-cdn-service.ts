@@ -130,13 +130,17 @@ class BunnyCDNService {
     const { file, fileName, path, contentType, userId } = params;
     
     // Validate file type
-    const allowedTypes = [
+    type AllowedMimeType = typeof BUNNY_CDN_CONFIG.allowedVideoTypes[number]
+      | typeof BUNNY_CDN_CONFIG.allowedImageTypes[number]
+      | typeof BUNNY_CDN_CONFIG.allowedAudioTypes[number];
+    
+    const allowedTypes: AllowedMimeType[] = [
       ...BUNNY_CDN_CONFIG.allowedVideoTypes,
       ...BUNNY_CDN_CONFIG.allowedImageTypes,
       ...BUNNY_CDN_CONFIG.allowedAudioTypes,
     ];
     
-    if (!allowedTypes.includes(contentType)) {
+    if (!allowedTypes.includes(contentType as AllowedMimeType)) {
       throw new Error(`File type ${contentType} is not allowed`);
     }
     
@@ -157,7 +161,7 @@ class BunnyCDNService {
           "AccessKey": this.storageApiKey,
           "Content-Type": contentType,
         },
-        body: file,
+        body: new Uint8Array(file),
       });
       
       if (!response.ok) {
@@ -380,7 +384,7 @@ class BunnyCDNService {
           "AccessKey": this.apiKey,
           "Content-Type": "application/octet-stream",
         },
-        body: videoBuffer,
+        body: new Uint8Array(videoBuffer),
       }
     );
     

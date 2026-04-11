@@ -94,9 +94,9 @@ export default function DashboardPage() {
 
   const isVisitor = roles.includes("visitor")
   const isPorter = roles.includes("porter")
-  const isContributor = roles.includes("contributor") || roles.includes("investor")
+  const isContributor = roles.includes("contributor")
   const isInfoporter = roles.includes("infoporter")
-  const isContribuReader = roles.includes("contribu_reader") || roles.includes("investireader")
+  const isContribuReader = roles.includes("contribureader")
   const isPodcaster = roles.includes("podcaster")
   const isListener = roles.includes("listener")
   const hasCreatorRole = isPorter || isInfoporter || isPodcaster

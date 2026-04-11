@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
         await handleChargeRefunded(event.data.object as Stripe.Charge);
         break;
         
-      case "transfer.failed":
+      case "transfer.reversed":
         await handleTransferFailed(event.data.object as Stripe.Transfer);
         break;
         
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
         break;
         
       case "account.application.deauthorized":
-        await handleAccountDeauthorized(event.data.object as Stripe.Account);
+        await handleAccountDeauthorized(event.data.object as unknown as Stripe.Application);
         break;
         
       case "payout.paid":
@@ -227,14 +227,14 @@ async function handleAccountUpdated(account: Stripe.Account) {
   }
 }
 
-async function handleAccountDeauthorized(account: Stripe.Account) {
-  logStripeEvent("Account deauthorized", { id: account.id });
+async function handleAccountDeauthorized(application: Stripe.Application) {
+  logStripeEvent("Account deauthorized", { id: application.id });
   
   // Disable the account in our system
   await sql`
     UPDATE users 
     SET stripe_account_status = 'disabled'
-    WHERE stripe_account_id = ${account.id}
+    WHERE stripe_account_id = ${application.id}
   `;
 }
 

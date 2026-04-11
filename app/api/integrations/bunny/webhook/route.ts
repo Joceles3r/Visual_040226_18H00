@@ -86,7 +86,7 @@ export const POST = withErrorHandler(async (req: Request) => {
   } else if (isProduction) {
     console.error("[BUNNY WEBHOOK] CRITICAL: No BUNNY_WEBHOOK_SECRET configured in production!")
     // In production without secret, reject all webhooks for security
-    return apiError(ErrorCodes.ERR_SERVER_ERROR, "Webhook not configured", 500)
+    return apiError(ErrorCodes.ERR_INTERNAL, "Webhook not configured", 500)
   } else {
     console.warn("[BUNNY WEBHOOK] DEV MODE: No webhook secret configured - accepting all requests")
   }

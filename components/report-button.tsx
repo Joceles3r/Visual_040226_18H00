@@ -32,7 +32,7 @@ interface ReportButtonProps {
   /** Visual variant */
   variant?: "icon" | "full" | "minimal"
   /** Size */
-  size?: "sm" | "md"
+  size?: "sm" | "default"
 }
 
 export function ReportButton({

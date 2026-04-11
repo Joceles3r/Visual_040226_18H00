@@ -42,9 +42,6 @@ export {
   VISUPOINTS_PROFILE_CAPS,
   VISUPOINTS_PROFILE_CAPS as PROFILE_CAPS,
   
-  // Micro-packs
-  VIXUPOINTS_PACKS,
-  
   // Functions
   computeAge,
   isMinor,

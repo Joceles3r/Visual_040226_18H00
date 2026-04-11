@@ -34,7 +34,7 @@ export async function getStripeClient(): Promise<Stripe> {
       );
     }
     _stripeClient = new Stripe(config.secretKey, {
-      apiVersion: "2025-04-30.basil",
+      apiVersion: "2026-01-28.clover",
       typescript: true,
     });
     _clientMode = config.secretKey;
@@ -56,7 +56,7 @@ const legacySecretKey =
 // Fallback gracieux si aucune clé n'est encore configurée
 const _stripeSync = legacySecretKey
   ? new Stripe(legacySecretKey, {
-      apiVersion: "2025-04-30.basil",
+      apiVersion: "2026-01-28.clover",
       typescript: true,
     })
   : null;

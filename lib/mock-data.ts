@@ -142,7 +142,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentType: "video",
     amount: 15,
     votes: getVotesForInvestment(15),         // 9 votes
-    visupointsEarned: getVisupointsForInvestment(15), // 80 pts
+    vixupointsEarned: getVisupointsForInvestment(15), // 80 pts
     date: "2026-01-20",
     status: "active",
     returns: 2.5,
@@ -154,7 +154,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentType: "text",
     amount: 10,
     votes: getVotesForInvestment(10),         // 7 votes
-    visupointsEarned: getVisupointsForInvestment(10), // 50 pts
+    vixupointsEarned: getVisupointsForInvestment(10), // 50 pts
     date: "2026-01-22",
     status: "active",
     returns: 1.8,
@@ -166,7 +166,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentType: "video",
     amount: 5,
     votes: getVotesForInvestment(5),          // 4 votes
-    visupointsEarned: getVisupointsForInvestment(5),  // 25 pts
+    vixupointsEarned: getVisupointsForInvestment(5),  // 25 pts
     date: "2026-02-05",
     status: "active",
     returns: 0.6,
@@ -178,7 +178,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     contentType: "text",
     amount: 20,
     votes: getVotesForInvestment(20),         // 10 votes
-    visupointsEarned: getVisupointsForInvestment(20), // 110 pts
+    vixupointsEarned: getVisupointsForInvestment(20), // 110 pts
     date: "2026-02-10",
     status: "completed",
     returns: 5.2,
@@ -190,8 +190,8 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: "tr0",
     type: "caution",
-    description: `Caution Contributeur (${CAUTION_EUR.investor}EUR)`,
-    amount: -CAUTION_EUR.investor,
+    description: `Caution Contributeur (${CAUTION_EUR.contributor}EUR)`,
+    amount: -CAUTION_EUR.contributor,
     date: "2026-01-15",
     status: "completed",
   },
@@ -362,7 +362,7 @@ function generateEntries(
 }
 
 const VISITEUR_NAMES = ["Emma V.", "Hugo T.", "Clara M.", "Nathan S.", "Léa B.", "Théo R.", "Inès D.", "Lucas P.", "Manon G.", "Noah L.", "Jade K.", "Raphaël F.", "Camille S.", "Axel M.", "Zoé C.", "Arthur B.", "Louise N.", "Ethan J.", "Chloé W.", "Liam A.", "Alice H.", "Maxime T.", "Éva R.", "Tom D.", "Sarah P."]
-const PORTEUR_NAMES = ["Marie Stellaire", "Lucas Nature", "Sophie Drama", "Félix Cinéma", "Amina Vision", "Paul Réal", "Lina Studio", "Yann Film", "Eva Regard", "Marco Pixel", "Nadia Caméra", "Romain Scène", "Chloé Script", "Karim Prod", "Iris Lumière", "Léo Motion", "Hana Screen", "Dario Cut", "Mila Format", "Oscar Take", "Jade Shot", "Hugo Frame", "Alice Montage", "Noah Edit", "Sara Lens"]
+const PORTEUR_NAMES = ["Marie Stellaire", "Lucas Nature", "Sophie Drama", "Félix Cinéma", "Amina Vision", "Paul Réal", "Lina Studio", "Yann Film", "Eva Regard", "Marco Pixel", "Nadia Caméra", "Romain Scène", "Chloé Script", "Karim Prod", "Iris Lumière", "L��o Motion", "Hana Screen", "Dario Cut", "Mila Format", "Oscar Take", "Jade Shot", "Hugo Frame", "Alice Montage", "Noah Edit", "Sara Lens"]
 const INFOPORTEUR_NAMES = ["Pierre Michel", "Nora Mystère", "Claire Lettres", "André Plume", "Luna Pages", "Sami Texte", "Elsa Roman", "Marc Prose", "Julie Encre", "Youssef Chapitre", "Mina Verso", "Romain Ligne", "Élodie Style", "Tarik Récit", "Margot Fable", "Léon Essai", "Inès Poème", "David Mot", "Lana Conte", "Oscar Critique", "Jade Chronique", "Hugo Nouvelle", "Alice Saga", "Noah Tome", "Sara Verset"]
 const PODCASTEUR_NAMES = ["Karim Ondes", "Lina Audio", "Thomas Voix", "Mina Podcast", "Sami Micro", "Éva Studio", "Yann Écoute", "Hana Sound", "Marco Fréquence", "Nadia Canal", "Romain Épisode", "Chloé Wave", "Félix Bande", "Iris Talk", "Paul Émission", "Léo Direct", "Dario Cast", "Mila Capsule", "Oscar Pod", "Jade Stream", "Hugo Série", "Alice Show", "Noah Radio", "Sara Live", "Tom Replay"]
 

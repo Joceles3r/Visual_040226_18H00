@@ -226,8 +226,8 @@ function pastISO(hoursAgo: number) {
 const MOCK_AUTHORS: { name: string; role: VIXUALSocialRole }[] = [
   { name: "Marie C.", role: "visitor" },
   { name: "Lucas D.", role: "porter" },
-  { name: "Sophie M.", role: "investor" },
-  { name: "Thomas B.", role: "listener" },
+  { name: "Sophie M.", role: "contributor" },
+  { name: "Thomas B.", role: "auditor" },
   { name: "Julie R.", role: "podcaster" },
   { name: "Alex P.", role: "infoporter" },
   { name: "Camille V.", role: "visitor" },
@@ -251,14 +251,14 @@ const MOCK_GLOBAL_POSTS: SocialPost[] = [
   },
   {
     id: "p_g2", contentType: "global", contentId: null,
-    authorUserId: "u3", authorName: "Sophie M.", authorRole: "investor",
+    authorUserId: "u3", authorName: "Sophie M.", authorRole: "contributor",
     body: "Premi\u00e8re fois que j'investis sur un projet documentaire. Le pitch m'a convaincu d\u00e8s les premi\u00e8res lignes. H\u00e2te de voir le r\u00e9sultat final !",
     tags: ["investissement"], parentId: null, depth: 0, status: "visible",
     likeCount: 8, replyCount: 1, reportCount: 0, createdAtISO: pastISO(5),
   },
   {
     id: "p_g2r1", contentType: "global", contentId: null,
-    authorUserId: "u4", authorName: "Thomas B.", authorRole: "listener",
+    authorUserId: "u4", authorName: "Thomas B.", authorRole: "auditor",
     body: "Pareil ici, le documentaire sur l'art urbain est vraiment prometteur. Belle s\u00e9lection ce mois-ci.",
     tags: ["avis"], parentId: "p_g2", depth: 1, status: "visible",
     likeCount: 3, replyCount: 0, reportCount: 0, createdAtISO: pastISO(4),
@@ -310,7 +310,7 @@ const MOCK_CONTENT_POSTS: SocialPost[] = [
   },
   {
     id: "p_c2", contentType: "video", contentId: "content-1",
-    authorUserId: "u3", authorName: "Sophie M.", authorRole: "investor",
+    authorUserId: "u3", authorName: "Sophie M.", authorRole: "contributor",
     body: "J'ai investi dans ce projet et je ne regrette pas. La qualit\u00e9 de production est largement au-dessus de ce que j'attendais pour un premier film.",
     tags: ["investissement", "avis"], parentId: null, depth: 0, status: "visible",
     likeCount: 9, replyCount: 0, reportCount: 0, createdAtISO: pastISO(6),
