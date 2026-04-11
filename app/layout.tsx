@@ -44,15 +44,7 @@ export default function RootLayout({
     <html lang="fr" className="dark">
       <body className={`${inter.className} antialiased bg-slate-950 text-white`}>
         <ResizeObserverFix />
-        <ErrorBoundary
-          onError={(error, errorInfo) => {
-            // Log to external service in production (Sentry, LogRocket, etc.)
-            if (process.env.NODE_ENV === "production") {
-              console.error("[VIXUAL] Global error:", error.message);
-              // TODO: Send to error tracking service
-            }
-          }}
-        >
+        <ErrorBoundary>
           <StripeModeBanner />
           <AuthProvider>
             <SoundProvider>
