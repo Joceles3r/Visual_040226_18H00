@@ -9,7 +9,7 @@
  */
 
 import { sql, isDatabaseConfigured } from "@/lib/db";
-import { getStripeSafe, isStripeConfigured } from "@/lib/stripe";
+import { getStripeClient, isStripeConfiguredAsync } from "@/lib/stripe";
 
 // ── Configuration ──
 
@@ -344,7 +344,8 @@ export async function createSoutienLibreCheckout(params: {
   message?: string;
   isAnonymous?: boolean;
 }): Promise<{ success: boolean; checkoutUrl?: string; sessionId?: string; error?: string }> {
-  if (!isStripeConfigured()) {
+  const isConfigured = await isStripeConfiguredAsync();
+  if (!isConfigured) {
     return { success: false, error: "Stripe non configure" };
   }
   
@@ -356,7 +357,7 @@ export async function createSoutienLibreCheckout(params: {
   const distribution = calculateSoutienLibreDistribution(params.amount, params.includeVixualTip);
   
   try {
-    const stripe = getStripeSafe();
+    const stripe = await getStripeClient();
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://vixual.app";
     
     // Calculer le montant de l'application fee (VIXUAL prend 7% + tip optionnel)

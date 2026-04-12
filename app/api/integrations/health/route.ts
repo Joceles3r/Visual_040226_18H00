@@ -1,17 +1,38 @@
 import { NextResponse } from "next/server";
-import { validateStripeConnectEnv, validateBunnyEnv, type IntegrationHealthCheck } from "@/lib/integrations/config";
-import { getStripeMode } from "@/lib/stripe";
+import { validateBunnyEnv, type IntegrationHealthCheck } from "@/lib/integrations/config";
+import { getStripeMode, isStripeConfiguredAsync, getStripeClient } from "@/lib/stripe";
+import { getStripeConfig } from "@/lib/stripe-config";
 import { bunnyCDNService } from "@/lib/integrations/bunny/bunny-cdn-service";
 
 /**
  * GET /api/integrations/health
  * Health check for all integrations
+ * 
+ * PATCH SUPER-REMEDE: Utilise isStripeConfiguredAsync() et getStripeConfig() 
+ * au lieu des variables d'environnement directes.
  */
 export async function GET() {
-  const stripeEnv = validateStripeConnectEnv();
   const bunnyEnv = validateBunnyEnv();
   const stripeMode = getStripeMode();
   
+  let stripeConnected = false;
+  let stripeWebhooksConfigured = false;
+  let stripeConnectEnabled = false;
+
+  try {
+    stripeConnected = await isStripeConfiguredAsync();
+    if (stripeConnected) {
+      // Verifier si le secret de webhook est configure via la DB
+      const config = await getStripeConfig();
+      stripeWebhooksConfigured = !!config.webhookSecret;
+      // Stripe Connect est active si une cle secrete est presente
+      stripeConnectEnabled = !!config.secretKey;
+    }
+  } catch (error) {
+    console.error("[Integrations Health] Stripe health check failed:", error);
+    stripeConnected = false;
+  }
+
   let bunnyHealth = { storage: false, cdn: false, videoLibrary: false };
   
   if (bunnyEnv.valid) {
@@ -24,10 +45,10 @@ export async function GET() {
   
   const health: IntegrationHealthCheck = {
     stripe: {
-      connected: stripeEnv.valid,
+      connected: stripeConnected,
       mode: stripeMode.isTest ? "test" : "live",
-      webhooksConfigured: !!process.env.STRIPE_WEBHOOK_SECRET,
-      connectEnabled: !!process.env.STRIPE_SECRET_KEY,
+      webhooksConfigured: stripeWebhooksConfigured,
+      connectEnabled: stripeConnectEnabled,
     },
     bunny: {
       connected: bunnyEnv.valid,

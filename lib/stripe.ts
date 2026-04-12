@@ -1,10 +1,11 @@
 /**
- * VIXUAL — lib/stripe.ts  (version mise à jour)
+ * VIXUAL — lib/stripe.ts (version unifiee)
  *
- * Ce fichier remplace l'ancienne version qui lisait directement process.env.
- * La configuration est maintenant chargée depuis :
- *   1. La base de données (table stripe_config) — priorité
- *   2. Les variables d'environnement (.env.local) — fallback
+ * Configuration Stripe centralisee via la base de donnees (table stripe_config).
+ * Les variables d'environnement sont utilisees en fallback uniquement.
+ *
+ * PATCH SUPER-REMEDE: Suppression des exports synchrones obsoletes (_stripeSync, stripe, STRIPE_WEBHOOK_SECRET)
+ * Seules les fonctions asynchrones sont desormais supportees pour garantir la coherence.
  *
  * SERVER ONLY.
  */
@@ -12,25 +13,25 @@ import "server-only";
 import Stripe from "stripe";
 import { getStripeConfig } from "./stripe-config";
 
-// ── Client Stripe (initialisé de façon lazy pour permettre la config DB) ──
+// ── Client Stripe (initialise de facon lazy pour permettre la config DB) ──
 
 let _stripeClient: Stripe | null = null;
 let _clientMode: string | null = null;
 
 /**
- * Retourne une instance Stripe configurée avec les clés actives.
- * Utilise un singleton invalidé si le mode change.
+ * Retourne une instance Stripe configuree avec les cles actives (depuis la DB ou l'environnement).
+ * Initialisation lazy et singleton pour optimiser les performances.
  */
 export async function getStripeClient(): Promise<Stripe> {
   const config = await getStripeConfig();
 
-  // Re-create client if mode or key changed
+  // Re-creer le client si le mode ou la cle secrete a change
   if (!_stripeClient || _clientMode !== config.secretKey) {
     if (!config.secretKey) {
       throw new Error(
-        "[VIXUAL] Aucune clé secrète Stripe configurée. " +
-          "Ajoutez vos clés depuis l'Admin → Config Stripe, " +
-          "ou définissez STRIPE_TEST_SECRET_KEY dans .env.local"
+        "[VIXUAL] Aucune cle secrete Stripe configuree. " +
+        "Ajoutez vos cles depuis l'Admin → Config Stripe, " +
+        "ou definissez STRIPE_TEST_SECRET_KEY dans .env.local"
       );
     }
     _stripeClient = new Stripe(config.secretKey, {
@@ -44,48 +45,7 @@ export async function getStripeClient(): Promise<Stripe> {
 }
 
 /**
- * Instance synchrone (compatible avec le code existant).
- * Lit depuis process.env comme avant pour ne pas casser les imports existants.
- * À terme, migrer vers getStripeClient().
- */
-const legacySecretKey =
-  process.env.STRIPE_TEST_SECRET_KEY ||
-  process.env.STRIPE_SECRET_KEY ||
-  process.env.STRIPE_LIVE_SECRET_KEY;
-
-// Fallback gracieux si aucune clé n'est encore configurée
-const _stripeSync = legacySecretKey
-  ? new Stripe(legacySecretKey, {
-      apiVersion: "2026-01-28.clover",
-      typescript: true,
-    })
-  : null;
-
-export const stripe = _stripeSync as Stripe;
-
-/**
- * Safe Stripe getter - throws if Stripe is not configured
- * Use this instead of `stripe` directly for safer access
- */
-export function getStripeSafe(): Stripe {
-  if (!_stripeSync) {
-    throw new Error(
-      "[VIXUAL] Stripe non configure. Ajoutez vos cles depuis Admin → Config Stripe " +
-      "ou definissez STRIPE_SECRET_KEY dans les variables d'environnement."
-    );
-  }
-  return _stripeSync;
-}
-
-/**
- * Check if Stripe is configured (sync - uses env vars)
- */
-export function isStripeConfigured(): boolean {
-  return _stripeSync !== null;
-}
-
-/**
- * Check if Stripe is configured (async - uses DB config)
+ * Verifie si Stripe est configure (asynchrone, utilise la config DB).
  */
 export async function isStripeConfiguredAsync(): Promise<boolean> {
   const config = await getStripeConfig();
@@ -93,19 +53,15 @@ export async function isStripeConfiguredAsync(): Promise<boolean> {
 }
 
 /**
- * Get webhook secret (async - from DB config)
+ * Recupere le secret du webhook (asynchrone, utilise la config DB).
  */
 export async function getWebhookSecret(): Promise<string> {
   const config = await getStripeConfig();
+  if (!config.webhookSecret) {
+    throw new Error("[VIXUAL] Secret de webhook Stripe non configure.");
+  }
   return config.webhookSecret;
 }
-
-// ── Webhook secret (sync fallback) ────────────────────────────────────────────
-
-export const STRIPE_WEBHOOK_SECRET =
-  process.env.STRIPE_TEST_WEBHOOK_SECRET ||
-  process.env.STRIPE_WEBHOOK_SECRET ||
-  process.env.STRIPE_LIVE_WEBHOOK_SECRET;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -115,8 +71,8 @@ export function getStripeMode() {
     isTest,
     environment: (isTest ? "TEST" : "LIVE") as "TEST" | "LIVE",
     warning: isTest
-      ? "MODE TEST - Aucune transaction réelle"
-      : "MODE LIVE - Transactions réelles actives",
+      ? "MODE TEST - Aucune transaction reelle"
+      : "MODE LIVE - Transactions reelles actives",
   };
 }
 
@@ -129,7 +85,5 @@ export function logStripeEvent(event: string, data: Record<string, unknown>) {
   });
 }
 
-/**
- * Alias pour getStripeClient (compatibilité avec anciens imports)
- */
+// Alias pour la compatibilite (a terme, tous les appels devraient utiliser getStripeClient directement)
 export const getStripe = getStripeClient;

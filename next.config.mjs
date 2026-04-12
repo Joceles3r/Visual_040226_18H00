@@ -47,6 +47,12 @@ const nextConfig = {
         destination: '/admin',
         permanent: true,
       },
+      // PATCH SUPER-REMEDE: Redirect deprecie webhook Stripe vers URL canonique
+      {
+        source: '/api/webhooks/stripe',
+        destination: '/api/integrations/stripe/webhooks',
+        permanent: true,
+      },
     ]
   },
 }
