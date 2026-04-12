@@ -77,7 +77,7 @@ export const GET = withErrorHandler(async (req: Request) => {
   // VIXUpoints gagnes aujourd'hui
   const pointsRows = await sql`
     SELECT COALESCE(SUM(points), 0) as total
-    FROM visupoints_transactions
+    FROM vixupoints_transactions
     WHERE user_id = ${userId}
       AND DATE(created_at) = ${today}
       AND type = 'credit'
@@ -130,7 +130,7 @@ export const POST = withErrorHandler(async (req: Request) => {
 
   // Verifier l'utilisateur
   const users = await sql`
-    SELECT id, role, is_minor, visupoints_balance
+    SELECT id, role, is_minor, vixupoints_balance
     FROM users WHERE id = ${userId} LIMIT 1
   `;
   if (!users || users.length === 0) {
@@ -178,7 +178,7 @@ export const POST = withErrorHandler(async (req: Request) => {
     const excerptViewsToday = Number(excerptRows[0]?.count || 0);
 
     const pointsRows = await sql`
-      SELECT COALESCE(SUM(points), 0) as total FROM visupoints_transactions
+      SELECT COALESCE(SUM(points), 0) as total FROM vixupoints_transactions
       WHERE user_id = ${userId} AND DATE(created_at) = ${today} AND type = 'credit'
     `;
     const vixupointsEarnedToday = Number(pointsRows[0]?.total || 0);
@@ -236,15 +236,15 @@ export const POST = withErrorHandler(async (req: Request) => {
     `;
 
     // Crediter les VIXUpoints bonus pour le contenu complet
-    const newBalance = Number(user.visupoints_balance || 0) + VIXUPOINTS_GAINS.fullContentView;
+    const newBalance = Number(user.vixupoints_balance || 0) + VIXUPOINTS_GAINS.fullContentView;
     
     await sql`
-      INSERT INTO visupoints_transactions (user_id, type, points, source, balance_after, created_at)
+      INSERT INTO vixupoints_transactions (user_id, type, points, source, balance_after, created_at)
       VALUES (${userId}, 'credit', ${VIXUPOINTS_GAINS.fullContentView}, 'discovery_pass', ${newBalance}, NOW())
     `;
 
     await sql`
-      UPDATE users SET visupoints_balance = ${newBalance} WHERE id = ${userId}
+      UPDATE users SET vixupoints_balance = ${newBalance} WHERE id = ${userId}
     `;
 
     return NextResponse.json({

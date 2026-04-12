@@ -91,7 +91,7 @@ export async function checkMinorDailyCap(userId: string): Promise<{
 }> {
   const rows = await sql`
     SELECT COALESCE(SUM(amount), 0) as total
-    FROM visupoints_transactions
+    FROM vixupoints_transactions
     WHERE user_id = ${userId}::uuid
       AND amount > 0
       AND created_at >= CURRENT_DATE

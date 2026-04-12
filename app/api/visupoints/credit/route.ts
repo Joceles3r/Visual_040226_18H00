@@ -33,7 +33,7 @@ export const POST = withErrorHandler(async (req: Request) => {
 
   // Fetch user profile
   const users = await sql`
-    SELECT id, role, is_minor, visupoints_balance, account_status
+    SELECT id, role, is_minor, vixupoints_balance, account_status
     FROM users WHERE id = ${userId} LIMIT 1
   `;
   if (!users || users.length === 0) {
@@ -50,7 +50,7 @@ export const POST = withErrorHandler(async (req: Request) => {
   const today = new Date().toISOString().slice(0, 10);
   const dailyRows = await sql`
     SELECT COALESCE(SUM(points), 0) as total
-    FROM visupoints_transactions
+    FROM vixupoints_transactions
     WHERE user_id = ${userId}
       AND DATE(created_at) = ${today}
       AND type = 'credit'
@@ -58,8 +58,8 @@ export const POST = withErrorHandler(async (req: Request) => {
   const dailyEarnedToday = Number(dailyRows[0]?.total || 0);
 
   // Compute capped credit
-  const result = creditVisupointsCapped(
-    Number(user.visupoints_balance || 0),
+  const result = creditVixupointsCapped(
+    Number(user.vixupoints_balance || 0),
     points,
     dailyEarnedToday,
     user.role || "visitor",
@@ -77,20 +77,20 @@ export const POST = withErrorHandler(async (req: Request) => {
 
   // Write the credit transaction
   await sql`
-    INSERT INTO visupoints_transactions (user_id, type, points, source, balance_after, created_at)
+    INSERT INTO vixupoints_transactions (user_id, type, points, source, balance_after, created_at)
     VALUES (${userId}, 'credit', ${result.actualCredited}, ${source}, ${result.newBalance}, NOW())
   `;
 
   // Update user balance
   await sql`
-    UPDATE users SET visupoints_balance = ${result.newBalance} WHERE id = ${userId}
+    UPDATE users SET vixupoints_balance = ${result.newBalance} WHERE id = ${userId}
   `;
 
   // Anti-abuse check (async, non-blocking)
   try {
     const weekRows = await sql`
       SELECT DATE(created_at) as day, COALESCE(SUM(points), 0) as total
-      FROM visupoints_transactions
+      FROM vixupoints_transactions
       WHERE user_id = ${userId}
         AND type = 'credit'
         AND created_at > NOW() - INTERVAL '7 days'
@@ -105,7 +105,7 @@ export const POST = withErrorHandler(async (req: Request) => {
     `;
     const accountAgeDays = Number(accountRows[0]?.age_days || 0);
 
-    const abuse = detectVisupointsAbuse(dailyEarnings, result.newBalance, accountAgeDays);
+    const abuse = detectVixupointsAbuse(dailyEarnings, result.newBalance, accountAgeDays);
     if (abuse.riskScore >= 50) {
       // Log the abuse alert -- admin can review
       await sql`
