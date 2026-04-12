@@ -374,7 +374,7 @@ export default function VixualSocialFeed({
       setRoots((prev) => [result, ...prev])
     }
     setReplyTo(null)
-  }, [provider, mode, contentType, contentId, user, role])
+  }, [provider, mode, contentType, contentId, user, roles])
 
   const handleLike = useCallback(async (postId: string) => {
     if (likedPosts.has(postId)) return
