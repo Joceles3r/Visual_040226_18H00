@@ -28,7 +28,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useAuth } from "@/lib/auth-context"
 import { MOCK_INVESTMENTS, MOCK_TRANSACTIONS, USER_RANKINGS, LEADERBOARD_CATEGORIES } from "@/lib/mock-data"
-import { MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
+import { MINOR_VIXUPOINTS_CAP } from "@/lib/vixupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { CommunityCharter } from "@/components/community-charter"
 import { ReportButton } from "@/components/report-button"
@@ -343,7 +343,7 @@ export default function DashboardPage() {
                   {"Compte mineur (16\u201317 ans)"}
                 </p>
                 <p className="text-white/50 text-xs">
-                  {"Plafond : " + MINOR_VISUPOINTS_CAP.toLocaleString() + " VIXUpoints (100\u20ac). Investissements et retraits bloqu\u00e9s jusqu'\u00e0 18 ans."}
+                  {"Plafond : " + MINOR_VIXUPOINTS_CAP.toLocaleString() + " VIXUpoints (100\u20ac). Investissements et retraits bloqu\u00e9s jusqu'\u00e0 18 ans."}
                 </p>
               </div>
             </div>
@@ -437,14 +437,14 @@ export default function DashboardPage() {
                   {user?.visupoints || 0}
                   {user?.isMinor && (
                     <span className="text-sm font-normal text-white/40 ml-1">
-                      {"/ " + MINOR_VISUPOINTS_CAP.toLocaleString()}
+                      {"/ " + MINOR_VIXUPOINTS_CAP.toLocaleString()}
                     </span>
                   )}
                 </p>
                 {user?.isMinor && (
                   <div className="mt-2">
                     <Progress
-                      value={((user.visupoints || 0) / MINOR_VISUPOINTS_CAP) * 100}
+                      value={((user.visupoints || 0) / MINOR_VIXUPOINTS_CAP) * 100}
                       className="h-1.5 bg-white/10"
                     />
                   </div>

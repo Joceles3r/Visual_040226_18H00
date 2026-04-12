@@ -186,7 +186,7 @@ export default function CGVPage() {
 
             {/* Article 1 */}
             <Section num={1} title={"Identité de la plateforme"} icon={Globe}>
-              <P>{"VIXUAL est une plateforme numérique de diffusion et de participation économique à des contenus audiovisuels et littéraires, accessible à l'adresse visual.app (ou tout autre domaine exploité par VIXUAL)."}</P>
+              <P>{"VIXUAL est une plateforme numerique de diffusion et de participation economique a des contenus audiovisuels et litteraires, accessible a l'adresse vixual.app (ou tout autre domaine exploite par VIXUAL)."}</P>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
                 <HighlightCard icon={Handshake} title="Intermédiaire technique" color="amber">
                   <p>{"VIXUAL agit en qualité d'intermédiaire technique entre les créateurs de contenus et les utilisateurs participants."}</p>

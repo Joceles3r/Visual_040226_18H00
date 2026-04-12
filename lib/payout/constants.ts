@@ -312,9 +312,9 @@ export const CREATOR_11_100_PERCENT = 0;
 
 // ─── 6F. CATEGORY SPLITS (pour affichage + settlement) ───
 
-export type VisualCategory = "films" | "voix_info" | "livres" | "podcasts";
+export type VixualCategory = "films" | "voix_info" | "livres" | "podcasts";
 
-export const CATEGORY_SPLITS: Record<VisualCategory, {
+export const CATEGORY_SPLITS: Record<VixualCategory, {
   label: string;
   frequency: string;
   splits: { label: string; percent: number; color: string }[];
@@ -386,7 +386,7 @@ export const CREATOR_QUOTAS = {
   films: { maxDuration: Infinity, perQuarter: 1, priceEur: 7, label: "Films (> 30 min)" },
 } as const;
 
-// ──────────────────────────────────────────────
+// ───────────────────────────────────────────��──
 // 7. VENTE D'ARTICLE (Infoporteur) - 70/30
 // ──────────────────────────────────────────────
 
@@ -448,17 +448,17 @@ export const MINOR_MIN_AGE = 16;
 /** Age de majorite (deblocage retrait/invest/conversion) */
 export const MAJORITY_AGE = 18;
 /** Plafond VIXUpoints pour les mineurs (16-17 ans) */
-export const MINOR_VISUPOINTS_CAP = 10_000;
+export const MINOR_VIXUPOINTS_CAP = 10_000;
 /** Equivalent en euros du plafond mineur */
-export const MINOR_VISUPOINTS_CAP_EUR = MINOR_VISUPOINTS_CAP / VISUPOINTS_PER_EUR; // 100 EUR
+export const MINOR_VIXUPOINTS_CAP_EUR = MINOR_VIXUPOINTS_CAP / VIXUPOINTS_PER_EUR; // 100 EUR
 /** Seuil conversion majeur : 2500 VIXUpoints */
-export const ADULT_VISUPOINTS_CONVERSION_THRESHOLD = VISUPOINTS_CONVERSION_THRESHOLD;
+export const ADULT_VIXUPOINTS_CONVERSION_THRESHOLD = VIXUPOINTS_CONVERSION_THRESHOLD;
 
 // ──────────────────────────────────────────────
 // 11. VISUPOINTS - PLAFONDS PAR PROFIL
 // ──────────────────────────────────────────────
 
-export type VisupointsProfileKey =
+export type VixupointsProfileKey =
   | "guest"
   | "visitor"
   | "visitor_minor"
@@ -469,7 +469,7 @@ export type VisupointsProfileKey =
   | "podcaster"
   | "investor";
 
-export const VISUPOINTS_PROFILE_CAPS: Record<VisupointsProfileKey, {
+export const VIXUPOINTS_PROFILE_CAPS: Record<VixupointsProfileKey, {
   label: string;
   cap: number | null; // null = ne gagne pas
   capType: "total" | "monthly" | "none";
@@ -488,7 +488,7 @@ export const VISUPOINTS_PROFILE_CAPS: Record<VisupointsProfileKey, {
 };
 
 /** Maximum journalier recommand\u00e9 */
-export const VISUPOINTS_MAX_DAILY = 60;
+export const VIXUPOINTS_MAX_DAILY = 60;
 
 // ──────────────────────────────────────────────
 // 12. ENGAGEMENT REDIRECT ENGINE

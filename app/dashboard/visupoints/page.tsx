@@ -13,23 +13,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/lib/auth-context"
 import { MicropacksShop } from "@/components/vixupoints-micropacks"
 import {
-  VISUPOINTS_CONVERSION_THRESHOLD,
-  VISUPOINTS_PER_EUR,
-  convertVisupoints,
-  VISUPOINTS_PROFILE_CAPS,
-  VISUPOINTS_MAX_DAILY,
+  VIXUPOINTS_PER_EUR,
+  VIXUPOINTS_PROFILE_CAPS,
+  VIXUPOINTS_MAX_DAILY,
   HYBRID_BONUS_MONTHLY_CAP,
   INVESTOR_EVOLUTION_BONUS,
 } from "@/lib/payout/constants"
 import {
   canWithdraw,
   canInvest,
-  canConvertVisupoints,
-  MINOR_VISUPOINTS_CAP,
+  canConvertVixupoints,
+  MINOR_VIXUPOINTS_CAP,
   engagementRedirectEngine,
   computeHybridPurchase,
   type EngagementRedirectResult,
-} from "@/lib/visupoints-engine"
+  VIXUPOINTS_CONVERSION_THRESHOLD,
+} from "@/lib/vixupoints-engine"
 
 // ─── Missions ───
 
@@ -306,7 +305,7 @@ export default function VisupointsPage() {
   const engagementRedirect = engagementRedirectEngine(userRole, currentPoints, userIsMinor)
 
   // Plafond et niveaux
-  const cap = userIsMinor ? MINOR_VISUPOINTS_CAP : (userRole === "visitor" ? 2500 : null)
+  const cap = userIsMinor ? MINOR_VIXUPOINTS_CAP : (userRole === "visitor" ? 2500 : null)
   const capProgress = cap ? Math.min((currentPoints / cap) * 100, 100) : null
 
   const currentLevel = LEVELS.find(

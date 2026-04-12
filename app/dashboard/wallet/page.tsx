@@ -12,8 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/lib/auth-context"
 import {
-  CAUTION_EUR, STRIPE_CONFIG, VISUPOINTS_PER_EUR,
-  VISUPOINTS_CONVERSION_THRESHOLD,
+  CAUTION_EUR, STRIPE_CONFIG, VIXUPOINTS_PER_EUR,
+  VIXUPOINTS_CONVERSION_THRESHOLD,
 } from "@/lib/payout/constants"
 import { SecurityGate } from "@/components/security/security-gate"
 import { VerificationBadges } from "@/components/security/verification-badges"
@@ -596,7 +596,7 @@ export default function WalletPage() {
                 <Award className="h-5 w-5 text-amber-400" />
               </div>
               <div>
-                <p className="text-white font-medium text-sm">{"Classement VISUAL"}</p>
+                <p className="text-white font-medium text-sm">{"Classement VIXUAL"}</p>
                 <p className="text-white/40 text-xs">{"Top investisseurs ce mois"}</p>
               </div>
             </div>
@@ -682,7 +682,7 @@ export default function WalletPage() {
             </div>
             <div className="flex items-start gap-2">
               <AlertCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-white/20" />
-              <span>{"Gains non garantis. Les retours d\u00e9pendent de la performance des projets soutenus. VISUAL n'est pas un jeu de hasard."}</span>
+              <span>{"Gains non garantis. Les retours dependent de la performance des projets soutenus. VIXUAL n'est pas un jeu de hasard."}</span>
             </div>
           </div>
         </CardContent>

@@ -25,7 +25,7 @@
  * @since 2026-03-12
  */
 
-import { VISUPOINTS_PER_EUR } from "./payout/constants"
+import { VIXUPOINTS_PER_EUR } from "./payout/constants"
 
 // ─── Types ───
 

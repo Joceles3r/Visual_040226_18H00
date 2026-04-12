@@ -134,7 +134,7 @@ export default function SupportMailboxPage() {
         {/* Info */}
         <div className="flex items-center gap-2 text-xs text-white/30">
           <Badge variant="outline" className="border-white/10 text-white/30 text-xs">V1</Badge>
-          <span>{"Boîte interne VISUAL — support@visual.app"}</span>
+          <span>{"Boite interne VIXUAL — support@vixual.app"}</span>
         </div>
       </div>
     </main>

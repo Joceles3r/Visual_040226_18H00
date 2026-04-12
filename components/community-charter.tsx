@@ -97,7 +97,7 @@ export function CommunityCharter({ dismissible = true, compact = false }: Commun
         <div className="flex items-start gap-2.5 p-3 bg-black/20 rounded-xl border border-white/5">
           <AlertOctagon className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
           <p className="text-white/60 text-xs leading-relaxed">
-            {"VISUAL est un espace de cr\u00e9ation collaborative fond\u00e9 sur le respect mutuel. Toute forme de discrimination, harc\u00e8lement, insulte, propos haineux ou contenu inappropri\u00e9 est "}
+            {"VIXUAL est un espace de creation collaborative fonde sur le respect mutuel. Toute forme de discrimination, harcelement, insulte, propos haineux ou contenu inapproprie est "}
             <strong className="text-red-400">{"strictement interdit"}</strong>
             {" et sera sanctionn\u00e9. Utilisez le "}
             <span className="text-red-400 font-medium">{"bouton rouge de signalement"}</span>

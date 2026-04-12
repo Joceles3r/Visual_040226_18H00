@@ -13,11 +13,11 @@ import { NextResponse } from "next/server";
 import { sql } from "@/lib/db";
 import { apiError, ErrorCodes, withErrorHandler } from "@/lib/api-errors";
 import {
-  creditVisupointsCapped,
-  detectVisupointsAbuse,
+  creditVixupointsCapped,
+  detectVixupointsAbuse,
   DAILY_VIXUPOINTS_CAP,
-  MINOR_VISUPOINTS_CAP,
-} from "@/lib/visupoints-engine";
+  MINOR_VIXUPOINTS_CAP,
+} from "@/lib/vixupoints-engine";
 
 export const POST = withErrorHandler(async (req: Request) => {
   const body = await req.json();

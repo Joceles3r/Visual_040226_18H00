@@ -51,7 +51,7 @@ function VerifyContent() {
                 <div>
                   <p className="text-emerald-400 font-bold text-lg">{"Autorisation valid\u00e9e"}</p>
                   <p className="text-white/50 text-sm mt-2">
-                    {"Merci. Votre validation parentale est enregistr\u00e9e. L'\u00e9quipe VISUAL va finaliser le contr\u00f4le."}
+                    {"Merci. Votre validation parentale est enregistree. L'equipe VIXUAL va finaliser le controle."}
                   </p>
                 </div>
               </>
