@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   Shield, User, Database, Eye, Lock, Globe, Clock, FileText,
   Mail, ArrowLeft, Scale, ServerCrash, AlertTriangle, Baby,
@@ -16,7 +16,7 @@ import { LEGAL_INFO } from "@/lib/legal-info"
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-black">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
               {"Politique de Confidentialité"}
             </h1>
             <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               {"VIXUAL s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment vos données personnelles sont collectées, utilisées et protégées sur notre plateforme de streaming et d'investissement participatif."}

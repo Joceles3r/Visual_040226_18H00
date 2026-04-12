@@ -18,7 +18,7 @@ import {
   Sparkles,
   Ticket,
 } from "lucide-react"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
@@ -128,7 +128,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <div className="flex pt-20">
         {/* Sidebar */}

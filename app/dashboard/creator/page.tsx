@@ -39,7 +39,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/lib/auth-context"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import {
   type CreatorProgressState,
@@ -143,7 +143,7 @@ export default function CreatorDashboardPage() {
   if (!isAuthed) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Connexion requise</h1>
           <p className="text-white/60 mb-8">Connectez-vous pour acceder a votre espace createur.</p>
@@ -162,7 +162,7 @@ export default function CreatorDashboardPage() {
   if (!hasCreatorRole) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="container mx-auto px-4 py-16 text-center">
           <div className="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-6">
             <Sparkles className="h-8 w-8 text-purple-400" />
@@ -193,7 +193,7 @@ export default function CreatorDashboardPage() {
   if (loading || !progress || !stats) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="container mx-auto px-4 py-8">
           <div className="animate-pulse space-y-6">
             <div className="h-8 bg-white/10 rounded w-1/3" />
@@ -222,7 +222,7 @@ export default function CreatorDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       
       <main className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}

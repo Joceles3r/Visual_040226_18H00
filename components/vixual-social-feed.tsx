@@ -11,10 +11,10 @@ import {
 import { ReportButton } from "@/components/report-button"
 import {
   type SocialPost, type SocialTag, type ListParams, type ContentType,
-  VISUAL_SOCIAL_TAGS, TAG_LABELS, TAG_COLORS, TAG_CATEGORIES,
-  MAX_BODY_LENGTH, MAX_TAGS_PER_POST, VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1,
-  ROLE_SOCIAL_CONFIG, timeAgo, getVisualSocialProvider,
-} from "@/lib/visual-social/hybrid"
+  VIXUAL_SOCIAL_TAGS, TAG_LABELS, TAG_COLORS, TAG_CATEGORIES,
+  MAX_BODY_LENGTH, MAX_TAGS_PER_POST, VIXUAL_SOCIAL_ENABLE_VIXUPOINTS_V1,
+  ROLE_SOCIAL_CONFIG, timeAgo, getVixualSocialProvider,
+} from "@/lib/vixual-social/hybrid"
 
 // ─── Role Badge ───
 function RoleBadge({ role }: { role: string }) {
@@ -318,7 +318,7 @@ function PostComposer({
 }
 
 // ─── Main Feed Component ───
-export default function VisualSocialFeed({
+export default function VixualSocialFeed({
   mode = "global",
   contentType,
   contentId,
@@ -337,7 +337,7 @@ export default function VisualSocialFeed({
   const [reportedPosts, setReportedPosts] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
 
-  const provider = useMemo(() => getVisualSocialProvider(), [])
+  const provider = useMemo(() => getVixualSocialProvider(), [])
 
   const loadPosts = useCallback(async () => {
     setLoading(true)

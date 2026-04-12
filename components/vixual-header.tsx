@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ReportButton } from "@/components/report-button"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   ChevronDown,
   Eye,
@@ -158,7 +158,7 @@ function MobileMenu({
             </Button>
           </div>
           <div className="mt-2 text-center">
-            <VisualSlogan size="xs" opacity="medium" />
+            <VixualSlogan size="xs" opacity="medium" />
           </div>
         </div>
 
@@ -262,7 +262,7 @@ function MobileMenu({
   )
 }
 
-export function VisualHeader() {
+export function VixualHeader() {
   const { user, isAuthed, isAdmin, roles, logout } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -299,7 +299,7 @@ export function VisualHeader() {
             {/* Slogan */}
             <div className="hidden sm:flex items-center">
               <div className="w-px h-6 bg-white/15 mr-3 md:mr-4" />
-              <VisualSlogan size="sm" opacity="high" />
+              <VixualSlogan size="sm" opacity="high" />
             </div>
           </div>
 

@@ -17,14 +17,14 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
-import VisualSocialFeed from "@/components/visual-social-feed"
+import VixualSocialFeed from "@/components/vixual-social-feed"
 import { ALL_CONTENTS, isGoldCreator } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
 import { useToast } from "@/components/ui/use-toast"
 import { INVESTMENT_TIERS_EUR } from "@/lib/payout/constants"
-import type { ContentType } from "@/lib/visual-social/hybrid"
+import type { ContentType } from "@/lib/vixual-social/hybrid"
 
 /* ---------- Motivational Messages ---------- */
 function DynamicWatermark({ userId, contentId }: { userId: string; contentId: string }) {
@@ -184,7 +184,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
@@ -516,7 +516,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 sm:p-6">
-                  <VisualSocialFeed mode="content" contentType={cType as ContentType} contentId={content.id} />
+                  <VixualSocialFeed mode="content" contentType={cType as ContentType} contentId={content.id} />
                 </CardContent>
               </Card>
 

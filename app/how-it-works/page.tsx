@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import { TrafficLight } from "@/components/traffic-light"
 import {
   User,
@@ -20,7 +20,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { InvestSimulator } from "@/components/invest-simulator"
 
@@ -198,7 +198,7 @@ const ROLES = [
 export default function HowItWorksPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
@@ -212,7 +212,7 @@ export default function HowItWorksPage() {
               <TrafficLight size="lg" />
             </div>
             <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-xl text-white/70">
               {"VIXUAL simplifie la contribution participative dans les projets audiovisuels, littéraires et podcasts. Découvrez comment devenir acteur de la création."}

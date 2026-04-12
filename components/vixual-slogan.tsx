@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils"
 
-interface VisualSloganProps {
+interface VixualSloganProps {
   size?: "xs" | "sm" | "base"
   className?: string
   withLines?: boolean
   opacity?: "low" | "medium" | "high"
 }
 
-export function VisualSlogan({
+export function VixualSlogan({
   size = "xs",
   className,
   withLines = false,
   opacity = "medium",
-}: VisualSloganProps) {
+}: VixualSloganProps) {
   const sizeClasses = {
     xs: "text-xs",
     sm: "text-xs md:text-sm",

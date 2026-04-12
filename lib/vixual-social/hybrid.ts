@@ -1,4 +1,4 @@
-// lib/visual-social/hybrid.ts
+// lib/vixual-social/hybrid.ts
 // VIXUAL Social — Hybrid Provider (V1)
 // - "Content Thread": discussion sous un contenu (video/podcast/text)
 // - "Global Feed": fil interne global (tendances / derniers posts)
@@ -33,7 +33,7 @@ export type SocialTag =
   | "investissement"
   | "spoiler"
 
-export const VISUAL_SOCIAL_TAGS: SocialTag[] = [
+export const VIXUAL_SOCIAL_TAGS: SocialTag[] = [
   "avis",
   "question",
   "amelioration",
@@ -83,7 +83,7 @@ export const TAG_CATEGORIES = [
 
 // VIXUpoints desactives en V1 pour eviter le farming
 // avant que la moderation et l'anti-spam soient stables
-export const VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1 = false
+export const VIXUAL_SOCIAL_ENABLE_VIXUPOINTS_V1 = false
 
 // ─── Post type ───
 
@@ -417,4 +417,4 @@ export function getVIXUALSocialProvider(deps?: Record<string, unknown>): VIXUALS
 }
 
 /** @deprecated Alias for backward compatibility - use getVIXUALSocialProvider */
-export const getVisualSocialProvider = getVIXUALSocialProvider;
+export const getVixualSocialProvider = getVIXUALSocialProvider;

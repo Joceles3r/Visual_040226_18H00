@@ -4,8 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff, Check, Calendar, ShieldAlert } from "lucide-react"
-import { VisualSlogan } from "@/components/visual-slogan"
-import { isMinor, isEligibleForSignup, computeAge, MINOR_VISUPOINTS_CAP } from "@/lib/visupoints-engine"
+import { VixualSlogan } from "@/components/vixual-slogan"
+import { isMinor, isEligibleForSignup, computeAge, MINOR_VIXUPOINTS_CAP } from "@/lib/vixupoints-engine"
 import { ParentalConsentForm } from "@/components/parental-consent-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -114,7 +114,7 @@ export default function SignupPage() {
             </span>
           </Link>
           <div className="mt-2">
-            <VisualSlogan size="xs" opacity="medium" />
+            <VixualSlogan size="xs" opacity="medium" />
           </div>
         </div>
 

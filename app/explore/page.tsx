@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   Select,
   SelectContent,
@@ -22,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { ReportButton } from "@/components/report-button"
 import { TrafficLight } from "@/components/traffic-light"
@@ -971,7 +971,7 @@ function ExplorerContent() {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       {/* Hero Section */}
       {heroContent && <ImmersiveHero content={heroContent} />}

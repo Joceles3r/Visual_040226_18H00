@@ -26,7 +26,7 @@ import {
   Share2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
 import {
@@ -116,7 +116,7 @@ export default function CreatorProPage({ params }: { params: Promise<{ id: strin
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="container mx-auto px-4 py-16">
           <div className="animate-pulse space-y-8">
             <div className="h-64 bg-white/10 rounded-2xl" />
@@ -135,7 +135,7 @@ export default function CreatorProPage({ params }: { params: Promise<{ id: strin
   if (!creatorData || !canAccessCreatorProPage(creatorData.progress.level)) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="container mx-auto px-4 py-16 text-center">
           <div className="w-20 h-20 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-6">
             <Crown className="h-10 w-10 text-amber-400" />
@@ -162,7 +162,7 @@ export default function CreatorProPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       
       <main className="container mx-auto px-4 py-8">
         {/* Back link */}

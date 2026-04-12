@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -55,7 +55,7 @@ export default async function ArchiveProjectDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       
       <main className="container mx-auto px-4 py-8">
         {/* Back button */}

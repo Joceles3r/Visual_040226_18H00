@@ -19,7 +19,7 @@ import {
   Shield,
   XCircle,
 } from "lucide-react"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { TICKET_GOLD_CONFIG, TICKET_GOLD_UI } from "@/lib/ticket-gold/engine"
 
@@ -84,7 +84,7 @@ export default function TicketGoldPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="max-w-5xl mx-auto px-4 py-12">
         {/* Back button */}

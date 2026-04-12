@@ -157,7 +157,7 @@ export {
   checkIPDeclaration,
   // R11 - Admin capabilities
   ADMIN_CAPABILITIES,
-} from "../visual-rules-engine";
+} from "../vixual-rules-engine";
 
 export type {
   MonthlyBatchEntry,
@@ -173,4 +173,4 @@ export type {
   PromotionConsent,
   IPDeclaration,
   AdminCapability,
-} from "../visual-rules-engine";
+} from "../vixual-rules-engine";

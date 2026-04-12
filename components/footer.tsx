@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import { Phone, Mail, MapPin, Users, MessageCircle, Lock, Heart } from "lucide-react"
 
 export function Footer() {
@@ -20,7 +20,7 @@ export function Footer() {
               </span>
             </Link>
             <div className="mb-3">
-              <VisualSlogan size="xs" opacity="medium" />
+              <VixualSlogan size="xs" opacity="medium" />
             </div>
             <p className="text-white/60 max-w-md">
               {"La plateforme de contribution participative pour les projets audiovisuels, litteraires et podcasts. Soutenez les createurs, contribuez a l'art."}

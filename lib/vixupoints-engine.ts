@@ -65,7 +65,7 @@ export interface UserVisupointsProfile {
 /** Conversion officielle: 100 VIXUpoints = 1 EUR */
 export const VIXUPOINTS_PER_EUR = 100
 
-export const MINOR_VISUPOINTS_CAP = 10_000
+export const MINOR_VIXUPOINTS_CAP = 10_000
 export const ADULT_VISITOR_CAP = 2_500
 export const MINOR_MIN_AGE = 16
 export const MAJORITY_AGE = 18
@@ -111,11 +111,11 @@ export const VIXUPOINTS_LIMIT_WARNING = "Vous approchez de la limite de VIXUpoin
 // ─── Compatibility Exports ───
 // These are aliases for backward compatibility with existing code
 
-export const VISUPOINTS_CONVERSION_THRESHOLD = 2500
-export const VISUPOINTS_PER_EUR = VIXUPOINTS_PER_EUR
-export const VISUPOINTS_MAX_DAILY = DAILY_VIXUPOINTS_CAP
-export const DAILY_VISUPOINTS_CAP = DAILY_VIXUPOINTS_CAP
-export const VISUPOINTS_PROFILE_CAPS = {
+export const VIXUPOINTS_CONVERSION_THRESHOLD = 2500
+export const VIXUPOINTS_PER_EUR_LEGACY = VIXUPOINTS_PER_EUR
+export const VIXUPOINTS_MAX_DAILY = DAILY_VIXUPOINTS_CAP
+export const DAILY_VIXUPOINTS_CAP_LEGACY = DAILY_VIXUPOINTS_CAP
+export const VIXUPOINTS_PROFILE_CAPS = {
   visitor_minor: { cap: 10_000, maxDaily: 100, canWithdraw: false },
   visitor_adult: { cap: 2_500, maxDaily: 100, canWithdraw: false },
   contribureader: { cap: 2_500, maxDaily: 100, canWithdraw: true },
@@ -246,13 +246,13 @@ export function isEligibleForSignup(birthDate: string): boolean {
 // ─── VIXUpoints operations ───
 
 /** Credite des VIXUpoints en respectant le plafond mineur */
-export function creditVisupoints(
+export function creditVixupoints(
   currentBalance: number,
   points: number,
   userIsMinor: boolean
 ): { newBalance: number; capped: boolean; pointsLost: number } {
   if (userIsMinor) {
-    const newBalance = Math.min(currentBalance + points, MINOR_VISUPOINTS_CAP)
+    const newBalance = Math.min(currentBalance + points, MINOR_VIXUPOINTS_CAP)
     const actualGain = newBalance - currentBalance
     return {
       newBalance,
@@ -271,7 +271,7 @@ export function creditVisupoints(
  * Credits VIXUpoints with daily cap, profile cap, and minor cap enforcement.
  * Returns the actual points credited and any cap hit.
  */
-export function creditVisupointsCapped(
+export function creditVixupointsCapped(
   currentBalance: number,
   pointsToAdd: number,
   dailyEarnedToday: number,
@@ -287,7 +287,7 @@ export function creditVisupointsCapped(
   let remaining = pointsToAdd;
 
   // 1. Daily cap
-  const dailyRoom = Math.max(0, DAILY_VISUPOINTS_CAP - dailyEarnedToday);
+  const dailyRoom = Math.max(0, DAILY_VIXUPOINTS_CAP - dailyEarnedToday);
   if (remaining > dailyRoom) remaining = dailyRoom;
   const dailyCapHit = remaining < pointsToAdd;
 
@@ -305,7 +305,7 @@ export function creditVisupointsCapped(
   // 3. Minor absolute cap
   let minorCapHit = false;
   if (userIsMinor) {
-    const minorRoom = Math.max(0, MINOR_VISUPOINTS_CAP - currentBalance);
+    const minorRoom = Math.max(0, MINOR_VIXUPOINTS_CAP - currentBalance);
     if (remaining > minorRoom) {
       remaining = minorRoom;
       minorCapHit = true;
@@ -327,7 +327,7 @@ export function creditVisupointsCapped(
  * Anti-abuse: detects suspicious VIXUpoints accumulation patterns.
  * Returns a risk score 0-100 and flags.
  */
-export function detectVisupointsAbuse(
+export function detectVixupointsAbuse(
   dailyEarnings: number[],  // last 7 days of earnings
   totalBalance: number,
   accountAgeDays: number
@@ -339,7 +339,7 @@ export function detectVisupointsAbuse(
   let riskScore = 0;
 
   // Flag 1: Hitting daily cap every day for 7 days
-  const daysAtCap = dailyEarnings.filter(d => d >= DAILY_VISUPOINTS_CAP).length;
+  const daysAtCap = dailyEarnings.filter(d => d >= DAILY_VIXUPOINTS_CAP).length;
   if (daysAtCap >= 7) {
     riskScore += 30;
     flags.push("daily_cap_consecutive_7d");
@@ -349,7 +349,7 @@ export function detectVisupointsAbuse(
   }
 
   // Flag 2: Abnormally high balance for account age
-  const expectedMaxPerDay = DAILY_VISUPOINTS_CAP;
+  const expectedMaxPerDay = DAILY_VIXUPOINTS_CAP;
   const expectedMax = accountAgeDays * expectedMaxPerDay;
   if (totalBalance > expectedMax * 0.9 && accountAgeDays > 7) {
     riskScore += 25;
@@ -407,7 +407,7 @@ export function canInvest(userIsMinor: boolean): {
 }
 
 /** Verifie si un utilisateur peut convertir ses VIXUpoints en euros */
-export function canConvertVisupoints(userIsMinor: boolean): {
+export function canConvertVixupoints(userIsMinor: boolean): {
   allowed: boolean
   reason?: string
 } {

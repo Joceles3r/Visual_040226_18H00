@@ -1,7 +1,7 @@
 "use client"
 
-import VisualSocialFeed from "@/components/visual-social-feed"
-import { VisualHeader } from "@/components/visual-header"
+import VixualSocialFeed from "@/components/vixual-social-feed"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { TrafficLight } from "@/components/traffic-light"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,9 +11,9 @@ import {
 } from "lucide-react"
 import {
   MAX_BODY_LENGTH, MAX_TAGS_PER_POST, MAX_POSTS_PER_DAY,
-  VISUAL_SOCIAL_ENABLE_VISUPOINTS_V1, REPORT_THRESHOLD_HIDE,
+  VIXUAL_SOCIAL_ENABLE_VIXUPOINTS_V1, REPORT_THRESHOLD_HIDE,
   TAG_CATEGORIES, TAG_LABELS, TAG_COLORS,
-} from "@/lib/visual-social/hybrid"
+} from "@/lib/vixual-social/hybrid"
 
 function RulesCard() {
   const rules = [
@@ -92,7 +92,7 @@ function V1Notice() {
 export default function VixualSocialPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       <main className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero */}
@@ -116,7 +116,7 @@ export default function VixualSocialPage() {
           {/* Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
             {/* Global feed */}
-            <VisualSocialFeed mode="global" />
+            <VixualSocialFeed mode="global" />
 
             {/* Sidebar */}
             <div className="space-y-4 lg:sticky lg:top-24">

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Mail, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -61,7 +61,7 @@ export default function ForgotPasswordPage() {
             </span>
           </Link>
           <div className="mt-2">
-            <VisualSlogan size="xs" opacity="medium" />
+            <VixualSlogan size="xs" opacity="medium" />
           </div>
         </div>
 

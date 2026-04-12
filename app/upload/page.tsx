@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Progress } from "@/components/ui/progress"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { useAuth } from "@/lib/auth-context"
 import { useToast } from "@/components/ui/use-toast"
@@ -73,7 +73,7 @@ export default function UploadVideoPage() {
   if (!user || !user.roles.includes("porter")) {
     return (
       <div className="min-h-screen bg-slate-950">
-        <VisualHeader />
+        <VixualHeader />
         <main className="pt-24 pb-12 cinema-section">
           <div className="container mx-auto px-4">
             <Card className="max-w-lg mx-auto bg-slate-900/50 border-white/10">
@@ -104,7 +104,7 @@ export default function UploadVideoPage() {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-24 pb-12 cinema-section">
         <div className="container mx-auto px-4">

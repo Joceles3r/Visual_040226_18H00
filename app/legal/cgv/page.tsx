@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
@@ -87,7 +87,7 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
 export default function CGVPage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
 
@@ -107,7 +107,7 @@ export default function CGVPage() {
               {"Conditions Générales de Vente"}
             </h1>
             <div className="mb-4">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-white/50 text-sm">
               {"Version Provisoire Internationale \u2013 26 f\u00e9vrier 2026"}

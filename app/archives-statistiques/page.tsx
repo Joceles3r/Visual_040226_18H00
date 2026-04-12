@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 import { ArchivesHero } from "@/components/archives-statistiques/archives-hero"
 import { TopProjectsGrid } from "@/components/archives-statistiques/top-projects-grid"
@@ -24,7 +24,7 @@ export default async function ArchivesStatistiquesPage() {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
       
       <main className="container mx-auto px-4 py-8 space-y-16">
         {/* Hero Section */}

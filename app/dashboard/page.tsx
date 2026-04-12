@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   Star,
   Heart,
@@ -114,7 +114,7 @@ export default function DashboardPage() {
               Bienvenue, {user?.name || "Utilisateur"}
             </h1>
             <span className="hidden sm:block text-white/15">|</span>
-            <VisualSlogan size="xs" opacity="medium" />
+            <VixualSlogan size="xs" opacity="medium" />
           </div>
           <p className="text-white/60">
             {"Voici un aper\u00e7u de votre activit\u00e9 sur VIXUAL"}

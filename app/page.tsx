@@ -5,9 +5,9 @@ import { ArrowRight, Film, FileText, Mic, Users, TrendingUp, Shield, Star, Award
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import { ContentCard } from "@/components/content-card"
 import { TrafficLight } from "@/components/traffic-light"
 import { ALL_CONTENTS } from "@/lib/mock-data"
@@ -62,7 +62,7 @@ const STATS = [
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main>
         {/* Hero Section */}
@@ -86,7 +86,7 @@ export default function HomePage() {
 
               {/* Slogan signature */}
               <div className="mb-8">
-                <VisualSlogan size="base" opacity="high" withLines />
+                <VixualSlogan size="base" opacity="high" withLines />
               </div>
 
               <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto text-pretty">

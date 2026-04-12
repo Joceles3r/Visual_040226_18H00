@@ -23,7 +23,7 @@ import {
   ExternalLink,
   AlertCircle,
 } from "lucide-react"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
 
 const PAYER_STEPS = [
@@ -107,7 +107,7 @@ export default function GuideStripePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="max-w-4xl mx-auto px-4 py-12">
         {/* Back button */}

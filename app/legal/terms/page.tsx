@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { VisualHeader } from "@/components/visual-header"
+import { VixualHeader } from "@/components/vixual-header"
 import { Footer } from "@/components/footer"
-import { VisualSlogan } from "@/components/visual-slogan"
+import { VixualSlogan } from "@/components/vixual-slogan"
 import {
   FileText, ArrowLeft, User, CreditCard, Film, BookOpen, Mic,
   Shield, ShieldCheck, AlertTriangle, Scale, Globe, Clock, Eye, Lock,
@@ -44,7 +44,7 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
 export default function TermsOfUsePage() {
   return (
     <div className="min-h-screen bg-black">
-      <VisualHeader />
+      <VixualHeader />
 
       <main className="pt-28 pb-20">
         {/* Hero */}
@@ -57,7 +57,7 @@ export default function TermsOfUsePage() {
               {"Conditions d'Utilisation"}
             </h1>
             <div className="mb-6">
-              <VisualSlogan size="sm" opacity="high" withLines />
+              <VixualSlogan size="sm" opacity="high" withLines />
             </div>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               {"Les présentes Conditions Générales d'Utilisation régissent l'accès et l'utilisation de la plateforme VIXUAL, combinant diffusion de contenus audiovisuels, littéraires et podcasts avec un système d'investissement participatif."}
@@ -354,7 +354,7 @@ export default function TermsOfUsePage() {
                     <ul className="space-y-1.5 text-xs text-white/50">
                       <li>{"Applicable aux rôles : Porteur, Infoporteur, Podcasteur"}</li>
                       <li>{"Versée une seule fois lors de l'activation du rôle créateur"}</li>
-                      <li>{"Traitée via Stripe, sécurisée et traçable"}</li>
+                      <li>{"Traitée via Stripe, sécuris��e et traçable"}</li>
                     </ul>
                   </div>
                   <div className="bg-black/30 rounded-xl p-5 border border-white/5">

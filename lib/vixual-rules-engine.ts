@@ -47,9 +47,9 @@ export function generateIdempotencyKey(cycleId: string, userId: string, month: s
 export function generateIdempotencyKey(month: string): string;
 export function generateIdempotencyKey(a: string, b?: string, c?: string): string {
   if (b && c) {
-    return `visual_${a}_${b}_${c}`;
+    return `vixual_${a}_${b}_${c}`;
   }
-  return `visual_batch_${a}`;
+  return `vixual_batch_${a}`;
 }
 
 /**
