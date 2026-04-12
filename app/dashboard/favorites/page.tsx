@@ -4,10 +4,10 @@ import Link from "next/link"
 import { Heart, Compass } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ContentCard } from "@/components/content-card"
-import { ALL_CONTENTS } from "@/lib/mock-data"
+import type { ALL_CONTENTS } from "@/lib/mock-data"
 
-// Mock: first 3 contents are favorites
-const MOCK_FAVORITES = ALL_CONTENTS.slice(0, 3)
+// FIX - Pas de favoris mock. Les vrais favoris seront charges depuis l'API.
+const MOCK_FAVORITES: typeof ALL_CONTENTS = []
 
 export default function FavoritesPage() {
   return (

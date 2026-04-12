@@ -386,7 +386,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
                   <div className="flex-1 min-w-0">
                     <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1.5 text-balance">{content.title}</h1>
                     <div className="flex flex-wrap items-center gap-3 text-sm">
-                      <Link href="#" className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+                      <Link href={`/creator-pro/${content.creatorId}`} className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
                         {content.creatorName}
                         {isGold && <Crown className="h-3.5 w-3.5 text-amber-400" />}
                       </Link>

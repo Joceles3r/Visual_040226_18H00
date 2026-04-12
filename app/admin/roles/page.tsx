@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { UserPlus, Users, AlertCircle } from 'lucide-react';
+import { UserPlus, Users, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function AdminRolesPage() {
   const [showNewRoleForm, setShowNewRoleForm] = useState(false);
   const [selectedRole, setSelectedRole] = useState<'admin_adjoint' | 'moderator' | 'support'>('admin_adjoint');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const subordinateRoles = [
     {
@@ -72,17 +74,39 @@ export default function AdminRolesPage() {
     e.preventDefault();
     
     if (!email || !name) {
-      alert('Veuillez remplir tous les champs');
+      setSubmitMessage({ type: 'error', text: 'Nom et email obligatoires.' });
       return;
     }
 
-    // TODO: Call API to create subordinate admin
-    console.log(`Creating ${selectedRole}: ${name} (${email})`);
-    
-    setEmail('');
-    setName('');
-    setShowNewRoleForm(false);
-    alert('Rôle créé avec succès');
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    try {
+      const res = await fetch('/api/admin/secure-action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'create_admin_role',
+          email: email,
+          name: name,
+          role: selectedRole,
+        }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setSubmitMessage({ type: 'success', text: `Compte ${selectedRole} cree pour ${email}.` });
+        setEmail('');
+        setName('');
+        setShowNewRoleForm(false);
+      } else {
+        setSubmitMessage({ type: 'error', text: data.error || 'Erreur lors de la creation.' });
+      }
+    } catch {
+      setSubmitMessage({ type: 'error', text: 'Erreur reseau.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -176,9 +200,11 @@ export default function AdminRolesPage() {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded font-semibold transition-colors"
+                  disabled={isSubmitting}
+                  className="px-6 py-2 bg-red-500 hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded font-semibold transition-colors flex items-center gap-2"
                 >
-                  Créer le rôle
+                  {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Creation en cours...' : 'Creer le role'}
                 </button>
                 <button
                   type="button"
@@ -188,6 +214,17 @@ export default function AdminRolesPage() {
                   Annuler
                 </button>
               </div>
+
+              {/* Feedback message */}
+              {submitMessage && (
+                <div className={`mt-4 p-3 rounded text-sm ${
+                  submitMessage.type === 'success'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                    : 'bg-red-500/20 text-red-300 border border-red-500/30'
+                }`}>
+                  {submitMessage.text}
+                </div>
+              )}
             </form>
           </div>
         )}

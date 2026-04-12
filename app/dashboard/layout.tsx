@@ -114,7 +114,7 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     label: "Parametres",
     href: "/dashboard/settings",
     icon: Settings,
-    roles: ["visitor", "porter", "investor", "infoporter", "investireader", "podcaster", "listener"],
+    roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
   },
 ]
 

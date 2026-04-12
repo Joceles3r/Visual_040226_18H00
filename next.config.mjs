@@ -38,6 +38,17 @@ const nextConfig = {
       },
     ]
   },
+  // Redirects for backward compatibility and SEO
+  async redirects() {
+    return [
+      // Page orpheline admin/dashboard supprimee -> redirige vers admin
+      {
+        source: '/admin/dashboard',
+        destination: '/admin',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

@@ -11,35 +11,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { MOCK_TRANSACTIONS } from "@/lib/mock-data"
 
-const ALL_TRANSACTIONS = [
-  ...MOCK_TRANSACTIONS,
-  {
-    id: "tr4",
-    type: "contribution" as const,
-    description: "Contribution - Contes de Minuit",
-    amount: -10,
-    date: "2026-01-28",
-    status: "completed" as const,
-  },
-  {
-    id: "tr5",
-    type: "withdrawal" as const,
-    description: "Retrait bancaire",
-    amount: -50,
-    date: "2026-01-20",
-    status: "completed" as const,
-  },
-  {
-    id: "tr6",
-    type: "deposit" as const,
-    description: "Caution Contributeur",
-    amount: -20,
-    date: "2026-01-15",
-    status: "completed" as const,
-  },
-]
+// FIX - Etat initial vide. Les transactions seront chargees depuis /api/wallet.
+const ALL_TRANSACTIONS: {
+  id: string
+  type: "contribution" | "return" | "withdrawal" | "deposit" | "vixupoints"
+  description: string
+  amount: number
+  date: string
+  status: "completed" | "pending" | "failed"
+}[] = []
 
 export default function HistoryPage() {
   const [filter, setFilter] = useState("all")

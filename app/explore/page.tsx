@@ -780,8 +780,8 @@ function ExplorerContent() {
   const searchParams = useSearchParams()
   const { isAuthed, roles } = useAuth()
   
-  // Read URL params
-  const tabParam = searchParams.get("tab") as "all" | "video" | "text" | "podcast" | null
+  // Read URL params - FIX: accepter ?tab= (navigation principale) ET ?type= (onboarding, dashboard, liens directs)
+  const tabParam = (searchParams.get("tab") || searchParams.get("type")) as "all" | "video" | "text" | "podcast" | null
   const genreParam = searchParams.get("genre") || "all"
   const pageParam = parseInt(searchParams.get("page") || "1", 10)
   

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useAuth } from "@/lib/auth-context"
+import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
 // Donnees reelles - etat vide par defaut
 interface Investment {
@@ -19,8 +21,11 @@ interface Investment {
   date: string
 }
 
-export default function InvestmentsPage() {
+function InvestmentsContent() {
   const { user } = useAuth()
+  const searchParams = useSearchParams()
+  const typeParam = searchParams.get("type") as "video" | "text" | "podcast" | null
+  
   // TODO: Charger les vraies contributions depuis l'API
   const investments: Investment[] = []
   
@@ -29,8 +34,10 @@ export default function InvestmentsPage() {
   
   // Determiner le type de contenu en fonction du role
   const userRole = user?.roles?.[0] || "contributor"
-  const contentType = userRole === "listener" ? "podcast" : userRole === "contribureader" ? "text" : "video"
-  const exploreHref = `/explore?type=${contentType}`
+  const defaultType = userRole === "listener" ? "podcast" : userRole === "contribureader" ? "text" : "video"
+  // FIX: URL param prend la priorite sur le role
+  const contentType = typeParam || defaultType
+  const exploreHref = `/explore?tab=${contentType}`
   const emptyMessage = userRole === "listener" 
     ? "Decouvrez les podcasts et soutenez vos preferes. Si le podcast est dans le TOP 10, vous recevez 30% du pot mensuel."
     : userRole === "contribureader"
@@ -196,5 +203,17 @@ export default function InvestmentsPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function InvestmentsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[200px]">
+        <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <InvestmentsContent />
+    </Suspense>
   )
 }
