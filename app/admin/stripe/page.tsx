@@ -471,18 +471,26 @@ export default function StripeConfigPage() {
         </CardContent>
       </Card>
 
-      {/* ── Banniere critique si mode memoire ────────────────────────────────── */}
-      {config?.source === "memory" && (
+      {/* ── Banniere critique si mode memoire ou bloque ────────────────────────── */}
+      {(config?.source === "memory" || config?.source === "blocked") && (
         <div className="p-4 rounded-xl bg-red-950/50 border-2 border-red-500/50 space-y-2">
           <div className="flex items-center gap-2 text-red-400">
             <AlertTriangle className="h-5 w-5" />
-            <span className="font-bold">Configuration Stripe temporaire en memoire seulement</span>
+            <span className="font-bold">
+              {config?.source === "blocked" 
+                ? "Base de donnees requise en production" 
+                : "Configuration Stripe temporaire en memoire seulement"}
+            </span>
           </div>
           <p className="text-red-300/80 text-sm">
-            Elle sera perdue au redemarrage du serveur. Les vrais tests Stripe durables exigent une base de donnees configuree.
+            {config?.source === "blocked"
+              ? "La configuration Stripe est bloquee car aucune base de donnees n'est configuree. Ajoutez DATABASE_URL pour activer Stripe."
+              : "Elle sera perdue au redemarrage du serveur. Les vrais tests Stripe durables exigent une base de donnees configuree."}
           </p>
           <p className="text-red-400/60 text-xs font-mono">
-            Tests Stripe serieux interdits tant que source !== database
+            {config?.source === "blocked"
+              ? "Production require source === database"
+              : "Tests Stripe serieux interdits tant que source !== database"}
           </p>
         </div>
       )}
@@ -545,12 +553,12 @@ export default function StripeConfigPage() {
         )}
       </div>
 
-      {/* ── Statut des clés ─────────────────────────────────────────────── */}
+      {/* ── Statut des clés — PATCH MEMORISATION ───────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { label: "Clé TEST", ok: config?.has_test_secret, icon: Key },
+          { label: "Cle TEST", ok: config?.has_test_secret, icon: Key },
           { label: "Webhook TEST", ok: config?.has_test_webhook, icon: Webhook },
-          { label: "Clé LIVE", ok: config?.has_live_secret, icon: Key },
+          { label: "Cle LIVE", ok: config?.has_live_secret, icon: Key },
           { label: "Webhook LIVE", ok: config?.has_live_webhook, icon: Webhook },
         ].map((item) => (
           <div
@@ -565,10 +573,17 @@ export default function StripeConfigPage() {
             <span className={`text-xs font-medium ${item.ok ? "text-emerald-300" : "text-white/30"}`}>
               {item.label}
             </span>
-            {item.ok
-              ? <CheckCircle className="h-4 w-4 text-emerald-400" />
-              : <XCircle className="h-4 w-4 text-white/20" />
-            }
+            {item.ok ? (
+              <div className="flex items-center gap-1">
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <span className="text-emerald-400 text-xs">Configuree</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1">
+                <XCircle className="h-4 w-4 text-white/20" />
+                <span className="text-white/30 text-xs">Non configuree</span>
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -21,7 +21,13 @@ import {
 import { PATRON_EMAIL } from "@/lib/admin/roles";
 import { logStripeSettingsUpdate } from "@/lib/admin/audit";
 
-// ── In-memory fallback cache (when DB is not available) ──
+// ── PATCH MEMORISATION — DB est LA SEULE SOURCE DE VERITE ──
+// En production, le cache memoire est INTERDIT comme source de donnees
+// Il ne sert que temporairement pendant le developpement local sans DB
+
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+
+// Cache memoire LOCAL UNIQUEMENT (dev sans DB)
 let memoryCache: {
   test_secret_key?: string;
   test_publishable_key?: string;
@@ -38,6 +44,12 @@ let memoryCache: {
 // ── Check if DB is configured ──
 function isDatabaseConfigured(): boolean {
   return !!process.env.DATABASE_URL && !process.env.DATABASE_URL.includes("your-database");
+}
+
+// ── PATCH: Verifier si on doit bloquer le mode memoire ──
+function shouldBlockMemoryMode(): boolean {
+  // En production, toujours bloquer le mode memoire
+  return IS_PRODUCTION && !isDatabaseConfigured();
 }
 
 // ── Ensure table exists ──
@@ -139,7 +151,16 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Fallback to memory cache
+  // PATCH: En production sans DB, bloquer avec erreur explicite
+  if (shouldBlockMemoryMode()) {
+    return NextResponse.json({
+      error: "Configuration Stripe impossible: base de donnees requise en production",
+      configured: false,
+      source: "blocked",
+    }, { status: 503 });
+  }
+
+  // Fallback to memory cache (dev uniquement)
   const testSecretRaw = memoryCache.test_secret_key || "";
   const liveSecretRaw = memoryCache.live_secret_key || "";
   const testWebhookRaw = memoryCache.test_webhook_secret || "";
@@ -162,6 +183,7 @@ export async function GET(req: NextRequest) {
     has_test_webhook: testWebhookRaw.startsWith("whsec_"),
     has_live_webhook: liveWebhookRaw.startsWith("whsec_"),
     source: "memory",
+    warning: "Mode memoire temporaire - les cles seront perdues au redemarrage",
   });
 }
 
@@ -208,9 +230,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validations.join(" | ") }, { status: 422 });
   }
 
-  // Update memory cache - ignorer les placeholders masques pour les cles secretes
   const now = new Date().toISOString();
-  
+
+  // PATCH: En production sans DB, bloquer avec erreur explicite
+  if (shouldBlockMemoryMode()) {
+    return NextResponse.json({
+      error: "Sauvegarde impossible: base de donnees requise en production",
+      success: false,
+    }, { status: 503 });
+  }
+
+  // Update memory cache (dev uniquement) - ignorer les placeholders masques
   // Cles secretes: ne mettre a jour que si vraie nouvelle valeur
   if (shouldUpdateSecretField(body.test_secret_key)) memoryCache.test_secret_key = body.test_secret_key;
   if (shouldUpdateSecretField(body.test_webhook_secret)) memoryCache.test_webhook_secret = body.test_webhook_secret;
