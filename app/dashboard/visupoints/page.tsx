@@ -276,7 +276,7 @@ function ProfileTable() {
         <div className="mt-4 flex items-center gap-4 text-xs text-white/30">
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-amber-500/40" />
-            {"Max journalier recommand\u00e9 : " + VISUPOINTS_MAX_DAILY + " pts"}
+            {"Max journalier recommande : " + VIXUPOINTS_MAX_DAILY + " pts"}
           </span>
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-500/40" />
@@ -410,7 +410,7 @@ export default function VisupointsPage() {
                 )}
 
                 <div className="mt-3 flex gap-3 text-xs text-white/30">
-                  <span>{"Max journalier : " + VISUPOINTS_MAX_DAILY + " pts"}</span>
+                  <span>{"Max journalier : " + VIXUPOINTS_MAX_DAILY + " pts"}</span>
                   <span>{"100 pts = 1\u20ac"}</span>
                 </div>
               </div>
