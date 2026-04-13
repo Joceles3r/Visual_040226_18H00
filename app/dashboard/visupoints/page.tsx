@@ -241,7 +241,7 @@ function ProfileTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {Object.entries(VISUPOINTS_PROFILE_CAPS).map(([key, profile]) => (
+              {Object.entries(VIXUPOINTS_PROFILE_CAPS).map(([key, profile]) => (
                 <tr key={key}>
                   <td className="py-2.5 pr-4 text-white font-medium">{profile.label}</td>
                   <td className="py-2.5 px-2 text-center">
@@ -461,7 +461,7 @@ export default function VisupointsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-black/30 rounded-xl p-4 border border-white/5">
               <p className="text-white/50 text-sm">Taux</p>
-              <p className="text-white font-bold text-lg mt-1">{VISUPOINTS_PER_EUR + " pts = 1\u20ac"}</p>
+              <p className="text-white font-bold text-lg mt-1">{VIXUPOINTS_PER_EUR + " pts = 1\u20ac"}</p>
             </div>
             <div className="bg-black/30 rounded-xl p-4 border border-white/5">
               <p className="text-white/50 text-sm">Seuil minimum</p>

@@ -95,7 +95,7 @@ function InvestmentsContent() {
               <div>
                 <p className="text-white/60 text-sm">Projets soutenus</p>
                 <p className="text-2xl font-bold text-white">
-                  {MOCK_INVESTMENTS.length}
+                  {investments.length}
                 </p>
               </div>
             </div>
