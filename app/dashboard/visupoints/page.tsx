@@ -464,8 +464,8 @@ export default function VisupointsPage() {
             </div>
             <div className="bg-black/30 rounded-xl p-4 border border-white/5">
               <p className="text-white/50 text-sm">Seuil minimum</p>
-              <p className="text-white font-bold text-lg mt-1">{VISUPOINTS_CONVERSION_THRESHOLD.toLocaleString("fr-FR") + " pts"}</p>
-              <p className="text-white/40 text-xs mt-0.5">{(VISUPOINTS_CONVERSION_THRESHOLD / VISUPOINTS_PER_EUR) + "\u20ac"}</p>
+              <p className="text-white font-bold text-lg mt-1">{VIXUPOINTS_CONVERSION_THRESHOLD.toLocaleString("fr-FR") + " pts"}</p>
+              <p className="text-white/40 text-xs mt-0.5">{(VIXUPOINTS_CONVERSION_THRESHOLD / VIXUPOINTS_PER_EUR) + "\u20ac"}</p>
             </div>
             <div className="bg-black/30 rounded-xl p-4 border border-white/5">
               <p className="text-white/50 text-sm">Montant convertible</p>
