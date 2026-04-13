@@ -129,7 +129,7 @@ export default function WalletPage() {
     } catch { /* silent */ } finally { setConnectLoading(false) }
   }, [user, mutate])
 
-  const handlePayCaution = useCallback(async (cautionType: "creator" | "investor") => {
+  const handlePayCaution = useCallback(async (cautionType: "creator" | "contributor") => {
     if (!user) return
     setCautionLoading(cautionType)
     try {
@@ -366,9 +366,9 @@ export default function WalletPage() {
             {/* Caution section */}
             <div className="space-y-2 pt-2">
               <p className="text-white/50 text-xs font-medium uppercase tracking-wider">{"Cautions"}</p>
-              {(["creator", "investor"] as const).map((type) => {
-                const paid = type === "creator" ? data?.cautions?.creatorPaid : data?.cautions?.investorPaid
-                const label = type === "creator" ? "Cr\u00e9ateur" : "Contributeur"
+              {(["creator", "contributor"] as const).map((type) => {
+                const paid = type === "creator" ? data?.cautions?.creatorPaid : data?.cautions?.contributorPaid
+                const label = type === "creator" ? "Createur" : "Contributeur"
                 const sub = type === "creator" ? "Porteur / Infoporteur / Podcasteur" : "Contributeur / Contribu-lecteur / Auditeur"
                 const amount = CAUTION_EUR[type]
                 return (
