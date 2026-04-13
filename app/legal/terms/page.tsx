@@ -10,7 +10,7 @@ import {
   Ban, HelpCircle, Trash2, Award, BarChart3, Vote,
   Gavel, Handshake, BadgeCheck, Info, TrendingUp, Wallet,
   Star, Users, CheckCircle, XCircle, RefreshCw, MessageSquare,
-  Heart, AlertCircle,
+  Heart, AlertCircle, ListOrdered, Timer,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { LEGAL_INFO } from "@/lib/legal-info"
@@ -764,6 +764,80 @@ export default function TermsOfUsePage() {
               </CardContent>
             </Card>
           </Section>
+
+          {/* Article 5bis - Selection des projets et reintegration prioritaire */}
+          <Card className="bg-purple-500/5 border-purple-500/15">
+            <CardContent className="pt-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <ListOrdered className="h-4 w-4 text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-purple-400">{"Article 5bis — Selection des projets et reintegration prioritaire"}</h3>
+                  <p className="text-white/50 text-sm mt-1">{"Systeme de file d'attente equitable et reintegration payante"}</p>
+                </div>
+              </div>
+
+              <SubSection title={"Selection des 100 projets par categorie"}>
+                <div className="space-y-2 text-sm text-white/60">
+                  <p className="leading-relaxed">
+                    {"Dans chaque categorie de la plateforme VIXUAL, un maximum de 100 projets est selectionne pour participer a une session active."}
+                  </p>
+                  <p className="leading-relaxed">
+                    {"La selection des projets s'effectue de maniere automatique, equitable et chronologique, sans intervention arbitraire."}
+                  </p>
+                  <p className="leading-relaxed">
+                    {"Lorsqu'une categorie atteint sa capacite maximale, les nouveaux projets sont places dans une file d'attente officielle. Les porteurs de projets sont informes par email des qu'une place se libere et que leur projet integre la selection."}
+                  </p>
+                </div>
+              </SubSection>
+
+              <SubSection title={"Cloture de session et designation des gagnants"}>
+                <div className="space-y-2 text-sm text-white/60">
+                  <p className="leading-relaxed">
+                    {"A la cloture d'une session, les projets classes parmi les 10 premiers sont designes gagnants."}
+                  </p>
+                  <p className="leading-relaxed">
+                    {"Les projets non classes dans le TOP 10 peuvent, sous conditions, etre representes prioritairement dans la session suivante."}
+                  </p>
+                </div>
+              </SubSection>
+
+              <SubSection title={"Reintegration prioritaire"}>
+                <div className="space-y-2">
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {"Cette reintegration est soumise aux conditions suivantes :"}
+                  </p>
+                  {[
+                    "Le projet doit avoir participe a la session precedente",
+                    "Le projet ne doit pas faire partie des 10 premiers gagnants",
+                    "Le porteur dispose d'un delai strict d'une heure a compter de la cloture de la session",
+                    "Le porteur doit s'acquitter d'un montant de 25 euros pour activer cette priorite",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <CheckCircle className="h-4 w-4 text-purple-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+
+              <SubSection title={"Expiration et limites"}>
+                <div className="space-y-2">
+                  {[
+                    "Passe ce delai, le droit de reintegration prioritaire expire automatiquement",
+                    "VIXUAL se reserve le droit d'annuler toute tentative de contournement ou d'abus de ce mecanisme",
+                    "La reintegration prioritaire ne garantit pas automatiquement l'acces a la selection si les conditions techniques ou structurelles ne le permettent pas",
+                  ].map((item) => (
+                    <div key={item} className="flex gap-2 items-start text-sm">
+                      <Timer className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                      <span className="text-white/60">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </SubSection>
+            </CardContent>
+          </Card>
 
           {/* 6. Contenus déposés */}
           <Section num={6} title="Contenus déposés par les créateurs">
