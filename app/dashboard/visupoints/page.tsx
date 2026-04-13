@@ -298,7 +298,7 @@ export default function VisupointsPage() {
 
   // Restrictions
   const withdrawStatus = canWithdraw(userIsMinor, kycVerified)
-  const convertStatus = canConvertVisupoints(userIsMinor)
+  const convertStatus = canConvertVixupoints(userIsMinor)
   const conversion = convertVisupoints(currentPoints)
 
   // Engagement Redirect Engine
