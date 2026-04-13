@@ -5,9 +5,11 @@
  * Compatible with the Rule of 100 — this engine ranks projects within a cycle
  * but does NOT replace cycle management.
  *
- * Formula (section 3):
+ * Formula:
  *   Score_VIXUAL = 40% investment + 20% engagement + 15% completion
  *                + 10% growth + 10% trust + 5% quality bonus
+ *
+ * Ticket Gold: Provides +5 trust bonus for 48h (replaces old Gold Pass)
  */
 
 import type {
@@ -55,7 +57,7 @@ export function computeVisualScore(signals: ProjectSignals): VisualScoreBreakdow
   // 10% — Trust score (0-100 already)
   let trustScore = Math.min(signals.creatorTrustScore, 100)
   if (signals.creatorVerified) trustScore = Math.min(trustScore + 5, 100)
-  if (signals.creatorGoldPass) trustScore = Math.min(trustScore + 5, 100)
+  if (signals.hasTicketGold) trustScore = Math.min(trustScore + 5, 100)
 
   // 5% — AI quality bonus (heuristic: completeness of project signals)
   // If investor count > 10 AND completion rate > 0.5 AND trust > 60 => full bonus

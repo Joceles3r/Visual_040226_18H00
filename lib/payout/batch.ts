@@ -1,5 +1,5 @@
 /**
- * VISUAL - Batch Payout Module
+ * VIXUAL - Batch Payout Module
  *
  * Orchestrates monthly batch payouts across all categories.
  * Flow: simulate -> review -> execute

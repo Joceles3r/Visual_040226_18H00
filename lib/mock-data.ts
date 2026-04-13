@@ -25,7 +25,7 @@ export interface Content {
   totalVotes: number
   isFree: boolean
   category: string
-  goldPass?: boolean // Createur ayant le Gold Pass
+  hasTicketGold?: boolean // Projet ayant un Ticket Gold actif (boost 48h)
   duration?: string // Pour les videos et podcasts
   wordCount?: number // Pour les ecrits
   episodeCount?: number // Pour les podcasts

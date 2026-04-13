@@ -17,6 +17,8 @@ import {
   Upload,
   Sparkles,
   Ticket,
+  MessageCircle,
+  HardDrive,
 } from "lucide-react"
 import { VixualHeader } from "@/components/vixual-header"
 import { useAuth } from "@/lib/auth-context"
@@ -40,6 +42,13 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     href: "/dashboard/visitor",
     icon: Ticket,
     roles: ["visitor"],   // Pass Decouverte = Visiteur uniquement
+    accent: true,
+  },
+  {
+    label: "VIXUAL Social",
+    href: "/social",
+    icon: MessageCircle,
+    roles: ["visitor", "porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
     accent: true,
   },
   {
@@ -91,6 +100,12 @@ const SIDEBAR_ITEMS: { label: string; href: string; icon: any; roles: string[]; 
     href: "/dashboard/history",
     icon: History,
     roles: ["porter", "contributor", "infoporter", "contribureader", "podcaster", "listener"],
+  },
+  {
+    label: "Mon stockage",
+    href: "/dashboard/storage",
+    icon: HardDrive,
+    roles: ["porter", "infoporter", "podcaster"],
   },
   {
     label: "Deposer une video",

@@ -1,10 +1,10 @@
 "use client"
 
 /**
- * VISUAL Sound Provider
+ * VIXUAL Sound Provider
  * 
- * Fournit le contexte audio global pour l'application VISUAL.
- * Gère l'état on/off, le volume, et fournit les fonctions de lecture.
+ * Fournit le contexte audio global pour l'application VIXUAL.
+ * Gere l'etat on/off, le volume, et fournit les fonctions de lecture.
  */
 
 import { createContext, useContext, ReactNode } from "react"

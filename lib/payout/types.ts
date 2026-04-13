@@ -31,11 +31,11 @@ export type PayoutAllocation = {
   userId: string;
   role: Role;
   bucket: Bucket;
-  /** Amount that VISUAL should credit to the user's internal wallet (in cents). */
+  /** Amount that VIXUAL should credit to the user's internal wallet (in cents). */
   amountCents: number;
   /** Amount before euro-floor rounding (in cents). */
   grossCents: number;
-  /** Cents removed by euro-floor rounding (captured by VISUAL as residual). */
+  /** Cents removed by euro-floor rounding (captured by VIXUAL as residual). */
   roundingResidualCents: number;
   currency: Currency;
   meta: Record<string, unknown>;

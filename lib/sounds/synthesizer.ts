@@ -1,10 +1,10 @@
 /**
- * VISUAL Sound Synthesizer
+ * VIXUAL Sound Synthesizer
  * 
- * Génère les jingles VISUAL via Web Audio API
- * Aucun fichier externe requis - sons générés dynamiquement
+ * Genere les jingles VIXUAL via Web Audio API
+ * Aucun fichier externe requis - sons generes dynamiquement
  * 
- * Tonalité : Sol (G) comme note de base
+ * Tonalite : Sol (G) comme note de base
  * Style : futuriste, lumineux, positif
  */
 

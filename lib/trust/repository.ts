@@ -1,5 +1,5 @@
 /**
- * VISUAL Trust Score -- Database Repository
+ * VIXUAL Trust Score -- Database Repository
  */
 
 import { sql } from "@/lib/db";

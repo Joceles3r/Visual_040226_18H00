@@ -14,8 +14,8 @@ import { useAuth } from "@/lib/auth-context"
 import { ReportButton } from "@/components/report-button"
 import type { Content } from "@/lib/mock-data"
 
-/* ---------- VISUAL Badges ---------- */
-function getVisualBadges(content: Content) {
+/* ---------- VIXUAL Badges ---------- */
+function getVixualBadges(content: Content) {
   const badges: { label: string; icon: typeof Flame; bg: string }[] = []
   const daysSinceCreation = Math.floor(
     (Date.now() - new Date(content.createdAt).getTime()) / (1000 * 60 * 60 * 24)
@@ -40,7 +40,7 @@ export function ContentCard({ content }: ContentCardProps) {
     100
   )
   const cType = content.contentType
-  const badges = getVisualBadges(content)
+  const badges = getVixualBadges(content)
 
   const badgeConfig = {
     video: { bg: "bg-red-600/90 hover:bg-red-600", icon: Film, label: "Video" },
