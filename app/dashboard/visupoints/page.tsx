@@ -18,6 +18,7 @@ import {
   VIXUPOINTS_MAX_DAILY,
   HYBRID_BONUS_MONTHLY_CAP,
   INVESTOR_EVOLUTION_BONUS,
+  convertVixupoints,
 } from "@/lib/payout/constants"
 import {
   canWithdraw,
@@ -299,7 +300,7 @@ export default function VisupointsPage() {
   // Restrictions
   const withdrawStatus = canWithdraw(userIsMinor, kycVerified)
   const convertStatus = canConvertVixupoints(userIsMinor)
-  const conversion = convertVisupoints(currentPoints)
+  const conversion = convertVixupoints(currentPoints)
 
   // Engagement Redirect Engine
   const engagementRedirect = engagementRedirectEngine(userRole, currentPoints, userIsMinor)

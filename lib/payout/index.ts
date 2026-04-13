@@ -55,7 +55,7 @@ export {
   VISUPOINTS_CONVERSION_THRESHOLD,
   VISUPOINTS_PER_EUR,
   VISUPOINTS_MIN_WITHDRAW_EUR,
-  convertVisupoints,
+  convertVixupoints,
   // Repartition par categorie (nouvelles constantes)
   FILMS_INVESTOR_TOP10_PERCENT,
   FILMS_CREATOR_TOP10_PERCENT,

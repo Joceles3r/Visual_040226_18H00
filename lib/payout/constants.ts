@@ -174,7 +174,7 @@ export const VISUPOINTS_MIN_WITHDRAW_EUR = VIXUPOINTS_MIN_WITHDRAW_EUR;
  * Convertit des VIXUpoints en euros.
  * @returns { eurosConverted, pointsRemaining, eligibleForConversion }
  */
-export function convertVisupoints(points: number): {
+export function convertVixupoints(points: number): {
   eurosConverted: number;
   pointsRemaining: number;
   eligibleForConversion: boolean;
@@ -197,7 +197,7 @@ export function convertVisupoints(points: number): {
   };
 }
 
-// ──────────────────────────────────────────────
+// ────────────────────────────��─────────────────
 // 6. REPARTITION DES GAINS PAR CATEGORIE
 // ──────────────────────────────────────────────
 // Source doc: "Vixual - Formules Mathematiques et Repartitions Completes Optimisees"
@@ -386,7 +386,7 @@ export const CREATOR_QUOTAS = {
   films: { maxDuration: Infinity, perQuarter: 1, priceEur: 7, label: "Films (> 30 min)" },
 } as const;
 
-// ───────────────────────────────────────────��──
+// ───────────────────────────────────────────���──
 // 7. VENTE D'ARTICLE (Infoporteur) - 70/30
 // ──────────────────────────────────────────────
 
