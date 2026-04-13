@@ -411,7 +411,7 @@ export default function VixualSocialFeed({
         counts[tag] = (counts[tag] || 0) + 1
       }
     }
-    return VISUAL_SOCIAL_TAGS
+    return VIXUAL_SOCIAL_TAGS
       .map((tag) => ({ tag, count: counts[tag] || 0 }))
       .filter((t) => t.count > 0)
       .sort((a, b) => b.count - a.count)

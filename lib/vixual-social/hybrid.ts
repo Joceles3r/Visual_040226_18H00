@@ -157,7 +157,7 @@ export const REPORT_THRESHOLD_HIDE = 3
 export function normalizeTags(tags: string[]): SocialTag[] {
   const cleaned = tags
     .map((t) => t.trim().toLowerCase().replace(/^#/, "") as SocialTag)
-    .filter((t) => VISUAL_SOCIAL_TAGS.includes(t))
+    .filter((t) => VIXUAL_SOCIAL_TAGS.includes(t))
   return Array.from(new Set(cleaned)).slice(0, MAX_TAGS_PER_POST)
 }
 
