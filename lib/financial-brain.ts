@@ -104,6 +104,9 @@ export interface AIAuditLog {
   role: AdminRole
 }
 
+// Type alias for backward compatibility
+export type AuditLog = AIAuditLog
+
 // ─── Official Distribution Key ───
 
 export const OFFICIAL_DISTRIBUTION_KEY: DistributionKey = {

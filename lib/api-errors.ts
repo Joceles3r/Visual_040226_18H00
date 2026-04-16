@@ -107,6 +107,9 @@ export const ErrorCodes = {
   // Generic
   ERR_INTERNAL: "ERR_INTERNAL",
   ERR_DATABASE: "ERR_DATABASE",
+  ERR_NOT_FOUND: "ERR_NOT_FOUND",
+  ERR_INVALID_BODY: "ERR_INVALID_BODY",
+  ERR_SERVER_ERROR: "ERR_SERVER_ERROR",
 } as const;
 
 export type ErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];

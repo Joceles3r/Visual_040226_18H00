@@ -65,7 +65,7 @@ const TX_ICONS: Record<string, string> = {
 const MOCK_WALLET = {
   availableCents: 0, pendingCents: 0, totalEarnedCents: 0, totalWithdrawnCents: 0,
 }
-const MOCK_VISUPOINTS = { balance: 0, cap: 5000, todayEarned: 0 }
+const MOCK_VIXUPOINTS = { balance: 0, cap: 5000, todayEarned: 0 }
 const MOCK_TRANSACTIONS: { id: string; type: string; amountCents: number; description: string; status: string; createdAt: string }[] = []
 const MOCK_PENDING_WITHDRAWALS: { id: string; amountCents: number; requestDate: string; status: "processing" | "held"; holdEnd: string | null }[] = []
 const MOCK_MONTHLY_DATA: { month: string; earned: number; spent: number }[] = []
@@ -90,7 +90,7 @@ export default function WalletPage() {
   const wallet = data?.wallet || MOCK_WALLET
   const transactions = data?.transactions || MOCK_TRANSACTIONS
   const stripeConnect = data?.stripeConnect || { status: "not_started", chargesEnabled: false, payoutsEnabled: false, hasAccount: false }
-  const visupoints = data?.visupoints || MOCK_VISUPOINTS
+  const visupoints = data?.visupoints || MOCK_VIXUPOINTS
   const pendingWithdrawals = data?.pendingWithdrawals || MOCK_PENDING_WITHDRAWALS
   const isLoading = !data && !error && !!user
 
@@ -430,7 +430,7 @@ export default function WalletPage() {
         </Card>
       )}
 
-      {/* SECTION 6 + 7 : VISUPOINTS + GRAPHIQUES */}
+      {/* SECTION 6 + 7 : VIXUPOINTS + GRAPHIQUES */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* VIXUpoints */}
         <Card className="bg-gradient-to-br from-amber-900/10 to-amber-800/5 border-amber-500/20">
@@ -459,7 +459,7 @@ export default function WalletPage() {
             {visupoints.balance >= VIXUPOINTS_CONVERSION_THRESHOLD && (
               <div className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                 <Sparkles className="h-4 w-4 text-emerald-400" />
-                <p className="text-emerald-400 text-xs font-medium">{"Conversion disponible : "}{Math.floor(visupoints.balance / VISUPOINTS_PER_EUR)}{" \u20ac"}</p>
+                <p className="text-emerald-400 text-xs font-medium">{"Conversion disponible : "}{Math.floor(visupoints.balance / VIXUPOINTS_PER_EUR)}{" \u20ac"}</p>
               </div>
             )}
           </CardContent>

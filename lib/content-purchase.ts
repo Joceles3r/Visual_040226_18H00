@@ -253,8 +253,8 @@ export function executePurchase(
   const remainingMonthlyBonusCap = Math.max(0, HYBRID_BONUS_MONTHLY_CAP - currentMonthlyBonus)
   const bonusEarned = Math.min(rawBonus, remainingMonthlyBonusCap)
 
-  // Cash à charger = totalPrice - points
-  const cashCharged = contentPrice - (pointsUsed / VISUPOINTS_PER_EUR)
+  // Cash a charger = totalPrice - points
+  const cashCharged = contentPrice - (pointsUsed / VIXUPOINTS_PER_EUR)
 
   return {
     cashCharged: Number(cashCharged.toFixed(2)),
@@ -302,7 +302,7 @@ export function getPriceGuideTable(): Array<{
   return prices.map((price) => ({
     price,
     minCash: Number((price * HYBRID_MIN_CASH_RATIO).toFixed(2)),
-    maxPoints: Math.round(price * HYBRID_MAX_POINTS_RATIO * VISUPOINTS_PER_EUR),
-    recommendedPoints: Math.round(price * 0.5 * VISUPOINTS_PER_EUR), // 50% comme recommandation
+    maxPoints: Math.round(price * HYBRID_MAX_POINTS_RATIO * VIXUPOINTS_PER_EUR),
+    recommendedPoints: Math.round(price * 0.5 * VIXUPOINTS_PER_EUR), // 50% comme recommandation
   }))
 }

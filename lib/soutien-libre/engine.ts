@@ -204,3 +204,25 @@ export async function recordSoutienLibrePayment(payment: Omit<FreeSupportPayment
     return { success: false, error: "Erreur lors de l'enregistrement" };
   }
 }
+
+/**
+ * Get list of creators followed by a user
+ */
+export async function getFollowedCreators(userId: string): Promise<Creator[]> {
+  if (!isDatabaseConfigured()) {
+    return [];
+  }
+
+  try {
+    const result = await sql`
+      SELECT c.* FROM creators c
+      INNER JOIN follows f ON c.id = f.creator_id
+      WHERE f.user_id = ${userId}::uuid
+      ORDER BY f.created_at DESC
+    `;
+    return result as unknown as Creator[];
+  } catch (error) {
+    console.error("[SoutienLibre] Error getting followed creators:", error);
+    return [];
+  }
+}
